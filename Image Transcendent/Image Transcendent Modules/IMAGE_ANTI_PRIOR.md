@@ -2,7 +2,7 @@
 
 ANTI_PRIOR_VERSION: 1.1.0
 STATUS: ACTIVE
-COMPATIBLE_CI: ImageT_v1.0.0.md
+COMPATIBILITY_SOURCE: manifest.yaml
 
 ## Function
 

@@ -4,7 +4,7 @@ CONFIG_ID: image-transcendent-anti-drift
 CONFIG_VERSION: 2.0.0
 STATUS: ACTIVE
 ROLE: GENERIC_ANTI_DRIFT
-COMPATIBLE_CI: ImageT_v1.0.0.md
+COMPATIBILITY_SOURCE: manifest.yaml
 
 ## Authority and scope
 

@@ -1,7 +1,7 @@
 # HUMANOID CHARACTER DESIGN PREFERENCE
 
 PREFERENCE_ID: humanoid-character-design
-PREFERENCE_VERSION: 0.1.0-candidate
+PREFERENCE_VERSION: 0.1.1-candidate
 STATUS: CANDIDATE
 BASELINE_CI: ImageT_v1.0.0.md
 SOURCE: source_archive/02-02-config-1.md, CONFIG_VERSION 1.2
@@ -11,6 +11,7 @@ SOURCE_SHA256: 1458EFF9790C02BF146CCA48232A7D352308A00F8FA1B684EBA5A32B94FF8FAA
 
 PREFERENCE != MODEL PRIOR
 APPLICABILITY != ACTIVATION
+MORE DETAIL != MORE INVENTION
 
 This candidate is not an active Project source or a replacement for config.md. Use its full text only when explicitly selected for the current experiment, or under a separately approved activation rule. No such routing rule is implemented in Phase 1. Presence, subject similarity and prior selection never activate it. Selection expires with the current operation.
 
@@ -20,7 +21,7 @@ These are soft aesthetic directions, subordinate to the current request, assigne
 
 Selection permits relational description of authorized components. It does not independently open silhouette, proportions, pose, composition, materials, palette or style to redesign. A material design choice needs separate user or active-source authority. Where new design is expressly allowed, refine relationships only inside the fields opened by that permission; do not treat selection as blanket design authorization.
 
-This module owns no character identity, exact counts, anatomy facts, topology, attachment facts, props, lore, setting, narrative meaning, reference assignments or operation stop condition. It cannot invent those to satisfy coherence. It supplies no default garment, accessory, color, material, pose or style. An unresolved field remains unresolved under baseline controls.
+This module owns no character identity, exact counts, anatomy facts, topology, attachment facts, props, lore, setting, narrative meaning, cultural meaning, symbols, reference assignments or operation stop condition. It cannot invent those to satisfy coherence. It supplies no default garment, accessory, color, material, pose or style. An unresolved field remains unresolved under baseline controls.
 
 ## Relational primitives
 

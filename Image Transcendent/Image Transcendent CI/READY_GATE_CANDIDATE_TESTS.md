@@ -7,9 +7,9 @@ LIVE_RESULTS: NOT RUN
 
 ## Trial compatibility and preparation
 
-This candidate does not update the active release. For a later authorized trial, create an isolated test Project, explicitly select this CI candidate as its instructions, and provide the unchanged baseline Manifest 1.0.0, Router 2.0.0, Anti-Prior 1.1.0 and Config 2.0.0 as Sources. Do not upload the preference candidate, archives or this test plan as active controls. Production Project instructions and Sources remain unchanged. No Project setup is performed in Phase 1.
+This candidate does not update the active release. For a later authorized trial, explicitly select its manifest ID and identify the isolated test Project and test session. Install the matching CI text as Project instructions and supply manifest.yaml, IMAGE_SOURCE_ROUTER.yaml, and the required modules resolved by that manifest as Sources. Do not upload the preference candidate, archives or this test plan as active controls. No Project setup or live trial is performed by this local migration.
 
-The candidate's trial paragraph is a narrow, explicit CI-level exception to the baseline-CI compatibility declaration; baseline source inventory still must match exactly. It is not a claim that Manifest lists the candidate as ACTIVE or that runtime compatibility has passed. Without explicit isolated-trial selection, stop. If a baseline source is missing, inconsistent or not readable, stop normally. Reverting to ImageT_v1.0.0.md restores the baseline without changing the modules. Do not apply M2's experimental provenance treatment here.
+The manifest owns candidate availability, selectability, compatibility and selection scope. The router validates selection before prompt preparation. Listing alone never activates a candidate. End the test by clearing its selection and restoring the manifest-resolved baseline instructions; the next operation defaults to that baseline. Missing or inconsistent required sources stop normally. Restoring the previous published stack requires all matching predecessor files, not only a CI filename.
 
 Use the same simple CREATE request for all basic approval cases:
 
