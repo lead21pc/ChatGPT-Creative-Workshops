@@ -1,4 +1,5 @@
 import importlib.util
+import json
 from pathlib import Path
 import tempfile
 import unittest
@@ -35,7 +36,8 @@ class WorkflowTests(unittest.TestCase):
 
     def call(self, command, **kwargs):
         options = dict(command=command, checkout=str(self.root), chat_key='chat-a',
-                       project=str(self.project), branch='work', refresh_head=False)
+                       project=str(self.project), branch='work', refresh_head=False,
+                       worktree=None, ref=None)
         options.update(kwargs)
         return workflow.run(SimpleNamespace(**options))
 
@@ -158,6 +160,154 @@ class WorkflowTests(unittest.TestCase):
                 self.call('check', checkout=str(checkout))
         finally:
             self.git('worktree', 'remove', str(checkout))
+
+    def prepare_chat(self, key='chat-b'):
+        target = self.root.parent / (self.root.name + '-' + key)
+        self.call('prepare', chat_key=key, worktree=str(target),
+                  branch='codex/' + key, ref='HEAD')
+        self.addCleanup(lambda: self.git('worktree', 'remove', '--force', str(target)))
+        return target
+
+    def test_prepare_isolates_two_chats_and_preserves_dirty_source(self):
+        self.call('bind')
+        self.write('other.txt', 'staged source\n')
+        self.git('add', 'other.txt')
+        self.write('project/base.txt', 'unstaged source\n')
+        self.write('project/untracked.txt', 'untracked source\n')
+        before = (self.git('status', '--porcelain'), self.git('diff', '--binary'),
+                  self.git('diff', '--cached', '--binary'), self.git('rev-parse', 'HEAD'))
+        target = self.prepare_chat()
+        self.call('check', chat_key='chat-b', checkout=str(target))
+        self.call('check')
+        self.assertEqual(b'', workflow.git(target, 'status', '--porcelain'))
+        self.assertEqual('base\n', (target / 'project/base.txt').read_text())
+        self.assertEqual(before, (self.git('status', '--porcelain'), self.git('diff', '--binary'),
+                                 self.git('diff', '--cached', '--binary'), self.git('rev-parse', 'HEAD')))
+
+    def test_prepare_reuses_binding_without_creating_new_branch(self):
+        target = self.prepare_chat()
+        branches = self.git('branch', '--list')
+        self.call('prepare', chat_key='chat-b')
+        self.assertEqual(branches, self.git('branch', '--list'))
+        self.call('check', chat_key='chat-b', checkout=str(target))
+
+    def test_isolated_commit_does_not_move_other_chat_head_or_index(self):
+        self.call('bind')
+        self.write('other.txt', 'user staging\n')
+        self.git('add', 'other.txt')
+        before = (self.git('rev-parse', 'HEAD'), self.git('diff', '--cached', '--binary'))
+        target = self.prepare_chat()
+        (target / 'project/base.txt').write_text('isolated edit\n', encoding='utf-8')
+        workflow.git(target, 'add', 'project/base.txt')
+        self.call('commit', checkout=str(target), chat_key='chat-b',
+                  file=['project/base.txt'], message='isolated checkpoint')
+        self.call('check')
+        self.call('prepare', chat_key='chat-b')
+        self.assertEqual(before, (self.git('rev-parse', 'HEAD'), self.git('diff', '--cached', '--binary')))
+
+    def test_prepare_uses_selected_ref_and_rejects_invalid_ref(self):
+        before = self.git('rev-parse', 'HEAD').strip()
+        self.git('commit', '--allow-empty', '-m', 'later source')
+        target = self.root.parent / (self.root.name + '-selected')
+        self.call('prepare', worktree=str(target), branch='codex/selected',
+                  ref=before.decode())
+        self.addCleanup(lambda: self.git('worktree', 'remove', '--force', str(target)))
+        self.assertEqual(before, workflow.git(target, 'rev-parse', 'HEAD').strip())
+        worktrees = self.git('worktree', 'list', '--porcelain')
+        with self.assertRaises(ValueError):
+            self.call('prepare', chat_key='bad-ref',
+                      worktree=str(self.root.parent / (self.root.name + '-bad-ref')),
+                      branch='codex/bad-ref', ref='missing-ref')
+        self.assertEqual(worktrees, self.git('worktree', 'list', '--porcelain'))
+
+    def test_prepare_rejects_scope_change_and_external_head(self):
+        target = self.prepare_chat()
+        with self.assertRaisesRegex(ValueError, 'cannot be reassigned'):
+            self.call('prepare', chat_key='chat-b', project=str(self.root))
+        workflow.git(target, 'commit', '--allow-empty', '-m', 'external')
+        with self.assertRaisesRegex(ValueError, 'HEAD changed'):
+            self.call('prepare', chat_key='chat-b')
+
+    def test_prepare_requires_explicit_initial_parameters(self):
+        with self.assertRaisesRegex(ValueError, 'First prepare requires'):
+            self.call('prepare')
+        self.assertFalse(workflow.state_path(self.root, 'chat-a').exists())
+
+    def test_prepare_rejects_existing_target_or_branch(self):
+        before = self.git('worktree', 'list', '--porcelain')
+        with self.assertRaisesRegex(ValueError, 'unused path'):
+            self.call('prepare', worktree=str(self.root), branch='codex/new', ref='HEAD')
+        with self.assertRaisesRegex(ValueError, 'Branch already exists'):
+            self.call('prepare', worktree=str(self.root.parent / (self.root.name + '-unused')),
+                      branch='work', ref='HEAD')
+        self.assertEqual(before, self.git('worktree', 'list', '--porcelain'))
+
+    def test_prepare_rejects_missing_project_at_ref_before_creation(self):
+        (self.root / 'new-project').mkdir()
+        before = self.git('worktree', 'list', '--porcelain')
+        with self.assertRaises(ValueError):
+            self.call('prepare', project=str(self.root / 'new-project'),
+                      worktree=str(self.root.parent / (self.root.name + '-unused')),
+                      branch='codex/new', ref='HEAD')
+        self.assertEqual(before, self.git('worktree', 'list', '--porcelain'))
+
+    def test_release_archives_binding_and_preserves_checkout_history(self):
+        self.call('bind')
+        path = workflow.state_path(self.root, 'chat-a')
+        before = path.read_bytes()
+        head = self.git('rev-parse', 'HEAD')
+        self.call('release')
+        self.assertFalse(path.exists())
+        archived = list((path.parent / 'released').glob('*.json'))
+        self.assertEqual(1, len(archived))
+        self.assertEqual(before, archived[0].read_bytes())
+        self.assertEqual(head, self.git('rev-parse', 'HEAD'))
+        self.call('bind', chat_key='chat-b')
+
+    def test_release_blocks_dirty_staged_and_untracked_files(self):
+        self.call('bind')
+        for mode in ('unstaged', 'staged', 'untracked'):
+            with self.subTest(mode=mode):
+                if mode == 'untracked':
+                    self.write('new.txt', 'new\n')
+                else:
+                    self.write('other.txt', 'changed\n')
+                    if mode == 'staged':
+                        self.git('add', 'other.txt')
+                with self.assertRaisesRegex(ValueError, 'clean checkout'):
+                    self.call('release')
+                self.assertTrue(workflow.state_path(self.root, 'chat-a').exists())
+                if mode == 'untracked':
+                    (self.root / 'new.txt').unlink()
+                else:
+                    self.git('restore', '--staged', '--worktree', 'other.txt')
+
+    def test_release_blocks_wrong_key_and_head(self):
+        self.call('bind')
+        with self.assertRaisesRegex(ValueError, 'No chat binding'):
+            self.call('release', chat_key='chat-b')
+        self.git('commit', '--allow-empty', '-m', 'external')
+        with self.assertRaisesRegex(ValueError, 'HEAD changed'):
+            self.call('release')
+
+    def test_registry_lock_blocks_parallel_mutation_without_claim(self):
+        with workflow.registry_lock(self.root, 'chat-a'):
+            with self.assertRaisesRegex(ValueError, 'registry busy'):
+                self.call('bind', chat_key='chat-b')
+            self.assertFalse(workflow.state_path(self.root, 'chat-b').exists())
+        self.call('bind')
+
+    def test_duplicate_legacy_owner_cannot_bypass_check(self):
+        self.call('bind')
+        path = workflow.state_path(self.root, 'chat-a')
+        state = json.loads(path.read_text())
+        state['shared_checkout_authorized'] = 'legacy authorization'
+        workflow.save(workflow.state_path(self.root, 'legacy-chat'), state)
+        with self.assertRaisesRegex(ValueError, 'another chat'):
+            self.call('check')
+        with self.assertRaisesRegex(ValueError, 'another chat'):
+            self.call('bind')
+        self.prepare_chat()
 
 
 if __name__ == '__main__':
