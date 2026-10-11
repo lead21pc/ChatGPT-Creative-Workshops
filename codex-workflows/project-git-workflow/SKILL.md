@@ -67,7 +67,7 @@ Nhiều milestone tuần tự dùng nhiều commit trên cùng branch tạm cho 
 - Push main không force; nếu main tiến lên, fetch, tích hợp và kiểm chứng lại. Xác nhận SHA main bằng ls-remote sau push.
 - Sau khi xác minh main, phải kiểm tra và dọn branch/worktree tạm do tác vụ tạo: worktree sạch, không còn công việc đang chạy, và mọi thay đổi cần giữ đã có trên main. Với cherry-pick, xác minh patch/nội dung tương đương; không dùng tên branch hoặc trạng thái clean làm bằng chứng đã merge.
 - Xóa remote branch tạm của tác vụ khi nó đã được tích hợp; gỡ worktree tạm sạch bằng git worktree remove không force. Chỉ xóa local branch bằng git branch -d khi Git xác nhận an toàn. Nếu branch còn lịch sử chưa được chứng minh đã tích hợp, giữ lại và báo rõ; không dùng -D để vượt cổng.
-- Kết thúc binding của đợt đã publish trước khi xóa checkout/branch. Khi helper chưa hỗ trợ kết thúc binding, báo giới hạn và giữ metadata cần thiết; không giả vờ cleanup đã hoàn tất. Binding không phải lý do giữ remote branch tạm vĩnh viễn.
+- Yêu cầu xuất bản và dọn branch tạm cấp quyền kết thúc binding của chính đợt đó sau khi xác minh main. Dùng `release` với đúng chat key và checkout sạch trước khi gỡ worktree; giữ metadata trong `released/`. Không release binding của chat khác hoặc tác vụ còn chạy. Binding không phải lý do giữ remote branch tạm vĩnh viễn.
 - Quyền push có từ yêu cầu xuất bản trong đúng phạm vi; quy tắc này không tự cho phép push sau một yêu cầu chỉ sửa, audit hoặc commit. Báo SHA main, kết quả cleanup và mọi tài nguyên còn giữ cùng lý do.
 
 Helper là cổng khi được gọi, không phải hook cưỡng chế mọi lệnh shell của ứng dụng. Kiểm sát thao tác; nếu nhiều chat cùng sửa checkout, dừng và tách quyền sở hữu trước khi tiếp tục.
