@@ -41,6 +41,17 @@ Audit/planning chỉ đọc chỉ kiểm Git; không bind, refresh, stage, commi
 python -B '<skill-root>/scripts/git_workflow.py' commit --checkout '<checkout>' --chat-key '<stable-chat-key>' --file '<relative-path>' --message '<task outcome>'
 ```
 
-Nhiều milestone tuần tự dùng nhiều commit trên cùng branch. Xuất bản main chỉ khi user yêu cầu; có thể tích hợp trong detached checkout, rồi tiếp tục branch đã gắn. Publish không cấp quyền đổi binding/dọn branch cũ. Không push, tag, PR, force hoặc viết lại lịch sử từ quyền commit nội bộ.
+Nhiều milestone tuần tự dùng nhiều commit trên cùng branch tạm cho đến khi kết thúc đợt công việc. Xuất bản và cleanup tuân theo quy trình dưới đây; không tự push từ quyền commit nội bộ.
+
+## Xuất bản main và kết thúc branch tạm
+
+- Branch làm việc là tạm thời trong một đợt công việc; tái sử dụng binding trong đợt đó, không tạo branch theo mỗi milestone. Ưu tiên detached checkout khi chỉ cần tích hợp/xuất bản.
+- Khi người dùng yêu cầu push/xuất bản mà không chỉ định đích khác, đích bắt buộc là remote `main`. Không push branch task lên remote rồi coi tác vụ đã hoàn tất. Chỉ publish branch riêng khi người dùng chỉ định rõ.
+- Fetch trước khi tích hợp. Liệt kê toàn bộ commit chưa có trên remote; chỉ đưa thay đổi đã được duyệt vào checkout sạch từ remote main. Nếu lịch sử có commit ngoài phạm vi, chuyển riêng commit/hunk đã duyệt, kiểm chứng lại theo layout main. Không push toàn bộ lịch sử branch chỉ để tiện.
+- Push main không force; nếu main tiến lên, fetch, tích hợp và kiểm chứng lại. Xác nhận SHA main bằng ls-remote sau push.
+- Sau khi xác minh main, phải kiểm tra và dọn branch/worktree tạm do tác vụ tạo: worktree sạch, không còn công việc đang chạy, và mọi thay đổi cần giữ đã có trên main. Với cherry-pick, xác minh patch/nội dung tương đương; không dùng tên branch hoặc trạng thái clean làm bằng chứng đã merge.
+- Xóa remote branch tạm của tác vụ khi nó đã được tích hợp; gỡ worktree tạm sạch bằng git worktree remove không force. Chỉ xóa local branch bằng git branch -d khi Git xác nhận an toàn. Nếu branch còn lịch sử chưa được chứng minh đã tích hợp, giữ lại và báo rõ; không dùng -D để vượt cổng.
+- Kết thúc binding của đợt đã publish trước khi xóa checkout/branch. Khi helper chưa hỗ trợ kết thúc binding, báo giới hạn và giữ metadata cần thiết; không giả vờ cleanup đã hoàn tất. Binding không phải lý do giữ remote branch tạm vĩnh viễn.
+- Quyền push có từ yêu cầu xuất bản trong đúng phạm vi; quy tắc này không tự cho phép push sau một yêu cầu chỉ sửa, audit hoặc commit. Báo SHA main, kết quả cleanup và mọi tài nguyên còn giữ cùng lý do.
 
 Helper là cổng khi được gọi, không phải hook cưỡng chế mọi lệnh shell của ứng dụng. Kiểm sát thao tác; nếu nhiều chat cùng sửa checkout, dừng và tách quyền sở hữu trước khi tiếp tục.

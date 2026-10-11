@@ -16,8 +16,6 @@ Skill này chỉ sở hữu thao tác lưu file, hash và tính chỉ đọc. Sk
 - Nếu tạo archive, chuyển file, sửa tham chiếu hoặc kiểm chứng hash bị chặn, giữ an toàn cả bản mới và bản cũ, báo `BLOCKED` cùng trạng thái thực tế, và không tuyên bố replacement đã hoàn tất.
 - Nếu predecessor vẫn phải là nguồn hoạt động hoặc hai version phải cùng tồn tại, phân loại là version song song. Không áp archive gate cho đến khi có quyết định replacement rõ ràng.
 
-Skill này chỉ sở hữu thao tác lưu file, hash và tính chỉ đọc. Skill chuyên môn xác định nguồn nào được phép chuyển, ý nghĩa provenance/canon và quyết định thay thế; không suy canon từ archive. `project-git-workflow` sở hữu mọi thao tác Git và binding. Audit/planning chỉ đọc không chuyển file dù skill archive được chọn cùng lúc.
-
 ## Xác định nguồn và đích
 
 - Ghi rõ ánh xạ predecessor → artifact mới, thư mục gốc của tác vụ, artifact root và phạm vi bản mới thay thế. Không gom các file khác chỉ vì cùng thư mục hoặc có tên gần giống.
