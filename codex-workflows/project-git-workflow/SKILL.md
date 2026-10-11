@@ -13,20 +13,36 @@ Khi tích hợp vào stack có AGENTS toàn cục, [patch chính sách Git](refe
 
 - Xác định repository/project từ yêu cầu và đường dẫn thật. Tên chat chỉ là gợi ý. Dùng thread ID có sẵn hoặc khóa chat ổn định được xác định một lần; không tạo khóa theo ngày/milestone.
 - Gắn chat, project scope, checkout, branch, HEAD và staged baseline bằng `scripts/git_workflow.py`. Trạng thái local nằm trong Git common directory, không vào canon hoặc memory toàn cục.
-- Tái sử dụng binding hiện có. Chỉ tạo branch lần đầu khi chưa có binding và cần branch riêng; ưu tiên branch/checkout phù hợp đã có và đã xác minh. Không nhận branch hiện tại chỉ vì nó đang được checkout.
+- Chat triển khai phải có checkout và branch riêng. Tái sử dụng binding hiện có qua mọi milestone. Lần đầu, ưu tiên checkout/branch riêng phù hợp đã xác minh và chưa thuộc chat khác; nếu chưa có thì dùng `prepare` tạo worktree và branch `codex/<chu-de>-<id-chat>`. Việc cách ly lần đầu thuộc phạm vi triển khai đã được cho phép; không hỏi lại chỉ vì checkout nguồn đã thuộc chat khác.
+- `prepare` nhận checkout nguồn ở repository root và project bên trong nó. Nếu chat đã có binding trong cùng repository, helper trả binding hiện có dạng JSON; dùng đúng `checkout/project/branch` trả về cho mọi thao tác tiếp theo. Nếu chưa có, phải chỉ định đường dẫn worktree mới bên ngoài checkout nguồn, branch mới và `--ref` rõ ràng. Chọn ref theo baseline tác vụ đã xác minh; không mặc định lấy remote main hoặc HEAD chỉ vì đang đứng ở đó.
+- Worktree mới chỉ chứa nội dung đã commit tại ref đó. Nếu tác vụ cần thay đổi chưa commit ở checkout nguồn, kiểm quyền sở hữu và chuyển riêng phần thuộc tác vụ, rồi kiểm chứng tại worktree đích; không tự chuyển toàn bộ dirty diff. Nếu ownership chồng lấn chưa rõ, chỉ hỏi đúng phần thiếu.
 - Không sinh branch mới vì phiên bản, checkpoint, test hoặc dirty worktree. Khi cần cách ly thử nghiệm, dùng bản sao tạm/detached checkout; công việc chính quay về binding. Nếu branch đã được checkout ở nơi khác, tái sử dụng đúng checkout đó; không force checkout cùng branch ở worktree khác.
-- Hai chat song song không sở hữu cùng checkout. Không tự chuyển binding sang chat/project khác. Nếu chủ đề đổi hẳn, báo phạm vi không khớp trước thao tác ghi.
+- Hai chat song song không sở hữu cùng checkout hoặc branch, kể cả khi project scope khác nhau. Khi gặp checkout đã có chủ, tra binding của chính chat rồi chuẩn bị worktree riêng nếu chưa có; không chỉ báo lỗi và dừng. Không tự chuyển binding sang chat/project khác, dùng chung khóa chat hoặc bỏ qua cổng kiểm tra. Nếu chủ đề đổi hẳn, báo phạm vi không khớp trước thao tác ghi.
 
 ## Cổng trước thao tác ghi
 
 Chạy check trước sửa, stage và commit. Lệch checkout/project/branch/HEAD thì dừng ghi và xác minh; không tự switch trong checkout dirty, stash, reset hoặc commit để giải quyết lệch. Nếu HEAD đổi hợp lệ ngoài tác vụ, đọc diff/history trước khi dùng bind --refresh-head trên cùng checkout/branch; tùy chọn này không đổi branch.
 
 ```powershell
+python -B '<skill-root>/scripts/git_workflow.py' prepare --checkout '<source-repository-root>' --project '<source-project>' --chat-key '<stable-chat-key>' --worktree '<new-worktree-path>' --branch 'codex/<chu-de>-<id-chat>' --ref '<verified-ref>'
+# Tra lại binding ở milestone sau; không tạo checkout/branch mới:
+python -B '<skill-root>/scripts/git_workflow.py' prepare --checkout '<source-repository-root>' --project '<source-project>' --chat-key '<stable-chat-key>'
+# Hoặc gắn checkout riêng đã được xác minh:
 python -B '<skill-root>/scripts/git_workflow.py' bind --checkout '<checkout>' --project '<project>' --branch '<bound-branch>' --chat-key '<stable-chat-key>'
 python -B '<skill-root>/scripts/git_workflow.py' check --checkout '<checkout>' --chat-key '<stable-chat-key>'
 ```
 
 Audit/planning chỉ đọc chỉ kiểm Git; không bind, refresh, stage, commit, archive hoặc tạo checkout. Nếu chưa có binding, kiểm trạng thái thật và báo chưa gắn; không tạo trạng thái trong audit.
+
+## Kết thúc chat và giải phóng binding
+
+Khi người dùng yêu cầu kết thúc quyền sở hữu, dùng `release` với đúng khóa chat và checkout đã gắn. Helper kiểm checkout, scope, branch, HEAD và yêu cầu Git status sạch trên toàn checkout (tracked, staged, untracked không bị ignore). Binding được chuyển vào `codex-chat-bindings/released/`; branch, checkout và commits được giữ nguyên. Không tự giải phóng chỉ vì chat im lặng, đã archive trên giao diện hoặc binding có vẻ cũ. Worktree biến mất, HEAD lệch hoặc còn thay đổi thì dừng để kiểm chứng, không tự xóa registry hay reset công việc.
+
+```powershell
+python -B '<skill-root>/scripts/git_workflow.py' release --checkout '<bound-checkout>' --chat-key '<stable-chat-key>'
+```
+
+Các thao tác ghi qua helper khóa registry trong Git common directory để hai chat không đồng thời nhận quyền sở hữu. Nếu registry bận, thử lại sau khi thao tác kia kết thúc; nếu tiến trình bị ngắt để lại `.lock`, xác minh không còn helper đang chạy trước khi xử lý khóa. Không tự xóa khóa hoặc chiếm binding đang hoạt động. Trường `shared_checkout_authorized` trong bản ghi cũ không bỏ qua kiểm tra độc quyền; giữ bản ghi cũ và tách chat triển khai mới sang worktree riêng.
 
 ## Nhận file và commit
 
