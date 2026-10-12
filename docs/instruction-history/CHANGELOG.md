@@ -533,3 +533,45 @@
 
 - Structural checks passed at 4,964 characters and 4,978 UTF-8 bytes, across 45 CRLF lines, with a final CRLF, no trailing whitespace, and no UTF-8 BOM. SHA-256: `14412AA60096D77D2C3A5AC0577F8DE99DA629E43F34929C921427DFA4BE1A0F`.
 - Official status records author approval of publication. No separate runtime result for this exact v8.8 artifact is recorded here; structural validation does not establish model behavior.
+
+## v8.9
+
+### Three-invariant refinement and task-authority boundary
+
+- Restored the v8.7-style narrow exact-form exceptions in the Vietnamese output contract after v8.8's exceptionless experiment. Everyday Vietnamese remains mandatory around proper names, code, literal quotes, commands, external identifiers, and items explicitly requested now; field convention alone is not an exception.
+- Reframed `CONTROL GROUNDING` around steps grounded in the request and supported context. Stage and reader assumptions still require signals or evidence; prior frames must be rechecked, and topic, repetition, familiarity, or the assistant's own wording grants no authority.
+- Refined `DISCOURSE FIDELITY` so agreement cannot serve merely as a continuity marker. A rephrase is a correction only when meaning changes; otherwise preserve the meaning and perform any newly added function. Judgment, comparison, advice, or closure remains conditional on the selected operation.
+- Reframed `EPISTEMIC NON-ESCALATION` around observation, inference, and scoped assumptions; evaluate requested or dependent claims, conclude within support, and expose consequential assumptions or uncertainty.
+- Replaced the v8.6-v8.8 permission to offer up to three next steps with an explicit task-authority boundary: explain material implications, but a finding alone does not expand the task, change stage, or authorize follow-on work. This preserves broad reasoning while separating discovery from task expansion or implementation.
+- Promoted the reviewed `v8.9 temp` artifact to the official `chatgpt v8.9.txt`; no fourth invariant or separate opening-policy section was added.
+
+### Verification boundary
+
+- Structural checks passed at 4,985 characters and 4,995 UTF-8 bytes, across 45 CRLF lines, with a final CRLF, no trailing whitespace, and no UTF-8 BOM. SHA-256: `AF8257685CBC95F8B2A10CE12BFD88AC1786EC5E166BD2C81114F318218EA513`.
+- Static overlap review preserved separate ownership for grounding, discourse, and epistemic state, and found no direct conflict with claim dependency, updating/uncertainty, or explanation depth.
+- Promotion records author approval of the artifact and its static contract. No controlled runtime result for this exact v8.9 artifact is recorded here; structural and red-team review do not establish model behavior.
+
+## v6.5
+
+### Go/Free control-kernel revision
+
+- Reorganized the compact profile around objective and scope, material claim dependency, scoped definitions and assumptions, evidence-driven updating, preserved alternatives, proportional depth, and Vietnamese output.
+- Kept the artifact at exactly 1,500 characters while retaining conditional reasoning when material evidence is unavailable.
+
+### Verification boundary
+
+- Structural measurement found 1,500 characters and 1,502 UTF-8 bytes across 10 lines. SHA-256: `6CFC4DCA13F0009FD9B74DCD89A902B2C68723A72B9C17B5BC2B180AB1842ADA`.
+- File presence and structural validation do not establish parity with the Plus profile or runtime behavior.
+
+## v6.6
+
+### Current Go/Free distillation
+
+- Replaced the v6.5 objective-first wording with five compact blocks for the Vietnamese output contract, explicit stage and reader-assumption grounding, turn-function fidelity, claim-state discipline, and proportional explanatory depth.
+- Added explicit protection against stage changes triggered by topic, repetition, coherence, or usefulness; kept exploration provisional and limited judgment, synthesis, summary, or closure to the turn's function.
+- Preserved evidence-based claim updates, changing-product verification, consequential alternatives, coverage beyond the user's initial frame, and the ban on inferring user traits or rarity from sparse evidence.
+
+### Verification boundary
+
+- Structural measurement found 1,499 characters and 1,499 UTF-8 bytes across 10 lines. SHA-256: `B7634255D6651F1ABF79C042B3EED088B3F5122F2349536C9F9DF83E82FD9124`.
+- v6.6 is the newest Go/Free artifact in the repository. Its semantic and runtime parity with Plus v8.9 remains unverified.

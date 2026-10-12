@@ -2,7 +2,7 @@
 
 ## 1. Mục đích của tài liệu
 
-Tài liệu này giải thích **vì sao** bộ Custom Instructions (CI) phát triển từ v1 đến v7.4, vì sao lịch sử được chia thành `ChatGPT Go-Free Era` và `ChatGPT Plus+ Era`, và vì sao `v6.3_7.3 converted` là một Major có chủ đích thay vì một patch tuần tự sau v6.2.
+Tài liệu này giải thích **vì sao** bộ Custom Instructions (CI) phát triển từ v1 đến v8.9, vì sao lịch sử được chia thành `ChatGPT Go-Free Era` và `ChatGPT Plus+ Era`, và vì sao các bản Go/Free là hồ sơ chưng cất theo ngân sách thay vì một nhánh triết lý độc lập.
 
 Changelog trả lời câu hỏi “văn bản nào đã thay đổi”. Bản kiểm toán trả lời “semantics, precedence và guarantee nào đã thay đổi”. Tài liệu này bổ sung lớp còn thiếu: **kiến trúc được thiết kế để đạt hành vi gì dưới hai ngân sách ký tự khác nhau**.
 
@@ -11,8 +11,8 @@ Changelog trả lời câu hỏi “văn bản nào đã thay đổi”. Bản k
 Tài liệu dùng bốn lớp bằng chứng:
 
 1. **Bối cảnh thiết kế do tác giả cung cấp:** hai thư mục là hai mục tiêu triển khai theo giới hạn ký tự của gói; thiết kế này có chủ đích.
-2. **Design rationale:** `llm-controls/global-instructions/ChatGPT Plus+ Era/ci_design_rationale_v3_vi_invariant.md` xác định hai bất biến tiếng Việt, các rào chắn suy luận và thứ tự ưu tiên.
-3. **Nguồn phiên bản:** 19 tệp CI cho thấy quy tắc được thêm, nén, làm mềm, tách hoặc hợp nhất như thế nào.
+2. **Design rationale lịch sử:** rationale cũ giải thích giai đoạn bất biến tiếng Việt nhưng không còn là mô tả chuẩn của topology v8.9.
+3. **Nguồn phiên bản:** 44 tệp CI hiện có cho thấy quy tắc được thêm, nén, làm mềm, tách hoặc hợp nhất như thế nào; `chatgpt v8.9.txt` là mốc Plus hiện hành.
 4. **Đo trực tiếp:** số ký tự của từng tệp cho thấy áp lực nén ở nhánh Go/Free và việc giải nén kiến trúc ở nhánh Plus.
 
 Khi bối cảnh thiết kế trực tiếp giải thích intent, intent đó có ưu tiên cao hơn suy luận trước đây chỉ dựa trên diff văn bản.
@@ -44,6 +44,8 @@ version hóa
 Vì vậy, mỗi phiên bản là một giả thuyết hành vi đã được chỉnh theo lỗi quan sát được, không phải một bản viết lại để “nghe hay hơn”. Chất lượng phải được đo trên đầu ra thực tế, không được suy ra từ độ dài prompt hoặc danh tiếng của mô hình.
 
 ## 4. Kiến trúc ưu tiên
+
+Sơ đồ và các mục 4.1–4.3 dưới đây mô tả kiến trúc lịch sử tới v7.3. Topology hiện hành của v8.9 được ghi riêng ở mục 4.4; rationale cũ không ghi đè file CI mới hơn.
 
 Design rationale xác lập thứ bậc:
 
@@ -90,6 +92,28 @@ Các rào chắn không được phép:
 
 v7.3 là phiên bản đầu tiên làm precedence này hoàn toàn rõ: rào chắn có thể được làm mềm khi chúng chỉ làm đầu ra cứng hơn mà không bảo vệ tính đúng đắn; bất biến không được làm mềm theo cách đó; tính đúng đắn cao hơn văn phong. v7.4 giữ “đúng đắn cao hơn văn phong” nhưng thay hierarchy có tên bằng pipeline `vai trò → kiểu phản hồi → suy luận → lập trường`. Vì thế, sơ đồ trên vẫn là triết lý thiết kế gốc tới v7.3 và của nhánh v6.3 chuyển đổi, không phải mô tả nguyên văn topology v7.4.
 
+### 4.4. Topology hiện hành ở v8.9
+
+v8.9 giữ một hợp đồng đầu ra phía trước và ba bất biến có quyền sở hữu riêng:
+
+```text
+HỢP ĐỒNG ĐẦU RA TIẾNG VIỆT
+        ↓
+CONTROL GROUNDING
+  căn cứ nào cho phép đổi trạng thái hoặc mở bước
+        ↓
+DISCOURSE FIDELITY
+  lượt hiện tại cần thực hiện chức năng nào
+        ↓
+EPISTEMIC NON-ESCALATION
+  bằng chứng cho phép kết luận mạnh đến đâu
+        ↓
+TURN AND STATE / CLAIM DEPENDENCY /
+UPDATING AND UNCERTAINTY / EXPLANATION
+```
+
+Ba bất biến không phải ba mức quan trọng chung. Mỗi bất biến sở hữu một loại quyết định: grounding quản lý thẩm quyền đổi trạng thái, discourse chọn thao tác, epistemic quản lý trạng thái đúng–sai. Các mô-đun phía dưới triển khai chúng. Một phát hiện có thể mở rộng **lập luận** nếu ảnh hưởng vật chất tới câu trả lời; phát hiện đó không tự mở rộng **nhiệm vụ**, đổi giai đoạn hay cho phép công việc nối tiếp.
+
 ## 5. Giới hạn ký tự là ràng buộc kiến trúc
 
 Hai thư mục không chỉ biểu diễn thời gian. Chúng biểu diễn hai **hồ sơ triển khai**:
@@ -131,7 +155,29 @@ Số dưới đây là độ dài chuỗi được đọc từ tệp, gồm xu�
 | v7.3 | Plus | 4.999 |
 | v7.3.1 | Plus | 4.997 |
 | v7.4 | Plus | 4.583 |
+| v7.4.1 | Plus | 4.730 |
+| v7.4.2 | Plus | 4.829 |
+| v7.5 | Plus | 4.939 |
+| v8.0 | Plus | 4.991 |
+| v8.0.1 | Plus | 4.977 |
+| v8.1 | Plus | 4.956 |
+| v8.1.1 | Plus | 4.903 |
+| v8.2 | Plus | 4.997 |
+| v8.2.1 | Plus | 4.995 |
+| v8.3 | Plus | 4.995 |
+| v8.4 | Plus | 4.976 |
+| v8.4.1 | Plus | 4.996 |
+| v8.5 | Plus | 4.938 |
+| v8.5.1 | Plus | 4.979 |
+| v8.6 | Plus | 4.982 |
+| v8.7 | Plus | 4.986 |
+| v8.8 | Plus | 4.964 |
+| v8.9 | Plus | 4.985 |
 | v6.3 chuyển đổi | Go/Free | 1.501 |
+| v6.4 | Go/Free | 1.479 |
+| v6.4.1 | Go/Free | 1.486 |
+| v6.5 | Go/Free | 1.500 |
+| v6.6 | Go/Free | 1.499 |
 
 Từ v2.2 đến v6.2, phần lớn tệp hội tụ quanh khoảng 1.500 ký tự. Đây là dấu vết của tối ưu dưới ngân sách hẹp, không phải sự trùng hợp về văn phong.
 
@@ -139,7 +185,7 @@ Tại thời điểm v6.3 được chưng cất, bản v7.3 lịch sử có 4.51
 
 Các bản sớm vượt vùng 1.500 ký tự không phủ định vai trò của giới hạn ở giai đoạn sau. Nguồn không ghi đủ lịch sử thay đổi giới hạn hoặc cách từng bản được sử dụng; kết luận chắc chắn chỉ là từ v2.2 trở đi, pattern nén quanh ngân sách này rất rõ.
 
-## 6. Tiến hóa thiết kế từ v1 tới v7.4
+## 6. Tiến hóa thiết kế từ v1 tới v8.9
 
 ### 6.1. v1.0 — xác lập thái độ thực chứng bằng quy tắc chuyên biệt
 
@@ -230,26 +276,39 @@ v7.4 là Patch có tác động kiến trúc thực:
 
 v7.4 không phủ định triết lý dual-target. Nó là bước tiến tiếp trên nhánh đặc tả Plus. Hiện chưa có nguồn cho thấy v6.3 đã được chưng cất lại từ v7.4.
 
+### 6.9. v7.4.1–v8.1.1 — sửa chiều sâu, ngôn ngữ và cổng nhận premise
+
+v7.4.1 làm mất sàn chiều sâu chung; v7.4.2 khôi phục nó. v7.5 và v8.0 tiếp tục tái cấu trúc tiếng Việt và nhiệm vụ, còn v8.0.1 chứng minh control số lượng thuật ngữ có thể biến thành quota hoặc mục tiêu nén thay vì chặn jargon. v8.1 bỏ quota khỏi CI runtime. v8.1.1 thử chặn lời xác nhận dùng làm dấu nối và đưa claim trọng yếu qua cổng bằng chứng trước khi cập nhật nền suy luận, nhưng cách đặt reasoning/premise quá sớm tạo nguy cơ mọi lượt đều thành bài toán phán xét.
+
+### 6.10. v8.2–v8.8 — ba bất biến và các lần hiệu chỉnh guardrail
+
+v8.2 tách kiến trúc thành `CONTROL GROUNDING → DISCOURSE FIDELITY → EPISTEMIC NON-ESCALATION`. v8.2.1/v8.3 tinh chỉnh câu chữ; v8.4 ổn định thứ tự và giới hạn hành động; v8.4.1 vá suy diễn độ hiếm; v8.5 đưa tiếng Việt lên thành hợp đồng đầu ra; v8.6 làm rõ ranh giới claim, giai đoạn và lời gợi ý; v8.7 coi endorsement là thay đổi trạng thái claim; v8.8 thử hợp đồng tiếng Việt tuyệt đối không ngoại lệ. Chuỗi này giữ ba invariant nhưng liên tục điều chỉnh guardrail theo failure quan sát được.
+
+### 6.11. v8.9 — bảo toàn ba quyền sở hữu, tách phát hiện khỏi mở việc
+
+v8.9 khôi phục ngoại lệ dạng chữ chính xác hẹp thay cho phép thử tuyệt đối của v8.8; yêu cầu kiểm tra lại khung cũ; tách rephrase không đổi nghĩa khỏi correction; cấm dùng agreement chỉ để đánh dấu continuity; và làm rõ mức kết luận phải nằm trong căn cứ. Ở tầng TURN AND STATE, permission đề xuất bước tiếp theo được thay bằng ranh giới: giải thích hệ quả vật chất, nhưng phát hiện tự nó không mở rộng nhiệm vụ, đổi giai đoạn hay cho phép công việc nối tiếp. Thay đổi nằm trong ba invariant hiện có, không tạo invariant thứ tư.
+
 ## 7. Hai nhánh triển khai sau v7.3
 
 ```mermaid
 flowchart TD
     A["v6.2 · kernel Go/Free"] -->|"giải nén trên Plus"| B["v7.0"]
     B --> C["v7.1"] --> D["v7.2"] --> E["v7.3 · baseline chưng cất"]
-    E --> I["v7.3.1 · chỉ định dạng"] --> J["v7.4 · mainline Plus hiện tại"]
+    E --> I["v7.3.1 · chỉ định dạng"] --> J["v7.4 · topology theo vai trò"] --> K["v7.4.1–v8.1.1 · sửa hồi quy"] --> L["v8.2–v8.8 · ba bất biến"] --> M["v8.9 · mainline Plus hiện tại"]
     E -->|"chưng cất ngữ nghĩa theo ngân sách hẹp"| F["v6.3 converted · Major Go/Free"]
-    J --> G["Tiếp tục dùng khi có Plus"]
-    F --> H["Fallback khi quay về Free/Go"]
+    F --> N["v6.4 → v6.4.1 → v6.5 → v6.6 · Go/Free hiện tại"]
+    M --> G["Hồ sơ Plus"]
+    N --> H["Hồ sơ Go/Free"]
 ```
 
 Lineage này có hai ý nghĩa khác nhau:
 
-- `v7.0 → v7.4` là nhánh phát triển và kiểm thử với ngân sách rộng.
+- `v7.0 → v8.9` là nhánh phát triển và kiểm thử với ngân sách rộng.
 - `v7.3 → v6.3 converted` là bước biên dịch/chưng cất sang hồ sơ triển khai hẹp.
 
 Vì vậy, số `v6.3` không diễn tả thứ tự thời gian trước v7.0. Nó diễn tả nhánh tương thích Go/Free thuộc họ v6 nhưng mang semantics đã tối ưu từ v7.3.
 
-Từ v7.4 trở đi xuất hiện **độ lệch thế hệ có chủ đích nhưng chưa được đồng bộ**: hồ sơ Plus có topology và truth scope mới, còn hồ sơ Go/Free vẫn phản ánh v7.3. Nếu v7.4 trở thành baseline ổn định, cần một bước chưng cất và kiểm thử parity riêng; không được mặc nhiên tuyên bố v6.3 đã chứa các thay đổi này.
+Hai profile tiếp tục có độ lệch thế hệ có chủ đích: v8.9 là đặc tả Plus hiện hành, còn v6.6 là kernel Go/Free hiện hành. Câu chữ khác nhau không tự chứng minh parity hoặc regression; cần kiểm thử cùng failure matrix dưới từng ngân sách.
 
 ## 8. Vai trò của v6.3 chuyển đổi
 
@@ -316,19 +375,20 @@ Không nên gọi nó là regression đã xác nhận nếu đầu ra chưa ch�
 
 Hai phiên bản phải được đánh giá bằng cùng một chuẩn hành vi. Khác biệt nằm ở cách mã hóa chuẩn, không nằm ở việc hạ chuẩn cho gói thấp hơn.
 
-### 9.1. v7.4 chưa phải baseline của hồ sơ Go/Free
+### 9.1. v8.9 không tự động là baseline tương đương của hồ sơ Go/Free
 
-v7.4 thay đổi topology và tập safeguard sau thời điểm chưng cất. Vì vậy, so sánh đúng hiện tại là:
+Nhánh Plus tiếp tục thay đổi topology và tập safeguard sau lần chưng cất lịch sử. Vì vậy, so sánh đúng hiện tại là:
 
 - **parity lịch sử:** v7.3 ↔ v6.3 chuyển đổi;
-- **tiến hóa mainline:** v7.3 → v7.3.1 → v7.4;
-- **khoảng cách cần đánh giá tương lai:** những semantics v7.4 nào nên được đưa vào một hồ sơ Go/Free mới, và safeguard v7.3 nào không nên mất khi nén lại.
+- **tiến hóa Plus:** v7.3 → v7.4 → v8.2 → v8.9;
+- **tiến hóa Go/Free:** v6.3 chuyển đổi → v6.4 → v6.4.1 → v6.5 → v6.6;
+- **khoảng cách cần đánh giá:** semantics nào của v8.9 còn được giữ ở v6.6 và safeguard nào bị bỏ do ngân sách.
 
-Đặc biệt, pipeline theo vai trò và truth scope của v7.4 là ứng viên giá trị cao; việc bỏ update propagation và context isolation là rủi ro cần kiểm thử trước khi dùng v7.4 làm nguồn chưng cất mới.
+Đặc biệt, ba quyền sở hữu của v8.9, ranh giới giữa phát hiện với mở rộng nhiệm vụ, claim dependency và sàn chiều sâu cần được kiểm thử trực tiếp trên v6.6. Sự giống nhau về mục đích hoặc một số từ khóa không chứng minh parity runtime.
 
 ## 10. Tiêu chí parity giữa hai hồ sơ
 
-Một bản v6.3 mới hoặc patch tương lai cho nhánh Go/Free chỉ nên được chấp nhận khi:
+Một bản Go/Free mới hoặc patch tương lai chỉ nên được chấp nhận khi:
 
 1. Không làm yếu cấu trúc chủ thể tiếng Việt so với v7.3.
 2. Không làm yếu ưu tiên tiếng Việt tự nhiên theo cách tạo tiếng Anh hóa không cần thiết.
@@ -337,7 +397,7 @@ Một bản v6.3 mới hoặc patch tương lai cho nhánh Go/Free chỉ nên đ
 5. Không nâng suy luận thành fact hoặc giả định thành bằng chứng.
 6. Không để một phát biểu đơn thuần chiếm quyền nhiệm vụ và ép Kiểm tra.
 7. Không biến chat thường/worldbuilding thành văn bản kỹ thuật do rào chắn kích hoạt quá rộng.
-8. Không tái xuất hiện failure mode đã được sửa trong v7.1–v7.3 chỉ vì wording bị nén.
+8. Không tái xuất hiện failure mode đã được sửa trong v7.1–v8.9 chỉ vì wording bị nén.
 
 Các guarantee chỉ có ở v7.3 như freshness hoặc context isolation nên được kiểm tra riêng trên đầu ra của hồ sơ Go/Free. Nếu mô hình nền không tự giữ được, một guarantee khác phải được nén hoặc hợp nhất để tạo chỗ; không nên âm thầm coi chúng là đã được bảo vệ.
 
@@ -422,7 +482,7 @@ Kết quả cần được ghi theo vi phạm quan sát được, không dùng �
 
 ## 14. Kết luận thiết kế
 
-Lịch sử CI không phải một đường tăng độ dài từ v1 đến v7.4. Nó là quá trình chuyển từ rule chuyên biệt sang kiến trúc hành vi có thứ bậc, rồi sang pipeline xử lý theo vai trò, trong khi liên tục chịu ràng buộc của ngân sách ký tự.
+Lịch sử CI không phải một đường tăng độ dài từ v1 đến v8.9. Nó là quá trình chuyển từ rule chuyên biệt sang kiến trúc hành vi có thứ bậc, sang pipeline xử lý theo vai trò, rồi thành ba bất biến sở hữu ba loại quyết định riêng, trong khi liên tục chịu ràng buộc của ngân sách ký tự.
 
 `ChatGPT Plus+ Era` cho phép semantics được giải nén, mô-đun hóa và kiểm tra rõ. `ChatGPT Go-Free Era` buộc cùng triết lý phải được mã hóa với mật độ cao hơn.
 
@@ -430,4 +490,4 @@ v6.3 chuyển đổi là cầu nối giữa hai môi trường:
 
 > **Quay về gói có ngân sách hẹp mà không quay về trạng thái thiết kế v6.2.**
 
-Đây là mục tiêu kiến trúc có chủ đích. Thành công của bản chuyển đổi không được đo bằng việc nó ngắn đến đâu, mà bằng việc các bất biến và failure mode quan trọng của baseline v7.3 còn được giữ tới mức nào trong đầu ra thực tế. v7.4 mở một chu kỳ thiết kế mới trên Plus; nó chỉ trở thành chuẩn chung cho hai mục tiêu sau khi có bước chưng cất và kiểm thử parity tương ứng.
+Đây là mục tiêu kiến trúc có chủ đích. Thành công của bản cô đọng không được đo bằng việc nó ngắn đến đâu, mà bằng việc các bất biến và failure mode quan trọng còn được giữ tới mức nào trong đầu ra thực tế. v8.9 là chuẩn Plus hiện hành; v6.6 là profile Go/Free hiện hành. Không được suy parity giữa chúng chỉ từ mục đích chung hoặc vài từ khóa giống nhau.

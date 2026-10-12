@@ -2,7 +2,7 @@
 
 ## 0. Phạm vi và quy tắc bằng chứng
 
-Bản kiểm toán này bao phủ 19 tệp phiên bản, `Changelog.txt`, tài liệu giải thích thiết kế và bối cảnh triển khai do tác giả cung cấp. Các tệp phiên bản là bằng chứng chính cho thay đổi văn bản/ngữ nghĩa. Bối cảnh triển khai có thẩm quyền đối với design intent: hai thư mục là hai mục tiêu ngân sách ký tự, còn v6.3 chuyển đổi là bản chưng cất rollback-safe từ v7.3 để khi quay về Free/Go không phải quay lại semantics v6.2. `ci_design_rationale_v3_vi_invariant.md` là tài liệu giải thích kiến trúc, không phải phiên bản CI thực thi riêng.
+Bản kiểm toán ban đầu bao phủ 19 tệp phiên bản, `Changelog.txt`, tài liệu giải thích thiết kế và bối cảnh triển khai do tác giả cung cấp. Lần cập nhật này giữ nguyên baseline lịch sử đó và mở rộng audit tới 44 artifact CI có phiên bản hiện diện trong cây nguồn. Các tệp phiên bản là bằng chứng chính cho thay đổi văn bản/ngữ nghĩa. Bối cảnh triển khai có thẩm quyền đối với design intent: hai thư mục là hai mục tiêu ngân sách ký tự, còn v6.3 chuyển đổi là bản chưng cất rollback-safe từ v7.3 để khi quay về Free/Go không phải quay lại semantics v6.2. `ci_design_rationale_v3_vi_invariant.md` là tài liệu giải thích kiến trúc, không phải phiên bản CI thực thi riêng. Phần trạng thái hiện hành ở mục 13 thay thế mọi cách dùng từ “hiện tại” mang tính lịch sử trong các mục 1–12.
 
 Nhãn bằng chứng:
 
@@ -38,7 +38,7 @@ Loại phiên bản được suy ra từ cách đánh số, trừ khi có bằng
 
 ### Quan sát về danh mục
 
-- Có 19 tệp phiên bản: 8 Major và 11 Patch theo quy tắc bằng chứng trên.
+- Quan sát lịch sử: tập audit ban đầu có 19 tệp phiên bản, gồm 8 Major và 11 Patch theo quy tắc bằng chứng trên. Cây hiện tại có 44 artifact CI có phiên bản; mục 13 bao phủ phần lineage bổ sung.
 - Không có tệp `v6.3` đơn giản; toàn bộ tên tệp xác định bản chính chuyển đổi.
 - `chatgpt v7.3.txt` là nguồn độc lập, không thể thay thế cho bản v6.3 chuyển đổi.
 - Theo bối cảnh tác giả, `ChatGPT Go-Free Era` và `ChatGPT Plus+ Era` là hai mục tiêu triển khai theo ngân sách ký tự, không chỉ là thư mục thời kỳ.
@@ -63,7 +63,7 @@ Cạnh cuối được xác lập trực tiếp bởi `llm-controls/global-instr
 
 ## 3. Tóm tắt điều hành
 
-Lịch sử có bảy thời kỳ kiến trúc lớn, không phải 19 lần thiết kế lại:
+Tập 19 tệp ban đầu có bảy thời kỳ kiến trúc lớn; phần mở rộng hiện tại bổ sung thời kỳ thứ tám:
 
 1. **v1.0 — giao thức thực chứng chuyên biệt:** gộp kiểm chứng phần cứng thời gian thực, xác thực ba thành phần, trích xuất thô, trigger lệnh, đầu ra cạn kiệt và tiếng Việt bắt buộc vào một khối đơn.
 2. **v2.x — giao thức biên tập gọn:** thay hệ phần cứng bằng Biên tập viên cấp cao, giới hạn độ dài, kết luận trước, quét lỗi và hướng mở rộng. v2.1 tinh chỉnh lặp ý/phản ứng xã hội; v2.2 nén hệ thống và thêm phân biệt sự thật/suy luận/giả định.
@@ -72,6 +72,7 @@ Lịch sử có bảy thời kỳ kiến trúc lớn, không phải 19 lần thi
 5. **v6.x–v7.2 — bộ quy tắc “bộ não thứ hai” được mở rộng:** v6.0 thêm định tuyến chính xác, khả năng bác bỏ và quy tắc đại từ nhưng tạo xung đột về tiền đề. v6.1 sửa xung đột, thêm cô lập hội thoại và nâng quy tắc tiếng Việt từ xóa đại từ thành dựng câu theo chủ thể. v6.2 thêm thuật ngữ tiếng Việt. v7.0 mở rộng cách vận hành; v7.1 thêm lan truyền cập nhật và độ mới; v7.2 sửa quy tắc thuật ngữ và tăng cường xử lý mơ hồ/phong cách.
 6. **v7.3 và v6.3 chuyển đổi — thứ bậc bất biến/rào chắn cùng hai mục tiêu triển khai:** v7.3 đặt cấu trúc chủ thể và thuật ngữ ở tầng bất biến, thêm kiểm chứng khả năng sản phẩm/runtime và đặt tính đúng đắn cao hơn văn phong. v6.3 chuyển đổi chưng cất kiến trúc v7.3 cho mục tiêu Free/Go.
 7. **v7.3.1–v7.4 — chuẩn hóa no-op rồi chuyển sang topology theo vai trò:** v7.3.1 chỉ đổi định dạng EOF. v7.4 thay thứ bậc có tên bằng `vai trò → kiểu phản hồi → suy luận → lập trường`, khôi phục phạm vi sự thật cho hệ do người dùng định nghĩa và tăng chiều sâu kỹ thuật, nhưng bỏ lan truyền cập nhật, cô lập hội thoại và một số rào chắn ngôn ngữ rõ.
+8. **v7.4.1–v8.9 — sửa hồi quy và kiến trúc ba bất biến:** việc sửa sàn chiều sâu, thử nghiệm thuật ngữ, lỗi nhận premise và hồi quy diễn ngôn dẫn tới topology có thứ tự `CONTROL GROUNDING → DISCOURSE FIDELITY → EPISTEMIC NON-ESCALATION`. v8.9 giữ ba chủ sở hữu này, đồng thời siết cách xử lý rephrase và ranh giới giữa hệ quả trọng yếu với quyền mở rộng nhiệm vụ.
 
 ### Bất biến ứng viên quan trọng
 
@@ -91,7 +92,7 @@ Lịch sử có bảy thời kỳ kiến trúc lớn, không phải 19 lần thi
 
 ## 4. Định danh quy tắc đã chuẩn hóa
 
-| ID | Khái niệm chuẩn hóa | Xuất hiện đầu | Hoạt động patch | Trạng thái tại v7.4 / v6.3 chuyển đổi | Ghi chú |
+| ID | Khái niệm chuẩn hóa | Xuất hiện đầu | Hoạt động patch | Trạng thái lịch sử tại v7.4 / v6.3 chuyển đổi | Ghi chú |
 | --- | --- | --- | --- | --- | --- |
 | R01 | Nền tảng đầu ra tiếng Việt | v1.0 | Giữ tới v2.2; vắng mặt v3–v5; tái cấu trúc qua R02/R03 từ v6 | Đã sửa đổi | Không đồng nhất “trả lời bằng tiếng Việt” với cấu trúc tiếng Việt. |
 | R02 | Cú pháp tiếng Việt lấy chủ thể nội dung làm trung tâm | v6.0 | v6.1 tăng cường; v7.3 đặt thành bất biến chính; v7.4 bỏ rào chắn hậu kỳ và ưu tiên có tên | Đã sửa đổi / làm yếu | Lõi còn ở v7.4; dạng mạnh hơn của v7.3 còn trong bản chuyển đổi. |
@@ -453,9 +454,9 @@ Không suy diễn ý định tác giả từ việc quy tắc bị bỏ. Mức r
 | v7.2 | Sửa thuật ngữ, khả năng thay thế, văn phong | Cao | Tích hợp vào v7.3 qua viết lại mô-đun | Tích hợp / Sửa đổi |
 | v7.3 | Thứ bậc bất biến, precedence rào chắn, phát biểu không ép Kiểm tra | Cao về kiến trúc | Tích hợp vào Major v6.3 chuyển đổi nhưng mất vài rào chắn | Tích hợp / Nén |
 | v7.3.1 | Định dạng cuối tệp | Không có | Không có Major sau; semantics đi nguyên vẹn vào v7.4 | No-op / Được giữ |
-| v7.4 | Định tuyến theo vai trò, phạm vi hệ do người dùng định nghĩa, suy luận kỹ thuật, văn phong và các safeguard bị bỏ | Cao về kiến trúc | Chưa có Major sau; v6.3 chuyển đổi tách từ v7.3 | Mainline Plus hiện tại / Không có trong bản chuyển đổi |
+| v7.4 | Định tuyến theo vai trò, phạm vi hệ do người dùng định nghĩa, suy luận kỹ thuật, văn phong và các safeguard bị bỏ | Cao về kiến trúc | Dòng v8.x về sau sửa và thay thế; v6.3 chuyển đổi tách từ v7.3 | Mainline Plus lịch sử / Bị v8.9 thay thế |
 
-## 11. Tóm tắt tiến hóa kiến trúc
+## 11. Tóm tắt tiến hóa kiến trúc tới v7.4
 
 ### Kiến trúc
 
@@ -510,3 +511,42 @@ Kiến trúc hai mục tiêu triển khai và vai trò rollback-safe của v6.3 
 - `llm-controls/global-instructions/ChatGPT Go-Free Era/chatgpt v6.3_7.3 converted.txt:1-9`
 - `llm-controls/global-instructions/ChatGPT Go-Free Era/Changelog.txt:1`
 - `llm-controls/global-instructions/ChatGPT Plus+ Era/ci_design_rationale_v3_vi_invariant.md` — chỉ dùng làm tài liệu giải thích kiến trúc.
+
+## 13. Phần mở rộng dòng hiện hành tới v8.9
+
+Các mục 1–12 giữ nguyên audit lịch sử có bằng chứng tới v7.4. Kho hiện tại bổ sung lineage trọng yếu sau:
+
+| Dải phiên bản | Profile | Thay đổi trọng yếu | Trạng thái bằng chứng |
+| --- | --- | --- | --- |
+| v7.4.1–v7.5 | Plus | Bộc lộ rồi sửa việc mất sàn chiều sâu chung; khôi phục hỗ trợ xuyên miền và kiểm tra độ bao phủ. | Diff văn bản cùng hành vi A/B do người dùng báo cáo trong tài liệu failure mode. |
+| v8.0–v8.1.1 | Plus | Thử giới hạn số lượng thuật ngữ, bỏ quota runtime thất bại, rồi siết cổng nhận premise và cấu trúc mệnh đề tiếng Việt. | Control thuật ngữ v8.0.1 là hồi quy do người dùng báo cáo; cải thiện runtime sau đó vẫn chưa đầy đủ. |
+| v8.2–v8.4.1 | Plus | Tách một rule suy luận quá rộng thành ba bất biến có thứ tự; hiệu chỉnh grounding, diễn ngôn, độ bao phủ giải thích và xử lý so sánh. | Thay đổi contract đã xác nhận; claim runtime riêng lẻ chỉ có phạm vi bằng các thử nghiệm đã ghi. |
+| v8.5–v8.8 | Plus | Lặp sửa thẩm quyền nguồn, fidelity diễn ngôn, bất biến ngôn ngữ và bảo vệ khỏi frame cũ. | Bằng chứng tĩnh và báo cáo người dùng trộn lẫn; không tạo bảo đảm chung cho mọi model. |
+| v8.9 | Plus | Giữ topology ba bất biến; đọc rephrase cùng nghĩa như tiếp nối cộng với chức năng được thêm; tách hệ quả trọng yếu khỏi quyền mở rộng nhiệm vụ. | File chính thức và review overlap tĩnh đã xác nhận; kiểm chứng runtime có kiểm soát vẫn chưa chạy. |
+| v6.4–v6.6 | Go/Free | Các lần chưng cất kế tiếp của semantics control về sau dưới ngân sách. v6.6 là profile hiện hành dài 1.499 ký tự. | Sự hiện diện và kích thước file đã xác nhận; parity với v8.9 chưa được kiểm chứng. |
+
+### Mô hình control hiện hành
+
+Profile Plus hiện hành là `chatgpt v8.9.txt`, với thứ tự xử lý:
+
+1. contract ngôn ngữ đầu ra;
+2. `CONTROL GROUNDING`, sở hữu việc đổi giai đoạn và giả định về người đọc;
+3. `DISCOURSE FIDELITY`, sở hữu chức năng của lượt hiện tại;
+4. `EPISTEMIC NON-ESCALATION`, sở hữu trạng thái claim và phạm vi bằng chứng;
+5. các guardrail có điều kiện cho mơ hồ, kiểm chứng, chiều sâu, văn phong và an toàn.
+
+Việc tách chủ sở hữu này xử lý các failure mode lặp lại mà không thêm bất biến thứ tư. Một phát hiện có thể đòi hỏi giải thích hệ quả trọng yếu, nhưng bản thân phát hiện không cấp quyền tạo nhiệm vụ mới, đổi giai đoạn hay thực hiện việc tiếp theo. Một rephrase chỉ sửa câu trả lời trước khi nghĩa của nó thay đổi; nếu nghĩa giữ nguyên, model phải giữ nghĩa và thực hiện chức năng được thêm.
+
+Profile Go/Free hiện hành là `chatgpt v6.6.txt`. Mục đích chung và câu chữ giao nhau không chứng minh parity ngữ nghĩa hoặc runtime với v8.9.
+
+### Ranh giới bằng chứng hiện hành
+
+Kho xác nhận nội dung chính thức của v8.9, lineage và việc tách chủ sở hữu control ở cấp văn bản. Kho chưa có kết quả runtime có kiểm soát chứng minh v8.9 loại bỏ FM-23, FM-24 hoặc FM-27 trên nhiều model, personality và độ dài hội thoại.
+
+Nguồn hiện hành bổ sung:
+
+- `llm-controls/global-instructions/ChatGPT Plus+ Era/chatgpt v8.9.txt`
+- `llm-controls/global-instructions/ChatGPT Go-Free Era/chatgpt v6.6.txt`
+- `docs/instruction-history/CHANGELOG_VI.md`
+- `docs/instruction-analysis/CI_FAILURE_MODES_AND_CONTROL_MODEL_VI.md`
+- `docs/instruction-analysis/CI_DESIGN_EVOLUTION_AND_DEPLOYMENT_VI.md`

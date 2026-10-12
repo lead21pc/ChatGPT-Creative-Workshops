@@ -57,13 +57,13 @@ Các nguyên tắc cốt lõi:
 
 ## 2. Thứ bậc kiểm soát hiện hành
 
-### 2.1. Ba bất biến v8.2 chính thức
+### 2.1. Ba bất biến v8.9 hiện hành
 
 | ID | Bất biến | Failure chính được chặn |
 |---|---|---|
-| I-03 | `CONTROL GROUNDING` | Control tự kích hoạt từ chủ đề, thuật ngữ, lặp lại, độ liền mạch, độ quen hoặc cảm giác hữu ích; tự đổi giai đoạn, mode, trạng thái claim hay hồ sơ người đọc |
-| I-01 | `DISCOURSE FIDELITY` | Biến phát biểu, phần bổ sung hoặc sửa ngữ cảnh thành yêu cầu đồng ý, phán xét, tổng kết hay khép lượt |
-| I-02 | `EPISTEMIC NON-ESCALATION` | Nâng trạng thái đúng–sai của mệnh đề do sự xuất hiện, lặp lại hoặc độ khớp hội thoại thay vì bằng chứng/giả định tường minh |
+| I-03 | `CONTROL GROUNDING` | Dùng chủ đề, sự lặp lại, độ quen, khung cũ hoặc lời của chính model để tự cấp quyền đổi giai đoạn, giả định người đọc hay mở bước mới |
+| I-01 | `DISCOURSE FIDELITY` | Biến tiếp nối hoặc rephrase thành lời đồng ý mặc định; bỏ qua chức năng mới được thêm; tự thêm phán xét, so sánh, lời khuyên hoặc khép lại |
+| I-02 | `EPISTEMIC NON-ESCALATION` | Nâng quan sát, suy luận hay giả định có phạm vi thành kết luận mạnh hơn căn cứ; đánh giá claim không được yêu cầu hoặc không có vai trò phụ thuộc |
 
 Thứ tự thực thi là I-03 → I-01 → I-02: căn cứ hợp lệ cho phép đổi trạng thái, chức năng lượt nói chọn thao tác, rồi trạng thái mệnh đề mới được quản lý. Guardrail không được tự cấp quyền bằng chính điều kiện nó kiểm soát.
 
@@ -71,15 +71,15 @@ Thứ tự thực thi là I-03 → I-01 → I-02: căn cứ hợp lệ cho phép
 
 | ID | Mô-đun v8 | Chức năng |
 |---|---|---|
-| G-01 | `TURN AND STATE` | Chọn hành vi từ yêu cầu/giai đoạn/mục tiêu, giữ trạng thái khám phá/tích lũy và không tự chuyển sang tổng hợp từ độ liền mạch hay cảm giác hoàn chỉnh |
+| G-01 | `TURN AND STATE` | Chọn hành vi từ yêu cầu/giai đoạn/mục tiêu, giữ trạng thái khám phá/tích lũy; cho phép nêu hệ quả vật chất nhưng không để phát hiện tự mở rộng nhiệm vụ, đổi giai đoạn hoặc cấp quyền cho công việc nối tiếp |
 | G-02 | `CLAIM DEPENDENCY` | Chỉ kiểm chứng khi đáp án phụ thuộc trọng yếu hoặc người dùng yêu cầu phán xét; tách phạm vi sự thật và chặn suy từ bằng chứng lân cận |
 | G-03 | `UPDATING AND UNCERTAINTY` | Tách mơ hồ về hành vi khỏi bất định của mệnh đề, giữ phương án cạnh tranh cần thiết và lan truyền premise có hỗ trợ |
 | G-04 | `EXPLANATION` | Giữ sàn chiều sâu xuyên miền, cơ chế nhân quả và đủ căn cứ để kiểm tra kết luận mà không ép checklist |
-| G-05 | `LANGUAGE` | Viết mệnh đề tiếng Việt hoàn chỉnh, không dùng tiếng Việt làm khung nối quanh nội dung tiếng Anh và bảo toàn định danh phải đối chiếu |
+| G-05 | `OUTPUT CONTRACT — VIETNAMESE` | Dùng tiếng Việt đời thường và giải thích khái niệm cần thiết; chỉ giữ dạng chữ chính xác cho ngoại lệ hẹp, không để tiếng Việt làm khung nối quanh nội dung tiếng Anh |
 
 ### 2.3. Tương thích lịch sử
 
-Các mã R02–R23 và hai bất biến ngôn ngữ vẫn có giá trị để đọc lịch sử v7.x; `TASK FIDELITY` và `REASONING INTEGRITY` mô tả v8.0–v8.1.1. Chúng không còn là kiến trúc hiện hành. v8.2 chính thức phân bố nội dung vào I-03/I-01/I-02 và G-01–G-05; kỹ thuật/phi kỹ thuật hoặc worldbuilding không phải trục định tuyến.
+Các mã R02–R23 và hai bất biến ngôn ngữ vẫn có giá trị để đọc lịch sử v7.x; `TASK FIDELITY` và `REASONING INTEGRITY` mô tả v8.0–v8.1.1. Chúng không còn là kiến trúc hiện hành. v8.2 xác lập I-03/I-01/I-02; v8.9 giữ topology đó và sửa cách triển khai continuity, rephrase, mức kết luận và thẩm quyền mở việc. Kỹ thuật/phi kỹ thuật hoặc worldbuilding không phải trục định tuyến.
 
 Thứ tự giải quyết xung đột:
 
@@ -117,10 +117,11 @@ Ngôn ngữ không được làm sai tên, mã hoặc kết luận; ngược l�
 | FM-20 | Phản biện đối kháng trở thành mặc định | CONFIRMED_FAILURE trong v3 | CONTROLLED | I-01, G-01, G-02 |
 | FM-21 | Suy vốn từ người đọc từ chủ đề hoặc vài thuật ngữ | USER_REPORTED_EFFECT trong v8.1.1; INTERNAL_CAUSE_UNCONFIRMED | REVISED_CONTROL; USER_CONFIRMED_STABLE trong v8.2 | I-03, G-01, G-05 |
 | FM-22 | Ngân sách thuật ngữ bị lách hoặc biến thành quota/nén jargon | CONFIRMED_BEHAVIORAL_REGRESSION ở v8.0.1; USER_REPORTED_IMPROVEMENT ở v8.1 | NUMERIC CONTROL RETIRED; USER_CONFIRMED_STABLE trong v8.2 | I-03, G-05 |
-| FM-23 | Dùng xác nhận nhận thức để đánh dấu cập nhật ngữ cảnh | USER_REPORTED_BEHAVIOR — REPEATED | ACCEPTED_RESIDUAL từ v8.2; không còn là mục tiêu active | control gián tiếp I-01/I-02 |
-| FM-24 | Nhập mơ hồ về hành vi hội thoại với bất định đúng–sai | CONFIRMED_WORDING_RISK ở v8.1.1; INTERNAL_CAUSE_UNCONFIRMED | THREE-INVARIANT CONTROL; USER_CONFIRMED_STABLE trong v8.2 | I-03, I-01, I-02, G-01, G-03 |
-| FM-25 | Tự chuyển từ khám phá/tích lũy sang tổng hợp hoặc kết luận | USER_REPORTED_BEHAVIOR; INTERNAL_CAUSE_UNCONFIRMED | CONTROLLED; USER_CONFIRMED_STABLE trong v8.2 | I-03, I-01, G-01 |
+| FM-23 | Dùng xác nhận nhận thức để đánh dấu cập nhật ngữ cảnh | USER_REPORTED_BEHAVIOR — REPEATED | REVISED_CONTROL trong v8.9; RUNTIME UNVERIFIED | I-01, I-02, G-02 |
+| FM-24 | Nhập mơ hồ về hành vi hội thoại với bất định đúng–sai | CONFIRMED_WORDING_RISK ở v8.1.1; INTERNAL_CAUSE_UNCONFIRMED | THREE-INVARIANT CONTROL; REVISED trong v8.9 | I-03, I-01, I-02, G-01, G-03 |
+| FM-25 | Tự chuyển từ khám phá/tích lũy sang tổng hợp hoặc kết luận | USER_REPORTED_BEHAVIOR; INTERNAL_CAUSE_UNCONFIRMED | CONTROLLED; BOUNDARY REVISED trong v8.9 | I-03, I-01, G-01 |
 | FM-26 | Ép không gian giải thích hoặc giải pháp thành khung hai phần | USER_REPORTED_REGRESSION trong biến thể tiền phát hành; CONFIRMED_WORDING_REGRESSION | REPAIRED; USER_CONFIRMED_STABLE trong v8.2 | G-04, I-01 |
+| FM-27 | Phát hiện phụ tự cấp quyền mở rộng nhiệm vụ hoặc công việc nối tiếp | USER_REPORTED_BEHAVIOR; CONFIRMED_WORDING_PERMISSION trong v8.6–v8.8 | REVISED_CONTROL trong v8.9; RUNTIME UNVERIFIED | I-03, I-01, G-01, G-04 |
 
 ## 4. Hồ sơ failure mode chi tiết
 
@@ -342,6 +343,7 @@ Ngôn ngữ không được làm sai tên, mã hoặc kết luận; ngược l�
 - **Quyết định v8.2 chính thức:** người dùng chọn sống chung với hành vi này. FM-23 chuyển thành `ACCEPTED_RESIDUAL`, không còn là mục tiêu tối ưu hoặc kiểm thử chủ động. v8.2 không dành câu chữ riêng để cấm lời xác nhận chung; I-01/I-02 chỉ còn tác dụng gián tiếp khi xác nhận làm sai chức năng lượt nói hoặc nâng trạng thái claim.
 - **Hệ quả được chấp nhận:** lời xác nhận có thể vẫn lặp và không chặn phát hành v8.2, trừ khi nó kéo theo FM-06, FM-24 hoặc FM-25.
 - **Theo dõi thụ động:** chỉ ghi nhận khi lời xác nhận dẫn tới sai premise, sai operation hoặc đóng sớm; không A/B riêng token này.
+- **Mở lại ở v8.9:** hành vi được báo cáo tiếp tục xuất hiện trên GPT-5.6 và câu `confirm and elaborate` của bản temp tạo permission dễ khái quát quá phạm vi rephrase. Bản chính thức cấm dùng agreement chỉ làm dấu nối, giữ nghĩa của rephrase không đổi và thực hiện chức năng mới được thêm. Đây là sửa contract; hiệu quả runtime chưa được xác nhận.
 
 ### FM-24 — Mơ hồ hội thoại bị biến thành bất định đúng–sai
 
@@ -373,16 +375,26 @@ Ngôn ngữ không được làm sai tên, mã hoặc kết luận; ngược l�
 - **Rủi ro còn lại:** kiểm tra độ bao phủ có thể gây phản biện hoặc liệt kê thừa nếu model coi mọi khả năng là khác biệt; I-01 và tiêu chí relevance phải giữ nó cục bộ theo nhiệm vụ. Người dùng đã xác nhận bản cuối ổn định trong kiểm thử hiện tại.
 - **Phép thử:** dùng ba vấn đề lần lượt có một, hai và ít nhất bốn hướng khả thi, cộng một trường hợp khung ban đầu của người dùng bỏ sót nguyên nhân. Câu trả lời phải giữ đúng số hướng có ý nghĩa, không mặc định hai và không vét cạn phương án không liên quan.
 
+### FM-27 — Phát hiện phụ tự cấp quyền mở rộng nhiệm vụ
+
+- **Trigger:** trong khi trả lời đúng yêu cầu, model phát hiện một premise thiếu, hệ quả, phản ví dụ, lỗ trống hoặc hướng tiếp cận liên quan.
+- **Diễn giải sai:** vì phát hiện hữu ích hoặc nhánh còn chưa giải quyết, model được quyền biến nó thành đề xuất, bước tiếp theo, kế hoạch, chuyển giai đoạn hoặc hành động mới.
+- **Failure:** câu trả lời vẫn có thể đúng về nội dung nhưng tự đi trước người dùng, nâng phát hiện phụ thành hướng chính hoặc công việc nối tiếp chưa được yêu cầu.
+- **Bằng chứng:** người dùng báo cáo hành vi trên GPT-5.6. Audit câu chữ xác nhận v8.6–v8.8 cho phép đề xuất tối đa ba bước tiếp theo cho nhánh chưa giải quyết; đây là permission trong contract, nhưng không chứng minh nguyên nhân nội bộ duy nhất.
+- **Control v8.9:** G-01 cho phép giải thích hệ quả vật chất nhưng nêu rõ phát hiện tự nó không mở rộng nhiệm vụ, đổi giai đoạn hoặc cho phép công việc nối tiếp. I-03 vẫn quản lý căn cứ đổi trạng thái; I-01 giữ chức năng lượt nói; G-04 bảo toàn quyền phát hiện và giải thích phần thiếu có ảnh hưởng vật chất.
+- **Rủi ro còn lại:** model có thể đọc quá chặt và cắt mất hệ quả cần thiết, hoặc đọc quá rộng rồi gọi lời khuyên là “giải thích”. Phải thử cả hai hướng: chủ động vượt quyền và co hẹp suy luận.
+- **Phép thử:** giữ cùng một material gap dưới ba yêu cầu: chỉ phân tích, đề xuất thiết kế, và triển khai. Cả ba được nêu gap; chỉ hai yêu cầu sau mới được mở proposal hoặc hành động tương ứng. Thêm một phát hiện phụ không material để kiểm tra nó không chiếm câu trả lời.
+
 ## 5. Quan hệ nhiều-nhiều giữa control và failure
 
 Một rule hiếm khi chỉ chặn một failure. Khi sửa hoặc rút gọn, phải kiểm tra toàn bộ tập phụ thuộc:
 
 | Control hiện hành | Failure được kiểm soát trực tiếp | Failure có thể gây ra nếu viết quá cứng |
 |---|---|---|
-| I-03 CONTROL GROUNDING | FM-06, FM-12, FM-13, FM-15, FM-21, FM-22, FM-24, FM-25 | quá cứng sẽ bỏ qua chuyển đổi hợp lệ hoặc dependency không được nói bằng đúng từ khóa |
-| I-01 DISCOURSE FIDELITY | FM-13, FM-14, FM-15, FM-20, FM-24, FM-25, FM-26 | tiếp tục sai nhiệm vụ nếu chọn nhầm chức năng của lượt nói |
+| I-03 CONTROL GROUNDING | FM-06, FM-12, FM-13, FM-15, FM-21, FM-22, FM-24, FM-25, FM-27 | quá cứng sẽ bỏ qua chuyển đổi hợp lệ hoặc dependency không được nói bằng đúng từ khóa |
+| I-01 DISCOURSE FIDELITY | FM-13, FM-14, FM-15, FM-20, FM-23, FM-24, FM-25, FM-26, FM-27 | tiếp tục sai nhiệm vụ nếu chọn nhầm chức năng của lượt nói |
 | I-02 EPISTEMIC NON-ESCALATION | FM-06, FM-10, FM-12, FM-17, FM-24 | điều kiện hóa quá mức nếu mọi phát biểu đều bị coi là claim trọng yếu |
-| G-01 TURN AND STATE | FM-13, FM-14, FM-15, FM-20, FM-21, FM-24, FM-25 | giữ hoặc đổi mode sai, hỏi lại quá mức hoặc suy chức năng từ tín hiệu yếu |
+| G-01 TURN AND STATE | FM-13, FM-14, FM-15, FM-20, FM-21, FM-24, FM-25, FM-27 | giữ hoặc đổi mode sai, hỏi lại quá mức, cắt mất hệ quả cần thiết hoặc suy chức năng từ tín hiệu yếu |
 | G-02 CLAIM DEPENDENCY | FM-06, FM-07, FM-08, FM-09, FM-13, FM-17 | fact-check trải nghiệm cá nhân hoặc biến mọi mode thành Audit |
 | G-03 UPDATING AND UNCERTAINTY | FM-10, FM-11, FM-12, FM-16, FM-24 | gắn nhãn mọi mệnh đề hoặc liệt kê khả năng không đáng kể |
 | G-04 EXPLANATION | FM-05, FM-18, FM-26 | over-explanation, cấu trúc hóa quá mức, phản biện khung người dùng không cần thiết hoặc tăng thuật ngữ để tạo vẻ sâu |
@@ -403,6 +415,8 @@ Hệ quả thiết kế: không được xóa hoặc ghép rule chỉ dựa trê
 - v8.1.1 là nhánh thử nghiệm bốn dòng: cổng nhận premise ở G-01/G-02/G-03 cho FM-06/FM-12/FM-23 và code-switching cấp mệnh đề ở G-05 cho FM-03/FM-05/FM-21. Các phần reasoning khác của v8.1 được giữ nguyên; FM-07/FM-13/FM-15 là ca hồi quy bắt buộc.
 - v8.2 chính thức thay kiến trúc bất biến sau khi audit cho thấy v8.1.1 vẫn đặt việc phân loại bằng chứng/premise/bất định quá sớm. `CONTROL GROUNDING` đứng trước `DISCOURSE FIDELITY` và `EPISTEMIC NON-ESCALATION`: căn cứ hợp lệ cho phép đổi trạng thái, chức năng lượt nói chọn operation, rồi trạng thái mệnh đề mới được quản lý. Độ mạch lạc hoặc cảm giác hữu ích không tự cấp quyền tổng hợp; FM-23 trở thành rủi ro chấp nhận.
 - Trong chuỗi tiền phát hành, rule ngôn ngữ bỏ điều kiện cấu trúc chủ thể để khôi phục baseline thuật ngữ tiếng Việt v7.3. Một lần nén `EXPLANATION` nhằm chống khung hai phần gây regression về chiều sâu và bám khung người dùng; bản chính thức khôi phục sàn cũ rồi thay đúng một câu bằng kiểm tra độ bao phủ. Người dùng xác nhận kết quả cuối ổn định.
+- v8.5 đưa tiếng Việt thành hợp đồng đầu ra; v8.6–v8.7 siết claim dependency, grounding và mô hình người đọc; v8.8 thử tiếng Việt tuyệt đối không ngoại lệ.
+- v8.9 là mốc Plus hiện hành. Bản này giữ ba invariant, khôi phục ngoại lệ dạng chữ chính xác hẹp, cấm agreement chỉ làm dấu nối, bảo toàn nghĩa khi rephrase đồng thời thực hiện chức năng mới, và thay permission bước tiếp theo bằng ranh giới giữa hệ quả vật chất với mở rộng nhiệm vụ/công việc nối tiếp.
 
 ### 6.2. ChatGPT Go-Free Era
 
@@ -410,6 +424,7 @@ Hệ quả thiết kế: không được xóa hoặc ghép rule chỉ dựa trê
 - Bản rút gọn phải được chưng cất từ bản Plus+ đã ổn định.
 - v6.3 được thiết kế từ v7.3 để đường quay về Free/Go không bị kéo xuống các thiếu sót của v6.2; v6.4 tiếp tục logic chưng cất từ v7.4.1.
 - v6.4.1 chưng cất lõi reasoning và depth của v7.4.2, hạ hai bất biến ngôn ngữ cũ thành bảo vệ mềm để dành ngân sách 1.500 ký tự cho suy luận.
+- v6.6 là profile Go/Free hiện hành trong cây nguồn: giữ kernel 1.499 ký tự quanh tín hiệu đổi giai đoạn, chức năng lượt, trạng thái claim, chiều sâu và tiếng Việt. Parity với v8.9 chưa được chứng minh bằng runtime.
 - Thành công được đo bằng semantic coverage trên failure matrix, không phải tỷ lệ câu chữ được giữ.
 
 ### 6.3. Phân biệt bốn loại thay đổi
@@ -470,6 +485,9 @@ Không đề xuất patch chỉ vì một rule bị mất tên. Một khái ni�
 | Một chủ đề chạy qua Chat, Audit và Create | FM-15, FM-20 |
 | Người dùng đổi rõ giai đoạn: audit → sửa → thử | FM-13, FM-15, FM-20 |
 | Một, hai và nhiều hơn hai nguyên nhân/giải pháp; khung người dùng thiếu | FM-26 |
+| Bổ sung ngữ cảnh và rephrase có thêm chức năng mới | FM-23, FM-24 |
+| Phát hiện material gap dưới yêu cầu phân tích/proposal/implementation | FM-25, FM-27 |
+| Phát hiện phụ hữu ích nhưng không material | FM-15, FM-27 |
 
 Một phiên bản chỉ đạt khi không xuất hiện failure bắt buộc, không làm suy yếu bất biến và không tạo hồi quy đáng kể ở mode khác.
 
@@ -517,17 +535,22 @@ v8.2 đưa quyền thay đổi lên `CONTROL GROUNDING`: chỉ tín hiệu rõ c
 
 Một biến thể tiền phát hành cố thêm độ rộng bằng cách viết lại toàn bộ `EXPLANATION`, nhưng đồng thời bỏ yêu cầu đủ để `understand`, bỏ điều kiện `non-trivial`, bỏ phản ví dụ và xóa bảo vệ `without removing needed support`. Người dùng ghi nhận câu trả lời ngắn hơn và bám khung giải thích của họ. Bản chính thức quay về sàn chiều sâu trước regression và chỉ thay câu lựa chọn bằng chứng: dùng bằng chứng hoặc phản ví dụ để kiểm tra độ bao phủ; khung của người dùng hay một cặp đẹp không mặc định là đầy đủ; relevance chứ không phải số lượng cố định đặt phạm vi. Người dùng xác nhận bản sửa ổn định trong phạm vi thử hiện tại.
 
+### 9.11. Đồng ý theo mạch hội thoại và phát hiện tự mở việc — sửa contract ở v8.9
+
+Hai failure bề mặt có chủ sở hữu khác nhau nhưng có thể nối tiếp nhau. FM-23/FM-24 xảy ra khi model đọc một rephrase hoặc bổ sung ngữ cảnh thành yêu cầu đồng ý, sửa sai hay phán quyết. FM-27 xảy ra khi một phát hiện phụ được coi là quyền tự đổi giai đoạn hoặc mở công việc tiếp theo. v8.9 sửa cả hai trong ba bất biến hiện có: `DISCOURSE FIDELITY` giữ nguyên nghĩa của rephrase và thực hiện chức năng được thêm; `CONTROL GROUNDING` cùng `TURN AND STATE` cấm phát hiện tự cấp quyền mở rộng nhiệm vụ. Đây là bằng chứng ở cấp contract; hiệu lực runtime của bản chính thức chưa được xác nhận bằng bộ thử có kiểm soát.
+
 ## 10. Nguồn nội bộ để truy vết
 
 - [CI_VERSIONING_AUDIT_VI.md](./CI_VERSIONING_AUDIT_VI.md): rule taxonomy, lịch sử version và các regression đã xác nhận.
 - [CI_DESIGN_EVOLUTION_AND_DEPLOYMENT_VI.md](./CI_DESIGN_EVOLUTION_AND_DEPLOYMENT_VI.md): triết lý tiến hóa, hai profile triển khai và quy trình kiểm thử.
-- [CHANGELOG_VI.md](../instruction-history/CHANGELOG_VI.md): lịch sử thay đổi đến v8.2 chính thức.
+- [CHANGELOG_VI.md](../instruction-history/CHANGELOG_VI.md): lịch sử thay đổi đến v8.9 chính thức.
 - [chatgpt v8.0.txt](../../llm-controls/global-instructions/ChatGPT%20Plus+%20Era/chatgpt%20v8.0.txt): baseline Plus+ lịch sử đã được người dùng chấp nhận.
 - [chatgpt v8.0.1.txt](../../llm-controls/global-instructions/ChatGPT%20Plus+%20Era/chatgpt%20v8.0.1.txt): biến thể số lượng thất bại, gồm lần tăng lên bốn và lần siết đếm toàn bộ thuật ngữ.
 - [chatgpt v8.1.txt](../../llm-controls/global-instructions/ChatGPT%20Plus+%20Era/chatgpt%20v8.1.txt): bản vá bỏ quota runtime và chặn xác nhận chung sai vai trò phát ngôn.
 - [chatgpt v8.1.1.txt](../../llm-controls/global-instructions/ChatGPT%20Plus+%20Era/chatgpt%20v8.1.1.txt): nhánh thử nghiệm cổng nhận premise, cập nhật nền suy luận và code-switching cấp mệnh đề.
 - [chatgpt v8.2.txt](../../llm-controls/global-instructions/ChatGPT%20Plus+%20Era/chatgpt%20v8.2.txt): bản Plus+ chính thức ba bất biến với nền tiếng Việt, cổng giữ giai đoạn và kiểm tra độ bao phủ giải thích.
-- [chatgpt v6.4.1.txt](../../llm-controls/global-instructions/ChatGPT%20Go-Free%20Era/chatgpt%20v6.4.1.txt): profile reasoning cô đọng mới nhất cho Free/Go.
+- [chatgpt v8.9.txt](../../llm-controls/global-instructions/ChatGPT%20Plus+%20Era/chatgpt%20v8.9.txt): bản Plus+ hiện hành với contract rephrase, ranh giới quyền mở việc và ba bất biến đã hiệu chỉnh.
+- [chatgpt v6.6.txt](../../llm-controls/global-instructions/ChatGPT%20Go-Free%20Era/chatgpt%20v6.6.txt): profile reasoning cô đọng hiện hành cho Free/Go; parity với v8.9 chưa được chứng minh.
 - [chatgpt v7.4.2.txt](../../llm-controls/global-instructions/ChatGPT%20Plus+%20Era/chatgpt%20v7.4.2.txt): mốc khôi phục depth floor.
 
 ## 11. Tóm tắt máy đọc được
@@ -616,7 +639,7 @@ confirmed_regression:
   version: v8.0.1
   issue: numeric_terminology_control_increased_or_failed_to_bound_jargon
   status: user_reported_behavior
-active_behavioral_validation:
+historical_behavioral_validation:
   version: v8.2
   reported_status: user_confirmed_stable_in_current_test
   targets:
@@ -625,6 +648,19 @@ active_behavioral_validation:
     - FM-06
     - FM-12
     - FM-21
+current_plus_release:
+  version: v8.9
+  verification: static_contract_review_only
+  runtime_status: unverified
+  discourse_policy:
+    continuity_agreement: prohibited
+    rephrase_same_meaning: preserve_meaning_and_perform_added_function
+  follow_on_policy:
+    material_implications: allowed
+    finding_alone_authorizes_task_expansion: false
+current_go_free_release:
+  version: v6.6
+  parity_with_v8_9: unverified
     - FM-24
     - FM-25
     - FM-26

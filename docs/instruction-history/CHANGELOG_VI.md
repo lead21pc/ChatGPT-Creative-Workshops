@@ -533,3 +533,45 @@
 
 - Kiểm tra cấu trúc đạt 4.964 ký tự và 4.978 byte UTF-8, gồm 45 dòng CRLF, có CRLF cuối tệp, không có khoảng trắng cuối dòng và không có BOM UTF-8. SHA-256: `14412AA60096D77D2C3A5AC0577F8DE99DA629E43F34929C921427DFA4BE1A0F`.
 - Trạng thái chính thức ghi nhận việc tác giả chấp thuận phát hành. Chưa có kết quả kiểm chứng hành vi riêng cho đúng tệp v8.8 này; kiểm tra cấu trúc không chứng minh được hành vi của mô hình.
+
+## v8.9
+
+### Tinh chỉnh ba bất biến và ranh giới thẩm quyền nhiệm vụ
+
+- Khôi phục các ngoại lệ dạng chữ chính xác hẹp kiểu v8.7 trong hợp đồng đầu ra tiếng Việt sau phép thử không ngoại lệ của v8.8. Tiếng Việt đời thường vẫn bắt buộc quanh tên riêng, mã, trích dẫn nguyên văn, lệnh, định danh bên ngoài và thành phần được yêu cầu rõ trong lượt hiện tại; thông lệ chuyên ngành tự nó không tạo ngoại lệ.
+- Viết lại `CONTROL GROUNDING` quanh các bước có căn cứ trong yêu cầu và ngữ cảnh được hỗ trợ. Giai đoạn và giả định về người đọc vẫn cần tín hiệu hoặc bằng chứng; khung cũ phải được kiểm tra lại, còn chủ đề, sự lặp lại, độ quen hay lời trước đó của trợ lý không tự cấp quyền.
+- Tinh chỉnh `DISCOURSE FIDELITY` để lời đồng ý không được dùng chỉ làm dấu nối hội thoại. Một cách diễn đạt lại chỉ là sửa đổi khi nghĩa thay đổi; nếu nghĩa giữ nguyên thì phải bảo toàn nghĩa và thực hiện chức năng mới được thêm. Phán xét, so sánh, lời khuyên hoặc khép lại vẫn phụ thuộc thao tác đã chọn.
+- Viết lại `EPISTEMIC NON-ESCALATION` quanh quan sát, suy luận và giả định có phạm vi; chỉ đánh giá phát biểu được yêu cầu hoặc có vai trò phụ thuộc, kết luận trong giới hạn căn cứ và bộc lộ giả định hay bất định có hệ quả.
+- Thay permission từ v8.6-v8.8 cho phép gợi ý tối đa ba bước tiếp theo bằng ranh giới thẩm quyền nhiệm vụ rõ: giải thích hệ quả có ý nghĩa, nhưng một phát hiện tự nó không mở rộng nhiệm vụ, đổi giai đoạn hoặc cho phép công việc nối tiếp. Quy tắc này giữ không gian suy luận rộng nhưng tách phát hiện khỏi mở việc hay triển khai.
+- Nâng hiện vật `v8.9 temp` đã được rà soát thành `chatgpt v8.9.txt` chính thức; không thêm bất biến thứ tư hoặc mục riêng điều khiển câu mở đầu.
+
+### Ranh giới kiểm chứng
+
+- Kiểm tra cấu trúc đạt 4.985 ký tự và 4.995 byte UTF-8, gồm 45 dòng CRLF, có CRLF cuối tệp, không có khoảng trắng cuối dòng và không có BOM UTF-8. SHA-256: `AF8257685CBC95F8B2A10CE12BFD88AC1786EC5E166BD2C81114F318218EA513`.
+- Rà soát overlap tĩnh giữ quyền sở hữu riêng cho căn cứ, chức năng lượt nói và trạng thái nhận thức; không thấy xung đột trực tiếp với phụ thuộc phát biểu, cập nhật/bất định hay chiều sâu giải thích.
+- Việc nâng bản ghi nhận tác giả chấp thuận hiện vật và hợp đồng tĩnh của nó. Chưa có kết quả runtime có kiểm soát cho đúng hiện vật v8.9 này; kiểm tra cấu trúc và red-team tĩnh không chứng minh hành vi của mô hình.
+
+## v6.5
+
+### Sửa kernel control cho Go/Free
+
+- Tổ chức lại profile cô đọng quanh mục tiêu và phạm vi, dependency của claim trọng yếu, định nghĩa và giả định có phạm vi, cập nhật theo bằng chứng, giữ các khả năng còn hệ quả, chiều sâu tương xứng và đầu ra tiếng Việt.
+- Giữ hiện vật ở đúng 1.500 ký tự, đồng thời giữ lập luận có điều kiện khi thiếu bằng chứng trọng yếu.
+
+### Ranh giới kiểm chứng
+
+- Đo cấu trúc cho kết quả 1.500 ký tự và 1.502 byte UTF-8 trên 10 dòng. SHA-256: `6CFC4DCA13F0009FD9B74DCD89A902B2C68723A72B9C17B5BC2B180AB1842ADA`.
+- Sự hiện diện của file và kiểm tra cấu trúc không chứng minh parity với profile Plus hoặc hành vi runtime.
+
+## v6.6
+
+### Bản chưng cất Go/Free hiện hành
+
+- Thay câu chữ đặt mục tiêu lên trước của v6.5 bằng năm khối cô đọng cho hợp đồng đầu ra tiếng Việt, căn cứ rõ khi đổi giai đoạn và giả định về người đọc, fidelity theo chức năng lượt, kỷ luật trạng thái claim và chiều sâu giải thích tương xứng.
+- Thêm bảo vệ rõ trước việc đổi giai đoạn do chủ đề, lặp lại, độ liền mạch hay cảm giác hữu ích; giữ khám phá ở trạng thái tạm và chỉ phán xét, tổng hợp, tóm tắt hoặc khép lại khi chức năng của lượt cần.
+- Giữ cập nhật claim theo bằng chứng, kiểm chứng thông tin sản phẩm thay đổi, các khả năng còn hệ quả, kiểm tra độ bao phủ vượt khung ban đầu của người dùng và lệnh cấm suy phẩm chất hay độ hiếm từ bằng chứng thưa.
+
+### Ranh giới kiểm chứng
+
+- Đo cấu trúc cho kết quả 1.499 ký tự và 1.499 byte UTF-8 trên 10 dòng. SHA-256: `B7634255D6651F1ABF79C042B3EED088B3F5122F2349536C9F9DF83E82FD9124`.
+- v6.6 là hiện vật Go/Free mới nhất trong kho. Parity ngữ nghĩa và runtime của nó với Plus v8.9 vẫn chưa được kiểm chứng.

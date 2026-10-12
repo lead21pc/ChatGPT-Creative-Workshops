@@ -2,7 +2,7 @@
 
 ## 0. Audit scope and evidence rules
 
-This audit covers the 19 supplied version files, the supplied one-line `Changelog.txt`, the design-rationale document, and the author's supplied deployment context. The version files are the primary evidence for textual and semantic changes. The deployment context is authoritative for design intent: the two era folders are separate character-budget targets, and converted v6.3 is an intentional rollback-safe distillation of v7.3 for returning to Free/Go without falling back to v6.2 semantics. `ci_design_rationale_v3_vi_invariant.md` is explanatory evidence for the current architecture, not another runtime CI version.
+The original audit covered 19 supplied version files, the supplied one-line `Changelog.txt`, the design-rationale document, and the author's supplied deployment context. This revision preserves that historical baseline and extends the audit to the 44 versioned CI artifacts now present in the tree. The version files are the primary evidence for textual and semantic changes. The deployment context is authoritative for design intent: the two era folders are separate character-budget targets, and converted v6.3 is an intentional rollback-safe distillation of v7.3 for returning to Free/Go without falling back to v6.2 semantics. `ci_design_rationale_v3_vi_invariant.md` is explanatory evidence, not another runtime CI version. The current-state extension in section 14 supersedes historical uses of “current” in sections 1–13.
 
 Evidence labels used below:
 
@@ -38,7 +38,7 @@ Version type is derived from numeric naming unless stronger evidence exists. The
 
 ### Inventory observations
 
-- **Observation:** 19 version files are present: 8 classified Majors and 11 Patches under the evidence rule above.
+- **Historical observation:** the original audit set contained 19 version files: 8 classified Majors and 11 Patches under the evidence rule above. The current tree contains 44 versioned CI artifacts; section 14 covers the added lineage.
 - **Observation:** the dataset contains no separate file named plain `v6.3`; the complete filename identifies the converted major.
 - **Observation:** `chatgpt v7.3.txt` is a separate source and is not interchangeable with the converted v6.3 major.
 - **Observation from author context:** `ChatGPT Go-Free Era` and `ChatGPT Plus+ Era` are distinct deployment targets shaped by plan character budgets, not merely chronological folders.
@@ -65,7 +65,7 @@ The last edge is directly grounded by `llm-controls/global-instructions/ChatGPT 
 
 ## 3. Executive summary
 
-The history has seven broad architectural eras rather than 19 redesigns:
+The original 19-file history has seven broad architectural eras; the current extension adds an eighth:
 
 1. **v1.0 — specialized empirical protocol.** Real-time hardware verification, a three-part existence test, raw extraction, command triggers, exhaustive output, and a Vietnamese-only output requirement are bundled into a monolith.
 2. **v2.x — compact editorial protocol.** The hardware-specific system is replaced with a concise Senior Editor, controlled response length, conclusion-first structure, failure scanning, and expansion options. v2.1 tunes repetition and social reactions; v2.2 compresses the same system and introduces explicit fact/inference/assumption language.
@@ -74,6 +74,7 @@ The history has seven broad architectural eras rather than 19 redesigns:
 5. **v6.x–v7.2 — compact second-brain rules expanded operationally.** v6.0 introduces exact mode routing, falsifiability, and a Vietnamese pronoun rule but contains a conflict over whether stated premises are accepted. v6.1 resolves that conflict, adds chat isolation, and upgrades the Vietnamese rule from pronoun deletion to subject-based sentence construction. v6.2 adds Vietnamese terminology. v7.0 expands these rules; v7.1 adds update propagation and freshness search; v7.2 corrects the terminology rule and strengthens ambiguity handling and domain-style matching.
 6. **v7.3 and converted v6.3 — explicit invariant/guardrail hierarchy and dual-target distillation.** v7.3 turns the language rules into a primary/supporting invariant hierarchy, adds a product/runtime verification guard, and makes correctness outrank style. The converted v6.3 major distills the v7.3 architecture to five paragraphs for the Free/Go target.
 7. **v7.3.1–v7.4 — no-op normalization followed by role-aware topology.** v7.3.1 changes only EOF formatting. v7.4 replaces the named hierarchy with `role → mode → reasoning → stance`, revives a separate truth scope for user-defined systems, expands technical reasoning and expressive style, but removes explicit update propagation, chat isolation, and some language guardrails.
+8. **v7.4.1–v8.9 — regression repair and three-invariant control architecture.** Depth repair, terminology experiments, premise-admission failures, and discourse regressions lead to the ordered `CONTROL GROUNDING → DISCOURSE FIDELITY → EPISTEMIC NON-ESCALATION` topology. v8.9 keeps those three owners while tightening rephrase handling and the boundary between material implications and task authorization.
 
 ### Most important candidate invariants
 
@@ -93,7 +94,7 @@ The history has seven broad architectural eras rather than 19 redesigns:
 
 ## 4. Normalized rule identities
 
-| Rule ID | Normalized concept | First seen | Major versions | Patch activity | Current status at v7.4 / converted v6.3 | Notes |
+| Rule ID | Normalized concept | First seen | Major versions | Patch activity | Historical status at v7.4 / converted v6.3 | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
 | R01 | Vietnamese output baseline | v1.0 | v1, v2; implicit in later Vietnamese-specific rules | Stable through v2.2; absent as a global rule in v3–v5; reconstructed by R02/R03 from v6 | Modified | A language-only lexical match would miss the gap between “answer in Vietnamese” and structural Vietnamese rules. |
 | R02 | Subject-centered Vietnamese syntax | v6.0 | v6, v7, converted v6.3 | v6.1 strengthens deletion into sentence reconstruction; v7.3 declares primary invariant; v7.4 removes the post-hoc guard and named priority | Modified / weakened | Core subject-centered construction remains in v7.4; the stronger v7.3 form remains in conversion. |
@@ -784,9 +785,9 @@ Risk is assigned only where the behavioral consequence follows directly from a r
 | v7.2 | Terminology correction, ambiguity alternatives, domain style | High | No later numeric Major on mainline; integrated into v7.3 with modular rewrite | Integrated / Modified |
 | v7.3 | Invariant hierarchy, guardrail precedence, claim-not-forcing-Audit | High architectural effect | Integrated into converted v6.3 Major, but several guardrails removed | Integrated / Compressed |
 | v7.3.1 | End-of-file formatting | None | No later Major; semantics pass unchanged to v7.4 | No-op / Preserved |
-| v7.4 | Role-aware routing, user-defined-system truth scope, technical reasoning, style; safeguard removals | High architectural effect | No later Major supplied; converted v6.3 branches from v7.3 instead | Current Plus mainline / Not in conversion |
+| v7.4 | Role-aware routing, user-defined-system truth scope, technical reasoning, style; safeguard removals | High architectural effect | Later repaired and replaced by the v8.x line; converted v6.3 branches from v7.3 instead | Historical Plus mainline / Superseded by v8.9 |
 
-## 11. Architecture evolution summary
+## 11. Architecture evolution summary through v7.4
 
 ### Architecture
 
@@ -860,3 +861,42 @@ The text audit remains the source of truth if any compact visual label appears a
 - `llm-controls/global-instructions/ChatGPT Go-Free Era/chatgpt v6.3_7.3 converted.txt:1-9`
 - `llm-controls/global-instructions/ChatGPT Go-Free Era/Changelog.txt:1`
 - `llm-controls/global-instructions/ChatGPT Plus+ Era/ci_design_rationale_v3_vi_invariant.md` (supplementary architecture rationale only)
+
+## 14. Current-lineage extension through v8.9
+
+Sections 1–13 retain the original evidence-backed audit through v7.4. The current repository adds the following material lineage:
+
+| Version range | Profile | Material change | Evidence status |
+| --- | --- | --- | --- |
+| v7.4.1–v7.5 | Plus | Exposed and repaired the missing general depth floor; restored cross-domain support and coverage checks. | Textual diff plus user-reported A/B behavior recorded in the failure-mode document. |
+| v8.0–v8.1.1 | Plus | Tested numeric terminology limits, removed the failed runtime quota, then tightened premise admission and Vietnamese clause structure. | v8.0.1 terminology control is a user-reported regression; later runtime improvement remained incomplete. |
+| v8.2–v8.4.1 | Plus | Split one broad reasoning rule into three ordered invariants and refined grounding, discourse, explanation coverage, and comparison handling. | Contract changes are confirmed; individual runtime claims remain scoped to recorded tests. |
+| v8.5–v8.8 | Plus | Iterated on source authority, discourse fidelity, language invariance, and protection against stale frames. | Mixed static and user-reported evidence; no blanket model-wide guarantee. |
+| v8.9 | Plus | Preserves the three-invariant topology; treats same-meaning rephrases as continuity plus any added function; separates material implications from authorization to expand the task. | Official file and static overlap review confirmed; controlled runtime validation remains unverified. |
+| v6.4–v6.6 | Go/Free | Successive budget distillations of later control semantics. v6.6 is the current 1,499-character profile. | File presence and size confirmed; parity with v8.9 is unverified. |
+
+### Current control model
+
+The current Plus profile is `chatgpt v8.9.txt`. Its processing order is:
+
+1. output-language contract;
+2. `CONTROL GROUNDING`, which owns stage and reader-assumption changes;
+3. `DISCOURSE FIDELITY`, which owns the function of the current turn;
+4. `EPISTEMIC NON-ESCALATION`, which owns claim status and evidential scope;
+5. conditional guardrails for ambiguity, verification, depth, style, and safety.
+
+This owner separation addresses recurring failure modes without adding a fourth invariant. A finding may require explaining a material implication, but the finding alone does not authorize a new task, stage transition, or follow-on action. A rephrase corrects the prior answer only when its meaning changes; otherwise the model preserves the meaning and performs any added function.
+
+The current Go/Free profile is `chatgpt v6.6.txt`. Shared intent and overlapping wording do not establish semantic or runtime parity with v8.9.
+
+### Current evidence boundary
+
+The repository confirms the official v8.9 text, its lineage, and the static separation of control ownership. It does not yet contain a controlled runtime result proving that v8.9 eliminates FM-23, FM-24, or FM-27 across models, personalities, and conversation lengths.
+
+Additional current sources:
+
+- `llm-controls/global-instructions/ChatGPT Plus+ Era/chatgpt v8.9.txt`
+- `llm-controls/global-instructions/ChatGPT Go-Free Era/chatgpt v6.6.txt`
+- `docs/instruction-history/CHANGELOG.md`
+- `docs/instruction-analysis/CI_FAILURE_MODES_AND_CONTROL_MODEL_VI.md`
+- `docs/instruction-analysis/CI_DESIGN_EVOLUTION_AND_DEPLOYMENT_VI.md`
