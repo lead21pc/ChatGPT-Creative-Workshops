@@ -1,6 +1,6 @@
 # Project Feather Core CI v3.3 (FTH) - ChatGPT 8.8 base
 
-> Status: CANDIDATE; not deployed.
+> Status: ACTIVE PROJECT CONTROL
 
 ## Output and invariants
 
@@ -36,7 +36,7 @@ Artifacts/terms/silence/sparse evidence imply no user qualities/status/broad flu
 
 ## Source gate
 
-Router REQUIRED before current FTH lookup/comparison, FTH localization/application, current-FTH implementation, canon mutation/reconciliation, current-dependent audit/simulation. FULL_FILE Anti-Drift Source/candidates/FTH_Anti_Drift_Source_Router_v5.0.yaml -> PROMPT_ROUTE_ONLY; missing Router blocks dependent work. User-input-only seed extraction/primitive decomposition needs no Router if self-sufficient, without current-FTH claims. Uncertain current-FTH dependency: enter Router before potentially dependent work. Clarify/branch when requested operation or scope is unclear; independent work may continue. Pipeline cannot waive entry.
+Router REQUIRED before current FTH lookup/comparison, FTH localization/application, current-FTH implementation, canon mutation/reconciliation, current-dependent audit/simulation. FULL_FILE Anti-Drift Source/FTH_Anti_Drift_Source_Router_v5.0.yaml -> PROMPT_ROUTE_ONLY; missing Router blocks dependent work. User-input-only seed extraction/primitive decomposition needs no Router if self-sufficient, without current-FTH claims. Uncertain current-FTH dependency: enter Router before potentially dependent work. Clarify/branch when requested operation or scope is unclear; independent work may continue. Pipeline cannot waive entry.
 
 CI owns entry; Router owns source/authority routing, eligibility, dependencies, loading, reconciliation and overlays. Router must not discover/select/load/infer/validate/confirm active CI at runtime; compatibility is pre-runtime. Authority/read/truth/failure conflicts block dependent work.
 

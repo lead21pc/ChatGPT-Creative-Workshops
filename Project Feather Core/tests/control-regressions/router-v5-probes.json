@@ -8,9 +8,9 @@
     "pipeline": "Anti-Drift Source/FTH_Authoring_Pipeline_v1.0.md"
   },
   "candidate": {
-    "ci": "Project Feather Core CI/candidates/FTH_CI_version_v3.3.md",
-    "router": "Anti-Drift Source/candidates/FTH_Anti_Drift_Source_Router_v5.0.yaml",
-    "pipeline": "Anti-Drift Source/candidates/FTH_Authoring_Pipeline_v1.1.md"
+    "ci": "Project Feather Core CI/FTH_CI_version_v3.3.md",
+    "router": "Anti-Drift Source/FTH_Anti_Drift_Source_Router_v5.0.yaml",
+    "pipeline": "Anti-Drift Source/FTH_Authoring_Pipeline_v1.1.md"
   },
   "method": "Manual paired runs in separate equivalent sessions; do not mix CI/Router pairs. Record actual retrieval, entry, selected controls, failure and truth states. No automatic lifecycle promotion.",
   "probes": [

@@ -1,8 +1,8 @@
-"""Read-only, pre-deployment checks. Never execute prompts or determine canon authority."""
+"""Read-only active control maintenance checks. Never execute prompts or determine canon authority."""
 from pathlib import Path
 import re
 
-CANDIDATE = 'Anti-Drift Source/candidates/FTH_Anti_Drift_Source_Router_v5.0.yaml'
+ROUTER = 'Anti-Drift Source/FTH_Anti_Drift_Source_Router_v5.0.yaml'
 STAGES = ['PROMPT_ROUTE_ONLY', 'BOOTSTRAP_GATE', 'MODULE_GATE', 'SOURCE_LOAD',
           'RECONCILIATION', 'ANTI_DRIFT_OVERLAY_GATE', 'PROMPT_EXECUTION', 'PRE_RESPONSE_CHECK']
 FAILURES = {
@@ -49,7 +49,7 @@ def load(path):
     try:
         import yaml
     except ImportError as error:
-        raise CandidateError('PyYAML is required only for the candidate check') from error
+        raise CandidateError('PyYAML is required only for the control check') from error
 
     class UniqueLoader(yaml.SafeLoader):
         pass
@@ -139,13 +139,19 @@ def expand(controls, selected, true_conditions=()):
 
 def resolve_control(directory, stem, excluded):
     """Resolve direct children only, numeric version, never repository-wide discovery."""
-    pattern = re.compile(re.escape(stem) + r'_v([0-9]+\.[0-9]+(?:\.[0-9]+)?)\.md$', re.I)
+    pattern = re.compile(re.escape(stem) + r'_v([0-9]+\.[0-9]+(?:\.[0-9]+)?)\.(?:md|yaml)$', re.I)
     candidates = []
     for path in directory.iterdir():
         if not path.is_file() or not path.name.lower().startswith(stem.lower() + '_v'):
             continue
         text = path.read_text(encoding='utf-8-sig')
         statuses = set(re.findall(r'^>\s*Status:\s*([A-Z_]+)', text, re.M))
+        if path.suffix.lower() == '.yaml':
+            metadata = load(path)
+            require(isinstance(metadata, dict) and isinstance(metadata.get('deployment'), dict), f'Invalid deployment metadata: {path.name}')
+            status = metadata['deployment'].get('status')
+            require(isinstance(status, str), f'Missing deployment status: {path.name}')
+            statuses.add(status)
         require(len(statuses) <= 1, f'Ambiguous status: {path.name}')
         if statuses.intersection(excluded):
             continue
@@ -167,21 +173,21 @@ def validate(data, root):
                   'loading', 'failures', 'control_selection', 'controls', 'policies'}, 'router')
     require(type(data['schema_version']) is int and data['schema_version'] == 1, 'Unsupported schema')
     dep = data['deployment']
-    fields(dep, {'status', 'router_version', 'ci_version', 'upstream_base', 'candidate_ci',
+    fields(dep, {'status', 'router_version', 'ci_version', 'upstream_base', 'ci',
                  'baseline_ci', 'baseline_router', 'pipeline'}, 'deployment')
     require((dep['status'], dep['router_version'], dep['ci_version'], dep['upstream_base']) ==
-            ('CANDIDATE', '5.0', '3.3', '8.8'), 'Unsupported candidate compatibility tuple')
-    refs = {k: local_file(root, dep[k]) for k in ('candidate_ci', 'baseline_ci', 'baseline_router', 'pipeline')}
-    ci = refs['candidate_ci'].read_text(encoding='utf-8-sig')
-    require(len(refs['candidate_ci'].read_bytes().decode('utf-8-sig')) <= 8000, 'Candidate CI exceeds 8000 characters')
-    require(ci.split('\n', 1)[0] == '# Project Feather Core CI v3.3 (FTH) - ChatGPT 8.8 base', 'Candidate CI version/base mismatch')
-    require('> Status: CANDIDATE;' in ci and CANDIDATE in ci, 'Candidate CI status/router reference mismatch')
+            ('ACTIVE', '5.0', '3.3', '8.8'), 'Unsupported active compatibility tuple')
+    refs = {k: local_file(root, dep[k]) for k in ('ci', 'baseline_ci', 'baseline_router', 'pipeline')}
+    ci = refs['ci'].read_text(encoding='utf-8-sig')
+    require(len(refs['ci'].read_bytes().decode('utf-8-sig')) <= 8000, 'Active CI exceeds 8000 characters')
+    require(ci.split('\n', 1)[0] == '# Project Feather Core CI v3.3 (FTH) - ChatGPT 8.8 base', 'Active CI version/base mismatch')
+    require('> Status: ACTIVE PROJECT CONTROL' in ci and ROUTER in ci, 'Active CI status/router reference mismatch')
     require(refs['baseline_ci'].read_text(encoding='utf-8-sig').startswith('# Project Feather Core CI v3.2 '), 'Baseline CI mismatch')
     require('Source Router v4.4' in refs['baseline_router'].read_text(encoding='utf-8-sig').split('\n', 1)[0], 'Baseline Router mismatch')
     require(refs['pipeline'].name == 'FTH_Authoring_Pipeline_v1.1.md' and
             refs['pipeline'].read_text(encoding='utf-8-sig').split('\n', 1)[0] == '# FTH Authoring Pipeline v1.1',
             'Pipeline mismatch')
-    require(refs['pipeline'].name in ci, 'Candidate CI pipeline reference mismatch')
+    require(refs['pipeline'].name in ci, 'Active CI pipeline reference mismatch')
     # The upstream file is a maintenance reference, never runtime discovery.
     relative = 'ChatGPT Plus+ Era/chatgpt v8.8.txt'
     upstream_paths = [root.parent / relative,
@@ -223,8 +229,14 @@ def validate(data, root):
                 for name, row in rows.items()}
     fields(data['policies'], POLICIES, 'policies')
     require(all(isinstance(v, str) and v.strip() for v in data['policies'].values()), 'Empty semantic policy')
+    # Maintenance selection only; none of these checks are Router runtime stages.
+    for directory, stem, expected in [('Project Feather Core CI', 'FTH_CI_version', refs['ci']),
+                                       ('Anti-Drift Source', 'FTH_Anti_Drift_Source_Router', root / ROUTER),
+                                       ('Anti-Drift Source', 'FTH_Authoring_Pipeline', refs['pipeline'])]:
+        require(resolve_control(root / directory, stem, selection['excluded_statuses']).resolve() == expected.resolve(),
+                f'Active selection mismatch: {stem}')
     return resolved
 
 
 def check(root):
-    return validate(load(root / CANDIDATE), root)
+    return validate(load(root / ROUTER), root)

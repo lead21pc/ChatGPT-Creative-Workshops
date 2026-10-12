@@ -1,14 +1,14 @@
-# Candidate only; repository presence is not live Project deployment.
+# Active project control; repository presence does not prove live Project installation.
 schema_version: 1
 deployment:
-  status: CANDIDATE
+  status: ACTIVE
   router_version: '5.0'
   ci_version: '3.3'
   upstream_base: '8.8'
-  candidate_ci: Project Feather Core CI/candidates/FTH_CI_version_v3.3.md
+  ci: Project Feather Core CI/FTH_CI_version_v3.3.md
   baseline_ci: Project Feather Core CI/FTH_CI_version_v3.2.md
   baseline_router: Anti-Drift Source/FTH_Anti_Drift_Source_Router_v4.4.md
-  pipeline: Anti-Drift Source/candidates/FTH_Authoring_Pipeline_v1.1.md
+  pipeline: Anti-Drift Source/FTH_Authoring_Pipeline_v1.1.md
   # Maintenance references only. No CI operation belongs to the runtime sequence.
 runtime:
   entry: PROMPT_ROUTE_ONLY

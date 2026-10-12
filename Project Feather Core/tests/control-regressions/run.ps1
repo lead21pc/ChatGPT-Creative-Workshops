@@ -129,7 +129,8 @@ Add-Check 'package_presence' $(if ($missing.Count) { 'FAIL' } else { 'PASS' }) (
 
 $families = @(
     [pscustomobject]@{ name = 'CI'; directory = 'Project Feather Core CI'; stem = 'FTH_CI_version_v'; pattern = '^FTH_CI_version_v(?<version>\d+\.\d+(?:\.\d+)?)\.md$' },
-    [pscustomobject]@{ name = 'Source_Router'; directory = 'Anti-Drift Source'; stem = 'FTH_Anti_Drift_Source_Router_v'; pattern = '^FTH_Anti_Drift_Source_Router_v(?<version>\d+\.\d+(?:\.\d+)?)\.md$' },
+    [pscustomobject]@{ name = 'Source_Router'; directory = 'Anti-Drift Source'; stem = 'FTH_Anti_Drift_Source_Router_v'; pattern = '^FTH_Anti_Drift_Source_Router_v(?<version>\d+\.\d+(?:\.\d+)?)\.(?:md|yaml)$' },
+    [pscustomobject]@{ name = 'Authoring_Pipeline'; directory = 'Anti-Drift Source'; stem = 'FTH_Authoring_Pipeline_v'; pattern = '^FTH_Authoring_Pipeline_v(?<version>\d+\.\d+(?:\.\d+)?)\.md$' },
     [pscustomobject]@{ name = 'Worldbuilding_Internal_Logic'; directory = 'Anti-Drift Source'; stem = 'FTH_Anti_Drift_Worldbuilding_Internal_Logic_v'; pattern = '^FTH_Anti_Drift_Worldbuilding_Internal_Logic_v(?<version>\d+\.\d+(?:\.\d+)?)\.md$' },
     [pscustomobject]@{ name = 'Interface_Economy_State_Stabilization'; directory = 'Anti-Drift Source'; stem = 'FTH_Anti_Drift_Interface_Economy_State_Stabilization_v'; pattern = '^FTH_Anti_Drift_Interface_Economy_State_Stabilization_v(?<version>\d+\.\d+(?:\.\d+)?)\.md$' },
     [pscustomobject]@{ name = 'Modular_Concept_Architecture'; directory = 'Anti-Drift Source'; stem = 'FTH_Anti_Drift_Modular_Concept_Architecture_v'; pattern = '^FTH_Anti_Drift_Modular_Concept_Architecture_v(?<version>\d+\.\d+(?:\.\d+)?)\.md$' },
@@ -144,7 +145,7 @@ $resolutions = @(
         $directory = Join-Path $projectRoot $family.directory
         $names = if (Test-Path -LiteralPath $directory -PathType Container) {
             @(Get-ChildItem -LiteralPath $directory -File |
-                Where-Object { $_.Name.StartsWith($family.stem, [StringComparison]::OrdinalIgnoreCase) -and $_.Extension -eq '.md' } |
+                Where-Object { $_.Name.StartsWith($family.stem, [StringComparison]::OrdinalIgnoreCase) -and $_.Extension -in @('.md', '.yaml') } |
                 ForEach-Object Name)
         }
         else { @() }
@@ -193,7 +194,7 @@ function Get-ControlFamily {
     param([string]$Path)
     foreach ($family in $families) {
         if ($Path.StartsWith("$($family.directory)/$($family.stem)", [StringComparison]::OrdinalIgnoreCase) -and
-            $Path.EndsWith('.md', [StringComparison]::OrdinalIgnoreCase)) { return $family.name }
+            ([IO.Path]::GetFileName($Path) -match $family.pattern)) { return $family.name }
     }
     return $null
 }

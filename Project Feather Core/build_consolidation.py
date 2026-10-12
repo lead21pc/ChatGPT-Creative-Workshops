@@ -309,17 +309,17 @@ def main(argv=None):
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument('--check', action='store_true', help='validate without writing (default)')
     mode.add_argument('--write', action='store_true', help='sync only generated catalog/manifest regions')
-    mode.add_argument('--check-router-candidate', action='store_true', help='read-only Router 5 / CI 3.3 candidate checks')
+    mode.add_argument('--check-router', '--check-router-candidate', dest='check_router', action='store_true', help='read-only Router 5 / CI 3.3 active checks')
     args = parser.parse_args(argv)
     try:
         root = Path(__file__).resolve().parent
-        if args.check_router_candidate:
+        if args.check_router:
             from tools.router_candidate import CandidateError, check
             try:
                 resolved = check(root)
             except CandidateError as error:
                 raise ValidationError(str(error)) from error
-            print(f'PASS: Router 5 / CI 3.3 candidate structure; {len(resolved)} control families. '
+            print(f'PASS: Router 5 / CI 3.3 active structure; {len(resolved)} control families. '
                   'Read-only maintenance check; no prompt execution or deployment.')
             return 0
         inputs, changes = plan(root, write=args.write)

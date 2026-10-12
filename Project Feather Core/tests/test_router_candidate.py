@@ -4,7 +4,7 @@ from pathlib import Path
 import tempfile
 import unittest
 
-from tools.router_candidate import CANDIDATE, CandidateError, check, expand, load, resolve_control, validate
+from tools.router_candidate import ROUTER, CandidateError, check, expand, load, resolve_control, validate
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 class RouterCandidateTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.original = load(ROOT / CANDIDATE)
+        cls.original = load(ROOT / ROUTER)
 
     def setUp(self):
         self.data = deepcopy(self.original)
@@ -60,11 +60,11 @@ class RouterCandidateTests(unittest.TestCase):
 
     def test_missing_reference_and_escape_rejected(self):
         for path in ['missing.md', '../SYSTEM_CONTEXT.md']:
-            self.data['deployment']['candidate_ci'] = path
+            self.data['deployment']['ci'] = path
             self.rejected()
 
     def test_compatibility_tuple_rejected(self):
-        for key, value in [('status', 'ACTIVE'), ('ci_version', '3.2'), ('upstream_base', '8.9'), ('router_version', '4.4')]:
+        for key, value in [('status', 'CANDIDATE'), ('ci_version', '3.2'), ('upstream_base', '8.9'), ('router_version', '4.4')]:
             self.data = deepcopy(self.original)
             self.data['deployment'][key] = value
             self.rejected()
@@ -86,18 +86,18 @@ class RouterCandidateTests(unittest.TestCase):
         import shutil
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
-            for key in ('candidate_ci', 'baseline_ci', 'baseline_router', 'pipeline'):
+            for key in ('ci', 'baseline_ci', 'baseline_router', 'pipeline'):
                 relative = self.data['deployment'][key]
                 target = root / relative
                 target.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copyfile(ROOT / relative, target)
-            path = root / self.data['deployment']['candidate_ci']
+            path = root / self.data['deployment']['ci']
             original = path.read_text(encoding='utf-8')
             for old, new in [('v3.3 (FTH)', 'v3.2 (FTH)'), ('ChatGPT 8.8 base', 'ChatGPT 8.9 base'),
-                             ('Status: CANDIDATE;', 'Status: ACTIVE;'),
+                             ('Status: ACTIVE PROJECT CONTROL', 'Status: CANDIDATE;'),
                              ('FTH_Authoring_Pipeline_v1.1.md', 'FTH_Authoring_Pipeline_v1.0.md'), (original, ''), (original, original + 'x' * 8001)]:
                 path.write_text(original.replace(old, new), encoding='utf-8')
-                with self.assertRaisesRegex(CandidateError, 'Candidate CI'):
+                with self.assertRaisesRegex(CandidateError, 'Active CI'):
                     validate(self.data, root)
 
     def test_upstream_check_accepts_both_existing_repository_layouts(self):
@@ -106,7 +106,8 @@ class RouterCandidateTests(unittest.TestCase):
             repository = Path(directory)
             root = repository / 'Project Feather Core'
             names = [self.data['deployment'][key] for key in
-                     ('candidate_ci', 'baseline_ci', 'baseline_router', 'pipeline')]
+                     ('ci', 'baseline_ci', 'baseline_router', 'pipeline')]
+            names += [ROUTER]
             names += self.data['bootstrap']['full_file'] + [self.data['bootstrap']['reconciliation_record']]
             names += [str(path.relative_to(ROOT)) for path in check(ROOT).values()]
             for relative in names:
@@ -224,10 +225,10 @@ class RouterCandidateTests(unittest.TestCase):
 
     def test_ci_changes_confined_to_approved_boundary_sections(self):
         old = (ROOT / 'Project Feather Core CI/FTH_CI_version_v3.2.md').read_text(encoding='utf-8')
-        new = (ROOT / self.data['deployment']['candidate_ci']).read_text(encoding='utf-8')
+        new = (ROOT / self.data['deployment']['ci']).read_text(encoding='utf-8')
         old_intro, old_rest = old.split('## Source gate', 1)
         new_intro, new_rest = new.split('## Source gate', 1)
-        status = '> Status: CANDIDATE; not deployed.\n\n'
+        status = '> Status: ACTIVE PROJECT CONTROL\n\n'
         normalized = new_intro.replace('v3.3 (FTH)', 'v3.2 (FTH)', 1).replace(status, '')
         normalized = normalized.replace('FTH_Authoring_Pipeline_v1.1.md', 'FTH_Authoring_Pipeline_v1.0.md', 1)
         self.assertEqual(normalized, old_intro)
@@ -236,7 +237,7 @@ class RouterCandidateTests(unittest.TestCase):
         new_tail = new_rest.split(marker, 1)[1]
         old_overlay_entry = 'After reconciliation, Router selects overlays/dependencies; initial modular architecture requires activated overlays as `FULL_FILE`.'
         self.assertEqual(new_tail, old_tail.replace(old_overlay_entry, 'Router alone selects and loads overlays/dependencies.'))
-        self.assertLessEqual(len((ROOT / self.data['deployment']['candidate_ci']).read_bytes().decode('utf-8')), 8000)
+        self.assertLessEqual(len((ROOT / self.data['deployment']['ci']).read_bytes().decode('utf-8')), 8000)
 
     def test_probes_cover_draft_contracts_without_runtime_claim(self):
         import json
@@ -245,3 +246,31 @@ class RouterCandidateTests(unittest.TestCase):
         self.assertEqual(len({p['id'] for p in suite['probes']}), 18)
         self.assertFalse(suite['model_executed'])
         self.assertEqual(suite['status'], 'DRAFT')
+
+    def test_active_stack_numeric_yaml_resolution_and_duplicate_rejection(self):
+        import shutil
+        excluded = self.data['control_selection']['excluded_statuses']
+        for directory, stem, expected in [('Project Feather Core CI', 'FTH_CI_version', 'FTH_CI_version_v3.3.md'),
+                                         ('Anti-Drift Source', 'FTH_Anti_Drift_Source_Router', 'FTH_Anti_Drift_Source_Router_v5.0.yaml'),
+                                         ('Anti-Drift Source', 'FTH_Authoring_Pipeline', 'FTH_Authoring_Pipeline_v1.1.md')]:
+            self.assertEqual(resolve_control(ROOT / directory, stem, excluded).name, expected)
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            shutil.copyfile(ROOT / ROUTER, root / Path(ROUTER).name)
+            stem = 'FTH_Anti_Drift_Source_Router'
+            (root / (stem + '_v99.0.yaml')).write_text('deployment: {status: CANDIDATE}', encoding='utf8')
+            self.assertEqual(resolve_control(root, stem, excluded).name, Path(ROUTER).name)
+            (root / (stem + '_v5.0.0.md')).write_text('> Status: ACTIVE', encoding='utf8')
+            with self.assertRaisesRegex(CandidateError, 'Ambiguous highest'):
+                resolve_control(root, stem, excluded)
+
+    def test_active_references_have_no_candidate_lock(self):
+        dep = self.data['deployment']
+        self.assertEqual(dep['status'], 'ACTIVE')
+        self.assertNotIn('candidate_ci', dep)
+        for relative in (ROUTER, dep['ci'], dep['pipeline']):
+            self.assertNotIn('/candidates/', relative)
+            text = (ROOT / relative).read_text(encoding='utf8')
+            self.assertNotIn('Status: CANDIDATE', text)
+            self.assertNotIn('not deployed', text)
+            self.assertNotIn('/candidates/', text)

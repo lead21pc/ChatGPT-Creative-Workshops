@@ -2,9 +2,9 @@
 
 ## Bản hiện hành
 
-Cập nhật 2026-10-10: [FTH CI 3.2](FTH_CI_version_v3.2.md) là file namespace hiện hành. [AetherFire CI 3.1](AetherFire_CI_version_v3.1.md) giữ tên lịch sử; `source_archive/` tiếp tục giữ các tiền nhiệm byte-exact.
+Cập nhật 2026-10-11: [FTH CI 3.3](FTH_CI_version_v3.3.md) là control local hiện hành; [FTH CI 3.2](FTH_CI_version_v3.2.md) giữ nguyên làm rollback. [AetherFire CI 3.1](AetherFire_CI_version_v3.1.md) giữ tên lịch sử; `source_archive/` tiếp tục giữ các tiền nhiệm byte-exact.
 
-FTH CI 3.2 ghi nền ChatGPT 8.8 và tự chứa các quy tắc cần dùng; nhãn nền là thông tin xuất xứ, không phải lệnh đọc một CI ngoài để áp dụng lúc chạy. Phần ngôn ngữ yêu cầu tiếng Việt phổ thông nhưng giữ nguyên tên riêng trong lore, gồm tên quốc gia và địa danh; không dịch nghĩa đen hoặc tự đặt dạng Việt hóa. Tên được nhận diện từ nguồn/ngữ cảnh, không chỉ từ chữ viết hoa.
+FTH CI 3.3 ghi nền ChatGPT 8.8 và tự chứa các quy tắc cần dùng; nhãn nền là thông tin xuất xứ, không phải lệnh đọc một CI ngoài để áp dụng lúc chạy. Phần ngôn ngữ yêu cầu tiếng Việt phổ thông nhưng giữ nguyên tên riêng trong lore, gồm tên quốc gia và địa danh; không dịch nghĩa đen hoặc tự đặt dạng Việt hóa. Tên được nhận diện từ nguồn/ngữ cảnh, không chỉ từ chữ viết hoa.
 
 ## Ranh giới
 
