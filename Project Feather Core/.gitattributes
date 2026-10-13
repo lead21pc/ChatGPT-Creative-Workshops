@@ -18,3 +18,6 @@ Source_Archive/Quyet_Dinh_Hien_Hanh_RF_Bo_Tu_Tien_2026-10-06.md whitespace=-blan
 Source_Archive/AetherFire_Matriarchs_Lament_Matriarch_Origin_Saints_Fresh_Canon_2026-10-06.md whitespace=-blank-at-eol
 Source_Archive/AetherFire_Hoa_Nguyet_National_Name_Cross_Border_Usage_Canon_2026-10-07.md whitespace=-blank-at-eol
 Source_Archive/AetherFire_Hoa_Nguyet_Trade_Geography_Canon_Delta_2026-10-07.md whitespace=-blank-at-eol
+# Preserve historical whitespace in byte-exact lineage recovery artifacts.
+Project*CI/source_archive/*.md whitespace=-blank-at-eol,-blank-at-eof
+Source_Archive/Old*Structure*Lore/pre_module_header_2026-09-29/*.md whitespace=-blank-at-eol
