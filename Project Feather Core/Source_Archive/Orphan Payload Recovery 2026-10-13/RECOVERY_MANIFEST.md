@@ -4,6 +4,8 @@ Status: historical/provenance archive only. Nothing in this directory is an acti
 
 Baseline: `b383e160273a110453baca6be85d4cd7f0cfa18a`.
 
+`BUILDPROBE_INVENTORY.csv` accounts for all 156 BuildProbe files individually: 7 archived here, 74 byte-contained on baseline `main`, and 75 exact blobs reachable in pre-recovery Git refs.
+
 ## Recovered historical source
 
 `internal_first_worldbuilding_core_philosophy.md` is restored separately at the shared `Source_Archive/` root because the current package manifest already records that exact historical path and SHA-256. It is explicitly non-canon and non-current.
