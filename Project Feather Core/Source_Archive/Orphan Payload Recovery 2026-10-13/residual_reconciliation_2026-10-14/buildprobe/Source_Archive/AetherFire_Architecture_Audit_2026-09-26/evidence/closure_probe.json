@@ -1,0 +1,53 @@
+{
+  "status": "SYNTHETIC_PROTOTYPE_ONLY",
+  "results": [
+    {
+      "scenario": "sparse_local",
+      "modules": 8,
+      "nodes": 800,
+      "edges": 792,
+      "read_closure": 10,
+      "read_edges": 9,
+      "reverse_impact": 100,
+      "seconds_including_reverse_index": 0.0001635999999507476
+    },
+    {
+      "scenario": "sparse_local",
+      "modules": 80,
+      "nodes": 8000,
+      "edges": 7920,
+      "read_closure": 10,
+      "read_edges": 9,
+      "reverse_impact": 100,
+      "seconds_including_reverse_index": 0.0015932000001157576
+    },
+    {
+      "scenario": "high_fanout",
+      "impact": 8001,
+      "edges": 8000,
+      "expected_policy": "NO_SILENT_TRUNCATION; FULL_AFFECTED_AUDIT_OR_BLOCK"
+    },
+    {
+      "scenario": "dense_mutual_read",
+      "closure": 80,
+      "edges": 6320
+    },
+    {
+      "scenario": "read_cycle_terminates",
+      "status": "PASS",
+      "limitation": "Does not authorize a derivation/supersession cycle"
+    },
+    {
+      "scenario": "missing_dependency",
+      "status": "PASS",
+      "error": "MISSING_NODE:missing"
+    }
+  ],
+  "not_tested": [
+    "LLM evidence selection",
+    "semantic edge completeness",
+    "actual node router",
+    "concurrent publisher",
+    "JSON Schema implementation"
+  ]
+}

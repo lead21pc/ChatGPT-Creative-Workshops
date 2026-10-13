@@ -1,0 +1,18 @@
+{
+  "Status": "FAIL",
+  "ProjectRoot": "C:\\Users\\Sheeplark\\Desktop\\CI Versioning Audit & Changelog\\AetherFire Project",
+  "GeneratedFiles": 12,
+  "ArchivedSources": 27,
+  "ExcludedSourcesChecked": 2,
+  "BuildOutput": "Generated 12 consolidated Markdown files, plus manifest and build script, in self-contained project root C:\\Users\\SHEEPL~1\\AppData\\Local\\Temp\\aetherfire-package-verify-87e1f0496d4449e789df47dff5bba8b0",
+  "Issues": [
+    "Archive inventory mismatch: internal_first_worldbuilding_core_philosophy.md [=>]",
+    "Rebuilt MANIFEST.md differs from live manifest."
+  ]
+}
+Exception: C:\Users\Sheeplark\.codex\skills\aetherfire-source-audit\scripts\verify_aetherfire_package.ps1:149
+Line |
+ 149 |      throw "AetherFire package verification failed with $($issues.Coun …
+     |      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | AetherFire package verification failed with 2 issue(s).
+

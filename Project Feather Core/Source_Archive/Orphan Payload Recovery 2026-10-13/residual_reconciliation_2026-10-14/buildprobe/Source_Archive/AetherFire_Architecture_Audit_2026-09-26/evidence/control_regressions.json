@@ -1,0 +1,133 @@
+{
+  "mode": "READ_ONLY",
+  "overall": "LIMITED_CHECK",
+  "checks": [
+    {
+      "name": "package_presence",
+      "status": "PASS",
+      "detail": {
+        "missing": []
+      }
+    },
+    {
+      "name": "numeric_versions",
+      "status": "PASS",
+      "detail": [
+        {
+          "family": "CI",
+          "status": "PASS",
+          "reason": "NUMERIC_HIGHEST",
+          "highest": "AetherFire_CI_version_v2.6.md",
+          "version": "2.6.0"
+        },
+        {
+          "family": "Source_Router",
+          "status": "PASS",
+          "reason": "NUMERIC_HIGHEST",
+          "highest": "AetherFire_Anti_Drift_Source_Router_v3.2.md",
+          "version": "3.2.0"
+        },
+        {
+          "family": "Worldbuilding_Internal_Logic",
+          "status": "PASS",
+          "reason": "NUMERIC_HIGHEST",
+          "highest": "AetherFire_Anti_Drift_Worldbuilding_Internal_Logic_v1.1.md",
+          "version": "1.1.0"
+        },
+        {
+          "family": "Interface_Economy_State_Stabilization",
+          "status": "PASS",
+          "reason": "NUMERIC_HIGHEST",
+          "highest": "AetherFire_Anti_Drift_Interface_Economy_State_Stabilization_v1.1.md",
+          "version": "1.1.0"
+        },
+        {
+          "family": "Modular_Concept_Architecture",
+          "status": "PASS",
+          "reason": "NUMERIC_HIGHEST",
+          "highest": "AetherFire_Anti_Drift_Modular_Concept_Architecture_v1.0.md",
+          "version": "1.0.0"
+        },
+        {
+          "family": "Total_War_RP",
+          "status": "PASS",
+          "reason": "NUMERIC_HIGHEST",
+          "highest": "AetherFire_Anti_Drift_Total_War_RP_v1.1.md",
+          "version": "1.1.0"
+        },
+        {
+          "family": "Mortality_Relationship_Plot_Immunity",
+          "status": "PASS",
+          "reason": "NUMERIC_HIGHEST",
+          "highest": "AetherFire_Anti_Drift_Mortality_Relationship_Plot_Immunity_v1.1.md",
+          "version": "1.1.0"
+        }
+      ]
+    },
+    {
+      "name": "selected_upstream_base",
+      "status": "PASS",
+      "detail": {
+        "project_ci": "AetherFire CI/AetherFire_CI_version_v2.6.md",
+        "upstream": "ChatGPT Plus+ Era/chatgpt v8.5.txt",
+        "origin": "EXPLICIT_PROJECT_CI_DECLARATION"
+      }
+    },
+    {
+      "name": "case_schema",
+      "status": "PASS",
+      "detail": {
+        "count": 9,
+        "issues": []
+      }
+    },
+    {
+      "name": "protected_snapshot",
+      "status": "LIMITED_CHECK",
+      "detail": {
+        "coverage": "NO_TASK_START_SNAPSHOT",
+        "checked": 0,
+        "mismatches": []
+      }
+    },
+    {
+      "name": "git_inspection",
+      "status": "PASS",
+      "detail": {
+        "status": [
+          "## codex/aetherfire-architecture-audit-20260926",
+          " D \"ChatGPT Plus+ Era/chatgpt v8.5.1.txt\"",
+          "?? \"AetherFire Project/AetherFire_Architecture_Audit_2026-09-26/\"",
+          "?? \"AetherFire Project/AetherFire_Architecture_Revamp_Package/\"",
+          "?? \"AetherFire Project/New Canon and Consideration/\"",
+          "?? \"AetherFire Project/Source_Archive/internal_first_worldbuilding_core_philosophy.md\"",
+          "?? \"ChatGPT Plus+ Era/chatgpt v8.6.txt\"",
+          "?? \"The Academy Project/\""
+        ]
+      }
+    },
+    {
+      "name": "package_integrity",
+      "status": "LIMITED_CHECK",
+      "detail": "Default mode checks presence only. Existing package verifier, manifest hashes, and build were not invoked."
+    }
+  ],
+  "changed_control_files": [],
+  "selected_cases": [],
+  "draft_cases": [],
+  "draft_review_matches": [],
+  "draft_anchor_warnings": [],
+  "stale_candidates": [],
+  "stale_review_matches": [],
+  "unmapped": [],
+  "manual_result": null,
+  "version_probe": null,
+  "anchor_probe": null,
+  "effective_control": {
+    "project_ci": "AetherFire CI/AetherFire_CI_version_v2.6.md",
+    "upstream": "ChatGPT Plus+ Era/chatgpt v8.5.txt",
+    "origin": "EXPLICIT_PROJECT_CI_DECLARATION"
+  },
+  "model_executed": false,
+  "build_executed": false
+}

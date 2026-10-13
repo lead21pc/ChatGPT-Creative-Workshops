@@ -4,7 +4,7 @@ Status: historical/provenance archive only. Nothing in this directory is an acti
 
 Baseline: `b383e160273a110453baca6be85d4cd7f0cfa18a`.
 
-`BUILDPROBE_INVENTORY.csv` accounts for all 156 BuildProbe files individually: 7 archived here, 74 byte-contained on baseline `main`, and 75 exact blobs reachable in pre-recovery Git refs.
+Correction 2026-10-14: reachable in another ref did not establish containment on main. `BUILDPROBE_INVENTORY.csv` now records reconciliation against local main `461a011639887c9aef58d1637b074b44706e5c7c`: 98 files contained in its history (exact or BOM/EOL/EOF-only normalization), 57 additional historical files archived, and one obsolete whitespace configuration discarded. The original recovery baseline above remains historical context, not the corrected containment baseline. See `residual_reconciliation_2026-10-14/RESIDUAL_INVENTORY.csv` for the 58 residual files plus five publish and three OC records.
 
 ## Recovered historical source
 
@@ -61,4 +61,4 @@ Only the minimum authored evidence set is retained for each external-only pilot:
 - Temporary layout/audit scripts, staged patches, snapshots, and runner output: generated task scratch whose applied result is already represented in Git history.
 - Pilot prompt wrappers and duplicate excerpts: experimental transport material; decisive methodology and results are retained above.
 - Duplicate second backup: byte-identical to the preserved canonical backup copy.
-- Temporary worktree mirrors whose file blobs are already reachable in Git.
+- Temporary worktree mirrors require containment on main or an explicit payload disposition; reachability in another Git ref alone does not suffice. The 2026-10-14 reconciliation supersedes the earlier reachability-only disposition.

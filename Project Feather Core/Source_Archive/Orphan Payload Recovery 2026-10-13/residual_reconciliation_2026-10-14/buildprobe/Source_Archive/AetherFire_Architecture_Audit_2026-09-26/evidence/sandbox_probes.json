@@ -1,0 +1,67 @@
+{
+  "scope": "TEMP_COPIES_ONLY",
+  "probes": {
+    "isolated_baseline": {
+      "exit": 0,
+      "stdout": "Generated 12 consolidated Markdown files, plus manifest and build script, in self-contained project root C:\\Users\\Sheeplark\\AppData\\Local\\Temp\\af-architecture-probes-sv4uqtsv\\baseline\n",
+      "stderr": "",
+      "generated_matches": {
+        "00_AETHERFIRE_CONSOLIDATION_INDEX.md": true,
+        "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md": true,
+        "20_STATUS_CIVIL_LABOR_CURRENT.md": true,
+        "30_UNDIE_SYSTEM_CURRENT.md": true,
+        "40_METAFICTION_CANON_TIMELINE_CURRENT.md": true,
+        "50_NARRATORS_POV_AND_HUMOR_CURRENT.md": true,
+        "60_MC4_IDENTITY_CURRENT.md": true,
+        "70_MATRIARCHS_LAMENT_CURRENT.md": true,
+        "80_STABLE_AVIATION_RF_AIRSPACE_CURRENT.md": true,
+        "90_DESIGN_HISTORY_AND_RECONSIDERATIONS.md": true,
+        "91_RECONCILIATION_RECORD.md": true,
+        "92_OPEN_ISSUES_CURRENT.md": true
+      },
+      "manifest_matches": false
+    },
+    "partial_write_failure": {
+      "exit": 1,
+      "stdout": "",
+      "stderr": "Exception: C:\\Users\\Sheeplark\\AppData\\Local\\Temp\\af-architecture-probes-sv4uqtsv\\partial\\build_consolidation.ps1:38\nLine |\n  38 |          throw \"End anchor not found: $End\"\n     |          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n     | End anchor not found: # 1. ĐỊNH HƯỚNG CHUNG\n",
+      "rewritten": [
+        "00_AETHERFIRE_CONSOLIDATION_INDEX.md",
+        "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+        "20_STATUS_CIVIL_LABOR_CURRENT.md",
+        "70_MATRIARCHS_LAMENT_CURRENT.md",
+        "80_STABLE_AVIATION_RF_AIRSPACE_CURRENT.md"
+      ],
+      "still_previous": [
+        "30_UNDIE_SYSTEM_CURRENT.md",
+        "40_METAFICTION_CANON_TIMELINE_CURRENT.md",
+        "50_NARRATORS_POV_AND_HUMOR_CURRENT.md",
+        "60_MC4_IDENTITY_CURRENT.md",
+        "90_DESIGN_HISTORY_AND_RECONSIDERATIONS.md",
+        "91_RECONCILIATION_RECORD.md",
+        "92_OPEN_ISSUES_CURRENT.md"
+      ]
+    },
+    "silent_replacement_miss": {
+      "exit": 0,
+      "stdout": "Generated 12 consolidated Markdown files, plus manifest and build script, in self-contained project root C:\\Users\\Sheeplark\\AppData\\Local\\Temp\\af-architecture-probes-sv4uqtsv\\silent\n",
+      "stderr": "",
+      "unreconciled_sentinel_reaches_output": true
+    },
+    "heading_in_fence": {
+      "exit": 0,
+      "stdout": "```text\n## literal\n```\n",
+      "stderr": ""
+    },
+    "runner_draft_version": {
+      "exit": 0,
+      "effective_control": {
+        "project_ci": "AetherFire CI/AetherFire_CI_version_v2.99.md",
+        "upstream": "ChatGPT Plus+ Era/chatgpt v8.5.txt",
+        "origin": "EXPLICIT_PROJECT_CI_DECLARATION"
+      },
+      "overall": "LIMITED_CHECK",
+      "model_executed": false
+    }
+  }
+}

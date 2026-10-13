@@ -1,0 +1,2388 @@
+{
+  "status": "OBSERVED_STATIC_ONLY",
+  "method": {
+    "headings": "regex including fenced examples",
+    "unknown": "uppercase token lines, not semantic coverage",
+    "near": "paragraphs >=120 chars; Jaccard >=.65; character ratio >=.85",
+    "references": "backtick .md mentions only, not exhaustive dependencies"
+  },
+  "inventory": [
+    {
+      "path": ".gitattributes",
+      "bytes": 128,
+      "sha256": "5EA223C7F624206A139B326F428768D9662EB5A550F34488C8DC298D5EA2C7BF"
+    },
+    {
+      "path": "00_AETHERFIRE_CONSOLIDATION_INDEX.md",
+      "bytes": 10675,
+      "sha256": "404EC41B2CA805FF5BAE12C1DB474356F5B18F87DCC2AC75DF0DC3009AECA884",
+      "lines": 143,
+      "headings": 11,
+      "unknown_lines": 7,
+      "issue_ids": 0,
+      "md_reference_mentions": 18
+    },
+    {
+      "path": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+      "bytes": 57725,
+      "sha256": "01999C6249DCADEE01600BCA930480DC1B349ABF35FF72B628B6F2CE63B86266",
+      "lines": 1262,
+      "headings": 80,
+      "unknown_lines": 32,
+      "issue_ids": 0,
+      "md_reference_mentions": 22
+    },
+    {
+      "path": "20_STATUS_CIVIL_LABOR_CURRENT.md",
+      "bytes": 39889,
+      "sha256": "DAC6BCCEBD3DBE900D539C02A56AAAA11FBEE7AD948362F6CF1A7F1F5F5E0924",
+      "lines": 1592,
+      "headings": 76,
+      "unknown_lines": 24,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "30_UNDIE_SYSTEM_CURRENT.md",
+      "bytes": 87784,
+      "sha256": "09E04C8B15D7F0DD5C76FE71DFF963BC955B5863EEA68045395C875811F1659D",
+      "lines": 4163,
+      "headings": 180,
+      "unknown_lines": 14,
+      "issue_ids": 0,
+      "md_reference_mentions": 2
+    },
+    {
+      "path": "40_METAFICTION_CANON_TIMELINE_CURRENT.md",
+      "bytes": 39611,
+      "sha256": "27E485328031751858C2758B8A76EB09ED85248452AC6F380694D8A4159767D1",
+      "lines": 1560,
+      "headings": 80,
+      "unknown_lines": 8,
+      "issue_ids": 0,
+      "md_reference_mentions": 2
+    },
+    {
+      "path": "50_NARRATORS_POV_AND_HUMOR_CURRENT.md",
+      "bytes": 20683,
+      "sha256": "213BF2B5E258BD1E83F6AAA966B2F40F92EFE0C56A292E5883B187E1087D53FC",
+      "lines": 1063,
+      "headings": 47,
+      "unknown_lines": 1,
+      "issue_ids": 0,
+      "md_reference_mentions": 2
+    },
+    {
+      "path": "60_MC4_IDENTITY_CURRENT.md",
+      "bytes": 3361,
+      "sha256": "2B11C4846788A607B311854E0667E2A918F55E07F648A9DC70ED0C3A8187B088",
+      "lines": 68,
+      "headings": 7,
+      "unknown_lines": 6,
+      "issue_ids": 0,
+      "md_reference_mentions": 2
+    },
+    {
+      "path": "70_MATRIARCHS_LAMENT_CURRENT.md",
+      "bytes": 18154,
+      "sha256": "C6E68E05E75AEA82CAB85FC2A8FC5E1F433D3A04589227E88786F86101D13D88",
+      "lines": 873,
+      "headings": 55,
+      "unknown_lines": 7,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "80_STABLE_AVIATION_RF_AIRSPACE_CURRENT.md",
+      "bytes": 15468,
+      "sha256": "CA5DDC126B5862ACBFFC71067ADB048F265EBAB5D053468E0627363DC216677C",
+      "lines": 427,
+      "headings": 21,
+      "unknown_lines": 8,
+      "issue_ids": 0,
+      "md_reference_mentions": 4
+    },
+    {
+      "path": "90_DESIGN_HISTORY_AND_RECONSIDERATIONS.md",
+      "bytes": 131474,
+      "sha256": "883599D49DC2621D10315B431767C8EBF5060CAF0DB5583C3A5F6D7938E2F58C",
+      "lines": 4060,
+      "headings": 206,
+      "unknown_lines": 34,
+      "issue_ids": 0,
+      "md_reference_mentions": 5
+    },
+    {
+      "path": "91_RECONCILIATION_RECORD.md",
+      "bytes": 44653,
+      "sha256": "B9D70ADB8D0563B4F8DD1C5D57916B33882BD9269D90B1CC08972A16FA428F72",
+      "lines": 640,
+      "headings": 54,
+      "unknown_lines": 46,
+      "issue_ids": 23,
+      "md_reference_mentions": 56
+    },
+    {
+      "path": "92_OPEN_ISSUES_CURRENT.md",
+      "bytes": 13659,
+      "sha256": "0DD887ED402270ECCFFBE4CF64BA3AFB2E81C506E3B6D37F42F9F6AC7954D6E6",
+      "lines": 105,
+      "headings": 10,
+      "unknown_lines": 42,
+      "issue_ids": 61,
+      "md_reference_mentions": 2
+    },
+    {
+      "path": "AetherFire CI/aetherfire_anti_drift_interface_economy_state_stabilization.md",
+      "bytes": 17875,
+      "sha256": "3966E3C05AB74B566FDAFBC13E2EC273570035D18872368A93ED310CAF92BA44",
+      "lines": 329,
+      "headings": 27,
+      "unknown_lines": 8,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "AetherFire CI/AetherFire_Canon_Promotion_Workflow_v1.0.md",
+      "bytes": 4058,
+      "sha256": "159B9996CF96A09D4F9E9040F50949F86B7418270C3CDE8D30AB6AA892D87E68",
+      "lines": 33,
+      "headings": 5,
+      "unknown_lines": 0,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "AetherFire CI/aetherfire_chat_anti_drift.md",
+      "bytes": 18660,
+      "sha256": "40556389932E0C925F6110820C7B87A04E78DD16FA5BEDD377CC87514696A9D0",
+      "lines": 730,
+      "headings": 48,
+      "unknown_lines": 5,
+      "issue_ids": 0,
+      "md_reference_mentions": 1
+    },
+    {
+      "path": "AetherFire CI/aetherfire_chat_anti_drift_v2.md",
+      "bytes": 7092,
+      "sha256": "253A65ABEA81B1A6969C6A5E021C351CBDD4DFA682D95E03D6C159087D0A89FB",
+      "lines": 117,
+      "headings": 7,
+      "unknown_lines": 5,
+      "issue_ids": 0,
+      "md_reference_mentions": 15
+    },
+    {
+      "path": "AetherFire CI/AetherFire_CI_version_v2.0.md",
+      "bytes": 7996,
+      "sha256": "E5A08A41D3540432F56DC0A5FF5BC62067C49D87C308631B632586AB7079A595",
+      "lines": 80,
+      "headings": 11,
+      "unknown_lines": 2,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "AetherFire CI/AetherFire_CI_version_v2.1.md",
+      "bytes": 7998,
+      "sha256": "35CE2197A5C7691262ED5DD7E9C5C8732E2E7FC048620002BE7C9DD6D3F22F71",
+      "lines": 80,
+      "headings": 11,
+      "unknown_lines": 2,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "AetherFire CI/AetherFire_CI_version_v2.2.md",
+      "bytes": 7998,
+      "sha256": "AB9A33FC5C5AEFC0A2119ECA3206D45BA00F453509BF5C1E924C31524FB30339",
+      "lines": 82,
+      "headings": 11,
+      "unknown_lines": 3,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "AetherFire CI/AetherFire_CI_version_v2.3.md",
+      "bytes": 7989,
+      "sha256": "4BA6D6054E0C98C5C4CA57146C3E1742DA53C55830D9085FEFE99AAD65E2BD1E",
+      "lines": 94,
+      "headings": 11,
+      "unknown_lines": 3,
+      "issue_ids": 0,
+      "md_reference_mentions": 1
+    },
+    {
+      "path": "AetherFire CI/AetherFire_CI_version_v2.4.md",
+      "bytes": 7996,
+      "sha256": "74C0C05530245987DD5ACC848A16EB5942E2F4557FAFF5AE89E854975FBE2882",
+      "lines": 94,
+      "headings": 11,
+      "unknown_lines": 3,
+      "issue_ids": 0,
+      "md_reference_mentions": 1
+    },
+    {
+      "path": "AetherFire CI/AetherFire_CI_version_v2.5.md",
+      "bytes": 7999,
+      "sha256": "6CD17B4C5520DBB1239DD1259B1199C0AAEEE36C0A02F0B5E6B7370295A9F711",
+      "lines": 86,
+      "headings": 11,
+      "unknown_lines": 2,
+      "issue_ids": 0,
+      "md_reference_mentions": 1
+    },
+    {
+      "path": "AetherFire CI/AetherFire_CI_version_v2.6.md",
+      "bytes": 7984,
+      "sha256": "CFC10185DEF3D3F027FAC83DA11DF5BCB909192D385FB26CB76C54B5F8987A9C",
+      "lines": 86,
+      "headings": 11,
+      "unknown_lines": 2,
+      "issue_ids": 0,
+      "md_reference_mentions": 1
+    },
+    {
+      "path": "AetherFire CI/aetherfire_project_ci_core_en_compact_revised.md",
+      "bytes": 7988,
+      "sha256": "4AE2EF506F17FBCC0A1E40C3506F897AB4F1C06C6516FD7749DE5185B9987D0C",
+      "lines": 75,
+      "headings": 11,
+      "unknown_lines": 4,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "AetherFire CI/aetherfire_project_ci_core_vi_compact.md",
+      "bytes": 7555,
+      "sha256": "45525037F9F43E040BDD8AF432C32F544B11B7C36C93889F56E76CF76FC4B35F",
+      "lines": 149,
+      "headings": 15,
+      "unknown_lines": 3,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "AetherFire CI/README.md",
+      "bytes": 2515,
+      "sha256": "75E25A8FDF00194B79001357A725B9CAF833E94EA11445B15095546D8D2AECC7",
+      "lines": 26,
+      "headings": 3,
+      "unknown_lines": 0,
+      "issue_ids": 0,
+      "md_reference_mentions": 8
+    },
+    {
+      "path": "AetherFire_Architecture_Revamp_Package/00_AetherFire_Architecture_Revamp_Package_INDEX.md",
+      "bytes": 8037,
+      "sha256": "1B700A45C3141869F85E1520F33B29931D3F1C50D1BDD4A4960E9BD9790DFA36",
+      "lines": 317,
+      "headings": 14,
+      "unknown_lines": 4,
+      "issue_ids": 0,
+      "md_reference_mentions": 7
+    },
+    {
+      "path": "AetherFire_Architecture_Revamp_Package/01_ARCHITECTURE_PAIN_AND_BREAKPOINT_AUDIT.md",
+      "bytes": 19225,
+      "sha256": "F769A6BB22BB7E71C5C08E27833A79A61E86531D07F47C1C9774F3493CE7F2FE",
+      "lines": 1097,
+      "headings": 119,
+      "unknown_lines": 2,
+      "issue_ids": 0,
+      "md_reference_mentions": 15
+    },
+    {
+      "path": "AetherFire_Architecture_Revamp_Package/02_GLOBAL_INTEGRATED_SOLUTION_ARCHITECTURE.md",
+      "bytes": 13639,
+      "sha256": "D3625CE29C66F2B00221A0DD7E177605A4C4B45AA68B516A4840A7D0EB9134E9",
+      "lines": 701,
+      "headings": 44,
+      "unknown_lines": 2,
+      "issue_ids": 0,
+      "md_reference_mentions": 4
+    },
+    {
+      "path": "AetherFire_Architecture_Revamp_Package/03_MODULAR_EXPANSION_FRAMEWORK.md",
+      "bytes": 9730,
+      "sha256": "D126111DBAA5D22576761F8303DD8EB8367AFD615A78319012D9A213CDCC2CF4",
+      "lines": 666,
+      "headings": 42,
+      "unknown_lines": 1,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "AetherFire_Architecture_Revamp_Package/04_ARCHITECTURE_GLOSSARY.md",
+      "bytes": 10216,
+      "sha256": "AA64BA8D805624CD0524AFC18AF9282A91E30689B8E13B8163996AE74212BAE3",
+      "lines": 606,
+      "headings": 64,
+      "unknown_lines": 5,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "AetherFire_Architecture_Revamp_Package/05_CI_REVAMP_PROPOSAL.md",
+      "bytes": 8121,
+      "sha256": "CDDD6675E5763B2134355B75D70D58A78CFC97B86B97939D105C890D61576774",
+      "lines": 545,
+      "headings": 45,
+      "unknown_lines": 1,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "AetherFire_Architecture_Revamp_Package/06_MANAGEMENT_FILE_SUITE_PROPOSAL.md",
+      "bytes": 7134,
+      "sha256": "6AA091BC6EDB0884F1ED93DAACB59A351A038264BD23A211FDA8BEBE95E24157",
+      "lines": 454,
+      "headings": 23,
+      "unknown_lines": 0,
+      "issue_ids": 1,
+      "md_reference_mentions": 13
+    },
+    {
+      "path": "AetherFire_Architecture_Revamp_Package/07_CODEX_DEEP_ARCHITECTURE_AUDIT_AND_REVAMP_PROMPT.md",
+      "bytes": 12460,
+      "sha256": "807596A754A4C1FD22241CF6D508659EDC7A348FE0E4CB33E358C2277FF9F208",
+      "lines": 638,
+      "headings": 44,
+      "unknown_lines": 4,
+      "issue_ids": 0,
+      "md_reference_mentions": 17
+    },
+    {
+      "path": "AetherFire_Architecture_Revamp_Package/PACKAGE_MANIFEST.json",
+      "bytes": 832,
+      "sha256": "517775906944C7BE0A8A71694B4FD5C68AE5740F191613ECBFF927D5329F4DBE"
+    },
+    {
+      "path": "Anti-Drift Source/AetherFire_Anti_Drift_Interface_Economy_State_Stabilization_v1.1.md",
+      "bytes": 15021,
+      "sha256": "3C9940F55C34D8725517AA0403ECE70D4815B93E0AF393530DEDAEF99308375A",
+      "lines": 522,
+      "headings": 28,
+      "unknown_lines": 7,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "Anti-Drift Source/AetherFire_Anti_Drift_Modular_Concept_Architecture_v1.0.md",
+      "bytes": 11962,
+      "sha256": "31E9BEE1348409E7728BD01C70DD9BEC15CB1E3120F33AC7333AF7E0DCCD49E2",
+      "lines": 513,
+      "headings": 22,
+      "unknown_lines": 4,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "Anti-Drift Source/AetherFire_Anti_Drift_Mortality_Relationship_Plot_Immunity_v1.1.md",
+      "bytes": 14762,
+      "sha256": "5B9AF9D019D6D346A52A9D35247085F4B4646B258083ED1647744E63936FA40B",
+      "lines": 493,
+      "headings": 17,
+      "unknown_lines": 10,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "Anti-Drift Source/AetherFire_Anti_Drift_Source_Router_v3.2.md",
+      "bytes": 12648,
+      "sha256": "CC46C94E1A0D81C130F9CFE58ABA905A8F39823695F35B7D38315A405AF8C2B4",
+      "lines": 248,
+      "headings": 10,
+      "unknown_lines": 7,
+      "issue_ids": 0,
+      "md_reference_mentions": 23
+    },
+    {
+      "path": "Anti-Drift Source/AetherFire_Anti_Drift_Total_War_RP_v1.1.md",
+      "bytes": 28003,
+      "sha256": "D7D464522B3BE69CB2CBFF70814A28A566DF8F8BA7D2095F0744F4B6BC7F1D2B",
+      "lines": 1085,
+      "headings": 39,
+      "unknown_lines": 12,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "Anti-Drift Source/AetherFire_Anti_Drift_Worldbuilding_Internal_Logic_v1.1.md",
+      "bytes": 18047,
+      "sha256": "38243DF07ED1E9E23B0EF8C9D432190BDD02C2750CD0C305F7319C3956AA495C",
+      "lines": 617,
+      "headings": 28,
+      "unknown_lines": 9,
+      "issue_ids": 0,
+      "md_reference_mentions": 1
+    },
+    {
+      "path": "Anti-Drift Source/Source_Archive/aetherfire_anti_drift_interface_economy_state_stabilization.md",
+      "bytes": 17875,
+      "sha256": "3966E3C05AB74B566FDAFBC13E2EC273570035D18872368A93ED310CAF92BA44",
+      "lines": 329,
+      "headings": 27,
+      "unknown_lines": 8,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "Anti-Drift Source/Source_Archive/AetherFire_Anti_Drift_Interface_Economy_State_Stabilization_v1.0.md",
+      "bytes": 14950,
+      "sha256": "5E4B21D5D58F174984148BD288173950474E565B54D8130EF5574649E237FC54",
+      "lines": 522,
+      "headings": 28,
+      "unknown_lines": 7,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "Anti-Drift Source/Source_Archive/AetherFire_Anti_Drift_Mortality_Relationship_Plot_Immunity_v1.0.md",
+      "bytes": 20746,
+      "sha256": "E9013016D1FA76FD94E466D6954C051D9FA97C35B13288F664748A041CE1E89C",
+      "lines": 1091,
+      "headings": 33,
+      "unknown_lines": 5,
+      "issue_ids": 0,
+      "md_reference_mentions": 1
+    },
+    {
+      "path": "Anti-Drift Source/Source_Archive/AetherFire_Anti_Drift_Source_Router_v3.0.md",
+      "bytes": 10260,
+      "sha256": "6DBE3AA46E6B71980898FA113249069CC90EE644AC147F1ADCA785711CEAE63E",
+      "lines": 239,
+      "headings": 10,
+      "unknown_lines": 7,
+      "issue_ids": 0,
+      "md_reference_mentions": 19
+    },
+    {
+      "path": "Anti-Drift Source/Source_Archive/AetherFire_Anti_Drift_Source_Router_v3.1.md",
+      "bytes": 10670,
+      "sha256": "EDE7B2A576ED739E8A5D527341B01853036464491C914ED5B98C3D546AB586DB",
+      "lines": 240,
+      "headings": 10,
+      "unknown_lines": 7,
+      "issue_ids": 0,
+      "md_reference_mentions": 20
+    },
+    {
+      "path": "Anti-Drift Source/Source_Archive/AetherFire_Anti_Drift_Total_War_RP_v1.0.md",
+      "bytes": 21813,
+      "sha256": "0BEA13EE4C06DFF1585AF857209CC7C895BBF1B14B7864936B7557593EEA5188",
+      "lines": 873,
+      "headings": 32,
+      "unknown_lines": 10,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "Anti-Drift Source/Source_Archive/AetherFire_Anti_Drift_Worldbuilding_Internal_Logic_v1.0.md",
+      "bytes": 16713,
+      "sha256": "6B605AC1071748151AE48330AB597F0A6857907DF3506D4A35AC0F60B0B48CF5",
+      "lines": 607,
+      "headings": 27,
+      "unknown_lines": 9,
+      "issue_ids": 0,
+      "md_reference_mentions": 1
+    },
+    {
+      "path": "Anti-Drift Source/Source_Archive/aetherfire_chat_anti_drift_v2.md",
+      "bytes": 7092,
+      "sha256": "C5203BE270A71EA84A18197E712A7D53F765FD820DA77E4E499A9D8B525A182C",
+      "lines": 117,
+      "headings": 7,
+      "unknown_lines": 5,
+      "issue_ids": 0,
+      "md_reference_mentions": 15
+    },
+    {
+      "path": "Anti-Drift Source/Source_Archive/modular_engine_concept_anti_drift_revised.md",
+      "bytes": 13446,
+      "sha256": "CA849AF87E61D5B7EA83F3EE1DCD7ED9D74D56660C4D1352B2A35D0B00542394",
+      "lines": 655,
+      "headings": 24,
+      "unknown_lines": 6,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "Anti-Drift Source/Source_Archive/worldbuilding_phi_hien_thuc_full_logic-2.md",
+      "bytes": 41263,
+      "sha256": "0F5E81D61EE5F693804C8B115D583A85F62C8ED9337C53641A5CCEF19B3369FB",
+      "lines": 1467,
+      "headings": 97,
+      "unknown_lines": 0,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "build_consolidation.ps1",
+      "bytes": 118116,
+      "sha256": "02F69F92777537048FF48DE4BE8F563B178DF042034FC51462DC5FE4368D945C",
+      "lines": 1645,
+      "headings": 103,
+      "unknown_lines": 88,
+      "issue_ids": 34,
+      "md_reference_mentions": 127
+    },
+    {
+      "path": "GitHub_Only_Experiment/AetherFire_Anti_Drift_Source_Router_v3.3.md",
+      "bytes": 14700,
+      "sha256": "F3A3E392FE687A48C7E078E5E3CEE7D2AEF98D16CEB3DABAAEC4A80D33393E24",
+      "lines": 246,
+      "headings": 12,
+      "unknown_lines": 7,
+      "issue_ids": 0,
+      "md_reference_mentions": 23
+    },
+    {
+      "path": "GitHub_Only_Experiment/AetherFire_CI_version_v2.7.md",
+      "bytes": 8897,
+      "sha256": "DC30B188EBA048594DBE491D8BDE4BE3B3596A6C9671F6D06EABCC510AC45924",
+      "lines": 88,
+      "headings": 11,
+      "unknown_lines": 2,
+      "issue_ids": 0,
+      "md_reference_mentions": 2
+    },
+    {
+      "path": "GitHub_Only_Experiment/README.md",
+      "bytes": 787,
+      "sha256": "7A39320A79794B32E9CB40BD3AD82B1685DB49BA782AB4008962AC9030E5A7C8",
+      "lines": 7,
+      "headings": 1,
+      "unknown_lines": 0,
+      "issue_ids": 0,
+      "md_reference_mentions": 2
+    },
+    {
+      "path": "MANIFEST.md",
+      "bytes": 8698,
+      "sha256": "E57094DB5EAE9E3E78A86AE89399B486D5D8E398CE1F21E0770201A114706DB4",
+      "lines": 79,
+      "headings": 5,
+      "unknown_lines": 1,
+      "issue_ids": 0,
+      "md_reference_mentions": 59
+    },
+    {
+      "path": "New Canon and Consideration/AetherFire_RP_Cu_Ba_Truc_Lich_Su_Va_De_Xuat.md",
+      "bytes": 32632,
+      "sha256": "F45ECFDB4F84D22DA24DC558541AB7521D83E2D5DEA9D8BD87A642C3530EAD04",
+      "lines": 1156,
+      "headings": 63,
+      "unknown_lines": 1,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "Source_Archive/.gitattributes",
+      "bytes": 150,
+      "sha256": "7A4F088AA57315882F8DD07E4E4433A9B44FAEBD529B39C2BE9ACC5B75489794"
+    },
+    {
+      "path": "Source_Archive/aetherfire_anti_drift_sex_worker_consent_mobility_white.md",
+      "bytes": 27556,
+      "sha256": "8BD263FEBB22237027C27C4F43C98D852A54C339014FE95DA1415B8D348329D9",
+      "lines": 1114,
+      "headings": 51,
+      "unknown_lines": 5,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "Source_Archive/aetherfire_battlemage_academy_setting_working.md",
+      "bytes": 21005,
+      "sha256": "3A6C39E181E7E38DFAAF9737FBD8FE8CB3B6D5E4B0D36186CD8F3923ED4F1A62",
+      "lines": 755,
+      "headings": 58,
+      "unknown_lines": 13,
+      "issue_ids": 0,
+      "md_reference_mentions": 3
+    },
+    {
+      "path": "Source_Archive/aetherfire_canon1_canon2.md",
+      "bytes": 15986,
+      "sha256": "627AC98F4601E8FBB18C7E44E93DB1290412013FB93132BB1765E243DA672229",
+      "lines": 420,
+      "headings": 27,
+      "unknown_lines": 2,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "Source_Archive/aetherfire_canon_hop_nhat_merged_v2.md",
+      "bytes": 94297,
+      "sha256": "7A5B7ED8DEC2B9F2F63CB0E01D2D546C25F855D73729DEDFE4AE1BDABF6487D1",
+      "lines": 2366,
+      "headings": 131,
+      "unknown_lines": 21,
+      "issue_ids": 0,
+      "md_reference_mentions": 13
+    },
+    {
+      "path": "Source_Archive/aetherfire_canon_story_line_v0_5_v1_0_overlap.md",
+      "bytes": 26205,
+      "sha256": "53EA4C92238C91AE65A34691397C71F3622E7DA1B74ABF93BAD00F791B9BBBF7",
+      "lines": 1145,
+      "headings": 50,
+      "unknown_lines": 3,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "Source_Archive/aetherfire_chat_anti_drift.md",
+      "bytes": 20788,
+      "sha256": "85A1113FED10335B91E1F1839624D72E47DC3563240F22771302352489043FFC",
+      "lines": 780,
+      "headings": 49,
+      "unknown_lines": 12,
+      "issue_ids": 0,
+      "md_reference_mentions": 1
+    },
+    {
+      "path": "Source_Archive/aetherfire_civil_entry_allocation_law_canon.md",
+      "bytes": 10650,
+      "sha256": "80D6BF9FB413667E41DD152E98D1F5E409F7AAAD3495D383A654149930D8FBB8",
+      "lines": 531,
+      "headings": 23,
+      "unknown_lines": 1,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "Source_Archive/aetherfire_conflict_register.md",
+      "bytes": 20964,
+      "sha256": "87D5156E7541B3C54411A3EAD4B99757DEA44E1724E1DA8042CBB5F86C36954C",
+      "lines": 362,
+      "headings": 24,
+      "unknown_lines": 19,
+      "issue_ids": 19,
+      "md_reference_mentions": 21
+    },
+    {
+      "path": "Source_Archive/aetherfire_current_status_ontology_map.md",
+      "bytes": 12016,
+      "sha256": "3C9E620D4043783FA13E8886DA9919770DFC5A2A7BDE798F077FE942F170E2E7",
+      "lines": 204,
+      "headings": 22,
+      "unknown_lines": 21,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "Source_Archive/aetherfire_delta_since_last_anti_drift_export.md",
+      "bytes": 21402,
+      "sha256": "FF9BDFC5CADF968EB85A5878A472E568BACC4DCB9F048D4AAF52DF5B8DFB9ED7",
+      "lines": 676,
+      "headings": 32,
+      "unknown_lines": 4,
+      "issue_ids": 0,
+      "md_reference_mentions": 1
+    },
+    {
+      "path": "Source_Archive/aetherfire_design_history_and_reconsiderations.md",
+      "bytes": 122895,
+      "sha256": "9D5083D9B8E365D6A09EA0263658D8D682695C3FE00A78FFBDE6E468BAEA5E3D",
+      "lines": 4068,
+      "headings": 200,
+      "unknown_lines": 29,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "Source_Archive/aetherfire_fiction0_fiction1_model.md",
+      "bytes": 14280,
+      "sha256": "59869D8C977DEF260769A92A7AFF0AB6139299C3A86BD6C9BC3B29517EA42ABF",
+      "lines": 454,
+      "headings": 26,
+      "unknown_lines": 6,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "Source_Archive/aetherfire_mc4_identity_remake_working.md",
+      "bytes": 18892,
+      "sha256": "E48CADB67FFCEE80FF67FB9A8B67CEFC571F913311979C0063E88CCFB66E0064",
+      "lines": 826,
+      "headings": 63,
+      "unknown_lines": 25,
+      "issue_ids": 0,
+      "md_reference_mentions": 5
+    },
+    {
+      "path": "Source_Archive/aetherfire_narrators_pov_clash_humor.md",
+      "bytes": 20843,
+      "sha256": "FDA228DF8567F5863BF7E069CB9B4CCED0073AB39885A94681B5F072E997FCF2",
+      "lines": 1072,
+      "headings": 46,
+      "unknown_lines": 1,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "Source_Archive/aetherfire_open_issues_current_restored_2026-09-15.md",
+      "bytes": 5165,
+      "sha256": "C364BE999357F06286B5713BDCBC043F58D0558DEFEDE70387E92269CB22131B",
+      "lines": 52,
+      "headings": 6,
+      "unknown_lines": 16,
+      "issue_ids": 27,
+      "md_reference_mentions": 2
+    },
+    {
+      "path": "Source_Archive/aetherfire_reconciliation_report.md",
+      "bytes": 12950,
+      "sha256": "42C1DE800AD8B18B99D5F1D6EB4EF45092C429C1A85AF1C49C87B81718935BE1",
+      "lines": 200,
+      "headings": 20,
+      "unknown_lines": 19,
+      "issue_ids": 0,
+      "md_reference_mentions": 20
+    },
+    {
+      "path": "Source_Archive/aetherfire_rf_crossworld_geopolitics_chat_consolidation_2026-09-15.md",
+      "bytes": 46935,
+      "sha256": "0E6C9CBFEF456E6DD7ACA03FFFE683B99B3621189A63312F7634608B9246AE15",
+      "lines": 1465,
+      "headings": 104,
+      "unknown_lines": 4,
+      "issue_ids": 0,
+      "md_reference_mentions": 10
+    },
+    {
+      "path": "Source_Archive/aetherfire_rf_nguyen_chu_dynastic_power_axes_chat_consolidation.md",
+      "bytes": 25959,
+      "sha256": "852EF70F953018603840796D1FB2DE15339F93EE2011BC7EBFAF582AD7532CD7",
+      "lines": 1100,
+      "headings": 82,
+      "unknown_lines": 6,
+      "issue_ids": 0,
+      "md_reference_mentions": 10
+    },
+    {
+      "path": "Source_Archive/aetherfire_rp_cu_ba_truc_lich_su_va_de_xuat.md",
+      "bytes": 32632,
+      "sha256": "F45ECFDB4F84D22DA24DC558541AB7521D83E2D5DEA9D8BD87A642C3530EAD04",
+      "lines": 1156,
+      "headings": 63,
+      "unknown_lines": 1,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "Source_Archive/aetherfire_stable_aviation_rf_airspace_control_canon_delta_2026-09-16.md",
+      "bytes": 14345,
+      "sha256": "608067139A83D17ACABBB21A339AC5A2C937FB3A9AD11ADEDD54EC0989016091",
+      "lines": 426,
+      "headings": 21,
+      "unknown_lines": 7,
+      "issue_ids": 0,
+      "md_reference_mentions": 4
+    },
+    {
+      "path": "Source_Archive/aetherfire_undi_hoa_nguyet_cultural_humiliation_design_philosophy.md",
+      "bytes": 21750,
+      "sha256": "084DCBDE5A87D1D287E69FAC1209E8FC887F440397B2E1117DB3287DE25380B8",
+      "lines": 1099,
+      "headings": 47,
+      "unknown_lines": 2,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "Source_Archive/aetherfire_undie_civil_citizen_revamp_canon_1_42.md",
+      "bytes": 26049,
+      "sha256": "B85250FDC401BE2EE163A23A1F537B43605DD0F790A1A7ED8264881F71EFBE89",
+      "lines": 1360,
+      "headings": 56,
+      "unknown_lines": 5,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "Source_Archive/aetherfire_undie_undi_uniform_system_and_mc2_visual_fall.md",
+      "bytes": 19995,
+      "sha256": "63D3480FE42FFD4E10341CFA2168D9EDC479E6CA812DA1E51A30D3B7A91A5214",
+      "lines": 826,
+      "headings": 41,
+      "unknown_lines": 4,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "Source_Archive/internal_first_worldbuilding_core_philosophy.md",
+      "bytes": 32417,
+      "sha256": "081B01F442510844DA1B3B84E52883C87B829D3AF0B2A61C11DBBD7A75D5CE03",
+      "lines": 1573,
+      "headings": 67,
+      "unknown_lines": 5,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "Source_Archive/matriarchs_lament_working_retcon_canon.md",
+      "bytes": 18126,
+      "sha256": "78EB1AF00AC8E4988FBA21EC19ECAD4178E2D0AD72E97E55A32D703650EBF6C0",
+      "lines": 907,
+      "headings": 58,
+      "unknown_lines": 7,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "Source_Archive/modular_engine_concept_anti_drift_revised.md",
+      "bytes": 13446,
+      "sha256": "CA849AF87E61D5B7EA83F3EE1DCD7ED9D74D56660C4D1352B2A35D0B00542394",
+      "lines": 655,
+      "headings": 24,
+      "unknown_lines": 6,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "Source_Archive/multi_paracosm_hub_model_updated.md",
+      "bytes": 5794,
+      "sha256": "3656A89F46BD6818A4F031CA213A4EED44F7E2DBE9B4A2FF3B6FDEEC07CC5F3E",
+      "lines": 337,
+      "headings": 22,
+      "unknown_lines": 0,
+      "issue_ids": 0,
+      "md_reference_mentions": 0
+    },
+    {
+      "path": "Source_Archive/The Tainted Cosmos - MERGED.md",
+      "bytes": 15492,
+      "sha256": "C63E0BAFFDE1DE67464815070F6B834CD2ABF8B1ED21B60A0DA839E2659F6863",
+      "lines": 337,
+      "headings": 37,
+      "unknown_lines": 9,
+      "issue_ids": 0,
+      "md_reference_mentions": 2
+    },
+    {
+      "path": "tests/control-regressions/cases/alliance_command.json",
+      "bytes": 1430,
+      "sha256": "B79F3FD1D3EA464384F2918E379A58B3B720A42EF1E4D4DDD3FFC0747C61AEE6"
+    },
+    {
+      "path": "tests/control-regressions/cases/capability_availability.json",
+      "bytes": 2012,
+      "sha256": "4875B6FA6588CD60FFD7A659C52BE0A1FABB64B106EE964A428EB468C6539EB0"
+    },
+    {
+      "path": "tests/control-regressions/cases/cooccurrence_dependency.json",
+      "bytes": 1508,
+      "sha256": "3C31EDAFBC386D1BF8008C3840FD4996784999241D3E92516FDD7C7A81D23848"
+    },
+    {
+      "path": "tests/control-regressions/cases/interaction_containment.json",
+      "bytes": 1704,
+      "sha256": "2B7723896DE4D87C811E098494A065BDD449F1D65C48888E32419C95C6C38442"
+    },
+    {
+      "path": "tests/control-regressions/cases/power_authority.json",
+      "bytes": 1695,
+      "sha256": "E1680616C7705C97C44166CB074A1CFC000557DB7FFB858A6EF81BF2DA17A300"
+    },
+    {
+      "path": "tests/control-regressions/cases/relationship_immunity.json",
+      "bytes": 1976,
+      "sha256": "359CDEA293A9B1AC842301B7C09AA59ECD9C3F8764A4B334E8CCFD7D6925C406"
+    },
+    {
+      "path": "tests/control-regressions/cases/simulation_canon.json",
+      "bytes": 1818,
+      "sha256": "9346D6FBE8D98B6CB7E22C741D2693B2018D80E69F3653E42BB682105277AB39"
+    },
+    {
+      "path": "tests/control-regressions/cases/stable_aviation_supremacy.json",
+      "bytes": 2294,
+      "sha256": "91BC4CA57F19ACC6524470ED0D9676C435F12E48741972142ACB3D1D10754A65"
+    },
+    {
+      "path": "tests/control-regressions/cases/unknown_invention.json",
+      "bytes": 1982,
+      "sha256": "2B690D6028A16C5E1E2B79D902ECA65C6E6F34168CBC461A84B499A3215BA3C7"
+    },
+    {
+      "path": "tests/control-regressions/README.md",
+      "bytes": 16690,
+      "sha256": "16520D43F049108FB812B60EE66858C161A13F7BEC4D3BDAB4609CC23573B537",
+      "lines": 88,
+      "headings": 7,
+      "unknown_lines": 5,
+      "issue_ids": 0,
+      "md_reference_mentions": 7
+    },
+    {
+      "path": "tests/control-regressions/run.ps1",
+      "bytes": 26436,
+      "sha256": "817645FAA2979D58B8CB46CA41FA487500EEEC56DFF28F000C53A1AC9F763AA9",
+      "lines": 503,
+      "headings": 2,
+      "unknown_lines": 0,
+      "issue_ids": 0,
+      "md_reference_mentions": 13
+    }
+  ],
+  "duplication_candidates": [
+    {
+      "category": "current",
+      "a": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+      "b": "40_METAFICTION_CANON_TIMELINE_CURRENT.md",
+      "shared_unique_substantive_lines": 1,
+      "shared_chars": 64,
+      "exact_blocks": [],
+      "near_blocks": []
+    },
+    {
+      "category": "control",
+      "a": "Anti-Drift Source/AetherFire_Anti_Drift_Total_War_RP_v1.1.md",
+      "b": "Anti-Drift Source/AetherFire_Anti_Drift_Worldbuilding_Internal_Logic_v1.1.md",
+      "shared_unique_substantive_lines": 2,
+      "shared_chars": 99,
+      "exact_blocks": [],
+      "near_blocks": []
+    }
+  ],
+  "manifest_checks": [
+    {
+      "kind": "generated",
+      "path": "00_AETHERFIRE_CONSOLIDATION_INDEX.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "generated",
+      "path": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "generated",
+      "path": "20_STATUS_CIVIL_LABOR_CURRENT.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "generated",
+      "path": "30_UNDIE_SYSTEM_CURRENT.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "generated",
+      "path": "40_METAFICTION_CANON_TIMELINE_CURRENT.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "generated",
+      "path": "50_NARRATORS_POV_AND_HUMOR_CURRENT.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "generated",
+      "path": "60_MC4_IDENTITY_CURRENT.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "generated",
+      "path": "70_MATRIARCHS_LAMENT_CURRENT.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "generated",
+      "path": "80_STABLE_AVIATION_RF_AIRSPACE_CURRENT.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "generated",
+      "path": "90_DESIGN_HISTORY_AND_RECONSIDERATIONS.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "generated",
+      "path": "91_RECONCILIATION_RECORD.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "generated",
+      "path": "92_OPEN_ISSUES_CURRENT.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "archive",
+      "path": "Source_Archive/aetherfire_anti_drift_sex_worker_consent_mobility_white.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "archive",
+      "path": "Source_Archive/aetherfire_battlemage_academy_setting_working.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "archive",
+      "path": "Source_Archive/aetherfire_canon_hop_nhat_merged_v2.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "archive",
+      "path": "Source_Archive/aetherfire_canon_story_line_v0_5_v1_0_overlap.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "archive",
+      "path": "Source_Archive/aetherfire_canon1_canon2.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "archive",
+      "path": "Source_Archive/aetherfire_chat_anti_drift.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "archive",
+      "path": "Source_Archive/aetherfire_civil_entry_allocation_law_canon.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "archive",
+      "path": "Source_Archive/aetherfire_conflict_register.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "archive",
+      "path": "Source_Archive/aetherfire_current_status_ontology_map.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "archive",
+      "path": "Source_Archive/aetherfire_delta_since_last_anti_drift_export.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "archive",
+      "path": "Source_Archive/aetherfire_design_history_and_reconsiderations.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "archive",
+      "path": "Source_Archive/aetherfire_fiction0_fiction1_model.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "archive",
+      "path": "Source_Archive/aetherfire_mc4_identity_remake_working.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "archive",
+      "path": "Source_Archive/aetherfire_narrators_pov_clash_humor.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "archive",
+      "path": "Source_Archive/aetherfire_open_issues_current_restored_2026-09-15.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "archive",
+      "path": "Source_Archive/aetherfire_reconciliation_report.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "archive",
+      "path": "Source_Archive/aetherfire_rf_crossworld_geopolitics_chat_consolidation_2026-09-15.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "archive",
+      "path": "Source_Archive/aetherfire_rf_nguyen_chu_dynastic_power_axes_chat_consolidation.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "archive",
+      "path": "Source_Archive/aetherfire_rp_cu_ba_truc_lich_su_va_de_xuat.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "archive",
+      "path": "Source_Archive/aetherfire_stable_aviation_rf_airspace_control_canon_delta_2026-09-16.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "archive",
+      "path": "Source_Archive/aetherfire_undi_hoa_nguyet_cultural_humiliation_design_philosophy.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "archive",
+      "path": "Source_Archive/aetherfire_undie_civil_citizen_revamp_canon_1_42.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "archive",
+      "path": "Source_Archive/aetherfire_undie_undi_uniform_system_and_mc2_visual_fall.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "archive",
+      "path": "Source_Archive/matriarchs_lament_working_retcon_canon.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "archive",
+      "path": "Source_Archive/modular_engine_concept_anti_drift_revised.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "archive",
+      "path": "Source_Archive/multi_paracosm_hub_model_updated.md",
+      "status": "MATCH"
+    },
+    {
+      "kind": "archive",
+      "path": "Source_Archive/The Tainted Cosmos - MERGED.md",
+      "status": "MATCH"
+    }
+  ],
+  "archive_unlisted": [
+    "internal_first_worldbuilding_core_philosophy.md"
+  ],
+  "archive_missing": [],
+  "literal_reference_candidates": [
+    {
+      "from": "00_AETHERFIRE_CONSOLIDATION_INDEX.md",
+      "line": 9,
+      "reference": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+      "candidates": [
+        "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "00_AETHERFIRE_CONSOLIDATION_INDEX.md",
+      "line": 10,
+      "reference": "20_STATUS_CIVIL_LABOR_CURRENT.md",
+      "candidates": [
+        "20_STATUS_CIVIL_LABOR_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "00_AETHERFIRE_CONSOLIDATION_INDEX.md",
+      "line": 11,
+      "reference": "30_UNDIE_SYSTEM_CURRENT.md",
+      "candidates": [
+        "30_UNDIE_SYSTEM_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "00_AETHERFIRE_CONSOLIDATION_INDEX.md",
+      "line": 12,
+      "reference": "40_METAFICTION_CANON_TIMELINE_CURRENT.md",
+      "candidates": [
+        "40_METAFICTION_CANON_TIMELINE_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "00_AETHERFIRE_CONSOLIDATION_INDEX.md",
+      "line": 13,
+      "reference": "50_NARRATORS_POV_AND_HUMOR_CURRENT.md",
+      "candidates": [
+        "50_NARRATORS_POV_AND_HUMOR_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "00_AETHERFIRE_CONSOLIDATION_INDEX.md",
+      "line": 14,
+      "reference": "60_MC4_IDENTITY_CURRENT.md",
+      "candidates": [
+        "60_MC4_IDENTITY_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "00_AETHERFIRE_CONSOLIDATION_INDEX.md",
+      "line": 15,
+      "reference": "70_MATRIARCHS_LAMENT_CURRENT.md",
+      "candidates": [
+        "70_MATRIARCHS_LAMENT_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "00_AETHERFIRE_CONSOLIDATION_INDEX.md",
+      "line": 16,
+      "reference": "80_STABLE_AVIATION_RF_AIRSPACE_CURRENT.md",
+      "candidates": [
+        "80_STABLE_AVIATION_RF_AIRSPACE_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "00_AETHERFIRE_CONSOLIDATION_INDEX.md",
+      "line": 17,
+      "reference": "90_DESIGN_HISTORY_AND_RECONSIDERATIONS.md",
+      "candidates": [
+        "90_DESIGN_HISTORY_AND_RECONSIDERATIONS.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "00_AETHERFIRE_CONSOLIDATION_INDEX.md",
+      "line": 18,
+      "reference": "91_RECONCILIATION_RECORD.md",
+      "candidates": [
+        "91_RECONCILIATION_RECORD.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "00_AETHERFIRE_CONSOLIDATION_INDEX.md",
+      "line": 19,
+      "reference": "92_OPEN_ISSUES_CURRENT.md",
+      "candidates": [
+        "92_OPEN_ISSUES_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "00_AETHERFIRE_CONSOLIDATION_INDEX.md",
+      "line": 103,
+      "reference": "aetherfire_canon_story_line_v0_5_v1_0_overlap.md",
+      "candidates": [
+        "Source_Archive/aetherfire_canon_story_line_v0_5_v1_0_overlap.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "00_AETHERFIRE_CONSOLIDATION_INDEX.md",
+      "line": 107,
+      "reference": "30_UNDIE_SYSTEM_CURRENT.md",
+      "candidates": [
+        "30_UNDIE_SYSTEM_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "00_AETHERFIRE_CONSOLIDATION_INDEX.md",
+      "line": 111,
+      "reference": "matriarchs_lament_working_retcon_canon.md",
+      "candidates": [
+        "Source_Archive/matriarchs_lament_working_retcon_canon.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "00_AETHERFIRE_CONSOLIDATION_INDEX.md",
+      "line": 119,
+      "reference": "aetherfire_chat_anti_drift.md",
+      "candidates": [
+        "AetherFire CI/aetherfire_chat_anti_drift.md",
+        "Source_Archive/aetherfire_chat_anti_drift.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "00_AETHERFIRE_CONSOLIDATION_INDEX.md",
+      "line": 120,
+      "reference": "modular_engine_concept_anti_drift_revised.md",
+      "candidates": [
+        "Anti-Drift Source/Source_Archive/modular_engine_concept_anti_drift_revised.md",
+        "Source_Archive/modular_engine_concept_anti_drift_revised.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "00_AETHERFIRE_CONSOLIDATION_INDEX.md",
+      "line": 131,
+      "reference": "70_MATRIARCHS_LAMENT_CURRENT.md",
+      "candidates": [
+        "70_MATRIARCHS_LAMENT_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "00_AETHERFIRE_CONSOLIDATION_INDEX.md",
+      "line": 139,
+      "reference": "80_STABLE_AVIATION_RF_AIRSPACE_CURRENT.md",
+      "candidates": [
+        "80_STABLE_AVIATION_RF_AIRSPACE_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+      "line": 3,
+      "reference": "90_DESIGN_HISTORY_AND_RECONSIDERATIONS.md",
+      "candidates": [
+        "90_DESIGN_HISTORY_AND_RECONSIDERATIONS.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+      "line": 5,
+      "reference": "40_METAFICTION_CANON_TIMELINE_CURRENT.md",
+      "candidates": [
+        "40_METAFICTION_CANON_TIMELINE_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+      "line": 5,
+      "reference": "50_NARRATORS_POV_AND_HUMOR_CURRENT.md",
+      "candidates": [
+        "50_NARRATORS_POV_AND_HUMOR_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+      "line": 6,
+      "reference": "80_STABLE_AVIATION_RF_AIRSPACE_CURRENT.md",
+      "candidates": [
+        "80_STABLE_AVIATION_RF_AIRSPACE_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+      "line": 13,
+      "reference": "aetherfire_fiction0_fiction1_model.md",
+      "candidates": [
+        "Source_Archive/aetherfire_fiction0_fiction1_model.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+      "line": 13,
+      "reference": "aetherfire_canon1_canon2.md",
+      "candidates": [
+        "Source_Archive/aetherfire_canon1_canon2.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+      "line": 15,
+      "reference": "aetherfire_conflict_register.md",
+      "candidates": [
+        "Source_Archive/aetherfire_conflict_register.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+      "line": 284,
+      "reference": "he_thong_de_quoc_world_bible_snapshot_vi.md",
+      "candidates": [],
+      "classification": "UNRESOLVED_CANDIDATE"
+    },
+    {
+      "from": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+      "line": 285,
+      "reference": "aetherfire_ontology_genealogy_design_philosophy.md",
+      "candidates": [],
+      "classification": "UNRESOLVED_CANDIDATE"
+    },
+    {
+      "from": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+      "line": 286,
+      "reference": "aetherfire_chat_synthesis_mc2_mc1_mc3.md",
+      "candidates": [],
+      "classification": "UNRESOLVED_CANDIDATE"
+    },
+    {
+      "from": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+      "line": 287,
+      "reference": "aetherfire_chot_canons_mc2_fall_from_grace.md",
+      "candidates": [],
+      "classification": "UNRESOLVED_CANDIDATE"
+    },
+    {
+      "from": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+      "line": 288,
+      "reference": "aetherfire_delta_since_last_export.md",
+      "candidates": [],
+      "classification": "UNRESOLVED_CANDIDATE"
+    },
+    {
+      "from": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+      "line": 289,
+      "reference": "aetherfire_delta_since_last_anti_drift_export.md",
+      "candidates": [
+        "Source_Archive/aetherfire_delta_since_last_anti_drift_export.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+      "line": 290,
+      "reference": "aetherfire_undie_civil_citizen_revamp_canon_1_42.md",
+      "candidates": [
+        "Source_Archive/aetherfire_undie_civil_citizen_revamp_canon_1_42.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+      "line": 291,
+      "reference": "aetherfire_civil_entry_allocation_law_canon.md",
+      "candidates": [
+        "Source_Archive/aetherfire_civil_entry_allocation_law_canon.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+      "line": 1098,
+      "reference": "80_STABLE_AVIATION_RF_AIRSPACE_CURRENT.md",
+      "candidates": [
+        "80_STABLE_AVIATION_RF_AIRSPACE_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+      "line": 1207,
+      "reference": "30_UNDIE_SYSTEM_CURRENT.md",
+      "candidates": [
+        "30_UNDIE_SYSTEM_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+      "line": 1223,
+      "reference": "70_MATRIARCHS_LAMENT_CURRENT.md",
+      "candidates": [
+        "70_MATRIARCHS_LAMENT_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+      "line": 1252,
+      "reference": "40_METAFICTION_CANON_TIMELINE_CURRENT.md",
+      "candidates": [
+        "40_METAFICTION_CANON_TIMELINE_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+      "line": 1254,
+      "reference": "30_UNDIE_SYSTEM_CURRENT.md",
+      "candidates": [
+        "30_UNDIE_SYSTEM_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+      "line": 1261,
+      "reference": "40_METAFICTION_CANON_TIMELINE_CURRENT.md",
+      "candidates": [
+        "40_METAFICTION_CANON_TIMELINE_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+      "line": 1262,
+      "reference": "50_NARRATORS_POV_AND_HUMOR_CURRENT.md",
+      "candidates": [
+        "50_NARRATORS_POV_AND_HUMOR_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "30_UNDIE_SYSTEM_CURRENT.md",
+      "line": 1477,
+      "reference": "matriarchs_lament_working_retcon_canon.md",
+      "candidates": [
+        "Source_Archive/matriarchs_lament_working_retcon_canon.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "30_UNDIE_SYSTEM_CURRENT.md",
+      "line": 2208,
+      "reference": "aetherfire_undi_hoa_nguyet_cultural_humiliation_design_philosophy.md",
+      "candidates": [
+        "Source_Archive/aetherfire_undi_hoa_nguyet_cultural_humiliation_design_philosophy.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "40_METAFICTION_CANON_TIMELINE_CURRENT.md",
+      "line": 4,
+      "reference": "aetherfire_canon_story_line_v0_5_v1_0_overlap.md",
+      "candidates": [
+        "Source_Archive/aetherfire_canon_story_line_v0_5_v1_0_overlap.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "40_METAFICTION_CANON_TIMELINE_CURRENT.md",
+      "line": 1547,
+      "reference": "70_MATRIARCHS_LAMENT_CURRENT.md",
+      "candidates": [
+        "70_MATRIARCHS_LAMENT_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "50_NARRATORS_POV_AND_HUMOR_CURRENT.md",
+      "line": 4,
+      "reference": "40_METAFICTION_CANON_TIMELINE_CURRENT.md",
+      "candidates": [
+        "40_METAFICTION_CANON_TIMELINE_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "50_NARRATORS_POV_AND_HUMOR_CURRENT.md",
+      "line": 5,
+      "reference": "30_UNDIE_SYSTEM_CURRENT.md",
+      "candidates": [
+        "30_UNDIE_SYSTEM_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "60_MC4_IDENTITY_CURRENT.md",
+      "line": 4,
+      "reference": "The Tainted Cosmos - MERGED.md",
+      "candidates": [
+        "Source_Archive/The Tainted Cosmos - MERGED.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "60_MC4_IDENTITY_CURRENT.md",
+      "line": 5,
+      "reference": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+      "candidates": [
+        "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "80_STABLE_AVIATION_RF_AIRSPACE_CURRENT.md",
+      "line": 26,
+      "reference": "00_AETHERFIRE_CONSOLIDATION_INDEX.md",
+      "candidates": [
+        "00_AETHERFIRE_CONSOLIDATION_INDEX.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "80_STABLE_AVIATION_RF_AIRSPACE_CURRENT.md",
+      "line": 27,
+      "reference": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+      "candidates": [
+        "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "80_STABLE_AVIATION_RF_AIRSPACE_CURRENT.md",
+      "line": 28,
+      "reference": "91_RECONCILIATION_RECORD.md",
+      "candidates": [
+        "91_RECONCILIATION_RECORD.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "80_STABLE_AVIATION_RF_AIRSPACE_CURRENT.md",
+      "line": 29,
+      "reference": "92_OPEN_ISSUES_CURRENT.md",
+      "candidates": [
+        "92_OPEN_ISSUES_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 7,
+      "reference": "aetherfire_stable_aviation_rf_airspace_control_canon_delta_2026-09-16.md",
+      "candidates": [
+        "Source_Archive/aetherfire_stable_aviation_rf_airspace_control_canon_delta_2026-09-16.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 8,
+      "reference": "80_STABLE_AVIATION_RF_AIRSPACE_CURRENT.md",
+      "candidates": [
+        "80_STABLE_AVIATION_RF_AIRSPACE_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 8,
+      "reference": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+      "candidates": [
+        "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 26,
+      "reference": "70_MATRIARCHS_LAMENT_CURRENT.md",
+      "candidates": [
+        "70_MATRIARCHS_LAMENT_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 27,
+      "reference": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+      "candidates": [
+        "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 28,
+      "reference": "30_UNDIE_SYSTEM_CURRENT.md",
+      "candidates": [
+        "30_UNDIE_SYSTEM_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 29,
+      "reference": "40_METAFICTION_CANON_TIMELINE_CURRENT.md",
+      "candidates": [
+        "40_METAFICTION_CANON_TIMELINE_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 30,
+      "reference": "matriarchs_lament_working_retcon_canon.md",
+      "candidates": [
+        "Source_Archive/matriarchs_lament_working_retcon_canon.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 43,
+      "reference": "92_OPEN_ISSUES_CURRENT.md",
+      "candidates": [
+        "92_OPEN_ISSUES_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 44,
+      "reference": "aetherfire_rf_crossworld_geopolitics_chat_consolidation_2026-09-15.md",
+      "candidates": [
+        "Source_Archive/aetherfire_rf_crossworld_geopolitics_chat_consolidation_2026-09-15.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 44,
+      "reference": "aetherfire_rf_nguyen_chu_dynastic_power_axes_chat_consolidation.md",
+      "candidates": [
+        "Source_Archive/aetherfire_rf_nguyen_chu_dynastic_power_axes_chat_consolidation.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 48,
+      "reference": "aetherfire_canon_story_line_v0_5_v1_0_overlap.md",
+      "candidates": [
+        "Source_Archive/aetherfire_canon_story_line_v0_5_v1_0_overlap.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 52,
+      "reference": "aetherfire_narrators_pov_clash_humor.md",
+      "candidates": [
+        "Source_Archive/aetherfire_narrators_pov_clash_humor.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 52,
+      "reference": "30_UNDIE_SYSTEM_CURRENT.md",
+      "candidates": [
+        "30_UNDIE_SYSTEM_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 56,
+      "reference": "matriarchs_lament_working_retcon_canon.md",
+      "candidates": [
+        "Source_Archive/matriarchs_lament_working_retcon_canon.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 99,
+      "reference": "aetherfire_conflict_register.md",
+      "candidates": [
+        "Source_Archive/aetherfire_conflict_register.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 127,
+      "reference": "aetherfire_conflict_register.md",
+      "candidates": [
+        "Source_Archive/aetherfire_conflict_register.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 128,
+      "reference": "aetherfire_current_status_ontology_map.md",
+      "candidates": [
+        "Source_Archive/aetherfire_current_status_ontology_map.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 129,
+      "reference": "aetherfire_reconciliation_report.md",
+      "candidates": [
+        "Source_Archive/aetherfire_reconciliation_report.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 133,
+      "reference": "aetherfire_chat_anti_drift.md",
+      "candidates": [
+        "AetherFire CI/aetherfire_chat_anti_drift.md",
+        "Source_Archive/aetherfire_chat_anti_drift.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 134,
+      "reference": "aetherfire_anti_drift_sex_worker_consent_mobility_white.md",
+      "candidates": [
+        "Source_Archive/aetherfire_anti_drift_sex_worker_consent_mobility_white.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 135,
+      "reference": "aetherfire_delta_since_last_anti_drift_export.md",
+      "candidates": [
+        "Source_Archive/aetherfire_delta_since_last_anti_drift_export.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 136,
+      "reference": "aetherfire_undie_civil_citizen_revamp_canon_1_42.md",
+      "candidates": [
+        "Source_Archive/aetherfire_undie_civil_citizen_revamp_canon_1_42.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 137,
+      "reference": "aetherfire_undie_undi_uniform_system_and_mc2_visual_fall.md",
+      "candidates": [
+        "Source_Archive/aetherfire_undie_undi_uniform_system_and_mc2_visual_fall.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 138,
+      "reference": "aetherfire_design_history_and_reconsiderations.md",
+      "candidates": [
+        "Source_Archive/aetherfire_design_history_and_reconsiderations.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 139,
+      "reference": "aetherfire_canon_hop_nhat_merged_v2.md",
+      "candidates": [
+        "Source_Archive/aetherfire_canon_hop_nhat_merged_v2.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 143,
+      "reference": "aetherfire_civil_entry_allocation_law_canon.md",
+      "candidates": [
+        "Source_Archive/aetherfire_civil_entry_allocation_law_canon.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 144,
+      "reference": "modular_engine_concept_anti_drift_revised.md",
+      "candidates": [
+        "Anti-Drift Source/Source_Archive/modular_engine_concept_anti_drift_revised.md",
+        "Source_Archive/modular_engine_concept_anti_drift_revised.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 217,
+      "reference": "aetherfire_civil_entry_allocation_law_canon.md",
+      "candidates": [
+        "Source_Archive/aetherfire_civil_entry_allocation_law_canon.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 217,
+      "reference": "modular_engine_concept_anti_drift_revised.md",
+      "candidates": [
+        "Anti-Drift Source/Source_Archive/modular_engine_concept_anti_drift_revised.md",
+        "Source_Archive/modular_engine_concept_anti_drift_revised.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 225,
+      "reference": "aetherfire_chat_anti_drift.md",
+      "candidates": [
+        "AetherFire CI/aetherfire_chat_anti_drift.md",
+        "Source_Archive/aetherfire_chat_anti_drift.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 226,
+      "reference": "aetherfire_conflict_register.md",
+      "candidates": [
+        "Source_Archive/aetherfire_conflict_register.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 227,
+      "reference": "aetherfire_current_status_ontology_map.md",
+      "candidates": [
+        "Source_Archive/aetherfire_current_status_ontology_map.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 228,
+      "reference": "aetherfire_canon_hop_nhat_merged_v2.md",
+      "candidates": [
+        "Source_Archive/aetherfire_canon_hop_nhat_merged_v2.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 229,
+      "reference": "aetherfire_reconciliation_report.md",
+      "candidates": [
+        "Source_Archive/aetherfire_reconciliation_report.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 296,
+      "reference": "aetherfire_chat_anti_drift.md",
+      "candidates": [
+        "AetherFire CI/aetherfire_chat_anti_drift.md",
+        "Source_Archive/aetherfire_chat_anti_drift.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 297,
+      "reference": "aetherfire_anti_drift_sex_worker_consent_mobility_white.md",
+      "candidates": [
+        "Source_Archive/aetherfire_anti_drift_sex_worker_consent_mobility_white.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 298,
+      "reference": "aetherfire_undie_civil_citizen_revamp_canon_1_42.md",
+      "candidates": [
+        "Source_Archive/aetherfire_undie_civil_citizen_revamp_canon_1_42.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 304,
+      "reference": "aetherfire_chat_anti_drift.md",
+      "candidates": [
+        "AetherFire CI/aetherfire_chat_anti_drift.md",
+        "Source_Archive/aetherfire_chat_anti_drift.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 304,
+      "reference": "aetherfire_canon_hop_nhat_merged_v2.md",
+      "candidates": [
+        "Source_Archive/aetherfire_canon_hop_nhat_merged_v2.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 313,
+      "reference": "aetherfire_chat_anti_drift.md",
+      "candidates": [
+        "AetherFire CI/aetherfire_chat_anti_drift.md",
+        "Source_Archive/aetherfire_chat_anti_drift.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 321,
+      "reference": "aetherfire_chat_anti_drift.md",
+      "candidates": [
+        "AetherFire CI/aetherfire_chat_anti_drift.md",
+        "Source_Archive/aetherfire_chat_anti_drift.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 330,
+      "reference": "aetherfire_chat_anti_drift.md",
+      "candidates": [
+        "AetherFire CI/aetherfire_chat_anti_drift.md",
+        "Source_Archive/aetherfire_chat_anti_drift.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 331,
+      "reference": "aetherfire_anti_drift_sex_worker_consent_mobility_white.md",
+      "candidates": [
+        "Source_Archive/aetherfire_anti_drift_sex_worker_consent_mobility_white.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 332,
+      "reference": "aetherfire_canon_hop_nhat_merged_v2.md",
+      "candidates": [
+        "Source_Archive/aetherfire_canon_hop_nhat_merged_v2.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 347,
+      "reference": "aetherfire_chat_anti_drift.md",
+      "candidates": [
+        "AetherFire CI/aetherfire_chat_anti_drift.md",
+        "Source_Archive/aetherfire_chat_anti_drift.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 355,
+      "reference": "aetherfire_chat_anti_drift.md",
+      "candidates": [
+        "AetherFire CI/aetherfire_chat_anti_drift.md",
+        "Source_Archive/aetherfire_chat_anti_drift.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 364,
+      "reference": "aetherfire_chat_anti_drift.md",
+      "candidates": [
+        "AetherFire CI/aetherfire_chat_anti_drift.md",
+        "Source_Archive/aetherfire_chat_anti_drift.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 450,
+      "reference": "aetherfire_civil_entry_allocation_law_canon.md",
+      "candidates": [
+        "Source_Archive/aetherfire_civil_entry_allocation_law_canon.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 615,
+      "reference": "aetherfire_chat_anti_drift.md",
+      "candidates": [
+        "AetherFire CI/aetherfire_chat_anti_drift.md",
+        "Source_Archive/aetherfire_chat_anti_drift.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 616,
+      "reference": "aetherfire_anti_drift_sex_worker_consent_mobility_white.md",
+      "candidates": [
+        "Source_Archive/aetherfire_anti_drift_sex_worker_consent_mobility_white.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 617,
+      "reference": "aetherfire_canon_hop_nhat_merged_v2.md",
+      "candidates": [
+        "Source_Archive/aetherfire_canon_hop_nhat_merged_v2.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 618,
+      "reference": "aetherfire_undie_civil_citizen_revamp_canon_1_42.md",
+      "candidates": [
+        "Source_Archive/aetherfire_undie_civil_citizen_revamp_canon_1_42.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 624,
+      "reference": "aetherfire_chat_anti_drift.md",
+      "candidates": [
+        "AetherFire CI/aetherfire_chat_anti_drift.md",
+        "Source_Archive/aetherfire_chat_anti_drift.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 625,
+      "reference": "aetherfire_anti_drift_sex_worker_consent_mobility_white.md",
+      "candidates": [
+        "Source_Archive/aetherfire_anti_drift_sex_worker_consent_mobility_white.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "91_RECONCILIATION_RECORD.md",
+      "line": 626,
+      "reference": "aetherfire_canon_hop_nhat_merged_v2.md",
+      "candidates": [
+        "Source_Archive/aetherfire_canon_hop_nhat_merged_v2.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "92_OPEN_ISSUES_CURRENT.md",
+      "line": 4,
+      "reference": "00_AETHERFIRE_CONSOLIDATION_INDEX.md",
+      "candidates": [
+        "00_AETHERFIRE_CONSOLIDATION_INDEX.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "92_OPEN_ISSUES_CURRENT.md",
+      "line": 9,
+      "reference": "91_RECONCILIATION_RECORD.md",
+      "candidates": [
+        "91_RECONCILIATION_RECORD.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "AetherFire CI/AetherFire_CI_version_v2.6.md",
+      "line": 31,
+      "reference": "AetherFire_Anti_Drift_Source_Router_v3.2.md",
+      "candidates": [
+        "Anti-Drift Source/AetherFire_Anti_Drift_Source_Router_v3.2.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "Anti-Drift Source/AetherFire_Anti_Drift_Source_Router_v3.2.md",
+      "line": 6,
+      "reference": "AetherFire_CI_version_v2.6.md",
+      "candidates": [
+        "AetherFire CI/AetherFire_CI_version_v2.6.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "Anti-Drift Source/AetherFire_Anti_Drift_Source_Router_v3.2.md",
+      "line": 83,
+      "reference": "91_RECONCILIATION_RECORD.md",
+      "candidates": [
+        "91_RECONCILIATION_RECORD.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "Anti-Drift Source/AetherFire_Anti_Drift_Source_Router_v3.2.md",
+      "line": 139,
+      "reference": "92_OPEN_ISSUES_CURRENT.md",
+      "candidates": [
+        "92_OPEN_ISSUES_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "Anti-Drift Source/AetherFire_Anti_Drift_Source_Router_v3.2.md",
+      "line": 143,
+      "reference": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+      "candidates": [
+        "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "Anti-Drift Source/AetherFire_Anti_Drift_Source_Router_v3.2.md",
+      "line": 144,
+      "reference": "20_STATUS_CIVIL_LABOR_CURRENT.md",
+      "candidates": [
+        "20_STATUS_CIVIL_LABOR_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "Anti-Drift Source/AetherFire_Anti_Drift_Source_Router_v3.2.md",
+      "line": 145,
+      "reference": "30_UNDIE_SYSTEM_CURRENT.md",
+      "candidates": [
+        "30_UNDIE_SYSTEM_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "Anti-Drift Source/AetherFire_Anti_Drift_Source_Router_v3.2.md",
+      "line": 146,
+      "reference": "40_METAFICTION_CANON_TIMELINE_CURRENT.md",
+      "candidates": [
+        "40_METAFICTION_CANON_TIMELINE_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "Anti-Drift Source/AetherFire_Anti_Drift_Source_Router_v3.2.md",
+      "line": 147,
+      "reference": "50_NARRATORS_POV_AND_HUMOR_CURRENT.md",
+      "candidates": [
+        "50_NARRATORS_POV_AND_HUMOR_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "Anti-Drift Source/AetherFire_Anti_Drift_Source_Router_v3.2.md",
+      "line": 148,
+      "reference": "70_MATRIARCHS_LAMENT_CURRENT.md",
+      "candidates": [
+        "70_MATRIARCHS_LAMENT_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "Anti-Drift Source/AetherFire_Anti_Drift_Source_Router_v3.2.md",
+      "line": 149,
+      "reference": "80_STABLE_AVIATION_RF_AIRSPACE_CURRENT.md",
+      "candidates": [
+        "80_STABLE_AVIATION_RF_AIRSPACE_CURRENT.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "Anti-Drift Source/AetherFire_Anti_Drift_Source_Router_v3.2.md",
+      "line": 150,
+      "reference": "90_DESIGN_HISTORY_AND_RECONSIDERATIONS.md",
+      "candidates": [
+        "90_DESIGN_HISTORY_AND_RECONSIDERATIONS.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "Anti-Drift Source/AetherFire_Anti_Drift_Source_Router_v3.2.md",
+      "line": 151,
+      "reference": "91_RECONCILIATION_RECORD.md",
+      "candidates": [
+        "91_RECONCILIATION_RECORD.md"
+      ],
+      "classification": "EXACT_ROOT_PATH"
+    },
+    {
+      "from": "Anti-Drift Source/AetherFire_Anti_Drift_Source_Router_v3.2.md",
+      "line": 169,
+      "reference": "AetherFire_Anti_Drift_Interface_Economy_State_Stabilization_v1.1.md",
+      "candidates": [
+        "Anti-Drift Source/AetherFire_Anti_Drift_Interface_Economy_State_Stabilization_v1.1.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "Anti-Drift Source/AetherFire_Anti_Drift_Source_Router_v3.2.md",
+      "line": 170,
+      "reference": "AetherFire_Anti_Drift_Modular_Concept_Architecture_v1.0.md",
+      "candidates": [
+        "Anti-Drift Source/AetherFire_Anti_Drift_Modular_Concept_Architecture_v1.0.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "Anti-Drift Source/AetherFire_Anti_Drift_Source_Router_v3.2.md",
+      "line": 171,
+      "reference": "AetherFire_Anti_Drift_Worldbuilding_Internal_Logic_v1.1.md",
+      "candidates": [
+        "Anti-Drift Source/AetherFire_Anti_Drift_Worldbuilding_Internal_Logic_v1.1.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "Anti-Drift Source/AetherFire_Anti_Drift_Source_Router_v3.2.md",
+      "line": 172,
+      "reference": "AetherFire_Anti_Drift_Total_War_RP_v1.1.md",
+      "candidates": [
+        "Anti-Drift Source/AetherFire_Anti_Drift_Total_War_RP_v1.1.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    },
+    {
+      "from": "Anti-Drift Source/AetherFire_Anti_Drift_Source_Router_v3.2.md",
+      "line": 173,
+      "reference": "AetherFire_Anti_Drift_Mortality_Relationship_Plot_Immunity_v1.1.md",
+      "candidates": [
+        "Anti-Drift Source/AetherFire_Anti_Drift_Mortality_Relationship_Plot_Immunity_v1.1.md"
+      ],
+      "classification": "BASENAME_ONLY"
+    }
+  ],
+  "git_change_counts": [
+    {
+      "path": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+      "commits_reachable_from_HEAD_touching_path": 3,
+      "window": "all reachable HEAD history; no rename following; not workload"
+    },
+    {
+      "path": "20_STATUS_CIVIL_LABOR_CURRENT.md",
+      "commits_reachable_from_HEAD_touching_path": 1,
+      "window": "all reachable HEAD history; no rename following; not workload"
+    },
+    {
+      "path": "30_UNDIE_SYSTEM_CURRENT.md",
+      "commits_reachable_from_HEAD_touching_path": 2,
+      "window": "all reachable HEAD history; no rename following; not workload"
+    },
+    {
+      "path": "40_METAFICTION_CANON_TIMELINE_CURRENT.md",
+      "commits_reachable_from_HEAD_touching_path": 2,
+      "window": "all reachable HEAD history; no rename following; not workload"
+    },
+    {
+      "path": "50_NARRATORS_POV_AND_HUMOR_CURRENT.md",
+      "commits_reachable_from_HEAD_touching_path": 1,
+      "window": "all reachable HEAD history; no rename following; not workload"
+    },
+    {
+      "path": "60_MC4_IDENTITY_CURRENT.md",
+      "commits_reachable_from_HEAD_touching_path": 1,
+      "window": "all reachable HEAD history; no rename following; not workload"
+    },
+    {
+      "path": "70_MATRIARCHS_LAMENT_CURRENT.md",
+      "commits_reachable_from_HEAD_touching_path": 1,
+      "window": "all reachable HEAD history; no rename following; not workload"
+    },
+    {
+      "path": "80_STABLE_AVIATION_RF_AIRSPACE_CURRENT.md",
+      "commits_reachable_from_HEAD_touching_path": 1,
+      "window": "all reachable HEAD history; no rename following; not workload"
+    }
+  ],
+  "proposal_manifest_lengths": [
+    {
+      "name": "00_AetherFire_Architecture_Revamp_Package_INDEX.md",
+      "match": true
+    },
+    {
+      "name": "01_ARCHITECTURE_PAIN_AND_BREAKPOINT_AUDIT.md",
+      "match": true
+    },
+    {
+      "name": "02_GLOBAL_INTEGRATED_SOLUTION_ARCHITECTURE.md",
+      "match": true
+    },
+    {
+      "name": "03_MODULAR_EXPANSION_FRAMEWORK.md",
+      "match": true
+    },
+    {
+      "name": "04_ARCHITECTURE_GLOSSARY.md",
+      "match": true
+    },
+    {
+      "name": "05_CI_REVAMP_PROPOSAL.md",
+      "match": true
+    },
+    {
+      "name": "06_MANAGEMENT_FILE_SUITE_PROPOSAL.md",
+      "match": true
+    },
+    {
+      "name": "07_CODEX_DEEP_ARCHITECTURE_AUDIT_AND_REVAMP_PROMPT.md",
+      "match": true
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+ D "../ChatGPT Plus+ Era/chatgpt v8.5.1.txt"
+?? AetherFire_Architecture_Audit_2026-09-26/evidence/baseline_hashes.json
+?? AetherFire_Architecture_Revamp_Package/00_AetherFire_Architecture_Revamp_Package_INDEX.md
+?? AetherFire_Architecture_Revamp_Package/01_ARCHITECTURE_PAIN_AND_BREAKPOINT_AUDIT.md
+?? AetherFire_Architecture_Revamp_Package/02_GLOBAL_INTEGRATED_SOLUTION_ARCHITECTURE.md
+?? AetherFire_Architecture_Revamp_Package/03_MODULAR_EXPANSION_FRAMEWORK.md
+?? AetherFire_Architecture_Revamp_Package/04_ARCHITECTURE_GLOSSARY.md
+?? AetherFire_Architecture_Revamp_Package/05_CI_REVAMP_PROPOSAL.md
+?? AetherFire_Architecture_Revamp_Package/06_MANAGEMENT_FILE_SUITE_PROPOSAL.md
+?? AetherFire_Architecture_Revamp_Package/07_CODEX_DEEP_ARCHITECTURE_AUDIT_AND_REVAMP_PROMPT.md
+?? AetherFire_Architecture_Revamp_Package/PACKAGE_MANIFEST.json
+?? "New Canon and Consideration/AetherFire_RP_Cu_Ba_Truc_Lich_Su_Va_De_Xuat.md"
+?? Source_Archive/internal_first_worldbuilding_core_philosophy.md
+?? "../ChatGPT Plus+ Era/chatgpt v8.6.txt"
+?? "../The Academy Project/"

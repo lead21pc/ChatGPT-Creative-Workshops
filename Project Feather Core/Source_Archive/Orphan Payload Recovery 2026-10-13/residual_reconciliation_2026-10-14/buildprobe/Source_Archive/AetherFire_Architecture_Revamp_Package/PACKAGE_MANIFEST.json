@@ -1,0 +1,38 @@
+{
+  "status": "PROPOSAL",
+  "purpose": "AetherFire architecture revamp planning package",
+  "files": [
+    {
+      "name": "00_AetherFire_Architecture_Revamp_Package_INDEX.md",
+      "bytes": 8037
+    },
+    {
+      "name": "01_ARCHITECTURE_PAIN_AND_BREAKPOINT_AUDIT.md",
+      "bytes": 19225
+    },
+    {
+      "name": "02_GLOBAL_INTEGRATED_SOLUTION_ARCHITECTURE.md",
+      "bytes": 13639
+    },
+    {
+      "name": "03_MODULAR_EXPANSION_FRAMEWORK.md",
+      "bytes": 9730
+    },
+    {
+      "name": "04_ARCHITECTURE_GLOSSARY.md",
+      "bytes": 10216
+    },
+    {
+      "name": "05_CI_REVAMP_PROPOSAL.md",
+      "bytes": 8121
+    },
+    {
+      "name": "06_MANAGEMENT_FILE_SUITE_PROPOSAL.md",
+      "bytes": 7134
+    },
+    {
+      "name": "07_CODEX_DEEP_ARCHITECTURE_AUDIT_AND_REVAMP_PROMPT.md",
+      "bytes": 12460
+    }
+  ]
+}
