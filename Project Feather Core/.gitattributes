@@ -21,3 +21,4 @@ Source_Archive/AetherFire_Hoa_Nguyet_Trade_Geography_Canon_Delta_2026-10-07.md w
 # Preserve historical whitespace in byte-exact lineage recovery artifacts.
 Project*CI/source_archive/*.md whitespace=-blank-at-eol,-blank-at-eof
 Source_Archive/Old*Structure*Lore/pre_module_header_2026-09-29/*.md whitespace=-blank-at-eol
+Source_Archive/Orphan*Payload*Recovery*2026-10-13/** whitespace=-blank-at-eol,-blank-at-eof

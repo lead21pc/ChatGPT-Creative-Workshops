@@ -1,0 +1,4 @@
+# Preserve the self-contained package bytes across Git checkouts.
+.gitattributes -text
+*.md -text
+build_consolidation.ps1 -text
