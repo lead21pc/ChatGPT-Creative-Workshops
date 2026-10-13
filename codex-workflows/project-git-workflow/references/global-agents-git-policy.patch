@@ -1,11 +1,9 @@
 --- a/AGENTS.md
 +++ b/AGENTS.md
-@@ -76,4 +76,1 @@
--- Use a task-specific branch for substantial work, for example:
--  bugfix/<short-name>
--  feature/<short-name>
--  maintenance/<short-name>
-+- Reuse the checkout and branch already bound to this chat/project across milestones. Do not create a branch merely for a new task, test, version, or dirty worktree. Create one only for initial binding when needed or at the user's explicit request. Use project-git-workflow to validate the bound repository, scope, checkout, branch, HEAD, and staged baseline before edits, staging, or commits.
-@@ -81,1 +78,1 @@
--- Stage only files and hunks created or modified by the current task. Do not use broad staging such as `git add -A` when the baseline was dirty.
-+- Stage task-owned changes only; additionally, when the user has authorized automatic tracking, project-git-workflow may receive eligible untracked files within the bound project. Preserve unrelated tracked and pre-staged changes. Do not use broad staging such as `git add -A` when the baseline was dirty.
+@@ -76,1 +76,2 @@
+-- Reuse the checkout and branch already bound to this chat/project across milestones. Do not create a branch merely for a new task, test, version, or dirty worktree. Create one only for initial binding when needed or at the user's explicit request. Use project-git-workflow to validate the bound repository, scope, checkout, branch, HEAD, and staged baseline before edits, staging, or commits.
++- Resolve the nearest containing repository from the task target and use its current working tree as the shared local source of truth. Define the task's READ dependencies and WRITE scopes before editing; dirty READ dependencies remain readable in place and do not justify replacing the working state with HEAD.
++- Do not create a branch or worktree merely for a new chat, task, version, or dirty working tree. Use branch/worktree only as a documented fallback for a concrete isolation conflict or at the user's explicit request.
+@@ -78,1 +79,1 @@
+-- Stage task-owned changes only; additionally, when the user has authorized automatic tracking, project-git-workflow may receive eligible untracked files within the bound project. Preserve unrelated tracked and pre-staged changes. Do not use broad staging such as `git add -A` when the baseline was dirty.
++- Stage task-owned changes only; project-git-workflow may automatically stage explicitly named eligible files within the task's WRITE scope after verification. Preserve unrelated tracked and pre-staged changes. Do not use broad staging such as `git add -A` when the baseline was dirty.

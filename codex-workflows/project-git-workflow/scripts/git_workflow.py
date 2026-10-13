@@ -1,231 +1,278 @@
-"""Bind one chat to a checkout and guard scoped local commits."""
+#!/usr/bin/env python3
+"""Shared-working-state Git helper with scoped local commits."""
+
+from __future__ import annotations
+
 import argparse
-from contextlib import contextmanager
-import hashlib
 import json
 import os
-from pathlib import Path
 import subprocess
-import sys
-import time
+from pathlib import Path
+from typing import Iterable
 
 
-def git(root, *args):
+class WorkflowError(RuntimeError):
+    pass
+
+
+def run(command: list[str], *, cwd: Path, check: bool = True) -> subprocess.CompletedProcess[str]:
     result = subprocess.run(
-        ['git', '-c', f'safe.directory={root.as_posix()}', '-C', str(root), *args],
-        stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    if result.returncode:
-        raise ValueError(result.stderr.decode('utf-8', 'replace').strip())
-    return result.stdout
+        command,
+        cwd=cwd,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+        capture_output=True,
+    )
+    if check and result.returncode:
+        detail = (result.stderr or result.stdout).strip()
+        raise WorkflowError(f"Command failed ({result.returncode}): {' '.join(command)}\n{detail}")
+    return result
 
 
-def text(root, *args):
-    return git(root, *args).decode('utf-8', 'surrogateescape').strip()
+def git(root: Path, *args: str, check: bool = True) -> subprocess.CompletedProcess[str]:
+    return run(
+        ["git", "-c", f"safe.directory={root}", *args],
+        cwd=root,
+        check=check,
+    )
 
 
-def staged(root):
-    return git(root, 'diff', '--cached', '--no-renames', '--name-only', '-z').decode(
-        'utf-8', 'surrogateescape').split('\0')[:-1]
+def _start_directory(path: Path) -> Path:
+    candidate = path.expanduser().absolute()
+    if candidate.exists() and candidate.is_file():
+        return candidate.parent
+    if not candidate.exists():
+        return candidate.parent
+    return candidate
 
 
-def state_path(root, key):
-    common = Path(text(root, 'rev-parse', '--path-format=absolute', '--git-common-dir'))
-    return common / 'codex-chat-bindings' / (hashlib.sha256(key.encode()).hexdigest() + '.json')
+def discover_repository(path: str | Path) -> Path:
+    candidate = _start_directory(Path(path))
+    while True:
+        marker = candidate / ".git"
+        if marker.is_dir() or marker.is_file():
+            root = Path(git(candidate, "rev-parse", "--show-toplevel").stdout.strip())
+            return root.resolve()
+        if candidate.parent == candidate:
+            raise WorkflowError(f"No containing Git repository for: {path}")
+        candidate = candidate.parent
 
 
-def save(path, state):
-    path.parent.mkdir(parents=True, exist_ok=True)
-    temporary = path.with_suffix('.tmp')
-    temporary.write_text(json.dumps(state, ensure_ascii=True, indent=2), encoding='utf-8')
-    os.replace(temporary, path)
-
-
-@contextmanager
-def registry_lock(root, key):
-    directory = state_path(root, key).parent
-    directory.mkdir(parents=True, exist_ok=True)
-    lock = directory / '.lock'
+def _under(path: Path, root: Path) -> bool:
     try:
-        descriptor = os.open(lock, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
-    except FileExistsError:
-        raise ValueError('Binding registry busy; retry after the other operation finishes')
+        os.path.commonpath([os.path.normcase(str(path)), os.path.normcase(str(root))])
+    except ValueError:
+        return False
+    return os.path.commonpath(
+        [os.path.normcase(str(path)), os.path.normcase(str(root))]
+    ) == os.path.normcase(str(root))
+
+
+def scoped_path(root: Path, value: str | Path) -> Path:
+    raw = Path(value).expanduser()
+    absolute = raw.absolute() if raw.is_absolute() else (root / raw).absolute()
+    resolved = absolute.resolve(strict=False)
+    if not _under(resolved, root.resolve()):
+        raise WorkflowError(f"Path escapes repository: {value}")
+    current = root.resolve()
+    relative = resolved.relative_to(root.resolve())
+    for part in relative.parts:
+        current = current / part
+        if current.exists() and current.is_symlink():
+            raise WorkflowError(f"Symlinked path is not eligible: {value}")
+    return resolved
+
+
+def relative(root: Path, path: Path) -> str:
+    value = path.relative_to(root).as_posix()
+    return value or "."
+
+
+def literal(value: str) -> str:
+    return f":(literal){value}"
+
+
+def staged_paths(root: Path) -> list[str]:
+    output = git(root, "diff", "--cached", "--name-only", "-z").stdout
+    return [item for item in output.split("\0") if item]
+
+
+def inspect_state(path: str, write_scopes: Iterable[str], read_paths: Iterable[str]) -> dict:
+    root = discover_repository(path)
+    writes = [relative(root, scoped_path(root, item)) for item in write_scopes]
+    reads = []
+    for item in read_paths:
+        read_path = Path(item).expanduser().absolute()
+        reads.append(
+            {
+                "path": str(read_path.resolve(strict=False)),
+                "repository": str(discover_repository(read_path)),
+                "exists": read_path.exists(),
+            }
+        )
+    branch = git(root, "branch", "--show-current").stdout.strip()
+    return {
+        "repository": str(root),
+        "branch": branch or None,
+        "head": git(root, "rev-parse", "HEAD").stdout.strip(),
+        "status": git(root, "status", "--short").stdout.splitlines(),
+        "staged": staged_paths(root),
+        "write_scopes": writes,
+        "read_dependencies": reads,
+        "working_state": "current",
+    }
+
+
+def _binary_staged(root: Path, paths: list[str]) -> str:
+    if not paths:
+        return ""
+    return git(root, "diff", "--cached", "--binary", "--", *map(literal, paths)).stdout
+
+
+def commit_files(path: str, write_scopes: Iterable[str], files: Iterable[str], message: str) -> dict:
+    root = discover_repository(path)
+    scopes = [scoped_path(root, item) for item in write_scopes]
+    if not scopes:
+        raise WorkflowError("At least one --write-scope is required")
+
+    task_paths: list[str] = []
+    for item in files:
+        resolved = scoped_path(root, item)
+        if not any(_under(resolved, scope) for scope in scopes):
+            raise WorkflowError(f"Task file is outside WRITE scope: {item}")
+        rel = relative(root, resolved)
+        if rel == "." or rel in task_paths:
+            raise WorkflowError(f"Invalid or duplicate task file: {item}")
+        if not resolved.exists() and git(root, "ls-files", "--error-unmatch", "--", literal(rel), check=False).returncode:
+            raise WorkflowError(f"Task file does not exist and is not tracked: {item}")
+        task_paths.append(rel)
+    if not task_paths:
+        raise WorkflowError("At least one --file is required")
+
+    baseline = staged_paths(root)
+    overlap = sorted(set(baseline) & set(task_paths))
+    if overlap:
+        raise WorkflowError(f"Task file was already staged: {', '.join(overlap)}")
+    baseline_diff = _binary_staged(root, baseline)
+
+    git(root, "add", "--", *map(literal, task_paths))
+    now_staged = staged_paths(root)
+    missing = sorted(set(task_paths) - set(now_staged))
+    if missing:
+        raise WorkflowError(f"Task files have no staged change: {', '.join(missing)}")
+    if _binary_staged(root, baseline) != baseline_diff:
+        raise WorkflowError("Pre-existing staged baseline changed while staging task files")
+    if git(root, "diff", "--name-only", "--", *map(literal, task_paths)).stdout.strip():
+        raise WorkflowError("Working-tree content changed after task files were staged")
+
+    git(root, "diff", "--cached", "--check", "--", *map(literal, task_paths))
+    stat = git(root, "diff", "--cached", "--stat", "--", *map(literal, task_paths)).stdout
+    diff = git(root, "diff", "--cached", "--", *map(literal, task_paths)).stdout
+    commit = git(root, "commit", "--only", "-m", message, "--", *map(literal, task_paths))
+    sha = git(root, "rev-parse", "HEAD").stdout.strip()
+    committed = [
+        item
+        for item in git(root, "diff-tree", "--no-commit-id", "--name-only", "-r", "-z", sha).stdout.split("\0")
+        if item
+    ]
+    unexpected = sorted(set(committed) - set(task_paths))
+    if unexpected:
+        raise WorkflowError(f"Commit contains files outside the task list: {', '.join(unexpected)}")
+    if _binary_staged(root, baseline) != baseline_diff:
+        raise WorkflowError("Pre-existing staged baseline was not preserved after commit")
+    return {
+        "repository": str(root),
+        "commit": sha,
+        "files": task_paths,
+        "staged_baseline_preserved": baseline,
+        "stat": stat,
+        "diff": diff,
+        "git_output": commit.stdout.strip(),
+    }
+
+
+def create_isolation(
+    path: str,
+    kind: str,
+    reason: str,
+    branch: str,
+    ref: str,
+    worktree: str | None = None,
+) -> dict:
+    root = discover_repository(path)
+    if not reason.strip():
+        raise WorkflowError("Isolation requires a concrete --reason")
+    if not branch.strip() or not ref.strip():
+        raise WorkflowError("Isolation requires explicit --branch and --ref")
+    git(root, "rev-parse", "--verify", f"{ref}^{{commit}}")
+    if kind == "branch":
+        if git(root, "status", "--porcelain").stdout:
+            raise WorkflowError("Branch isolation requires a clean current working tree")
+        git(root, "switch", "-c", branch, ref)
+        return {
+            "repository": str(root),
+            "kind": kind,
+            "reason": reason,
+            "branch": branch,
+            "checkout": str(root),
+        }
+    if kind == "worktree":
+        if not worktree:
+            raise WorkflowError("Worktree isolation requires --worktree")
+        destination = Path(worktree).expanduser().absolute()
+        if destination.exists():
+            raise WorkflowError(f"Worktree destination already exists: {destination}")
+        git(root, "worktree", "add", "-b", branch, str(destination), ref)
+        return {
+            "repository": str(root),
+            "kind": kind,
+            "reason": reason,
+            "branch": branch,
+            "checkout": str(destination),
+        }
+    raise WorkflowError(f"Unsupported isolation kind: {kind}")
+
+
+def parser() -> argparse.ArgumentParser:
+    result = argparse.ArgumentParser(description=__doc__)
+    sub = result.add_subparsers(dest="command", required=True)
+    inspect_parser = sub.add_parser("inspect", help="Inspect the current shared working state")
+    inspect_parser.add_argument("--path", required=True)
+    inspect_parser.add_argument("--write-scope", action="append", default=[])
+    inspect_parser.add_argument("--read-path", action="append", default=[])
+    commit_parser = sub.add_parser("commit", help="Stage and commit explicit task-owned files locally")
+    commit_parser.add_argument("--path", required=True)
+    commit_parser.add_argument("--write-scope", action="append", default=[])
+    commit_parser.add_argument("--file", action="append", default=[])
+    commit_parser.add_argument("--message", required=True)
+    isolate_parser = sub.add_parser("isolate", help="Create an explicitly justified branch/worktree fallback")
+    isolate_parser.add_argument("--path", required=True)
+    isolate_parser.add_argument("--kind", required=True, choices=("branch", "worktree"))
+    isolate_parser.add_argument("--reason", required=True)
+    isolate_parser.add_argument("--branch", required=True)
+    isolate_parser.add_argument("--ref", required=True)
+    isolate_parser.add_argument("--worktree")
+    return result
+
+
+def main() -> int:
+    args = parser().parse_args()
     try:
-        os.close(descriptor)
-        yield
-    finally:
-        lock.unlink()
-
-
-def exclusive_owner(root, path, branch):
-    for other in path.parent.glob('*.json'):
-        if other == path:
-            continue
-        owner = json.loads(other.read_text(encoding='utf-8'))
-        if Path(owner['checkout']).resolve() == root or owner['branch'] == branch:
-            raise ValueError('Checkout or branch already belongs to another chat; '
-                             'use prepare with a separate worktree and branch')
-
-
-def prepare(args, root, path, state):
-    if Path(text(root, 'rev-parse', '--show-toplevel')).resolve() != root:
-        raise ValueError('Expected repository-root checkout')
-    project = Path(args.project).absolute()
-    if project.resolve() != project or not project.is_dir() or not project.is_relative_to(root):
-        raise ValueError('Project scope missing or redirected')
-    relative = project.relative_to(root)
-    if state:
-        bound = Path(state['checkout']).resolve()
-        if Path(state['project']) != bound / relative:
-            raise ValueError('Existing chat binding cannot be reassigned')
-        validate(bound, state)
-        exclusive_owner(bound, path, state['branch'])
-        print(json.dumps(state, ensure_ascii=True))
-        return
-    if not all((args.worktree, args.branch, args.ref)):
-        raise ValueError('First prepare requires --worktree, --branch and --ref')
-    target = Path(args.worktree).absolute()
-    if target.resolve() != target or target.exists() or target.is_relative_to(root):
-        raise ValueError('New worktree must be an unused path outside the source checkout')
-    exclusive_owner(target, path, args.branch)
-    git(root, 'check-ref-format', '--branch', args.branch)
-    if git(root, 'branch', '--list', args.branch):
-        raise ValueError('Branch already exists; inspect and bind its checkout explicitly')
-    revision = text(root, 'rev-parse', '--verify', '--end-of-options', args.ref + '^{commit}')
-    if relative.parts and text(root, 'cat-file', '-t', f'{revision}:{relative.as_posix()}') != 'tree':
-        raise ValueError('Project scope is not a directory at the selected ref')
-    git(root, 'worktree', 'add', '-b', args.branch, str(target), revision)
-    candidate = dict(checkout=str(target), project=str(target / relative), branch=args.branch,
-                     head=revision, staged_baseline=staged(target))
-    # On a later failure preserve the new checkout/branch for inspection; never delete work.
-    validate(target, candidate)
-    save(path, candidate)
-    print(json.dumps(candidate, ensure_ascii=True))
-
-
-def validate(root, state, head=True):
-    if root != Path(state['checkout']).resolve():
-        raise ValueError('Checkout differs from chat binding')
-    if Path(text(root, 'rev-parse', '--show-toplevel')).resolve() != root:
-        raise ValueError('Expected repository-root checkout')
-    if text(root, 'symbolic-ref', '--short', 'HEAD') != state['branch']:
-        raise ValueError('Branch differs from chat binding')
-    if head and text(root, 'rev-parse', 'HEAD') != state['head']:
-        raise ValueError('HEAD changed outside workflow; inspect before refresh')
-    project = Path(state['project'])
-    if not project.is_dir() or project.resolve() != project or not project.is_relative_to(root):
-        raise ValueError('Project scope missing or redirected')
-
-
-def run(args):
-    root = Path(args.checkout).resolve()
-    if args.command == 'check':
-        return run_locked(args, root)
-    with registry_lock(root, args.chat_key):
-        return run_locked(args, root)
-
-
-def run_locked(args, root):
-    path = state_path(root, args.chat_key)
-    state = json.loads(path.read_text(encoding='utf-8')) if path.exists() else None
-    if args.command == 'prepare':
-        return prepare(args, root, path, state)
-    if args.command == 'bind':
-        project = Path(args.project).absolute()
-        candidate = dict(checkout=str(root), project=str(project), branch=args.branch,
-                         head=text(root, 'rev-parse', 'HEAD'), staged_baseline=staged(root))
-        validate(root, candidate)
-        if state:
-            if any(state[key] != candidate[key] for key in ('checkout', 'project', 'branch')):
-                raise ValueError('Existing chat binding cannot be reassigned')
-            validate(root, state, head=not args.refresh_head)
-            exclusive_owner(root, path, state['branch'])
-            if not args.refresh_head:
-                print('PASS: existing binding reused')
-                return
-        exclusive_owner(root, path, args.branch)
-        save(path, candidate)
-        print('PASS: binding saved; no branch created')
-        return
-    if state is None:
-        raise ValueError('No chat binding; read-only check did not create one')
-    validate(root, state)
-    if args.command == 'release':
-        if git(root, 'status', '--porcelain', '--untracked-files=all'):
-            raise ValueError('Release requires a clean checkout, including the index and untracked files')
-        archive = path.parent / 'released'
-        archive.mkdir(exist_ok=True)
-        os.replace(path, archive / f'{path.stem}-{time.time_ns()}.json')
-        print('RELEASED: binding archived; checkout, branch and commits preserved')
-        return
-    exclusive_owner(root, path, state['branch'])
-    if args.command == 'check':
-        print('PASS: checkout, scope, branch and HEAD match')
-        return
-    if git(root, 'ls-files', '-u'):
-        raise ValueError('Unresolved index conflicts')
-    files = []
-    project = Path(state['project'])
-    for name in args.file:
-        relative = Path(name)
-        target = root / relative
-        if relative.is_absolute() or '..' in relative.parts or not relative.parts:
-            raise ValueError(f'Expected literal repository-relative file: {name}')
-        if not target.resolve().is_relative_to(project):
-            raise ValueError(f'File outside project scope: {name}')
-        for component in [target, *target.parents]:
-            if component == root:
-                break
-            if component.is_symlink() or component.resolve() != component:
-                raise ValueError(f'Redirected file path: {name}')
-        if target.is_dir():
-            raise ValueError(f'Explicit files required, not directories: {name}')
-        files.append(relative.as_posix())
-    normalize = (lambda name: name.casefold()) if os.name == 'nt' else (lambda name: name)
-    if {normalize(name) for name in files} & {normalize(name) for name in state['staged_baseline']}:
-        raise ValueError('Commit overlaps pre-existing staged paths')
-    if {normalize(name) for name in files} - {normalize(name) for name in staged(root)}:
-        raise ValueError('Every commit path must have an explicitly staged change')
-    literal = [f':(literal){name}' for name in files]
-    if git(root, 'diff', '--name-only', '-z', '--', *literal):
-        raise ValueError('Worktree differs from verified staged snapshot')
-    if not git(root, 'diff', '--cached', '--name-only', '-z', '--', *literal):
-        raise ValueError('No staged changes in commit scope')
-    git(root, '-c', 'core.whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol',
-        'diff', '--cached', '--check', '--', *literal)
-    validate(root, state)
-    print(git(root, 'commit', '--only', '-m', args.message, '--', *literal).decode('utf-8', 'replace'))
-    state['head'] = text(root, 'rev-parse', 'HEAD')
-    state['staged_baseline'] = staged(root)
-    save(path, state)
-    print(f"COMMITTED_LOCAL: {state['head']}")
-
-
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    sub = parser.add_subparsers(dest='command', required=True)
-    for command in ('prepare', 'bind', 'check', 'commit', 'release'):
-        item = sub.add_parser(command)
-        item.add_argument('--checkout', required=True)
-        item.add_argument('--chat-key', required=True)
-        if command == 'bind':
-            item.add_argument('--project', required=True)
-            item.add_argument('--branch', required=True)
-            item.add_argument('--refresh-head', action='store_true')
-        if command == 'prepare':
-            item.add_argument('--project', required=True)
-            item.add_argument('--worktree')
-            item.add_argument('--branch')
-            item.add_argument('--ref')
-        if command == 'commit':
-            item.add_argument('--file', action='append', required=True)
-            item.add_argument('--message', required=True)
-    try:
-        run(parser.parse_args())
+        if args.command == "inspect":
+            payload = inspect_state(args.path, args.write_scope, args.read_path)
+        elif args.command == "commit":
+            payload = commit_files(args.path, args.write_scope, args.file, args.message)
+        else:
+            payload = create_isolation(
+                args.path, args.kind, args.reason, args.branch, args.ref, args.worktree
+            )
+        print(json.dumps(payload, ensure_ascii=False, indent=2))
         return 0
-    except (ValueError, OSError, KeyError) as error:
-        print(f'BLOCKED: {error}', file=sys.stderr)
+    except WorkflowError as exc:
+        print(json.dumps({"error": str(exc)}, ensure_ascii=False, indent=2))
         return 2
 
 
-if __name__ == '__main__':
-    sys.exit(main())
+if __name__ == "__main__":
+    raise SystemExit(main())

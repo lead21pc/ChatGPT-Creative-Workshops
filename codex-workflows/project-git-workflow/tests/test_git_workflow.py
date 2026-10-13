@@ -1,314 +1,195 @@
 import importlib.util
-import json
-from pathlib import Path
+import subprocess
 import tempfile
 import unittest
-from types import SimpleNamespace
+from pathlib import Path
+from unittest import mock
 
-SCRIPT = Path(__file__).resolve().parents[1] / 'scripts' / 'git_workflow.py'
-SPEC = importlib.util.spec_from_file_location('workflow', SCRIPT)
+
+SCRIPT = Path(__file__).parents[1] / "scripts" / "git_workflow.py"
+SPEC = importlib.util.spec_from_file_location("git_workflow", SCRIPT)
 workflow = importlib.util.module_from_spec(SPEC)
+assert SPEC.loader
 SPEC.loader.exec_module(workflow)
 
 
-class WorkflowTests(unittest.TestCase):
+def command(cwd: Path, *args: str) -> subprocess.CompletedProcess[str]:
+    return subprocess.run(
+        list(args), cwd=cwd, text=True, encoding="utf-8", capture_output=True, check=True
+    )
+
+
+def git(cwd: Path, *args: str) -> subprocess.CompletedProcess[str]:
+    return command(cwd, "git", "-c", f"safe.directory={cwd}", *args)
+
+
+class SharedWorkingStateTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
-        self.addCleanup(self.temp.cleanup)
-        self.root = Path(self.temp.name).resolve()
-        self.project = self.root / 'project'
-        self.project.mkdir()
-        self.git('init', '-b', 'work')
-        self.git('config', 'user.name', 'Workflow Test')
-        self.git('config', 'user.email', 'test@example.invalid')
-        self.write('project/base.txt', 'base\n')
-        self.write('other.txt', 'other\n')
-        self.git('add', '.')
-        self.git('commit', '-m', 'baseline')
+        self.root = Path(self.temp.name) / "repo"
+        self.root.mkdir()
+        git(self.root, "init", "-b", "shared-main")
+        git(self.root, "config", "user.name", "Workflow Test")
+        git(self.root, "config", "user.email", "workflow@example.invalid")
+        for name in ("Project Feather Core", "ChatGPT Plus+ Era", "Project CI"):
+            (self.root / name).mkdir()
+            (self.root / name / "README.md").write_text(f"{name}\n", encoding="utf-8")
+        git(self.root, "add", "--", ":(literal)Project Feather Core/README.md", ":(literal)ChatGPT Plus+ Era/README.md", ":(literal)Project CI/README.md")
+        git(self.root, "commit", "-m", "baseline")
 
-    def git(self, *args):
-        return workflow.git(self.root, *args)
+    def tearDown(self):
+        self.temp.cleanup()
 
-    def write(self, name, content):
-        target = self.root / name
-        target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_text(content, encoding='utf-8')
+    def branches(self):
+        return git(self.root, "branch", "--format=%(refname:short)").stdout.splitlines()
 
-    def call(self, command, **kwargs):
-        options = dict(command=command, checkout=str(self.root), chat_key='chat-a',
-                       project=str(self.project), branch='work', refresh_head=False,
-                       worktree=None, ref=None)
-        options.update(kwargs)
-        return workflow.run(SimpleNamespace(**options))
+    def worktrees(self):
+        return [line for line in git(self.root, "worktree", "list", "--porcelain").stdout.splitlines() if line.startswith("worktree ")]
 
-    def task_file(self):
-        self.write('project/new [file].txt', 'new\n')
-        self.git('add', '--', ':(literal)project/new [file].txt')
+    def test_a_two_chats_can_share_checkout_with_distinct_write_scopes(self):
+        before_branch = git(self.root, "branch", "--show-current").stdout.strip()
+        first = workflow.inspect_state(str(self.root / "Project Feather Core"), ["Project Feather Core"], [])
+        second = workflow.inspect_state(str(self.root / "Project CI"), ["Project CI"], [])
+        self.assertEqual(first["repository"], second["repository"])
+        self.assertEqual(first["branch"], before_branch)
+        self.assertEqual(second["branch"], before_branch)
+        self.assertFalse((self.root / ".git" / "codex-chat-bindings").exists())
 
-    def test_reuse_across_commits_creates_no_branch(self):
-        self.call('bind')
-        branches = self.git('branch', '--list')
-        for number in range(2):
-            name = f'project/task{number}.txt'
-            self.write(name, 'task\n')
-            self.git('add', name)
-            self.call('commit', file=[name], message='checkpoint')
-            self.call('bind')
-            self.call('check')
-        self.assertEqual(branches, self.git('branch', '--list'))
+    def test_b_dirty_dependency_is_read_from_current_working_tree(self):
+        dependency = self.root / "ChatGPT Plus+ Era" / "README.md"
+        dependency.write_text("newer dirty state\n", encoding="utf-8")
+        before = self.worktrees()
+        state = workflow.inspect_state(
+            str(self.root / "Project Feather Core"),
+            ["Project Feather Core"],
+            [str(dependency)],
+        )
+        self.assertEqual(dependency.read_text(encoding="utf-8"), "newer dirty state\n")
+        self.assertEqual(state["working_state"], "current")
+        self.assertEqual(state["read_dependencies"][0]["path"], str(dependency.resolve()))
+        self.assertEqual(self.worktrees(), before)
 
-    def test_rename_tracks_both_endpoints(self):
-        self.call('bind')
-        self.git('mv', 'project/base.txt', 'project/renamed.txt')
-        self.assertEqual({'project/base.txt', 'project/renamed.txt'},
-                         set(workflow.staged(self.root)))
-        self.call('commit', file=['project/base.txt', 'project/renamed.txt'],
-                  message='rename checkpoint')
-        self.assertEqual(b'', self.git('status', '--porcelain'))
-        self.call('check')
+    def test_c_selective_commit_preserves_unrelated_staged_and_dirty_changes(self):
+        unrelated = self.root / "Project CI" / "README.md"
+        unrelated.write_text("user staged\n", encoding="utf-8")
+        git(self.root, "add", "--", ":(literal)Project CI/README.md")
+        dirty = self.root / "ChatGPT Plus+ Era" / "README.md"
+        dirty.write_text("user dirty\n", encoding="utf-8")
+        artifact = self.root / "Project Feather Core" / "artifact.md"
+        artifact.write_text("verified artifact\n", encoding="utf-8")
+        result = workflow.commit_files(
+            str(artifact), ["Project Feather Core"], [str(artifact)], "checkpoint"
+        )
+        committed = git(self.root, "show", "--format=", "--name-only", result["commit"]).stdout.splitlines()
+        self.assertEqual(committed, ["Project Feather Core/artifact.md"])
+        self.assertEqual(workflow.staged_paths(self.root), ["Project CI/README.md"])
+        self.assertIn(
+            "ChatGPT Plus+ Era/README.md",
+            git(self.root, "diff", "--name-only").stdout.splitlines(),
+        )
 
-    def test_wrong_branch_blocks_commit(self):
-        self.call('bind')
-        self.git('switch', '-c', 'another')
-        self.task_file()
-        before = self.git('rev-parse', 'HEAD')
-        with self.assertRaisesRegex(ValueError, 'Branch differs'):
-            self.call('commit', file=['project/new [file].txt'], message='blocked')
-        self.assertEqual(before, self.git('rev-parse', 'HEAD'))
+    def test_d_local_commit_does_not_change_remote(self):
+        bare = Path(self.temp.name) / "remote.git"
+        command(Path(self.temp.name), "git", "init", "--bare", str(bare))
+        git(self.root, "remote", "add", "origin", str(bare))
+        git(self.root, "push", "-u", "origin", "shared-main")
+        before = command(bare, "git", "rev-parse", "refs/heads/shared-main").stdout.strip()
+        artifact = self.root / "Project Feather Core" / "local.md"
+        artifact.write_text("local only\n", encoding="utf-8")
+        workflow.commit_files(str(artifact), ["Project Feather Core"], [str(artifact)], "local")
+        after = command(bare, "git", "rev-parse", "refs/heads/shared-main").stdout.strip()
+        self.assertEqual(after, before)
 
-    def test_preexisting_staging_survives_scoped_commit(self):
-        self.write('other.txt', 'staged user edit\n')
-        self.git('add', 'other.txt')
-        before = self.git('diff', '--cached', '--binary')
-        self.call('bind')
-        self.task_file()
-        self.call('commit', file=['project/new [file].txt'], message='task')
-        self.assertEqual(before, self.git('diff', '--cached', '--binary'))
-        self.assertEqual(b'project/new [file].txt\n',
-                         self.git('diff-tree', '--no-commit-id', '--name-only', '-r', 'HEAD'))
+    def test_e_normal_inspection_does_not_create_branch(self):
+        before = self.branches()
+        workflow.inspect_state(str(self.root), ["Project Feather Core"], [])
+        self.assertEqual(self.branches(), before)
 
-    def test_baseline_path_overlap_blocked(self):
-        self.write('project/base.txt', 'user edit\n')
-        self.git('add', 'project/base.txt')
-        self.call('bind')
-        with self.assertRaisesRegex(ValueError, 'pre-existing staged'):
-            self.call('commit', file=['project/base.txt'], message='blocked')
+        result = workflow.create_isolation(
+            str(self.root),
+            "branch",
+            "conflicting experiment requires an isolated branch",
+            "temporary-isolation",
+            "HEAD",
+        )
+        self.assertEqual(result["kind"], "branch")
+        self.assertEqual(git(self.root, "branch", "--show-current").stdout.strip(), "temporary-isolation")
 
-    def test_scope_blocks_other_project(self):
-        self.call('bind')
-        self.write('other.txt', 'other edit\n')
-        self.git('add', 'other.txt')
-        with self.assertRaisesRegex(ValueError, 'outside project'):
-            self.call('commit', file=['other.txt'], message='blocked')
+    def test_f_normal_commit_does_not_create_worktree(self):
+        before = self.worktrees()
+        artifact = self.root / "Project Feather Core" / "normal.md"
+        artifact.write_text("normal\n", encoding="utf-8")
+        workflow.commit_files(str(artifact), ["Project Feather Core"], [str(artifact)], "normal")
+        self.assertEqual(self.worktrees(), before)
 
-    def test_unverified_worktree_edit_blocked(self):
-        self.call('bind')
-        self.task_file()
-        self.write('project/new [file].txt', 'changed after stage\n')
-        with self.assertRaisesRegex(ValueError, 'staged snapshot'):
-            self.call('commit', file=['project/new [file].txt'], message='blocked')
+        destination = Path(self.temp.name) / "second-working-state"
+        result = workflow.create_isolation(
+            str(self.root),
+            "worktree",
+            "test requires two working states at the same time",
+            "temporary-worktree-isolation",
+            "HEAD",
+            str(destination),
+        )
+        self.assertEqual(result["kind"], "worktree")
+        self.assertEqual(len(self.worktrees()), len(before) + 1)
+        git(self.root, "worktree", "remove", str(destination))
 
-    def test_readonly_check_does_not_create_state(self):
-        before = self.git('status', '--porcelain')
-        with self.assertRaisesRegex(ValueError, 'No chat binding'):
-            self.call('check')
-        self.assertFalse(workflow.state_path(self.root, 'chat-a').parent.exists())
-        self.assertEqual(before, self.git('status', '--porcelain'))
+    def test_g_nested_target_reuses_nearest_parent_repository(self):
+        nested = self.root / "Project Feather Core" / "deep" / "new.md"
+        self.assertEqual(workflow.discover_repository(nested), self.root.resolve())
+        self.assertFalse((self.root / "Project Feather Core" / ".git").exists())
 
-    def test_other_chat_cannot_claim_same_checkout(self):
-        self.call('bind')
-        with self.assertRaisesRegex(ValueError, 'another chat'):
-            self.call('bind', chat_key='chat-b')
+    def test_h_newer_dirty_dependency_does_not_trigger_head_checkout(self):
+        dependency = self.root / "ChatGPT Plus+ Era" / "README.md"
+        dependency.write_text("version from current working tree\n", encoding="utf-8")
+        head_text = git(self.root, "show", "HEAD:ChatGPT Plus+ Era/README.md").stdout
+        self.assertNotEqual(dependency.read_text(encoding="utf-8"), head_text)
+        workflow.inspect_state(str(self.root / "Project Feather Core"), ["Project Feather Core"], [str(dependency)])
+        self.assertEqual(dependency.read_text(encoding="utf-8"), "version from current working tree\n")
 
-    def test_external_head_requires_explicit_refresh(self):
-        self.call('bind')
-        self.write('project/base.txt', 'external change\n')
-        self.git('add', 'project/base.txt')
-        self.git('commit', '-m', 'external')
-        with self.assertRaisesRegex(ValueError, 'HEAD changed'):
-            self.call('check')
-        self.call('bind', refresh_head=True)
-        self.call('check')
+    def test_i_two_repositories_are_discovered_independently(self):
+        other = Path(self.temp.name) / "Image Transcendent"
+        other.mkdir()
+        git(other, "init", "-b", "main")
+        git(other, "config", "user.name", "Workflow Test")
+        git(other, "config", "user.email", "workflow@example.invalid")
+        target = other / "image.md"
+        target.write_text("image\n", encoding="utf-8")
+        git(other, "add", "--", ":(literal)image.md")
+        git(other, "commit", "-m", "baseline")
+        first = workflow.inspect_state(str(self.root), ["Project CI"], [])
+        second = workflow.inspect_state(str(target), ["."], [])
+        self.assertNotEqual(first["repository"], second["repository"])
 
-    def test_binding_cannot_change_project(self):
-        self.call('bind')
-        with self.assertRaisesRegex(ValueError, 'cannot be reassigned'):
-            self.call('bind', project=str(self.root))
+    def test_out_of_scope_file_is_rejected_without_staging(self):
+        target = self.root / "Project CI" / "outside.md"
+        target.write_text("outside\n", encoding="utf-8")
+        with self.assertRaises(workflow.WorkflowError):
+            workflow.commit_files(str(self.root), ["Project Feather Core"], [str(target)], "blocked")
+        self.assertNotIn("Project CI/outside.md", workflow.staged_paths(self.root))
 
-    def test_unstaged_extra_path_blocked(self):
-        self.call('bind')
-        self.task_file()
-        self.write('project/unstaged.txt', 'not verified\n')
-        with self.assertRaisesRegex(ValueError, 'explicitly staged'):
-            self.call('commit', file=['project/new [file].txt', 'project/unstaged.txt'],
-                      message='blocked')
+    def test_pre_staged_task_file_is_rejected_as_ambiguous(self):
+        target = self.root / "Project Feather Core" / "README.md"
+        target.write_text("already staged\n", encoding="utf-8")
+        git(self.root, "add", "--", ":(literal)Project Feather Core/README.md")
+        with self.assertRaises(workflow.WorkflowError):
+            workflow.commit_files(str(target), ["Project Feather Core"], [str(target)], "blocked")
 
-    @unittest.skipUnless(workflow.os.name == 'nt', 'Windows path comparison')
-    def test_case_alias_cannot_bypass_baseline(self):
-        self.write('project/base.txt', 'user edit\n')
-        self.git('add', 'project/base.txt')
-        self.call('bind')
-        with self.assertRaisesRegex(ValueError, 'pre-existing staged'):
-            self.call('commit', file=['PROJECT/BASE.TXT'], message='blocked')
+    def test_commit_path_never_invokes_push(self):
+        target = self.root / "Project Feather Core" / "no-push.md"
+        target.write_text("no push\n", encoding="utf-8")
+        calls = []
+        original = workflow.git
 
-    def test_different_checkout_blocked(self):
-        self.call('bind')
-        checkout = self.root.parent / (self.root.name + '-worktree')
-        self.git('worktree', 'add', '-b', 'second', str(checkout))
-        try:
-            with self.assertRaisesRegex(ValueError, 'Checkout differs'):
-                self.call('check', checkout=str(checkout))
-        finally:
-            self.git('worktree', 'remove', str(checkout))
+        def recording_git(root, *args, **kwargs):
+            calls.append(args)
+            return original(root, *args, **kwargs)
 
-    def prepare_chat(self, key='chat-b'):
-        target = self.root.parent / (self.root.name + '-' + key)
-        self.call('prepare', chat_key=key, worktree=str(target),
-                  branch='codex/' + key, ref='HEAD')
-        self.addCleanup(lambda: self.git('worktree', 'remove', '--force', str(target)))
-        return target
-
-    def test_prepare_isolates_two_chats_and_preserves_dirty_source(self):
-        self.call('bind')
-        self.write('other.txt', 'staged source\n')
-        self.git('add', 'other.txt')
-        self.write('project/base.txt', 'unstaged source\n')
-        self.write('project/untracked.txt', 'untracked source\n')
-        before = (self.git('status', '--porcelain'), self.git('diff', '--binary'),
-                  self.git('diff', '--cached', '--binary'), self.git('rev-parse', 'HEAD'))
-        target = self.prepare_chat()
-        self.call('check', chat_key='chat-b', checkout=str(target))
-        self.call('check')
-        self.assertEqual(b'', workflow.git(target, 'status', '--porcelain'))
-        self.assertEqual('base\n', (target / 'project/base.txt').read_text())
-        self.assertEqual(before, (self.git('status', '--porcelain'), self.git('diff', '--binary'),
-                                 self.git('diff', '--cached', '--binary'), self.git('rev-parse', 'HEAD')))
-
-    def test_prepare_reuses_binding_without_creating_new_branch(self):
-        target = self.prepare_chat()
-        branches = self.git('branch', '--list')
-        self.call('prepare', chat_key='chat-b')
-        self.assertEqual(branches, self.git('branch', '--list'))
-        self.call('check', chat_key='chat-b', checkout=str(target))
-
-    def test_isolated_commit_does_not_move_other_chat_head_or_index(self):
-        self.call('bind')
-        self.write('other.txt', 'user staging\n')
-        self.git('add', 'other.txt')
-        before = (self.git('rev-parse', 'HEAD'), self.git('diff', '--cached', '--binary'))
-        target = self.prepare_chat()
-        (target / 'project/base.txt').write_text('isolated edit\n', encoding='utf-8')
-        workflow.git(target, 'add', 'project/base.txt')
-        self.call('commit', checkout=str(target), chat_key='chat-b',
-                  file=['project/base.txt'], message='isolated checkpoint')
-        self.call('check')
-        self.call('prepare', chat_key='chat-b')
-        self.assertEqual(before, (self.git('rev-parse', 'HEAD'), self.git('diff', '--cached', '--binary')))
-
-    def test_prepare_uses_selected_ref_and_rejects_invalid_ref(self):
-        before = self.git('rev-parse', 'HEAD').strip()
-        self.git('commit', '--allow-empty', '-m', 'later source')
-        target = self.root.parent / (self.root.name + '-selected')
-        self.call('prepare', worktree=str(target), branch='codex/selected',
-                  ref=before.decode())
-        self.addCleanup(lambda: self.git('worktree', 'remove', '--force', str(target)))
-        self.assertEqual(before, workflow.git(target, 'rev-parse', 'HEAD').strip())
-        worktrees = self.git('worktree', 'list', '--porcelain')
-        with self.assertRaises(ValueError):
-            self.call('prepare', chat_key='bad-ref',
-                      worktree=str(self.root.parent / (self.root.name + '-bad-ref')),
-                      branch='codex/bad-ref', ref='missing-ref')
-        self.assertEqual(worktrees, self.git('worktree', 'list', '--porcelain'))
-
-    def test_prepare_rejects_scope_change_and_external_head(self):
-        target = self.prepare_chat()
-        with self.assertRaisesRegex(ValueError, 'cannot be reassigned'):
-            self.call('prepare', chat_key='chat-b', project=str(self.root))
-        workflow.git(target, 'commit', '--allow-empty', '-m', 'external')
-        with self.assertRaisesRegex(ValueError, 'HEAD changed'):
-            self.call('prepare', chat_key='chat-b')
-
-    def test_prepare_requires_explicit_initial_parameters(self):
-        with self.assertRaisesRegex(ValueError, 'First prepare requires'):
-            self.call('prepare')
-        self.assertFalse(workflow.state_path(self.root, 'chat-a').exists())
-
-    def test_prepare_rejects_existing_target_or_branch(self):
-        before = self.git('worktree', 'list', '--porcelain')
-        with self.assertRaisesRegex(ValueError, 'unused path'):
-            self.call('prepare', worktree=str(self.root), branch='codex/new', ref='HEAD')
-        with self.assertRaisesRegex(ValueError, 'Branch already exists'):
-            self.call('prepare', worktree=str(self.root.parent / (self.root.name + '-unused')),
-                      branch='work', ref='HEAD')
-        self.assertEqual(before, self.git('worktree', 'list', '--porcelain'))
-
-    def test_prepare_rejects_missing_project_at_ref_before_creation(self):
-        (self.root / 'new-project').mkdir()
-        before = self.git('worktree', 'list', '--porcelain')
-        with self.assertRaises(ValueError):
-            self.call('prepare', project=str(self.root / 'new-project'),
-                      worktree=str(self.root.parent / (self.root.name + '-unused')),
-                      branch='codex/new', ref='HEAD')
-        self.assertEqual(before, self.git('worktree', 'list', '--porcelain'))
-
-    def test_release_archives_binding_and_preserves_checkout_history(self):
-        self.call('bind')
-        path = workflow.state_path(self.root, 'chat-a')
-        before = path.read_bytes()
-        head = self.git('rev-parse', 'HEAD')
-        self.call('release')
-        self.assertFalse(path.exists())
-        archived = list((path.parent / 'released').glob('*.json'))
-        self.assertEqual(1, len(archived))
-        self.assertEqual(before, archived[0].read_bytes())
-        self.assertEqual(head, self.git('rev-parse', 'HEAD'))
-        self.call('bind', chat_key='chat-b')
-
-    def test_release_blocks_dirty_staged_and_untracked_files(self):
-        self.call('bind')
-        for mode in ('unstaged', 'staged', 'untracked'):
-            with self.subTest(mode=mode):
-                if mode == 'untracked':
-                    self.write('new.txt', 'new\n')
-                else:
-                    self.write('other.txt', 'changed\n')
-                    if mode == 'staged':
-                        self.git('add', 'other.txt')
-                with self.assertRaisesRegex(ValueError, 'clean checkout'):
-                    self.call('release')
-                self.assertTrue(workflow.state_path(self.root, 'chat-a').exists())
-                if mode == 'untracked':
-                    (self.root / 'new.txt').unlink()
-                else:
-                    self.git('restore', '--staged', '--worktree', 'other.txt')
-
-    def test_release_blocks_wrong_key_and_head(self):
-        self.call('bind')
-        with self.assertRaisesRegex(ValueError, 'No chat binding'):
-            self.call('release', chat_key='chat-b')
-        self.git('commit', '--allow-empty', '-m', 'external')
-        with self.assertRaisesRegex(ValueError, 'HEAD changed'):
-            self.call('release')
-
-    def test_registry_lock_blocks_parallel_mutation_without_claim(self):
-        with workflow.registry_lock(self.root, 'chat-a'):
-            with self.assertRaisesRegex(ValueError, 'registry busy'):
-                self.call('bind', chat_key='chat-b')
-            self.assertFalse(workflow.state_path(self.root, 'chat-b').exists())
-        self.call('bind')
-
-    def test_duplicate_legacy_owner_cannot_bypass_check(self):
-        self.call('bind')
-        path = workflow.state_path(self.root, 'chat-a')
-        state = json.loads(path.read_text())
-        state['shared_checkout_authorized'] = 'legacy authorization'
-        workflow.save(workflow.state_path(self.root, 'legacy-chat'), state)
-        with self.assertRaisesRegex(ValueError, 'another chat'):
-            self.call('check')
-        with self.assertRaisesRegex(ValueError, 'another chat'):
-            self.call('bind')
-        self.prepare_chat()
+        with mock.patch.object(workflow, "git", side_effect=recording_git):
+            workflow.commit_files(str(target), ["Project Feather Core"], [str(target)], "no push")
+        self.assertFalse(any("push" in call for call in calls))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
