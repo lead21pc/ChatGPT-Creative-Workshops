@@ -56,7 +56,7 @@ Lệnh mặc định kiểm tra cấu trúc và chỉ chọn ACTIVE có neo phù
     pwsh -NoProfile -File .\tests\control-regressions\run.ps1 -ListDrafts
 
     pwsh -NoProfile -File .\tests\control-regressions\run.ps1 -ChangedControlFile 'Anti-Drift Source/FTH_Anti_Drift_Total_War_RP_v1.1.md'
-    pwsh -NoProfile -File .\tests\control-regressions\run.ps1 -ChangedControlFile 'ChatGPT Plus+ Era/chatgpt v8.5.txt'
+    pwsh -NoProfile -File .\tests\control-regressions\run.ps1 -ChangedControlFile 'llm-controls/global-instructions/ChatGPT Plus+ Era/chatgpt v8.8.txt'
     pwsh -NoProfile -File .\tests\control-regressions\run.ps1 -ChangedControlFile 'Anti-Drift Source/khong-co-anh-xa.md'
 
 recheck_on dùng đường dẫn tương đối từ Project Feather Core cho tệp dự án, hoặc từ thư mục repo cha cho ChatGPT Plus+ Era. Danh sách ghi đúng tệp đang tham gia thay vì mọi phiên bản lịch sử. -ListDrafts chỉ in danh sách DRAFT để xem xét, không chọn chúng. Khi có ChangedControlFile, selected_cases chỉ chứa ACTIVE có neo phù hợp; draft_review_matches là DRAFT_REVIEW_MATCH và stale_review_matches là ứng viên xem xét, đều review_only. Nếu một bản CI/Router/overlay mới trở thành phiên bản cao nhất được chọn, runner nhận diện họ phiên bản từ neo cũ để tìm case liên quan; nó không tự đổi vòng đời hay thay neo. Nền ChatGPT mới chỉ được nhận khi CI dự án **khai báo** nó. Bản v9.0 temp tồn tại riêng lẻ không làm đổi nền. Đường dẫn không khớp được báo trong unmapped với nghĩa **UNMAPPED**, không suy ra không có tác động. Metadata chọn lại không lập lịch, không cấp quyền sửa canon hay điều khiển.
@@ -110,7 +110,7 @@ Each case pins CI 3.0, Router 4.1, the reception overlay, and Modular Concept Ar
 
     pwsh -NoProfile -File .\tests\control-regressions\run.ps1 -ListDrafts -ChangedControlFile 'Anti-Drift Source/FTH_Anti_Drift_Actor_Reception_Normative_Signals_v1.0.md'
 
-Known baseline limitation: the runner's upstream-base parser expects `ChatGPT v8.7` but CI 3.0 declares `ChatGPT 8.7`. Default overall therefore remains `BLOCKED` at `selected_upstream_base`; the family, schema, and anchor checks still report independently. This integration does not change that parser or CI 3.0. No semantic or live Project runtime result is implied.
+Lỗi parser được ghi nhận ở baseline lịch sử này đã được sửa tại commit `30c39d3` ngày 2026-10-08: runner chấp nhận cả `ChatGPT X.Y base` và `ChatGPT vX.Y base`. Cặp control hiện hành được mô tả ở phần active stack; parser vẫn kiểm tra khai báo nền và tệp nền, không suy mọi lỗi BLOCKED đều đã được giải quyết. Đây chỉ là kiểm chứng cấu trúc, không xác nhận kết quả ngữ nghĩa hoặc runtime Project.
 
 For a separately authorized live Project experiment:
 
@@ -140,7 +140,7 @@ Eight synthetic paired cases remain DRAFT:
 
 Each case pins current CI 3.0, Router 4.3, the new overlay, and only its applicable conditional controls. BASE and VARIANT are hypothetical premises, not observed responses. Source-specified supernatural effects remain valid; no Earth social model overrides them.
 
-The runner adds numeric family resolution and changed-control matching only. Schema, SHA anchors, lifecycle, numeric ordering, and duplicate-version probes are structural checks; they do not execute or judge the paired inputs. Existing upstream-base parsing remains BLOCKED as documented above. Older DRAFT anchor warnings are review signals, not lifecycle changes.
+The runner adds numeric family resolution and changed-control matching only. Schema, SHA anchors, lifecycle, numeric ordering, and duplicate-version probes are structural checks; they do not execute or judge the paired inputs. Lỗi upstream-base parser được ghi nhận tại mốc tích hợp lịch sử này đã được sửa ngày 2026-10-08 (`30c39d3`). Older DRAFT anchor warnings are review signals, not lifecycle changes.
 
 For a separately authorized live Project experiment, verify the installed controls against the fixture anchors, then submit the complete operation, boundary, and input in a fresh Project chat as a synthetic hypothetical. Assess both invalid inferences and the permitted affirmative conclusions against the protected distinction; do not judge exact wording. Preserve DRAFT unless activation is explicitly authorized. Repository publication does not deploy these controls.
 
@@ -160,7 +160,7 @@ Seven paired synthetic cases remain DRAFT, labeled `ABSTRACT TEST ONLY / NOT CAN
 | F / conditional_branch_termination | Loss of a required basis or fulfillment of a supported end condition changes persistence, not every other branch. |
 | G / conditional_branch_canon_boundary | Successful simulation remains non-canon without normal scoped acceptance; accepting one event does not accept hidden causes. |
 
-Each case pins CI 3.0, Router 4.4, MCA 1.2, and only applicable domain controls. The runner's existing numeric MCA resolver and changed-family matching require no code change. Older DRAFT lifecycles/anchors are not migrated. Structural checks validate schema, hashes, selection, and preservation, not model compliance. The pre-existing upstream-base parser blocker remains outside this change.
+Each case pins CI 3.0, Router 4.4, MCA 1.2, and only applicable domain controls. The runner's existing numeric MCA resolver and changed-family matching require no code change. Older DRAFT lifecycles/anchors are not migrated. Structural checks validate schema, hashes, selection, and preservation, not model compliance. Lỗi upstream-base parser được ghi nhận tại mốc tích hợp lịch sử này đã được sửa ngày 2026-10-08 (`30c39d3`).
 
     pwsh -NoProfile -File .\tests\control-regressions\run.ps1 -ListDrafts -ChangedControlFile 'Anti-Drift Source/FTH_Anti_Drift_Modular_Concept_Architecture_v1.2.md'
 

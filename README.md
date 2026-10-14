@@ -75,7 +75,7 @@ Read this as an author's working environment for maintaining fictional worlds wi
 | Project | Repository entry | Interpretation |
 | --- | --- | --- |
 | Project Feather Core (FTH) | [Project Feather Core](./Project%20Feather%20Core/) | Its own sources, controls, and project-specific authority; AetherFire is a country inside it. |
-| The Kingdom | [The Kingdom](./worlds/The%20Kingdom/) | Its own world model and local rules; do not infer its architecture from AetherFire or The Academy. |
+| The Kingdom | [The Kingdom](./worlds/The%20Kingdom/) | Its own world model and local rules; do not infer its architecture from Project Feather Core or The Academy. |
 | The Academy | [The Academy Project](./worlds/The%20Academy%20Project/) | Its own world model and source structure; shared terminology does not imply shared fictional objects. |
 
 Each project's local documentation determines how to read its sources. Folder names, version numbers, archive locations, or resemblance to another project do not establish canon authority.
