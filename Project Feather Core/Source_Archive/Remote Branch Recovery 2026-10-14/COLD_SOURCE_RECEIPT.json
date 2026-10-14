@@ -1,0 +1,191 @@
+{
+  "source_branch": "codex/aetherfire-cold-storage-20261002",
+  "source_commit": "81a3026bdcbc788f7217a1c4c4abb3c284f58c89",
+  "package_git_blob": "1e95bb83bba8207774b7a7bd9be86721edebb3dd",
+  "package_sha256": "24ad88ac78c7d458fc835ebba030cbff8f07168a0bdc306c3fe18bea59e83f2e",
+  "sources": [
+    {
+      "identity": "91_RECONCILIATION_RECORD.md",
+      "authoring_path": "91_RECONCILIATION_RECORD.md",
+      "role": "RECONCILIATION",
+      "bytes": 44653,
+      "sha256": "b9d70adb8d0563b4f8dd1c5d57916b33882bd9269d90b1cc08972a16fa428f72",
+      "main_blob": "50666931fe26895577f2894ee38b7438fce1e70e",
+      "relation": "BYTE_CONTAINED"
+    },
+    {
+      "identity": "90_DESIGN_HISTORY_AND_RECONSIDERATIONS.md",
+      "authoring_path": "90_DESIGN_HISTORY_AND_RECONSIDERATIONS.md",
+      "role": "MIXED_HISTORY",
+      "bytes": 123716,
+      "sha256": "a761b7b3e75081a07ae76ecfffaad0436e5d42eeca609ff7da44aa8116945ece",
+      "main_blob": "c799f3215bb7669e51efec47e48543dea6f705f8",
+      "relation": "BYTE_CONTAINED"
+    },
+    {
+      "identity": "AetherFire_Anti_Drift_Interface_Economy_State_Stabilization_v1.1.md",
+      "authoring_path": "Anti-Drift Source/AetherFire_Anti_Drift_Interface_Economy_State_Stabilization_v1.1.md",
+      "role": "OVERLAY",
+      "bytes": 15021,
+      "sha256": "3c9940f55c34d8725517aa0403ece70d4815b93e0af393530dedaef99308375a",
+      "main_blob": "55f43dfcee1e851d6ad12031dac686fe08181a23",
+      "relation": "BYTE_CONTAINED"
+    },
+    {
+      "identity": "AetherFire_Anti_Drift_Modular_Concept_Architecture_v1.0.md",
+      "authoring_path": "Anti-Drift Source/AetherFire_Anti_Drift_Modular_Concept_Architecture_v1.0.md",
+      "role": "OVERLAY",
+      "bytes": 11962,
+      "sha256": "31e9bee1348409e7728bd01c70dd9bec15cb1e3120f33ac7333af7e0dccd49e2",
+      "main_blob": "0615044f6c6624ac005e2de4a1095d9db3e9c7e2",
+      "relation": "BYTE_CONTAINED"
+    },
+    {
+      "identity": "AetherFire_Anti_Drift_Mortality_Relationship_Plot_Immunity_v1.1.md",
+      "authoring_path": "Anti-Drift Source/AetherFire_Anti_Drift_Mortality_Relationship_Plot_Immunity_v1.1.md",
+      "role": "OVERLAY",
+      "bytes": 14762,
+      "sha256": "5b9af9d019d6d346a52a9d35247085f4b4646b258083ed1647744e63936fa40b",
+      "main_blob": "690ee973be22a88a42e6053767443bbf117264fc",
+      "relation": "BYTE_CONTAINED"
+    },
+    {
+      "identity": "AetherFire_Anti_Drift_Total_War_RP_v1.1.md",
+      "authoring_path": "Anti-Drift Source/AetherFire_Anti_Drift_Total_War_RP_v1.1.md",
+      "role": "OVERLAY",
+      "bytes": 28003,
+      "sha256": "d7d464522b3be69cb2cbff70814a28a566df8f8ba7d2095f0744f4b6bc7f1d2b",
+      "main_blob": "03a5f04c71c46661d2bbb67a020fa401fa667c4a",
+      "relation": "BYTE_CONTAINED"
+    },
+    {
+      "identity": "AetherFire_Anti_Drift_Worldbuilding_Internal_Logic_v1.1.md",
+      "authoring_path": "Anti-Drift Source/AetherFire_Anti_Drift_Worldbuilding_Internal_Logic_v1.1.md",
+      "role": "OVERLAY",
+      "bytes": 16713,
+      "sha256": "6ca481196efaa946d0cce222c48ba1b1bb8b41357448ef4c7cc129a48840bde2",
+      "main_blob": "634403459118f1093aded803809e4a0fd5e9a7d2",
+      "relation": "BYTE_CONTAINED"
+    }
+  ],
+  "captured_manifest": {
+    "generation": "3859d2f48a9865d579e5a2a12dd8ae37373257d5af374a37172499e7944157d2",
+    "format": "AF-COLD-1",
+    "sources": [
+      {
+        "identity": "91_RECONCILIATION_RECORD.md",
+        "authoring_path": "91_RECONCILIATION_RECORD.md",
+        "role": "RECONCILIATION",
+        "bytes": 44653,
+        "sha256": "b9d70adb8d0563b4f8dd1c5d57916b33882bd9269d90b1cc08972a16fa428f72"
+      },
+      {
+        "identity": "90_DESIGN_HISTORY_AND_RECONSIDERATIONS.md",
+        "authoring_path": "90_DESIGN_HISTORY_AND_RECONSIDERATIONS.md",
+        "role": "MIXED_HISTORY",
+        "bytes": 123716,
+        "sha256": "a761b7b3e75081a07ae76ecfffaad0436e5d42eeca609ff7da44aa8116945ece"
+      },
+      {
+        "identity": "AetherFire_Anti_Drift_Interface_Economy_State_Stabilization_v1.1.md",
+        "authoring_path": "Anti-Drift Source/AetherFire_Anti_Drift_Interface_Economy_State_Stabilization_v1.1.md",
+        "role": "OVERLAY",
+        "bytes": 15021,
+        "sha256": "3c9940f55c34d8725517aa0403ece70d4815b93e0af393530dedaef99308375a"
+      },
+      {
+        "identity": "AetherFire_Anti_Drift_Modular_Concept_Architecture_v1.0.md",
+        "authoring_path": "Anti-Drift Source/AetherFire_Anti_Drift_Modular_Concept_Architecture_v1.0.md",
+        "role": "OVERLAY",
+        "bytes": 11962,
+        "sha256": "31e9bee1348409e7728bd01c70dd9bec15cb1e3120f33ac7333af7e0dccd49e2"
+      },
+      {
+        "identity": "AetherFire_Anti_Drift_Mortality_Relationship_Plot_Immunity_v1.1.md",
+        "authoring_path": "Anti-Drift Source/AetherFire_Anti_Drift_Mortality_Relationship_Plot_Immunity_v1.1.md",
+        "role": "OVERLAY",
+        "bytes": 14762,
+        "sha256": "5b9af9d019d6d346a52a9d35247085f4b4646b258083ed1647744e63936fa40b"
+      },
+      {
+        "identity": "AetherFire_Anti_Drift_Total_War_RP_v1.1.md",
+        "authoring_path": "Anti-Drift Source/AetherFire_Anti_Drift_Total_War_RP_v1.1.md",
+        "role": "OVERLAY",
+        "bytes": 28003,
+        "sha256": "d7d464522b3be69cb2cbff70814a28a566df8f8ba7d2095f0744f4b6bc7f1d2b"
+      },
+      {
+        "identity": "AetherFire_Anti_Drift_Worldbuilding_Internal_Logic_v1.1.md",
+        "authoring_path": "Anti-Drift Source/AetherFire_Anti_Drift_Worldbuilding_Internal_Logic_v1.1.md",
+        "role": "OVERLAY",
+        "bytes": 16713,
+        "sha256": "6ca481196efaa946d0cce222c48ba1b1bb8b41357448ef4c7cc129a48840bde2"
+      }
+    ],
+    "hot": [
+      {
+        "identity": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+        "authoring_path": "10_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md",
+        "role": "HOT",
+        "bytes": 58329,
+        "sha256": "82cc0066c787127fe1247f5b0528b9bda34f0edaa1d5085a3bb4e147c3b2cba5"
+      },
+      {
+        "identity": "20_STATUS_CIVIL_LABOR_CURRENT.md",
+        "authoring_path": "20_STATUS_CIVIL_LABOR_CURRENT.md",
+        "role": "HOT",
+        "bytes": 40382,
+        "sha256": "b6a7c7e03d4bc6fb90ae60f4a8d91676a6ee704975101a96aca5540e6944286b"
+      },
+      {
+        "identity": "30_UNDIE_SYSTEM_CURRENT.md",
+        "authoring_path": "30_UNDIE_SYSTEM_CURRENT.md",
+        "role": "HOT",
+        "bytes": 88331,
+        "sha256": "74b4ea2cc862e902f2424792cbab23a0c9d9d8c42fbc57625664c760ae8225bb"
+      },
+      {
+        "identity": "40_METAFICTION_CANON_TIMELINE_CURRENT.md",
+        "authoring_path": "40_METAFICTION_CANON_TIMELINE_CURRENT.md",
+        "role": "HOT",
+        "bytes": 40174,
+        "sha256": "da091979531883c282d1f1f16d006d0fef786bcffb7bc4f98a6ddefdc6ecc1c6"
+      },
+      {
+        "identity": "50_NARRATORS_POV_AND_HUMOR_CURRENT.md",
+        "authoring_path": "50_NARRATORS_POV_AND_HUMOR_CURRENT.md",
+        "role": "HOT",
+        "bytes": 21141,
+        "sha256": "fb560b5b17c5b357a2772736da9310c0f0549f6058a231d7e9d62b066ef7fb99"
+      },
+      {
+        "identity": "60_MC4_IDENTITY_CURRENT.md",
+        "authoring_path": "60_MC4_IDENTITY_CURRENT.md",
+        "role": "HOT",
+        "bytes": 3811,
+        "sha256": "0daa2d8fa67677899a96bb1450b0da01534430cbf2c87a338a91285591e20745"
+      },
+      {
+        "identity": "70_MATRIARCHS_LAMENT_CURRENT.md",
+        "authoring_path": "70_MATRIARCHS_LAMENT_CURRENT.md",
+        "role": "HOT",
+        "bytes": 18712,
+        "sha256": "a843d44362392aa1940f69a9fce0c26576dc82713586abbcb419f964778f8158"
+      },
+      {
+        "identity": "80_STABLE_AVIATION_RF_AIRSPACE_CURRENT.md",
+        "authoring_path": "80_STABLE_AVIATION_RF_AIRSPACE_CURRENT.md",
+        "role": "HOT",
+        "bytes": 16028,
+        "sha256": "ad809c5c47e7786ab2df30bbe3b8f4102d90f9e470816d1c130b9c3600da298c"
+      },
+      {
+        "identity": "92_OPEN_ISSUES_CURRENT.md",
+        "authoring_path": "92_OPEN_ISSUES_CURRENT.md",
+        "role": "HOT",
+        "bytes": 13659,
+        "sha256": "0dd887ed402270eccffbe4cf64ba3afb2e81c506e3b6d37f42f9f6ac7954d6e6"
+      }
+    ]
+  }
+}

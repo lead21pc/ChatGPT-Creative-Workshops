@@ -27,3 +27,6 @@ Source_Archive/Orphan*Payload*Recovery*2026-10-13/residual_reconciliation_2026-1
 # Preserve the unmodified non-runtime source-structure candidate and provenance.
 New*Canon*and*Consideration/AetherFire_Source_Structure_Pack_v1/** -text whitespace=-blank-at-eol,-blank-at-eof
 Source_Archive/Orphan*Payload*Recovery*2026-10-13/source_architecture_reconciliation_2026-10-14/** -text
+# Preserve the captured, non-runtime remote storage prototype and its receipt.
+New*Canon*and*Consideration/AetherFire_Cold_Storage_Prototype_2026-10-02/** -text whitespace=-blank-at-eol,-blank-at-eof
+Source_Archive/Remote*Branch*Recovery*2026-10-14/** -text whitespace=-blank-at-eol,-blank-at-eof
