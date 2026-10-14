@@ -1,0 +1,28 @@
+{
+  "pack": "AetherFire_Source_Structure_Pack_v1",
+  "status": "NON_CANON_STRUCTURE_TOOLING",
+  "file_count": 16,
+  "files": [
+    "CODEX_SOFT_REFACTOR_HANDOFF.md",
+    "DIRECTORY_LAYOUT_TARGET.md",
+    "MODULE_ADMISSION_CHECKLIST.md",
+    "Migration/SAMPLE_THE_KINGDOM_DMZ_DECOMPOSITION.md",
+    "Migration/THE_KINGDOM_MIGRATION_WORKSHEET.md",
+    "README.md",
+    "SOURCE_STRUCTURE_STANDARD.md",
+    "Samples/SAMPLE_LOST_CIVILIZATION_MODULE.md",
+    "Samples/SAMPLE_POLITY_IMPLEMENTATION_AF_CIVIC_TERMINAL.md",
+    "Samples/SAMPLE_SHARED_INTERFACE_CONTACT_VERIFICATION.md",
+    "Templates/TEMPLATE_CURRENT_SOURCE.md",
+    "Templates/TEMPLATE_LOST_HISTORICAL_CURRENT.md",
+    "Templates/TEMPLATE_POLITY_IMPLEMENTATION_CURRENT.md",
+    "Templates/TEMPLATE_SHARED_INTERFACE_CURRENT.md",
+    "Templates/TEMPLATE_SPECIALIZED_CAPABILITY_CURRENT.md",
+    "Templates/TEMPLATE_WORKING_PROPOSAL.md"
+  ],
+  "notes": [
+    "No real Module ID assigned.",
+    "Samples/templates are non-runtime.",
+    "Physical relocation is optional and should be atomic with 00/path-reference updates."
+  ]
+}

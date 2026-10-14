@@ -24,3 +24,6 @@ Source_Archive/Old*Structure*Lore/pre_module_header_2026-09-29/*.md whitespace=-
 Source_Archive/Orphan*Payload*Recovery*2026-10-13/** whitespace=-blank-at-eol,-blank-at-eof
 # Binary-preserve all historical evidence types, including JSON and Python.
 Source_Archive/Orphan*Payload*Recovery*2026-10-13/residual_reconciliation_2026-10-14/** -text
+# Preserve the unmodified non-runtime source-structure candidate and provenance.
+New*Canon*and*Consideration/AetherFire_Source_Structure_Pack_v1/** -text whitespace=-blank-at-eol,-blank-at-eof
+Source_Archive/Orphan*Payload*Recovery*2026-10-13/source_architecture_reconciliation_2026-10-14/** -text
