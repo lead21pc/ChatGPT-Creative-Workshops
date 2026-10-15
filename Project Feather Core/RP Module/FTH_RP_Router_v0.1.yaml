@@ -1,0 +1,79 @@
+# FTH RP Router v0.1 — procedural control, not lore or an anti-drift overlay.
+# Local test baseline. Presence in the repository does not install or activate it.
+version: '0.1'
+activation: >-
+  Explicitly request this RP module and read this file and FTH_RP_Runtime_v0.1.md
+  FULL_FILE. Ordinary RP prompts alone do not auto-activate this baseline.
+  If either control is unavailable, block dependent RP execution. When disabled,
+  impose no RP source or control requirement on the unchanged FTH core.
+upstream: Anti-Drift Source/FTH_Anti_Drift_Source_Router_v5.0.yaml
+runtime: FTH_RP_Runtime_v0.1.md
+entry: >-
+  Follow the installed FTH CI's Source Router entry. Select/apply RP payload only
+  after required world source, reconciliation and anti-drift gates complete.
+  Reading RP controls for setup does not authorize early simulation or portrayal.
+owns: [RP source selection, Library source location, RP header verification, RP source failure, RP selection refresh]
+does_not_own: [canon truth, world source authority, reconciliation, UNKNOWN resolution, anti-drift selection, canon personality, persistent scene state]
+memory: >-
+  Memory is not a source, world/character authority, RP state source, routing
+  input or fallback. Prior-chat familiarity is not evidence or a read proof.
+
+# No runtime Library location has been confirmed. This is an empty inventory,
+# not a placeholder source and not a claim that no RP sources exist elsewhere.
+catalog: []
+catalog_contract: >-
+  Keep the small ID-to-Library mapping here. Each admitted entry records
+  RP Module ID, confirmed stable Library location, Runtime role, Actor / Scope,
+  Authority boundary and Load mode for verification. Confirm location and scoped
+  permission to use the portrayal during explicit setup before adding an entry.
+  A task-local binding with the same confirmed fields may be supplied explicitly
+  for a test; do not infer it or persist it automatically. Catalog presence and
+  self-declared headers grant no world/canon authority. Never map a runtime ID to
+  a repository fixture or control-plane payload. Backend file_id, version ID and
+  retrieval handles are access details, never semantic identity.
+selection: >-
+  Use only the current request, current-chat scene and upstream-supported context
+  to select applicable entries by actor and material interaction scope. Use one
+  mechanism for portrayal, trait expression, dialogue examples and situations;
+  one source may cover several. Load only applicable sources. Duplicate identity,
+  ambiguous material selection or conflicting applicable guidance blocks the
+  dependent portrayal; do not choose by recency, similarity or filename.
+required_header: [RP Module ID, Runtime role, Actor / Scope, Authority boundary, Load mode]
+id_namespace: FTH-RP-*
+source_role: RP_PORTRAYAL_SOURCE
+load_mode: FULL_FILE
+source_gate: >-
+  Select ID -> locate the confirmed Library source -> actually read FULL_FILE ->
+  verify header -> use body. Require each header field exactly once and nonempty;
+  require an FTH-RP- identity (never AFM-*), the selected ID, RP_PORTRAYAL_SOURCE,
+  applicable actor/scope, portrayal-only authority within the confirmed binding,
+  and FULL_FILE. Reject missing/duplicate/mismatched fields or a TEST FIXTURE.
+  Hits, snippets, headers alone, summaries and prior responses prove no full read.
+  Readable text or matching identity alone proves neither admission nor authority.
+actor_without_source: >-
+  If no source is applicable or required in the configured route, use the user
+  prompt, current chat context and routed world context. No temporary ID, actor
+  object, registry entry or persistent profile is needed. This does not establish
+  global source absence or authorize persistent personality/canon invention.
+source_failure: >-
+  An explicitly required ID without a confirmed binding, failed Library retrieval,
+  wrong ID/role/actor/scope/authority/load mode, ambiguous identity or a material
+  contradiction blocks the dependent portrayal. Never reclassify it as an actor
+  without a source; never substitute Memory, a fixture, a repository copy or a
+  similar source. State the gap briefly and continue only independently supported
+  work. World/canon contradictions go upstream to the Source Router; do not
+  reconcile them here or silently rewrite the source. No entire-scene failure
+  follows when an independent supported interaction can still proceed.
+refresh: >-
+  On a material information need, let the Runtime stop the dependent step and
+  return upstream first. After Source Router gates, re-evaluate selected RP sources
+  against the updated context before continuing. Retain only still-applicable
+  guidance; load/verify any newly selected source. Reuse an actual prior FULL_FILE
+  read only while its content and verified scope remain available and sufficient
+  in this chat; otherwise read again. Do not silently reuse invalidated premises.
+  Consume upstream control applicability; do not reselect world overlays or keep
+  obsolete controls binding solely because they were once selected.
+retained_state: >-
+  Current-chat source selections, actual read evidence and scope only. No external
+  or cross-chat state. A blocked need does not trigger endless retries: retry only
+  after new evidence, restored access or changed scope can alter the result.
