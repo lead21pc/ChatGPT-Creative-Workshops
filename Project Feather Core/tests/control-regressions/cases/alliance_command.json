@@ -4,7 +4,7 @@
   "status": "DRAFT",
   "provenance": {
     "kind": "CURRENT_CONTROL_CONTRACT",
-    "reference": "Project Feather Core CI/FTH_CI_version_v3.2.md:Relations and simulation; Anti-Drift Source/FTH_Anti_Drift_Total_War_RP_v1.1.md:1062-1064",
+    "reference": "Project Feather Core CI/source_archive/FTH_CI_version_v3.2.md:Relations and simulation; Anti-Drift Source/FTH_Anti_Drift_Total_War_RP_v1.1.md:1062-1064",
     "note": "CI dự án và overlay chiến tranh hiện hành cùng giới hạn suy luận về chỉ huy; không khẳng định lỗi runtime lịch sử."
   },
   "operation": "Diễn giải liên minh trong mô phỏng giả định.",
@@ -13,12 +13,12 @@
   "protected_distinction": "ALLIANCE != SHARED COMMAND",
   "forbidden_conversion": "Biến liên minh thành chuỗi chỉ huy chung.",
   "recheck_on": [
-    "Project Feather Core CI/FTH_CI_version_v3.2.md",
+    "Project Feather Core CI/source_archive/FTH_CI_version_v3.2.md",
     "Anti-Drift Source/FTH_Anti_Drift_Total_War_RP_v1.1.md"
   ],
   "active_control_anchors": [
     {
-      "path": "Project Feather Core CI/FTH_CI_version_v3.2.md",
+      "path": "Project Feather Core CI/source_archive/FTH_CI_version_v3.2.md",
       "sha256": "4F4F08C622BEB6DB63061ACAB73216F844C81F9778D068E6B0D9461116739D6E"
     },
     {

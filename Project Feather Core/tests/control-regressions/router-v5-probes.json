@@ -3,12 +3,12 @@
   "model_executed": false,
   "structural_check_only": true,
   "baseline": {
-    "ci": "Project Feather Core CI/FTH_CI_version_v3.2.md",
-    "router": "Anti-Drift Source/FTH_Anti_Drift_Source_Router_v4.4.md",
+    "ci": "Project Feather Core CI/source_archive/FTH_CI_version_v3.2.md",
+    "router": "Anti-Drift Source/Source_Archive/FTH_Anti_Drift_Source_Router_v4.4.md",
     "pipeline": "Anti-Drift Source/FTH_Authoring_Pipeline_v1.0.md"
   },
   "candidate": {
-    "ci": "Project Feather Core CI/FTH_CI_version_v3.3.md",
+    "ci": "Project Feather Core CI/source_archive/FTH_CI_version_v3.3.md",
     "router": "Anti-Drift Source/FTH_Anti_Drift_Source_Router_v5.0.yaml",
     "pipeline": "Anti-Drift Source/FTH_Authoring_Pipeline_v1.1.md"
   },

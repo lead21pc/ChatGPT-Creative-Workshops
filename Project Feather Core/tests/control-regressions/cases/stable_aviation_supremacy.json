@@ -4,7 +4,7 @@
   "status": "DRAFT",
   "provenance": {
     "kind": "CURRENT_RECONCILIATION_EVIDENCE",
-    "reference": "06_STABLE_AVIATION_RF_AIRSPACE_CURRENT.md:Interpretation boundary; 91_RECONCILIATION_RECORD.md:Stable aviation and RF airspace integration — 2026-09-17; Project Feather Core CI/FTH_CI_version_v3.2.md:Turn and canon; Source gate; Anti-Drift Source/FTH_Anti_Drift_Source_Router_v3.2.md:Read Order Is Not Authority Order, Reconciliation Before Execution; Anti-Drift Source/FTH_Anti_Drift_Total_War_RP_v1.1.md:847-863",
+    "reference": "06_STABLE_AVIATION_RF_AIRSPACE_CURRENT.md:Interpretation boundary; 91_RECONCILIATION_RECORD.md:Stable aviation and RF airspace integration — 2026-09-17; Project Feather Core CI/source_archive/FTH_CI_version_v3.2.md:Turn and canon; Source gate; Anti-Drift Source/FTH_Anti_Drift_Source_Router_v3.2.md:Read Order Is Not Authority Order, Reconciliation Before Execution; Anti-Drift Source/FTH_Anti_Drift_Total_War_RP_v1.1.md:847-863",
     "note": "Canon hiện tại và bản ghi hoà giải giới hạn phát biểu về hạ tầng; CI, Router và overlay chi phối suy luận trong nhiệm vụ liên quan. Không xác nhận lỗi runtime lịch sử."
   },
   "operation": "Giữ giới hạn kết luận về ưu thế hàng không trong kịch bản.",
@@ -13,7 +13,7 @@
   "protected_distinction": "SOLE CONFIRMED STABLE INFRASTRUCTURE != MONOPOLY OR AIR SUPREMACY",
   "forbidden_conversion": "Suy ra độc quyền bay hoặc ưu thế trên không từ hạ tầng ổn định được xác nhận.",
   "recheck_on": [
-    "Project Feather Core CI/FTH_CI_version_v3.2.md",
+    "Project Feather Core CI/source_archive/FTH_CI_version_v3.2.md",
     "Anti-Drift Source/FTH_Anti_Drift_Source_Router_v3.2.md",
     "Anti-Drift Source/FTH_Anti_Drift_Total_War_RP_v1.1.md",
     "06_STABLE_AVIATION_RF_AIRSPACE_CURRENT.md",
@@ -21,7 +21,7 @@
   ],
   "active_control_anchors": [
     {
-      "path": "Project Feather Core CI/FTH_CI_version_v3.2.md",
+      "path": "Project Feather Core CI/source_archive/FTH_CI_version_v3.2.md",
       "sha256": "4F4F08C622BEB6DB63061ACAB73216F844C81F9778D068E6B0D9461116739D6E"
     },
     {

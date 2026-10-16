@@ -64,7 +64,7 @@ class RouterCandidateTests(unittest.TestCase):
             self.rejected()
 
     def test_compatibility_tuple_rejected(self):
-        for key, value in [('status', 'CANDIDATE'), ('ci_version', '3.2'), ('upstream_base', '8.9'), ('router_version', '4.4')]:
+        for key, value in [('status', 'CANDIDATE'), ('ci_version', '3.2'), ('upstream_base', '8.8'), ('router_version', '4.4')]:
             self.data = deepcopy(self.original)
             self.data['deployment'][key] = value
             self.rejected()
@@ -93,7 +93,7 @@ class RouterCandidateTests(unittest.TestCase):
                 shutil.copyfile(ROOT / relative, target)
             path = root / self.data['deployment']['ci']
             original = path.read_text(encoding='utf-8')
-            for old, new in [('v3.3 (FTH)', 'v3.2 (FTH)'), ('ChatGPT 8.8 base', 'ChatGPT 8.9 base'),
+            for old, new in [('v3.4 (FTH)', 'v3.2 (FTH)'), ('ChatGPT 8.9 base', 'ChatGPT 8.8 base'),
                              ('Status: ACTIVE PROJECT CONTROL', 'Status: CANDIDATE;'),
                              ('FTH_Authoring_Pipeline_v1.1.md', 'FTH_Authoring_Pipeline_v1.0.md'), (original, ''), (original, original + 'x' * 8001)]:
                 path.write_text(original.replace(old, new), encoding='utf-8')
@@ -114,8 +114,8 @@ class RouterCandidateTests(unittest.TestCase):
                 target = root / relative
                 target.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copyfile(ROOT / relative, target)
-            for relative in ['ChatGPT Plus+ Era/chatgpt v8.8.txt',
-                             'llm-controls/global-instructions/ChatGPT Plus+ Era/chatgpt v8.8.txt']:
+            for relative in ['ChatGPT Plus+ Era/chatgpt v8.9.txt',
+                             'llm-controls/global-instructions/ChatGPT Plus+ Era/chatgpt v8.9.txt']:
                 upstream = repository / relative
                 upstream.parent.mkdir(parents=True, exist_ok=True)
                 upstream.write_text('maintenance file presence fixture', encoding='utf-8')
@@ -224,20 +224,21 @@ class RouterCandidateTests(unittest.TestCase):
         self.assertNotIn('FTH state authority', hook)
 
     def test_ci_changes_confined_to_approved_boundary_sections(self):
-        old = (ROOT / 'Project Feather Core CI/FTH_CI_version_v3.2.md').read_text(encoding='utf-8')
-        new = (ROOT / self.data['deployment']['ci']).read_text(encoding='utf-8')
-        old_intro, old_rest = old.split('## Source gate', 1)
-        new_intro, new_rest = new.split('## Source gate', 1)
-        status = '> Status: ACTIVE PROJECT CONTROL\n\n'
-        normalized = new_intro.replace('v3.3 (FTH)', 'v3.2 (FTH)', 1).replace(status, '')
-        normalized = normalized.replace('FTH_Authoring_Pipeline_v1.1.md', 'FTH_Authoring_Pipeline_v1.0.md', 1)
-        self.assertEqual(normalized, old_intro)
-        marker = '## Relations and simulation'
-        old_tail = old_rest.split(marker, 1)[1]
-        new_tail = new_rest.split(marker, 1)[1]
-        old_overlay_entry = 'After reconciliation, Router selects overlays/dependencies; initial modular architecture requires activated overlays as `FULL_FILE`.'
-        self.assertEqual(new_tail, old_tail.replace(old_overlay_entry, 'Router alone selects and loads overlays/dependencies.'))
-        self.assertLessEqual(len((ROOT / self.data['deployment']['ci']).read_bytes().decode('utf-8')), 8000)
+        import difflib
+        old = (ROOT / 'Project Feather Core CI/source_archive/FTH_CI_version_v3.3.md').read_text(encoding='utf-8')
+        new_path = ROOT / self.data['deployment']['ci']
+        new = new_path.read_text(encoding='utf-8')
+        changes = [line for line in difflib.ndiff(old.splitlines(), new.splitlines())
+                   if line.startswith(('- ', '+ ')) and line[2:]]
+        removed = [line[2:] for line in changes if line.startswith('- ')]
+        added = [line[2:] for line in changes if line.startswith('+ ')]
+        self.assertEqual([line.split(':', 1)[0] for line in removed],
+                         ['# Project Feather Core CI v3.3 (FTH) - ChatGPT 8.8 base',
+                          'VIETNAMESE', 'DISCOURSE FIDELITY', 'Operation'])
+        self.assertEqual([line.split(':', 1)[0] for line in added],
+                         ['# Project Feather Core CI v3.4 (FTH) - ChatGPT 8.9 base',
+                          'VIETNAMESE', 'DISCOURSE FIDELITY', 'Operation'])
+        self.assertLessEqual(len(new_path.read_bytes().decode('utf-8')), 8000)
 
     def test_probes_cover_draft_contracts_without_runtime_claim(self):
         import json
@@ -250,7 +251,7 @@ class RouterCandidateTests(unittest.TestCase):
     def test_active_stack_numeric_yaml_resolution_and_duplicate_rejection(self):
         import shutil
         excluded = self.data['control_selection']['excluded_statuses']
-        for directory, stem, expected in [('Project Feather Core CI', 'FTH_CI_version', 'FTH_CI_version_v3.3.md'),
+        for directory, stem, expected in [('Project Feather Core CI', 'FTH_CI_version', 'FTH_CI_version_v3.4.md'),
                                          ('Anti-Drift Source', 'FTH_Anti_Drift_Source_Router', 'FTH_Anti_Drift_Source_Router_v5.0.yaml'),
                                          ('Anti-Drift Source', 'FTH_Authoring_Pipeline', 'FTH_Authoring_Pipeline_v1.1.md')]:
             self.assertEqual(resolve_control(ROOT / directory, stem, excluded).name, expected)
@@ -275,39 +276,39 @@ class RouterCandidateTests(unittest.TestCase):
             self.assertNotIn('not deployed', text)
             self.assertNotIn('/candidates/', text)
 
-    def test_ci34_candidate_is_bounded_rebase_without_self_activation(self):
+    def test_ci34_active_is_bounded_rebase(self):
         import difflib
-        active_path = ROOT / 'Project Feather Core CI/FTH_CI_version_v3.3.md'
-        candidate_path = ROOT / 'Project Feather Core CI/candidates/FTH_CI_version_v3.4.md'
+        predecessor_path = ROOT / 'Project Feather Core CI/source_archive/FTH_CI_version_v3.3.md'
+        active_path = ROOT / 'Project Feather Core CI/FTH_CI_version_v3.4.md'
+        predecessor = predecessor_path.read_text(encoding='utf-8')
         active = active_path.read_text(encoding='utf-8')
-        candidate = candidate_path.read_text(encoding='utf-8')
-        self.assertLessEqual(len(candidate_path.read_bytes().decode('utf-8')), 8000)
-        self.assertTrue(candidate.startswith('# Project Feather Core CI v3.4 (FTH) - ChatGPT 8.9 base\n'))
-        self.assertNotIn('> Status:', candidate)
-        self.assertNotIn('not deployed', candidate)
-        self.assertIn('FTH_Anti_Drift_Source_Router_v5.0.yaml', candidate)
-        self.assertIn('FTH_Authoring_Pipeline_v1.1.md', candidate)
+        self.assertLessEqual(len(active_path.read_bytes().decode('utf-8')), 8000)
+        self.assertTrue(active.startswith('# Project Feather Core CI v3.4 (FTH) - ChatGPT 8.9 base\n'))
+        self.assertIn('> Status: ACTIVE PROJECT CONTROL', active)
+        self.assertNotIn('not deployed', active)
+        self.assertIn('FTH_Anti_Drift_Source_Router_v5.0.yaml', active)
+        self.assertIn('FTH_Authoring_Pipeline_v1.1.md', active)
         upstream = 'ChatGPT Plus+ Era/chatgpt v8.9.txt'
         self.assertTrue(any(path.is_file() for path in
                             (ROOT.parent / upstream,
                              ROOT.parent / 'llm-controls/global-instructions' / upstream)))
         self.assertEqual(resolve_control(ROOT / 'Project Feather Core CI', 'FTH_CI_version',
                                          self.data['control_selection']['excluded_statuses']).name,
-                         'FTH_CI_version_v3.3.md')
+                         'FTH_CI_version_v3.4.md')
 
-        changes = [line for line in difflib.ndiff(active.splitlines(), candidate.splitlines())
+        changes = [line for line in difflib.ndiff(predecessor.splitlines(), active.splitlines())
                    if line.startswith(('- ', '+ ')) and line[2:]]
         removed = [line[2:] for line in changes if line.startswith('- ')]
         added = [line[2:] for line in changes if line.startswith('+ ')]
         self.assertEqual([line.split(':', 1)[0] for line in removed],
                          ['# Project Feather Core CI v3.3 (FTH) - ChatGPT 8.8 base',
-                          '> Status', 'VIETNAMESE', 'DISCOURSE FIDELITY', 'Operation'])
+                          'VIETNAMESE', 'DISCOURSE FIDELITY', 'Operation'])
         self.assertEqual([line.split(':', 1)[0] for line in added],
                          ['# Project Feather Core CI v3.4 (FTH) - ChatGPT 8.9 base',
                           'VIETNAMESE', 'DISCOURSE FIDELITY', 'Operation'])
 
-    def test_ci34_candidate_carries_89_semantic_deltas(self):
-        text = (ROOT / 'Project Feather Core CI/candidates/FTH_CI_version_v3.4.md').read_text(encoding='utf-8')
+    def test_ci34_active_carries_89_semantic_deltas(self):
+        text = (ROOT / 'Project Feather Core CI/FTH_CI_version_v3.4.md').read_text(encoding='utf-8')
         for required in ['A rephrase corrects only if meaning changes',
                          'Do not mark continuity with agreement',
                          'findings alone do not expand the task',

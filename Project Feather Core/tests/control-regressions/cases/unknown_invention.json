@@ -4,7 +4,7 @@
   "status": "DRAFT",
   "provenance": {
     "kind": "CURRENT_CONTROL_CONTRACT",
-    "reference": "llm-controls/global-instructions/ChatGPT Plus+ Era/chatgpt v8.8.txt:EPISTEMIC NON-ESCALATION; Project Feather Core CI/FTH_CI_version_v3.2.md:Turn and canon; Source gate; Anti-Drift Source/FTH_Anti_Drift_Source_Router_v3.2.md:Reconciliation Before Execution",
+    "reference": "llm-controls/global-instructions/ChatGPT Plus+ Era/chatgpt v8.8.txt:EPISTEMIC NON-ESCALATION; Project Feather Core CI/source_archive/FTH_CI_version_v3.2.md:Turn and canon; Source gate; Anti-Drift Source/FTH_Anti_Drift_Source_Router_v3.2.md:Reconciliation Before Execution",
     "note": "Nền v8.8 được CI dự án khai báo; CI 3.1 tự chứa quy tắc; Router hiện hành giữ UNKNOWN trong truy xuất nguồn. Không khẳng định lỗi runtime lịch sử."
   },
   "operation": "Giữ trạng thái tri thức trong câu hỏi giả định.",
@@ -14,7 +14,7 @@
   "forbidden_conversion": "Bịa tuyến, cơ chế hoặc nguồn để lấp khoảng trống.",
   "recheck_on": [
     "llm-controls/global-instructions/ChatGPT Plus+ Era/chatgpt v8.8.txt",
-    "Project Feather Core CI/FTH_CI_version_v3.2.md",
+    "Project Feather Core CI/source_archive/FTH_CI_version_v3.2.md",
     "Anti-Drift Source/FTH_Anti_Drift_Source_Router_v3.2.md"
   ],
   "active_control_anchors": [
@@ -23,7 +23,7 @@
       "sha256": "14412AA60096D77D2C3A5AC0577F8DE99DA629E43F34929C921427DFA4BE1A0F"
     },
     {
-      "path": "Project Feather Core CI/FTH_CI_version_v3.2.md",
+      "path": "Project Feather Core CI/source_archive/FTH_CI_version_v3.2.md",
       "sha256": "4F4F08C622BEB6DB63061ACAB73216F844C81F9778D068E6B0D9461116739D6E"
     },
     {

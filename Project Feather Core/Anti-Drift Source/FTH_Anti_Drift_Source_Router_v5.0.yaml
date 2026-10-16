@@ -3,11 +3,11 @@ schema_version: 1
 deployment:
   status: ACTIVE
   router_version: '5.0'
-  ci_version: '3.3'
-  upstream_base: '8.8'
-  ci: Project Feather Core CI/FTH_CI_version_v3.3.md
-  baseline_ci: Project Feather Core CI/FTH_CI_version_v3.2.md
-  baseline_router: Anti-Drift Source/FTH_Anti_Drift_Source_Router_v4.4.md
+  ci_version: '3.4'
+  upstream_base: '8.9'
+  ci: Project Feather Core CI/FTH_CI_version_v3.4.md
+  baseline_ci: Project Feather Core CI/source_archive/FTH_CI_version_v3.3.md
+  baseline_router: Anti-Drift Source/Source_Archive/FTH_Anti_Drift_Source_Router_v4.4.md
   pipeline: Anti-Drift Source/FTH_Authoring_Pipeline_v1.1.md
   # Maintenance references only. No CI operation belongs to the runtime sequence.
 runtime:

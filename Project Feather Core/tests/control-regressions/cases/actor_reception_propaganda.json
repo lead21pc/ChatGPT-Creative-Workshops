@@ -13,14 +13,14 @@
   "protected_distinction": "EXPOSURE != TOTAL BELIEF; PUBLIC SUPPORT != PRIVATE SUPPORT; ONE NEW SIGNAL != TOTAL PREFERENCE RESET",
   "forbidden_conversion": "Make propaganda mind control, force binary acceptance/rejection, or infer private belief solely from public repetition.",
   "recheck_on": [
-    "Project Feather Core CI/FTH_CI_version_v3.2.md",
+    "Project Feather Core CI/source_archive/FTH_CI_version_v3.2.md",
     "Anti-Drift Source/FTH_Anti_Drift_Source_Router_v4.1.md",
     "Anti-Drift Source/FTH_Anti_Drift_Actor_Reception_Normative_Signals_v1.0.md",
     "Anti-Drift Source/FTH_Anti_Drift_Modular_Concept_Architecture_v1.0.md"
   ],
   "active_control_anchors": [
     {
-      "path": "Project Feather Core CI/FTH_CI_version_v3.2.md",
+      "path": "Project Feather Core CI/source_archive/FTH_CI_version_v3.2.md",
       "sha256": "4F4F08C622BEB6DB63061ACAB73216F844C81F9778D068E6B0D9461116739D6E"
     },
     {

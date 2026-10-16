@@ -4,7 +4,7 @@
   "status": "DRAFT",
   "provenance": {
     "kind": "CURRENT_CONTROL_CONTRACT",
-    "reference": "Project Feather Core CI/FTH_CI_version_v3.2.md:Relations and simulation; Anti-Drift Source/FTH_Anti_Drift_Mortality_Relationship_Plot_Immunity_v1.1.md:25-37,136-139",
+    "reference": "Project Feather Core CI/source_archive/FTH_CI_version_v3.2.md:Relations and simulation; Anti-Drift Source/FTH_Anti_Drift_Mortality_Relationship_Plot_Immunity_v1.1.md:25-37,136-139",
     "note": "CI dự án giữ cơ chế và trạng thái chưa rõ; overlay hiện hành tách quan hệ khỏi miễn nhiễm. Không khẳng định lỗi runtime lịch sử."
   },
   "operation": "Xét hệ quả của quan hệ trong một nguy cơ giả định.",
@@ -13,12 +13,12 @@
   "protected_distinction": "RELATIONSHIP != IMMUNITY",
   "forbidden_conversion": "Ban miễn nhiễm vì quan hệ hoặc tuyên bố chết khi chưa xác lập trạng thái và đường sống.",
   "recheck_on": [
-    "Project Feather Core CI/FTH_CI_version_v3.2.md",
+    "Project Feather Core CI/source_archive/FTH_CI_version_v3.2.md",
     "Anti-Drift Source/FTH_Anti_Drift_Mortality_Relationship_Plot_Immunity_v1.1.md"
   ],
   "active_control_anchors": [
     {
-      "path": "Project Feather Core CI/FTH_CI_version_v3.2.md",
+      "path": "Project Feather Core CI/source_archive/FTH_CI_version_v3.2.md",
       "sha256": "4F4F08C622BEB6DB63061ACAB73216F844C81F9778D068E6B0D9461116739D6E"
     },
     {

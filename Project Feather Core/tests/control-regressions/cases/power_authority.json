@@ -4,7 +4,7 @@
   "status": "DRAFT",
   "provenance": {
     "kind": "CURRENT_CONTROL_CONTRACT",
-    "reference": "Project Feather Core CI/FTH_CI_version_v3.2.md:Relations and simulation; Anti-Drift Source/FTH_Anti_Drift_Modular_Concept_Architecture_v1.0.md:21,293-311",
+    "reference": "Project Feather Core CI/source_archive/FTH_CI_version_v3.2.md:Relations and simulation; Anti-Drift Source/FTH_Anti_Drift_Modular_Concept_Architecture_v1.0.md:21,293-311",
     "note": "Phân biệt thẩm quyền hiện hành dựa trên CI dự án và overlay; không khẳng định thất bại runtime lịch sử."
   },
   "operation": "Đánh giá quyền quyết định trong tình huống giả định.",
@@ -13,12 +13,12 @@
   "protected_distinction": "POWER != AUTHORITY",
   "forbidden_conversion": "Biến sức mạnh thành quyền chỉ huy.",
   "recheck_on": [
-    "Project Feather Core CI/FTH_CI_version_v3.2.md",
+    "Project Feather Core CI/source_archive/FTH_CI_version_v3.2.md",
     "Anti-Drift Source/FTH_Anti_Drift_Modular_Concept_Architecture_v1.0.md"
   ],
   "active_control_anchors": [
     {
-      "path": "Project Feather Core CI/FTH_CI_version_v3.2.md",
+      "path": "Project Feather Core CI/source_archive/FTH_CI_version_v3.2.md",
       "sha256": "4F4F08C622BEB6DB63061ACAB73216F844C81F9778D068E6B0D9461116739D6E"
     },
     {

@@ -13,18 +13,18 @@
   "protected_distinction": "CONCURRENT ACTIVITY != FORCED XOR; ONE BRANCH ACTIVATES != ALL OTHERS TERMINATE; AVAILABLE != SELECTED",
   "forbidden_conversion": "Serialize compatible responses; silently select CAPTURE; assume all branches are compatible; invent capacity or an allocation choice.",
   "recheck_on": [
-    "Project Feather Core CI/FTH_CI_version_v3.2.md",
-    "Anti-Drift Source/FTH_Anti_Drift_Source_Router_v4.4.md",
+    "Project Feather Core CI/source_archive/FTH_CI_version_v3.2.md",
+    "Anti-Drift Source/Source_Archive/FTH_Anti_Drift_Source_Router_v4.4.md",
     "Anti-Drift Source/FTH_Anti_Drift_Modular_Concept_Architecture_v1.2.md",
     "Anti-Drift Source/FTH_Anti_Drift_Total_War_RP_v1.1.md"
   ],
   "active_control_anchors": [
     {
-      "path": "Project Feather Core CI/FTH_CI_version_v3.2.md",
+      "path": "Project Feather Core CI/source_archive/FTH_CI_version_v3.2.md",
       "sha256": "4F4F08C622BEB6DB63061ACAB73216F844C81F9778D068E6B0D9461116739D6E"
     },
     {
-      "path": "Anti-Drift Source/FTH_Anti_Drift_Source_Router_v4.4.md",
+      "path": "Anti-Drift Source/Source_Archive/FTH_Anti_Drift_Source_Router_v4.4.md",
       "sha256": "3394945CE59FD010D9F44B608DD83D6838A2A55B0BFFF8D905739A7EC8B2AD61"
     },
     {

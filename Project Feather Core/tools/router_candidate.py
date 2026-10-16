@@ -176,23 +176,23 @@ def validate(data, root):
     fields(dep, {'status', 'router_version', 'ci_version', 'upstream_base', 'ci',
                  'baseline_ci', 'baseline_router', 'pipeline'}, 'deployment')
     require((dep['status'], dep['router_version'], dep['ci_version'], dep['upstream_base']) ==
-            ('ACTIVE', '5.0', '3.3', '8.8'), 'Unsupported active compatibility tuple')
+            ('ACTIVE', '5.0', '3.4', '8.9'), 'Unsupported active compatibility tuple')
     refs = {k: local_file(root, dep[k]) for k in ('ci', 'baseline_ci', 'baseline_router', 'pipeline')}
     ci = refs['ci'].read_text(encoding='utf-8-sig')
     require(len(refs['ci'].read_bytes().decode('utf-8-sig')) <= 8000, 'Active CI exceeds 8000 characters')
-    require(ci.split('\n', 1)[0] == '# Project Feather Core CI v3.3 (FTH) - ChatGPT 8.8 base', 'Active CI version/base mismatch')
+    require(ci.split('\n', 1)[0] == '# Project Feather Core CI v3.4 (FTH) - ChatGPT 8.9 base', 'Active CI version/base mismatch')
     require('> Status: ACTIVE PROJECT CONTROL' in ci and ROUTER in ci, 'Active CI status/router reference mismatch')
-    require(refs['baseline_ci'].read_text(encoding='utf-8-sig').startswith('# Project Feather Core CI v3.2 '), 'Baseline CI mismatch')
+    require(refs['baseline_ci'].read_text(encoding='utf-8-sig').startswith('# Project Feather Core CI v3.3 '), 'Baseline CI mismatch')
     require('Source Router v4.4' in refs['baseline_router'].read_text(encoding='utf-8-sig').split('\n', 1)[0], 'Baseline Router mismatch')
     require(refs['pipeline'].name == 'FTH_Authoring_Pipeline_v1.1.md' and
             refs['pipeline'].read_text(encoding='utf-8-sig').split('\n', 1)[0] == '# FTH Authoring Pipeline v1.1',
             'Pipeline mismatch')
     require(refs['pipeline'].name in ci, 'Active CI pipeline reference mismatch')
     # The upstream file is a maintenance reference, never runtime discovery.
-    relative = 'ChatGPT Plus+ Era/chatgpt v8.8.txt'
+    relative = 'ChatGPT Plus+ Era/chatgpt v8.9.txt'
     upstream_paths = [root.parent / relative,
                       root.parent / 'llm-controls/global-instructions' / relative]
-    require(any(path.is_file() for path in upstream_paths), 'Missing upstream 8.8 baseline')
+    require(any(path.is_file() for path in upstream_paths), 'Missing upstream 8.9 baseline')
     fields(data['runtime'], {'entry', 'stages'}, 'runtime')
     require(data['runtime'] == {'entry': 'PROMPT_ROUTE_ONLY', 'stages': STAGES}, 'Runtime entry/stage order mismatch')
     b = data['bootstrap']

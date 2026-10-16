@@ -4,7 +4,7 @@
   "status": "DRAFT",
   "provenance": {
     "kind": "CURRENT_CONTROL_CONTRACT",
-    "reference": "Project Feather Core CI/FTH_CI_version_v3.2.md:Turn and canon; Anti-Drift Source/FTH_Anti_Drift_Source_Router_v3.2.md:Reconciliation Before Execution; Anti-Drift Source/FTH_Anti_Drift_Total_War_RP_v1.1.md:937-944",
+    "reference": "Project Feather Core CI/source_archive/FTH_CI_version_v3.2.md:Turn and canon; Anti-Drift Source/FTH_Anti_Drift_Source_Router_v3.2.md:Reconciliation Before Execution; Anti-Drift Source/FTH_Anti_Drift_Total_War_RP_v1.1.md:937-944",
     "note": "CI dự án, Router và overlay chiến tranh hiện hành cùng giữ kết quả nhánh ngoài canon; không khẳng định lỗi runtime lịch sử."
   },
   "operation": "Phân loại kết quả nhánh mô phỏng giả định.",
@@ -13,13 +13,13 @@
   "protected_distinction": "SIMULATION RESULT != CANON",
   "forbidden_conversion": "Nâng kết quả giả định thành canon hoặc sửa nguồn.",
   "recheck_on": [
-    "Project Feather Core CI/FTH_CI_version_v3.2.md",
+    "Project Feather Core CI/source_archive/FTH_CI_version_v3.2.md",
     "Anti-Drift Source/FTH_Anti_Drift_Source_Router_v3.2.md",
     "Anti-Drift Source/FTH_Anti_Drift_Total_War_RP_v1.1.md"
   ],
   "active_control_anchors": [
     {
-      "path": "Project Feather Core CI/FTH_CI_version_v3.2.md",
+      "path": "Project Feather Core CI/source_archive/FTH_CI_version_v3.2.md",
       "sha256": "4F4F08C622BEB6DB63061ACAB73216F844C81F9778D068E6B0D9461116739D6E"
     },
     {

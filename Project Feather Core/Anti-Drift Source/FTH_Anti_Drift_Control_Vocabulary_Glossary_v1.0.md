@@ -85,8 +85,8 @@ The audit found distributed, compatible distinctions rather than an incompatible
 
 | Abbreviation | Inspected owner / scope |
 | --- | --- |
-| CI | [FTH CI 3.2](../Project%20Feather%20Core%20CI/FTH_CI_version_v3.2.md): operations, canon decisions, evidence and relation boundaries. |
-| Router | [Source Router 4.4](FTH_Anti_Drift_Source_Router_v4.4.md): source roles, admission, loading, reconciliation, and overlay gates. |
+| CI | [FTH CI 3.4](../Project%20Feather%20Core%20CI/FTH_CI_version_v3.4.md): operations, canon decisions, evidence and relation boundaries. |
+| Router | [Source Router 5.0](FTH_Anti_Drift_Source_Router_v5.0.yaml): source roles, admission, loading, reconciliation, and overlay gates. |
 | MCA | [Modular Concept Architecture 1.2](FTH_Anti_Drift_Modular_Concept_Architecture_v1.2.md): architectural relations, function allocation, actor information/agency, and conditional response lifecycle. |
 | WIL | [Worldbuilding Internal Logic 1.2](FTH_Anti_Drift_Worldbuilding_Internal_Logic_v1.2.md): bounded coherence/design reasoning and imperfection intent. |
 | Actor | [Actor Reception Normative Signals 1.0](FTH_Anti_Drift_Actor_Reception_Normative_Signals_v1.0.md): actor-specific reception and appraisals. |

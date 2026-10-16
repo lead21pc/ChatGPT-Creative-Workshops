@@ -6,7 +6,7 @@ Runner chỉ chạy READ_ONLY: đọc tệp, kiểm tra cấu trúc, tính hash,
 
 ## Hợp đồng đang có hiệu lực và nguồn gốc phát triển
 
-Thư mục `llm-controls/global-instructions/ChatGPT Plus+ Era` lưu một dòng CI dùng chung có phiên bản v7.x, v8.x, các bản v8.5.1/v8.6 mang tên temp và các thử nghiệm v9.0 temp. Những tệp cùng tồn tại trong kho không đồng thời hoạt động. FTH CI v3.3 hiện khai báo nền ChatGPT 8.8 và tự chứa quy tắc cần dùng; runner đọc khai báo để ghi nhận xuất xứ, không biến nền ngoài thành phụ thuộc đọc lúc chạy của CI. Source Router riêng nắm việc định tuyến nguồn và chọn overlay dưới hợp đồng CI; chỉ overlay liên quan nhiệm vụ mới tham gia. Bản v8.4, v9.0 temp hoặc tệp mới hơn không tự trở thành nền AetherFire. Quan hệ kế thừa/phát triển giữa các phiên bản không phải quan hệ cùng chạy.
+Thư mục `llm-controls/global-instructions/ChatGPT Plus+ Era` lưu một dòng CI dùng chung có phiên bản v7.x, v8.x, các bản v8.5.1/v8.6 mang tên temp và các thử nghiệm v9.0 temp. Những tệp cùng tồn tại trong kho không đồng thời hoạt động. FTH CI v3.4 hiện khai báo nền ChatGPT 8.9 và tự chứa quy tắc cần dùng; runner đọc khai báo để ghi nhận xuất xứ, không biến nền ngoài thành phụ thuộc đọc lúc chạy của CI. Source Router riêng nắm việc định tuyến nguồn và chọn overlay dưới hợp đồng CI; chỉ overlay liên quan nhiệm vụ mới tham gia. Bản v8.4, v9.0 temp hoặc tệp mới hơn không tự trở thành nền AetherFire. Quan hệ kế thừa/phát triển giữa các phiên bản không phải quan hệ cùng chạy.
 
 Mỗi case kiểm tra **ranh giới ngữ nghĩa của hợp đồng hiện hành**, không cố dựng lại prompt lỗi cũ hay coi vị trí đặt quy tắc là chân lý. Trường provenance mô tả căn cứ hiện tại: CURRENT_CONTROL_CONTRACT cho tám case và CURRENT_RECONCILIATION_EVIDENCE cho case hàng không. Nó không chứng minh phản hồi runtime đã xảy ra. active_control_anchors là các tệp điều khiển đang tham gia, mỗi tệp có đường dẫn và hash tại lúc hiệu chỉnh; các tham chiếu lịch sử chỉ được đặt trong provenance và không phải neo chạy. SHA thay đổi hoặc phiên bản đang hoạt động đổi chỉ báo cần xem xét, không tự chuyển vòng đời hoặc chứng minh ranh giới ngữ nghĩa đã hỏng. Nếu một quy tắc chuyển từ overlay lên CI dùng chung nhưng hành vi vẫn được giữ, mục tiêu của case vẫn có giá trị; người dùng quyết định cập nhật neo.
 
@@ -30,7 +30,7 @@ Các cặp BASE/VARIANT nằm trong trường input hiện có. Phép đánh gi�
 
 Các fixture hiện neo vào CI 3.1 bằng đường dẫn và SHA-256 đã đối chiếu; hai neo nền 8.5 chuyển sang nền 8.8 được CI khai báo. Phần CI trong provenance dùng tên mục thực tế của 3.1. Các input, ranh giới được bảo vệ và trạng thái DRAFT được giữ nguyên; việc này không xác nhận kết quả mô hình hoặc kích hoạt test ngữ nghĩa. Các neo overlay/Router khác không được tự hiệu chỉnh: cảnh báo thiếu, lệch hash hoặc phiên bản vẫn là yêu cầu xem xét riêng.
 
-Runner chấp nhận cả tiêu đề `ChatGPT 8.8 base` và `ChatGPT v8.8 base`, nhưng vẫn đòi khai báo phiên bản rõ, khớp tên CI và tệp nền tồn tại. Các ghi chú coverage có ngày bên dưới là lịch sử tại lúc thêm case, không thay bản hiện hành ở đoạn này; lỗi đọc tiêu đề được nhắc trong các ghi chú đó đã được sửa trong tác vụ lưu CI.
+Runner chấp nhận cả tiêu đề `ChatGPT 8.9 base` và `ChatGPT v8.9 base`, nhưng vẫn đòi khai báo phiên bản rõ, khớp tên CI và tệp nền tồn tại. Các ghi chú coverage có ngày bên dưới là lịch sử tại lúc thêm case, không thay bản hiện hành ở đoạn này; lỗi đọc tiêu đề được nhắc trong các ghi chú đó đã được sửa trong tác vụ lưu CI.
 
 ## Giữ bổ sung riêng trên main — 2026-10-10
 
@@ -56,7 +56,7 @@ Lệnh mặc định kiểm tra cấu trúc và chỉ chọn ACTIVE có neo phù
     pwsh -NoProfile -File .\tests\control-regressions\run.ps1 -ListDrafts
 
     pwsh -NoProfile -File .\tests\control-regressions\run.ps1 -ChangedControlFile 'Anti-Drift Source/FTH_Anti_Drift_Total_War_RP_v1.1.md'
-    pwsh -NoProfile -File .\tests\control-regressions\run.ps1 -ChangedControlFile 'llm-controls/global-instructions/ChatGPT Plus+ Era/chatgpt v8.8.txt'
+    pwsh -NoProfile -File .\tests\control-regressions\run.ps1 -ChangedControlFile 'llm-controls/global-instructions/ChatGPT Plus+ Era/chatgpt v8.9.txt'
     pwsh -NoProfile -File .\tests\control-regressions\run.ps1 -ChangedControlFile 'Anti-Drift Source/khong-co-anh-xa.md'
 
 recheck_on dùng đường dẫn tương đối từ Project Feather Core cho tệp dự án, hoặc từ gốc repository cho `llm-controls/global-instructions/ChatGPT Plus+ Era`. Danh sách ghi đúng tệp đang tham gia thay vì mọi phiên bản lịch sử. -ListDrafts chỉ in danh sách DRAFT để xem xét, không chọn chúng. Khi có ChangedControlFile, selected_cases chỉ chứa ACTIVE có neo phù hợp; draft_review_matches là DRAFT_REVIEW_MATCH và stale_review_matches là ứng viên xem xét, đều review_only. Nếu một bản CI/Router/overlay mới trở thành phiên bản cao nhất được chọn, runner nhận diện họ phiên bản từ neo cũ để tìm case liên quan; nó không tự đổi vòng đời hay thay neo. Nền ChatGPT mới chỉ được nhận khi CI dự án **khai báo** nó. Bản v9.0 temp tồn tại riêng lẻ không làm đổi nền. Đường dẫn không khớp được báo trong unmapped với nghĩa **UNMAPPED**, không suy ra không có tác động. Metadata chọn lại không lập lịch, không cấp quyền sửa canon hay điều khiển.
@@ -69,7 +69,7 @@ Các probe dưới đây chỉ truyền JSON trong đối số, không thay đ�
 
     pwsh -NoProfile -File .\tests\control-regressions\run.ps1 -VersionProbeJson '{"family":"CI","names":["FTH_CI_version_v2.9.md","FTH_CI_version_v2.10.md"]}'
     pwsh -NoProfile -File .\tests\control-regressions\run.ps1 -VersionProbeJson '{"family":"CI","names":["FTH_CI_version_v2.6.md","FTH_CI_version_v02.06.md"]}'
-    pwsh -NoProfile -File .\tests\control-regressions\run.ps1 -AnchorProbeJson '{"path":"Project Feather Core CI/FTH_CI_version_v3.2.md","sha256":"0000000000000000000000000000000000000000000000000000000000000000"}'
+    pwsh -NoProfile -File .\tests\control-regressions\run.ps1 -AnchorProbeJson '{"path":"Project Feather Core CI/source_archive/FTH_CI_version_v3.2.md","sha256":"0000000000000000000000000000000000000000000000000000000000000000"}'
 
 Đối số snapshot tùy chọn là JSON {"root":"<đường dẫn tuyệt đối thư mục repo cha>","files":[{"path":"Project Feather Core/MANIFEST.md","sha256":"<SHA-256 lúc bắt đầu tác vụ>"}]} truyền qua ProtectedSnapshotJson. Runner chỉ so sánh các file được cung cấp trong snapshot, không tự suy ra bản chụp trước khi bắt đầu tác vụ và không bảo đảm bao phủ mọi file cấm sửa. Nếu không cung cấp, protected_snapshot là LIMITED_CHECK. Việc đọc Git chỉ ghi nhận tình trạng hiện tại, không phân biệt thay đổi cũ/mới nếu thiếu bản chụp đầu kỳ.
 
@@ -172,9 +172,9 @@ PASS ở từng kiểm tra chỉ xác nhận cấu trúc tương ứng. FAIL là
 
 Runner không sao chép logic hash của MANIFEST.md hoặc logic build. package_integrity chỉ báo LIMITED_CHECK: chưa chạy verifier hiện có, chưa xác nhận hash manifest và không gọi build. Nếu cần thẩm tra gói đầy đủ, phải theo quy trình kiểm chứng riêng có thẩm quyền và kiểm tra tác dụng phụ trước khi thực hiện. Thành công cấu trúc không chứng minh phạm vi canon sẵn sàng hoặc mô hình tuân thủ. Vòng đời là trạng thái case; PASS/POTENTIAL_VIOLATION/AMBIGUOUS/BLOCKED là nhãn kết quả ngữ nghĩa chỉ dành cho thử nghiệm được chấp thuận. Không có semantic FAIL tự động và không dùng test để đóng băng việc xây dựng lore.
 
-## Router 5 / CI 3.3 active local stack
+## Router 5 / CI 3.4 active local stack
 
-CI 3.3, Router 5.0 YAML và Pipeline 1.1 đã được promote ra thư mục control chính. Runner chọn phiên bản số cao nhất của từng family, gồm Router YAML và Authoring Pipeline. Các bản 3.2/4.4/1.0 giữ nguyên để rollback.
+CI 3.4, Router 5.0 YAML và Pipeline 1.1 là stack local hiện hành. Runner chọn phiên bản số cao nhất của từng family, gồm Router YAML và Authoring Pipeline. CI 3.1/3.2/3.3 và Router 4.4 được giữ nguyên trong archive; Pipeline 1.0 vẫn là rollback direct-child.
 
 Chạy `python -B build_consolidation.py --check-router` và `python -B -m unittest discover -s tests` từ thư mục project. Tùy chọn cũ `--check-router-candidate` vẫn là alias tương thích của kiểm tra active stack. Kiểm tra cấu trúc không xác nhận retrieval, hành vi model hoặc live deployment.
 
