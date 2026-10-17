@@ -1,11 +1,10 @@
 format_version: '1'
-manifest_version: 2.0.0
+manifest_version: 2.1.0
 release:
-  id: central-hub-imaget-1.0
+  id: central-hub-imaget-1.1
   working_state: local_implementation
   published: false
   project_deployment: not_performed
-  ready_gate: active_by_explicit_user_confirmation
 integrity:
   algorithm: sha256
   scope: exact_local_bytes
@@ -17,10 +16,10 @@ artifacts:
     id: router
     file: IMAGE_SOURCE_ROUTER.yaml
     local_path: IMAGE_SOURCE_ROUTER.yaml
-    version: 3.0.0
+    version: 3.1.0
     status: active
     required: true
-    sha256: 360cad363c46e896ebb745bd86d82be2e7c7ff090e229f69549aabcfc03134c3
+    sha256: 066b47a697c4cace1bcef86233d556a2ca4ae8c56f2e1b54e6779d3547b80fc4
   prior_guard:
     id: prior-guard
     file: IMAGE_ANTI_PRIOR.md
@@ -46,6 +45,14 @@ artifacts:
     required: false
     sha256: null
     reserved_file: template.md
+  ready_gate:
+    id: ready-gate
+    file: READY_GATE_v1.0.md
+    local_path: READY_GATE_v1.0.md
+    version: '1.0'
+    status: active
+    required: true
+    sha256: c61bccbc88560c40a9f600473d84b54c7f6b27f527eea6b713f78615d04de1d5
 preferences:
 - id: humanoid-character-design
   file: HUMANOID_CHARACTER_DESIGN_PREFERENCE.md
@@ -53,7 +60,7 @@ preferences:
   version: 0.1.1-candidate
   status: candidate
   required: false
-  sha256: 0a9e59baba0d29d59b0e20ca23478e2562b5dcf3da9a7a91c85b25ef586b2e88
+  sha256: 1eb0a6e136cbf3b21de1726565b47bd3a80d1ee9b55e86ba10ea0d880a1371b3
   selectable: false
   selection_scope: direct_input_experiment
   activation: inactive
@@ -62,14 +69,15 @@ preferences:
 controllers:
   active:
     id: baseline
-    file: IMAGE_CONTROLLER_v1.0.md
-    local_path: IMAGE_CONTROLLER_v1.0.md
-    version: '1.0'
+    file: IMAGE_CONTROLLER_v1.1.md
+    local_path: IMAGE_CONTROLLER_v1.1.md
+    version: '1.1'
     status: active
     required: true
-    sha256: 00d92adf721f7787c4d5bd2faba0a990c3640c8a2e3c2b0ad0cfd07cd5ae7d44
+    sha256: a72ecd8ca0209f7f5a81c6de8d110ea95d3d8483f163de01767c5af70e866edd
     compatibility:
-      router: 3.0.0
+      router: 3.1.0
       prior_guard: 1.1.0
       anti_drift: 2.0.0
+      ready_gate: '1.0'
   experiments: []

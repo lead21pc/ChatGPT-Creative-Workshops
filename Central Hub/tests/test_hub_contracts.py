@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import re
 import unittest
+from unittest.mock import patch
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -54,11 +55,15 @@ def verify_source(entry):
     path = (IMAGE / entry['local_path']).resolve()
     if not path.is_relative_to(IMAGE) or any(p.lower() == 'source_archive' for p in path.parts):
         raise Closed('outside active sources')
-    if path.name != entry['file'] or not path.is_file() or digest(path) != entry['sha256']:
+    try:
+        actual_digest = digest(path) if path.is_file() else None
+    except OSError as error:
+        raise Closed(f'unreadable source: {entry["file"]}') from error
+    if path.name != entry['file'] or actual_digest != entry['sha256']:
         raise Closed('missing/nonexact/corrupt source')
     if path.suffix == '.md':
         text = path.read_text(encoding='utf-8')
-        versions = re.findall(r'^(?:IMAGE_CONTROLLER|ANTI_PRIOR|CONFIG|PREFERENCE)_VERSION: (.+)$', text, re.M)
+        versions = re.findall(r'^(?:IMAGE_CONTROLLER|READY_GATE|ANTI_PRIOR|CONFIG|PREFERENCE)_VERSION: (.+)$', text, re.M)
         if versions != [entry['version']] or f"STATUS: {entry['status'].upper()}" not in text:
             raise Closed('header mismatch')
     return path
@@ -76,7 +81,17 @@ def image_oracle(manifest, router, operation='create', selection=None, unexpecte
     if active['status'] != 'active':
         raise Closed('inactive controller')
     verify_source(active)
+    generation = operation in {'create', 'edit', 'variation', 'correct'}
+    if generation:
+        if 'ready_gate' not in active['compatibility'] or 'ready_gate' not in manifest['artifacts']:
+            raise Closed('missing Ready Gate dependency')
+        if operation not in router['generation_dependencies']['operations']:
+            raise Closed('generation route bypass')
+        if router['execution']['ready_gate'] != 'manifest_selected_ready_gate_contract':
+            raise Closed('missing Ready Gate delegation')
     for role, version in active['compatibility'].items():
+        if role == 'ready_gate' and not generation:
+            continue
         entry = manifest['artifacts'][role]
         if entry['version'] != version or entry['status'] != 'active' or not entry['required']:
             raise Closed('incompatible module')
@@ -155,7 +170,7 @@ class HubTests(unittest.TestCase):
             elif isinstance(value, str) and ' ' in value:
                 yield value
 
-        for name in ['HUB_ROUTER_v1.0.yaml', 'tool_pipelines/AIS/AIS_ROUTER_v1.0.yaml',
+        for name in ['HUB_ROUTER_v1.0.yaml', 'tool_pipelines/AIS/AIS_ROUTER_v1.1.yaml',
                      'tool_pipelines/ImageT/IMAGE_SOURCE_ROUTER.yaml']:
             for prose in instruction_values(load(ROOT / name)):
                 self.assertNotRegex(prose, vietnamese, name)
@@ -172,7 +187,7 @@ class HubTests(unittest.TestCase):
             'TECHNICAL': 'domains/technical/TECHNICAL_v1.0.md',
             'BRAINSTORM': 'capabilities/BRAINSTORM_v1.0.md',
             'AIS': 'tool_pipelines/AIS/AIS_PIPELINE_v1.0.md',
-            'IMAGET': 'tool_pipelines/ImageT/IMAGE_CONTROLLER_v1.0.md',
+            'IMAGET': 'tool_pipelines/ImageT/IMAGE_CONTROLLER_v1.1.md',
         })
         self.assertTrue(router['scoping']['independent_axes'])
         self.assertFalse(router['persistence']['self_activation'])
@@ -207,7 +222,7 @@ class HubTests(unittest.TestCase):
             self.assertIn(s, text)
 
     def test_ais_three_modes_lock_and_gate_order(self):
-        ais = load(ROOT / 'tool_pipelines/AIS/AIS_ROUTER_v1.0.yaml')
+        ais = load(ROOT / 'tool_pipelines/AIS/AIS_ROUTER_v1.1.yaml')
         self.assertEqual(set(ais['modes']), {'VERIFY', 'RESEARCH', 'EXPLORE'})
         self.assertEqual(set(ais['search_contract']) - {'lifetime'},
                          {'operation', 'mode', 'question', 'known', 'unknowns', 'source_authority', 'update_scope', 'stop_condition'})
@@ -225,11 +240,15 @@ class HubTests(unittest.TestCase):
         self.assertNotIn('ci_location', self.router['resolution'])
         self.assertEqual(self.router['resolution']['controller_location'], 'project_sources')
         self.assertEqual(self.router['load_order'][0], 'selected_controller')
-        text = (IMAGE / 'IMAGE_CONTROLLER_v1.0.md').read_text(encoding='utf-8')
-        self.assertLess(text.index('## Prompt and execution gate'), text.index('## Ready gate'))
-        self.assertLess(text.index('## Ready gate'), text.index('## Verify and respond'))
-        for s in ['one call', 'exact displayed prompt', 'REVISION_REQUIRED', 'STALE', 'UNVERIFIABLE', 'STRUCTURAL_FAIL']:
-            self.assertIn(s, text)
+        text = (IMAGE / 'IMAGE_CONTROLLER_v1.1.md').read_text(encoding='utf-8')
+        self.assertLess(text.index('## Prompt and execution gate'), text.index('## Ready Gate delegation'))
+        self.assertLess(text.index('## Ready Gate delegation'), text.index('## Verify and respond'))
+        for state in ['PENDING_APPROVAL', 'APPROVED', 'REVISION_REQUIRED', 'STALE']:
+            self.assertNotIn(state, text)
+        self.assertIn('No image-generation call may occur unless that control authorizes the exact current execution snapshot', text)
+        ready = (IMAGE / 'READY_GATE_v1.0.md').read_text(encoding='utf-8')
+        for s in ['one call', 'exact displayed prompt', 'REVISION_REQUIRED', 'STALE', 'CONSUMED', 'UNVERIFIABLE']:
+            self.assertIn(s, ready)
 
     def test_image_inventory_hashes_headers_and_inactive_preference(self):
         entries = [self.manifest['controllers']['active'], *self.manifest['artifacts'].values(), *self.manifest['preferences']]
@@ -272,23 +291,124 @@ class HubTests(unittest.TestCase):
         self.assertEqual(approval_oracle('APPROVED', 'submit', same_snapshot=False), ('STALE', False))
         self.assertEqual(approval_oracle('PENDING_APPROVAL', 'lost_context'), ('STALE', False))
 
+    def test_ready_gate_required_regression_spec(self):
+        path = IMAGE / 'tests/READY_GATE_TEST_CASES.md'
+        self.assertTrue(path.is_file())
+        text = path.read_text(encoding='utf-8')
+        for anchor in [
+            'STATUS: REQUIRED_REGRESSION_SPEC',
+            'ROLE: NON_RUNTIME_NORMATIVE_ORACLE',
+            'TARGET: READY_GATE 1.0',
+            'READY_GATE_RUNTIME_STATUS: ACTIVE',
+            'ORIGINAL_IMAGET_LIVE_VALIDATION: CONFIRMED_BY_USER',
+            'CENTRAL_HUB_LIVE_VALIDATION: NOT_RUN',
+            'FRESH_CONVERSATIONS: R03-R08',
+            'MULTI_TURN_CASES: R09-R19',
+            'All no-approval branches require zero image tool calls.',
+            'Every approved submission must use the exact approved prompt version',
+            'exact approved references, options and relevant execution inputs',
+            'exactly one tool call, without a second confirmation',
+            'Revisions invalidate previous approval and preserve unaffected constraints.',
+            'Changed request, prompt, sources, references, options, operation lock or relevant execution inputs invalidate approval',
+            'Report uncertain submission; never silently retry.',
+            'Unobservable backend payload must be marked UNVERIFIABLE.',
+            'A displayed prompt is not proof of backend payload.',
+        ]:
+            self.assertIn(anchor, text)
+        ids = re.findall(r'^\| (R\d{2}) \|', text, re.M)
+        self.assertEqual(ids, [f'R{i:02}' for i in range(1, 23)])
+
+    def test_ready_gate_inventory_resolution_and_all_generation_paths(self):
+        gate = self.manifest['artifacts']['ready_gate']
+        self.assertEqual(gate['file'], 'READY_GATE_v1.0.md')
+        self.assertEqual(gate['version'], '1.0')
+        self.assertEqual(gate['status'], 'active')
+        self.assertTrue(gate['required'])
+        self.assertEqual(self.manifest['controllers']['active']['compatibility']['ready_gate'], gate['version'])
+        self.assertEqual(list(IMAGE.glob('READY_GATE_v*.md')), [IMAGE / gate['file']])
+        self.assertEqual(list(IMAGE.glob('IMAGE_CONTROLLER_v*.md')),
+                         [IMAGE / self.manifest['controllers']['active']['file']])
+        self.assertNotIn('ready_gate', self.manifest['release'])
+        self.assertEqual(self.router['generation_dependencies']['ready_gate']['inventory'], 'manifest.artifacts.ready_gate')
+        self.assertEqual(self.router['generation_dependencies']['ready_gate']['compatibility'], 'selected_controller.compatibility.ready_gate')
+        self.assertEqual(self.router['generation_dependencies']['retry'], 'each_generation_call')
+        sequence = self.router['generation_sequence']
+        self.assertLess(sequence.index('prompt_gate'), sequence.index('active_ready_gate'))
+        self.assertLess(sequence.index('active_ready_gate'), sequence.index('tool_execution'))
+        for operation in ['create', 'edit', 'variation', 'correct']:
+            result = image_oracle(self.manifest, self.router, operation=operation)
+            self.assertEqual(result['after_prompt_gate'], 'PENDING_APPROVAL')
+            self.assertFalse(result['tool_called'])
+            for field, value in [('local_path', 'missing.md'), ('version', 'wrong'), ('sha256', '0' * 64),
+                                 ('status', 'candidate'), ('required', False),
+                                 ('local_path', '../../Source_archive/READY_GATE_v1.0.md')]:
+                m = copy.deepcopy(self.manifest)
+                m['artifacts']['ready_gate'][field] = value
+                with self.assertRaises(Closed): image_oracle(m, self.router, operation=operation)
+        for missing in ['entry', 'compatibility']:
+            m = copy.deepcopy(self.manifest)
+            if missing == 'entry': del m['artifacts']['ready_gate']
+            else: del m['controllers']['active']['compatibility']['ready_gate']
+            with self.assertRaises(Closed): image_oracle(m, self.router)
+        m = copy.deepcopy(self.manifest)
+        del m['artifacts']['ready_gate']
+        self.assertEqual(image_oracle(m, self.router, operation='analyze')['after_prompt_gate'], 'analyze_only')
+        self.assertIn('embedded_controller', self.router['generation_dependencies']['ready_gate']['forbidden_fallbacks'])
+        self.assertTrue({'tool_facing_prompt', 'reference_roles', 'attachments', 'relevant_execution_inputs'} <= set(self.router['freshness']['changes']))
+        original_read = Path.read_bytes
+        def unreadable_ready(path):
+            if path == IMAGE / gate['file']:
+                raise PermissionError('fixture: unreadable Ready Gate')
+            return original_read(path)
+        with patch.object(Path, 'read_bytes', unreadable_ready):
+            with self.assertRaisesRegex(Closed, 'unreadable source: READY_GATE_v1.0.md'):
+                image_oracle(self.manifest, self.router)
+
+    def test_official_snapshot_and_stress_boundaries(self):
+        gate = (IMAGE / 'READY_GATE_v1.0.md').read_text(encoding='utf-8')
+        for anchor in ['READY SNAPSHOT vN, STATE: PENDING_APPROVAL', 'exact reference assets and reference roles',
+                       'exact tool options', 'operation-lock identity and protected constraints',
+                       'authorized interpretations/completions', 'intentionally open fields',
+                       'explicit exclusions/negatives', 'effective source versions/hash verification status',
+                       'REFERENCES: NONE', 'Do not promise to choose references after approval',
+                       'ONE APPROVAL = ONE EXACT TOOL CALL', 'CONSUMED',
+                       'Approval of an older version makes no call', 'An unobservable backend payload is UNVERIFIABLE']:
+            self.assertIn(anchor, gate)
+        controller = (IMAGE / 'IMAGE_CONTROLLER_v1.1.md').read_text(encoding='utf-8')
+        for anchor in ['AIS EVIDENCE SOURCE != IMAGE GENERATOR REFERENCE ASSET',
+                       'UNSPECIFIED != FORBIDDEN', 'OMITTED != PROHIBITED', 'OPEN FIELD != NEGATIVE CONSTRAINT',
+                       'explicit user prohibition', 'logical requirement of an explicit constraint',
+                       'authorized active source', 'Remove unauthorized negatives or keep the field open']:
+            self.assertIn(anchor, controller)
+        ais = load(ROOT / 'tool_pipelines/AIS/AIS_ROUTER_v1.1.yaml')
+        self.assertIn('SUPPORTED COMPONENTS DO NOT AUTOMATICALLY SUPPORT THEIR COMBINATION', ais['stages']['EVIDENCE_MERGE'])
+        self.assertIn('unless the relation between A and B is itself supported', ais['stages']['EVIDENCE_MERGE'])
+        spec = (IMAGE / 'tests/READY_GATE_TEST_CASES.md').read_text(encoding='utf-8')
+        for anchor in ['## X01', 'AIS -> BRAINSTORM -> TECHNICAL -> CREATIVE -> IMAGET -> READY GATE',
+                       'The open horse field stays open/omitted', 'READY SNAPSHOT v1, STATE: PENDING_APPROVAL',
+                       'Zero image tool calls occur before approval', 'All references are resolved before approval']:
+            self.assertIn(anchor, spec)
+
     def test_preserved_image_semantics(self):
         expected = {'IMAGE_ANTI_PRIOR.md': 'f08a1d1a09c8b31cd3fe6ed80b38b19f2c662e15f7e192b42c8a5e044aa69b5c',
                     'config.md': '20b08b3b99b237eebeec0442024e0818245d0b0bebc2fb756e972aca67d4d3d7'}
         for name, value in expected.items(): self.assertEqual(digest(IMAGE / name), value)
-        controller = (IMAGE / 'IMAGE_CONTROLLER_v1.0.md').read_text(encoding='utf-8')
-        # Fixed original candidate Ready Gate section, independent of migrated content.
-        ready = controller.split('## Ready gate', 1)[1].split('## Verify and respond', 1)[0]
-        self.assertEqual(hashlib.sha256(ready.encode()).hexdigest(), READY_GATE_SHA)
+        ready = (IMAGE / 'READY_GATE_v1.0.md').read_text(encoding='utf-8')
+        protocol = ready.split('## Preserved approval protocol', 1)[1].split('## Exact submission and invalidation', 1)[0]
+        self.assertEqual(hashlib.sha256(protocol.encode()).hexdigest(), READY_GATE_SHA)
 
 
     def test_migrated_specialist_semantic_bodies(self):
         brain = (ROOT / 'capabilities/BRAINSTORM_v1.0.md').read_text(encoding='utf-8').split('## Branching by premise change', 1)[1]
         self.assertEqual(hashlib.sha256(brain.encode()).hexdigest(), 'd9efaca29971bfdf1716c323a679f81715d5cac7b9d00abe791c5dd044db67fa')
-        controller = (IMAGE / 'IMAGE_CONTROLLER_v1.0.md').read_text(encoding='utf-8')
-        body = controller.split('## Authority and conflict', 1)[1].split('## Ready gate', 1)[0]
+        controller = (IMAGE / 'IMAGE_CONTROLLER_v1.1.md').read_text(encoding='utf-8')
+        body = controller.split('## Authority and conflict', 1)[1].split('## Ready Gate delegation', 1)[0]
+        paragraphs = body.split('\n\n')
+        additions = [p for p in paragraphs if p.startswith(('AIS EVIDENCE SOURCE', 'UNSPECIFIED != FORBIDDEN'))]
+        self.assertEqual(len(additions), 2)
+        body = '\n\n'.join(p for p in paragraphs if p not in additions)
         self.assertEqual(hashlib.sha256(body.encode()).hexdigest(), 'abc1639ca566420f0e127539b57a43881bce1eca01a0da640fa62770133d7ca9')
-        ais = load(ROOT / 'tool_pipelines/AIS/AIS_ROUTER_v1.0.yaml')
+        ais = load(ROOT / 'tool_pipelines/AIS/AIS_ROUTER_v1.1.yaml')
         policy = json.dumps(ais['source_policy'], sort_keys=True)
         self.assertEqual(hashlib.sha256(policy.encode()).hexdigest(), '3f22b8abf89e2cb7bfffed3c9255da3e034ad672d64a5394641e4a1f0f0975e7')
 
@@ -317,7 +437,7 @@ class HubTests(unittest.TestCase):
         self.assertEqual(archives, [ROOT / 'Source_archive'])
 
 
-# Filled once from the original source before archival, not recomputed from the new controller.
+# Original embedded protocol hash retained as provenance; checked against the extracted preserved protocol.
 READY_GATE_SHA = 'c1360811a98e27b6ddabbf008d9b82ffd54610b0bf5a8948c8f37092340fd322'
 
 if __name__ == '__main__':

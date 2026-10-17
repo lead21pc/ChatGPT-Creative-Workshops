@@ -15,6 +15,6 @@ SPEC: REVIEWED_TEXT. LIVE: NOT RUN.
 | Hidden hard field | Required count is obscured in the output | Mark UNVERIFIABLE, not PASS. |
 
 
-Thêm: manifest/controller/router mismatch hoặc module thiếu/corrupt -> chặn phần ảnh, không archive fallback; preference có mặt/inactive -> không kích hoạt; ANALYZE chỉ phân tích; retry phải đọc lại nguồn và khóa hiện tại. Ready Gate active cho mọi generation call, kiểm trong READY_GATE_TEST_CASES.md.
+Thêm: manifest/controller/router mismatch hoặc module thiếu/corrupt -> chặn phần ảnh, không archive fallback; preference có mặt/inactive -> không kích hoạt; ANALYZE chỉ phân tích; retry phải đọc lại nguồn và khóa hiện tại. Ready Gate v1.0 là dependency active/required cho mọi generation call, được manifest pin và router resolve; thiếu/unreadable/sai hash/version/compatibility phải dừng generation, không embedded fallback. Controller v1.1 chỉ delegation. Kiểm R01–R22 và X01 trong READY_GATE_TEST_CASES.md.
 
 Kiểm local bằng python -B -m unittest discover -s tests -v từ root Central Hub; oracle chỉ mô phỏng inventory, không gọi model/tool. Khi thử live riêng, ghi input, sources thực nạp, prompt hiển thị, payload nếu quan sát được, ảnh và constraint thấy được.

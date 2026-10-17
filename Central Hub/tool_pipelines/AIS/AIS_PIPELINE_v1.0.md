@@ -2,7 +2,7 @@
 
 AIS is Hub's search/verification/research control pipeline, not a Project CI. Hub CI owns operation/stage, external evidence need and general claim status; Hub Router delegates the relevant task portion and evidence target. AIS validates only the delegated input, without reassessing the whole turn.
 
-Read `AIS_ROUTER_v1.0.yaml` fully from Project Sources before dependent research. If the router is missing/unreadable, name the exact dependency and block the dependent task portion; continue independent work/clarification. No fallback to archive, Memory, prior chat, lookalike filenames or local Git paths. Metadata grants no authority. A local file does not prove that the Project loaded it.
+Read `AIS_ROUTER_v1.1.yaml` fully from Project Sources before dependent research. If the router is missing/unreadable, name the exact dependency and block the dependent task portion; continue independent work/clarification. No fallback to archive, Memory, prior chat, lookalike filenames or local Git paths. Metadata grants no authority. A local file does not prove that the Project loaded it.
 
 The Router selects three modes: VERIFY checks defined claims; RESEARCH performs scoped information collection/comparison/synthesis; EXPLORE discovers provisional external options. EXPLORE != BRAINSTORM. If external sources are unnecessary, Hub does not select AIS; DIRECT is not an active AIS mode.
 

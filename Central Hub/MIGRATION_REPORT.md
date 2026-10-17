@@ -70,7 +70,7 @@ Thêm `Source_archive/README.md`, `Source_archive/ARCHIVE_RECEIPT.json` và 36 t
 
 ## C. Mapping và chủ sở hữu
 
-Đánh giá proposal: ACCEPT WITH LOCAL CORRECTION. Xác nhận mới của người dùng rằng Ready Gate là baseline active thay metadata candidate trong nguồn cũ. Không suy runtime từ xác nhận này. Global ChatGPT v9.0 giữ nguyên ở vị trí dùng chung; chỉ là semantic baseline của Hub, không bị archive.
+Đánh giá proposal: ACCEPT WITH LOCAL CORRECTION. Xác nhận của người dùng rằng Ready Gate là baseline active thay metadata candidate trong nguồn cũ; người dùng cũng xác nhận hành vi Ready Gate đã được thử live trong ImageT Project gốc. Đây là user-confirmed project state, không phải xác nhận tích hợp Central Hub đã thử live. Global ChatGPT v9.0 giữ nguyên ở vị trí dùng chung; chỉ là semantic baseline của Hub, không bị archive.
 
 | Nguồn cũ | Đích mới (từ Hub root) | Thay đổi |
 | --- | --- | --- |
@@ -165,9 +165,14 @@ Archive chỉ lịch sử; không route, fallback, tự phục hồi hoặc tự
 
 ## I. ImageT
 
+Ghi nhận migration và correction đặc tả trước promotion; cấu hình versioned hiện hành được ghi ở mục M.
+
 - Controller subordinate active trong Project Sources; manifest không chọn/thay Hub CI. Local manifest giữ inventory/version/hash/compatibility, template optional_absent, preference candidate inactive/direct-only.
 - Anti-prior/config byte-exact. Authority/operation-lock/prompt body giữ ngữ nghĩa nguyên văn, chỉ đổi This CI thành This controller; Ready Gate body nguyên văn từ nguồn cũ, kiểm bằng fixed hash.
 - Ready Gate active cho CREATE/EDIT/VARIATION/CORRECT/retry: đúng prompt version, phê duyệt một call, revision/stale invalidates, không ngầm retry, không generation khi chưa duyệt. ANALYZE không tạo ảnh/không Ready Gate.
+- Ready Gate là runtime prompt-authorization boundary bắt buộc; `READY_GATE_TEST_CASES.md` là required normative migration/regression oracle, không phải runtime Source hoặc optional test collateral. Đã sửa OBSERVED MIGRATION DEVIATION: bản port rút gọn giữ R01–R22 nhưng làm yếu preparation, topology và acceptance/evidence framing. Correction phục hồi vai trò này, không đổi runtime controller.
+- ORIGINAL IMAGET READY GATE: USER-CONFIRMED PRIOR LIVE VALIDATION. Hành vi đã được thử live trong ImageT Project gốc theo xác nhận người dùng; current sources không có original live call trace/submitted payload để Codex tự tái xác minh hoặc claim đã truy cập.
+- STATIC MIGRATION PRESERVATION: controller giữ nguyên thân Ready Gate và fixed hash. CENTRAL HUB LIVE TEST: NOT RUN. Bảo toàn cấu trúc/hành vi đã biết không chứng minh deployment hoặc tích hợp Central Hub đã thử live.
 - Xác minh sau ảnh theo visible evidence: PASS/LOCAL_FAIL/STRUCTURAL_FAIL/UNVERIFIABLE. Tool result không tự thành default; reference chỉ theo role đã giao. Không activation từ listing/applicability; mỗi operation/retry đọc lại sources.
 
 ## J. Kiểm chứng
@@ -179,14 +184,15 @@ Archive chỉ lịch sử; không route, fallback, tự phục hồi hoặc tự
 | STATIC CONTRACT TEST | Topology, owner order/size, YAML, exact inventory/hash/header/compatibility, byte preservation, source policy/Brainstorm/Ready Gate preservation, archive receipt và absence của file cũ pass. |
 | SPEC SIMULATION | Oracle thử nghiệm kiểm missing/corrupt/incompatible/template mismatch/archive path, inactive preference, unknown selection và Ready Gate one-call/revision/stale/context loss. Oracle không thực thi model hoặc tool. |
 | REVIEWED_TEXT | 30 ca Hub, 28 ca AIS và 22 ca Ready Gate; các ImageT preservation cases được port. Đối chiếu contract, không phải 80 runtime PASS. |
-| LIVE PROJECT / WORK / IMAGE TOOL | NOT RUN; không deploy, không gọi công cụ nghiên cứu/ảnh để thử Hub. |
+| ORIGINAL IMAGET READY GATE | USER-CONFIRMED PRIOR LIVE VALIDATION; theo project state người dùng xác nhận, không phải original payload do Codex quan sát trong task này. |
+| CENTRAL HUB LIVE PROJECT / WORK / IMAGE TOOL | NOT RUN; không deploy, không gọi công cụ nghiên cứu/ảnh để thử tích hợp Hub. |
 
 Kiểm hồi quy: baseline v9.0 giữ thứ tự GROUNDING -> TURN FUNCTION -> TRUTH STATUS, distinction observation/inference/assumption; hỗ trợ cảm xúc và viết hư cấu không ép specialization; các subordinate không giữ mode/đổi stage hoặc tự activate; ImageT anti-prior/config/negatives/reference/edit locality được bảo toàn. Test không chứng minh model luôn làm đúng.
 
 ## K. Phần cần runtime và giới hạn còn lại
 
 - Cần thử Project/Work thật để biết control có được đọc/tuân thủ, tool có đủ access, evidence có đủ support và composition có giữ scope qua nhiều lượt.
-- Cần thử image tool thật để biết Ready Gate giữ version/approval/freshness và ảnh có thỏa hard constraints. Payload backend không quan sát được phải UNVERIFIABLE.
+- Ready Gate đã được thử live trong ImageT Project gốc theo xác nhận người dùng; tích hợp ImageT trong Central Hub chưa thử live. Thử Hub sau này cần quan sát version/approval/freshness và hard constraints của ảnh trong môi trường tích hợp; điều này không trì hoãn correction bảo toàn migration. Payload backend không quan sát được phải UNVERIFIABLE.
 - Tất cả ca live cần ghi model/surface/date/sources, input, calls/reads/output; bước thử nằm trong từng test case file. Task migration không cấp quyền deployment/generation.
 - Dọn root FSP rỗng cần tiến trình đang giữ thư mục nhả khóa. Không cần phục hồi file nguồn cũ để làm việc với Hub.
 
@@ -309,3 +315,49 @@ Porcelain sau migration:
 ?? Project Feather Core/tests/control-regressions/router-v5.1-fthx-probes.json
 ?? Project Feather Core/tests/test_router_fthx_candidate.py
 ```
+
+## M. Post-migration local correction — Ready Gate versioned promotion
+
+Baseline lượt này: repository local, branch main, HEAD 679da3e074fafbac3be627397794abae578f587e; ba thay đổi local từ lượt correction đặc tả được giữ và tiếp tục. Task chỉ implementation local; không stage/commit/push/deploy/branch/tag/worktree.
+
+OBSERVED MIGRATION DEVIATION: Ready Gate là hành vi active nhưng còn nhúng, chưa được quản lý version/hash/inventory/compatibility riêng. Theo requirement mới đã chấp nhận, promotion thành official required ImageT runtime control, không candidate hoặc experiment và không thiết kế lại Hub.
+
+### Phiên bản và đường dẫn hiện hành
+
+| Component | Cũ | Mới | Lý do |
+| --- | --- | --- | --- |
+| Ready Gate | embedded, chưa version riêng | READY_GATE_v1.0.md / 1.0 | Release chính thức đầu tiên, theo quy ước hai phần của controller mới trong Hub |
+| ImageT controller | IMAGE_CONTROLLER_v1.0.md / 1.0 | IMAGE_CONTROLLER_v1.1.md / 1.1 | Chuyển owner approval và thêm required dependency; sửa reference/negative boundary ở Prompt Gate |
+| ImageT router | 3.0.0 | 3.1.0 | Thêm resolution/loading của Ready Gate cho generation; giữ format_version 1 |
+| ImageT manifest | 2.0.0 | 2.1.0 | Thêm required inventory/hash/compatibility, bỏ ready_gate status cấp release bị trùng |
+| AIS router | AIS_ROUTER_v1.0.yaml / 1.0 | AIS_ROUTER_v1.1.yaml / 1.1 | Sửa hẹp combination-support leak trong EVIDENCE_MERGE |
+
+Controller/AIS router giữ quy ước filename hai phần của Hub; router/manifest ImageT giữ quy ước ba phần đã có. Các bump nhỏ phản ánh mở rộng contract trong cùng format, không tạo thế hệ kiến trúc mới. Hub Router chỉ đổi control path IMAGET, giữ 1.0 và mọi route/selection. AIS pipeline chỉ đổi router reference, giữ 1.0. Preference chỉ đổi BASELINE_CONTROLLER path và hash tương ứng, giữ 0.1.1-candidate/inactive/direct-input-only. Hub CI, domain, BRAINSTORM, anti-prior và config không đổi byte/version.
+
+### Ownership và manifest
+
+Manifest sở hữu đúng một entry ready_gate: active, required, version '1.0', exact filename/local_path READY_GATE_v1.0.md và SHA-256 `c61bccbc88560c40a9f600473d84b54c7f6b27f527eea6b713f78615d04de1d5`. Controller compatibility pin ready_gate '1.0', router '3.1.0', prior_guard '1.1.0', anti_drift '2.0.0'. Không có Ready Gate manifest/router/registry/state engine riêng. Tests không nằm trong runtime inventory.
+
+Controller xây operation lock/prompt, kiểm Prompt Gate và xác minh ảnh; không giữ full approval body. ImageT router resolve/load đúng artifact từ manifest và reload freshness, chỉ cho generation operations/retries. Ready Gate sở hữu execution snapshot/version/state, interpretation/invalidation/consumption và exact one-call authorization. Tool thực thi thật. Hub chỉ chọn IMAGET; Ready Gate không áp cho AIS, Work/browser hoặc general actions.
+
+### Bảo toàn và stress corrections
+
+Phần giao thức phê duyệt nguyên gốc được giữ nguyên văn tại `## Preserved approval protocol` trong official control; SHA-256 cũ `c1360811a98e27b6ddabbf008d9b82ffd54610b0bf5a8948c8f37092340fd322` tiếp tục được kiểm. Không thay nghĩa YES/NO/YES BUT/ambiguous/old-version approval, ANALYZE exemption, consumed approval, stale/context loss hoặc uncertain-submission/no silent retry. Các bổ sung được phép: header/version/owner, snapshot đầy đủ, reference resolution và OPEN != FORBIDDEN. Không lấy hash thay đổi tự thân làm bằng chứng cải thiện.
+
+READY SNAPSHOT vN gắn PENDING_APPROVAL với exact prompt, assets/roles, options, inputs, operation-lock identity/protected constraints, completions/preference additions, intentionally open fields, negatives và source freshness basis. Prompt đã qua Prompt Gate không được Ready Gate rewrite. References phải resolve trước approval; không asset thì REFERENCES: NONE. AIS EVIDENCE SOURCE != IMAGE GENERATOR REFERENCE ASSET. UNKNOWN/UNSPECIFIED không tự thành prohibition: mọi negative phải có user/logical/active-source authority tại controller Prompt Gate; không tự thêm "no horse". AIS evidence merge giữ components riêng: evidence A + context/evidence B không hỗ trợ A+B nếu quan hệ chưa được chứng minh.
+
+Controller, router, Ready Gate và preference hashes được recompute từ bytes thực vào đúng manifest owner. Anti-prior/config hashes giữ nguyên. Không có hash cascade ngoài các entry đã đổi bytes.
+
+### Regression oracle và bằng chứng
+
+READY_GATE_TEST_CASES.md giữ tên vì TARGET: READY_GATE 1.0 và APPLIES_TO nêu version/file rõ; ROLE: NON_RUNTIME_NORMATIVE_ORACLE, STATUS: REQUIRED_REGRESSION_SPEC. R01–R22 giữ đủ và nguyên văn; R03–R08 dùng fresh conversations riêng, R09–R19 dùng multi-turn. X01 buộc AIS -> BRAINSTORM -> TECHNICAL -> CREATIVE -> IMAGET -> READY GATE, với scoped evidence, fictional mechanism, unsupported combination, research-source/asset split, open field, exact roles và numbered PENDING_APPROVAL/zero-call trước duyệt.
+
+Local unittest: **17/17 PASS, không skip**. Kiểm tĩnh: YAML conservative, files/headers/hashes/compatibility, đúng một owner/entry, delegation, protocol preservation, source policy, normative anchors. Oracle mô phỏng: các generation path vào pending, missing/corrupt/incompatible/unreadable Ready Gate phải dừng; archive/embedded fallback bị cấm; ANALYZE bypass; approval một call/revision/stale/consumption. X01 là REVIEWED_TEXT, không claim đã chạy stress test bằng model trong task này.
+
+ORIGINAL IMAGET READY GATE: previously live-tested per USER-CONFIRMED PROJECT STATE. CENTRAL HUB PROMOTED READY GATE: static/spec tested; LIVE PROJECT INTEGRATION NOT RUN. Current sources không chứa original live payload trace để claim đã truy cập/tái kiểm. Backend payload không quan sát được phải UNVERIFIABLE; displayed prompt không chứng minh exact submitted payload.
+
+### Predecessor và Git scope
+
+Theo lệnh không sửa một byte Source_archive, không thêm/đổi archive hoặc receipt; 38 file archive giữ nguyên. Hai predecessor controller/AIS router đã được xác minh nguyên byte so snapshot và Git HEAD trước khi bỏ tên cũ khỏi vùng active. Bản trước thay đổi nằm tại Git HEAD 679da3e074fafbac3be627397794abae578f587e; đây là provenance lịch sử, không fallback runtime hoặc quyền rollback tự động. Chỉ dẫn không ghi archive của user được ưu tiên so với archive workflow mặc định.
+
+Không thay đổi index/HEAD/branch hoặc remote. Bảng B/C và log A–L lưu lịch sử migration trước promotion; mọi active version/path sau promotion theo mục M và manifest hiện hành. Task này không deploy hoặc thử image tool.

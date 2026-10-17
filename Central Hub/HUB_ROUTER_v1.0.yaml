@@ -10,7 +10,7 @@ controls:
   TECHNICAL: "domains/technical/TECHNICAL_v1.0.md"
   BRAINSTORM: "capabilities/BRAINSTORM_v1.0.md"
   AIS: "tool_pipelines/AIS/AIS_PIPELINE_v1.0.md"
-  IMAGET: "tool_pipelines/ImageT/IMAGE_CONTROLLER_v1.0.md"
+  IMAGET: "tool_pipelines/ImageT/IMAGE_CONTROLLER_v1.1.md"
 selection:
   CREATIVE: "The task portion needs development of imagery, action, rhythm, situations, relationships or functional fictional detail. A fictional topic alone is insufficient; ordinary writing may still use NONE."
   TECHNICAL: "The task portion needs mechanism reasoning, distinguishing causes during diagnosis or evaluation of a bounded technical change. A technical term or simple explanation request alone is insufficient."

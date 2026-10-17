@@ -1,4 +1,4 @@
-router_version: '1.0'
+router_version: '1.1'
 entry: INPUT_VALIDATION
 stage_sequence:
 - INPUT_VALIDATION
@@ -68,6 +68,9 @@ stages:
     preserve protected state. Retract conclusions dependent on refuted in-scope premises; invent no consequences.
     Report protected-state conflicts without silently changing state or settling dependent conclusions. Distinguish
     evidence/inference/assumption/proposal/ unresolved/conflict where material. EXPLORE creates no accepted requirement.
+    SUPPORTED COMPONENTS DO NOT AUTOMATICALLY SUPPORT THEIR COMBINATION. Evidence for A plus evidence/context for B
+    is not evidence for A+B unless the relation between A and B is itself supported. Preserve unsupported combinations
+    as inference/hypothesis or unresolved; do not strengthen a component claim into a combined claim.
   COVERAGE_SUPPORT_CHECK: Recheck operation/stage/scope/calls/reads/material claim support/freshness/conflicts/
     gaps/stop_condition/update permission. Cite read, supporting sources beside claims; claim only achieved coverage.
     Never promote unresolved to verified; tool output is not evidence sufficiency. Report decisive limits; no routine
