@@ -1,0 +1,75 @@
+format_version: '1'
+manifest_version: 2.0.0
+release:
+  id: central-hub-imaget-1.0
+  working_state: local_implementation
+  published: false
+  project_deployment: not_performed
+  ready_gate: active_by_explicit_user_confirmation
+integrity:
+  algorithm: sha256
+  scope: exact_local_bytes
+  self_hash: null
+  self_hash_policy: excluded_to_avoid_self_reference
+  runtime_without_hash: exact_filename_and_header_report_unverified_hash
+artifacts:
+  router:
+    id: router
+    file: IMAGE_SOURCE_ROUTER.yaml
+    local_path: IMAGE_SOURCE_ROUTER.yaml
+    version: 3.0.0
+    status: active
+    required: true
+    sha256: 360cad363c46e896ebb745bd86d82be2e7c7ff090e229f69549aabcfc03134c3
+  prior_guard:
+    id: prior-guard
+    file: IMAGE_ANTI_PRIOR.md
+    local_path: IMAGE_ANTI_PRIOR.md
+    version: 1.1.0
+    status: active
+    required: true
+    sha256: f08a1d1a09c8b31cd3fe6ed80b38b19f2c662e15f7e192b42c8a5e044aa69b5c
+  anti_drift:
+    id: anti-drift
+    file: config.md
+    local_path: config.md
+    version: 2.0.0
+    status: active
+    required: true
+    sha256: 20b08b3b99b237eebeec0442024e0818245d0b0bebc2fb756e972aca67d4d3d7
+  visual_template:
+    id: visual-template
+    file: null
+    local_path: null
+    version: null
+    status: optional_absent
+    required: false
+    sha256: null
+    reserved_file: template.md
+preferences:
+- id: humanoid-character-design
+  file: HUMANOID_CHARACTER_DESIGN_PREFERENCE.md
+  local_path: preferences/HUMANOID_CHARACTER_DESIGN_PREFERENCE.md
+  version: 0.1.1-candidate
+  status: candidate
+  required: false
+  sha256: 0a9e59baba0d29d59b0e20ca23478e2562b5dcf3da9a7a91c85b25ef586b2e88
+  selectable: false
+  selection_scope: direct_input_experiment
+  activation: inactive
+  source_routing: not_implemented
+  direct_input_selection: explicit_current_operation_under_own_contract
+controllers:
+  active:
+    id: baseline
+    file: IMAGE_CONTROLLER_v1.0.md
+    local_path: IMAGE_CONTROLLER_v1.0.md
+    version: '1.0'
+    status: active
+    required: true
+    sha256: 00d92adf721f7787c4d5bd2faba0a990c3640c8a2e3c2b0ad0cfd07cd5ae7d44
+    compatibility:
+      router: 3.0.0
+      prior_guard: 1.1.0
+      anti_drift: 2.0.0
+  experiments: []

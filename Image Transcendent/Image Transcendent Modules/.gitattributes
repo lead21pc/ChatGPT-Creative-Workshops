@@ -1,3 +1,0 @@
-*.md -text
-*.yaml -text
-source_archive/** whitespace=-blank-at-eof
