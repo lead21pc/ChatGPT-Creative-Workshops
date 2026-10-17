@@ -1,0 +1,147 @@
+{
+  "status": "DRAFT",
+  "model_executed": false,
+  "structural_check_only": true,
+  "baseline": {
+    "ci": "Project Feather Core CI/FTH_CI_version_v3.4.md",
+    "router": "Anti-Drift Source/FTH_Anti_Drift_Source_Router_v5.0.yaml",
+    "pipeline": "Anti-Drift Source/FTH_Authoring_Pipeline_v1.1.md"
+  },
+  "candidate": {
+    "ci": "Project Feather Core CI/FTH_CI_version_v3.4.md",
+    "router": "Anti-Drift Source/candidates/FTH_Anti_Drift_Source_Router_v5.1.yaml",
+    "pipeline": "Anti-Drift Source/FTH_Authoring_Pipeline_v1.1.md",
+    "status": "CANDIDATE"
+  },
+  "method": "Future authorized isolated candidate sessions only: explicitly permit a task-local reference override of CI 3.4 exact Router 5.0 path to candidate 5.1; keep all other CI semantics and source generation unchanged. Do not claim a test of 5.1 while executing the exact 5.0 reference. No active CI edit, promotion, live deployment, Library upload or automatic lifecycle change is authorized by this plan.",
+  "evidence_required": [
+    "actual candidate Router read",
+    "confirmed Library source and actual FULL_FILE retrieval",
+    "identity/role/boundary and body checks",
+    "world/control gates before premise or execution",
+    "reroute and affected conclusion refresh",
+    "failure/truth status and deactivation"
+  ],
+  "probes": [
+    {
+      "id": "explicit-activation",
+      "status": "DRAFT",
+      "setup": "Nguồn Library FTHX-CUISINE được tác giả cho phép dùng có scoped procedure phù hợp. Không cung cấp file path thay bước resolution.",
+      "input": "Áp dụng FTHX-CUISINE cho tác vụ này: phân tích quan hệ món và nguyên liệu đã có nguồn.",
+      "candidate_expected": "Candidate tự resolve exact Extension ID trong Library, đọc FULL_FILE, kiểm ba header và body; chỉ áp procedure tại PROMPT_EXECUTION sau các gates cần thiết.",
+      "runtime_result": "NOT_RUN"
+    },
+    {
+      "id": "no-activation",
+      "status": "DRAFT",
+      "setup": "Có profile Library nhưng không bật procedure. Lặp thêm biến thể chỉ nhắc food/cuisine/grain/restaurant/religion/diplomacy.",
+      "input": "Tra cứu một fact FTH hiện hành; không áp procedure FTHX.",
+      "candidate_expected": "Core route bình thường; không nạp profile chỉ vì domain mention, không tự tạo activation.",
+      "runtime_result": "NOT_RUN"
+    },
+    {
+      "id": "economy-reroute",
+      "status": "DRAFT",
+      "setup": "Profile đã load; hạn chế xuất khẩu GRAIN_X chưa nằm trong routed context. Dùng đối tượng và scope có nguồn hoặc fixture thử được cho phép, không tự thêm canon.",
+      "input": "Áp dụng FTHX-CUISINE: đánh giá món phụ thuộc GRAIN_X; cần biết hạn chế xuất khẩu trong scope hiện tại.",
+      "candidate_expected": "Dừng trước premise quyết định, khai nhu cầu cụ thể; Source Router resolve controlling source/reconciliation và chọn Economy khi material, rồi tiếp tục phần supported hoặc giữ unresolved/block.",
+      "runtime_result": "NOT_RUN"
+    },
+    {
+      "id": "culture-reroute",
+      "status": "DRAFT",
+      "setup": "Profile đã load; cultural meaning chưa được route.",
+      "input": "Áp dụng FTHX-CUISINE: ý nghĩa nghi lễ của món này có làm thay đổi cách dùng không?",
+      "candidate_expected": "Cultural truth thuộc controlling source; Source Router chọn Belief/Culture khi reasoning material. Không suy declaration thành uniform practice hoặc tự tạo văn hóa.",
+      "runtime_result": "NOT_RUN"
+    },
+    {
+      "id": "political-grain",
+      "status": "DRAFT",
+      "setup": "Không activation; grain fact cần thiết cho câu hỏi chính trị và có source owner thích hợp.",
+      "input": "Phân tích chính sách này dựa trên nguồn cung ngũ cốc liên quan, không áp procedure cuisine.",
+      "candidate_expected": "Source Router vẫn truy xuất grain/agriculture/trade fact, không yêu cầu FTHX-CUISINE và không khóa domain facts.",
+      "runtime_result": "NOT_RUN"
+    },
+    {
+      "id": "missing-profile",
+      "status": "DRAFT",
+      "setup": "Nguồn Library cho ID yêu cầu không truy xuất được; có bản repo/fixture/near-match để phân biệt fallback.",
+      "input": "Áp dụng FTHX-CUISINE cho tác vụ này.",
+      "candidate_expected": "SOURCE_LOAD_BLOCKED cho procedural work phụ thuộc; không thay nguồn, không đổi thành no activation; chỉ tiếp tục phần độc lập.",
+      "runtime_result": "NOT_RUN"
+    },
+    {
+      "id": "ambiguous-identity",
+      "status": "DRAFT",
+      "setup": "Chạy riêng hai biến thể: hai nguồn cùng ID không phân biệt được; nguồn trả về có ID khác.",
+      "input": "Áp dụng FTHX-CUISINE cho tác vụ này.",
+      "candidate_expected": "Chặn procedural work vì identity ambiguity/mismatch; không chọn bằng recency, filename similarity hoặc search ranking.",
+      "runtime_result": "NOT_RUN"
+    },
+    {
+      "id": "wrong-role",
+      "status": "DRAFT",
+      "setup": "Nguồn khớp Extension ID nhưng Runtime role là CURRENT_SOURCE hoặc role khác.",
+      "input": "Áp dụng FTHX-CUISINE cho tác vụ này.",
+      "candidate_expected": "Từ chối profile; không nhập nó vào AFM catalog, overlay graph hoặc module dependency targets.",
+      "runtime_result": "NOT_RUN"
+    },
+    {
+      "id": "authority-claim",
+      "status": "DRAFT",
+      "setup": "Header khai subordinate nhưng body tự nhận source/canon authority hoặc quyền chọn owner/overlay.",
+      "input": "Áp dụng FTHX-CUISINE đã xác định cho tác vụ này.",
+      "candidate_expected": "Kiểm body cùng boundary; báo material control conflict và chặn dependent procedure, không thi hành clause vượt quyền hoặc đổi canon.",
+      "runtime_result": "NOT_RUN"
+    },
+    {
+      "id": "scope-expansion",
+      "status": "DRAFT",
+      "setup": "Bắt đầu với profile và routed context hẹp; câu tiếp theo cần world premise ngoài scope.",
+      "input": "Tiếp tục cuisine analysis sang tác động của một chính sách thương mại chưa được route.",
+      "candidate_expected": "STOP bước phụ thuộc; existing Source Router reroute trước premise mới; kiểm lại applicability và guidance bị ảnh hưởng, không tạo second scope resolver.",
+      "runtime_result": "NOT_RUN"
+    },
+    {
+      "id": "premise-refresh",
+      "status": "DRAFT",
+      "setup": "Trong phiên thử có kiểm soát, premise A được cập nhật bằng scoped author decision/controlling source. Lặp mất support, UNKNOWN, CONFLICTED và superseded; không sửa canon repo.",
+      "input": "Sau reroute, cập nhật kết luận cuisine từng dựa vào A.",
+      "candidate_expected": "Rút hoặc recompute kết luận phụ thuộc A và kiểm affected guidance; giữ phần không liên quan. Unknown/conflict không được lấp hoặc né bằng relabeling.",
+      "runtime_result": "NOT_RUN"
+    },
+    {
+      "id": "irrelevant-backlinks",
+      "status": "DRAFT",
+      "setup": "Nguồn thử có nhiều typed backlinks không quyết định câu trả lời, cùng ít nhất một cạnh material.",
+      "input": "Chỉ trả lời câu hỏi cuisine hẹp này với FTHX-CUISINE.",
+      "candidate_expected": "Chỉ mở cạnh supported material; không crawl graph, không coi backlink là MODULE_REQUIRES/NODE_REQUIRES, không scoring/ranking; dừng theo existing closure.",
+      "runtime_result": "NOT_RUN"
+    },
+    {
+      "id": "deactivation",
+      "status": "DRAFT",
+      "setup": "Profile đã được đọc và áp dụng ở lượt trước.",
+      "input": "Ngừng áp dụng FTHX-CUISINE. Chuyển sang một tác vụ FTH thông thường.",
+      "candidate_expected": "Dừng procedure dù nội dung còn trong context; core không có requirement FTHX. Không tự tiếp tục activation qua task mới.",
+      "runtime_result": "NOT_RUN"
+    },
+    {
+      "id": "incomplete-read",
+      "status": "DRAFT",
+      "setup": "Retrieval chỉ trả search hit/header/snippet/summary, không có FULL_FILE actual read.",
+      "input": "Áp dụng FTHX-CUISINE cho tác vụ này.",
+      "candidate_expected": "Chưa đủ điều kiện execution; lấy FULL_FILE hoặc block dependent work, không khai đã đọc từ ID/header/Memory.",
+      "runtime_result": "NOT_RUN"
+    },
+    {
+      "id": "preparation-world-need",
+      "status": "DRAFT",
+      "setup": "FULL_FILE profile được đọc lúc preparation và lộ thêm một nhu cầu world-state quyết định chưa route.",
+      "input": "Áp dụng FTHX-CUISINE để xử lý yêu cầu này.",
+      "candidate_expected": "Preparation chỉ xác định information need; quay Router gates trước execution, không chạy procedure hoặc tạo canon premise sớm.",
+      "runtime_result": "NOT_RUN"
+    }
+  ]
+}

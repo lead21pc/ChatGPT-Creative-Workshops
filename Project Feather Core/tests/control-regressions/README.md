@@ -180,4 +180,30 @@ Chạy `python -B build_consolidation.py --check-router` và `python -B -m unitt
 
 `router-v5-probes.json` vẫn giữ 18 probe DRAFT/NOT_RUN. Khóa `candidate` và `candidate_expected` là nhãn lịch sử của phép so sánh với baseline; đường dẫn nay trỏ tới artifact đã promote, không phải một khóa chặn runtime. Không đổi lifecycle hay tạo kết quả model từ xác nhận sử dụng của người dùng. Audit trước promotion tại `Anti-Drift Source/candidates/ROUTER_V5_AUDIT.md` giữ vai trò provenance.
 
-Để cài thủ công, dùng toàn bộ CI 3.3 làm Project instructions và đưa Router 5.0 cùng Pipeline 1.1 vào Project Sources/Library mà FTH đang dùng. Giữ current source generation và các overlay cần thiết; không trộn cặp baseline với active stack. Việc sửa repo không tự thay cấu hình Project live.
+Để cài thủ công, dùng toàn bộ CI 3.4 làm Project instructions và đưa Router 5.0 cùng Pipeline 1.1 vào Project Sources/Library mà FTH đang dùng. Giữ current source generation và các overlay cần thiết; không trộn cặp baseline với active stack. Việc sửa repo không tự thay cấu hình Project live.
+
+
+## Router 5.1 FTHX candidate — kiểm riêng
+
+`Anti-Drift Source/candidates/FTH_Anti_Drift_Source_Router_v5.1.yaml` là
+**CANDIDATE / NOT ACTIVE / NOT LIVE DEPLOYMENT**. Stack active vẫn là CI 3.4 +
+Router 5.0 + Pipeline 1.1; CI tiếp tục trỏ chính xác Router 5.0. Candidate nằm
+ngoài direct-child resolution và chỉ được kiểm bằng đường dẫn tường minh.
+
+Chạy kiểm cấu trúc riêng, không thực thi mô hình:
+
+```powershell
+python -B -m unittest discover -s tests -p test_router_fthx_candidate.py
+```
+
+`router-v5.1-fthx-probes.json` giữ 15 probe **DRAFT / NOT_RUN**. Đây là kế hoạch
+thử thủ công, không được runner tự chọn hoặc tự nâng vòng đời. Chưa có profile
+Library được tạo/nạp, không có runtime binding hoặc fixture thay Library.
+
+CI 3.4 hiện yêu cầu exact Router 5.0. Một phiên thử 5.1 trong tương lai phải
+được cho phép rõ là candidate override của riêng reference đó, giữ nguyên
+các invariant CI và phần còn lại của stack; không dùng chỉ dẫn đọc 5.0 rồi
+khẳng định đã thử 5.1. Việc override chỉ thuộc phiên thử, không sửa CI active
+hoặc chứng minh deployment. Ghi actual reads, identity, gates, reroute và
+premise/conclusion bị ảnh hưởng. Tuân thủ tự khai không phải read proof.
+Dừng phiên thử candidate để trở lại active 5.0; không đổi canon, RP hoặc sources.

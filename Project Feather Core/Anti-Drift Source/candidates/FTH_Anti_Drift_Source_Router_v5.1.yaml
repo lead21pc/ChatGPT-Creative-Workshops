@@ -1,0 +1,249 @@
+# CANDIDATE / NOT ACTIVE / NOT LIVE DEPLOYMENT. Opt-in test only; keep 5.0 active.
+schema_version: 1
+deployment:
+  status: CANDIDATE
+  router_version: '5.1'
+  ci_version: '3.4'
+  upstream_base: '8.9'
+  ci: Project Feather Core CI/FTH_CI_version_v3.4.md
+  baseline_ci: Project Feather Core CI/FTH_CI_version_v3.4.md
+  baseline_router: Anti-Drift Source/FTH_Anti_Drift_Source_Router_v5.0.yaml
+  pipeline: Anti-Drift Source/FTH_Authoring_Pipeline_v1.1.md
+  # Maintenance references only. No CI operation belongs to the runtime sequence.
+runtime:
+  entry: PROMPT_ROUTE_ONLY
+  stages:
+    - PROMPT_ROUTE_ONLY
+    - BOOTSTRAP_GATE
+    - MODULE_GATE
+    - SOURCE_LOAD
+    - RECONCILIATION
+    - ANTI_DRIFT_OVERLAY_GATE
+    - PROMPT_EXECUTION
+    - PRE_RESPONSE_CHECK
+bootstrap:
+  full_file:
+    - 00_AETHERFIRE_CONSOLIDATION_INDEX.md
+    - 92_OPEN_ISSUES_CURRENT.md
+  same_current_generation: true
+  reconciliation_record: 91_RECONCILIATION_RECORD.md
+  record_read_when: conflict, supersession, priority, provenance or dependency could decide the task
+modules:
+  required_header: [Module ID, Runtime role, Domain / Scope]
+  conditional_header:
+    Authority boundary: material owner separation
+    Cross-domain owner boundary: known material interface
+  hard_dependency_field: MODULE_REQUIRES
+  node_dependency_field: NODE_REQUIRES
+loading:
+  default: FULL_FILE
+  modes: [FULL_FILE, NODE_OR_FULL]
+  read_proofs: [FULL_FILE, VERIFIED_MODULE_CLOSURE]
+  closure_components:
+    - mandatory module context
+    - reviewed local index and target node bounds
+    - complete target node
+    - transitive reviewed node dependencies
+    - decisive qualifiers, exceptions and priority
+    - current and open status
+    - controlling owner context
+  full_file_when:
+    - broad audit or canon mutation
+    - mixed status or conflicting owners
+    - unreviewed node contract or unsafe qualifier bounds
+failures:
+  bootstrap_missing_or_inconsistent: SOURCE_LOAD_BLOCKED
+  decisive_source_or_authority_missing: SOURCE_LOAD_BLOCKED
+  hard_module_dependency_missing_unreviewed_or_cycle: SOURCE_LOAD_BLOCKED
+  required_control_missing_or_ambiguous: SOURCE_LOAD_BLOCKED
+  module_identity_or_role_ambiguous: REVIEW_REQUIRED
+  unresolved_controlling_owner: SOURCE_LOAD_BLOCKED
+  node_uncertain_missing_or_cycle: FULL_FILE
+  unknown_load_mode_clear_identity_authority: FULL_FILE
+  unknown_load_mode_unclear_identity_authority: SOURCE_LOAD_BLOCKED
+  demonstrably_nondecisive_secondary_gap: SOURCE_LOAD_PARTIAL
+control_selection:
+  directory: Anti-Drift Source
+  files: direct_children_only
+  version_order: numeric
+  ambiguity: SOURCE_LOAD_BLOCKED
+  excluded_statuses: [CANDIDATE, DRAFT, REJECTED, SUPERSEDED, RETIRED, ARCHIVED]
+  load: FULL_FILE
+  # Applicability and the conditions below remain semantic judgments.
+  # Once judged, expand all unconditional and true conditional edges transitively.
+controls:
+  - id: MCA
+    stem: FTH_Anti_Drift_Modular_Concept_Architecture
+    select_when: modular concept architecture, actor agency or mechanism/end-point distinctions matter
+    requires: []
+    conditional_requires: []
+  - id: ECONOMY
+    stem: FTH_Anti_Drift_Interface_Economy_State_Stabilization
+    select_when: economic interface or state stabilization mechanism matters
+    requires: []
+    conditional_requires: []
+  - id: WIL
+    stem: FTH_Anti_Drift_Worldbuilding_Internal_Logic
+    select_when: ecosystem, institution, coherence, change or feedback audit; not closed-interface fact lookup alone
+    requires: []
+    conditional_requires:
+      - {when: economic_mechanism_material, target: ECONOMY}
+  - id: TW
+    stem: FTH_Anti_Drift_Total_War_RP
+    select_when: war, combat, command or an operational conflict interface matters
+    requires: []
+    conditional_requires: []
+  - id: ACTOR_RECEPTION
+    stem: FTH_Anti_Drift_Actor_Reception_Normative_Signals
+    select_when: receipt, appraisal or response to normative signals by actors matters
+    requires: [MCA]
+    conditional_requires:
+      - {when: institutional_interface_material, target: WIL}
+      - {when: operational_conflict_material, target: TW}
+      - {when: economic_mechanism_material, target: ECONOMY}
+  - id: BELIEF_CULTURE
+    stem: FTH_Anti_Drift_Belief_Culture
+    select_when: doctrine/practice, cultural extent/variation, transmission/change or symbolic recognition materially decides a conclusion; neither a label nor a direct fact lookup alone
+    requires: []
+    conditional_requires:
+      - {when: actor_reception_material, target: ACTOR_RECEPTION}
+      - {when: institutional_interface_material, target: WIL}
+      - {when: economic_mechanism_material, target: ECONOMY}
+      - {when: operational_conflict_material, target: TW}
+  - id: MORTALITY
+    stem: FTH_Anti_Drift_Mortality_Relationship_Plot_Immunity
+    select_when: mortality, survival, rescue, sacrifice or relationship-based plot immunity matters
+    requires: [MCA]
+    conditional_requires:
+      - {when: operational_conflict_material, target: TW}
+  - id: UNDIE
+    stem: FTH_Anti_Drift_Undie_Professional_Gray_Zone
+    select_when: Undie affiliation, branches, entry/exit, intermediaries, contracts, gray activity, venues/access, consent, Undi, stigma, resistance/security/intelligence or political consequences materially decide reasoning; not a simple sourced mention
+    requires: [MCA]
+    conditional_requires:
+      - {when: institutional_interface_material, target: WIL}
+      - {when: economic_mechanism_material, target: ECONOMY}
+      - {when: actor_reception_material, target: ACTOR_RECEPTION}
+      - {when: belief_culture_material, target: BELIEF_CULTURE}
+      - {when: mortality_material, target: MORTALITY}
+      - {when: operational_conflict_material, target: TW}
+policies:
+  routing: >-
+    Begin at PROMPT_ROUTE_ONLY. Identify operation, scope, candidate domains/modules,
+    required evidence, controls and canon-change authorization only. No canon premise,
+    resolved open state, simulation, outcome or conclusion before the required gates.
+    Re-route materially expanded scope. CI owns entry into this Router; runtime performs
+    no CI discovery, selection, loading, inference, validation or activation confirmation.
+    Activate a procedural profile only on an explicit request identifying its exact
+    FTHX-* Extension ID and requested task scope. DOMAIN MENTION != PROCEDURE ACTIVATION;
+    no token aliases or automatic domain discovery. Profile activation changes procedure,
+    never access to domain facts: ordinary world routing remains available without FTHX.
+  discovery: >-
+    Read bootstrap files completely from the same current generation. The index and
+    reviewed catalog navigate; neither grants authority, admission or dependencies.
+    Do not presume backend enumeration or all-header access. Without a catalog use
+    indexed current controlling sources FULL_FILE, without inventing Module IDs.
+    A stale catalog permits bounded work only from independently identified, authoritative,
+    sufficient FULL_FILE owners; otherwise block. Supplied uncatalogued inputs remain
+    UNCONFIRMED. No package-completeness claim without established discovery.
+    For an activated FTHX ID, resolve its source in ChatGPT Library and actually retrieve
+    it; verify exact identity after FULL_FILE. Establish the requested source within the
+    confirmed retrieval context without presuming backend enumeration or global uniqueness.
+    Missing identity or material ambiguity blocks dependent procedural work. Do not select
+    by filename similarity, newest version, search ranking, Memory or prior response;
+    no repository fixture, archive or near-match fallback. Library location and self-declared
+    headers grant no authority; the explicit request permits only the scoped procedure.
+  module_gate: >-
+    Establish identity, runtime role, admission, scope and authority before use. Missing,
+    duplicate or unknown identity/role requires review. CURRENT_SOURCE declaration,
+    header, catalog presence and Module ID confer no canon rank or admission. Resolve
+    overlapping authority with full controlling owner files; unresolved material ownership
+    blocks dependent conclusions. Headers belong to modules, not the derived catalog.
+    Module IDs remain stable across renames; adding an admitted module/catalog row needs
+    no Router-core edit or numeric lore filename. Shared actors/interfaces do not merge
+    owners; containment in documents is not ontology or in-world authority.
+    Dispatch FTHX-* as a separate procedural document type. Require exactly one nonempty
+    Extension ID, Runtime role and Authority boundary header; ID must match the requested
+    FTHX identity and role must be DOMAIN_PROCEDURE. The boundary and body must restrict
+    ownership to specialized procedure subordinate to installed FTH CI and Source Router.
+    FTHX is not CURRENT_SOURCE, an AFM module, an anti-drift overlay, a source owner, or a
+    MODULE_REQUIRES or NODE_REQUIRES target. Do not admit it to the AFM catalog or controls
+    graph. A wrong role, ambiguous header or material authority conflict blocks dependent
+    procedure; neither header nor body may claim canon/source authority, reconciliation,
+    UNKNOWN resolution, world-owner selection or overlay selection.
+  dependencies: >-
+    MODULE_REQUIRES are reviewed task-hard dependencies, expanded transitively;
+    mentions are not edges. Missing, dangling, unreviewed edges or unresolved hard cycles
+    block dependent work. NODE_REQUIRES crosses only admitted modules; an unreviewed
+    possible node edge requires review. Node uncertainty, missing targets or cycles require
+    FULL_FILE of affected owners; this never bypasses a hard module dependency.
+  loading: >-
+    Absent Load defaults to FULL_FILE. NODE_OR_FULL is allowed only for a reviewed
+    module/task contract with usable index, bounds, dependencies and actual retrieval
+    of every closure component. Only FULL_FILE or VERIFIED_MODULE_CLOSURE proves a read;
+    hits, snippets, headers, summaries, memory and prior answers do not. Expand unsafe
+    closure or read full owners. Unknown Load falls back only with clear identity/authority.
+    Read the reconciliation record FULL_FILE before evaluating new sources when material.
+    Open issues expose state, never resolve it or constitute a global dependency graph.
+    FTHX uses FULL_FILE only, never NODE_OR_FULL. Search hits, snippets, headers, summaries,
+    prior answers and Memory do not prove this read. Setup reads may identify information
+    needs but may not execute the procedure or establish world premises. Apply a verified
+    profile only during PROMPT_EXECUTION after required world-source, authority,
+    reconciliation and applicable-control gates; new world-state needs discovered during
+    preparation return to routing before execution. Profile read/verification failure
+    blocks dependent procedural work under SOURCE_LOAD_BLOCKED; continue independent work
+    only, without silently treating the failed activation as no activation.
+  authority: >-
+    Latest explicit user decision controls only its stated scope, then accepted current
+    controlling sources, then older facts explicitly preserved. Recency, metadata and
+    detail alone grant no priority. Classify new input as UNCONFIRMED until a scoped
+    decision assigns its evidence/design/replacement/history/canon-candidate role.
+    Retain UNKNOWN, DEFERRED, CONFLICTED, alternatives and actual supported dependencies;
+    absence is not false or resolved. Withdraw conclusions dependent on changed accepted
+    premises, preserving unrelated canon and inventing no replacement consequences.
+    Questions, design and simulations do not mutate canon.
+    Historical, rejected, archived or superseded material is provenance or explicit
+    comparison only, never fallback or an analogy bridge into current conclusions.
+  access: >-
+    Normal canon access starts in Library Project Feather Core, then Project Sources.
+    Identically named external files/connectors have no automatic current authority.
+    Task-local permission to read is not authority; explicit external authority applies
+    only within the user's scope and still passes source gates. Repository inspection,
+    control design and procedural reads need not masquerade as canon module reads.
+  overlays: >-
+    After source loading and reconciliation, select applicable controls by semantic scope,
+    resolve each eligible direct-child family numerically, then expand hard and satisfied
+    conditional dependencies transitively. Ambiguous highest version or unavailable
+    required control blocks dependent work. Read every selected control FULL_FILE before
+    execution. Control filenames and dependencies do not authorize canon. Mere scandal,
+    crime or institutional rivalry does not activate TW. Economic applicability remains
+    clamped to material economic mechanisms. More specific overlays control depth/stopping
+    within their scope, never CI, source authority, current canon or open status. No overlay
+    executes during PROMPT_ROUTE_ONLY; none chooses actor actions or outcomes or invents
+    missing world state. Do not silently merge material control conflicts.
+  coverage: >-
+    Before execution and before response recheck route, controlling premises/owners,
+    actual reads, closure, record/open-state relevance, overlays and unresolved gaps.
+    Block only dependent work; independent work may continue. PARTIAL requires a named
+    secondary gap demonstrably unable to change the explicitly bounded conclusion;
+    relabeling a dependent claim as bounded cannot bypass missing decisive evidence.
+    Report CANON, UNCONFIRMED, HISTORICAL/SUPERSEDED, UNKNOWN, DEFERRED, CONFLICTED,
+    INFERENCE, HYPOTHETICAL or PROPOSAL where material. Task-local sufficiency is not global
+    completeness. No structural/package check proves live ChatGPT retrieval or compliance.
+    Before a procedure uses a world premise outside routed context, STOP the dependent
+    step, declare the specific upstream information need and use this Router's existing
+    reroute and source/authority/reconciliation/overlay gates; no second scope resolver.
+    Return supported or unresolved results without the profile routing world sources.
+    After reroute, re-evaluate affected procedure guidance and withdraw/recompute dependent
+    conclusions when material premises change, lose support, become UNKNOWN or CONFLICTED,
+    or are superseded in scope. Router owns when refresh is required; the profile owns
+    domain-specific recomputation. Retain only current-task context and actual read evidence;
+    read again if earlier content or verified scope is no longer available or sufficient.
+    Retry a blocked need only after evidence, access or scope changes can alter the result.
+    End procedure application when explicit activation ends or the user moves to a task
+    without it; prior read != continued activation. Core flow stays independent of FTHX.
+    BACKLINK EXISTS != MUST LOAD; RELATED != DEPENDS_ON; CO-OCCURRENCE != DEPENDENCY.
+    Follow only supported typed relations/backlinks that can change task-material conclusion,
+    feasibility, interpretation, authority, failure path or truth-status result; mentions
+    create no hard dependencies. Use existing task-local stopping rules, not full-world
+    traversal, scoring, a dependency tracker or persistent state.

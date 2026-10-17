@@ -240,3 +240,33 @@ def validate(data, root):
 
 def check(root):
     return validate(load(root / ROUTER), root)
+
+
+FTHX_CANDIDATE = 'Anti-Drift Source/candidates/FTH_Anti_Drift_Source_Router_v5.1.yaml'
+FTHX_PATCH_POLICIES = {'routing', 'discovery', 'module_gate', 'loading', 'coverage'}
+
+
+def validate_fthx_candidate(data, root):
+    """Check the opt-in 5.1 delta against active 5.0; never select it as active."""
+    resolved = check(root)
+    baseline = load(root / ROUTER)
+    fields(data, baseline.keys(), 'FTHX candidate')
+    expected_deployment = dict(baseline['deployment'], status='CANDIDATE',
+                               router_version='5.1', baseline_router=ROUTER,
+                               baseline_ci=baseline['deployment']['ci'])
+    require(data['deployment'] == expected_deployment, 'FTHX candidate deployment mismatch')
+    for key in baseline.keys() - {'deployment', 'policies'}:
+        require(data[key] == baseline[key], f'FTHX candidate changed protected section: {key}')
+    fields(data['policies'], POLICIES, 'FTHX candidate policies')
+    for name, original in baseline['policies'].items():
+        value = data['policies'][name]
+        if name in FTHX_PATCH_POLICIES:
+            require(isinstance(value, str) and value.startswith(original + ' ')
+                    and value[len(original):].strip(), f'FTHX candidate must extend policy: {name}')
+        else:
+            require(value == original, f'FTHX candidate changed protected policy: {name}')
+    return resolved
+
+
+def check_fthx_candidate(root):
+    return validate_fthx_candidate(load(root / FTHX_CANDIDATE), root)
