@@ -1,4 +1,4 @@
-# ImageT subordinate — bảo toàn prompt
+# ImageT subordinate — prompt preservation
 
 SPEC: REVIEWED_TEXT. LIVE: NOT RUN.
 
@@ -24,6 +24,6 @@ SPEC: REVIEWED_TEXT. LIVE: NOT RUN.
 | Result after completed call | A generation submission occurred and a later result is failed or uncertain | Prior approval remains consumed under Ready Gate; post-image verification does not restore it. |
 | Retry after failed/uncertain result | The result is failed or uncertain | No silent retry; another call requires the normal fresh route/snapshot/approval path. |
 
-Thêm: manifest/controller/router mismatch hoặc module thiếu/corrupt -> chặn phần ảnh, không archive fallback; preference có mặt/inactive -> không kích hoạt; ANALYZE chỉ phân tích; retry phải đọc lại nguồn và khóa hiện tại. Ready Gate v1.0 là dependency active/required cho mọi generation call, được manifest pin và router resolve; thiếu/unreadable/sai hash/version/compatibility phải dừng generation, không embedded fallback. Controller v1.1 chỉ delegation. Kiểm R01–R22 và X01 trong READY_GATE_TEST_CASES.md.
+Additionally: manifest/controller/router mismatch or missing/corrupt module -> block dependent image work, no archive fallback; present/inactive preference -> no activation; ANALYZE inspects only; retries must reread sources and the current lock. Ready Gate v1.0 is an active/required dependency for every generation call, pinned by the manifest and resolved by the router; missing/unreadable/wrong hash/version/compatibility must stop generation, with no embedded fallback. Controller v1.1 delegates only. Check R01–R22 and X01 in READY_GATE_TEST_CASES.md.
 
-Kiểm local bằng python -B -m unittest discover -s tests -v từ root Central Hub; oracle chỉ mô phỏng inventory, không gọi model/tool. Khi thử live riêng, ghi input, sources thực nạp, prompt hiển thị, payload nếu quan sát được, ảnh và constraint thấy được.
+Check locally with python -B -m unittest discover -s tests -v from the Central Hub root; the oracle simulates inventory only and calls no model/tool. For separate live tests, record input, actually loaded sources, displayed prompt, payload if observable, image and visible constraints.

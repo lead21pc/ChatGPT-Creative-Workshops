@@ -825,7 +825,12 @@ class ActiveSingletonMigration(unittest.TestCase):
         expected['deployment'] = 'REPOSITORY_ACTIVE; PROJECT_DEPLOYMENT_NOT_VERIFIED'
         expected['binding_dispatch']['LEGACY_PROJECT_SOURCE'] = expected['binding_dispatch']['LEGACY_PROJECT_SOURCE'].replace('four explicitly declared', 'explicitly declared')
         expected['evidence']['result_record'] = expected['evidence']['result_record'].replace('../integration_v1.1/', 'candidates/integration_v1.1/')
-        self.assertEqual(after, expected)  # No algorithm/authorization change admitted.
+        expected['stages']['ROOT_PACKAGE_SELECTION'] += (
+            ' Recompute selection from the current task portion before specialized execution.'
+            ' Neither prior package selection nor prior package non-selection is evidence for the current routing decision.'
+            " When current requirements match a registered owner's Catalog applicability, select that owner before executing its behavior."
+            ' Direct tool availability does not bypass package selection.')
+        self.assertEqual(after, expected)  # Only the explicit current-task selection clarification is admitted.
         for key in ['architecture', 'root_catalog']:
             contract = after['contracts'][key]
             self.assertTrue((ROOT / contract['file']).is_file())
@@ -834,10 +839,17 @@ class ActiveSingletonMigration(unittest.TestCase):
         previous = (promotion / 'HUB_ARCHITECTURE_v1.0.md').read_text(encoding='utf-8')
         self.assertIn('Status: ACTIVE', architecture)
         self.assertIn('UNRESOLVED', architecture)
-        for number in [3, 4, 5, 7, 9, 10, 11]:
-            def section(text):
-                return text.split('## %d.' % number, 1)[1].split('## %d.' % (number + 1), 1)[0]
-            self.assertEqual(section(architecture), section(previous))
+        # Active prose is translated; historical snapshots retain their original language.
+        # Preserve canonical contract distinctions instead of paragraph byte identity.
+        for invariant in ['MODULE ID != VERSION', 'REFINES != REPLACES', 'REFINES != REQUIRES',
+                          'COMPLEMENTS != REQUIRES', 'ROOT CATALOG != GLOBAL LEAF-MODULE REGISTRY',
+                          'PACKAGE MEMBERSHIP != AUTOMATIC LOAD',
+                          'SPECIALIZATION REFINES MATCHED SCOPE; IT DOES NOT ERASE UNCOVERED BASE RESPONSIBILITIES.',
+                          'PIPELINE SELECTION != TOOL EXECUTION', 'PREVIOUS ACTIVATION != CURRENT ACTIVATION',
+                          'ROLLBACK != FALLBACK']:
+            self.assertIn(invariant, previous)
+            self.assertIn(invariant, architecture)
+        self.assertIn('Runtime control language: English only', architecture)
         readme = (ROOT / 'README.md').read_text(encoding='utf-8')
         for name in ['HUB_CI_v1.1.md', 'HUB_ROUTER_v1.1.yaml', 'HUB_ARCHITECTURE_v1.0.md',
                      'HUB_PACKAGE_CATALOG_v1.0.yaml', 'REPOSITORY ACTIVE != PROJECT DEPLOYED']:
@@ -904,6 +916,53 @@ class ActiveSingletonMigration(unittest.TestCase):
                 self.assertIn('gỡ khỏi live Project Sources', plan)
             else:
                 self.assertIn(token, plan)
+
+
+    def test_H36_prior_nonselection_does_not_persist_across_task_transition(self):
+        """SPEC only: declared current needs, not model intent recognition or real tool calls."""
+        router = load(ROOT / 'HUB_ROUTER_v1.1.yaml')
+        rule = router['stages']['ROOT_PACKAGE_SELECTION']
+        for phrase in ['Recompute selection from the current task portion before specialized execution',
+                       'Neither prior package selection nor prior package non-selection',
+                       "registered owner's Catalog applicability", 'select that owner before executing its behavior',
+                       'Direct tool availability does not bypass package selection']:
+            self.assertIn(phrase, rule)
+        self.assertNotIn('AIS', rule)  # Applicability remains catalog-owned and package-independent.
+        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.0.yaml')
+        ais = next(p for p in catalog['packages'] if p['package_id'] == 'HUB-PKG-AIS')
+        self.assertEqual(ais['entrypoint_module_id'], 'HUB-PIPE-AIS')
+        self.assertIn('explicit search requests', ais['applicability'])
+        fixture = current_metadata_fixture()  # Existing synthetic metadata projection, no runtime reads.
+        original = copy.deepcopy(fixture)
+        needs = [(set(), ()), (set(), ()), ({ais['package_id']}, (ais['package_id'],)), (set(), ())]
+        routes = []
+        for index, (scopes, pipelines) in enumerate(needs):
+            result = simulate(fixture, scopes, pipeline_needs=pipelines)
+            self.assertFalse(result['blocked'])
+            routes.append('AIS' if result['pipeline_entrypoints'] else 'NONE')
+            if index == 2:
+                owner = (ais['package_id'], ais['entrypoint_module_id'])
+                self.assertEqual(result['planned'], [owner])
+                self.assertEqual(result['pipeline_entrypoints'], [owner])
+                self.assertEqual(result['spec_reads'], [ais['entrypoint_module_id']])
+            else:
+                self.assertEqual(result['planned'], [])
+                self.assertEqual(result['artifact_requests'], [])
+            self.assertFalse(result['runtime_ready'])
+        self.assertEqual(routes, ['NONE', 'NONE', 'AIS', 'NONE'])
+        self.assertEqual(fixture, original)
+        sequence = router['sequence']
+        self.assertLess(sequence.index('ROOT_PACKAGE_SELECTION'), sequence.index('PACKAGE_INTERFACE_RESOLUTION'))
+        self.assertLess(sequence.index('EXACT_RETRIEVAL_AND_VERIFICATION'), sequence.index('SCOPED_HANDOFF'))
+        spec = (ROOT / 'tests/HUB_ROUTE_TEST_CASES.md').read_text(encoding='utf-8')
+        self.assertIn('| H36 |', spec)
+        self.assertIn('Game nào đặc biệt làm kiểu này. Thử nghiên cứu sâu xem.', spec)
+        self.assertIn('Quay lại thiết kế Router lúc nãy.', spec)
+        self.assertIn('NONE → NONE → AIS → NONE', spec)
+        self.assertIn('research need recognized → registered owner resolved → AIS selected → AIS contract entered → external tool used under AIS', spec)
+        self.assertIn('PROMPT ENHANCEMENT != ROUTING AUTHORITY', spec)
+        self.assertIn('trigger absence must not count against routing', spec.lower())
+        self.assertIn('corrected live rerun is NOT_RUN', spec)
 
 
 if __name__ == '__main__':

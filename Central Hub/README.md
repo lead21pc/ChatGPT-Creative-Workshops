@@ -17,3 +17,5 @@ TECHNICAL giữ `REASONING_PROFILE`, ACTIVE/1.0 và exact Library object đã ki
 [CI v1.0](<Source_archive/Central Hub legacy v1.0/HUB_CI_v1.0.md>), [Router v1.0](<Source_archive/Central Hub legacy v1.0/HUB_ROUTER_v1.0.yaml>), cùng các Project Source TECHNICAL/CREATIVE/BRAINSTORM cũ được lưu byte-exact dưới `Source_archive/Central Hub legacy v1.0/` phục vụ rollback/history; không còn ở vùng active. Chúng không là active route của v1.1. Candidate/design/trial cũ vẫn là bản ghi riêng; tên file hoặc sự hiện diện không cấp activation. Không tạo active-version registry khác.
 
 Receipt của lần lưu này: [HUB_LEGACY_ARCHIVE_RECEIPT_2026-10-19.json](Source_archive/HUB_LEGACY_ARCHIVE_RECEIPT_2026-10-19.json). Candidate snapshots/evidence giữ nguyên để kiểm lịch sử, không runtime control.
+
+Quy tắc ngôn ngữ control/runtime: chỉ dùng tiếng Anh trong CI, Router, Architecture, Catalog, module được chọn và control/config pipeline. Không áp cho nội dung người dùng, trích dẫn bằng chứng, nguồn/domain/worldbuilding, lịch sử hoặc ghi chú dành cho người đọc không làm runtime control; ngôn ngữ trả lời người dùng vẫn theo CI.

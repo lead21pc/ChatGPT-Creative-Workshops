@@ -72,6 +72,10 @@ stages:
   ROOT_PACKAGE_SELECTION: Select a materially relevant package set from accepted root metadata, not one winner.
     Applicability requires a concrete contribution; an ordinary topic or previously read package is insufficient.
     Read only package interfaces here, never a global leaf inventory.
+    Recompute selection from the current task portion before specialized execution. Neither prior package selection
+    nor prior package non-selection is evidence for the current routing decision. When current requirements match
+    a registered owner's Catalog applicability, select that owner before executing its behavior. Direct tool
+    availability does not bypass package selection.
   PACKAGE_INTERFACE_RESOLUTION: Dispatch by the single declared binding mode. LIBRARY_MODULE requires exact bound
     identity, FULL_FILE and new headers before use. LEGACY_PROJECT_SOURCE requires full exact declared Project Source;
     catalog IDs are routing aliases, not claimed file headers. Pipeline entrypoints remain opaque; internal resolution

@@ -1,4 +1,4 @@
-# Central Hub — kiến trúc tích hợp hạ tầng dùng chung v1.0
+# Central Hub — shared infrastructure integration architecture v1.0
 
 Module ID: HUB-CORE-ARCH
 Runtime role: CORE_ARCHITECTURE
@@ -7,155 +7,157 @@ Status: ACTIVE
 Version: 1.0
 Responsibility boundary: shared technical architecture only; no global behavior, domain, pipeline or tool authorization ownership
 
-## 1. Trạng thái và quyền sở hữu
+## 1. Status and ownership
 
-Đây là contract runtime v1.1 ACTIVE trong repository; trạng thái Project deployment chưa được xác minh bởi thao tác local này. Chỉ có hiệu lực sau cài thủ công đúng CI/Router/Architecture/Catalog tương thích; sự hiện diện file không kích hoạt. Hub CI giữ authorization cho hành động. Normal core activation không promotion package candidate khác. Các bản v1.0 trong repository giữ nguyên cho rollback.
+This v1.1 runtime contract is ACTIVE in the repository; Project deployment is not verified by this local operation. It takes effect only after manual installation of the exact compatible CI/Router/Architecture/Catalog stack; file presence does not activate it. Hub CI retains action authorization. Normal core activation does not promote other candidate packages. Repository v1.0 copies remain unchanged for rollback.
 
-Tài liệu chỉ định nghĩa kiến trúc kỹ thuật chung. Hub CI giữ operation/stage/state/truth/action, nhu cầu kiểm chứng, authorization chung và cách giải thích. Hub Router giữ lựa chọn/composition có phạm vi. Package/module giữ hành vi chuyên biệt; pipeline giữ quy trình nội bộ. Tài liệu không sở hữu domain knowledge, phương pháp AIS, generation mechanics ImageT, tool authorization internals, canon/semantic truth hoặc ontology chung của các ngành.
+This document defines only the shared technical architecture. Hub CI retains operation/stage/state/truth/action, verification need, general authorization and explanation. Hub Router retains scoped selection/composition. Packages/modules retain specialized behavior; pipelines retain internal procedures. This document owns no domain knowledge, AIS methods, ImageT generation mechanics, tool authorization internals, canon/semantic truth or shared subject ontology.
 
-Contract không phải chương trình thực thi, resolver service hay state engine. Không thêm registry, graph engine, scoring, ranking hoặc package manager.
+The contract is not an executable program, resolver service or state engine. Add no registry, graph engine, scoring, ranking or package manager.
 
-## 2. Topology runtime
+Runtime control language: English only for Hub CI, Router, Architecture, Package Catalogs, selectable control modules and pipeline control/config artifacts. This rule does not apply to user-authored content, quoted evidence, source/domain or worldbuilding material, historical artifacts, or non-runtime human notes.
 
-| Vị trí | Nội dung đích |
+## 2. Runtime topology
+
+| Location | Target contents |
 | --- | --- |
-| Project Instructions | Hub CI duy nhất |
+| Project Instructions | Hub CI only |
 | Project Sources | Hub Router, shared architecture, root package Catalog, AIS core, ImageT core |
-| ChatGPT Library / Central Hub Config | TECHNICAL, CREATIVE, BRAINSTORM ACTIVE/1.0; hai binding mới còn UNRESOLVED trước upload |
+| ChatGPT Library / Central Hub Config | TECHNICAL, CREATIVE, BRAINSTORM ACTIVE/1.0; the two new bindings remain UNRESOLVED before upload |
 | Repository only | Tests, candidate development, migration reports, archives |
 
-AIS core gồm pipeline/router và dependency nội bộ do AIS sở hữu. ImageT core tiếp tục gồm controller/router/manifest, anti-prior/config và Ready Gate required; không di chuyển chúng theo suy luận từ topology. Preference hiện tại vẫn candidate/inactive/direct-input-only; không promotion hoặc thay activation contract.
+AIS core includes its pipeline/router and internally owned dependencies. ImageT core continues to include controller/router/manifest, anti-prior/config and required Ready Gate; do not relocate them by inference from this topology. The current preference remains candidate/inactive/direct-input-only; no promotion or activation-contract change.
 
-TECHNICAL, CREATIVE và BRAINSTORM dùng duy nhất binding Library ACTIVE/1.0. CREATIVE/BRAINSTORM đã có artifact local, locator UNRESOLVED và live verification NOT_PERFORMED trước upload; chặn phần phụ thuộc cho đến khi exact binding được thiết lập. AIS/ImageT tiếp tục Project Sources hiện hành. ONE PACKAGE = ONE RUNTIME BINDING. MIXED STORAGE != DUAL FALLBACK. Các Project Source TECHNICAL/CREATIVE/BRAINSTORM cũ trong repository chỉ phục vụ lịch sử/rollback có chủ đích, không runtime fallback.
+TECHNICAL, CREATIVE and BRAINSTORM use Library-only ACTIVE/1.0 bindings. CREATIVE/BRAINSTORM have local artifacts, UNRESOLVED locators and NOT_PERFORMED live verification before upload; block dependent work until exact bindings are established. AIS/ImageT retain their current Project Sources. ONE PACKAGE = ONE RUNTIME BINDING. MIXED STORAGE != DUAL FALLBACK. Old TECHNICAL/CREATIVE/BRAINSTORM Project Source copies in the repository serve only history or explicit rollback, never runtime fallback.
 
-## 3. Một danh tính module chuẩn và ngữ cảnh package
+## 3. One canonical module identity and package context
 
 MODULE ID != VERSION. FILENAME != IDENTITY. SEARCH HIT != VERIFIED MODULE. HEADER MATCH != ACTIVATION.
 
-Trong kiến trúc đích, mỗi runtime artifact có đúng một Module ID chuẩn, giữ ổn định qua rename, đổi path, đổi version và relocation bên trong Central Hub Config. Runtime role phân biệt loại hành vi; không tạo hệ ID Domain/Capability/Pipeline cạnh tranh. Prefix không tự xác lập scope, role hoặc thẩm quyền.
+In the target architecture, each runtime artifact has exactly one canonical Module ID, stable across renames, path changes, versions and relocation within Central Hub Config. Runtime role distinguishes behavior type; do not create competing Domain/Capability/Pipeline ID systems. A prefix alone establishes no scope, role or authority.
 
-Package ID là ngữ cảnh sở hữu kỹ thuật và resolution ổn định của một package có thể tăng trưởng; không là danh tính thứ hai của artifact. MODULE ID = concrete runtime artifact identity. PACKAGE ID = technical ownership / resolution context. Một package có thể chỉ có một entrypoint. Artifact catalog cục bộ cũng có Module ID riêng và Package ID của package sở hữu.
+Package ID is the stable technical ownership and resolution context of a package that may grow; it is not a second artifact identity. MODULE ID = concrete runtime artifact identity. PACKAGE ID = technical ownership / resolution context. A package may have only one entrypoint. A local catalog artifact also has its own Module ID and its owning Package ID.
 
-PACKAGE MEMBERSHIP != SEMANTIC CONTAINMENT. PACKAGE MEMBERSHIP != AUTOMATIC LOAD. PACKAGE MEMBERSHIP != ONTOLOGICAL PARENTAGE. Thư mục, đồng xuất hiện và cross-reference không tạo dependency.
+PACKAGE MEMBERSHIP != SEMANTIC CONTAINMENT. PACKAGE MEMBERSHIP != AUTOMATIC LOAD. PACKAGE MEMBERSHIP != ONTOLOGICAL PARENTAGE. Directories, co-occurrence and cross-references create no dependency.
 
-Các khóa slot nội bộ manifest ImageT hiện hành không bị đổi trong mốc này; chúng không được dùng làm hệ danh tính thay thế cho module được công khai sau này. Không ép retrofit toàn bộ control hiện tại bằng contract này.
+Existing ImageT manifest internal slot keys do not change in this milestone; they are not an alternative identity system for modules exposed later. Do not force a retrofit of all current controls through this contract.
 
-## 4. Header và runtime role
+## 4. Headers and runtime roles
 
-Selectable Library module phải có đúng một giá trị không rỗng cho từng trường: Module ID, Package ID, Runtime role, Scope, Status, Version. Chỉ core infrastructure được khai rõ mới có thể bỏ Package ID. Scope mô tả phần việc; Version là revision được binding, không phải mức ưu tiên.
+A selectable Library module must have exactly one nonempty value for each field: Module ID, Package ID, Runtime role, Scope, Status, Version. Only explicitly declared core infrastructure may omit Package ID. Scope describes the task portion; Version is the bound revision, not priority.
 
-Responsibility boundary cần khi overlap/giao diện có thể làm nhập quyền; bắt buộc cho refinement/procedure có giao diện vật chất. Refines, Complements, Requires chỉ xuất hiện khi có quan hệ thực. Không thêm metadata không có quyết định runtime tương ứng.
+Responsibility boundary is needed when overlap/interfaces could merge authority; it is required for refinements/procedures with material interfaces. Refines, Complements, Requires appear only for actual relations. Add no metadata without a corresponding runtime decision.
 
-| Runtime role ban đầu | Quyền hạn |
+| Initial runtime role | Responsibility |
 | --- | --- |
-| CORE_ARCHITECTURE | Định nghĩa contract kỹ thuật chung |
-| PACKAGE_CATALOG | Danh mục kỹ thuật của root hoặc một package, không thực thi hành vi module |
-| DOMAIN_CONTROL | Kỷ luật thực hiện cho sản phẩm/miền được chọn; Creative hiện thuộc lớp này |
-| REASONING_PROFILE | Cách suy luận cơ chế, chẩn đoán và kiểm chứng thay đổi xuyên nhiều chủ đề; Technical |
-| CAPABILITY | Kỹ thuật có thể dùng xuyên miền; Brainstorm |
-| DOMAIN_PROCEDURE | Quy trình có phạm vi trong package, không tự gọi pipeline |
-| PREFERENCE | Hướng dẫn mềm dưới authority/activation contract của owner |
-| TOOL_PIPELINE | Entry vào mediation pipeline; AIS hoặc ImageT |
+| CORE_ARCHITECTURE | Define the shared technical contract |
+| PACKAGE_CATALOG | Root or package technical inventory; does not execute module behavior |
+| DOMAIN_CONTROL | Execution discipline for a selected product/domain; Creative currently has this role |
+| REASONING_PROFILE | Cross-subject mechanism reasoning, diagnosis and change verification; Technical |
+| CAPABILITY | Techniques usable across domains; Brainstorm |
+| DOMAIN_PROCEDURE | Scoped procedure within a package; does not independently call pipelines |
+| PREFERENCE | Soft guidance under its owner's authority/activation contract |
+| TOOL_PIPELINE | Entry into a mediation pipeline; AIS or ImageT |
 
-Chưa cần DOMAIN_SPECIALIZATION như role riêng: REFINES biểu đạt specialization. REASONING_PROFILE được xác lập sau khi đối chiếu thân TECHNICAL: nó quy định HOW reasoning proceeds, không WHAT subject the task belongs to. Nó nối cơ chế, giữ competing hypotheses, chọn distinguishing tests và kiểm bounded changes xuyên nhiều chủ đề; không sở hữu domain knowledge hoặc policy truth/state của Hub CI. BRAINSTORM vẫn là CAPABILITY cho kỹ thuật mở rộng tiền đề, không bị nhập vào profile này. NEW ROLE requires a concrete runtime distinction not representable by an existing role. Các role nội bộ của pipeline vẫn do pipeline sở hữu; bảng này không thiết kế lại chúng.
+DOMAIN_SPECIALIZATION is not yet needed as a separate role: REFINES expresses specialization. REASONING_PROFILE was established by inspecting TECHNICAL's body: it governs HOW reasoning proceeds, not WHAT subject the task belongs to. It connects mechanisms, retains competing hypotheses, chooses distinguishing tests and checks bounded changes across subjects; it owns no domain knowledge or Hub CI truth/state policy. BRAINSTORM remains a CAPABILITY for premise-expansion techniques, not part of this profile. NEW ROLE requires a concrete runtime distinction not representable by an existing role. Pipeline-internal roles remain pipeline-owned; this table does not redesign them.
 
-TECHNICAL giữ canonical Module ID HUB-DOM-TECHNICAL. DOM là phần của chuỗi định danh, không role assertion; contract cấm suy role từ prefix. Giữ ID vì không có lỗi identity/resolution cần rename, không phải vì directory hoặc candidate cũ quyết định role. Package ID HUB-PKG-TECHNICAL vẫn là technical ownership context. Trial 0.1-trial và real migration candidate 1.0-candidate cùng identity/role, khác revision và phạm vi dùng; không chọn newest hoặc giữ trial làm fallback. ARCHITECTURE IS NOT ONTOLOGY. CURRENT DIRECTORY != ROLE.
+TECHNICAL retains canonical Module ID HUB-DOM-TECHNICAL. DOM is part of the identifier, not a role assertion; inferring role from a prefix is forbidden. Retain the ID because no identity/resolution failure requires a rename, not because a directory or old candidate determines role. Package ID HUB-PKG-TECHNICAL remains technical ownership context. Trial 0.1-trial and real migration candidate 1.0-candidate share identity/role but differ in revision and permitted use; do not select newest or retain a trial as fallback. ARCHITECTURE IS NOT ONTOLOGY. CURRENT DIRECTORY != ROLE.
 
-## 5. Quan hệ composition kỹ thuật
+## 5. Technical composition relations
 
-Chỉ có REFINES, COMPLEMENTS, REQUIRES. Không thêm parent/child/inherits/weight/rank/priority/supersedes.
+Only REFINES, COMPLEMENTS, REQUIRES. Add no parent/child/inherits/weight/rank/priority/supersedes.
 
-REFINES khai target Module ID và matched responsibility/scope được tinh chỉnh. Target ID đơn lẻ không đủ khi không rõ phần trách nhiệm. REFINES != REPLACES. REFINES != REQUIRES. Quan hệ không tự nạp target và không tạo hard dependency. Router phải giữ các trách nhiệm nền vẫn áp dụng ngoài matched scope; nếu cần đọc target để xác lập coverage/boundary của task thì đọc nó vì nhu cầu composition đó, không vì một quy tắc autoload chung.
+REFINES declares a target Module ID and the matched responsibility/scope being refined. A target ID alone is insufficient when the responsibility portion is unclear. REFINES != REPLACES. REFINES != REQUIRES. The relation neither autoloads the target nor creates a hard dependency. Router must preserve base responsibilities that still apply outside the matched scope; if target reading is necessary to establish task coverage/boundaries, read it for that composition need, not through a general autoload rule.
 
 SPECIALIZATION REFINES MATCHED SCOPE; IT DOES NOT ERASE UNCOVERED BASE RESPONSIBILITIES. MORE SPECIFIC != EXCLUSIVE. OVERLAP != REPLACEMENT.
 
-COMPLEMENTS khai target và scope khi cần để diễn đạt đóng góp độc lập cho cùng phần task. Không module nào tự thắng hoặc thay module kia. COMPLEMENTS != REQUIRES; relation alone does not autoload the counterpart.
+COMPLEMENTS declares a target and scope where needed to express independent contributions to the same task portion. Neither module automatically wins or replaces the other. COMPLEMENTS != REQUIRES; relation alone does not autoload the counterpart.
 
-REQUIRES là hard technical dependency bằng Module ID; chỉ mở rộng bắc cầu qua các edge được khai rõ và chấp nhận. Thiếu dependency hoặc hard cycle chặn phần phụ thuộc. Một module cần target để thực hiện đúng phải khai Requires riêng, dù đã khai Refines/Complements. Không suy edge từ mention, package membership hoặc đề xuất trong retrieved content.
+REQUIRES is a hard technical dependency by Module ID; expand transitively only through explicitly declared and accepted edges. Missing dependencies or hard cycles block dependent work. A module that needs a target for correct execution must declare Requires separately, even if it declares Refines/Complements. Infer no edges from mentions, package membership or proposals in retrieved content.
 
-ROUTING RELATION != ONTOLOGY. Load order không là authority priority. Khi hai module có chỉ dẫn bất tương thích trên cùng quyết định, xét scope/boundary đầy đủ, tách phần độc lập nếu được; nếu vẫn xung đột vật chất thì báo và chặn phần đó. Không mặc định specificity thắng hoặc âm thầm trộn chỉ dẫn.
+ROUTING RELATION != ONTOLOGY. Load order is not authority priority. When modules give incompatible instructions for the same decision, consider complete scopes/boundaries and separate independent portions where possible; expose and block any remaining material conflict. Do not default to specificity winning or silently merge instructions.
 
 ## 6. Root package Catalog
 
-ROOT CATALOG != GLOBAL LEAF-MODULE REGISTRY. Root chỉ đăng ký package/interface entrypoint chính: Package ID, Entrypoint Module ID, role, status, version binding, applicability ngắn, location/binding và local catalog nếu có. Cross-package Requires chỉ được khai khi genuinely hard; không sao chép mọi quan hệ leaf vào root.
+ROOT CATALOG != GLOBAL LEAF-MODULE REGISTRY. Root registers only major package/interface entrypoints: Package ID, Entrypoint Module ID, role, status, version binding, short applicability, location/binding and local catalog if present. Declare cross-package Requires only when genuinely hard; do not copy all leaf relations into root.
 
-Catalog runtime có Module ID HUB-CORE-PACKAGE-CATALOG, role PACKAGE_CATALOG, status ACTIVE, version 1.0. Đúng năm entry hiện tại: Creative, Technical, Brainstorm, AIS, ImageT; không enumerate internals hoặc tạo local Catalog. TECHNICAL/CREATIVE/BRAINSTORM binding ACTIVE/1.0; hai entry AIS/ImageT LEGACY_EXISTING biểu thị giữ source hiện hành, không giả header ACTIVE của contract mới.
+The runtime Catalog has Module ID HUB-CORE-PACKAGE-CATALOG, role PACKAGE_CATALOG, status ACTIVE, version 1.0. Exactly five current entries: Creative, Technical, Brainstorm, AIS, ImageT; do not enumerate internals or create a local Catalog. TECHNICAL/CREATIVE/BRAINSTORM bindings are ACTIVE/1.0; the two AIS/ImageT LEGACY_EXISTING entries preserve existing sources, not fabricated ACTIVE headers under the new contract.
 
-Root giúp Hub chọn package có liên quan và resolve entrypoint/catalog cục bộ. Nó không chứa thân hành vi module, leaf selection algorithm hoặc điểm ưu tiên. Root entry tồn tại không cấp activation; Catalog không tự xác nhận header, read hoặc runtime location.
+Root helps Hub select relevant packages and resolve entrypoints/local catalogs. It contains no module behavior bodies, leaf-selection algorithm or priority scores. Root-entry existence grants no activation; a Catalog does not itself verify headers, reads or runtime location.
 
-Binding LIBRARY_MODULE: TECHNICAL, CREATIVE và BRAINSTORM, exact library_file_id sau upload/verification, root Central Hub Config và artifact Version 1.0; không có Project Source fallback. Hai locator mới null nghĩa UNRESOLVED, không được thực thi hoặc dùng filename để đoán; chỉ cập nhật từ identity thực được xác minh. Binding LEGACY_PROJECT_SOURCE: chỉ AIS/ImageT chưa migration, exact declared_source_path/source_name trong Project Sources, đọc đầy đủ và đối chiếu title/version cùng responsibility boundary hiện có. Catalog Module ID là routing alias, không là header đã được cài vào source. Thiếu hoặc mơ hồ source thì chặn phần phụ thuộc, không tìm Library. Đây là tương thích chuyển tiếp, không nới Library contract. Pipeline vẫn sở hữu nội bộ. Sau migration phải bỏ binding legacy trong cùng deployment.
+LIBRARY_MODULE binding: TECHNICAL, CREATIVE and BRAINSTORM, exact library_file_id after upload/verification, root Central Hub Config and artifact Version 1.0; no Project Source fallback. The two new null locators mean UNRESOLVED; do not execute or guess by filename; update only from verified actual identity. LEGACY_PROJECT_SOURCE binding: only unmigrated AIS/ImageT, exact declared_source_path/source_name in Project Sources, full reads and existing title/version/responsibility-boundary checks. Catalog Module IDs are routing aliases, not installed source headers. Missing or ambiguous sources block dependent work; no Library discovery. This is transitional compatibility, not a relaxation of the Library contract. Pipelines retain internal ownership. Migration must remove the legacy binding in the same deployment.
 
-## 7. Catalog cục bộ và tăng trưởng package
+## 7. Local catalogs and package growth
 
-Singleton package dùng root entry -> direct entrypoint. Chỉ khi có nhiều module được chọn độc lập và direct entrypoint không đủ mới thêm package-local catalog; không tạo catalog rỗng để chuẩn bị tương lai.
+Singleton packages use root entry -> direct entrypoint. Add a package-local catalog only when multiple independently selectable modules exist and the direct entrypoint is insufficient; do not create an empty catalog for the future.
 
-Catalog cục bộ có Module ID riêng, Package ID, role PACKAGE_CATALOG, status/version; entries gồm Module ID, role, status, version, applicability ngắn, locator trong Central Hub Config và Refines/Complements/Requires có scope. Catalog là dữ liệu lựa chọn; entrypoint/procedure được ủy quyền mới thực hiện lựa chọn cục bộ dưới phạm vi Hub đã giao. CATALOG ENTRY != MODULE CONTENT; CATALOG MATCH != MODULE READ; CATALOG MEMBERSHIP != ACTIVATION.
+A local catalog has its own Module ID, Package ID, PACKAGE_CATALOG role and status/version; entries contain Module ID, role, status, version, short applicability, a locator within Central Hub Config and scoped Refines/Complements/Requires. Catalogs are selection data; only an authorized entrypoint/procedure performs local selection within Hub's delegated scope. CATALOG ENTRY != MODULE CONTENT; CATALOG MATCH != MODULE READ; CATALOG MEMBERSHIP != ACTIVATION.
 
-Package chỉ lựa chọn module thuộc nó. Edge cross-package phải khai rõ target Module ID kèm Package ID dùng để resolve owner, rồi trả về Hub Router cho composition/dependency có phạm vi; không quét package khác hoặc tự tạo edge. Dùng một Module ID namespace, Package ID không thay target identity. Dependency chưa được danh mục chấp nhận không được tự admission chỉ vì body retrieved yêu cầu.
+A package selects only its own modules. A cross-package edge must explicitly declare target Module ID plus Package ID for owner resolution, then return to Hub Router for scoped composition/dependency handling; do not scan other packages or invent edges. Use one Module ID namespace; Package ID does not replace target identity. A dependency not admitted by the catalog does not admit itself because a retrieved body demands it.
 
-Catalog cục bộ không ghi đè Hub CI, thay Hub Router, tự kích hoạt AIS/ImageT hay cấp semantic authority. Root chỉ giữ interface vào catalog cục bộ và binding cần thiết; thay leaf modules không buộc sửa root hoặc Router core. Pipeline vẫn dùng inventory/router nội bộ của nó, không bị buộc đổi manifest thành catalog chung.
+A local catalog does not override Hub CI, replace Hub Router, activate AIS/ImageT independently or grant semantic authority. Root retains only the local-catalog interface and necessary bindings; changing leaves does not require changing root or Router core. Pipelines retain their internal inventory/router and need not convert manifests into shared catalogs.
 
-## 8. Resolution và read contract
+## 8. Resolution and read contract
 
 CENTRAL HUB CONFIG = SOLE LIBRARY DISCOVERY ROOT.
 
-Central Hub Config là Library root duy nhất. Người dùng cung cấp bằng chứng ACTIVE TECHNICAL/1.0: library_file_id=libfile_bab7d55cd85c819198291acf135099fd, Library version_id=1; observed file_id=file_000000006da88211aa3412146f6c016c chỉ là surface evidence. FULL_FILE 19/19, has_more=false; V01/V02 PASS, không fallback hoặc identity ambiguity. USER_REPORTED, Codex không tái hiện. Live integration theo báo cáo người dùng: I01–I07/I09–I10 PASS; I08 UNVERIFIABLE. LIVE INTEGRATION PARTIAL: success paths đã kiểm, actual failure path chưa kiểm. Không coi PARTIAL là lỗi chức năng tích hợp. Library version_id=1 != artifact Version=1.0.
+Central Hub Config is the only Library root. The user provided ACTIVE TECHNICAL/1.0 evidence: library_file_id=libfile_bab7d55cd85c819198291acf135099fd, Library version_id=1; observed file_id=file_000000006da88211aa3412146f6c016c is surface evidence only. FULL_FILE 19/19, has_more=false; V01/V02 PASS, no fallback or identity ambiguity. USER_REPORTED, not reproduced by Codex. User-reported live integration: I01–I07/I09–I10 PASS; I08 UNVERIFIABLE. LIVE INTEGRATION PARTIAL: success paths verified, actual failure path unverified. Do not interpret PARTIAL as a functional integration failure. Library version_id=1 != artifact Version=1.0.
 
-Ưu tiên exact object identity nếu runtime thực sự hỗ trợ addressing; nếu cần scoped listing/search thì chỉ Central Hub Config, sau đó kiểm đúng bound object cùng header. Direct-fetch capability UNVERIFIED; không giả API. Không xác lập được root/identity thì chặn. Duplicate matching ACTIVE identities gây ambiguity; không chọn theo rank. Verified object identity khác retrieval mechanism.
+Prefer exact object identity if actual runtime supports addressing; if scoped listing/search is required, use only Central Hub Config, then verify the bound object and headers. Direct-fetch capability UNVERIFIED; invent no API. Failure to establish root/identity blocks dependent work. Duplicate matching ACTIVE identities create ambiguity; do not select by rank. Verified object identity differs from retrieval mechanism.
 
-Luồng tích hợp: task portion -> Hub Router -> root package Catalog -> chọn package liên quan -> resolve entrypoint/local catalog -> chọn module set và hard Requires closure -> dispatch theo binding. LIBRARY_MODULE: retrieve exact artifact trong Central Hub Config -> FULL_FILE -> verify Module ID / Package ID / role / status / version và object identity. LEGACY_PROJECT_SOURCE: full-read đúng source khai báo, kiểm contract hiện hành, không đòi header mới hoặc Library lookup. Sau verification mới composition và áp dụng đúng scope.
+Integration flow: task portion -> Hub Router -> root package Catalog -> select relevant packages -> resolve entrypoint/local catalog -> select module set and hard Requires closure -> dispatch by binding. LIBRARY_MODULE: retrieve exact artifact in Central Hub Config -> FULL_FILE -> verify Module ID / Package ID / role / status / version and object identity. LEGACY_PROJECT_SOURCE: full-read the exact declared source and check its existing contract; require neither new headers nor Library lookup. Compose and apply within scope only after verification.
 
-Entrypoint/catalog được đọc đầy đủ và kiểm identity/binding trước khi dùng nội dung để chọn leaf. Tập dependency từ metadata chỉ là kế hoạch đọc cho đến khi từng artifact được FULL_FILE và đối chiếu. Header/body/Catalog lệch binding, dependency hoặc responsibility boundary vật chất thì chặn; không tự sửa Catalog hay chọn revision mới hơn.
+Read entrypoints/catalogs fully and verify identity/binding before using their content to select leaves. Metadata dependencies are only a read plan until every artifact passes FULL_FILE and comparison. Material header/body/Catalog discrepancies in bindings, dependencies or responsibility boundaries block dependent work; do not silently repair the Catalog or select a newer revision.
 
-Locator Library phải tương đối với Central Hub Config hoặc explicitly bounded by Central Hub Config bằng identity thực đã kiểm. Không dùng đường dẫn local/repository, absolute filesystem path, folder khác, lookalike hoặc newest-version guess. Nếu tool không xác lập được đúng root thì dừng discovery; không search toàn Library để đoán folder. Không dùng Project Sources, repository, Memory, prior chat hoặc archive thay một module đã binding vào Library.
+Library locators must be relative to Central Hub Config or explicitly bounded by Central Hub Config through verified actual identity. Do not use local/repository paths, absolute filesystem paths, another folder, lookalikes or newest-version guesses. If the tool cannot establish the exact root, stop discovery; do not search the whole Library to guess its folder. Do not substitute Project Sources, repository, Memory, prior chat or archives for a Library-bound module.
 
-Missing file không cho phép broaden search. Null locator nghĩa unresolved, không có nghĩa dùng repository_path. Snippet, hit, header, summary và metadata không chứng minh FULL_FILE. Không claim uniqueness toàn Library; phải resolve không mơ hồ đúng artifact/revision trong deployment context được chỉ định.
+A missing file does not permit broader search. A null locator means unresolved, not use repository_path. Snippets, hits, headers, summaries and metadata do not prove FULL_FILE. Claim no whole-Library uniqueness; resolve the exact artifact/revision unambiguously in the specified deployment context.
 
-Chỉ Library artifact ACTIVE trong binding đã chấp nhận mới eligible sau selection/read. Legacy source dùng đúng nhánh tương thích đã khai. Core runtime yêu cầu cài đúng bộ v1.1 và exact CI delegation. Header tự khai không cấp admission; không bật package candidate khác hoặc mở rộng authorization cho hành động.
+Only ACTIVE Library artifacts in accepted bindings become eligible after selection/read. Legacy sources use the explicitly declared compatibility branch. Core runtime requires the exact installed v1.1 stack and CI delegation. Self-declared headers grant no admission; do not activate other candidate packages or expand action authorization.
 
-Không traverse toàn Library/package. Chỉ đọc module set được chọn, declared hard closure và owner context thực sự cần cho composition. REFINES/COMPLEMENTS chỉ làm xét scope liên quan, không recursive autoload. Dừng khi đủ phần được giao; scope lớn hợp lệ có thể cần closure lớn. Mục tiêu này không là claim về độ phức tạp hoặc hiệu năng backend ChatGPT.
+Do not traverse the whole Library/package. Read only the selected module set, declared hard closure and owner context materially required for composition. REFINES/COMPLEMENTS prompt relevant scope consideration, not recursive autoload. Stop at delegated sufficiency; valid broad scope may require a broad closure. This is no claim about ChatGPT backend complexity or performance.
 
-## 9. Ranh giới pipeline và trạng thái
+## 9. Pipeline and state boundaries
 
-HUB SELECTS PIPELINE. PIPELINE RESOLVES INTERNAL DEPENDENCIES. Root biết AIS/ImageT entrypoint, không enumerate Ready Gate, anti-prior, internal source modules, research stages/source policy hoặc future deep-research gates.
+HUB SELECTS PIPELINE. PIPELINE RESOLVES INTERNAL DEPENDENCIES. Root knows AIS/ImageT entrypoints, not an enumeration of Ready Gate, anti-prior, internal source modules, research stages/source policy or future deep-research gates.
 
-Domain module chuyển scoped input/nhu cầu về Hub. Requires hoặc package-local selection không tự cấp quyền tool call hay bypass pipeline gate. Nếu cần pipeline mới, Hub CI xét nhu cầu/authorization và Hub Router chọn phần tương ứng. RESEARCH EVIDENCE != DESIGN AUTHORIZATION. PIPELINE SELECTION != TOOL EXECUTION. PIPELINE OUTPUT != GLOBAL STATE UPDATE.
+Domain modules return scoped input/needs to Hub. Requires or package-local selection does not grant tool-call authorization or bypass pipeline gates. For a newly needed pipeline, Hub CI evaluates need/authorization and Hub Router selects the corresponding portion. RESEARCH EVIDENCE != DESIGN AUTHORIZATION. PIPELINE SELECTION != TOOL EXECUTION. PIPELINE OUTPUT != GLOBAL STATE UPDATE.
 
-Không tạo shared AIS/ImageT Ready Gate vì cùng có gate pattern. ImageT giữ approval snapshot một call và visible verification; AIS giữ research lock/source/evidence/coverage và protocol riêng khi được thiết kế sau.
+Do not create a shared AIS/ImageT Ready Gate merely because both use gates. ImageT retains its one-call approval snapshot and visible verification; AIS retains its research lock/source/evidence/coverage and its own protocol when designed later.
 
-Router đánh giá lại theo mỗi turn/scope change; giữ context/read evidence còn đủ, không persistent mode. PREVIOUS ACTIVATION != CURRENT ACTIVATION. Package/module không tự kích hoạt nhau. Scope đổi vật chất thì reselect/rebuild phần bị ảnh hưởng, đọc lại nếu context/read evidence không còn đủ; pipeline xử lý refresh nội bộ theo contract riêng.
+Router reassesses each turn/scope change; retain context/read evidence only while sufficient, not persistent modes. PREVIOUS ACTIVATION != CURRENT ACTIVATION. Packages/modules do not activate each other. Material scope changes require affected reselection/rebuilding and rereads if context/read evidence is no longer sufficient; pipelines handle internal refresh under their own contracts.
 
 ## 10. Failure behavior
 
-| Tình huống | Kết quả bắt buộc |
+| Situation | Required result |
 | --- | --- |
-| Root Catalog missing/unreadable | Chặn lựa chọn phụ thuộc catalog; không tìm control tùy ý. Baseline độc lập đủ dùng tiếp tục |
-| Package entry missing | Không suy package từ filename; báo package chưa được resolve |
-| Package-local catalog required nhưng thiếu | Chặn phần selection phụ thuộc; không load cả package để thay catalog |
-| Selected Library module missing | Chặn phần phụ thuộc; không broaden khỏi Central Hub Config |
-| Library access unavailable hoặc locator unresolved | Giữ UNRESOLVED / NOT VERIFIED; không giả read hoặc lấy repo thay |
-| Module ID mismatch hoặc duplicate/ambiguous identity | Từ chối artifact/selection mơ hồ; không chọn theo search rank |
-| Package ID mismatch | Không áp module dưới owner sai; chặn phần phụ thuộc |
-| Wrong runtime role | Không dùng body như role mong muốn |
-| Wrong version binding | Không chọn newest; báo binding mismatch |
-| Candidate/inactive selected accidentally | Không auto-activate; chỉ thử riêng trong scope được phép |
-| Hard Requires dependency missing | Chặn module và phần phụ thuộc; tiếp tục phần độc lập |
-| Requires cycle | Chặn closure bị ảnh hưởng; không truy xuất lặp vô hạn |
-| Partial specialization overlap | Giữ uncovered base responsibilities; refinement chỉ ở matched scope |
-| Applicable module conflict | Xét boundary/tách phần; báo conflict vật chất chưa giải quyết |
-| Scope materially changes | Reselect và refresh phần bị ảnh hưởng trước khi tiếp tục |
-| Lookalike filename nhưng wrong ID | Không phải requested module; không fallback |
-| Only snippet/header retrieved | Chưa FULL_FILE; không thực thi module |
-| Large Library, small selected closure | Không duyệt phần không liên quan; không claim package/global completeness |
+| Root Catalog missing/unreadable | Block catalog-dependent selection; no arbitrary control discovery. Continue sufficient independent baseline work |
+| Package entry missing | Do not infer a package from filename; report unresolved package |
+| Required package-local catalog missing | Block dependent selection; do not load the whole package instead |
+| Selected Library module missing | Block dependent work; do not broaden beyond Central Hub Config |
+| Library access unavailable or locator unresolved | Retain UNRESOLVED / NOT VERIFIED; fabricate no read or repository substitute |
+| Module ID mismatch or duplicate/ambiguous identity | Reject mismatched artifact/ambiguous selection; do not select by search rank |
+| Package ID mismatch | Do not apply a module under the wrong owner; block dependent work |
+| Wrong runtime role | Do not use the body as the expected role |
+| Wrong version binding | Do not choose newest; report binding mismatch |
+| Candidate/inactive selected accidentally | Do not auto-activate; only test separately within authorized scope |
+| Hard Requires dependency missing | Block module and dependent work; continue independent portions |
+| Requires cycle | Block the affected closure; no infinite retrieval loop |
+| Partial specialization overlap | Keep uncovered base responsibilities; refine only matched scope |
+| Applicable module conflict | Consider boundaries/separation; expose unresolved material conflict |
+| Scope materially changes | Reselect and refresh affected portions before continuing |
+| Lookalike filename but wrong ID | Not the requested module; no fallback |
+| Only snippet/header retrieved | Not FULL_FILE; do not execute the module |
+| Large Library, small selected closure | Do not traverse unrelated content or claim package/global completeness |
 
-Chỉ chặn dependent work khi có thể; tiếp tục baseline work độc lập mà Hub CI đủ xử lý. Không relabel thiếu dependency quyết định thành secondary gap để bypass. Failure contract áp dụng khi bộ v1.1 được cài đúng; I08 actual Library failure vẫn UNVERIFIABLE. Không sửa Router v1.0 trong repository.
+Block only dependent work where possible; continue independent baseline work Hub CI can sufficiently perform. Do not relabel a missing decisive dependency as a secondary gap to bypass it. The failure contract applies with the correct v1.1 installation; I08 actual Library failure remains UNVERIFIABLE. Do not modify repository Router v1.0.
 
-## 11. Giới hạn mốc tích hợp
+## 11. Integration milestone limits
 
-Không tạo package-local Catalog, future package, extension engine hoặc pipeline redesign. Giữ selected-closure loading và ranh giới owner hiện có.
+Create no package-local Catalog, future package, extension engine or pipeline redesign. Preserve selected-closure loading and existing ownership boundaries.
 
-## 12. Migration và bằng chứng cần có
+## 12. Migration and required evidence
 
-Bộ runtime này ACTIVE trong repository, không tự xác nhận Project đã deploy. CREATIVE/BRAINSTORM Library migration mới chỉ hoàn tất artifact và binding contract local; upload/identity verification vẫn NOT_PERFORMED. Trial candidate trước khi migration CREATIVE/BRAINSTORM có LIVE INTEGRATION PARTIAL theo báo cáo người dùng: success paths PASS, I08 UNVERIFIABLE. Không suy kết quả legacy thành Library verification của hai module mới. Lỗi setup ban đầu đã được giải quyết bằng exact delegation và AIS source hiện hành, không là lỗi kiến trúc Router. Kết quả và spec giữ tại candidates/integration_v1.1 trong repository để đối chiếu; chúng không là runtime control hay dependency cần upload. Static/spec không chứng minh live failure path hoặc deployment của bộ promotion. Hướng dẫn cài, rollback và bốn smoke case của mốc hiện tại nằm trong HUB_LIBRARY_SINGLETON_MIGRATION.md, chỉ dành cho người dùng.
+This runtime stack is ACTIVE in the repository, not automatic proof of Project deployment. CREATIVE/BRAINSTORM Library migration has completed only local artifacts and binding contracts; upload/identity verification remains NOT_PERFORMED. Before CREATIVE/BRAINSTORM migration, the candidate trial had USER_REPORTED LIVE INTEGRATION PARTIAL: success paths PASS, I08 UNVERIFIABLE. Do not infer Library verification of the new modules from legacy results. The initial setup failure was resolved through exact delegation and current AIS sources, not a Router architecture failure. Results/specs remain in candidates/integration_v1.1 for repository comparison, not runtime controls or upload dependencies. Static/spec checks prove neither live failure paths nor deployment of the promotion stack. HUB_LIBRARY_SINGLETON_MIGRATION.md contains current manual installation/rollback instructions and four smoke cases for the user only.
 
-Giữ regression Hub/AIS/ImageT: baseline NONE, no self-activation, nghiên cứu không thành acceptance, Ready Gate required một call và không retry ngầm. Rollback phải phục hồi CI/Router/source cũ có chủ đích; Library lỗi không kích hoạt rollback tự động. ROLLBACK != FALLBACK.
+Preserve Hub/AIS/ImageT regressions: baseline NONE, no self-activation, research does not become acceptance, required one-call Ready Gate and no silent retry. Rollback must explicitly restore a compatible previous CI/Router/source stack; Library failure does not trigger automatic rollback. ROLLBACK != FALLBACK.

@@ -241,11 +241,11 @@ class HubTests(unittest.TestCase):
                        'TEST != IMPLEMENTATION', 'LOCAL CHANGE != COMMIT != PUSH']:
             self.assertIn(phrase, owner)
         spec = (ROOT / 'tests/HUB_ROUTE_TEST_CASES.md').read_text(encoding='utf-8')
-        self.assertEqual(re.findall(r'^\| (H\d{2}) \|', spec, re.M), [f'H{i:02}' for i in range(1, 36)])
+        self.assertEqual(re.findall(r'^\| (H\d{2}) \|', spec, re.M), [f'H{i:02}' for i in range(1, 37)])
         # Normative cases only: no assertion here simulates model authorization or file writes.
         for phrase in ['Live test rõ ràng phát hiện lỗi', 'Audit rõ ràng phát hiện lỗi',
                        'người dùng yêu cầu correction rõ ràng', 'lỗi lân cận ngoài scope',
-                       'người dùng chỉ hỏi cách fix', 'Ghi trace và diff trước/sau']:
+                       'người dùng chỉ hỏi cách fix', 'Record trace and before/after diff']:
             self.assertIn(phrase, spec)
 
     def test_ais_three_modes_lock_and_gate_order(self):
