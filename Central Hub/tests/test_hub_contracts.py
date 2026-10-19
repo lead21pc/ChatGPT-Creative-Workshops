@@ -11,6 +11,14 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 IMAGE = ROOT / 'tool_pipelines/ImageT'
 
+# Explicit historical mapping for archive verification only; never runtime fallback.
+LEGACY_ARCHIVE = ROOT / 'Source_archive/Central Hub legacy v1.0'
+LEGACY_PATHS = frozenset(['HUB_CI_v1.0.md', 'HUB_ROUTER_v1.0.yaml', 'domains/technical/TECHNICAL_v1.0.md', 'domains/creative/CREATIVE_v1.0.md', 'capabilities/BRAINSTORM_v1.0.md'])
+
+def historical_source(path):
+    return LEGACY_ARCHIVE / path if path in LEGACY_PATHS else ROOT / path
+
+
 
 class Closed(ValueError):
     pass
@@ -138,20 +146,20 @@ class HubTests(unittest.TestCase):
             with self.assertRaises((Closed, yaml.YAMLError)):
                 parse(text)
 
-    def test_hub_topology_and_routes(self):
-        router = load(ROOT / 'HUB_ROUTER_v1.0.yaml')
+    def test_v1_0_rollback_topology_and_routes(self):
+        router = load(historical_source('HUB_ROUTER_v1.0.yaml'))
         self.assertEqual(router['default'], ['NONE'] * 3)
         self.assertEqual(router['axes']['DOMAIN'], ['NONE', 'CREATIVE', 'TECHNICAL'])
         self.assertEqual(router['axes']['CAPABILITY'], ['NONE', 'BRAINSTORM'])
         self.assertEqual(router['axes']['TOOL_PIPELINE'], ['NONE', 'AIS', 'IMAGET'])
         self.assertEqual(set(router['controls']), {'CREATIVE', 'TECHNICAL', 'BRAINSTORM', 'AIS', 'IMAGET'})
         for name in router['controls'].values():
-            self.assertTrue((ROOT / name).is_file())
+            self.assertTrue((historical_source(name)).is_file())
             self.assertNotIn('archive', name.lower())
         self.assertFalse(router['persistence']['listing_activates'])
         self.assertFalse(router['persistence']['applicability_activates'])
         self.assertFalse((ROOT / 'manifest.yaml').exists())
-        self.assertEqual(list(ROOT.glob('*CI*.md')), [ROOT / 'HUB_CI_v1.0.md'])
+        self.assertEqual({p.name for p in ROOT.glob('*CI*.md')}, {'HUB_CI_v1.1.md'})
         self.assertFalse(any(p.name.startswith('DEFAULT') for p in ROOT.rglob('*')))
 
     def test_normalized_runtime_instruction_language(self):
@@ -172,16 +180,16 @@ class HubTests(unittest.TestCase):
 
         for name in ['HUB_ROUTER_v1.0.yaml', 'tool_pipelines/AIS/AIS_ROUTER_v1.1.yaml',
                      'tool_pipelines/ImageT/IMAGE_SOURCE_ROUTER.yaml']:
-            for prose in instruction_values(load(ROOT / name)):
+            for prose in instruction_values(load(historical_source(name))):
                 self.assertNotRegex(prose, vietnamese, name)
         for name in ['domains/creative/CREATIVE_v1.0.md', 'domains/technical/TECHNICAL_v1.0.md',
                      'tool_pipelines/AIS/AIS_PIPELINE_v1.0.md']:
-            text = (ROOT / name).read_text(encoding='utf-8')
+            text = (historical_source(name)).read_text(encoding='utf-8')
             prose = re.sub(r'`[^`]*`|"[^"]*"', '', text)
             self.assertNotRegex(prose, vietnamese, name)
 
     def test_normalized_router_scope_failure_and_continuation(self):
-        router = load(ROOT / 'HUB_ROUTER_v1.0.yaml')
+        router = load(historical_source('HUB_ROUTER_v1.0.yaml'))
         self.assertEqual(router['controls'], {
             'CREATIVE': 'domains/creative/CREATIVE_v1.0.md',
             'TECHNICAL': 'domains/technical/TECHNICAL_v1.0.md',
@@ -206,20 +214,39 @@ class HubTests(unittest.TestCase):
         for prose, required in anchors.items():
             for phrase in required: self.assertIn(phrase, prose)
         # Existing Hub contract still forbids invented application of unavailable controls.
-        ci = (ROOT / 'HUB_CI_v1.0.md').read_text(encoding='utf-8')
+        ci = (historical_source('HUB_CI_v1.0.md')).read_text(encoding='utf-8')
         self.assertIn('Read selected controls; missing decisive/explicit controls block dependent work', ci)
         self.assertIn('VIETNAMESE throughout', ci)
 
     def test_ci_budget_and_owner_order(self):
-        text = (ROOT / 'HUB_CI_v1.0.md').read_text(encoding='utf-8')
+        text = (ROOT / 'HUB_CI_v1.1.md').read_text(encoding='utf-8')
         self.assertLess(len(text) + text.count('\n'), 8000)
         owners = ['OUTPUT CONTRACT', 'CONTROL GROUNDING', 'DISCOURSE FIDELITY', 'EPISTEMIC NON-ESCALATION',
                   'TURN AND STATE', 'CLAIM STATE AND DEPENDENCY', 'UPDATING AND UNCERTAINTY', 'EXPLANATION']
         indices = [text.index(s) for s in owners]
         self.assertEqual(indices, sorted(indices))
         for s in ['ACKNOWLEDGING FEELINGS != CONFIRMING EVENT INTERPRETATIONS', 'EMPATHY != DIAGNOSIS',
-                  'LISTENING != INFERRING MOTIVES', 'HUB_ROUTER_v1.0.yaml', 'Clear fiction needs no repeated disclaimer']:
+                  'LISTENING != INFERRING MOTIVES', 'HUB_ROUTER_v1.1.yaml', 'Clear fiction needs no repeated disclaimer']:
             self.assertIn(s, text)
+
+    def test_task_stage_boundary_contract_and_regression_spec(self):
+        ci = (ROOT / 'HUB_CI_v1.1.md').read_text(encoding='utf-8')
+        owner = ci.split('\nTURN AND STATE\n', 1)[1].split('\nCLAIM STATE AND DEPENDENCY\n', 1)[0]
+        for phrase in ['explicit audit, simulation, live test, regression test or verification',
+                       'defects authorize reporting, not remediation',
+                       'Local mutation requires separate explicit user implementation authorization',
+                       'already explicit implementation/correction may proceed within scope',
+                       'findings alone never expand tasks/change stage/authorize follow-on work',
+                       'QUESTION != APPROVAL', 'AUDIT != REDESIGN', 'AUDIT != IMPLEMENTATION',
+                       'TEST != IMPLEMENTATION', 'LOCAL CHANGE != COMMIT != PUSH']:
+            self.assertIn(phrase, owner)
+        spec = (ROOT / 'tests/HUB_ROUTE_TEST_CASES.md').read_text(encoding='utf-8')
+        self.assertEqual(re.findall(r'^\| (H\d{2}) \|', spec, re.M), [f'H{i:02}' for i in range(1, 36)])
+        # Normative cases only: no assertion here simulates model authorization or file writes.
+        for phrase in ['Live test rõ ràng phát hiện lỗi', 'Audit rõ ràng phát hiện lỗi',
+                       'người dùng yêu cầu correction rõ ràng', 'lỗi lân cận ngoài scope',
+                       'người dùng chỉ hỏi cách fix', 'Ghi trace và diff trước/sau']:
+            self.assertIn(phrase, spec)
 
     def test_ais_three_modes_lock_and_gate_order(self):
         ais = load(ROOT / 'tool_pipelines/AIS/AIS_ROUTER_v1.1.yaml')
@@ -249,6 +276,17 @@ class HubTests(unittest.TestCase):
         ready = (IMAGE / 'READY_GATE_v1.0.md').read_text(encoding='utf-8')
         for s in ['one call', 'exact displayed prompt', 'REVISION_REQUIRED', 'STALE', 'CONSUMED', 'UNVERIFIABLE']:
             self.assertIn(s, ready)
+        for s in ['GENERATOR COMPLETION != USER REQUIREMENT', 'OPEN FIELD COMPLETION != NEW DEFAULT',
+                  'OPEN != FORBIDDEN', 'VISIBLE OUTPUT != CLEAN EXECUTION SUCCESS',
+                  'TOOL RESULT != VERIFIED RESULT', 'fail only that constraint',
+                  'Do not invent unobservable backend status', 'Retry authorization remains governed by Ready Gate',
+                  'does not permit a silent retry']:
+            self.assertIn(s, text)
+        route_spec = (IMAGE / 'tests/ROUTE_TEST_CASES.md').read_text(encoding='utf-8')
+        for s in ['## Post-image verification regressions', '| Open completion |',
+                  '| Open completion conflicts elsewhere |', '| Visible output plus failure indicator |',
+                  '| Result after completed call |', '| Retry after failed/uncertain result |']:
+            self.assertIn(s, route_spec)
 
     def test_image_inventory_hashes_headers_and_inactive_preference(self):
         entries = [self.manifest['controllers']['active'], *self.manifest['artifacts'].values(), *self.manifest['preferences']]
@@ -399,7 +437,7 @@ class HubTests(unittest.TestCase):
 
 
     def test_migrated_specialist_semantic_bodies(self):
-        brain = (ROOT / 'capabilities/BRAINSTORM_v1.0.md').read_text(encoding='utf-8').split('## Branching by premise change', 1)[1]
+        brain = (historical_source('capabilities/BRAINSTORM_v1.0.md')).read_text(encoding='utf-8').split('## Branching by premise change', 1)[1]
         self.assertEqual(hashlib.sha256(brain.encode()).hexdigest(), 'd9efaca29971bfdf1716c323a679f81715d5cac7b9d00abe791c5dd044db67fa')
         controller = (IMAGE / 'IMAGE_CONTROLLER_v1.1.md').read_text(encoding='utf-8')
         body = controller.split('## Authority and conflict', 1)[1].split('## Ready Gate delegation', 1)[0]
@@ -435,6 +473,340 @@ class HubTests(unittest.TestCase):
             self.assertFalse((ROOT.parent / row['old']).exists())
         archives = [p for p in ROOT.rglob('*') if p.is_dir() and p.name.lower() == 'source_archive']
         self.assertEqual(archives, [ROOT / 'Source_archive'])
+
+    def check_candidate_package_catalog(self, catalog):
+        """Static v0.1 contract only; performs no Library search or retrieval."""
+        self.assertEqual(catalog['status'], 'CANDIDATE')
+        self.assertFalse(catalog['active'])
+        self.assertFalse(catalog['runtime_ready'])
+        self.assertEqual(catalog['module_id'], 'HUB-CORE-PACKAGE-CATALOG')
+        self.assertEqual(catalog['runtime_role'], 'PACKAGE_CATALOG')
+        self.assertEqual(catalog['format_version'], '1')
+        self.assertEqual(catalog['version'], '0.1')
+        self.assertEqual(catalog['identity_binding'], 'PROPOSED_NOT_INSTALLED')
+        self.assertEqual(catalog['library_discovery_root'], 'Central Hub Config')
+        self.assertEqual(catalog['live_library_retrieval'], 'TECHNICAL_REAL_CANDIDATE_ONLY_USER_REPORTED')
+        self.assertEqual(catalog['trial_evidence_record'], 'library_trial/HUB_TECHNICAL_LIBRARY_LIVE_RESULT.md')
+        self.assertEqual(catalog['real_candidate_evidence_record'], 'library_trial/HUB_TECHNICAL_REAL_CANDIDATE_RESULT.md')
+        entries = catalog['packages']
+        self.assertEqual(len(entries), 5)
+        self.assertEqual(len({e['package_id'] for e in entries}), len(entries))
+        self.assertEqual(len({e['entrypoint_module_id'] for e in entries}), len(entries))
+        expected = {
+            'HUB-PKG-CREATIVE': ('HUB-DOM-CREATIVE', 'DOMAIN_CONTROL', 'CREATIVE', '1.0'),
+            'HUB-PKG-TECHNICAL': ('HUB-DOM-TECHNICAL', 'REASONING_PROFILE', 'TECHNICAL', '1.0'),
+            'HUB-PKG-BRAINSTORM': ('HUB-CAP-BRAINSTORM', 'CAPABILITY', 'BRAINSTORM', '1.0'),
+            'HUB-PKG-AIS': ('HUB-PIPE-AIS', 'TOOL_PIPELINE', 'AIS', '1.0'),
+            'HUB-PKG-IMAGET': ('HUB-PIPE-IMAGET', 'TOOL_PIPELINE', 'IMAGET', '1.1'),
+        }
+        self.assertEqual({e['package_id'] for e in entries}, set(expected))
+        controls = load(historical_source('HUB_ROUTER_v1.0.yaml'))['controls']
+        for entry in entries:
+            module_id, role, control, version = expected[entry['package_id']]
+            self.assertEqual(set(entry), {'package_id', 'entrypoint_module_id', 'runtime_role',
+                'status', 'version', 'applicability', 'repository_path', 'location', 'local_catalog', 'requires'})
+            self.assertEqual(entry['entrypoint_module_id'], module_id)
+            self.assertEqual(entry['runtime_role'], role)
+            self.assertEqual(entry['status'], 'ACTIVE' if control == 'TECHNICAL' else 'CANDIDATE')
+            self.assertEqual(entry['version'], version)
+            self.assertTrue(entry['applicability'].strip())
+            self.assertIsNone(entry['local_catalog'])
+            self.assertEqual(entry['requires'], [])
+            expected_path = ('candidates/promotion/HUB-DOM-TECHNICAL_v1.0.md'
+                             if control == 'TECHNICAL' else controls[control])
+            self.assertEqual(entry['repository_path'], expected_path)
+            path = (historical_source(entry['repository_path'])).resolve()
+            self.assertTrue(path.is_relative_to(ROOT))
+            self.assertTrue(path.is_file())
+            source = path.read_text(encoding='utf-8')
+            self.assertRegex(source, r'(?m)^(?:# .* v|IMAGE_CONTROLLER_VERSION: |Version: )' + re.escape(version) + r'$')
+            location = entry['location']
+            if role == 'TOOL_PIPELINE':
+                self.assertEqual(set(location), {'class', 'source_name', 'verification'})
+                self.assertEqual(location['class'], 'PROJECT_SOURCES')
+                self.assertEqual(location['source_name'], path.name)
+                self.assertEqual(location['verification'], 'NOT_VERIFIED')
+            else:
+                fields = {'class', 'root', 'locator', 'verification'}
+                if control == 'TECHNICAL':
+                    fields |= {'retrieval_mechanism', 'evidence_basis', 'real_module_deployment'}
+                    self.assertEqual(location['retrieval_mechanism'], 'LIVE_VERIFIED_REAL_CANDIDATE_SCOPED')
+                    self.assertEqual(location['evidence_basis'], 'USER_REPORTED_LIVE_VERIFICATION')
+                    self.assertEqual(location['real_module_deployment'], 'NOT_PERFORMED')
+                self.assertEqual(set(location), fields)
+                self.assertEqual(location['class'], 'LIBRARY')
+                self.assertEqual(location['root'], 'Central Hub Config')
+                # No real locator is available: reject invented paths, including plausible ones.
+                self.assertIsNone(location['locator'])
+                self.assertEqual(location['verification'], 'UNRESOLVED')
+
+    def test_candidate_architecture_header_and_owner_boundaries(self):
+        text = (ROOT / 'candidates/HUB_ARCHITECTURE_v0.1.md').read_text(encoding='utf-8')
+        headers = {'Module ID': 'HUB-CORE-ARCH', 'Runtime role': 'CORE_ARCHITECTURE',
+                   'Status': 'CANDIDATE', 'Version': '0.1'}
+        for key, value in headers.items():
+            self.assertEqual(re.findall(r'^' + re.escape(key) + r': (.+)$', text, re.M), [value])
+        for key in ['Scope', 'Responsibility boundary']:
+            self.assertEqual(len(re.findall(r'^' + key + r': .+$', text, re.M)), 1)
+        for anchor in ['NOT ACTIVE', 'CANDIDATE PRESENCE != ACTIVATION',
+                       'MODULE ID != VERSION', 'FILENAME != IDENTITY',
+                       'SEARCH HIT != VERIFIED MODULE', 'HEADER MATCH != ACTIVATION',
+                       'PACKAGE ID = technical ownership / resolution context',
+                       'PACKAGE MEMBERSHIP != SEMANTIC CONTAINMENT',
+                       'PACKAGE MEMBERSHIP != AUTOMATIC LOAD',
+                       'PACKAGE MEMBERSHIP != ONTOLOGICAL PARENTAGE',
+                       'REFINES != REPLACES', 'REFINES != REQUIRES', 'COMPLEMENTS != REQUIRES',
+                       'SPECIALIZATION REFINES MATCHED SCOPE; IT DOES NOT ERASE UNCOVERED BASE RESPONSIBILITIES',
+                       'relation alone does not autoload the counterpart',
+                       'ROOT CATALOG != GLOBAL LEAF-MODULE REGISTRY',
+                       'CENTRAL HUB CONFIG = SOLE LIBRARY DISCOVERY ROOT',
+                       'FULL_FILE -> verify Module ID / Package ID / role / status / version',
+                       'HUB SELECTS PIPELINE. PIPELINE RESOLVES INTERNAL DEPENDENCIES',
+                       'RESEARCH EVIDENCE != DESIGN AUTHORIZATION',
+                       'PIPELINE SELECTION != TOOL EXECUTION',
+                       'PREVIOUS ACTIVATION != CURRENT ACTIVATION',
+                       'PLACEHOLDER != FILE', 'STATIC CONTRACT PASS != LIVE LIBRARY RETRIEVAL VERIFIED',
+                       'WHOLE-LIBRARY RUNTIME DEPENDENCE IS NOT']:
+            self.assertIn(anchor, text)
+
+    def test_candidate_catalog_existing_entrypoints_and_unverified_locations(self):
+        catalog = load(ROOT / 'candidates/HUB_PACKAGE_CATALOG_v0.1.yaml')
+        self.check_candidate_package_catalog(catalog)
+
+    def test_candidate_catalog_rejects_scope_escapes_and_false_readiness(self):
+        original = load(ROOT / 'candidates/HUB_PACKAGE_CATALOG_v0.1.yaml')
+        for key, value in [('library_discovery_root', 'Other Library'), ('active', True),
+                           ('runtime_ready', True), ('live_library_retrieval', 'PASS')]:
+            catalog = copy.deepcopy(original)
+            catalog[key] = value
+            with self.assertRaises(AssertionError): self.check_candidate_package_catalog(catalog)
+        for key, value in [('root', 'Other Library'), ('verification', 'VERIFIED'),
+                           ('locator', '../Outside/module.md'), ('locator', '/Other Library/module.md'),
+                           ('locator', 'C:\\module.md'), ('locator', 'domains/creative/CREATIVE_v1.0.md'),
+                           ('locator', 'plausible-but-unverified.md')]:
+            catalog = copy.deepcopy(original)
+            catalog['packages'][0]['location'][key] = value
+            with self.assertRaises(AssertionError): self.check_candidate_package_catalog(catalog)
+        for field in ['package_id', 'entrypoint_module_id']:
+            catalog = copy.deepcopy(original)
+            catalog['packages'][1][field] = catalog['packages'][0][field]
+            with self.assertRaises(AssertionError): self.check_candidate_package_catalog(catalog)
+        for extra_id in ['HUB-PKG-CUISINE', 'HUB-PKG-FOOD-SCIENCE', 'HUB-PKG-READY-GATE']:
+            catalog = copy.deepcopy(original)
+            extra = copy.deepcopy(catalog['packages'][0])
+            extra['package_id'] = extra_id
+            catalog['packages'].append(extra)
+            with self.assertRaises(AssertionError): self.check_candidate_package_catalog(catalog)
+        catalog = copy.deepcopy(original)
+        catalog['packages'][-1]['modules'] = ['ready-gate', 'prior-guard']
+        with self.assertRaises(AssertionError): self.check_candidate_package_catalog(catalog)
+
+    def test_candidate_catalog_rejects_forbidden_yaml_constructs(self):
+        for suffix in ['\na: &x value\nb: *x\n', '\na: !custom value\n',
+                       '\n<<: {}\n', '\nstatus: ACTIVE\n', '\na: yes\n']:
+            text = (ROOT / 'candidates/HUB_PACKAGE_CATALOG_v0.1.yaml').read_text(encoding='utf-8')
+            with self.assertRaises((Closed, yaml.YAMLError)): parse(text + suffix)
+
+    def test_candidates_do_not_change_active_router_or_delegation(self):
+        # Fixed pre-candidate bytes; candidate presence must not mutate active selection.
+        self.assertEqual(digest(historical_source('HUB_ROUTER_v1.0.yaml')),
+                         '465ecbf6b1c6ff80e1be51a57b6ac3743f19a210f94a36bad185993b4c2de844')
+        router = load(historical_source('HUB_ROUTER_v1.0.yaml'))
+        self.assertEqual(router['router_version'], '1.0')
+        self.assertFalse(any('candidates/' in path for path in router['controls'].values()))
+        for name in ['HUB_CI_v1.0.md', 'HUB_ROUTER_v1.0.yaml']:
+            text = (historical_source(name)).read_text(encoding='utf-8')
+            self.assertNotIn('HUB_ARCHITECTURE', text)
+            self.assertNotIn('HUB_PACKAGE_CATALOG', text)
+
+    def test_technical_library_trial_header_and_byte_identical_body(self):
+        trial = ROOT / 'candidates/library_trial/HUB-DOM-TECHNICAL_v0.1-trial.md'
+        data = trial.read_bytes()
+        text = data.decode('utf-8')
+        expected = {'Module ID': 'HUB-DOM-TECHNICAL', 'Package ID': 'HUB-PKG-TECHNICAL',
+                    'Runtime role': 'REASONING_PROFILE', 'Status': 'CANDIDATE', 'Version': '0.1-trial'}
+        for key, value in expected.items():
+            self.assertEqual(re.findall(r'^' + re.escape(key) + r': (.+)$', text, re.M), [value])
+        for key in ['Scope', 'Responsibility boundary']:
+            self.assertEqual(len(re.findall(r'^' + key + r': .+$', text, re.M)), 1)
+        for key in ['Refines', 'Complements', 'Requires']:
+            self.assertNotRegex(text, r'(?m)^' + key + r':')
+        begin = b'<!-- BEGIN BYTE-IDENTICAL TECHNICAL BODY -->\n'
+        end = b'<!-- END BYTE-IDENTICAL TECHNICAL BODY -->\n'
+        self.assertEqual(data.count(begin), 1)
+        self.assertEqual(data.count(end), 1)
+        body = data.split(begin, 1)[1].split(end, 1)[0]
+        source = historical_source('domains/technical/TECHNICAL_v1.0.md')
+        self.assertEqual(body, source.read_bytes().partition(b'\n')[2])
+        self.assertEqual(hashlib.sha256(body).hexdigest(),
+                         'f11746157aadd0775c29201d1fcef6c29b9947b82ac115da469de0fb65e690f6')
+        self.assertIn('explicit scoped trial selection', text)
+
+    def test_technical_trial_binding_is_unresolved_and_not_catalog_promotion(self):
+        binding = load(ROOT / 'candidates/library_trial/HUB_TECHNICAL_LIBRARY_TRIAL_BINDING.yaml')
+        self.assertEqual(binding['status'], 'CANDIDATE')
+        self.assertFalse(binding['active'])
+        self.assertEqual(binding['version'], '0.1-trial')
+        self.assertEqual(binding['runtime_role'], 'REASONING_PROFILE')
+        self.assertEqual(binding['location'], 'LIBRARY')
+        self.assertEqual(binding['library_root'], 'Central Hub Config')
+        self.assertEqual(binding['locator'], 'UNRESOLVED')
+        self.assertEqual(binding['retrieval_status'], 'NOT_VERIFIED')
+        self.assertEqual(binding['live_trial'], 'NOT_RUN')
+        self.assertEqual(binding['artifact_file'], 'HUB-DOM-TECHNICAL_v0.1-trial.md')
+        catalog = load(ROOT / 'candidates/HUB_PACKAGE_CATALOG_v0.1.yaml')
+        row = next(e for e in catalog['packages'] if e['package_id'] == binding['package_id'])
+        self.assertEqual(row['entrypoint_module_id'], binding['entrypoint_module_id'])
+        self.assertEqual(row['runtime_role'], binding['runtime_role'])
+        self.assertEqual(row['version'], '1.0')
+        self.assertEqual(row['status'], 'ACTIVE')
+        self.assertEqual(catalog['status'], 'CANDIDATE')
+        self.assertIn('Trial-specific', binding['role_boundary'])
+
+    def test_technical_live_spec_cases_observable_evidence_and_no_fallback(self):
+        spec = (ROOT / 'candidates/library_trial/HUB_TECHNICAL_LIBRARY_LIVE_TEST.md').read_text(encoding='utf-8')
+        self.assertEqual(re.findall(r'^### (L\d{2}) ', spec, re.M), [f'L{i:02}' for i in range(1, 11)])
+        for anchor in ['LIVE TRIAL: NOT_RUN', 'LIVE LIBRARY RETRIEVAL: NOT_VERIFIED',
+                       'CENTRAL HUB CONFIG = SOLE LIBRARY DISCOVERY ROOT',
+                       'BEHAVIORAL SIMILARITY != SOURCE RETRIEVAL EVIDENCE',
+                       'STATIC PASS != LIVE LIBRARY PASS', 'PREVIOUS ACTIVATION != CURRENT ACTIVATION',
+                       'Case ID:', 'Date:', 'Surface / Model / Project:', 'Artifact actually retrieved',
+                       'Read status: FULL_FILE / PARTIAL / NONE', 'Header verification:',
+                       'Selection result and application scope:', 'Observed response behavior:',
+                       'Fallback attempted?', 'Result: PASS / FAIL / UNVERIFIABLE', 'Notes / prerequisite',
+                       'RETRIEVAL FAILURE', 'ROUTING FAILURE', 'IDENTITY FAILURE', 'SCOPE FAILURE',
+                       'PLATFORM LIMITATION', 'LOCAL FAILURE != GLOBAL ARCHITECTURE FAILURE',
+                       'Memory', 'prior chat', 'Project Sources', 'lookalike', 'UNVERIFIABLE']:
+            self.assertIn(anchor, spec)
+        self.assertIn('không search toàn Library', spec)
+        self.assertIn('không pre-fill PASS', spec)
+        self.assertIn('hidden chain-of-thought', spec)
+        self.assertIn('NOT EXERCISED / UNVERIFIABLE', spec)
+
+    def test_technical_trial_does_not_change_active_sources(self):
+        self.assertEqual(digest(historical_source('domains/technical/TECHNICAL_v1.0.md')),
+                         '008e1be28a32fd956ff4ca4edc64536de4e9e3b3b6b7b124ae4ecebdc60b1894')
+        self.assertEqual(digest(historical_source('HUB_ROUTER_v1.0.yaml')),
+                         '465ecbf6b1c6ff80e1be51a57b6ac3743f19a210f94a36bad185993b4c2de844')
+        for name in ['HUB_CI_v1.0.md', 'HUB_ROUTER_v1.0.yaml', 'domains/technical/TECHNICAL_v1.0.md']:
+            self.assertNotIn('0.1-trial', (historical_source(name)).read_text(encoding='utf-8'))
+
+    def test_real_technical_candidate_canonical_identity_and_preserved_body(self):
+        path = ROOT / 'candidates/HUB-DOM-TECHNICAL_v1.0-candidate.md'
+        data = path.read_bytes()
+        text = data.decode('utf-8')
+        expected = {'Module ID': 'HUB-DOM-TECHNICAL', 'Package ID': 'HUB-PKG-TECHNICAL',
+                    'Runtime role': 'REASONING_PROFILE', 'Status': 'CANDIDATE', 'Version': '1.0-candidate'}
+        for field, value in expected.items():
+            self.assertEqual(re.findall(r'^' + re.escape(field) + r': (.+)$', text, re.M), [value])
+        body = data.split(b'\nResponsibility boundary: ', 1)[1].partition(b'\n')[2]
+        self.assertEqual(body, (historical_source('domains/technical/TECHNICAL_v1.0.md')).read_bytes().partition(b'\n')[2])
+        self.assertEqual(hashlib.sha256(body).hexdigest(),
+                         'f11746157aadd0775c29201d1fcef6c29b9947b82ac115da469de0fb65e690f6')
+        for prohibited in ['0.1-trial', 'Trial wrapper', 'L04', 'BYTE-IDENTICAL TECHNICAL BODY']:
+            self.assertNotIn(prohibited, text)
+        for field in ['Refines', 'Complements', 'Requires']:
+            self.assertNotRegex(text, r'(?m)^' + field + r':')
+        row = next(e for e in load(ROOT / 'candidates/HUB_PACKAGE_CATALOG_v0.1.yaml')['packages']
+                   if e['package_id'] == expected['Package ID'])
+        self.assertEqual((row['entrypoint_module_id'], row['runtime_role']),
+                         (expected['Module ID'], expected['Runtime role']))
+        self.assertEqual((row['status'], row['version']), ('ACTIVE', '1.0'))
+        architecture = (ROOT / 'candidates/HUB_ARCHITECTURE_v0.1.md').read_text(encoding='utf-8')
+        self.assertIn('| REASONING_PROFILE |', architecture)
+        self.assertIn('HOW reasoning proceeds', architecture)
+        self.assertIn('CURRENT DIRECTORY != ROLE', architecture)
+        router = load(ROOT / 'candidates/HUB_ROUTER_v1.1-candidate.yaml')
+        self.assertIn('REASONING_PROFILE', router['eligibility']['technical_reconciliation'])
+        self.assertEqual(router['status'], 'CANDIDATE')
+        self.assertFalse(router['active'])
+
+    def test_live_trial_result_is_scoped_user_report_not_real_deployment(self):
+        path = ROOT / 'candidates/library_trial/HUB_TECHNICAL_LIBRARY_LIVE_RESULT.md'
+        text = path.read_text(encoding='utf-8')
+        self.assertIn('Classification: LIVE VERIFIED — SINGLE MODULE / SCOPED TRIAL', text)
+        self.assertIn('Evidence source: USER_REPORTED_LIVE_TRIAL', text)
+        self.assertIn('Independent Codex reproduction: NOT_RUN', text)
+        self.assertIn('NOT_PROVIDED', text)
+        self.assertIn('30/30', text)
+        rows = re.findall(r'^\| ([^|]+) \| (PASS|UNVERIFIABLE) \|', text, re.M)
+        self.assertEqual(sum(result == 'PASS' for _, result in rows), 10)
+        unverified = [label for label, result in rows if result == 'UNVERIFIABLE']
+        self.assertEqual(len(unverified), 2)
+        self.assertTrue(any('L08' in label for label in unverified))
+        self.assertTrue(any('L09' in label for label in unverified))
+        self.assertIn('L10 re-entry: PASS', text)
+        self.assertIn('TRIAL RETRIEVAL VERIFIED != REAL MODULE DEPLOYED', text)
+        catalog = load(ROOT / 'candidates/HUB_PACKAGE_CATALOG_v0.1.yaml')
+        self.assertEqual((ROOT / 'candidates' / catalog['trial_evidence_record']).resolve(), path.resolve())
+        self.assertFalse(catalog['active'])
+        self.assertFalse(catalog['runtime_ready'])
+
+    def test_historical_technical_trial_preparation_remains_byte_exact(self):
+        expected = {
+            'HUB-DOM-TECHNICAL_v0.1-trial.md': 'a0d7af2e8df7d019b2dfc198269c52a616db0db7d77c3330bc9cf8f55e5715d3',
+            'HUB_TECHNICAL_LIBRARY_TRIAL_BINDING.yaml': '4b7d07909d0359febefddcd8aea7ecf1e2c3c8e33fa10203b9bb511c9c3ae4d9',
+            'HUB_TECHNICAL_LIBRARY_LIVE_TEST.md': 'bb14903fd17ff18ad9983f828db95698901a5ed8c19497af66dcd38630957a0d',
+        }
+        for name, sha in expected.items():
+            self.assertEqual(digest(ROOT / 'candidates/library_trial' / name), sha)
+
+    def test_technical_promotion_ready_header_and_exact_body_preservation(self):
+        candidate = ROOT / 'candidates/HUB-DOM-TECHNICAL_v1.0-candidate.md'
+        promoted = ROOT / 'candidates/promotion/HUB-DOM-TECHNICAL_v1.0.md'
+        data = promoted.read_bytes()
+        text = data.decode('utf-8')
+        expected = {'Module ID': 'HUB-DOM-TECHNICAL', 'Package ID': 'HUB-PKG-TECHNICAL',
+                    'Runtime role': 'REASONING_PROFILE', 'Status': 'ACTIVE', 'Version': '1.0'}
+        for field, value in expected.items():
+            self.assertEqual(re.findall(r'^' + re.escape(field) + r': (.+)$', text, re.M), [value])
+        for field in ['Scope', 'Responsibility boundary']:
+            self.assertEqual(re.findall(r'^' + field + r': (.+)$', text, re.M),
+                             re.findall(r'^' + field + r': (.+)$', candidate.read_text(encoding='utf-8'), re.M))
+        body = data.split(b'\nResponsibility boundary: ', 1)[1].partition(b'\n')[2]
+        self.assertEqual(body, (historical_source('domains/technical/TECHNICAL_v1.0.md')).read_bytes().partition(b'\n')[2])
+        self.assertEqual(hashlib.sha256(body).hexdigest(),
+                         'f11746157aadd0775c29201d1fcef6c29b9947b82ac115da469de0fb65e690f6')
+        for prohibited in ['0.1-trial', '1.0-candidate', 'Trial wrapper', 'L04']:
+            self.assertNotIn(prohibited, text)
+        for field in ['Refines', 'Complements', 'Requires']:
+            self.assertNotRegex(text, r'(?m)^' + field + r':')
+        self.assertEqual(digest(candidate), '3a0658abae4fcf1b60336412cc83fe63c157d62a5d412e1cb85312338959bae1')
+        self.assertIn('Status: CANDIDATE', candidate.read_text(encoding='utf-8'))
+
+    def test_real_candidate_live_identity_is_not_promoted_locator(self):
+        record = (ROOT / 'candidates/library_trial/HUB_TECHNICAL_REAL_CANDIDATE_RESULT.md').read_text(encoding='utf-8')
+        ids = {'Candidate file_id': 'file_00000000d3fc8207970927a462f187e2',
+               'Candidate library_file_id': 'libfile_54ae9fe83c688191b5dd0a56f9f2444e',
+               'Candidate Library version_id': '1'}
+        for field, value in ids.items():
+            self.assertEqual(re.findall(r'^' + re.escape(field) + r': (.+)$', record, re.M), [value])
+        for anchor in ['LIVE VERIFIED — REAL CANDIDATE / SINGLE MODULE / SCOPED',
+                       'Evidence source: USER_REPORTED_LIVE_VERIFICATION',
+                       '19/19; has_more=false', 'Library version_id != artifact Version field',
+                       'CANDIDATE OBJECT IDENTITY != FUTURE ACTIVE OBJECT IDENTITY',
+                       'REAL CANDIDATE VERIFIED != ACTIVE REVISION VERIFIED',
+                       'PROMOTION-READY != DEPLOYED', 'ROLLBACK PATH != RUNTIME FALLBACK']:
+            self.assertIn(anchor, record)
+        for case in ['V01', 'V02 deactivation', 'Overall']:
+            self.assertIn('| ' + case + ' | PASS |', record)
+        self.assertIn('| Fallback | NONE |', record)
+        catalog_path = ROOT / 'candidates/HUB_PACKAGE_CATALOG_v0.1.yaml'
+        catalog_text = catalog_path.read_text(encoding='utf-8')
+        catalog = load(catalog_path)
+        self.assertFalse(catalog['active'])
+        self.assertFalse(catalog['runtime_ready'])
+        row = next(e for e in catalog['packages'] if e['package_id'] == 'HUB-PKG-TECHNICAL')
+        self.assertEqual((row['status'], row['version']), ('ACTIVE', '1.0'))
+        self.assertIsInstance(row['version'], str)
+        self.assertEqual(row['location']['root'], 'Central Hub Config')
+        self.assertIsNone(row['location']['locator'])
+        self.assertEqual(row['location']['verification'], 'UNRESOLVED')
+        self.assertEqual(row['location']['real_module_deployment'], 'NOT_PERFORMED')
+        for field in ['file_id', 'library_file_id', 'version_id']:
+            self.assertNotIn(field, row['location'])
+        for value in list(ids.values())[:2]:
+            self.assertNotIn(value, catalog_text)
 
 
 # Original embedded protocol hash retained as provenance; checked against the extracted preserved protocol.

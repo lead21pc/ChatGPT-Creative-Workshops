@@ -74,7 +74,7 @@ controllers:
     version: '1.1'
     status: active
     required: true
-    sha256: a72ecd8ca0209f7f5a81c6de8d110ea95d3d8483f163de01767c5af70e866edd
+    sha256: 6d33c80f4852c1b44c32abf6e898c14e8f001d24796d406aafc49a95ab3a2733
     compatibility:
       router: 3.1.0
       prior_guard: 1.1.0
