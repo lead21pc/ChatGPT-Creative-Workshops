@@ -72,19 +72,21 @@ packages:
   entrypoint_module_id: HUB-PIPE-AIS
   runtime_role: TOOL_PIPELINE
   status: LEGACY_EXISTING
-  version: '1.0'
+  version: '1.1'
   applicability: Hub-assigned external evidence verification, collection, comparison, synthesis or option discovery,
     including explicit search requests.
   location:
     class: PROJECT_SOURCES
-    declared_source_path: tool_pipelines/AIS/AIS_PIPELINE_v1.0.md
-    source_name: AIS_PIPELINE_v1.0.md
+    declared_source_path: tool_pipelines/AIS/AIS_PIPELINE_v1.1.md
+    source_name: AIS_PIPELINE_v1.1.md
     identity_basis: Root Catalog plus exact declared source; catalog Module ID is routing alias, not an existing
       header.
-    verification: FULL_EXACT_SOURCE_REQUIRED; USER_REPORTED_LIVE_SUCCESS_PATH_VERIFIED
+    verification: FULL_EXACT_SOURCE_REQUIRED; NEW_REVISION_LIVE_NOT_VERIFIED; USER_REPORTED_COMPONENT_EVIDENCE
   local_catalog: null
   requires: []
   binding_mode: LEGACY_PROJECT_SOURCE
+  repository_revision: OFFICIAL_ACTIVE
+  project_deployment: NOT_PERFORMED
 - package_id: HUB-PKG-IMAGET
   entrypoint_module_id: HUB-PIPE-IMAGET
   runtime_role: TOOL_PIPELINE

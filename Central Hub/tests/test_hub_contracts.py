@@ -15,7 +15,12 @@ IMAGE = ROOT / 'tool_pipelines/ImageT'
 LEGACY_ARCHIVE = ROOT / 'Source_archive/Central Hub legacy v1.0'
 LEGACY_PATHS = frozenset(['HUB_CI_v1.0.md', 'HUB_ROUTER_v1.0.yaml', 'domains/technical/TECHNICAL_v1.0.md', 'domains/creative/CREATIVE_v1.0.md', 'capabilities/BRAINSTORM_v1.0.md'])
 
+AIS_ARCHIVE = ROOT / 'Source_archive/AIS research-core promotion 2026-10-21'
+AIS_PREDECESSORS = frozenset(['tool_pipelines/AIS/AIS_PIPELINE_v1.0.md', 'tool_pipelines/AIS/AIS_ROUTER_v1.1.yaml'])
+
 def historical_source(path):
+    if path in AIS_PREDECESSORS:
+        return AIS_ARCHIVE / path  # Explicit history checks only, never runtime fallback.
     return LEGACY_ARCHIVE / path if path in LEGACY_PATHS else ROOT / path
 
 
@@ -178,12 +183,12 @@ class HubTests(unittest.TestCase):
             elif isinstance(value, str) and ' ' in value:
                 yield value
 
-        for name in ['HUB_ROUTER_v1.0.yaml', 'tool_pipelines/AIS/AIS_ROUTER_v1.1.yaml',
+        for name in ['HUB_ROUTER_v1.0.yaml', 'tool_pipelines/AIS/AIS_ROUTER_v1.2.yaml',
                      'tool_pipelines/ImageT/IMAGE_SOURCE_ROUTER.yaml']:
             for prose in instruction_values(load(historical_source(name))):
                 self.assertNotRegex(prose, vietnamese, name)
         for name in ['domains/creative/CREATIVE_v1.0.md', 'domains/technical/TECHNICAL_v1.0.md',
-                     'tool_pipelines/AIS/AIS_PIPELINE_v1.0.md']:
+                     'tool_pipelines/AIS/AIS_PIPELINE_v1.1.md']:
             text = (historical_source(name)).read_text(encoding='utf-8')
             prose = re.sub(r'`[^`]*`|"[^"]*"', '', text)
             self.assertNotRegex(prose, vietnamese, name)
@@ -249,10 +254,10 @@ class HubTests(unittest.TestCase):
             self.assertIn(phrase, spec)
 
     def test_ais_three_modes_lock_and_gate_order(self):
-        ais = load(ROOT / 'tool_pipelines/AIS/AIS_ROUTER_v1.1.yaml')
+        ais = load(ROOT / 'tool_pipelines/AIS/AIS_ROUTER_v1.2.yaml')
         self.assertEqual(set(ais['modes']), {'VERIFY', 'RESEARCH', 'EXPLORE'})
         self.assertEqual(set(ais['search_contract']) - {'lifetime'},
-                         {'operation', 'mode', 'question', 'known', 'unknowns', 'source_authority', 'update_scope', 'stop_condition'})
+                         {'operation', 'mode', 'question', 'known', 'unknowns', 'source_authority', 'update_scope', 'stop_condition', 'research_strategy'})
         seq = ais['stage_sequence']
         self.assertEqual(seq, list(ais['stages']))
         self.assertLess(seq.index('TOOL_FACING_INSTRUCTION'), seq.index('PRE_CALL_CHECK'))
@@ -418,7 +423,7 @@ class HubTests(unittest.TestCase):
                        'explicit user prohibition', 'logical requirement of an explicit constraint',
                        'authorized active source', 'Remove unauthorized negatives or keep the field open']:
             self.assertIn(anchor, controller)
-        ais = load(ROOT / 'tool_pipelines/AIS/AIS_ROUTER_v1.1.yaml')
+        ais = load(ROOT / 'tool_pipelines/AIS/AIS_ROUTER_v1.2.yaml')
         self.assertIn('SUPPORTED COMPONENTS DO NOT AUTOMATICALLY SUPPORT THEIR COMBINATION', ais['stages']['EVIDENCE_MERGE'])
         self.assertIn('unless the relation between A and B is itself supported', ais['stages']['EVIDENCE_MERGE'])
         spec = (IMAGE / 'tests/READY_GATE_TEST_CASES.md').read_text(encoding='utf-8')
@@ -446,7 +451,7 @@ class HubTests(unittest.TestCase):
         self.assertEqual(len(additions), 2)
         body = '\n\n'.join(p for p in paragraphs if p not in additions)
         self.assertEqual(hashlib.sha256(body.encode()).hexdigest(), 'abc1639ca566420f0e127539b57a43881bce1eca01a0da640fa62770133d7ca9')
-        ais = load(ROOT / 'tool_pipelines/AIS/AIS_ROUTER_v1.1.yaml')
+        ais = load(ROOT / 'tool_pipelines/AIS/AIS_ROUTER_v1.2.yaml')
         policy = json.dumps(ais['source_policy'], sort_keys=True)
         self.assertEqual(hashlib.sha256(policy.encode()).hexdigest(), '3f22b8abf89e2cb7bfffed3c9255da3e034ad672d64a5394641e4a1f0f0975e7')
 

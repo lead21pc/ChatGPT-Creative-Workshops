@@ -807,7 +807,7 @@ class PromotionContracts(unittest.TestCase):
         for token in ['PROJECT INSTRUCTIONS', 'PROJECT SOURCES', 'LIBRARY', 'LEGACY SOURCES',
                       'PREPARED_NOT_DEPLOYED', 'ROLLBACK != FALLBACK']:
             self.assertIn(token, plan)
-        ais = (ROOT / 'tool_pipelines/AIS/AIS_PIPELINE_v1.0.md').read_text(encoding='utf-8')
+        ais = historical_source('tool_pipelines/AIS/AIS_PIPELINE_v1.0.md').read_text(encoding='utf-8')
         self.assertIn('Read `AIS_ROUTER_v1.1.yaml` fully', ais)
         self.assertNotIn('`AIS_ROUTER_v1.0.yaml`', ais)
         self.assertTrue((historical_source('HUB_ROUTER_v1.0.yaml')).is_file())
@@ -901,8 +901,17 @@ class ActiveSingletonMigration(unittest.TestCase):
                     self.assertIsNone(location[key])
                 self.assertNotIn('PROJECT_SOURCE', str(after))
                 self.assertNotIn('declared_source_path', location)
+            elif after['package_id'] == 'HUB-PKG-AIS':
+                expected = copy.deepcopy(before)
+                expected['version'] = '1.1'
+                expected['location']['declared_source_path'] = 'tool_pipelines/AIS/AIS_PIPELINE_v1.1.md'
+                expected['location']['source_name'] = 'AIS_PIPELINE_v1.1.md'
+                expected['location']['verification'] = 'FULL_EXACT_SOURCE_REQUIRED; NEW_REVISION_LIVE_NOT_VERIFIED; USER_REPORTED_COMPONENT_EVIDENCE'
+                expected['repository_revision'] = 'OFFICIAL_ACTIVE'
+                expected['project_deployment'] = 'NOT_PERFORMED'
+                self.assertEqual(expected, after)  # Only the authorized AIS promotion delta.
             else:
-                self.assertEqual(before, after)  # TECHNICAL, AIS and ImageT unchanged.
+                self.assertEqual(before, after)  # TECHNICAL and ImageT unchanged.
             self.assertIsNone(after['local_catalog'])
             self.assertEqual(after['requires'], [])
         plan = (ROOT / 'HUB_LIBRARY_SINGLETON_MIGRATION.md').read_text(encoding='utf-8')

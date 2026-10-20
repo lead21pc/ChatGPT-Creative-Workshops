@@ -2,7 +2,7 @@
 
 Repository v1.1: ACTIVE. Project deployment: NOT_VERIFIED trong mốc local này. Không upload tự động, không stage/commit/push. Bộ promotion đã chấp nhận được sao chép vào root; chỉ cập nhật trạng thái repository, đường dẫn evidence record và mô tả số binding. Catalog chuyển hai singleton sang Library; thuật toán Router giữ nguyên.
 
-TECHNICAL Library, AIS và ImageT giữ nguyên bindings. Trial trước có LIVE INTEGRATION PARTIAL theo báo cáo người dùng: các success path PASS, I08 UNVERIFIABLE. Không chạy lại I01–I10, không tạo failure injection. CREATIVE/BRAINSTORM Library hiện NOT_PERFORMED; kết quả legacy không là bằng chứng migration đã live.
+TECHNICAL Library và ImageT giữ nguyên bindings. AIS giữ binding mode LEGACY_PROJECT_SOURCE; bản chính thức repository từ 2026-10-21 là pipeline v1.1/router v1.2, Project deployment NOT_PERFORMED. Danh sách nguồn cài thủ công dưới đây đã cập nhật theo revision đó. Trial trước có LIVE INTEGRATION PARTIAL theo báo cáo người dùng: các success path PASS, I08 UNVERIFIABLE. Không chạy lại I01–I10, không tạo failure injection. CREATIVE/BRAINSTORM Library hiện NOT_PERFORMED; kết quả legacy không là bằng chứng migration đã live.
 
 ## Hai file cần upload
 
@@ -21,8 +21,8 @@ Upload nguyên hai file sau vào **Library / Central Hub Config**, giữ filenam
 4. **PROJECT INSTRUCTIONS:** toàn bộ nội dung root `HUB_CI_v1.1.md`.
 5. **PROJECT SOURCES:** root `HUB_ROUTER_v1.1.yaml`, `HUB_ARCHITECTURE_v1.0.md`, `HUB_PACKAGE_CATALOG_v1.0.yaml` đã ghi nhận hai exact bindings. Thay core candidate/trial tương ứng, không để nhiều bộ core cùng làm authority. Giữ chính xác các nguồn pipeline sau:
 
-   - `tool_pipelines/AIS/AIS_PIPELINE_v1.0.md`
-   - `tool_pipelines/AIS/AIS_ROUTER_v1.1.yaml`
+   - `tool_pipelines/AIS/AIS_PIPELINE_v1.1.md`
+   - `tool_pipelines/AIS/AIS_ROUTER_v1.2.yaml`
    - `tool_pipelines/ImageT/IMAGE_CONTROLLER_v1.1.md`
    - `tool_pipelines/ImageT/IMAGE_SOURCE_ROUTER.yaml`
    - `tool_pipelines/ImageT/manifest.yaml`
