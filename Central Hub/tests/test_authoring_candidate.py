@@ -1,5 +1,6 @@
 """Candidate STATIC checks and lexical SPEC oracle; no model or target execution."""
 import json
+import hashlib
 import re
 import unittest
 
@@ -7,8 +8,9 @@ from test_hub_contracts import ROOT, load
 
 
 CANDIDATE = ROOT / 'candidates/authoring_v0'
-MODULE = CANDIDATE / 'HUB-CAP-AUTHORING_v0.1-candidate.md'
+MODULE = CANDIDATE / 'HUB-CAP-AUTHORING_v0.2-candidate.md'
 CASES = CANDIDATE / 'AUTHORING_TEST_CASES.md'
+PREDECESSOR = ROOT / 'Source_archive/Prompt Authoring v0.1 2026-10-21/HUB-CAP-AUTHORING_v0.1-candidate.md'
 TARGETS = ('AIS', 'IMAGET', 'FTH', 'CODEX', 'WORK', 'GENERIC')
 
 
@@ -30,7 +32,7 @@ class AuthoringCandidateTests(unittest.TestCase):
         for key, value in [('Module ID', 'HUB-CAP-AUTHORING'),
                            ('Package ID', 'HUB-PKG-AUTHORING'),
                            ('Runtime role', 'CAPABILITY'), ('Status', 'CANDIDATE'),
-                           ('Version', '0.1-candidate')]:
+                           ('Version', '0.2-candidate')]:
             self.assertEqual(re.findall(rf'^{key}: (.+)$', text, re.M), [value])
         for key in ('Scope', 'Responsibility boundary'):
             self.assertEqual(len(re.findall(rf'^{key}: .+$', text, re.M)), 1)
@@ -70,6 +72,26 @@ class AuthoringCandidateTests(unittest.TestCase):
                           'TRIGGER != DOWNSTREAM EXECUTION AUTHORIZATION',
                           'AUTHORING != AIS ORCHESTRATOR'):
             self.assertIn(invariant, module)
+
+    def test_predecessor_bytes_and_exact_activation_contract_preserved(self):
+        self.assertEqual(hashlib.sha256(PREDECESSOR.read_bytes()).hexdigest(),
+                         '4364e68bb90aa974c82e51d6494a77586a497b2de3727bf6d372ba05354b9a4e')
+        self.assertFalse((CANDIDATE / PREDECESSOR.name).exists())
+        text = MODULE.read_text(encoding='utf-8')
+        gate = text.split('## Admission and exact activation\n', 1)[1].split(
+                          '## Scoped transformation\n', 1)[0]
+        self.assertEqual(hashlib.sha256(gate.encode('utf-8')).hexdigest(),
+                         '1602ca2431b18a0f674f9f42f4ed78e313c0288170e2b2a11d9821bacb83992e')
+
+    def test_evidence_cases_and_comparison_are_review_only(self):
+        text = CASES.read_text(encoding='utf-8')
+        self.assertEqual(re.findall(r'^\| (E\d+) \|', text, re.M),
+                         [f'E{i:02}' for i in range(1, 13)])
+        self.assertIn('B/E cases have no executed semantic simulation', text)
+        self.assertIn('Bounded later A/B/C comparison — NOT RUN', text)
+        self.assertIn('STATIC PASS != LIVE BEHAVIOR PROVEN', text)
+        self.assertIn('LIVE HARNESS PASS != REAL-CONTEXT ROBUSTNESS PROVEN', text)
+        self.assertIn('PASSING TESTS != TESTED THE RIGHT THING', text)
 
 
 if __name__ == '__main__':
