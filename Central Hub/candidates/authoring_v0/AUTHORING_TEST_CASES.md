@@ -1,6 +1,18 @@
-# Prompt Authoring v0.2 — candidate review and cases
+# Prompt Authoring v0.3 — candidate review and cases
 
-## Audit disposition
+## Current v0.3 audit and acceptance
+
+ACCEPT WITH LOCAL CORRECTION. On 2026-10-21 the task baseline is branch `main`, HEAD `a0b186be5a90e9d751afd87fd5369ffe9bf85b0b`, clean working tree and empty index. Read in full: the current handoff at `D:\CENTRAL_HUB_AUTHORING_CURRENT.md`, v0.2 candidate, this test document and `tests/test_authoring_candidate.py`. Inspect relevant current Hub Architecture/CI/Router/Catalog ownership/admission sections and official AIS pipeline v1.1/router v1.2 evidence boundary. The handoff still describes older candidate state; current local files and the explicit new task govern. No handoff edit or Revamp runtime behavior is introduced.
+
+USER_REPORTED REAL-CONTEXT FAILURE: the supplied Hanfu test account reports that v0.2 kept provisional/rejected/unresolved labels but lost decision-transition constraints during compression, then allowed choosing an open option to complete the design. This is an observed failure reported by the user, not a hypothetical future risk. Only the frozen-task summary and bad-output pattern are supplied here; the full original A/B/C inputs, outputs, model/surface and trace are unavailable. The boundary violation can be established from the supplied text: permission to choose conflicts with the frozen prohibition. Codex has not independently reproduced the model behavior or established its internal cause.
+
+Repository-confirmed contract gap: v0.2 context-selection step 2 lists states/constraints but does not expressly require retaining rules for changing those states. Integrity step 5 checks status/authority generally, and Evidence transfer already forbids turning evidence into a design decision; however, neither operationalizes the narrower failure of keeping an unresolved label while delegating selection. Thus the reported behavior violates an existing boundary and also exposes where the local contract needs reinforcement. This finding requires no AIS change or new control owner.
+
+Write scope: `HUB-CAP-AUTHORING_v0.3-candidate.md`, this shared review/spec, `tests/test_authoring_candidate.py`, and byte-exact preservation of the replaced v0.2 module in the existing Hub archive. Plan: strengthen context selection, distinguish evidence from decision permission, handle completion pressure, strengthen the existing final integrity check, add R01–R08/Hanfu review fixtures, then run focused/full static tests and preservation checks. Preserve Module/Package IDs, CAPABILITY, CANDIDATE, singleton, exact activation, six targets, optional AIS input and all prior G/B/E cases. No schema, gate, registry, router, adapter or state engine is needed.
+
+Acceptance: a shorter prompt must retain every material selection/acceptance/closure/reopening/combination condition; supported or narrowed options remain unselected unless authorized; completion alone cannot close open state; already-authorized choices remain possible. R08 is a positive regression to prevent turning the correction into a blanket prohibition on choosing. Stage/commit/push/branch/tag/deployment, live rerun and downstream execution are excluded. v0.3 is a material behavioral revision, so preserve v0.2 in the established shared archive rather than overwrite it.
+
+## v0.2 audit history
 
 ACCEPT WITH LOCAL CORRECTION. On 2026-10-21 the local baseline is branch `main`, HEAD `1f7ae2d66cac80a81658a7bfd9bb0f50cc6e1212`, with a clean working tree and empty index. The original v0.1 review on 2026-10-20 used then-uncommitted architecture/test edits; that is historical context, not today's dirty state. Current read scope: Hub Architecture/CI/Router/root Catalog/README, both existing Authoring documents and tests, official AIS pipeline/router and its promotion report. The requested handoff was absent from the named repository path; after user direction it was read in full at `D:\CENTRAL_HUB_AUTHORING_CURRENT.md`. It is continuity evidence only, not runtime control or a dependency. No Revamp routing/CURRENT behavior is imported or modified.
 
@@ -20,16 +32,18 @@ Acceptance: retain G01–G32 and the exact activation section unchanged; keep th
 
 ## Evidence and execution
 
-- REVIEWED_TEXT: all G/B/E expectations below checked against the candidate text; this is contract review, not observed model output.
+- REVIEWED_TEXT: all G/B/E/R expectations below checked against the candidate text; this is contract review, not observed model output.
 - STATIC VALIDATION: executable checks of headers, candidate isolation and current Catalog non-admission; keyword assertions alone cannot prove compliance with prose.
-- SPEC SIMULATION: G cases run against an independent test-only lexical oracle with fixture-declared user-instruction provenance. It does not identify provenance in live messages or evaluate authored-prompt quality. B/E cases have no executed semantic simulation.
-- LIVE HUB / LIBRARY / TARGET EXECUTION: NOT RUN. Candidate file presence, static checks and fixture matches prove no deployment, model routing, source read or downstream action.
+- SPEC SIMULATION: G cases run against an independent test-only lexical oracle with fixture-declared user-instruction provenance. It does not identify provenance in live messages or evaluate authored-prompt quality. B/E cases have no executed semantic simulation. R cases are also reviewed text only; no semantic execution engine is added.
+- LIVE HUB / LIBRARY / TARGET EXECUTION: NOT RUN by Codex in this task. The prior Hanfu failure is USER_REPORTED real-context evidence; the v0.3 rerun is NOT RUN. Candidate file presence, static checks and fixture matches prove no deployment, model routing, source read or downstream action.
 
 From Central Hub: `python -B -m unittest discover -s tests -v`. Focused: `python -B -m unittest discover -s tests -p test_authoring_candidate.py -v`. Gate vectors are embedded below as JSON solely for repeatable test input; no runtime schema is introduced. `user_instruction: false` explicitly models source/quote provenance without pretending to infer it.
 
 Historical v0.1 verification on 2026-10-20: existing suite before changes 69/69 PASS; combined suite after candidate creation 73/73 PASS, including four new test methods and 32 gate subcases. G01–G32 matched the lexical SPEC oracle; B01–B16 received textual contract review only, with no generated downstream outputs. These historical counts are not v0.2 results. Local baseline on 2026-10-21: 104/104 existing tests PASS. Live Hub/Library/target execution remains NOT RUN. Static checks do not establish that an LLM obeys the gate or produces adequate prompts.
 
-v0.2 verification on 2026-10-21: focused Authoring suite 6/6 PASS; full Hub suite 106/106 PASS. Commands: `python -B -m unittest discover -s tests -p test_authoring_candidate.py -v` and `python -B -m unittest discover -s tests -q`. `git -c core.longpaths=true diff --check -- .` passes. G01–G32 are lexical SPEC subcases; B01–B16/E01–E12 are REVIEWED_TEXT only. New automated checks protect predecessor bytes, the frozen activation section and explicit review/NOT RUN labeling; they do not judge semantic prompt quality. No reproduced live failure or unresolved static failure is established. The open risk is actual preservation/quality in accumulated real context, reserved for the separately authorized comparison.
+Historical v0.2 verification on 2026-10-21, before the Hanfu failure report: focused Authoring suite 6/6 PASS; full Hub suite 106/106 PASS. Commands: `python -B -m unittest discover -s tests -p test_authoring_candidate.py -v` and `python -B -m unittest discover -s tests -q`. `git -c core.longpaths=true diff --check -- .` passed. G01–G32 were lexical SPEC subcases; B01–B16/E01–E12 were REVIEWED_TEXT only. Automated checks protected predecessor bytes, the frozen activation section and explicit review/NOT RUN labeling; they did not judge semantic prompt quality. At that point no reproduced live failure or unresolved static failure was established. The later user-reported Hanfu failure below supersedes the earlier characterization as only an open real-context risk.
+
+v0.3 verification on 2026-10-21: baseline 106/106 PASS; focused Authoring suite 7/7 PASS; full Hub suite 107/107 PASS, using the same focused/full commands above. Diff whitespace check passes. All 32 gate fixtures and all 16 B/12 E review rows remain unchanged; activation, target adaptation and Evidence transfer sections are unchanged from v0.2. R01–R08/Hanfu were reviewed against the corrected context-selection, decision/completion and integrity clauses, not executed on a model. The added unit check protects regression inventory/evidence labels and excludes Hanfu-specific core rules; it is not a semantic oracle. The user-reported v0.2 failure is not marked fixed by these results. v0.3 live routing, Library retrieval, the Hanfu A/B/C rerun and downstream execution remain NOT RUN. No static failure remains; the reported real-context failure's correction remains unverified until the separately authorized rerun.
 
 ## Gate cases
 
@@ -120,6 +134,35 @@ These synthetic AIS returns are supplied inputs, not claims that research actual
 
 Current AIS observability also constrains each materially used case: if a search has a user-reported execution trace but decisive reads remain missing, preserve USER_REPORTED search execution separately from the read gap. A later timeout with no direct execution evidence remains UNKNOWN for that action; contradictory direct traces remain CONFLICTED. An earlier executed search is not erased by a later unavailable tool. Achieved coverage and access limits remain bounded; a THOROUGH target or exhausted limit proves no sufficiency. These are reviewed expectations, not an additional simulated execution engine.
 
+## Decision-constraint regressions — reviewed text only
+
+Each independent R fixture assumes a valid existing `/AUTHOR <TARGET>` trigger and a downstream prompt-construction task. A/B/C below refer to options only inside these fixtures, not comparative test arms. These cases test the intended text contract by review; expected prompts are not generated or executed. The new core invariants are `COMPRESSION != DECISION-CONSTRAINT LOSS`, `EVIDENCE SUPPORT != DESIGN ACCEPTANCE`, `EVIDENCE RESOLUTION != DECISION AUTHORIZATION`, `OPEN FIELD != DESIGN FREEDOM`, `POSSIBLE != SELECTED` and `DOWNSTREAM COMPLETION != PERMISSION TO RESOLVE OPEN STATE`.
+
+| ID | Frozen input / evidence | Required authored instruction / forbidden drift |
+| --- | --- | --- |
+| R01 | X unresolved; finalize X only when evidence condition K and the task's decision permission allow it; K unmet. Request a concise prompt. | Keep K and the permission limit, X unresolved and no arbitrary choice. Merely retaining the label while dropping K fails. |
+| R02 | X unresolved; AIS supports A as historically plausible/applicable; no selection authority. | Describe A's bounded support without selecting it or instructing downstream to select it. Plausible/supported remains distinct from selected. |
+| R03 | X unresolved; in-scope AIS evidence rules out C, leaving A/B plausible; no permission to choose. | Narrow the possible set to A/B while X remains unresolved. Do not choose A or B for convenience or completion. |
+| R04 | A supported, B supported, A+B unsupported. Frozen rule permits finalizing a combination only with sufficient relational evidence and decision authority. | Retain that rule and the A+B gap; no final combination or instruction to assemble one from separate component support. |
+| R05 | Evidence supports A+B historically; design P remains provisional and user acceptance/selection permission has not been supplied. | Transfer historical support but keep P provisional; supported combination is not accepted design. |
+| R06 | Request one complete main design, but frozen constraints require X to remain open; season/class/context cues are present. | Keep X open, use bounded alternatives or only already-authorized selections; do not infer extra choices from cues or make X identity-defining to force completion. |
+| R07 | R rejected for reason J; reopening requires J to be addressed and the stated decision permission. New evidence supports a historical property adjacent to R but leaves J intact. | Preserve R's rejection, J and reopening condition; adjacent support alone does not reopen or select R. |
+| R08 | The task explicitly authorizes choosing one of A/B when evidence condition K is met; current supplied evidence establishes K and the relevant combination; no other frozen restriction conflicts. | Preserve that permission and allow a scoped choice. Do not impose a new approval gate or keep every field unresolved merely because other fixtures forbid unauthorized selection. |
+
+Review each against context selection and the final integrity check: does a choice-limiting rule survive; does support become selection; does an open field close without required evidence plus authority; does completion override the frozen rule; does confidence become acceptance? These are existing behavioral checks, not a mandatory visible report. Any one of these failures rejects a fluent prompt. Keeping labels alone is insufficient.
+
+## Hanfu regression record — USER_REPORTED failure; v0.3 rerun NOT RUN
+
+Source: the user's 2026-10-21 correction request summarizing the prior bounded Hanfu A/B/C test. Historical context is a supplied frozen brief, not new historical research or independently verified costume claims. Frozen task: late-Ming Han Chinese affluent/upper-class woman, Jiangnan, approximately 1620–1644, autumn daytime; P provisional, R rejected; several garment details unresolved. Unresolved fields are not free design space. Season/class/context cues do not authorize additional garment choices. A complete main combination may be finalized only when evidence is sufficient for that specific combination and the frozen decision conditions allow it; otherwise alternatives remain provisional/open.
+
+Reported bad behavior: the grounded prompt carried substantial historical evidence and uncertainty labels, then permitted downstream to “choose a specific direction” in still-open fields to complete the main design. It compressed away some rules about when those fields could close. This is both decision-constraint loss and evidence-to-selection drift; it is not reported as an AIS research defect. No original output beyond this supplied pattern is reconstructed here. P/R remain the supplied opaque state labels; no garment option or acceptance is invented.
+
+Required v0.3 result: evidence may narrow viable options; unsupported combinations stay unsupported; still-open fields stay open; downstream receives no new permission to select. A single final combination is allowed only when both the combination-specific evidence condition and the frozen decision condition are met. General completion pressure cannot satisfy either. No Hanfu-specific rule enters the Authoring core.
+
+Independent reproduction status: NOT RUN. The supplied excerpt/pattern demonstrates the reported boundary conflict, but it cannot establish model reproducibility, exact lost wording, all arm results or whether v0.3 corrects it in practice. Do not relabel the report as a Codex-reproduced failure, and do not relabel the static pass as a live fix.
+
+Later proof, only after separate authorization: recover the same original bounded Hanfu frozen packet, direct baseline, supplied evidence, prior outputs and actual model/surface/settings when available; do not silently reconstruct missing inputs from this summary. Rerun the same A/B/C scope with v0.3 for the AT arms, retaining the original decision rules, and compare concrete prompt excerpts using the rubric below plus R01–R07. If the original packet cannot be recovered, label a new bounded test as such rather than an exact rerun. Stop at prompts; no AIS rerun, image generation, design acceptance or downstream execution is authorized here.
+
 ## Bounded later A/B/C comparison — NOT RUN
 
 One real downstream task, one fixed target from the existing set, one A/B/C trio; no repetitions, full target matrix, target adapters or downstream execution. Separately authorize the real-context prompt-authoring test before running it. Use a task whose already-supplied AIS evidence materially affects the prompt and whose relevant Hub context includes a qualified finding, provisional/rejected state and an unresolved gap. If those inputs are absent, record the test as not ready; do not invent evidence or launch research as part of this preparation.
@@ -127,8 +170,8 @@ One real downstream task, one fixed target from the existing set, one A/B/C trio
 Freeze the same objective, scope, permissions, material constraints and requested deliverable for all three arms. Record the exact direct prompt, the relevant Hub context, supplied AIS return with source/read roles, target, exact candidate revision, model/surface and date when actually available. Use isolated contexts with identical exposed settings and no cross-arm output leakage. Do not force equal prompt length or improve the baseline after seeing AT results.
 
 - A — DIRECT: capture the user's actual direct Hub/downstream prompt as the baseline, before AT rewriting; do not deliberately weaken it or strip information it already contains.
-- B — AT_CONTEXT: invoke `/AUTHOR <TARGET>` with v0.2, the same task and relevant Hub context, withholding the material AIS return under comparison. Preserve resulting evidence gaps; do not fill them from familiarity or other arms.
-- C — AT_GROUNDED: use the same v0.2/task/Hub context plus that supplied AIS return. Do not rerun AIS or transfer its research internals as AT instructions.
+- B — AT_CONTEXT: invoke `/AUTHOR <TARGET>` with v0.3, the same task and relevant Hub context, withholding the material AIS return under comparison. Preserve resulting evidence gaps and decision conditions; do not fill them from familiarity or other arms.
+- C — AT_GROUNDED: use the same v0.3/task/Hub context plus that supplied AIS return. Do not rerun AIS or transfer its research internals as AT instructions; support does not grant selection permission.
 
 If A or the common context already contains the decisive AIS finding, disclose that overlap; the comparison cannot isolate that evidence addition. A→B primarily examines context transfer; B→C examines the contribution and preservation of supplied evidence, not a causal improvement of AT's algorithm. None of the arms proves downstream execution quality because the protocol stops at the produced prompt. Do not fetch sources or execute CODEX/WORK/FTH/ImageT while evaluating these prompt artifacts.
 
@@ -138,8 +181,8 @@ Review each prompt against the frozen inputs, using concrete excerpts rather tha
 | --- | --- |
 | objective preserved | Same requested result, with no invented goal. |
 | scope preserved | Same inclusions/exclusions and task boundary. |
-| material constraints preserved | No lost hard requirement or preservation condition. |
-| accepted/provisional/rejected state preserved | No proposal promoted or rejected option revived. |
+| material constraints preserved | No lost hard requirement, preservation condition or rule governing selection, closure, combinations or reopening. |
+| accepted/provisional/rejected state preserved | No proposal promoted or rejected option revived; retain transition conditions as well as labels. |
 | evidence status preserved | Support/citations/conditions, inference and conflict keep their supplied roles. |
 | unresolved gaps preserved | Decisive missing reads/support remain explicit or barred from assumption. |
 | irrelevant context excluded | No transcript dump or unrelated personal/task history. |
@@ -147,11 +190,15 @@ Review each prompt against the frozen inputs, using concrete excerpts rather tha
 | no unauthorized action added | No new write/commit/push, research, gate approval, canon or execution authority. |
 | no unnecessary academic or procedural expansion | Each addition serves a concrete task need; length/sophistication alone earns no benefit. |
 
-Any new authority, evidence upgrade, lost material constraint, revived rejection or hidden decisive gap fails that arm regardless of fluency. Report a narrower observed benefit only when an excerpt demonstrates it without a material regression; otherwise retain no demonstrated improvement or UNVERIFIABLE. Do not average away a boundary violation or declare a winner merely because C has more facts. STATIC PASS != LIVE BEHAVIOR PROVEN. LIVE HARNESS PASS != REAL-CONTEXT ROBUSTNESS PROVEN. PASSING TESTS != TESTED THE RIGHT THING. All three prompt runs, live Hub routing, Library retrieval, AIS→AT→target integration and real-context quality improvement remain NOT RUN here.
+Any new authority, evidence upgrade, lost material decision constraint, supported option turned into an unauthorized selection, revived rejection or hidden decisive gap fails that arm regardless of fluency. Report a narrower observed benefit only when an excerpt demonstrates it without a material regression; otherwise retain no demonstrated improvement or UNVERIFIABLE. Do not average away a boundary violation or declare a winner merely because C has more facts. STATIC PASS != LIVE BEHAVIOR PROVEN. LIVE HARNESS PASS != REAL-CONTEXT ROBUSTNESS PROVEN. PASSING TESTS != TESTED THE RIGHT THING. All three v0.3 prompt runs, live Hub routing, Library retrieval, AIS→AT→target integration and real-context quality improvement remain NOT RUN here; the earlier Hanfu failure remains USER_REPORTED.
 
 ## v0.1 preservation
 
 The archive-group checker returned PASS_SHARED for Central Hub's existing `Source_archive`. After verifying v0.2 headers, unchanged activation, evidence/quality clauses and all 32 lexical fixtures, the replaced module was copied byte-exact to `Source_archive/Prompt Authoring v0.1 2026-10-21/HUB-CAP-AUTHORING_v0.1-candidate.md`, its destination hash checked, then its former candidate path removed. It is historical only, not selectable or a runtime fallback. Predecessor/destination SHA-256: `4364e68bb90aa974c82e51d6494a77586a497b2de3727bf6d372ba05354b9a4e`. The activation-section SHA-256 shared by v0.1/v0.2 is `1602ca2431b18a0f674f9f42f4ed78e313c0288170e2b2a11d9821bacb83992e`. The test checks historical bytes and the frozen trigger section, not historical runtime behavior. No existing archive content is edited.
+
+## v0.2 preservation
+
+The archive-group checker returned PASS_SHARED again; no new source_archive root was created. After pre-archive verification of v0.3, the predecessor was copied byte-exact from `candidates/authoring_v0/HUB-CAP-AUTHORING_v0.2-candidate.md` to `Source_archive/Prompt Authoring v0.2 2026-10-21/HUB-CAP-AUTHORING_v0.2-candidate.md`, its hash checked, then the old candidate path removed. Source/destination SHA-256: `b10b8ca3ccdb674783ce1ca1ba383faa40806d4a6616388df4d50170a39884fe`. This is historical preservation only, no runtime fallback. Existing v0.1 archive content remains unchanged; the fixed activation-section hash is still `1602ca2431b18a0f674f9f42f4ed78e313c0288170e2b2a11d9821bacb83992e`.
 
 ## Future promotion delta — not implemented
 

@@ -8,9 +8,10 @@ from test_hub_contracts import ROOT, load
 
 
 CANDIDATE = ROOT / 'candidates/authoring_v0'
-MODULE = CANDIDATE / 'HUB-CAP-AUTHORING_v0.2-candidate.md'
+MODULE = CANDIDATE / 'HUB-CAP-AUTHORING_v0.3-candidate.md'
 CASES = CANDIDATE / 'AUTHORING_TEST_CASES.md'
 PREDECESSOR = ROOT / 'Source_archive/Prompt Authoring v0.1 2026-10-21/HUB-CAP-AUTHORING_v0.1-candidate.md'
+V02_PREDECESSOR = ROOT / 'Source_archive/Prompt Authoring v0.2 2026-10-21/HUB-CAP-AUTHORING_v0.2-candidate.md'
 TARGETS = ('AIS', 'IMAGET', 'FTH', 'CODEX', 'WORK', 'GENERIC')
 
 
@@ -32,7 +33,7 @@ class AuthoringCandidateTests(unittest.TestCase):
         for key, value in [('Module ID', 'HUB-CAP-AUTHORING'),
                            ('Package ID', 'HUB-PKG-AUTHORING'),
                            ('Runtime role', 'CAPABILITY'), ('Status', 'CANDIDATE'),
-                           ('Version', '0.2-candidate')]:
+                           ('Version', '0.3-candidate')]:
             self.assertEqual(re.findall(rf'^{key}: (.+)$', text, re.M), [value])
         for key in ('Scope', 'Responsibility boundary'):
             self.assertEqual(len(re.findall(rf'^{key}: .+$', text, re.M)), 1)
@@ -77,6 +78,9 @@ class AuthoringCandidateTests(unittest.TestCase):
         self.assertEqual(hashlib.sha256(PREDECESSOR.read_bytes()).hexdigest(),
                          '4364e68bb90aa974c82e51d6494a77586a497b2de3727bf6d372ba05354b9a4e')
         self.assertFalse((CANDIDATE / PREDECESSOR.name).exists())
+        self.assertEqual(hashlib.sha256(V02_PREDECESSOR.read_bytes()).hexdigest(),
+                         'b10b8ca3ccdb674783ce1ca1ba383faa40806d4a6616388df4d50170a39884fe')
+        self.assertFalse((CANDIDATE / V02_PREDECESSOR.name).exists())
         text = MODULE.read_text(encoding='utf-8')
         gate = text.split('## Admission and exact activation\n', 1)[1].split(
                           '## Scoped transformation\n', 1)[0]
@@ -92,6 +96,15 @@ class AuthoringCandidateTests(unittest.TestCase):
         self.assertIn('STATIC PASS != LIVE BEHAVIOR PROVEN', text)
         self.assertIn('LIVE HARNESS PASS != REAL-CONTEXT ROBUSTNESS PROVEN', text)
         self.assertIn('PASSING TESTS != TESTED THE RIGHT THING', text)
+
+    def test_decision_regressions_are_review_only_and_core_is_not_hanfu_specific(self):
+        text = CASES.read_text(encoding='utf-8')
+        self.assertEqual(re.findall(r'^\| (R\d+) \|', text, re.M),
+                         [f'R{i:02}' for i in range(1, 9)])
+        self.assertIn('R cases are also reviewed text only', text)
+        self.assertIn('Hanfu regression record — USER_REPORTED failure; v0.3 rerun NOT RUN', text)
+        self.assertNotRegex(MODULE.read_text(encoding='utf-8').lower(),
+                            r'hanfu|jiangnan|late-ming|1620|1644')
 
 
 if __name__ == '__main__':
