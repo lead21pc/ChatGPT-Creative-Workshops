@@ -2,7 +2,7 @@
 
 Current repo CI; base: `chatgpt v8.7.txt` + Academy Compact Revised. Runtime unverified.
 
-For project sources, read `The_Academy_Source_Router_v1.0.md` when needed; routing confers no canon.
+For project sources, read `The_Academy_Source_Router_v1.1.md` when needed; routing confers no canon.
 
 ## Output and control
 

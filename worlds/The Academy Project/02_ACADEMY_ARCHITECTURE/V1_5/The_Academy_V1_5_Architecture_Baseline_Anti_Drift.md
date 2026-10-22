@@ -1,7 +1,9 @@
 # The Academy V1.5 — Architecture Baseline & Anti-Drift Reference
 
-**Trạng thái:** Working Architecture Baseline  
-**Mục đích:** mốc tham chiếu để tiếp tục phục dựng và hoàn thiện The Academy V1.5, sau đó làm nền nối V1.5 + V2 thành V2.5.  
+**Trạng thái:** `MIGRATION / PROVENANCE REFERENCE` sau soft migration M7.  
+**Mục đích lịch sử:** mốc reconstruction được khóa ngày 2026-08-28; giữ nguyên nội dung để truy vết cách V1.5, V2 và hướng V2.5 từng được tổ chức trong baseline này.  
+**Đường đọc mặc định hiện hành:** [V1.5 Architecture](The_Academy_V1_5_Architecture.md), [V1.5 Open Registry](The_Academy_V1_5_Open_Registry.md), [V2 Architecture](../V2/The_Academy_V2_Architecture.md), và [Academy Revise branch](../BRANCHES/The_Academy_V2_5_Revise_Branch.md).  
+**Lưu ý:** việc hạ vai trò file này khỏi đường đọc mặc định không tự phủ định dữ kiện/provenance bên dưới; khi có khác biệt về trạng thái hiện hành, dùng nguồn scoped mới và Current State để định tuyến.  
 **Ngày khóa bản:** 2026-08-28  
 
 ---

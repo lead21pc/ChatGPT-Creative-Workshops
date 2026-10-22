@@ -1,6 +1,6 @@
 # The Academy — Source Router v1.0
 
-**Trạng thái:** router nguồn hiện hành trong repository theo phê duyệt của tác giả. Việc môi trường ChatGPT Project tự nạp tệp này chưa được kiểm chứng.
+**Trạng thái:** `SUPERSEDED FOR ROUTING / RETAINED FOR PROVENANCE` sau soft migration M7. Router hiện hành là [The_Academy_Source_Router_v1.1.md](The_Academy_Source_Router_v1.1.md). Việc môi trường ChatGPT Project tự nạp router vẫn chưa được kiểm chứng.
 
 ## Vai trò
 

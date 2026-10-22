@@ -2,10 +2,14 @@
 
 **Vai trò:** chỉ mục đường dẫn trong repository. Vị trí thư mục giúp tra cứu, không tự xác lập quan hệ `CONTAINS`, `DEPENDS_ON`, thẩm quyền canon hoặc tính portable của một engine. Đọc [xác nhận tác giả ngày 2026-09-28](The_Academy_Authorial_Decisions_2026-09-28.md) trước khi xử lý các nhãn nguồn đã được đính chính.
 
-## Nền tảng và V1.5
+## Nền tảng và kiến trúc
 
 - [Historical Influence Potential](01_HIP/Historical_Influence_Potential.md): cổng đánh giá mở; tiêu chí đến từ context.
-- [Baseline V1.5](02_ACADEMY_ARCHITECTURE/V1_5/The_Academy_V1_5_Architecture_Baseline_Anti_Drift.md) và [handoff V1.5](02_ACADEMY_ARCHITECTURE/V1_5/The_Academy_V1_5_Architecture_Handoff.md): đọc nhãn trạng thái theo từng mục.
+- [V1.5 Architecture](02_ACADEMY_ARCHITECTURE/V1_5/The_Academy_V1_5_Architecture.md): nguồn kiến trúc V1.5 mặc định sau soft migration M7.
+- [V1.5 Open Registry](02_ACADEMY_ARCHITECTURE/V1_5/The_Academy_V1_5_Open_Registry.md): giữ các vùng `UNKNOWN` / open; registry không phải danh sách việc bắt buộc phải lấp.
+- [V2 Architecture](02_ACADEMY_ARCHITECTURE/V2/The_Academy_V2_Architecture.md): nguồn kiến trúc V2 mặc định.
+- [Academy Revise / V2.5 branch](02_ACADEMY_ARCHITECTURE/BRANCHES/The_Academy_V2_5_Revise_Branch.md): working branch; không phải successor bắt buộc của V1.5/V2.
+- [Baseline V1.5 cũ](02_ACADEMY_ARCHITECTURE/V1_5/The_Academy_V1_5_Architecture_Baseline_Anti_Drift.md) và [handoff V1.5](02_ACADEMY_ARCHITECTURE/V1_5/The_Academy_V1_5_Architecture_Handoff.md): nguồn reconstruction/provenance, không còn là đường đọc mặc định.
 - [Lust Working Draft](03_V1_5_INSTITUTIONAL_ENGINES/Lust/Lust_Working_Draft.md): engine thuộc V1.5; vai trò institutional cụ thể còn theo giới hạn của nguồn.
 
 ## Narrative engines và interface
@@ -18,10 +22,10 @@
 ## Provenance và quy tắc đọc
 
 - [Genealogy](06_ENGINE_GENEALOGY/engine_genealogy_and_development_updated.md) ghi quá trình hình thành; quan hệ lịch sử không tự thành phụ thuộc hiện hành.
-- [Modular anti-drift](12_ANTI_DRIFT/modular_engine_concept_anti_drift.md) ghi các ranh giới typed graph và trạng thái tri thức.
+- [Academy Anti-Drift Kernel](12_ANTI_DRIFT/The_Academy_Anti_Drift_Kernel.md) là kernel chống drift project-specific; [Modular anti-drift](12_ANTI_DRIFT/modular_engine_concept_anti_drift.md) vẫn giữ invariant tổng quát và provenance rộng hơn.
 - [Narrative Engine — Core Design Philosophy](<00_META/Narrative Engine — Core Design Philosophy.md>) và [multi-paracosm hub workflow](00_META/multi_paracosm_hub_workflow.md) là tài liệu phương pháp; chúng không thay các xác nhận engine-specific.
-- [CI v2.0](00_META/controls/The_Academy_CI_v2.0.md) là CI hiện hành của repository theo phê duyệt của tác giả, dựa trên `chatgpt v8.7.txt`; [Source Router v1.0](00_META/controls/The_Academy_Source_Router_v1.0.md) chọn nguồn theo yêu cầu. [Compact Revised](source_archive/controls/The_Academy_CI_HIP_Core_English_Compact_Revised.md) và [Compact cũ](source_archive/controls/The_Academy_CI_HIP_Core_English_Compact.md) được giữ trong archive. Trạng thái nạp CI/router vào ChatGPT Project chưa được kiểm chứng.
-- [OC Academy](<source_archive/Academy_legacy/OC Academy.txt>) là nguồn lore cũ; đối chiếu baseline V1.5 trước khi dùng làm ràng buộc hiện hành.
+- [Current State](00_META/controls/The_Academy_Current_State.md) là snapshot điều hướng; [CI v2.0](00_META/controls/The_Academy_CI_v2.0.md) là CI hiện hành; [Source Router v1.1](00_META/controls/The_Academy_Source_Router_v1.1.md) là router hiện hành. [Router v1.0](00_META/controls/The_Academy_Source_Router_v1.0.md) được giữ để đối chiếu provenance. Trạng thái nạp CI/router/kernel vào ChatGPT Project chưa được kiểm chứng.
+- [OC Academy](<source_archive/Academy_legacy/OC Academy.txt>) là nguồn lore cũ; đối chiếu V1.5 Architecture, Open Registry và provenance phù hợp trước khi dùng làm ràng buộc hiện hành.
 - [source_archive](source_archive/README.md) giữ nguồn cũ và bản nháp để truy xuất, không là chỉ mục nguồn hiện hành.
 - Ảnh trong `13_VISUAL_ASSETS/Greed/` và `13_VISUAL_ASSETS/unassigned/` là tài liệu tham khảo hình ảnh theo xác nhận tác giả, không là nguồn chốt tên hoặc thông số.
 
