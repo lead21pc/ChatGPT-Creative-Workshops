@@ -2,13 +2,13 @@
 
 ## Start here: creative purpose and pipeline interpretation
 
-This is an author's working environment for developing **Project Feather Core (FTH), The Kingdom, and The Academy**, three independent fictional worlds, with ChatGPT and Codex assistance. AetherFire is a country inside Project Feather Core, not the project namespace.
+This is an author's working environment for three independent creative projects/systems: **Project Feather Core (FTH)** and **The Kingdom** are worldbuilding/paracosm projects; **Fanfiction Engine** is the whole fanfiction/daydream simulation system. **The Academy** remains the platform inside Fanfiction Engine. ChatGPT and Codex assist the author. AetherFire is a country inside Project Feather Core, not the project namespace.
 
-The worlds are the creative work. Instructions, source routers, audits, consolidation scripts, regression checks, and Git procedures support that work by preserving consistency, provenance, scope, and reviewable decisions.
+These projects/systems are the creative work. Instructions, source routers, audits, consolidation scripts, regression checks, and Git procedures support that work by preserving consistency, provenance, scope, and reviewable decisions.
 
 For human readers, LLMs, and repository agents, the essential interpretation is:
 
-- The three worlds have independent canon, ontology, source authority, and local controls.
+- The three projects/systems have independent canon, ontology, source authority, and local controls.
 - Repository text is a partial externalization of the author's world models, not their complete contents.
 - The author decides canon; a model response or successful tool run does not make a creative decision.
 - A workflow may combine author actions, model instructions, and executable tools. A diagram does not imply that every step runs automatically.
@@ -30,9 +30,9 @@ When inspecting a pipeline, identify what each step acts on, who performs it, wh
 
 ### Repository organization
 
-The repository keeps Project Feather Core/ at the root and the other independent world packages under worlds/. Supporting areas remain authoring/ for cross-paracosm creative methods; llm-controls/ for general instructions and reusable control designs; codex-workflows/ for repository copies of procedural skills; and docs/ for instruction history and analysis.
+The repository keeps Project Feather Core/ at the root and the other independent project/system packages under worlds/. Supporting areas remain authoring/ for cross-paracosm creative methods; llm-controls/ for general instructions and reusable control designs; codex-workflows/ for repository copies of procedural skills; and docs/ for instruction history and analysis.
 
-Each world keeps its own internal source organization and local controls. Folder grouping establishes navigation, not shared canon or a universal source hierarchy. The relocation changes repository paths only; it does not install skills, update live ChatGPT Project or Library contents, or change the authority and source-loading rules declared by project controls.
+Each project/system keeps its own internal source organization and local controls. Folder grouping establishes navigation, not shared canon or a universal source hierarchy. The relocation changes repository paths only; it does not install skills, update live ChatGPT Project or Library contents, or change the authority and source-loading rules declared by project controls.
 
 The detailed sections below explain the authoring model and its interpretation boundaries.
 
@@ -57,13 +57,15 @@ Complexity should therefore be evaluated against the actual worldbuilding and LL
 
 ---
 
-## 2. The three fiction projects are independent paracosms
+## 2. Three independent creative projects/systems
 
-The author maintains three separate paracosms in parallel:
+The author develops these independent projects in parallel:
 
-- **The Academy**
-- **The Kingdom**
-- **Project Feather Core (FTH)**
+- **Project Feather Core (FTH)** — worldbuilding/paracosm project;
+- **The Kingdom** — worldbuilding/paracosm project;
+- **Fanfiction Engine** — fanfiction/daydream simulation engine, with The Academy as its internal platform.
+
+Fanfiction Engine is not the same object as The Academy platform. Its two operational halves, Institutional Causality (legacy V1.5) and Narrative Engine Causality (legacy V2), are independently usable and composable. Neither is a mandatory prerequisite or successor of the other; Academy Revise (legacy V2.5) remains a working branch. Local project sources define their details.
 
 They are not three deployments of one shared fictional architecture.
 
@@ -82,13 +84,13 @@ They have different:
 
 Shared methods or tooling do **not** imply shared canon, shared ontology, shared implementation, or cross-project authority.
 
-A concept appearing in multiple paracosms must not be treated as the same object merely because its external description is similar.
+A concept appearing in multiple projects must not be treated as the same object merely because its external description is similar.
 
 ---
 
-## 3. These paracosms are not primarily built bottom-up from repository text
+## 3. These creative systems are not primarily built bottom-up from repository text
 
-The paracosms substantially exist as internal authorial models before all of their content is externalized into files or chats.
+The projects have internal authorial models before all of their content is externalized into files or chats.
 
 Therefore:
 
@@ -282,7 +284,7 @@ Controls general interaction and reasoning behavior shared above individual proj
 
 ### Project CI
 
-Specializes model behavior for one paracosm.
+Specializes model behavior for one project.
 
 A project CI may be based on a specific Global CI version while adding or modifying project-local behavior.
 
@@ -521,7 +523,7 @@ When analyzing this ecosystem:
 This entire ecosystem exists for personal creative use.
 
 ```text
-PURPOSE = WORLDBUILDING HOBBY
+PURPOSE = PERSONAL WORLDBUILDING + FANFICTION/DAYDREAM SIMULATION
 
 COMMERCIAL PRODUCT = NO
 

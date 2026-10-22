@@ -1,15 +1,15 @@
 # ChatGPT CI Versioning / Worldbuilding Control Repository
 
-This is a personal, non-commercial workspace for developing three independent fictional worlds: **Project Feather Core (FTH), The Kingdom, and The Academy**, with support from ChatGPT and Codex. AetherFire remains a country inside Project Feather Core.
+This is a personal, non-commercial workspace for three independent creative projects/systems: **Project Feather Core (FTH)** and **The Kingdom** are worldbuilding/paracosm projects; **Fanfiction Engine** is a fanfiction/daydream simulation engine. **The Academy** remains the internal platform inside Fanfiction Engine. ChatGPT and Codex assist the author; AetherFire remains a country inside Project Feather Core.
 
 The repository contains externalized worldbuilding sources, instructions for working with those sources, design history, and supporting tools. Its source consolidation, routing, audits, regression checks, and Git workflows serve the author's creative work: preserving consistency, tracing decisions, managing revisions, and diagnosing recurring model failures.
 
-**Worldbuilding is the purpose. The engineering-like pipeline is supporting infrastructure.**
+**Worldbuilding and fanfiction/daydream simulation are the creative purpose. The engineering-like pipeline is supporting infrastructure.**
 
-**CI** means **Custom Instructions**, not Continuous Integration. The repository name reflects its instruction-versioning history; its scope also includes the worldbuilding projects those instructions support. Global instructions may support general interaction as well as project work, while project-specific controls remain local to their respective worlds.
+**CI** means **Custom Instructions**, not Continuous Integration. The repository name reflects its instruction-versioning history; its scope also includes the worldbuilding projects those instructions support. Global instructions may support general interaction as well as project work, while project-specific controls remain local to their respective projects.
 
 > [!IMPORTANT]
-> **LLM / agent readers:** Read [SYSTEM_CONTEXT.md](./SYSTEM_CONTEXT.md) before analyzing the architecture, project relationships, or authoring workflow. Then follow the relevant project's sources and declared authority. Repository contents are a partial record of the author's worlds; they do not establish the full internal world model or the currently active ChatGPT Project configuration.
+> **LLM / agent readers:** Read [SYSTEM_CONTEXT.md](./SYSTEM_CONTEXT.md) before analyzing the architecture, project relationships, or authoring workflow. Then follow the relevant project's sources and declared authority. Repository contents are a partial record of the author's creative systems; they do not establish the full internal world model or the currently active ChatGPT Project configuration.
 
 ## Author and project premise
 
@@ -62,7 +62,7 @@ A pipeline diagram may describe author actions, model instructions, executable t
 Related repositories may combine prompt collections, worldbuilding templates, lore archives, writing tools, and evaluation workflows. The distinctions below explain this repository's scope; they are not a claim that no other project uses similar methods.
 
 - **Instructions are part of an ongoing authoring workflow.** The repository records why a control was introduced, which failure it addresses, and what evidence supports it. A newer instruction file is a candidate to evaluate, not a universal upgrade.
-- **The fictional worlds are independent.** Project Feather Core, The Kingdom, and The Academy are not configurations of one shared worldbuilding template. Shared methods do not transfer canon, ontology, or source authority between them.
+- **The creative projects/systems are independent.** Project Feather Core, The Kingdom, and Fanfiction Engine do not share a mandatory architecture. Shared methods do not transfer canon, ontology, or source authority between them; Fanfiction Engine is not itself classified as a third fictional world.
 - **The author retains creative authority.** Model output can support analysis and design, but plausible or repeated output does not become canon without the author's decision.
 - **The archive is a partial externalization.** A world can contain author-established material that has not yet been written into this repository. Missing documentation limits what a reader or model can conclude; it does not prove that an element does not exist.
 - **Controls respond to observed failures.** The infrastructure evolved through actual use, diagnosis, proposed repairs, review, and feedback. Its complexity should be assessed against the creative problem and recurring failure it addresses.
@@ -70,19 +70,19 @@ Related repositories may combine prompt collections, worldbuilding templates, lo
 
 Read this as an author's working environment for maintaining fictional worlds with LLM assistance. Evaluate each tool and control by how it supports that work.
 
-## Three independent worldbuilding projects
+## Three independent creative projects/systems
 
 | Project | Repository entry | Interpretation |
 | --- | --- | --- |
 | Project Feather Core (FTH) | [Project Feather Core](./Project%20Feather%20Core/) | Its own sources, controls, and project-specific authority; AetherFire is a country inside it. |
-| The Kingdom | [The Kingdom](./worlds/The%20Kingdom/) | Its own world model and local rules; do not infer its architecture from Project Feather Core or The Academy. |
-| The Academy | [The Academy Project](./worlds/The%20Academy%20Project/) | Its own world model and source structure; shared terminology does not imply shared fictional objects. |
+| The Kingdom | [The Kingdom](./worlds/The%20Kingdom/) | Its own world model and local rules; do not infer its architecture from Project Feather Core or Fanfiction Engine. |
+| Fanfiction Engine | [Fanfiction Engine](./worlds/Fanfiction%20Engine/) | Fanfiction/daydream simulation system; The Academy is its internal platform. Its operational domains can run independently or compose. |
 
 Each project's local documentation determines how to read its sources. Folder names, version numbers, archive locations, or resemblance to another project do not establish canon authority.
 
 ## Repository layout
 
-The top-level folders separate the fictional worlds from the methods, instructions, workflows, and records that support them:
+The top-level folders separate the creative projects/systems from their supporting methods, instructions, workflows, and records:
 
 ~~~text
 repository/
@@ -91,7 +91,7 @@ repository/
 ├── AGENTS.md
 ├── worlds/
 │   ├── The Kingdom/
-│   └── The Academy Project/
+│   └── Fanfiction Engine/
 ├── Project Feather Core/
 ├── authoring/
 │   └── multi_paracosm_hub_model_updated.md
@@ -110,7 +110,7 @@ repository/
 └── public-release-integration
 ~~~
 
-- [worlds/](./worlds/) keeps each world's existing internal source structure, local controls, history, and tools together. Moving a package does not change source status or authority.
+- [worlds/](./worlds/) keeps each project's internal sources, local controls, history, and tools together; the folder name does not classify Fanfiction Engine as a world. Moving a package does not change source status or authority.
 - [authoring/](./authoring/) contains the [Multi-Paracosm Hub model](./authoring/multi_paracosm_hub_model_updated.md): ideas can be abstracted into shared seeds, then evaluated and implemented independently in each world.
 - [llm-controls/](./llm-controls/) contains general instructions, project instruction designs, and reusable worldbuilding controls. Project-local controls also remain inside their world packages.
 - [codex-workflows/](./codex-workflows/) contains repository copies of Codex skills; moving them does not install or update the author's locally installed skills.
@@ -134,7 +134,7 @@ The existing public-release-integration entry remains at the root as a Git commi
 - [CI_DESIGN_EVOLUTION_AND_DEPLOYMENT_VI.md](./docs/instruction-analysis/CI_DESIGN_EVOLUTION_AND_DEPLOYMENT_VI.md) — design rationale and deployment considerations, in Vietnamese.
 - [CI_FAILURE_MODES_AND_CONTROL_MODEL_VI.md](./docs/instruction-analysis/CI_FAILURE_MODES_AND_CONTROL_MODEL_VI.md) — failure triggers, misinterpretations, controls, remaining risks, and proposed checks, in Vietnamese.
 
-The worldbuilding project entries above are part of the repository's purpose, not default components of a global instruction package.
+The creative project entries above are part of the repository's purpose, not default components of a global instruction package.
 
 ## How work moves through the repository
 
@@ -148,7 +148,7 @@ These workflows combine human actions, model instructions, and executable tools.
 ## Reading order
 
 1. Start with this overview and [SYSTEM_CONTEXT.md](./SYSTEM_CONTEXT.md).
-2. Choose the world or instruction-design question relevant to your task.
+2. Choose the project/system or instruction-design question relevant to your task.
 3. Read that project's local documentation and source-authority rules before drawing conclusions.
 4. Consult instruction history and failure analyses when evaluating a control or revision.
 5. State whether a conclusion comes from repository evidence, author-reported operation, structural validation, inference, or directly reproduced model behavior.

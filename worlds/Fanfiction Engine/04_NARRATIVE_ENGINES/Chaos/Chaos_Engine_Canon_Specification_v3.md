@@ -613,13 +613,15 @@ Historical Possibilities
 The Academy
 ```
 
-## 11.1. V1.5 và V2 không phải quan hệ thay thế tuyệt đối
+## 11.1. Hai miền vận hành độc lập và có thể kết hợp
+
+Thuật ngữ hiện hành: Institutional Causality (legacy: V1.5), Narrative Engine Causality (legacy: V2). Đây là hai operational halves của Fanfiction Engine; chúng không tạo thứ tự chạy bắt buộc. The Academy vẫn là platform nội bộ, không phải tên của toàn hệ.
 
 The Academy hiện không bị khóa vào một model duy nhất.
 
-**V1.5 vẫn là một khả năng vận hành hợp lệ và còn để ngỏ khả năng tiếp tục phát triển.**
+**Institutional Causality vẫn là một khả năng vận hành hợp lệ và còn để ngỏ khả năng tiếp tục phát triển.**
 
-Do đó không diễn giải genealogy theo kiểu:
+Không diễn giải genealogy legacy theo kiểu dưới đây; các nhãn số trong ví dụ là cách gọi lịch sử:
 
 ```text
 V1
@@ -631,18 +633,18 @@ V1
 Mà nên hiểu:
 
 ```text
-V1.5
-→ một operational lineage vẫn có thể tiếp tục
+Institutional Causality
+→ miền nhân quả thể chế dùng độc lập
 
-V2
-→ một operational model khác được formalize về sau
+Narrative Engine Causality
+→ miền formalization/application dùng độc lập
 ```
 
 Hai mode có thể cùng tồn tại nếu configuration cho phép.
 
-### V1.5 — Academy-forward / institution-forward mode
+### Institutional Causality — Academy-forward / institution-forward mode
 
-V1.5 giữ khả năng The Academy hiện diện rõ hơn như một institution / authority layer:
+Institutional Causality giữ khả năng The Academy hiện diện rõ hơn như một institution / authority layer:
 
 ```text
 The Academy
@@ -651,11 +653,11 @@ The Academy
 → HIP / actor / host
 ```
 
-Chi tiết cụ thể của V1.5 hiện chưa khóa hoàn toàn và vẫn mở cho phát triển tiếp.
+Chi tiết cụ thể của Institutional Causality hiện chưa khóa hoàn toàn và vẫn mở cho phát triển tiếp.
 
-### V2 — Narrative-engine-forward mode
+### Narrative Engine Causality — Narrative-engine-forward mode
 
-Trong V2, narrative engine giữ vai trò frontend vận hành mạnh hơn.
+Trong Narrative Engine Causality, narrative engine giữ vai trò frontend vận hành mạnh hơn.
 
 Narrative engine có thể:
 
@@ -685,7 +687,7 @@ Tuy nhiên:
 
 HIP và các actor vẫn giữ agency theo thông tin, constraint và khả năng của chính họ.
 
-Vì vậy V2 không phải:
+Vì vậy Narrative Engine Causality không phải:
 
 ```text
 engine chooses historical result
@@ -705,11 +707,11 @@ Chaos Engine có thể đối đầu với The Academy dưới nhiều operation
 
 Không mặc định Chaos chỉ đối đầu với:
 
-- V1.5;
-- hoặc V2;
+- Institutional Causality;
+- hoặc Narrative Engine Causality;
 - hoặc một hình thức duy nhất của The Academy.
 
-Trong V2, một đối đầu điển hình có thể là:
+Trong Narrative Engine Causality, một đối đầu điển hình có thể là:
 
 ```text
 Chaos Engine
@@ -725,9 +727,9 @@ HIP
 → retains agency
 ```
 
-Trong một configuration gần V1.5 hơn, The Academy có thể trực tiếp tham gia operation nhiều hơn.
+Trong một configuration gần Institutional Causality hơn, The Academy có thể trực tiếp tham gia operation nhiều hơn.
 
-**UNKNOWN / OPEN:** điều kiện cụ thể xác định khi nào The Academy vận hành theo V1.5, V2, hoặc một configuration lai.
+**UNKNOWN / OPEN:** điều kiện cụ thể xác định khi nào The Academy vận hành theo Institutional Causality, Narrative Engine Causality, hoặc một configuration lai.
 
 ---
 
@@ -919,10 +921,10 @@ HIP và các actor khác vẫn hành động từ agency, thông tin, năng lự
 - Greed Narrative Engine và Chaos Engine là hai hậu duệ engine hóa của cùng một strata OC cổ.
 - Genealogy chung không làm Chaos Engine trở thành subsystem của Greed.
 - Sloth, Lust và Wrath thuộc thế hệ engine-native được sáng tác về sau.
-- V1.5 vẫn là một operational lineage còn mở và chưa bị V2 thay thế hoàn toàn.
-- V2 là narrative-engine-forward mode: narrative engine giữ frontend vận hành, còn The Academy / Meta Engine thiên về backend authority, legitimacy, infrastructure và interoperability.
+- Institutional Causality và Narrative Engine Causality là hai miền dùng độc lập hoặc compose; không miền nào tự thay thế miền kia.
+- Narrative Engine Causality là narrative-engine-forward mode: narrative engine giữ frontend vận hành, còn The Academy / Meta Engine thiên về backend authority, legitimacy, infrastructure và interoperability.
 - Narrative engine có thể quyết định hướng intervention nhưng không mặc định quyết định historical outcome.
-- V1.5, V2 và configuration lai có thể cùng tồn tại cho đến khi canon khóa điều kiện sử dụng cụ thể.
+- Institutional Causality, Narrative Engine Causality và configuration lai có thể cùng tồn tại cho đến khi canon khóa điều kiện sử dụng cụ thể.
 
 ---
 
@@ -951,8 +953,8 @@ Các phần sau chưa được xác định đầy đủ:
 - Mức portable sang từng loại host fiction.
 - Authority / jurisdiction của Chaos Engine khi hoạt động xuyên host.
 - Quan hệ formal giữa Chaos Engine và từng Executor của The Academy.
-- Điều kiện xác định The Academy vận hành theo V1.5, V2 hay một configuration lai.
-- Phạm vi authority trực tiếp của The Academy trong V1.5 so với backend authority trong V2.
+- Điều kiện xác định The Academy vận hành theo Institutional Causality, Narrative Engine Causality hay một configuration lai.
+- Phạm vi authority trực tiếp của The Academy trong Institutional Causality so với backend authority trong Narrative Engine Causality.
 
 ---
 

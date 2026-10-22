@@ -1,19 +1,19 @@
-# The Academy V2 — Architecture
+# Fanfiction Engine — Narrative Engine Causality Architecture
 
-**Trạng thái:** bản kiến trúc độc lập được tách từ các nguồn V2 hiện có trong repository.  
-**Vai trò:** mô tả miền formalization/application của Narrative Engine mà không dùng V1.5 làm container và không biến V2 thành bản thay thế V1.5.  
-**Không làm:** không xác lập capability engine-specific, không tự quyết định mode của engine chưa được xác nhận, không mô tả V2.5 như successor bắt buộc.
+**Trạng thái:** kiến trúc hiện hành của Narrative Engine Causality (legacy: V2), được tách từ các nguồn trước đây.\
+**Vai trò:** mô tả miền formalization/application của Narrative Engine mà không dùng Institutional Causality làm container và không biến Narrative Engine Causality thành bản thay thế Institutional Causality.\
+**Không làm:** không xác lập capability engine-specific, không tự quyết định mode của engine chưa được xác nhận, không mô tả Academy Revise như successor bắt buộc.
 
 Đọc cùng:
 
 - [Narrative Engine — Core Design Philosophy](../../00_META/Narrative%20Engine%20%E2%80%94%20Core%20Design%20Philosophy.md)
-- [The Academy Anti-Drift Kernel](../../12_ANTI_DRIFT/The_Academy_Anti_Drift_Kernel.md)
-- [The Academy Current Repository State](../../00_META/controls/The_Academy_Current_State.md)
+- [Fanfiction Engine Anti-Drift Kernel](../../12_ANTI_DRIFT/Fanfiction_Engine_Anti_Drift_Kernel.md)
+- [Fanfiction Engine Current Repository State](../../00_META/controls/Fanfiction_Engine_Current_State.md)
 - [Authorial Decisions 2026-09-28](../../The_Academy_Authorial_Decisions_2026-09-28.md)
 
 ## 1. Định nghĩa vận hành
 
-V2 là miền nơi Narrative Engine được formalize/chọn và áp dụng vào một fiction cụ thể.
+Narrative Engine Causality là miền formalization/application của Fanfiction Engine: engine được định nghĩa/chọn và áp dụng vào Host Fiction, World Bible, target và context. Nó không cần graduate hoặc toàn bộ Institutional Causality làm điều kiện tồn tại. Application chạy độc lập khi source/configuration cho phép; The Academy vẫn là platform nội bộ, không phải tên toàn hệ.
 
 Luồng chuẩn:
 
@@ -159,7 +159,7 @@ preserve incompatibility / UNKNOWN
 
 ## 8. Narrative Instance
 
-Narrative Instance là story/output của một configuration cụ thể.
+Narrative Instance là output của một configuration cụ thể; nó có thể biểu đạt state hoặc trajectory đã đổi. Việc sinh prose không phải đầu ra chính hoặc điều kiện bắt buộc của Fanfiction Engine.
 
 ```text
 ENGINE
@@ -208,21 +208,21 @@ SHARED AUTHORITY
 
 Composite chỉ tồn tại khi source xác nhận composition, như trường hợp Chaos Engine.
 
-## 11. V1.5 boundary
+## 11. Institutional Causality boundary
 
-V1.5 và V2 là hai miền formalization khác nhau của The Academy; chúng không tự thay thế nhau.
+Institutional Causality và Narrative Engine Causality là hai operational halves của cùng Fanfiction Engine. Institutional Causality có thể chạy không cần Narrative Engine Causality; Narrative Engine Causality có thể chạy không cần toàn bộ Institutional Causality. Hai miền có thể kết hợp, không tạo thứ tự hoặc dependency bắt buộc.
 
 ```text
-V1.5
-= pre-grad institutional causal domain
+Institutional Causality
+= institutional causal domain; full pre-grad configuration is one documented use
 
-V2
+Narrative Engine Causality
 = Narrative Engine formalization/application domain
 ```
 
-Không dùng V2 để suy ngược V1.5 "thật ra phải có" component hay schema nào.
+Không dùng Narrative Engine Causality để suy ngược Institutional Causality "thật ra phải có" component hay schema nào.
 
-Trong Academy lifecycle đã ghi nhận, các vận hành hậu return-to-origin nằm ngoài active runtime V1.5. Điều này không tự chứng minh mọi V2 application đều cần một graduate V1.5.
+Trong lifecycle đầy đủ đã ghi nhận, các operation hậu return-to-origin nằm ngoài runtime thể chế trước tốt nghiệp của cấu hình đó. Narrative Engine Causality application không cần một graduate Institutional Causality; đây là boundary đã được tác giả xác nhận.
 
 ## 12. Engine mode hiện hành
 
@@ -230,9 +230,9 @@ Mode của từng engine phải lấy từ nguồn/xác nhận riêng.
 
 Theo current repository state đã externalize:
 
-- Sloth: V2;
-- Wrath: V2;
-- Chaos: V2.
+- Sloth: Narrative Engine Causality;
+- Wrath: Narrative Engine Causality;
+- Chaos: Narrative Engine Causality.
 
 Không dùng ba xác nhận này để gán mode cho Greed, Lust hoặc future engine.
 
@@ -254,12 +254,12 @@ Actor, weapon, interface hoặc local lore cụ thể không tự trở thành i
 
 Không ép mọi engine vào cùng component schema.
 
-### 13.5. V2 → successor hierarchy
+### 13.5. Composition bị đọc thành sequence hoặc hierarchy
 
-Version number và genealogy không tự tạo ladder:
+Các nhãn số legacy V1.5/V2 và genealogy không tự tạo ladder; sơ đồ dưới đây không là thứ tự bắt buộc:
 
 ```text
-V1.5 → V2
+Institutional Causality → Narrative Engine Causality
 ```
 
 không được hiểu là deprecation hoặc ontological replacement nếu source không nói vậy.
@@ -267,7 +267,7 @@ không được hiểu là deprecation hoặc ontological replacement nếu sour
 ## 14. Sơ đồ chuẩn
 
 ```text
-                  THE ACADEMY V2
+                  FANFICTION ENGINE / NARRATIVE ENGINE CAUSALITY
           [NARRATIVE ENGINE APPLICATION]
 
               Meta Engine
@@ -300,7 +300,7 @@ Bản này tái cấu trúc nội dung đã tồn tại trong:
 
 - [Narrative Engine — Core Design Philosophy](../../00_META/Narrative%20Engine%20%E2%80%94%20Core%20Design%20Philosophy.md);
 - phần V2 của baseline V1.5 cũ;
-- [The_Academy_CI_v2.0.md](../../00_META/controls/The_Academy_CI_v2.0.md);
+- [Fanfiction_Engine_CI_v2.0.md](../../00_META/controls/Fanfiction_Engine_CI_v2.0.md);
 - [The_Academy_Authorial_Decisions_2026-09-28.md](../../The_Academy_Authorial_Decisions_2026-09-28.md).
 
 File này không supersede engine-specific source và không cấp capability mới cho engine.

@@ -115,7 +115,7 @@ LLM output vẫn phải qua hub.
                      │
              ┌───────┼───────┐
              ▼       ▼       ▼
-        The Academy  The Kingdom  Paracosm 3
+        Fanfiction Engine  The Kingdom  Paracosm 3
 ```
 
 Mỗi branch nhận cùng seed trừu tượng, không nhận implementation của branch khác.
@@ -180,7 +180,7 @@ Bước 3a/3b tồn tại để giảm bỏ sót ý tưởng hữu ích.
 
 ## 5. Modularization target
 
-### The Academy
+### Fanfiction Engine
 
 ```text
 module = Narrative Engine / causal mechanism

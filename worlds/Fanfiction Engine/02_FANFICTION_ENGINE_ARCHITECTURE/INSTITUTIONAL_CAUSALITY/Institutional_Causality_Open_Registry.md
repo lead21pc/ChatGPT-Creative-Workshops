@@ -1,6 +1,6 @@
-# The Academy V1.5 — Open Registry
+# Fanfiction Engine — Institutional Causality Open Registry
 
-**Trạng thái:** danh sách các vùng `UNKNOWN` / mở của V1.5 được tách từ baseline hiện hành.  
+**Trạng thái:** danh sách các vùng `UNKNOWN` / mở của Institutional Causality (legacy: V1.5), được tách từ baseline lịch sử.\
 **Vai trò:** giữ ranh giới chưa externalize hoặc chưa xác nhận ở một nơi dễ kiểm tra.  
 **Không làm:** không tự biến mục mở thành backlog bắt buộc phải hoàn thành, không đề xuất cơ chế mới và không thay thế nguồn gốc của từng mục.
 
@@ -17,7 +17,7 @@ Nguồn tách chính:
 
 ## 1. Recruitment
 
-- exact HIP criterion set của V1.5;
+- exact HIP criterion set của Institutional Causality;
 - cơ chế phát hiện HIP;
 - trigger để một world được chọn;
 - trigger để cùng world được chọn lại;
@@ -86,21 +86,21 @@ Nguồn tách chính:
 
 ## 8. Lust
 
-- exact role trong V1.5;
+- exact role trong Institutional Causality;
 - institutional relation;
 - authority;
 - phase/interface;
 - portability / post-grad relation.
 
-## 9. V1.5 → vận hành sau return
+## 9. Institutional Causality → vận hành sau return
 
-- có phải mọi graduate đều eligible cho V2 không;
+- eligibility của từng graduate/target trong một application dùng state sau return;
 - khi nào Narrative Engine được phép/chọn tiếp cận;
 - shared state contract;
 - observation relation của The Academy;
 - concurrency giữa nhiều Narrative Engine.
 
-Mục này ghi boundary chưa khóa. Nó không tự xác nhận rằng mọi vận hành sau return phải được gọi là V2 trong mọi context, cũng không biến handoff thành dependency bắt buộc.
+Mục này giữ những điều kiện của cấu hình có dùng state sau return. Narrative Engine Causality có thể chạy không cần graduate hoặc toàn bộ Institutional Causality; khả năng dùng độc lập và kết hợp đã được xác nhận, nhưng điều kiện application cụ thể không tự được điền. Handoff không là dependency bắt buộc.
 
 ## 10. Legacy lore chờ xác nhận
 

@@ -14,7 +14,7 @@ curiosity trigger
 abstract seed
     ↓
 HUB
-    ├─ fork → The Academy
+    ├─ fork → Fanfiction Engine
     ├─ fork → The Kingdom
     └─ fork → Project Feather Core
 ```
@@ -169,9 +169,9 @@ All are valid outcomes.
 
 ## 5. Modularization by Paracosm
 
-All three paracosms are modular, but they modularize different things.
+The three creative projects/systems are modular, but they modularize different things; Fanfiction Engine is a simulation engine whose internal platform is The Academy.
 
-### The Academy
+### Fanfiction Engine
 
 **Modularization target:** Narrative Engines and causal mechanisms.
 

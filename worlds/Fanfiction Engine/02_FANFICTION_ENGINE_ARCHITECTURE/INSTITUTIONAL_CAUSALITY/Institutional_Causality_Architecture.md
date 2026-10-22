@@ -1,23 +1,29 @@
-# The Academy V1.5 — Architecture
+# Fanfiction Engine — Institutional Causality Architecture
 
-**Trạng thái:** bản tái cấu trúc vòng 1 từ baseline V1.5 hiện hành.  
-**Vai trò:** mô tả kiến trúc V1.5 và các ranh giới đã được ghi nhận.  
-**Không làm:** không thay đổi canon, không tự giải quyết vùng mở, không mô tả V2/V2.5 ngoài phần cần thiết để khóa boundary.
+**Trạng thái:** kiến trúc hiện hành, tái cấu trúc từ baseline lịch sử V1.5.\
+**Vai trò:** mô tả Institutional Causality, miền nhân quả thể chế của Fanfiction Engine.\
+**Không làm:** không thay đổi canon, không tự giải quyết vùng mở, không mô tả Narrative Engine Causality/Academy Revise ngoài phần cần thiết để khóa boundary.
 
 Đọc cùng:
 
-- [The Academy Anti-Drift Kernel](../../12_ANTI_DRIFT/The_Academy_Anti_Drift_Kernel.md)
+- [Fanfiction Engine Anti-Drift Kernel](../../12_ANTI_DRIFT/Fanfiction_Engine_Anti_Drift_Kernel.md)
 - [Historical Influence Potential](../../01_HIP/Historical_Influence_Potential.md)
 - [V1.5 Architecture Handoff](The_Academy_V1_5_Architecture_Handoff.md)
 - [Authorial Decisions 2026-09-28](../../The_Academy_Authorial_Decisions_2026-09-28.md)
 
-Baseline nguồn vẫn được giữ nguyên trên branch này để đối chiếu:
+Baseline nguồn vẫn được giữ nguyên như hồ sơ lịch sử để đối chiếu:
 
 - [The_Academy_V1_5_Architecture_Baseline_Anti_Drift.md](The_Academy_V1_5_Architecture_Baseline_Anti_Drift.md)
 
 ## 1. Định nghĩa vận hành
 
-The Academy V1.5 là **miền nhân quả thể chế trước tốt nghiệp** của The Academy.
+**Institutional Causality** (legacy: V1.5) là miền nhân quả thể chế của **Fanfiction Engine**, vận hành qua **The Academy platform** và các institutional components theo source. Project và platform không đồng nhất.
+
+Miền này có thể chạy không cần Narrative Engine Causality. Các ban, faction, class, Teaching, tương tác HIP-HIP và institutional mechanisms có thể đóng vai causal filters độc lập theo nguồn. HIP không xoay quanh một protagonist trung tâm; không buộc mọi lần dùng đi hết một school arc hoặc transformation pipeline.
+
+The Academy cùng Institutional Causality có thể đóng vai causal/platform explanation cho historical absence hoặc timeline skip trong configuration phù hợp. Không tự bổ sung mechanism cho trường hợp chưa externalize.
+
+Cấu hình đầy đủ đã externalize:
 
 ```text
 HIP được chọn
@@ -27,19 +33,19 @@ HIP được chọn
 → education + cross-civilization exposure + interaction
 → graduation
 → return to origin
-→ V1.5 kết thúc
+→ cấu hình thể chế trước tốt nghiệp kết thúc
 ```
 
-Boundary bắt buộc:
+Boundary của cấu hình đầy đủ này:
 
 ```text
 RETURN TO ORIGIN
-= V1.5 TERMINUS
+= FULL PRE-GRAD CONFIGURATION TERMINUS
 ```
 
-Phần HIP tiếp tục sống, hành động, thay đổi lịch sử hoặc tương tác với Narrative Engine hậu tốt nghiệp không nằm trong active runtime của V1.5.
+Trong cấu hình đầy đủ này, HIP tiếp tục sống, hành động hoặc tương tác với Narrative Engine hậu tốt nghiệp thuộc phần hậu return, ngoài runtime thể chế trước tốt nghiệp. Cấu hình khác phải xét theo source riêng.
 
-## 2. V1.5 không phải school-worldbuilding thông thường
+## 2. Institutional Causality không phải school-worldbuilding thông thường
 
 The Academy từng là một concept có lore đầy đủ và hình thức academy là một phần thật của hệ thống.
 
@@ -56,7 +62,7 @@ Một institutional factor/faction có thể là một Narrative Engine nếu so
 
 Internal department không tự kế thừa engine status.
 
-## 3. HIP trong V1.5
+## 3. HIP trong Institutional Causality
 
 HIP là common gateway nhưng không phải universal metric.
 
@@ -71,7 +77,7 @@ Không dùng HIP như:
 - Regressor definition;
 - bảo đảm rằng target sẽ thay đổi lịch sử.
 
-V1.5 có thể tuyển, đánh giá hoặc tạo điều kiện cho HIP theo cơ chế đã được source xác nhận, nhưng HIP vẫn giữ agency.
+Institutional Causality có thể tuyển, đánh giá hoặc tạo điều kiện cho HIP theo cơ chế đã được source xác nhận, nhưng HIP vẫn giữ agency.
 
 ## 4. Engine sinh điều kiện, không xây protagonist bắt buộc
 
@@ -182,10 +188,10 @@ Không tự suy ra từ đó rằng:
 
 ## 8. Institutional engine ecology
 
-V1.5 phải được đọc như một ecology các institutional components có causal function.
+Institutional Causality phải được đọc như một ecology các institutional components có causal function.
 
 ```text
-THE ACADEMY V1.5
+INSTITUTIONAL CAUSALITY / THE ACADEMY PLATFORM
         │
         ├── Institutional Engine / Faction A
         ├── Teaching
@@ -215,7 +221,7 @@ Primitive, criteria, state model, authority detail, curriculum relation và fail
 
 ### Faction An ninh
 
-Faction An ninh được xác nhận tồn tại trong V1.5.
+Faction An ninh được xác nhận tồn tại trong Institutional Causality.
 
 Implementation cũ liên quan đến kiểm soát/cách ly một số host-native items hoặc capabilities chỉ là reconstruction lead và chưa phải current mechanism.
 
@@ -245,7 +251,7 @@ Sau graduation, HIP được trả về original world/reality theo baseline đ�
 ```text
 Graduation
 → RETURN TO ORIGIN
-→ V1.5 STOP
+→ FULL PRE-GRAD CONFIGURATION STOP
 ```
 
 Không mặc định graduate phải:
@@ -260,7 +266,7 @@ Nếu exception tồn tại, cần source riêng.
 
 Việc đã có nhiều graduate tồn tại là existence-only information; không dùng nhóm chưa externalize này để suy demographic, success rate hoặc trajectory pattern.
 
-## 11. Greed, Lust và overlap với V1.5
+## 11. Greed, Lust và overlap với Institutional Causality
 
 ### Greed
 
@@ -270,11 +276,11 @@ Một relation không tự cấp các relation còn lại.
 
 Greed có relation đảm bảo tài sản của HIP theo baseline, nhưng exact interface với Faction An ninh vẫn mở.
 
-Greed có thể tiếp cận hoặc không tiếp cận một HIP hậu tốt nghiệp theo source hiện có; phần hậu tốt nghiệp đó không thuộc active runtime V1.5.
+Greed có thể tiếp cận hoặc không tiếp cận một HIP hậu tốt nghiệp theo source hiện có; phần hậu tốt nghiệp đó nằm ngoài runtime thể chế trước tốt nghiệp của cấu hình đã externalize.
 
 ### Lust
 
-Lust thuộc V1.5.
+Lust thuộc Institutional Causality.
 
 Exact institutional role, faction relation, interface và authority vẫn source-bound/đang mở.
 
@@ -327,9 +333,9 @@ Cần causal function và source cụ thể để phân loại.
 
 ## 13. Những gì tài liệu này cố ý không chốt
 
-Các vùng `UNKNOWN` / open của V1.5 được giữ riêng tại:
+Các vùng `UNKNOWN` / open của Institutional Causality được giữ riêng tại:
 
-- [The_Academy_V1_5_Open_Registry.md](The_Academy_V1_5_Open_Registry.md)
+- [Institutional_Causality_Open_Registry.md](Institutional_Causality_Open_Registry.md)
 
 ```text
 OPEN REGISTRY ≠ TODO LIST
@@ -339,10 +345,10 @@ UNKNOWN ≠ PERMISSION TO INVENT
 
 Architecture chỉ giữ ranh giới đã biết; registry giữ các điểm chưa externalize hoặc chưa xác nhận. Việc tách file không thay trạng thái của bất kỳ mục mở nào.
 
-## 14. Sơ đồ chuẩn V1.5
+## 14. Cấu hình đầy đủ đã externalize
 
 ```text
-                           THE ACADEMY V1.5
+                           INSTITUTIONAL CAUSALITY / THE ACADEMY PLATFORM
                    [PRE-GRAD INSTITUTIONAL DOMAIN]
 
 Host Fiction / Original Reality
@@ -380,10 +386,10 @@ Host Fiction / Original Reality
                   ▼
           RETURN TO ORIGIN
           =================
-             V1.5 ENDS
+             FULL PRE-GRAD CONFIGURATION ENDS
 ```
 
-`Faction A/N` là placeholder trình bày, không phải tên faction canon.
+`Faction A/N` là placeholder trình bày, không phải tên faction canon. Sơ đồ giữ cấu hình đầy đủ đã có nguồn; không là chuỗi bắt buộc cho mọi causal filter hoặc cho Narrative Engine Causality.
 
 ## 15. Provenance
 

@@ -1,11 +1,11 @@
-# The Academy — Anti-Drift Kernel
+# Fanfiction Engine — Anti-Drift Kernel
 
-**Trạng thái:** tài liệu kiểm soát cách đọc The Academy trong repository.  
+**Trạng thái:** tài liệu kiểm soát cách đọc Fanfiction Engine trong repository.\
 **Phạm vi:** bảo vệ ranh giới kiến trúc và trạng thái tri thức; không tạo canon, không thay engine specification, không thay CI.
 
 ## 0. Quy tắc sử dụng
 
-Kernel này không phải world bible, không phải bản tóm tắt toàn bộ The Academy và không phải nguồn để điền các khoảng trống.
+Kernel này không phải world bible, không phải bản tóm tắt toàn bộ Fanfiction Engine và không phải nguồn để điền các khoảng trống.
 
 Khi nguồn cụ thể của engine, mode, implementation hoặc xác nhận tác giả nói rõ hơn, dùng nguồn đó trong đúng phạm vi của nó.
 
@@ -29,7 +29,13 @@ EXISTENCE-ONLY
 
 Một chi tiết chỉ được xác nhận là đã tồn tại không tự cung cấp cơ chế, tiêu chí, phân bố, outcome hoặc dữ liệu để suy rộng.
 
-## 2. Bản sắc The Academy
+## 2. Bản sắc Fanfiction Engine và The Academy platform
+
+Fanfiction Engine là toàn hệ fanfiction/daydream simulation. The Academy là platform nội bộ hợp thức hóa các chuyển tiếp xuyên fiction/reality theo source/configuration; platform không đồng nhất với project.
+
+```text
+FANFICTION ENGINE != THE ACADEMY PLATFORM
+```
 
 Historical Influence Potential (HIP) là cổng đánh giá mở dùng tiêu chí từ context.
 
@@ -42,14 +48,14 @@ HIP
 ≠ guaranteed historical change
 ```
 
-The Academy V1.5 là miền nhân quả thể chế trước tốt nghiệp.
+Institutional Causality (legacy: V1.5) là miền nhân quả thể chế của Fanfiction Engine, dùng The Academy và các causal filters theo source; không xoay quanh một protagonist hoặc full school arc bắt buộc.
 
 ```text
 RETURN TO ORIGIN
-= V1.5 TERMINUS
+= TERMINUS OF THE DOCUMENTED FULL PRE-GRAD CONFIGURATION
 ```
 
-The Academy V2 là miền formalization/application của Narrative Engine theo Host Fiction, World Bible, target và context.
+Narrative Engine Causality (legacy: V2) là miền formalization/application của Narrative Engine theo Host Fiction, World Bible, target và context. Nó có thể chạy không cần graduate hoặc toàn bộ Institutional Causality.
 
 ```text
 Narrative Engine
@@ -60,12 +66,13 @@ Narrative Engine
 ≠ one specific implementation
 ```
 
-V1.5 và V2 không tự tạo một chuỗi thay thế tuyến tính.
+Institutional Causality có thể chạy không cần Narrative Engine Causality; hai miền có thể kết hợp theo source/configuration. Sự kết hợp không tự tạo dependency hoặc thứ tự bắt buộc.
 
 ```text
-V1.5 ≠ deprecated because V2 exists
-V2 ≠ authority to redefine V1.5 retroactively
-VERSION / GENEALOGY ≠ CURRENT HIERARCHY
+Institutional Causality ≠ deprecated because Narrative Engine Causality exists
+Narrative Engine Causality ≠ authority to redefine Institutional Causality retroactively
+COMPOSITION != REQUIRED SEQUENCE
+LEGACY VERSION NUMBER / GENEALOGY != CURRENT HIERARCHY
 ```
 
 ## 3. Quan hệ và cấu trúc
@@ -121,11 +128,11 @@ Actor chỉ được dùng thông tin, quyền và khả năng mà source hoặc
 
 Không cho actor đọc hidden canon, future, author intent hoặc toàn bộ engine architecture nếu không có đường truy cập hợp lệ.
 
-## 6. Failure modes đặc thù The Academy
+## 6. Failure modes đặc thù Fanfiction Engine
 
 ### 6.1. School-prior collapse
 
-Không tự ép V1.5 về mô hình trường học thông thường:
+Không tự ép Institutional Causality về mô hình trường học thông thường:
 
 ```text
 Academy
@@ -153,9 +160,9 @@ Không biến mọi specialization hoặc component thành faction/engine.
 
 Không dùng cấu trúc của Greed, Sloth, Wrath, Chaos hoặc Lust làm schema bắt buộc cho engine khác.
 
-### 6.6. V2 back-defines V1.5
+### 6.6. Narrative Engine Causality back-defines Institutional Causality
 
-Không suy rằng formalization muộn của V2 cho biết V1.5 "thật ra phải là gì".
+Không suy rằng formalization muộn của Narrative Engine Causality cho biết Institutional Causality "thật ra phải là gì".
 
 ### 6.7. Implementation → universal invariant
 
