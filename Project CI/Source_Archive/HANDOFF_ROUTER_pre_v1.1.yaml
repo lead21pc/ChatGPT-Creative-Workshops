@@ -1,0 +1,43 @@
+scope: "Revamp Project System only; never inherited by Central Hub"
+responsibility: "Current task or task portion -> materially relevant existing CURRENT handoffs -> FULL_FILE read; ignore unrelated handoffs"
+path_base: "Directory containing this Router"
+read_mode: "FULL_FILE"
+historical_preflight:
+  file: "HISTORY_AND_WHAT_NOT_TO_DO.md"
+  read_mode: "FULL_FILE"
+  applies_to: "Substantive Revamp work only; mere mention or analogy does not enter this procedure."
+  timing: "After reading this Router, load history as the first Revamp source before selecting or recovering any CURRENT handoff; inspect actual files/runtime as needed afterward."
+  role: "Historical failure context and preventive operating posture."
+  excludes: "Not current workstream state, repository authority, implementation authorization, canon, a second Router, CURRENT replacement or global memory."
+  invariants:
+    - "HISTORY != CURRENT STATE; PAST FAILURE != PRESENT FAILURE."
+    - "WARNING != AUTHORIZATION; GENEALOGY != REQUIRED ARCHITECTURE."
+    - "HISTORICAL PAIN != PERMANENT MAXIMUM CONTROL."
+  limits: "Does not create handoff matches or authorize implementation, commit, push, deployment or architectural expansion. Never inherited by Central Hub."
+  failure_behavior: "If missing/unreadable, name the history file and report incomplete preflight; do not substitute CURRENT or invent history. Defer dependent recovery, continuing only independent work."
+selection:
+  - "Match actual workstream responsibility and needed prior state, not keywords alone."
+  - "HANDOFF PRESENCE != ACTIVATION; MENTION != MATCH; ANALOGY != MATCH."
+  - "CO-OCCURRENCE != RELEVANCE; SHARED REPOSITORY != SHARED TASK STATE."
+  - "Select every material match for separate task portions; keep their states scoped."
+  - "Leave unrelated handoffs unloaded; no persistent activation between tasks."
+  - "No match is normal: continue the normal Revamp workflow."
+  - "Route only to explicit entries below. Add an entry only for an actual justified CURRENT file; no speculative inventory."
+  - "Use stable CURRENT targets, never version or timestamp discovery. CURRENT FILE = ACTIVE HANDOFF; GIT HISTORY = HANDOFF HISTORY."
+failure_behavior:
+  - "If this Router is missing/unreadable, report it and do not invent routing or prior state; continue independent work only."
+  - "If a selected handoff is missing/unreadable, name its exact path; do not invent state or substitute another handoff. Continue only independent task portions."
+boundaries:
+  - "CI owns evidence precedence, status preservation and authorized handoff updates; this Router only selects sources."
+  - "Revamp may track work on Central Hub; no history preflight, Router, handoff CI rules, CURRENT files or loading behavior may be installed/inherited inside Central Hub."
+handoffs:
+  revamp_system:
+    file: "Handoffs/REVAMP_SYSTEM_CURRENT.md"
+    status: "active"
+    applies_to:
+      - "Revamp CI, cross-chat handoff routing, template, work-state continuity or route tests: prior Revamp-system state materially affects the task."
+    ignore_when:
+      - "Revamp is merely mentioned or used as an analogy."
+      - "The task concerns another workstream without a material Revamp-system dependency."
+      - "Unrelated repository cleanup, FTH design or Central Hub migration."
+      - "The task is inside Central Hub Project rather than a Revamp task."

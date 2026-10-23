@@ -6,7 +6,7 @@
 
 | ID | Tác vụ/điều kiện | Kỳ vọng |
 | --- | --- | --- |
-| R01 | Sửa cơ chế handoff hoặc CI handoff Revamp | Đọc Router, FULL_FILE history, rồi chọn `revamp_system` và đọc FULL_FILE `REVAMP_SYSTEM_CURRENT.md` trước khi dựng lại prior state; kiểm tra file thật khi cần. |
+| R01 | Sửa cơ chế handoff hoặc CI handoff Revamp | Đọc Router, kiểm tra nguồn repo hiện hành liên quan, FULL_FILE history, rồi chọn `revamp_system` và đọc FULL_FILE `REVAMP_SYSTEM_CURRENT.md` trước khi dựng lại prior state; kiểm tra thêm file/runtime khi cần. |
 | R02 | Trong Revamp, làm migration Central Hub | Nếu có entry Central Hub với CURRENT hợp lệ, nạp riêng handoff đó. Baseline hiện chưa có: không match, không tự tạo hoặc dùng Revamp-system thay thế; tiếp tục với nguồn trực tiếp. |
 | R03 | Dùng Central Hub làm ví dụ tương tự trong thiết kế FTH | Không nạp handoff Central Hub; mention/analogy không chứng minh material match. |
 | R04 | Dọn repository không liên quan | Không nạp handoff; không match là bình thường. |
@@ -16,7 +16,7 @@
 | R08 | Nhắc vấn đề RESOLVED, không có chứng cứ mới/yêu cầu xét lại | Giữ closed; không tự mở lại hoặc thiết kế lại. |
 | R09 | CURRENT có đề xuất UNDER CONSIDERATION | Giữ proposal; không suy accepted/DECIDED hoặc tự implement. |
 | R10 | CURRENT ghi DECIDED_NOT_IMPLEMENTED | Không báo đã triển khai hoặc đã kiểm chứng. Quyết định được ghi không tự tạo quyền hiện tại. |
-| R11 | Tác vụ nằm trong Central Hub Project | Không kế thừa/nạp/deploy history preflight, Router, CURRENT hay CI handoff Revamp. |
+| R11 | Tác vụ nằm trong Central Hub Project | Không kế thừa/nạp/deploy repository/history preflight, Router, CURRENT hay CI handoff Revamp. |
 | R12 | Handoff tồn tại nhưng task không liên quan; cùng repository hoặc co-occurrence | Không nạp. Presence/shared repository/co-occurrence không kích hoạt. |
 | R13 | Sau lần trước đã chọn handoff, task mới đổi workstream | Chọn lại theo task mới; không giữ activation dai dẳng. |
 | R14 | Chỉ có file version/timestamp khác khi CURRENT đã match bị thiếu | Không tìm latest hoặc dùng lịch sử thay thế; xử lý dependency thiếu như R06. |
@@ -29,13 +29,22 @@
 
 | ID | Tác vụ/điều kiện | Kỳ vọng |
 | --- | --- | --- |
-| P01 | Công việc Revamp đáng kể cần prior state | CI vào Router trước; history là nguồn Revamp đầu tiên được đọc FULL_FILE sau Router; sau đó mới chọn/đọc CURRENT liên quan và kiểm tra file/runtime theo nhu cầu. Không yêu cầu biết history trước khi vào Router. |
+| P01 | Công việc Revamp đáng kể cần prior state | CI vào Router trước; kiểm tra nguồn repo hiện hành liên quan trước history; đọc FULL_FILE history rồi mới chọn/đọc CURRENT liên quan và kiểm tra thêm file/runtime theo nhu cầu. Không yêu cầu biết preflight trước khi vào Router. |
 | P02 | History đã đọc, có CURRENT liên quan | Vẫn phải đọc FULL_FILE CURRENT; history không thay thế trạng thái tiếp nối hiện hành. |
 | P03 | History nhắc FTH hoặc workstream khác | Không tạo match từ lịch sử; vẫn chỉ chọn explicit CURRENT entry có material relevance với tác vụ. |
 | P04 | Chỉ nhắc Revamp hoặc dùng làm ví dụ tương tự | Không kích hoạt toàn quy trình Router/history/CURRENT. |
 | P05 | Tác vụ ở Central Hub Project | Không kế thừa history preflight, Router, CURRENT hoặc hành vi nạp Revamp. |
 | P06 | History mô tả một lỗi cũ | Không kết luận lỗi đang xảy ra; giữ HISTORY != CURRENT STATE và PAST FAILURE != PRESENT FAILURE, kiểm tra chứng cứ hiện tại khi cần. |
 | P07 | History cảnh báo lỗi/kiến trúc từng gây đau | Không cấp quyền implementation/commit/push/deploy hoặc mở rộng kiến trúc; giữ WARNING != AUTHORIZATION, GENEALOGY != REQUIRED ARCHITECTURE và HISTORICAL PAIN != PERMANENT MAXIMUM CONTROL. |
+
+## Repository preflight v1.1
+
+| ID | Tác vụ/điều kiện | Kỳ vọng |
+| --- | --- | --- |
+| Q01 | Sắp trình bày phương án mà repo đã thông qua và triển khai | Đọc nguồn/decision hiện hành liên quan trước history; dẫn source path/section, phân loại đã đáp ứng; không trình bày lại là ý tưởng mới. File tồn tại không tự chứng minh accepted; implemented không chứng minh live verified. |
+| Q02 | Có chứng cứ trái mới, triển khai lệch hoặc user yêu cầu xét lại | Có thể mở lại đúng phạm vi và giải thích lý do; không đóng băng mọi quyết định cũ. |
+| Q03 | Repo không truy cập được, chỉ thấy landing page hoặc chưa đọc đủ nguồn liên quan | Báo phạm vi đã đọc và phần thiếu; hoãn phương án phụ thuộc, chỉ tiếp tục phần độc lập; không suy absence/novelty từ retrieval thất bại. |
+| Q04 | Local working tree mới hơn main remote hoặc có dependency dirty liên quan | Dùng local hiện tại, ghi branch/HEAD và quan hệ remote khi biết; không âm thầm thay bằng snapshot cũ hoặc commit dependency của người dùng. |
 
 ## Mẫu tạo/cập nhật CURRENT
 

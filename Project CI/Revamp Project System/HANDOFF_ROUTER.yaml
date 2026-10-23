@@ -1,12 +1,24 @@
+version: "1.1"
+status: "active"
 scope: "Revamp Project System only; never inherited by Central Hub"
 responsibility: "Current task or task portion -> materially relevant existing CURRENT handoffs -> FULL_FILE read; ignore unrelated handoffs"
 path_base: "Directory containing this Router"
 read_mode: "FULL_FILE"
+repository_preflight:
+  url: "https://github.com/lead21pc/chatgpt-ci-worldbuilding"
+  ref: "main unless the user specifies another target"
+  applies_to: "Substantive Revamp work; mere mention or analogy does not activate this procedure."
+  timing: "After reading this Router and before history, CURRENT recovery or presenting dependent proposals."
+  read_scope: "Inspect the repository's current relevant primary sources, controls, implementation and explicit decision/status records; follow direct dependencies as needed. A repo landing page, listing, filename, summary or old recollection is not sufficient. No mandatory whole-repository read."
+  local_state: "When working in this repository, inspect its current local working tree including relevant dirty dependencies, record branch/HEAD and remote relation when known; distinguish local from remote state. Do not substitute an older remote snapshot for newer local work."
+  proposal_check: "Compare each proposed change with relevant current accepted decisions and implemented behavior; cite source paths/sections and classify already satisfied, genuine gap or conflict. Do not re-propose adopted behavior as new. Reopen only for new contrary evidence, current divergence or explicit user reconsideration; accepted/implemented does not prove live verification. File presence alone does not prove acceptance."
+  failure_behavior: "If access or relevant evidence is unavailable, report the exact gap and inspected scope. Defer dependent proposal claims until verified; continue only independent work. Do not infer absence or novelty from failed/partial retrieval."
+  limits: "Read/context only; no implementation, commit, push, deployment or architecture expansion authorization. Revamp-only; never inherited by Central Hub."
 historical_preflight:
   file: "HISTORY_AND_WHAT_NOT_TO_DO.md"
   read_mode: "FULL_FILE"
   applies_to: "Substantive Revamp work only; mere mention or analogy does not enter this procedure."
-  timing: "After reading this Router, load history as the first Revamp source before selecting or recovering any CURRENT handoff; inspect actual files/runtime as needed afterward."
+  timing: "After this Router and repository_preflight, FULL_FILE-read history before selecting or recovering any CURRENT handoff; inspect additional actual files/runtime as needed afterward."
   role: "Historical failure context and preventive operating posture."
   excludes: "Not current workstream state, repository authority, implementation authorization, canon, a second Router, CURRENT replacement or global memory."
   invariants:
@@ -29,7 +41,7 @@ failure_behavior:
   - "If a selected handoff is missing/unreadable, name its exact path; do not invent state or substitute another handoff. Continue only independent task portions."
 boundaries:
   - "CI owns evidence precedence, status preservation and authorized handoff updates; this Router only selects sources."
-  - "Revamp may track work on Central Hub; no history preflight, Router, handoff CI rules, CURRENT files or loading behavior may be installed/inherited inside Central Hub."
+  - "Revamp may track work on Central Hub; no repository/history preflight, Router, handoff CI rules, CURRENT files or loading behavior may be installed/inherited inside Central Hub."
 handoffs:
   revamp_system:
     file: "Handoffs/REVAMP_SYSTEM_CURRENT.md"

@@ -426,7 +426,7 @@ Do not replace a viable simple mechanism merely because a more systematic archit
 Before substantial Revamp audit/design work:
 
 1. Read `HANDOFF_ROUTER.yaml` as the Revamp entrypoint.
-2. FULL_FILE-read this file as Router-directed historical failure context, before any CURRENT handoff recovery.
+2. Inspect current relevant repository sources as directed by the Router, then FULL_FILE-read this file as historical failure context before any CURRENT handoff recovery.
 3. Load only materially matched CURRENT handoffs in FULL_FILE mode.
 4. Inspect the actual system relevant to the task.
 5. Classify findings as observed failure, reproduced failure, supported risk, or hypothetical future risk.
@@ -453,6 +453,7 @@ Order:
 
 ```text
 HANDOFF_ROUTER
+→ current relevant repository sources / accepted decisions / implementation
 → REVAMP HISTORY / WHAT NOT TO DO (FULL_FILE)
 → materially matched CURRENT handoff(s)
 → real files / runtime needed for the task
