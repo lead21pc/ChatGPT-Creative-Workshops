@@ -1,3 +1,14 @@
+# Thông báo trạng thái nguồn — Greed
+
+**Vai trò hiện tại:** provenance của cấu trúc tài liệu trước restructuring; không còn là full specification/component owner hoạt động song song. Nội dung canon/Working/Placeholder/UNKNOWN không bị phủ định hoặc nâng trạng thái.
+
+**Owner hiện hành:** [nguồn thay thế về tổ chức tài liệu](ENGINE_CORE.md); [runtime](RUNTIME.md), [Host contract](HOST_CONTRACT.md), [open state](OPEN_STATE.md), [writer validation](WRITING_VALIDATION.md).
+
+Toàn bộ nội dung gốc nằm nguyên byte bên dưới để giữ provenance và các liên kết từ nguồn đóng băng. Không chuyển/sửa archive theo hard freeze của task. Các mục genealogy/đối chiếu lịch sử bên dưới vẫn được đọc đúng phạm vi lịch sử, không là nguồn mặc định cho cơ chế active.
+
+**SHA-256 của nội dung gốc:** `9e1bbaa1f056230173808c1d04bdde863286e0a599079c82f798abbcc4b2203d`.
+
+<!-- BEGIN PRESERVED ORIGINAL -->
 # Greed — Narrative Engine Core v0.2 (Working Draft)
 
 ## Trạng thái và nguồn

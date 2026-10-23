@@ -1,115 +1,59 @@
 # Fanfiction Engine — Current Repository State
 
-**Trạng thái:** snapshot điều hướng hiện hành của repository sau soft migration M7.\
-**Vai trò:** chỉ ra nguồn mặc định cần đọc. File này không tự tạo canon và không thắng nguồn scoped nếu có xung đột.
+**Vai trò:** snapshot con trỏ active, mapping tên và trạng thái. Giải thích quan hệ cấp project thuộc [tài liệu định hướng](../../WHAT_IS_FANFICTION_ENGINE.md); cơ chế thuộc nguồn scoped. Snapshot không tạo canon hoặc thắng nguồn/xác nhận có thẩm quyền.
 
-## 0. Tên hiện hành và phạm vi
+## 0. Tên hiện hành và mapping lịch sử
 
 | Hạng mục | Tên hiện hành | Nhãn lịch sử |
 | --- | --- | --- |
-| Toàn project/hệ mô phỏng | Fanfiction Engine | The Academy Project |
-| Platform nội bộ | The Academy | Giữ tên platform |
-| Miền nhân quả thể chế | Institutional Causality | V1.5 |
-| Miền formalization/application của Narrative Engine | Narrative Engine Causality | V2 |
-| Working branch | Academy Revise | V2.5 |
+| Toàn project | Fanfiction Engine | The Academy Project |
+| Platform | The Academy | Giữ tên platform |
+| Miền vận hành | Institutional Causality | V1.5 |
+| Miền vận hành | Narrative Engine Causality | V2 |
+| Nhánh nghiên cứu tạm dừng | Academy Revise | V2.5 |
 
-```text
-FANFICTION ENGINE != THE ACADEMY PLATFORM
-INSTITUTIONAL CAUSALITY CAN RUN WITHOUT NARRATIVE ENGINE CAUSALITY
-NARRATIVE ENGINE CAUSALITY CAN RUN WITHOUT FULL INSTITUTIONAL CAUSALITY
-COMPOSITION != REQUIRED SEQUENCE
-LEGACY VERSION NUMBER != CURRENT HIERARCHY
-```
+## 1. Nguồn quản hiện hành
 
-Hai miền là hai operational halves của cùng Fanfiction Engine, có thể dùng độc lập và kết hợp theo source/configuration. Narrative Engine Causality không cần graduate của Institutional Causality. Chi tiết chưa externalize tiếp tục là `UNKNOWN`.
+| Vai trò | Nguồn active |
+| --- | --- |
+| Định hướng / quan hệ cấp project | [WHAT_IS_FANFICTION_ENGINE.md](../../WHAT_IS_FANFICTION_ENGINE.md) |
+| CI | [CI v2.0](Fanfiction_Engine_CI_v2.0.md) |
+| Chọn nguồn | [Router v1.1](Fanfiction_Engine_Source_Router_v1.1.md) |
+| Chống drift | [Anti-Drift Kernel](../../12_ANTI_DRIFT/Fanfiction_Engine_Anti_Drift_Kernel.md) |
+| Điều hướng | [README](../../README.md) |
 
-[WHAT_IS_FANFICTION_ENGINE.md](../../WHAT_IS_FANFICTION_ENGINE.md) giải thích mục đích và ranh giới project/platform. Các tên cũ trong genealogy, quyết định có ngày tháng và archive là provenance, không phải tên project/domain hiện hành. Control versions CI v2.0 và Router v1.1 vẫn giữ nguyên.
+CI/Router được sửa tại chỗ trong lần project-control revamp; nhãn version được giữ nguyên, không tạo bản kế nhiệm. Trạng thái triển khai/nạp và hành vi ChatGPT Project vẫn `UNVERIFIED`.
 
-## 1. Lớp điều khiển
+## 2. Kiến trúc miền và trạng thái nhánh
 
-- CI hiện hành: [Fanfiction_Engine_CI_v2.0.md](Fanfiction_Engine_CI_v2.0.md)
-- Router hiện hành: [Fanfiction_Engine_Source_Router_v1.1.md](Fanfiction_Engine_Source_Router_v1.1.md)
-- Anti-drift kernel của Fanfiction Engine: [Fanfiction_Engine_Anti_Drift_Kernel.md](../../12_ANTI_DRIFT/Fanfiction_Engine_Anti_Drift_Kernel.md)
-
-Trạng thái nạp CI/router/kernel vào ChatGPT Project runtime vẫn `UNVERIFIED`.
-
-## 2. Kiến trúc Fanfiction Engine
-
-### Institutional Causality
-
-Nguồn kiến trúc mặc định:
-
-- [Institutional_Causality_Architecture.md](../../02_FANFICTION_ENGINE_ARCHITECTURE/INSTITUTIONAL_CAUSALITY/Institutional_Causality_Architecture.md)
-- [Institutional_Causality_Open_Registry.md](../../02_FANFICTION_ENGINE_ARCHITECTURE/INSTITUTIONAL_CAUSALITY/Institutional_Causality_Open_Registry.md)
-
-Nguồn reconstruction/provenance vẫn giữ:
-
-- [The_Academy_V1_5_Architecture_Baseline_Anti_Drift.md](../../02_FANFICTION_ENGINE_ARCHITECTURE/INSTITUTIONAL_CAUSALITY/The_Academy_V1_5_Architecture_Baseline_Anti_Drift.md)
-- [The_Academy_V1_5_Architecture_Handoff.md](../../02_FANFICTION_ENGINE_ARCHITECTURE/INSTITUTIONAL_CAUSALITY/The_Academy_V1_5_Architecture_Handoff.md)
-
-Institutional Causality dùng các thành phần thể chế và tương tác HIP-HIP như causal filters theo source. Trong cấu hình đầy đủ đã externalize, return to origin kết thúc runtime thể chế trước tốt nghiệp; không phải mọi cách dùng đều cần một full school narrative. The Academy platform cùng miền này có thể giải thích historical absence/timeline skip trong configuration phù hợp mà không tự điền cơ chế chưa có nguồn.
-
-### Narrative Engine Causality
-
-Nguồn kiến trúc mặc định:
-
-- [Narrative_Engine_Causality_Architecture.md](../../02_FANFICTION_ENGINE_ARCHITECTURE/NARRATIVE_ENGINE_CAUSALITY/Narrative_Engine_Causality_Architecture.md)
-
-Narrative Engine Causality formalize/áp dụng engine theo host rules và target/context; application có thể chạy không cần toàn bộ Institutional Causality.
-
-Nguồn phương pháp nền:
-
-- [Narrative Engine — Core Design Philosophy.md](../Narrative%20Engine%20%E2%80%94%20Core%20Design%20Philosophy.md)
-
-### Academy Revise
-
-Nguồn working branch:
-
-- [Academy_Revise_Branch.md](../../02_FANFICTION_ENGINE_ARCHITECTURE/BRANCHES/Academy_Revise_Branch.md)
-
-```text
-ACADEMY REVISE
-= WORKING BRANCH
-≠ AUTOMATIC SUCCESSOR
-≠ CURRENT ONTOLOGY BY VERSION NUMBER
-```
-
-## 3. HIP
-
-Nguồn chính:
-
-- [Historical_Influence_Potential.md](../../01_HIP/Historical_Influence_Potential.md)
-
-HIP là cổng đánh giá mở; tiêu chí đến từ context và HIP không tự bảo đảm outcome lịch sử.
-
-## 4. Engine và miền vận hành đã được xác nhận
-
-| Hạng mục | Trạng thái hiện hành | Nguồn dẫn |
+| Phạm vi | Nguồn | Trạng thái / cách dùng |
 | --- | --- | --- |
-| Chaos | Canon Specification v3 là bản chính thức | [Chaos v3](../../04_NARRATIVE_ENGINES/Chaos/Chaos_Engine_Canon_Specification_v3.md) |
-| Sloth | Mode Narrative Engine Causality | [Authorial Decisions](../../The_Academy_Authorial_Decisions_2026-09-28.md) |
-| Wrath | Mode Narrative Engine Causality | [Authorial Decisions](../../The_Academy_Authorial_Decisions_2026-09-28.md) |
-| Chaos | Mode Narrative Engine Causality | [Authorial Decisions](../../The_Academy_Authorial_Decisions_2026-09-28.md) |
-| Lust | Thuộc Institutional Causality; chi tiết institutional role/interface/authority còn source-bound | [Lust Working Draft](../../03_INSTITUTIONAL_ENGINES/Lust/Lust_Working_Draft.md) |
-| Greed Governor | Responsibility | [Authorial Decisions](../../The_Academy_Authorial_Decisions_2026-09-28.md) |
+| Institutional Causality | [Architecture](../../02_FANFICTION_ENGINE_ARCHITECTURE/INSTITUTIONAL_CAUSALITY/Institutional_Causality_Architecture.md), [Open Registry](../../02_FANFICTION_ENGINE_ARCHITECTURE/INSTITUTIONAL_CAUSALITY/Institutional_Causality_Open_Registry.md) | Nguồn mặc định; vùng mở giữ nguyên |
+| Narrative Engine Causality | [Architecture](../../02_FANFICTION_ENGINE_ARCHITECTURE/NARRATIVE_ENGINE_CAUSALITY/Narrative_Engine_Causality_Architecture.md) | Nguồn mặc định |
+| HIP | [Historical Influence Potential](../../01_HIP/Historical_Influence_Potential.md) | Nguồn định nghĩa |
+| Academy Revise | [Branch](../../02_FANFICTION_ENGINE_ARCHITECTURE/BRANCHES/Academy_Revise_Branch.md) | `PAUSED WORKING BRANCH` theo chỉ dẫn tác giả trong lần revamp này; nội dung vẫn read-only, không nâng thành kiến trúc hiện hành |
+| Phương pháp | [Core Design Philosophy](<../Narrative Engine — Core Design Philosophy.md>) | Nguồn phương pháp, không thay source riêng của engine |
 
-Các nhãn này ánh xạ các xác nhận legacy V2/V1.5 sang tên hiện hành; hồ sơ xác nhận có ngày tháng vẫn giữ nguyên cách gọi cũ. Chúng không cấp cùng architecture, capability hoặc authority cho engine khác; không tự gán mode cho Greed hoặc future engine.
+## 3. Trạng thái và con trỏ engine
 
-## 5. Provenance và nguồn cũ
+| Hạng mục | Trạng thái / nguồn hiện hành |
+| --- | --- |
+| Chaos | [Package Chaos](../../04_NARRATIVE_ENGINES/Chaos/ENGINE_CORE.md), tái cấu trúc nội dung canon v3; bản v3 gốc giữ provenance tại đường cũ |
+| Sloth, Wrath, Chaos | Mode Narrative Engine Causality; xem [xác nhận tác giả, mục 5](../../The_Academy_Authorial_Decisions_2026-09-28.md#5-mode-vận-hành-hiện-hành) với nhãn legacy V2 |
+| Lust | [Working Draft](../../03_INSTITUTIONAL_ENGINES/Lust/Lust_Working_Draft.md); Institutional Causality |
+| Greed / Ring | [Greed package](../../04_NARRATIVE_ENGINES/Greed/ENGINE_CORE.md), [Ring component](../../04_NARRATIVE_ENGINES/Greed/COMPONENTS/Ring.md); giữ Working/UNKNOWN; phân loại Governor theo [xác nhận tác giả](../../The_Academy_Authorial_Decisions_2026-09-28.md#1-greed) |
+| Implementation Greed II | [Implementation v0.1](../../08_LORE_IMPLEMENTATIONS/Greed_II/Greed_II_Implementation_v0.1_Working_Draft.md); Working Draft |
 
-- [M6 Semantic Migration Audit](../The_Academy_M6_Semantic_Migration_Audit.md) ghi gate trước soft migration.
-- [engine genealogy](../../06_ENGINE_GENEALOGY/engine_genealogy_and_development_updated.md) mô tả lịch sử hình thành; genealogy không tự tạo current hierarchy.
-- [source_archive](../../source_archive/README.md) giữ nguồn cũ và bản nháp để truy vết.
-- [The_Academy_Authorial_Decisions_2026-09-28.md](../../The_Academy_Authorial_Decisions_2026-09-28.md) ghi các xác nhận tác giả đã externalize tại thời điểm đó.
-- [Source Router v1.0](The_Academy_Source_Router_v1.0.md) được giữ để đối chiếu provenance sau khi v1.1 trở thành router hiện hành.
+Con trỏ package: [Sloth](../../04_NARRATIVE_ENGINES/Sloth/ENGINE_CORE.md), [Wrath](../../04_NARRATIVE_ENGINES/Wrath/ENGINE_CORE.md). Mỗi ENGINE_CORE dẫn tới HOST_CONTRACT, RUNTIME, OPEN_STATE và WRITING_VALIDATION. Tám nguồn cũ có thông báo provenance, không còn là owner active song song; archive không đổi. Writer validation: `NOT RUN`, không có runtime PASS từ migration.
 
-## 6. Quy tắc đọc snapshot
+Cơ chế, giới hạn và quan hệ riêng đọc ở nguồn; không suy mode hoặc trạng thái cho engine khác từ bảng này.
 
-Nếu file này và nguồn được liên kết bất đồng:
+## 4. Provenance
 
-```text
-repair CURRENT STATE
-≠ use CURRENT STATE to override scoped source
-```
+- [Authorial Decisions 2026-09-28](../../The_Academy_Authorial_Decisions_2026-09-28.md): các xác nhận có phạm vi; giữ nguyên terminology/path lịch sử trong hồ sơ.
+- [Genealogy](../../06_ENGINE_GENEALOGY/engine_genealogy_and_development_updated.md): lịch sử hình thành.
+- [M6 Semantic Migration Audit](../The_Academy_M6_Semantic_Migration_Audit.md): hồ sơ migration lịch sử.
+- [V1.5 baseline](../../02_FANFICTION_ENGINE_ARCHITECTURE/INSTITUTIONAL_CAUSALITY/The_Academy_V1_5_Architecture_Baseline_Anti_Drift.md), [handoff](../../02_FANFICTION_ENGINE_ARCHITECTURE/INSTITUTIONAL_CAUSALITY/The_Academy_V1_5_Architecture_Handoff.md): reconstruction/provenance, không là đường đọc mặc định.
+- [Router v1.0](The_Academy_Source_Router_v1.0.md), [source_archive](../../source_archive/README.md): nguồn cũ để đối chiếu khi cần.
 
-Snapshot tồn tại để giảm chi phí tìm nguồn, không phải để tạo thêm một tầng thẩm quyền.
+Nếu snapshot sai nguồn, sửa snapshot trong phạm vi được phép; không dùng snapshot để ghi đè nguồn scoped hoặc hồ sơ lịch sử.

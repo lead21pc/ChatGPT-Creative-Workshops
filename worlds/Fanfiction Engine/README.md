@@ -2,7 +2,7 @@
 
 **Vai trò:** chỉ mục đường dẫn trong repository. Vị trí thư mục giúp tra cứu, không tự xác lập quan hệ `CONTAINS`, `DEPENDS_ON`, thẩm quyền canon hoặc tính portable của một engine. Đọc [xác nhận tác giả ngày 2026-09-28](The_Academy_Authorial_Decisions_2026-09-28.md) trước khi xử lý các nhãn nguồn đã được đính chính.
 
-**Tên hiện hành:** Fanfiction Engine là toàn hệ fanfiction/daydream simulation; The Academy là platform nội bộ. [Tài liệu giới thiệu](WHAT_IS_FANFICTION_ENGINE.md) và [Current State](00_META/controls/Fanfiction_Engine_Current_State.md) giữ ranh giới và mapping từ nhãn cũ: V1.5 → Institutional Causality, V2 → Narrative Engine Causality, V2.5 → Academy Revise (`WORKING BRANCH`). Hai miền có thể dùng độc lập và compose, không có handoff bắt buộc. Các hồ sơ có ngày tháng và archive giữ nguyên terminology lịch sử.
+**Bắt đầu từ:** [định hướng / Project Core](WHAT_IS_FANFICTION_ENGINE.md) cho bản sắc và quan hệ cấp project; [Current State](00_META/controls/Fanfiction_Engine_Current_State.md) cho con trỏ active, mapping tên và trạng thái; [Router](00_META/controls/Fanfiction_Engine_Source_Router_v1.1.md) cho đường đọc theo yêu cầu. Tên hiện hành là Fanfiction Engine; đây là tên đã có trên current tree trước task này.
 
 ## Nền tảng và kiến trúc
 
@@ -10,16 +10,20 @@
 - [Institutional Causality Architecture](02_FANFICTION_ENGINE_ARCHITECTURE/INSTITUTIONAL_CAUSALITY/Institutional_Causality_Architecture.md): nguồn kiến trúc Institutional Causality mặc định sau soft migration M7.
 - [Institutional Causality Open Registry](02_FANFICTION_ENGINE_ARCHITECTURE/INSTITUTIONAL_CAUSALITY/Institutional_Causality_Open_Registry.md): giữ các vùng `UNKNOWN` / open; registry không phải danh sách việc bắt buộc phải lấp.
 - [Narrative Engine Causality Architecture](02_FANFICTION_ENGINE_ARCHITECTURE/NARRATIVE_ENGINE_CAUSALITY/Narrative_Engine_Causality_Architecture.md): nguồn kiến trúc Narrative Engine Causality mặc định.
-- [Academy Revise branch](02_FANFICTION_ENGINE_ARCHITECTURE/BRANCHES/Academy_Revise_Branch.md): working branch; không phải successor bắt buộc của Institutional Causality/Narrative Engine Causality.
+- [Academy Revise branch](02_FANFICTION_ENGINE_ARCHITECTURE/BRANCHES/Academy_Revise_Branch.md): `PAUSED WORKING BRANCH` theo chỉ dẫn tác giả trong lần project-control revamp; nội dung nhánh giữ nguyên, không phải successor bắt buộc của Institutional Causality/Narrative Engine Causality.
 - [Baseline V1.5 cũ](02_FANFICTION_ENGINE_ARCHITECTURE/INSTITUTIONAL_CAUSALITY/The_Academy_V1_5_Architecture_Baseline_Anti_Drift.md) và [handoff V1.5](02_FANFICTION_ENGINE_ARCHITECTURE/INSTITUTIONAL_CAUSALITY/The_Academy_V1_5_Architecture_Handoff.md): nguồn reconstruction/provenance, không còn là đường đọc mặc định.
 - [Lust Working Draft](03_INSTITUTIONAL_ENGINES/Lust/Lust_Working_Draft.md): engine thuộc Institutional Causality; vai trò institutional cụ thể còn theo giới hạn của nguồn.
 
 ## Narrative engines và interface
 
-- [Sloth Engine Working Draft](04_NARRATIVE_ENGINES/Sloth/Sloth_Engine_Working_Draft.md) cùng [Accommodation](04_NARRATIVE_ENGINES/Sloth/Sloth_Accommodation_Working_Draft.md), [Graze](04_NARRATIVE_ENGINES/Sloth/Sloth_Graze_Doctrine_Working_Draft.md) và [The Gun](04_NARRATIVE_ENGINES/Sloth/Sloth_The_Gun_Working_Draft.md). Mode Narrative Engine Causality được tác giả xác nhận; phần Working/Placeholder vẫn giữ nhãn trong nguồn. [Bản Sloth ngắn](source_archive/Sloth/Sloth_Working_Draft.md) là nguồn lưu trữ.
-- [Wrath Working Draft](04_NARRATIVE_ENGINES/Wrath/Wrath_Working_Draft.md): hybrid Engine/Entity, mode Narrative Engine Causality; phần gắn với The Tainted Cosmos chưa được tách khỏi nguồn.
-- [Chaos v3](04_NARRATIVE_ENGINES/Chaos/Chaos_Engine_Canon_Specification_v3.md): bản chính thức của composite Chaos, mode Narrative Engine Causality. [Bản `updated`](source_archive/Chaos/Chaos_Engine_Canon_Specification_updated.md) được giữ để đối chiếu provenance.
-- [Greed Engine Core v0.2](04_NARRATIVE_ENGINES/Greed/Greed_Narrative_Engine_Core_v0.2_Working_Draft.md), [Ring interface](04_NARRATIVE_ENGINES/Greed/Ring_Interface_v0.1_Working_Draft.md) và [hồ sơ triển khai Greed II](08_LORE_IMPLEMENTATIONS/Greed_II/Greed_II_Implementation_v0.1_Working_Draft.md): các bản working có phạm vi khác nhau. [Bản hợp nhất Greed II](source_archive/Greed/Greed_II_Core_Interfaces_Consolidated.md) vẫn lưu để đối chiếu nguồn.
+Mỗi package dùng `ENGINE_CORE.md`, `HOST_CONTRACT.md`, `RUNTIME.md`, `OPEN_STATE.md` và `WRITING_VALIDATION.md` theo vai trò tài liệu; đây không phải shared causal schema. Các link dưới đây vào owner active; nguồn cũ giữ tại chỗ với nhãn provenance, nội dung gốc không đổi.
+
+- [Greed](04_NARRATIVE_ENGINES/Greed/ENGINE_CORE.md), [Ring](04_NARRATIVE_ENGINES/Greed/COMPONENTS/Ring.md), [Greed II implementation](08_LORE_IMPLEMENTATIONS/Greed_II/Greed_II_Implementation_v0.1_Working_Draft.md).
+- [Sloth](04_NARRATIVE_ENGINES/Sloth/ENGINE_CORE.md), [Accommodation](04_NARRATIVE_ENGINES/Sloth/COMPONENTS/Accommodation.md), [Graze](04_NARRATIVE_ENGINES/Sloth/COMPONENTS/Graze.md), [The Gun](04_NARRATIVE_ENGINES/Sloth/COMPONENTS/The_Gun.md).
+- [Wrath](04_NARRATIVE_ENGINES/Wrath/ENGINE_CORE.md); hybrid và boundary The Tainted Cosmos giữ tại HOST_CONTRACT của package, không tuyên bố portability.
+- [Chaos](04_NARRATIVE_ENGINES/Chaos/ENGINE_CORE.md); package tổ chức lại nội dung canon v3, giữ Three Pengs/Ludopath nguyên cấu trúc. Bản v3 gốc giữ provenance tại đường cũ.
+
+Writer validation của cả bốn package là protocol `NOT RUN`, chưa có writer-run evidence. Lust tiếp tục thuộc institutional side và không nằm trong migration này.
 
 ## Provenance và quy tắc đọc
 
@@ -35,10 +39,4 @@
 
 Các thư mục rỗng mang tên cũ `The Academy`, `The Chaos Engine`, `The Greed Entropy Injector`, `The Lust Judgment Redemptions`, `The Sloth Regressors Hunter` và `The Wrath Forsaken` đã được dọn khỏi working tree. Git theo dõi tệp, không theo dõi thư mục rỗng; mục này ghi nhận bước dọn cuối cùng.
 
-Những điểm dưới đây được tác giả **cố ý để mở** theo tính chất của Narrative Engine. Giữ nguyên `UNKNOWN`/`OPEN` và các nhãn Working/Placeholder của từng nguồn; không xem chúng là việc phải điền đủ để hoàn tất migration hoặc tự suy ra một đáp án chung cho mọi triển khai:
-
-- **Greed/Ring:** tiêu chí chọn người nhận; nguồn gốc, số lượng, lợi ích và giới hạn Ring; kết quả khi Greed không thắng; khả năng engine hoặc Ring chạy với actor/host khác. `Infinite Rings` chưa được nâng từ giả định Paradox thành canon Ring. Xem [Greed Core](04_NARRATIVE_ENGINES/Greed/Greed_Narrative_Engine_Core_v0.2_Working_Draft.md) và [Ring interface](04_NARRATIVE_ENGINES/Greed/Ring_Interface_v0.1_Working_Draft.md).
-- **Thuật ngữ:** quyết định `Counter → Governor` áp dụng cho định nghĩa chống trope nói chung; cách phân loại các cơ chế riêng vẫn cần đối chiếu. Ví dụ [Sloth draft](04_NARRATIVE_ENGINES/Sloth/Sloth_Engine_Working_Draft.md) còn gọi `Accountability` là Counter. Ring được nguồn gọi là chất xúc tác cho một cuộc đời; việc gán nó thành `Catalyst` formal của ontology chưa được xác nhận.
-- **Sloth:** Core Drive cuối cùng, Authority/Seat, timing, Graze, The Gun và điều kiện Accommodation còn mang nhãn Working/Placeholder trong [nguồn](04_NARRATIVE_ENGINES/Sloth/Sloth_Engine_Working_Draft.md). Mode Narrative Engine Causality hiện hành đã được tác giả xác nhận.
-- **Wrath:** transition giữa hai quan hệ với The Academy, cơ chế giữa Lust/Wrath/MC và phần tách engine khỏi triển khai *The Tainted Cosmos* chưa được formal hóa trong [working draft](04_NARRATIVE_ENGINES/Wrath/Wrath_Working_Draft.md). Mode Narrative Engine Causality hiện hành đã được tác giả xác nhận.
-- **Chaos:** [v3](04_NARRATIVE_ENGINES/Chaos/Chaos_Engine_Canon_Specification_v3.md) là bản chính thức và mode Narrative Engine Causality hiện hành đã được xác nhận; các điều kiện kích hoạt, giới hạn/termination, tính portable và điều kiện chọn Institutional Causality/Narrative Engine Causality/cấu hình lai vẫn được chính v3 ghi `UNKNOWN / OPEN`.
+Các vùng `UNKNOWN`/`OPEN`, Working và Placeholder giữ nguyên trạng thái trong nguồn riêng; chúng không phải danh sách việc phải hoàn thiện. Tra cứu cơ chế và điểm mở qua các liên kết engine/interface ở trên; các đính chính nhãn đọc tại [Authorial Decisions](The_Academy_Authorial_Decisions_2026-09-28.md). README không giữ bản sao state hoặc cơ chế engine.

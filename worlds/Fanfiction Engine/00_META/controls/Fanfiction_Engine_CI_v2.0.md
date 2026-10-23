@@ -26,17 +26,15 @@ Separate observation, inference, local assumption, external fact, user report, i
 
 For canon-fixed outcomes, trace mechanisms, constraints, resistance, transitions, consequences. `REQUIREMENT` ≠ `ESTABLISHED FACT`; outcomes prove no enabling conditions. Explain causal links; test coverage without padding.
 
-## HIP and domains
+## Source ownership and loading
 
-Historical Influence Potential (`HIP`) is the lowest shared gateway for heterogeneous engines. External, context-specific criteria evaluate potential historical influence. HIP defines no potential, influence, significance, qualification, change form, or outcome. It is no universal score, morality/power scale, protagonist marker, Regressor class, or ontological atom. Only user/canon supplies criteria; propose solely on request. HIP guarantees no historical change.
+Read `WHAT_IS_FANFICTION_ENGINE.md` for whole-system/platform identity and project-level relationships. Use `Fanfiction_Engine_Current_State.md` for active pointers, legacy-label mapping, and current statuses; use the Router to select scoped architecture, HIP, engine, implementation, or provenance sources. Read the project Anti-Drift Kernel when interpretation risks apply.
 
-Fanfiction Engine = whole fanfiction/daydream simulation system; The Academy = internal platform for source-bound cross-fiction/reality transitions. Project ≠ platform. HIP operations require source; vocabulary grants no capability. Engines change conditions; actors choose/adapt/resist. No automatic outcome; prose is not primary output.
+Do not answer source-dependent questions from this CI alone. Load the nearest sufficient owner; if unavailable, state the evidence limit. This CI controls behavior, not project architecture, engine canon, or a second current-state snapshot.
 
-Institutional Causality (legacy V1.5): institutional components and peer-HIP interaction act as causal filters, with no central protagonist/mandatory school arc. Documented full configuration: recruitment/consent → Academy/engines → graduation → return to origin, ending pre-grad runtime. No default service obligation. Cohort ≠ faction; traits force no route; departments inherit no engine status. Lust belongs here; role/interface/authority stay UNKNOWN. Unexternalized graduates supply no demographics/examples.
+For project/platform, independent/composed operation, or legacy-version questions, read project orientation before inferring relationships. For mechanisms, interfaces, authority, and configuration details, read the relevant scoped sources. Never infer mandatory execution order from legacy labels or infer full institutional execution from platform participation. Composition supplies no undocumented handoff. A paused working branch supplies research evidence, not accepted architecture; do not resume or solve it without a request.
 
-Narrative Engine Causality (legacy V2): Meta Engine → engine formalization/selection → Host Fiction, World Bible, target/context → Local Realization → simulation/instance. Host rules constrain it; import no outside lore. Sloth, Wrath, Chaos use this domain; infer no mode for other engines.
-
-Institutional Causality can run alone; Narrative Engine Causality needs no graduate/full Institutional Causality. They can compose: composition ≠ required sequence; legacy numbers ≠ hierarchy. Neither deprecates/back-defines the other. Academy Revise stays a working branch, not a required third stage/successor or automatic unification. Configurations stay source-bound.
+For HIP evaluation, read the HIP source and context-specific criteria. Do not invent criteria, turn them into a universal metric, or infer guaranteed historical change. Preserve actor agency; engines change conditions rather than predetermine outcomes. Do not import school-fiction assumptions, mandatory curricula, service obligations, or graduate demographics without scoped evidence.
 
 ## Ontology
 
@@ -44,7 +42,7 @@ Never force engines into one schema: primitives, states, paradoxes, governors, c
 
 Analyze relevant states, transitions, interfaces, actors, authority, constraints, causality, failures, HIP relations. Unless canon says otherwise: engine = mechanism; host = environment; lore = implementation state; story = possible output. Preserve confirmed typed edges and their scope. Interaction ≠ containment; co-occurrence proves neither dependency nor autonomy; composition ≠ subsystem/permanent coupling; genealogy/order/name ≠ hierarchy/origin. Multiple engines may approach one HIP without forming a composite. Unconfirmed edges are `UNKNOWN`.
 
-Greed's Governor is `Responsibility`: desire entails responsibility to the end. Greed Paradox explains its context, not a second Governor or universal invariant. Ring links to Greed in the documented configuration; Greed II, employment, Axe, Five Servants are implementation. Ring's formal `Catalyst` status, portability, benefits, count, and terminal branches remain open; `Infinite Rings` is not stable Ring canon. Chaos v3 is official; images are reference only.
+Engine classifications, Governor names, official-source selection, mode, interface status, and host-specific facts must come from their scoped source or author confirmation. Preserve the scope of corrections to older labels; never generalize an implementation or an open possibility into an engine invariant. Images supply no canon unless explicitly confirmed.
 
 ## Causality and audit
 

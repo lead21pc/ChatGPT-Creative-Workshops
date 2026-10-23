@@ -1,3 +1,14 @@
+# Thông báo trạng thái nguồn — Sloth
+
+**Vai trò hiện tại:** provenance của cấu trúc tài liệu trước restructuring; không còn là full specification/component owner hoạt động song song. Nội dung canon/Working/Placeholder/UNKNOWN không bị phủ định hoặc nâng trạng thái.
+
+**Owner hiện hành:** [nguồn thay thế về tổ chức tài liệu](COMPONENTS/Accommodation.md); [runtime](RUNTIME.md), [Host contract](HOST_CONTRACT.md), [open state](OPEN_STATE.md), [writer validation](WRITING_VALIDATION.md).
+
+Toàn bộ nội dung gốc nằm nguyên byte bên dưới để giữ provenance và các liên kết từ nguồn đóng băng. Không chuyển/sửa archive theo hard freeze của task. Các mục genealogy/đối chiếu lịch sử bên dưới vẫn được đọc đúng phạm vi lịch sử, không là nguồn mặc định cho cơ chế active.
+
+**SHA-256 của nội dung gốc:** `e8d2abacf2eb5b951e287db66ea1b1660032951acb7bca1e82a3601a76f79a0b`.
+
+<!-- BEGIN PRESERVED ORIGINAL -->
 # Accommodation (Working Draft)
 
 ## Trạng thái

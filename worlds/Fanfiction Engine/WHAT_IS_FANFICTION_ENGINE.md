@@ -1,118 +1,60 @@
-# Fanfiction Engine — Hệ này là gì và được dùng như thế nào?
+# Fanfiction Engine — định hướng và quan hệ cấp project
 
-**Trạng thái:** tài liệu giới thiệu theo mục đích và terminology đã được tác giả xác nhận.
-**Phạm vi:** giúp đọc đúng toàn hệ, platform và hai miền vận hành; không thay thế nguồn cơ chế cụ thể hoặc lấp các vùng `UNKNOWN`.
+**Vai trò:** nguồn sở hữu bản sắc toàn hệ và quan hệ kiến trúc cấp project, dùng lại tài liệu định hướng hiện có làm Project Core.
+**Phạm vi:** quan hệ cấp project theo xác nhận tác giả; cơ chế và nội dung từng miền vẫn thuộc nguồn scoped. Trạng thái/con trỏ hiện hành xem [Current State](00_META/controls/Fanfiction_Engine_Current_State.md).
 
-Đọc cùng [Current State](00_META/controls/Fanfiction_Engine_Current_State.md), [Institutional Causality Architecture](02_FANFICTION_ENGINE_ARCHITECTURE/INSTITUTIONAL_CAUSALITY/Institutional_Causality_Architecture.md), [Narrative Engine Causality Architecture](02_FANFICTION_ENGINE_ARCHITECTURE/NARRATIVE_ENGINE_CAUSALITY/Narrative_Engine_Causality_Architecture.md) và nguồn engine/host liên quan.
+## 1. Toàn hệ và platform
 
-## 1. Toàn hệ và platform bên trong
+**Fanfiction Engine là toàn hệ mô phỏng fanfiction/daydream của tác giả. The Academy là platform bên trong toàn hệ.** Tên project trước đây là The Academy Project.
 
-**Fanfiction Engine là toàn hệ mô phỏng fanfiction/daydream của tác giả. The Academy là platform nội bộ của hệ đó.**
+Đầu ra chính là thay đổi trạng thái nhân quả và trajectory trong mô phỏng của tác giả. Văn bản có thể biểu đạt kết quả; nó không phải đầu ra bắt buộc.
+
+The Academy platform có thể tham gia hợp thức hóa các sự kiện xuyên fiction/reality theo source/configuration mà không tự kéo theo toàn bộ runtime thể chế. Phân biệt này không tự xác lập cơ chế, capability, authority hoặc điều kiện chuyển tiếp cụ thể; những phần chưa externalize vẫn là `UNKNOWN`.
 
 ```text
 FANFICTION ENGINE != THE ACADEMY PLATFORM
+THE ACADEMY PLATFORM != FULL INSTITUTIONAL RUNTIME
 ```
 
-Project trước đây được gọi là The Academy Project. Tên project hiện hành là Fanfiction Engine; tên The Academy tiếp tục được dùng cho platform và các cơ chế trong fiction theo nguồn.
+Host Fiction là môi trường fiction được chọn cho application. Việc áp dụng engine không biến host thành subsystem do engine sở hữu. Host rules tiếp tục ràng buộc realization; engine tạo điều kiện, actor giữ agency.
 
-The Academy giúp hợp thức hóa những operation như actor/HIP rời Host Fiction, đi qua môi trường xuyên fiction/reality, tương tác, vắng mặt khỏi timeline rồi quay lại, hoặc những causal transitions khác mà source/configuration cho phép. Platform không tự cấp mọi capability hoặc authority cho mọi actor. Những điều kiện chưa externalize vẫn để `UNKNOWN`.
+## 2. Hai miền vận hành và cấu hình kết hợp
 
-Host Fiction là fiction nền được chọn cho một lần mô phỏng: tác phẩm có sẵn, fan-created setting hoặc fiction gốc. Host vẫn cung cấp nhân vật, lịch sử, thể chế, metaphysics, magic, technology và các luật cục bộ của nó.
-
-```text
-ENGINE APPLIES TO HOST
-!= ENGINE CONTAINS HOST
-
-HOST FICTION != SUBSYSTEM OWNED BY FANFICTION ENGINE
-```
-
-## 2. Đầu ra chính là thay đổi trạng thái và trajectory
-
-Fanfiction Engine chủ yếu phục vụ mô phỏng trong đầu khi tác giả đọc, xem hoặc chơi một Host Fiction. Đầu ra quan trọng là trạng thái nhân quả mới của actor, quan hệ hoặc target, rồi xem những thay đổi đó tác động thế nào lên diễn tiến của host. Một đoạn văn, chương truyện hay kịch bản có thể biểu đạt kết quả; sinh văn bản không phải đầu ra chính.
-
-Một ví dụ trong cấu hình đầy đủ có thể là:
-
-```text
-actor baseline A0
-→ trải nghiệm, tri thức, khả năng, quan hệ và lựa chọn mới
-→ actor state A1
-→ gặp một event trong Host Fiction
-→ phản ứng và hệ quả có thể khác baseline
-```
-
-A1 vẫn có continuity với A0. Engine thay đổi điều kiện và áp lực; actor giữ agency. Không chọn sẵn kết quả rồi dựng ngược nguyên nhân.
-
-## 3. Hai miền vận hành của cùng hệ
-
-| Tên hiện hành | Nhãn lịch sử |
+| Miền | Nguồn sở hữu cơ chế và nội dung |
 | --- | --- |
-| Institutional Causality | V1.5 |
-| Narrative Engine Causality | V2 |
-| Academy Revise — working branch | V2.5 |
+| Institutional Causality | [Institutional Causality Architecture](02_FANFICTION_ENGINE_ARCHITECTURE/INSTITUTIONAL_CAUSALITY/Institutional_Causality_Architecture.md) và các nguồn scoped được dẫn trong đó |
+| Narrative Engine Causality | [Narrative Engine Causality Architecture](02_FANFICTION_ENGINE_ARCHITECTURE/NARRATIVE_ENGINE_CAUSALITY/Narrative_Engine_Causality_Architecture.md) và nguồn riêng của từng engine/implementation |
 
-Các nhãn số cũ ghi lại quá trình phát triển; chúng không đặt thứ tự thực thi hoặc hierarchy hiện hành.
-
-Institutional Causality có thể chạy không cần Narrative Engine Causality. Narrative Engine Causality không cần một graduate hoặc toàn bộ Institutional Causality làm điều kiện tiên quyết. Hai miền có thể kết hợp khi source/configuration cho phép; chi tiết của từng cách kết hợp vẫn phải có nguồn.
+Institutional Causality có thể chạy không cần Narrative Engine Causality. Narrative Engine Causality có thể chạy không cần graduate hoặc toàn bộ Institutional Causality. Hai miền có thể kết hợp khi source/configuration cho phép.
 
 ```text
 COMPOSITION != DEPENDENCY
 COMPOSITION != REQUIRED SEQUENCE
-LEGACY VERSION NUMBER != EXECUTION ORDER
+LEGACY VERSION ORDER != REQUIRED RUNTIME ORDER
 ```
 
-## 4. Institutional Causality
+Quan hệ cấp project này không cấp interface, shared schema hoặc handoff mặc định. Với cấu hình kết hợp, đọc nguồn của từng miền và quan hệ cụ thể cần dùng; phần chưa được xác nhận giữ nguyên `UNKNOWN`. Cấu trúc riêng của một Narrative Engine không trở thành mẫu bắt buộc cho engine khác. Quy mô semantic không được suy từ kích thước file hoặc kiến trúc quản của project khác.
 
-Đây là miền nhân quả thể chế của Fanfiction Engine, vận hành qua The Academy platform và các thành phần theo nguồn: ban, faction, class, Teaching, các institutional mechanisms và tương tác HIP-HIP.
+[HIP](01_HIP/Historical_Influence_Potential.md) sở hữu định nghĩa cổng đánh giá và giới hạn của nó. Engine-specific sources sở hữu cơ chế; implementation sources sở hữu realization/host state cụ thể. Đường đọc xem [Router](00_META/controls/Fanfiction_Engine_Source_Router_v1.1.md).
 
-Các thành phần này có thể đóng vai causal filters hoặc nguồn tạo áp lực/trạng thái độc lập theo source. Một tên faction không tự chứng minh rằng nó là Narrative Engine. HIP không xoay quanh một protagonist trung tâm; khác biệt giữa các HIP cũng có thể tạo hệ quả mà không cần staff hay engine viết sẵn xung đột.
+## 3. Kiến trúc hiện hành, nhánh thử nghiệm và lịch sử
 
-Cấu hình đầy đủ đã externalize gồm:
+Hai miền vận hành hiện hành không phải các bước bắt buộc của một version ladder. Mapping nhãn lịch sử nằm ở Current State.
 
-```text
-HIP selection / recruitment / consent khi applicable
-→ The Academy
-→ institutional engines / Teaching / peer-HIP interaction
-→ choices, exposure, adaptation
-→ graduation
-→ RETURN TO ORIGIN
-```
+[Academy Revise](02_FANFICTION_ENGINE_ARCHITECTURE/BRANCHES/Academy_Revise_Branch.md) là hướng nghiên cứu kết hợp/causal continuum, hiện `PAUSED WORKING BRANCH` theo chỉ dẫn tác giả trong lần revamp này. Nó không phải kiến trúc thống nhất đã được chấp thuận, successor bắt buộc hoặc hướng đã bị phủ định. Trạng thái tạm dừng không sửa nội dung working model hay giải quyết các câu hỏi handoff trong tài liệu nhánh.
 
-Trong cấu hình đó, return to origin kết thúc miền vận hành thể chế trước tốt nghiệp; các operation hậu return được xét riêng. Sơ đồ không buộc mọi lần dùng Institutional Causality phải đi trọn một school arc hay transformation pipeline.
+[Genealogy](06_ENGINE_GENEALOGY/engine_genealogy_and_development_updated.md) ghi quá trình hình thành; nó không xác lập hierarchy hiện hành. [Quyết định có ngày tháng](The_Academy_Authorial_Decisions_2026-09-28.md), baseline, handoff và [archive](source_archive/README.md) giữ provenance và terminology lịch sử. Xác nhận tác giả có phạm vi vẫn giữ thẩm quyền trong phạm vi đó; tên/path cũ không tự làm nội dung thành sai.
 
-Trong một configuration, The Academy cùng Institutional Causality cũng có thể cung cấp lời giải thích nhân quả/platform cho historical absence hoặc timeline skip. Cơ chế và điều kiện cụ thể vẫn theo source; không tự bổ sung cho trường hợp chưa externalize.
+## 4. Ranh giới trách nhiệm
 
-## 5. Narrative Engine Causality
+| Nguồn | Trách nhiệm |
+| --- | --- |
+| Tài liệu định hướng này | Bản sắc toàn hệ/platform và quan hệ cấp project |
+| [CI](00_META/controls/Fanfiction_Engine_CI_v2.0.md) | Hành vi model, thẩm quyền và kỷ luật tri thức |
+| [Router](00_META/controls/Fanfiction_Engine_Source_Router_v1.1.md) | Chọn nguồn gần nhất đủ cho yêu cầu |
+| [Current State](00_META/controls/Fanfiction_Engine_Current_State.md) | Con trỏ active, mapping nhãn và trạng thái hiện hành |
+| [Anti-Drift Kernel](12_ANTI_DRIFT/Fanfiction_Engine_Anti_Drift_Kernel.md) | Các lỗi diễn giải lặp lại cần ngăn |
+| Nguồn scoped | Kiến trúc miền, HIP, cơ chế engine và implementation trong phạm vi riêng |
+| [README](README.md) | Điều hướng repository |
 
-Đây là miền định nghĩa/formalization và áp dụng Narrative Engine vào một host, target và context cụ thể.
-
-```text
-Narrative Engine definition / formalization
-+ Host Fiction
-+ World Bible / host rules
-+ target / context
-→ Local Realization
-→ simulation
-→ changed causal state / trajectory; possible Narrative Instance
-```
-
-Một application có thể chạy độc lập khi source/configuration cho phép. Target không bắt buộc là graduate của Institutional Causality. Áp lực engine có thể thay đổi điều kiện, quan hệ hoặc trajectory mà không đi qua toàn bộ quá trình học tại The Academy.
-
-World Bible ràng buộc những gì có thể xảy ra trong host. Cùng engine có thể hiện thực hóa rất khác trong những host khác nhau, nhưng không tự đổi causal identity hoặc xóa host rules. Không ép Greed, Sloth, Wrath, Chaos, Lust hay engine tương lai vào một mẫu chung.
-
-## 6. HIP và agency
-
-Historical Influence Potential (`HIP`) là cổng đánh giá mở dùng tiêu chí từ context. HIP không tự định nghĩa potential, influence, significance hay qualification; không phải power level, morality score, protagonist marker hoặc bảo đảm rằng target sẽ thay đổi lịch sử.
-
-Actor chỉ dùng thông tin, khả năng và authority mà nguồn/trạng thái mô phỏng cho phép. Engine có thể tạo điều kiện; actor có thể lựa chọn, thích nghi, chống lại hoặc tạo hệ quả ngoài dự kiến.
-
-## 7. Academy Revise
-
-[Academy Revise](02_FANFICTION_ENGINE_ARCHITECTURE/BRANCHES/Academy_Revise_Branch.md) tiếp tục là `WORKING BRANCH`. Nó nghiên cứu cách kết hợp hai miền mà vẫn giữ causal identity riêng. Nó không phải giai đoạn thứ ba bắt buộc, successor theo số version hoặc sự thống nhất ontology đã được chấp thuận.
-
-## 8. Cách dùng và giới hạn nguồn
-
-Một session có thể bắt đầu từ actor, target, điều kiện hoặc câu hỏi trong Host Fiction. Tác giả chọn miền/engine phù hợp, áp dụng những quy tắc đã có nguồn, rồi tiếp tục mô phỏng state và hệ quả trong đầu. Host Fiction cung cấp phần lớn hình ảnh, thoại, setting và event; không cần tái sản xuất toàn bộ thành văn bản.
-
-Repository là phần được externalize của mô hình tác giả. Nội dung chưa được ghi ra không đồng nghĩa không tồn tại; model thiếu nguồn không được tự hoàn thiện graph. Genealogy, quyết định có ngày tháng và archive giữ terminology của thời điểm chúng được ghi. Dùng Current State để ánh xạ tên hiện hành.
-
-Các từ engine, module, interface và architecture giữ nghĩa trong nguồn của project; không tự nhập một kiến trúc software hoặc hierarchy vào hệ. Trạng thái repository và hành vi ChatGPT Project khi chạy là hai lớp bằng chứng riêng.
+Các vai trò này không tạo thêm tầng thẩm quyền canon. Chỉ tác giả quyết định canon. Repository là phần externalize của mô hình tác giả; thiếu nội dung không chứng minh nội dung không tồn tại. Kiểm chứng repository và hành vi ChatGPT Project thực tế là hai lớp bằng chứng riêng.

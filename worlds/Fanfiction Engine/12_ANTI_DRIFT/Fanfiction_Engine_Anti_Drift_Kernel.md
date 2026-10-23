@@ -29,51 +29,23 @@ EXISTENCE-ONLY
 
 Một chi tiết chỉ được xác nhận là đã tồn tại không tự cung cấp cơ chế, tiêu chí, phân bố, outcome hoặc dữ liệu để suy rộng.
 
-## 2. Bản sắc Fanfiction Engine và The Academy platform
+## 2. Bảo vệ ranh giới cấp project
 
-Fanfiction Engine là toàn hệ fanfiction/daydream simulation. The Academy là platform nội bộ hợp thức hóa các chuyển tiếp xuyên fiction/reality theo source/configuration; platform không đồng nhất với project.
+Đọc [tài liệu định hướng](../WHAT_IS_FANFICTION_ENGINE.md) để lấy quan hệ cấp project; đọc [Current State](../00_META/controls/Fanfiction_Engine_Current_State.md) để biết con trỏ/trạng thái. Kernel giữ các lỗi suy diễn cần ngăn, không chép lại kiến trúc hoặc snapshot.
 
 ```text
 FANFICTION ENGINE != THE ACADEMY PLATFORM
-```
-
-Historical Influence Potential (HIP) là cổng đánh giá mở dùng tiêu chí từ context.
-
-```text
-HIP
-≠ universal score
-≠ power scale
-≠ morality scale
-≠ protagonist marker
-≠ guaranteed historical change
-```
-
-Institutional Causality (legacy: V1.5) là miền nhân quả thể chế của Fanfiction Engine, dùng The Academy và các causal filters theo source; không xoay quanh một protagonist hoặc full school arc bắt buộc.
-
-```text
-RETURN TO ORIGIN
-= TERMINUS OF THE DOCUMENTED FULL PRE-GRAD CONFIGURATION
-```
-
-Narrative Engine Causality (legacy: V2) là miền formalization/application của Narrative Engine theo Host Fiction, World Bible, target và context. Nó có thể chạy không cần graduate hoặc toàn bộ Institutional Causality.
-
-```text
-Narrative Engine
-≠ story
-≠ trope
-≠ prompt
-≠ fixed plot
-≠ one specific implementation
-```
-
-Institutional Causality có thể chạy không cần Narrative Engine Causality; hai miền có thể kết hợp theo source/configuration. Sự kết hợp không tự tạo dependency hoặc thứ tự bắt buộc.
-
-```text
-Institutional Causality ≠ deprecated because Narrative Engine Causality exists
-Narrative Engine Causality ≠ authority to redefine Institutional Causality retroactively
+THE ACADEMY PLATFORM != FULL INSTITUTIONAL RUNTIME
+COMPOSITION != DEPENDENCY
 COMPOSITION != REQUIRED SEQUENCE
 LEGACY VERSION NUMBER / GENEALOGY != CURRENT HIERARCHY
 ```
+
+Bảo vệ này ngăn việc đồng nhất toàn hệ với platform hoặc biến nhãn version/sơ đồ cấu hình thành điều kiện thực thi bắt buộc. Nó không xác lập cơ chế platform mới. Không lấy việc một miền tồn tại để deprecate hoặc định nghĩa ngược miền kia.
+
+HIP không được collapse thành universal score, power/morality scale, protagonist marker hoặc bảo đảm lịch sử sẽ đổi; đọc [nguồn HIP](../01_HIP/Historical_Influence_Potential.md) và tiêu chí context.
+
+Narrative Engine không được collapse thành story, trope, prompt, fixed plot hoặc một implementation riêng.
 
 ## 3. Quan hệ và cấu trúc
 
