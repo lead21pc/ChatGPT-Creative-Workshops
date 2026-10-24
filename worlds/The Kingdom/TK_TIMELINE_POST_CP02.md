@@ -2,9 +2,13 @@
 
 ```text
 SOURCE_ID: TK-TL-POST02
+RUNTIME_ROLE: CURRENT_SOURCE
 ROLE: POST-CHECKPOINT MATERIAL
 STATUS: ACTIVE / MIXED EPISTEMIC STATUS
 SCOPE: Sau reveal CP2; premise logistics chưa có số checkpoint và phụ lục simulation lịch sử, không là baseline phản ứng current. Không xác định CP3.
+AUTHORITY_BOUNDARY: Chỉ state/claim trong SCOPE và theo epistemic status từng mục; ACTIVE không chấp nhận mọi proposal hoặc lịch sử simulation.
+CROSS_OWNER_BOUNDARY: TK-TL-CP02, TK-DOM-GEO, TK-DOM-INFRA, TK-METHOD-FICTION; chỉ giao diện/phạm vi liên quan, không chuyển ownership hoặc tạo hard dependency.
+LOAD_MODE: FULL_FILE
 ```
 
 ## 1. Phạm vi và temporal boundary

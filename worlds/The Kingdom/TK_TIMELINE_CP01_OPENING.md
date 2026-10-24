@@ -2,9 +2,13 @@
 
 ```text
 SOURCE_ID: TK-TL-CP01
+RUNTIME_ROLE: CURRENT_SOURCE
 ROLE: CHECKPOINT
 STATUS: ACTIVE
 SCOPE: Breakpoint mở cửa; pre-state tối thiểu, direct delta và boundary state CP1.
+AUTHORITY_BOUNDARY: Chỉ state/claim trong SCOPE và theo epistemic status từng mục; ACTIVE không chấp nhận mọi proposal hoặc lịch sử simulation.
+CROSS_OWNER_BOUNDARY: TK-DOM-GEO, TK-DOM-DELEGATION, TK-DOM-INFRA, TK-TL-I01-02; chỉ giao diện/phạm vi liên quan, không chuyển ownership hoặc tạo hard dependency.
+LOAD_MODE: FULL_FILE
 ```
 
 ## 1. Identity và phạm vi

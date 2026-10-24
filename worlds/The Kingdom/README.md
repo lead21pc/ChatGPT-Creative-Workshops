@@ -10,15 +10,22 @@
 The Kingdom/
 ├─ README.md
 ├─ THE_KINGDOM_CHECKPOINT_STATE_INDEX.md
+├─ TK_CURRENT_SOURCE_INDEX.md
+├─ TK_RECONCILIATION_RECORD.md
+├─ TK_OPEN_ISSUES_CURRENT.md
+├─ MANIFEST.md
 ├─ TK_TIMELINE_*.md
 ├─ TK_METHOD_*.md
 ├─ TK_DOMAIN_*.md
 ├─ controls/
+│  └─ anti_drift/
+├─ tools/
+├─ tests/
 └─ Source_archive/
 ```
 
 - Active root là owner current trong scope và theo nhãn từng phần; ACTIVE không biến mọi draft/proposal thành canon.
-- `controls/` giữ CI, anti-drift, workflow và câu hỏi kiểm tra. CONTROL != LORE SOURCE. Chưa xác định CI nào đang cài trong ChatGPT Project; vị trí tệp không chứng minh activation/runtime.
+- `controls/` giữ CI, anti-drift, workflow và câu hỏi kiểm tra. CONTROL != LORE SOURCE. CI repository hiện hành là TK CI v1.0; trạng thái CI đang cài trong live Project chưa được kiểm chứng.
 - `Source_archive/` là lịch sử/provenance chỉ đọc sau migration; không current authority, không fallback, không tự nạp. Không sửa ngược lịch sử để khớp current.
 
 ```text
@@ -29,7 +36,7 @@ Chỉ đọc khi tác giả yêu cầu history/provenance/audit/recovery hoặc 
 
 ## Nguồn active và điều hướng
 
-Bắt đầu từ [timeline index](THE_KINGDOM_CHECKPOINT_STATE_INDEX.md) khi câu hỏi có thời điểm. Bảng sau chỉ điều hướng owner, không là registry hoặc bảng xếp authority.
+Bắt đầu từ [current source index](TK_CURRENT_SOURCE_INDEX.md); khi thời gian quan trọng dùng thêm [timeline index](THE_KINGDOM_CHECKPOINT_STATE_INDEX.md). Bảng sau chỉ điều hướng owner, không là registry hoặc bảng xếp authority.
 
 | SOURCE_ID | Tệp | Vai trò và phạm vi |
 |---|---|---|
@@ -69,4 +76,40 @@ WORLD STATE là trục cấu trúc. POV dùng **ACTOR + TIME + AVAILABLE INFORMA
 
 Giữ riêng CANON, USER-PROVIDED STATE, DECIDED, PROPOSAL, UNDER CONSIDERATION, INFERENCE, UNKNOWN, STALE, CONFLICTED. Method POV còn thiết kế chưa accepted; luật còn reset/recovery ngoại nhân có phạm vi; itinerary chưa là lịch sử. Luật nội quốc chưa thiết kế; handoff báo prototype Tree nhưng repository chưa có asset để kiểm chứng.
 
-Migration local không cài CI, không cập nhật ChatGPT Project/Library và không chứng minh runtime. README chỉ định hướng; source chi tiết và xác nhận mới hơn của tác giả giữ thẩm quyền tương ứng. Không có Router, Manifest, registry hay archive promotion trong layout này.
+Migration local không cài CI, không cập nhật ChatGPT Project/Library và không chứng minh runtime. README chỉ định hướng; source chi tiết và xác nhận mới hơn của tác giả giữ thẩm quyền tương ứng. Stack quản lý v1.0 bên dưới thay giới hạn không-Router của migration trước; không có archive promotion hoặc registry ontology.
+
+
+## Stack quản lý v1.0
+
+Tất cả control v1.0 dưới đây có Status: ACTIVE trong repository; REPOSITORY ACTIVE != LIVE CHATGPT PROJECT DEPLOYED. Task này không deploy hoặc xác nhận runtime retrieval/compliance.
+
+- [TK CI v1.0](controls/TK_CI_v1.0.md): kernel tự chứa semantics Global Native v9.0; FTH CI 3.4 chỉ là structural reference, không runtime dependency.
+- [TK Router v1.0](controls/TK_ROUTER_v1.0.yaml): default cho mọi current-dependent task; generic task tự đủ có thể bỏ qua. CI sở hữu entry, Router sở hữu chọn/nạp/đối chiếu owner và overlay, không tự chọn CI runtime.
+- [Authoring Pipeline](controls/TK_AUTHORING_PIPELINE_v1.0.md): biến đổi được yêu cầu và điểm dừng, không source authority.
+- [Glossary](controls/TK_CONTROL_VOCABULARY_GLOSSARY_v1.0.md): hỗ trợ viết/đọc, không prerequisite runtime.
+- Chín overlay trong `controls/anti_drift/`: Temporal, Actor, Relation, Institution, IRL, Economy, Belief, Crisis, Narrative. Chỉ chọn khi semantic applicability quyết định task, highest ACTIVE numeric; không keyword-only hoặc candidate lifecycle.
+- [Current source index](TK_CURRENT_SOURCE_INDEX.md) tách [temporal index](THE_KINGDOM_CHECKPOINT_STATE_INDEX.md); [reconciliation](TK_RECONCILIATION_RECORD.md) giữ quyết định/migration và coverage; [open issues](TK_OPEN_ISSUES_CURRENT.md) giữ unresolved, không tạo canon.
+- [Manifest](MANIFEST.md) nhận current paths/hashes và nêu bảo trì. `tools/validate_kingdom_package.py` chỉ kiểm; `--write` chỉ vùng generated catalog/hash, không source text hoặc lore.
+
+```text
+PROMPT_ROUTE_ONLY → BOOTSTRAP_GATE → OWNER_GATE → TEMPORAL_GATE
+→ SOURCE_LOAD → RECONCILIATION → ANTI_DRIFT_OVERLAY_GATE
+→ PROMPT_EXECUTION → PRE_RESPONSE_CHECK
+```
+
+Header owner gồm SOURCE_ID, RUNTIME_ROLE, ROLE, STATUS, SCOPE, AUTHORITY_BOUNDARY, CROSS_OWNER_BOUNDARY, LOAD_MODE. V1.0 chỉ FULL_FILE; future actor/event owner cần material và scoped admission, không file trống. FULL MANAGEMENT STACK != FTH CLONE: TK giữ persistent owner + temporal delta + actor information, không AFM/country/module assumptions của FTH.
+
+## Bảo trì và bằng chứng
+
+Từ repository root:
+
+```powershell
+python -B "worlds/The Kingdom/tools/validate_kingdom_package.py" --check
+python -B -m unittest discover -s "worlds/The Kingdom/tests"
+```
+
+Mặc định tool chỉ đọc. Khi đã xem lỗi stale và kiểm cấu trúc, `--write` chỉ cập nhật generated catalog/hash rồi phải chạy `--check` lại. PyYAML dùng để đọc YAML (môi trường tác vụ có sẵn 6.0.3). Numeric version: 1.9 < 1.10; chỉ ACTIVE được chọn, archived/superseded/retired hoặc status khác không đủ điều kiện.
+
+Tests kiểm structural contracts, dependency resolution và mutation failures; sáu tình huống trong `tests/control_cases.json` là protocol chưa chạy model, không semantic PASS qua substring. Không current build input từ archive; rollback dùng Git history.
+
+Bốn CI và anti-drift cũ được thay sau coverage, lưu tại `Source_archive/controls_legacy/`. Workflow seed nhiều paracosm và bộ câu hỏi stress-test giữ độc lập, không cạnh tranh CI/Router. Archive cũ giữ byte, không chỉnh wording cho giống stack mới.

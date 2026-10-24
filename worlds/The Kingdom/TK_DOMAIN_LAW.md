@@ -2,9 +2,13 @@
 
 ```text
 SOURCE_ID: TK-DOM-LAW
+RUNTIME_ROLE: CURRENT_SOURCE
 ROLE: DOMAIN
 STATUS: ACTIVE / RESET BASELINE + SCOPED RECOVERY
 SCOPE: Luật V2 đang tái thiết kế; Luật Ngoại Nhân chỉ áp dụng ngoại nhân đã bị bắt.
+AUTHORITY_BOUNDARY: Chỉ state/claim trong SCOPE và theo epistemic status từng mục; ACTIVE không chấp nhận mọi proposal hoặc lịch sử simulation.
+CROSS_OWNER_BOUNDARY: TK-DOM-COUNTERINTEL, TK-DOM-LANGUAGE-RELIGION, TK-TL-CP02; chỉ giao diện/phạm vi liên quan, không chuyển ownership hoặc tạo hard dependency.
+LOAD_MODE: FULL_FILE
 ```
 
 ## Phạm vi hiện hành và provenance

@@ -2,9 +2,13 @@
 
 ```text
 SOURCE_ID: TK-TL-I01-02
+RUNTIME_ROLE: CURRENT_SOURCE
 ROLE: INTERVAL
 STATUS: ACTIVE
 SCOPE: Sau boundary CP1 đến ngay trước CP2; progression, phản ứng và state tích lũy có nguồn.
+AUTHORITY_BOUNDARY: Chỉ state/claim trong SCOPE và theo epistemic status từng mục; ACTIVE không chấp nhận mọi proposal hoặc lịch sử simulation.
+CROSS_OWNER_BOUNDARY: TK-TL-CP01, TK-TL-CP02, TK-METHOD-POV; chỉ giao diện/phạm vi liên quan, không chuyển ownership hoặc tạo hard dependency.
+LOAD_MODE: FULL_FILE
 ```
 
 ## 1. Boundary

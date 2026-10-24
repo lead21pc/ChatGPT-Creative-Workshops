@@ -4,7 +4,7 @@
 SOURCE_ID: TK-NAV-TIMELINE
 ROLE: NAVIGATION
 STATUS: ACTIVE
-SCOPE: Điều hướng temporal owner, runtime/method và domain; không sao chép timeline hoặc tạo canon.
+SCOPE: Chỉ điều hướng temporal boundary và nguồn liên quan; discovery toàn package thuộc TK_CURRENT_SOURCE_INDEX.md, không sao chép timeline hoặc tạo canon.
 ```
 
 ## 1. Cách đọc và thẩm quyền
@@ -21,7 +21,7 @@ Repository chỉ externalize một phần paracosm. `INDEX != CANON OWNER`, `IND
 
 Giữ `CANON`, `USER-PROVIDED STATE`, `DECIDED`, `INFERENCE`, `PROPOSAL`, `UNDER CONSIDERATION`, `UNKNOWN`, `STALE`, `CONFLICTED`. Gap mặc định là `REPOSITORY GAP — author state not established here`, không suy thành tác giả chưa biết. `AUTHOR UNKNOWN`, `AUTHOR-KNOWN / REPO-UNKNOWN` và `REPO-KNOWN / SESSION-UNKNOWN` là các tình huống khác nhau; mở nguồn trước khi kết luận thiếu.
 
-[README](README.md) giữ định hướng; [CI — epistemic state](controls/The_Kingdom_CI_English_Compact_Revised.md#canon-and-epistemic-state) là tham chiếu kiểm soát, không chứng minh CI đang cài ở Project.
+[README](README.md) giữ định hướng; [CI — epistemic state](controls/TK_CI_v1.0.md#tác-giả-nguồn-và-canon) là tham chiếu kiểm soát, không chứng minh CI đang cài ở Project.
 
 ## 2. Temporal navigation
 
@@ -36,7 +36,7 @@ CP1 → INTERVAL CP1–CP2 (≈ 2 YEARS) → CP2 → POST-CP2 MATERIAL
 | TK-TL-CP02 | [CP2 — đánh chặn / reveal](TK_TIMELINE_CP02_REVEAL.md) | Precondition tối thiểu → sự kiện / direct delta → immediate boundary. |
 | TK-TL-POST02 | [Material hậu CP2](TK_TIMELINE_POST_CP02.md) | Sau reveal, chưa xác định end; suy luận phản ứng và premise tuyến Nga. Không gán CP3. |
 
-Khoảng ≈ 2 năm được giữ trong [owner interval](TK_TIMELINE_INTERVAL_CP01_CP02.md#1-boundary), không xác định ngày từng event. [Method hiện hành](TK_METHOD_FICTION.md#xxix-temporal-ownership-và-runtime-xuyên-timeline) giữ kế thừa state và cấm knowledge tương lai chảy ngược. [Handoff gốc §4.1–4.2](Source_archive/context/two_paracosms_the_kingdom_vs_the_academy.md#41-checkpoint-model) chỉ là provenance lịch sử của material đã triết xuất.
+Khoảng ≈ 2 năm được giữ trong [owner interval](TK_TIMELINE_INTERVAL_CP01_CP02.md#1-boundary), không xác định ngày từng event. [Method hiện hành](TK_METHOD_FICTION.md#xxix-temporal-ownership-và-runtime-xuyên-timeline) giữ kế thừa state và cấm knowledge tương lai chảy ngược. Handoff gốc §4.1–4.2 (provenance lịch sử: `Source_archive/context/two_paracosms_the_kingdom_vs_the_academy.md#41-checkpoint-model`) chỉ là provenance lịch sử của material đã triết xuất.
 
 ## 3. CP1 và interval
 
@@ -75,10 +75,14 @@ Không có MC trung tâm, file mỗi POV hoặc ontology tree cho actor. World t
 | [Phản gián](TK_DOMAIN_COUNTERINTELLIGENCE.md) | [Proxy/attribution §VII](TK_DOMAIN_COUNTERINTELLIGENCE.md#vii-phản-gián-chủ-động-đối-với-proxy-và-khủng-bố), [gaps §XI](TK_DOMAIN_COUNTERINTELLIGENCE.md#xi-những-lỗ-hổng-còn-cần-quyết-định). Không đặt toàn bộ capability vào ngày CP1/CP2. |
 | [POT](TK_DOMAIN_POT.md), [ngôn ngữ/tôn giáo](TK_DOMAIN_LANGUAGE_RELIGION.md), [Law](TK_DOMAIN_LAW.md) | Persistent domain; migration giữ nhãn và phạm vi; Luật Ngoại Nhân mới triết xuất xem owner Law, không xác nhận thiết kế hoàn thiện hoặc CI đang cài. |
 
-[Handoff phân tích gốc](Source_archive/context/two_paracosms_the_kingdom_vs_the_academy.md#end-state) vẫn là analysis/snapshot; [anti-drift](controls/modular_engine_concept_anti_drift.md) không tự quyết định chronology. Câu hỏi trong [sứ đoàn](TK_DOMAIN_OPENING_DELEGATION.md) không phải transcript hoặc lịch sử; [bộ stress-test LLM](controls/TK_WORLDBUILDING_STRESS_TEST.md) thuộc controls và chưa chạy trong migration này.
+Handoff phân tích gốc (provenance lịch sử: `Source_archive/context/two_paracosms_the_kingdom_vs_the_academy.md#end-state`) vẫn là analysis/snapshot; [anti-drift](controls/anti_drift/TK_Anti_Drift_State_Relation_Architecture_v1.0.md) không tự quyết định chronology. Câu hỏi trong [sứ đoàn](TK_DOMAIN_OPENING_DELEGATION.md) không phải transcript hoặc lịch sử; [bộ stress-test LLM](controls/TK_WORLDBUILDING_STRESS_TEST.md) thuộc controls và chưa chạy trong migration này.
 
 ## 7. Ranh giới archive
 
 Index chỉ điều hướng, không thay nguồn chi tiết. Record trong `Source_archive/` là provenance cho material đã triết xuất: không tự nạp, không current authority, không fallback. Khi active source thiếu, giữ UNKNOWN/repository gap, không phục hồi lore cũ.
 
 Chức năng tác giả và CP3 candidate xem [method](TK_METHOD_FICTION.md#xxxi-chức-năng-nhận-thức-của-các-mốc); candidate không là mốc timeline accepted.
+
+## Current management
+
+Discovery toàn package dùng [current source index](TK_CURRENT_SOURCE_INDEX.md). Index này chỉ giữ temporal navigation; record/open issues/control selection thuộc stack v1.0, không nhập vào timeline ownership.

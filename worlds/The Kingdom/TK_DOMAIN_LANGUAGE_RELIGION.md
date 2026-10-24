@@ -2,9 +2,13 @@
 
 ```text
 SOURCE_ID: TK-DOM-LANGUAGE-RELIGION
+RUNTIME_ROLE: CURRENT_SOURCE
 ROLE: DOMAIN / DESIGN PHILOSOPHY
 STATUS: ACTIVE / CONCEPTUAL BASELINE
 SCOPE: Universal Language, thần tính, World Tree và triết lý; không xác nhận quyền tiếp cận.
+AUTHORITY_BOUNDARY: Chỉ state/claim trong SCOPE và theo epistemic status từng mục; ACTIVE không chấp nhận mọi proposal hoặc lịch sử simulation.
+CROSS_OWNER_BOUNDARY: TK-DOM-POT, TK-DOM-DELEGATION, TK-DOM-LAW; chỉ giao diện/phạm vi liên quan, không chuyển ownership hoặc tạo hard dependency.
+LOAD_MODE: FULL_FILE
 ```
 
 ## Phạm vi tài liệu

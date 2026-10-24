@@ -2,9 +2,13 @@
 
 ```text
 SOURCE_ID: TK-TL-CP02
+RUNTIME_ROLE: CURRENT_SOURCE
 ROLE: CHECKPOINT
 STATUS: ACTIVE
 SCOPE: Vụ thử nước, đánh chặn, attribution và military/mage reveal; boundary tức thời, không sở hữu phản ứng nhiều ngày sau.
+AUTHORITY_BOUNDARY: Chỉ state/claim trong SCOPE và theo epistemic status từng mục; ACTIVE không chấp nhận mọi proposal hoặc lịch sử simulation.
+CROSS_OWNER_BOUNDARY: TK-TL-I01-02, TK-TL-POST02, TK-DOM-INFRA, TK-DOM-COUNTERINTEL; chỉ giao diện/phạm vi liên quan, không chuyển ownership hoặc tạo hard dependency.
+LOAD_MODE: FULL_FILE
 ```
 
 > Phân loại giữ riêng: **CANON / USER-PROVIDED STATE**, **DECIDED**, **PHƯƠNG ÁN THIẾT KẾ**, **HỆ QUẢ SUY LUẬN**, **UNKNOWN**. ACTIVE là vai trò source hiện hành; không có nghĩa mọi dàn dựng hoặc kết quả đã được hoàn thiện.

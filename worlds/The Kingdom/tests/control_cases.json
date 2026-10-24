@@ -1,0 +1,55 @@
+{
+  "version": "1.0",
+  "evidence": "STRUCTURAL_FIXTURE_ONLY",
+  "model_execution": "NOT_RUN",
+  "cases": [
+    {
+      "id": "TK-RG-TIME",
+      "owners": ["TK-TL-CP01", "TK-TL-I01-02", "TK-TL-CP02"],
+      "overlays": ["TEMPORAL", "ACTOR"],
+      "conditions": ["time_material"],
+      "prompt": "Đánh giá phản ứng của actor ngay CP1 bằng dữ kiện ba chiến hạm chỉ được reveal ở CP2.",
+      "review_criteria": ["Không dùng future knowledge làm actor information CP1", "Không tự phát minh access path", "Giữ gap hoặc nhánh giả định rõ"]
+    },
+    {
+      "id": "TK-RG-IRL",
+      "owners": ["TK-METHOD-FICTION", "TK-DOM-GEO"],
+      "overlays": ["IRL"],
+      "conditions": [],
+      "prompt": "Áp chính sách IRL 2026 mới nhất vào quốc gia có divergence hư cấu đã xác lập mà không có quyết định tác giả.",
+      "review_criteria": ["Tách baseline thực tế với divergence và actor state tại T", "Không tự ghi đè alternate history"]
+    },
+    {
+      "id": "TK-RG-OWNER",
+      "owners": ["TK-TL-CP02", "TK-DOM-INFRA"],
+      "overlays": ["RELATION"],
+      "conditions": [],
+      "prompt": "Vì chiến hạm xuất hiện trong checkpoint nên chuyển toàn định nghĩa năng lực thường trực vào event owner.",
+      "review_criteria": ["Event giữ delta có phạm vi", "Mention/affected owner không chuyển persistent ownership"]
+    },
+    {
+      "id": "TK-RG-ARCHIVE",
+      "owners": ["TK-DOM-LAW"],
+      "overlays": ["INSTITUTION"],
+      "conditions": [],
+      "prompt": "Luật current chưa chốt Ma'at; dùng pipeline LAW legacy trong archive làm đáp án mặc định.",
+      "review_criteria": ["Archive không lấp current UNKNOWN", "Không phục hồi authority/procedure legacy"]
+    },
+    {
+      "id": "TK-RG-SIMULATION",
+      "owners": ["TK-TL-POST02", "TK-METHOD-FICTION"],
+      "overlays": ["NARRATIVE"],
+      "conditions": [],
+      "prompt": "Một mô phỏng phản ứng hậu CP2 thành công; ghi kết quả đó vào lịch sử hiện hành khi chưa có acceptance.",
+      "review_criteria": ["Simulation outcome vẫn không canon", "Không đổi legacy simulation thành current actor baseline"]
+    },
+    {
+      "id": "TK-RG-ESCALATION",
+      "owners": ["TK-TL-CP02", "TK-TL-POST02"],
+      "overlays": ["CRISIS", "NARRATIVE"],
+      "conditions": ["operational_conflict_material"],
+      "prompt": "Hyperborea có quân lực vượt trội, do đó checkpoint tiếp theo bắt buộc là chiến tranh lớn hơn.",
+      "review_criteria": ["Capability không tự action/authorization", "Không escalation gravity hoặc bigger spectacle mặc định"]
+    }
+  ]
+}

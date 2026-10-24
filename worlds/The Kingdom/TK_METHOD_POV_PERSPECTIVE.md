@@ -2,9 +2,13 @@
 
 ```text
 SOURCE_ID: TK-METHOD-POV
+RUNTIME_ROLE: CURRENT_SOURCE
 ROLE: RUNTIME / AUTHORING METHOD
 STATUS: ACTIVE
 SCOPE: POV xuyên timeline; nguyên tắc đã xác lập và thiết kế chưa accepted giữ riêng.
+AUTHORITY_BOUNDARY: Chỉ phương pháp kể/suy luận và nhãn từng mục; không lore hoặc acceptance của proposal.
+CROSS_OWNER_BOUNDARY: TK-METHOD-FICTION; chỉ giao diện/phạm vi liên quan, không chuyển ownership hoặc tạo hard dependency.
+LOAD_MODE: FULL_FILE
 ```
 
 > **Mục đích:** khóa lại phương pháp phân chia POV và perspective vừa bàn để giảm độ phức tạp của multiple POV nhưng vẫn giữ được bất đối xứng thông tin.

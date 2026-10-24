@@ -2,9 +2,13 @@
 
 ```text
 SOURCE_ID: TK-DOM-INFRA
+RUNTIME_ROLE: CURRENT_SOURCE
 ROLE: DOMAIN
 STATUS: ACTIVE
 SCOPE: Hạ tầng, không lưu và capabilities thường trực; phương án mở cửa giữ status riêng.
+AUTHORITY_BOUNDARY: Chỉ state/claim trong SCOPE và theo epistemic status từng mục; ACTIVE không chấp nhận mọi proposal hoặc lịch sử simulation.
+CROSS_OWNER_BOUNDARY: TK-DOM-POT, TK-DOM-HEALTH, TK-DOM-GEO, TK-TL-CP02; chỉ giao diện/phạm vi liên quan, không chuyển ownership hoặc tạo hard dependency.
+LOAD_MODE: FULL_FILE
 ```
 
 > Tài liệu này tổng hợp các ý chính đã được xác lập trong trao đổi hiện tại.\

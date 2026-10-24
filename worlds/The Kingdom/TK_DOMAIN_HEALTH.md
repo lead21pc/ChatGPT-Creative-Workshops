@@ -2,9 +2,13 @@
 
 ```text
 SOURCE_ID: TK-DOM-HEALTH
+RUNTIME_ROLE: CURRENT_SOURCE
 ROLE: DOMAIN
 STATUS: ACTIVE / CONCEPTUAL BASELINE
 SCOPE: An toàn sinh học, điều trị và quyền y tế; chi tiết chưa xác định vẫn mở.
+AUTHORITY_BOUNDARY: Chỉ state/claim trong SCOPE và theo epistemic status từng mục; ACTIVE không chấp nhận mọi proposal hoặc lịch sử simulation.
+CROSS_OWNER_BOUNDARY: TK-DOM-LAW, TK-DOM-DELEGATION; chỉ giao diện/phạm vi liên quan, không chuyển ownership hoặc tạo hard dependency.
+LOAD_MODE: FULL_FILE
 ```
 
 ## 1. Tiên đề chung

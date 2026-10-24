@@ -1,0 +1,5 @@
+# Preserve manifest byte hashes through Windows checkout.
+controls/TK_ROUTER_v1.0.yaml -text
+tests/control_cases.json -text
+tests/test_kingdom_package.py -text
+tools/validate_kingdom_package.py -text

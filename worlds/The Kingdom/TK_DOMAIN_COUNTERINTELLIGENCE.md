@@ -2,9 +2,13 @@
 
 ```text
 SOURCE_ID: TK-DOM-COUNTERINTEL
+RUNTIME_ROLE: CURRENT_SOURCE
 ROLE: DOMAIN
 STATUS: ACTIVE / MIXED EPISTEMIC STATUS
 SCOPE: Phản gián, quyền tiếp cận, tri thức và attribution; cơ chế đề xuất giữ riêng.
+AUTHORITY_BOUNDARY: Chỉ state/claim trong SCOPE và theo epistemic status từng mục; ACTIVE không chấp nhận mọi proposal hoặc lịch sử simulation.
+CROSS_OWNER_BOUNDARY: TK-DOM-LAW, TK-TL-CP02; chỉ giao diện/phạm vi liên quan, không chuyển ownership hoặc tạo hard dependency.
+LOAD_MODE: FULL_FILE
 ```
 
 > Tài liệu này tổng hợp các phương thức phản gián, kiểm soát công nghệ và kiểm soát tri thức đã bàn trong chat hiện tại.\

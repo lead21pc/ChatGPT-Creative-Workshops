@@ -1,0 +1,199 @@
+schema_version: 1
+status: ACTIVE
+router_version: '1.0'
+ci_version: '1.0'
+upstream_base: '9.0'
+core_controls:
+  CI:
+    stem: TK_CI
+    directory: controls
+    path: controls/TK_CI_v1.0.md
+  PIPELINE:
+    stem: TK_AUTHORING_PIPELINE
+    directory: controls
+    path: controls/TK_AUTHORING_PIPELINE_v1.0.md
+  GLOSSARY:
+    stem: TK_CONTROL_VOCABULARY_GLOSSARY
+    directory: controls
+    path: controls/TK_CONTROL_VOCABULARY_GLOSSARY_v1.0.md
+runtime:
+  entry: PROMPT_ROUTE_ONLY
+  stages:
+  - PROMPT_ROUTE_ONLY
+  - BOOTSTRAP_GATE
+  - OWNER_GATE
+  - TEMPORAL_GATE
+  - SOURCE_LOAD
+  - RECONCILIATION
+  - ANTI_DRIFT_OVERLAY_GATE
+  - PROMPT_EXECUTION
+  - PRE_RESPONSE_CHECK
+  deployment: NOT_PERFORMED
+bootstrap:
+  full_file:
+  - TK_CURRENT_SOURCE_INDEX.md
+  - TK_OPEN_ISSUES_CURRENT.md
+  reconciliation_record: TK_RECONCILIATION_RECORD.md
+  record_read_when:
+  - conflict
+  - supersession
+  - provenance
+  - source replacement
+  - authority
+  - migration
+owners:
+  required_header:
+  - SOURCE_ID
+  - RUNTIME_ROLE
+  - ROLE
+  - STATUS
+  - SCOPE
+  - AUTHORITY_BOUNDARY
+  - CROSS_OWNER_BOUNDARY
+  - LOAD_MODE
+  load_mode: FULL_FILE
+  current_role: CURRENT_SOURCE
+control_selection:
+  directory: controls/anti_drift
+  files: direct_children_only
+  version_order: numeric
+  eligible_status: ACTIVE
+  ambiguity: SOURCE_LOAD_BLOCKED
+  load: FULL_FILE
+controls:
+- id: TEMPORAL
+  stem: TK_Anti_Drift_Temporal_World_State
+  select_when: thứ tự, pre-state, delta, tích lũy, khoảng thời gian hoặc tri thức tương lai ảnh hưởng
+    kết luận
+  requires: []
+  conditional_requires: []
+- id: ACTOR
+  stem: TK_Anti_Drift_Actor_Knowledge_Reception_Model_Update
+  select_when: kết luận phụ thuộc actor nhận gì, hiểu/tin/đánh giá gì hoặc thay đổi phản ứng
+  requires:
+  - RELATION
+  conditional_requires:
+  - when: time_material
+    target: TEMPORAL
+  - when: institutional_interface_material
+    target: INSTITUTION
+  - when: operational_conflict_material
+    target: CRISIS
+  - when: economic_mechanism_material
+    target: ECONOMY
+- id: RELATION
+  stem: TK_Anti_Drift_State_Relation_Architecture
+  select_when: quan hệ, ranh giới owner, phân công chức năng hoặc tác động giữa miền quyết định kết luận
+  requires: []
+  conditional_requires: []
+- id: INSTITUTION
+  stem: TK_Anti_Drift_World_Institutional_Logic
+  select_when: khả năng vận hành, thẩm quyền, thể chế, phản gián, luật hoặc failure interface ảnh hưởng
+    kết luận
+  requires: []
+  conditional_requires:
+  - when: economic_mechanism_material
+    target: ECONOMY
+- id: IRL
+  stem: TK_Anti_Drift_IRL_Baseline_Divergence
+  select_when: áp dụng dữ kiện/quốc gia/thể chế thật vào trạng thái hư cấu hoặc so sánh qua thời điểm
+  requires: []
+  conditional_requires:
+  - when: actor_reception_material
+    target: ACTOR
+- id: ECONOMY
+  stem: TK_Anti_Drift_Economy_Trade_Abundance
+  select_when: khan hiếm, giá trị, tiếp cận, thương mại, logistics, lao động hoặc can thiệp kinh tế quyết
+    định kết luận
+  requires: []
+  conditional_requires: []
+- id: BELIEF
+  stem: TK_Anti_Drift_Belief_Culture_Divinity
+  select_when: ý nghĩa văn hóa/tôn giáo, truyền bá, thực hành, biến đổi hoặc nhận diện biểu tượng quyết
+    định kết luận
+  requires: []
+  conditional_requires:
+  - when: actor_reception_material
+    target: ACTOR
+  - when: institutional_interface_material
+    target: INSTITUTION
+  - when: economic_mechanism_material
+    target: ECONOMY
+- id: CRISIS
+  stem: TK_Anti_Drift_Strategic_Crisis_Conflict
+  select_when: đánh chặn, khủng bố/proxy, biên giới, chỉ huy, triển khai hoặc leo/xuống thang ảnh hưởng
+    kết luận
+  requires:
+  - TEMPORAL
+  - RELATION
+  conditional_requires:
+  - when: economic_mechanism_material
+    target: ECONOMY
+- id: NARRATIVE
+  stem: TK_Anti_Drift_World_State_Narrative_Assumption_Failure
+  select_when: thiết kế/kể checkpoint, perspective, payoff hoặc áp lực thể loại ảnh hưởng kết luận
+  requires:
+  - TEMPORAL
+  - ACTOR
+  conditional_requires:
+  - when: operational_conflict_material
+    target: CRISIS
+  - when: belief_culture_material
+    target: BELIEF
+failures:
+  bootstrap_missing: SOURCE_LOAD_BLOCKED
+  owner_missing_or_ambiguous: SOURCE_LOAD_BLOCKED
+  temporal_basis_missing: BLOCK_DEPENDENT_TRANSITION
+  source_unread: SOURCE_LOAD_BLOCKED
+  required_control_missing_or_ambiguous: SOURCE_LOAD_BLOCKED
+  control_conflict: BLOCK_DEPENDENT_REASONING
+  secondary_nondecisive_gap: SOURCE_LOAD_PARTIAL
+policies:
+  entry: CI sở hữu entry cho mọi current-dependent lookup, comparison, simulation, audit, design, mutation,
+    integration, reconciliation, event/checkpoint hoặc IRL application. Generic task tự đủ không cần current
+    có thể bỏ qua. Repository ACTIVE không là Project deployment.
+  prompt_route_only: Chỉ xác định requested operation/stage/scope, time relation/checkpoint/interval,
+    candidate owner và actor/country/domain, evidence, overlay applicability và canon-change permission.
+    Không world premise, resolved gap, simulation conclusion hoặc outcome. Reroute khi material scope
+    đổi.
+  bootstrap: Đọc FULL_FILE index/open issues cùng current package. Đọc record FULL_FILE khi một điều kiện
+    record_read_when có thể quyết task. Index chỉ discovery, open issues chỉ giữ unresolved; entry không
+    tự giải quyết gap.
+  owner_gate: Xác lập SOURCE_ID, runtime role, semantic role, scope, authority/cross-owner boundary và
+    load mode từ current header + admission + author decision. Filename/location/catalog/date không cấp
+    authority; duplicate/unknown/missing decisive owner chặn dependent work. New unadmitted input vẫn
+    UNCONFIRMED. Current source không tự có nghĩa mọi section CANON. Future actor/event owner được admit
+    bằng manifest/header/index sau scoped review, không cần sửa Router core.
+  temporal_gate: Khi thời gian quyết định, xác lập checkpoint/interval/event, quan hệ thời gian, pre/post
+    state, future exclusions và actor-information boundary trước simulation. CURRENT source có thể giữ
+    truth lịch sử mà actor tại T chưa biết; không suy thời gian chỉ từ số file. Thiếu decisive chronology/access
+    chặn transition hoặc conditional proposal, không tự điền.
+  source_load: FULL_FILE là default và chế độ duy nhất v1.0. Hit/snippet/header/summary/memory/prior answer
+    không chứng minh đọc đủ. Giữ qualifiers/exceptions/mixed status và owner boundaries. V1.0 không có
+    node closure contract hoặc hard lore-dependency registry; material referenced owner phải đọc khi claim
+    phụ thuộc, không suy mọi mention là dependency. Không tuyên bố package completeness nếu chỉ đọc task-local.
+  reconciliation: 'CI sở hữu canon-status discipline: latest explicit scoped author decision, accepted
+    current controlling source và older explicitly preserved facts. Routing record chỉ truy provenance,
+    không tự resolve. Giữ CURRENT, HISTORICAL, SUPERSEDED, UNKNOWN, DEFERRED, CONFLICTED, INFERENCE, HYPOTHETICAL,
+    PROPOSAL, UNVERIFIED và qualifiers gốc. Câu hỏi/compatibility/silence/repetition không acceptance.
+    New unsupported input vẫn UNCONFIRMED. Rút dependent conclusions khi premise accepted đổi, không bịa
+    replacement consequences.'
+  access: Đọc nguồn current có quyền từ Project Sources/Library hoặc local repo theo môi trường và yêu
+    cầu; không mặc định Library path/connector như FTH. Read permission không canon authority. Source_archive
+    không current input/discovery/fallback/regeneration. Chỉ provenance/history/audit/recovery được yêu
+    cầu rõ hoặc historical record được nguồn dẫn cần đối chiếu; không dùng sự thiếu current để tự phục
+    hồi. Local control-design reads không giả làm canon reads.
+  overlays: Chọn semantic applicability sau source loading/reconciliation, không từ keyword. Chọn highest
+    ACTIVE numeric version; không recursion archive, không candidate lifecycle. Expand requires và conditional
+    edges đã được đánh giá true transitively; chưa quyết applicability không được giả false để bypass
+    control. Missing/ambiguous/cycle chặn phần phụ thuộc. FULL_FILE mọi selected overlay trước execution;
+    glossary không runtime prerequisite. Overlay không cấp canon/source authority/thao tác, không đổi
+    actor outcome.
+  execution: Chỉ thực hiện requested operation sau gates. Pipeline giữ transformation/stop; overlay giữ
+    reasoning scope. Bounded task không thành full domain model. Missing decisive premise phải chặn hoặc
+    explicit conditional branch, không lấy hypothesis làm current fact. Chỉ partial khi named secondary
+    gap demonstrably không đổi bounded conclusion; independent work tiếp tục được.
+  pre_response: Recheck operation/stage, time, actor access/information, owners/current statuses, read
+    proofs, unresolved gaps, overlay boundaries/dependencies và canon permission. Báo đúng evidence class;
+    repository structural check không chứng minh live retrieval hoặc LLM semantic compliance. Không tự
+    tìm/chọn/đọc/xác nhận CI ở runtime; core references chỉ cho maintenance compatibility.
