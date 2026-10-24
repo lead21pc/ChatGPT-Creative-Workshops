@@ -1,5 +1,12 @@
 # The Kingdom — Checkpoint 1: Opening Transition
 
+```text
+SOURCE_ID: TK-TL-CP01
+ROLE: CHECKPOINT
+STATUS: ACTIVE
+SCOPE: Breakpoint mở cửa; pre-state tối thiểu, direct delta và boundary state CP1.
+```
+
 ## 1. Identity và phạm vi
 
 **Checkpoint identity:** Bắt đầu mở cửa / mở thương mại.
@@ -78,11 +85,7 @@ Các phản ứng “phá hàng” và hiệu ứng dây chuyền trong domain s
 
 **DIRECT CP1 RESULT — phần xác định được:** trạng thái chủ động mở cửa bằng lời mời và mandate xác minh tại §3–4. Kết quả triển khai itinerary cụ thể, thời điểm kết thúc CP1 và toàn bộ S1 tức thời chưa được externalize đủ.
 
-**POST_CP1 — thời điểm đạt từng mức tiếp cận chưa tách rõ.** [Địa chính trị §XIV — §2 Sau khi mở cửa][g-post], nhãn `CANON / HỆ QUẢ SUY LUẬN`, mô tả khách được vào các vành mở cửa bắt đầu thấy các năng lực dân dụng vượt chuẩn hiện đại. Không nâng quan sát các biểu hiện này thành tri thức rằng “Mẫu quốc = Type II”.
-
-**LATER INHERITED POST-OPENING STATE.** [checkpoint 2.md §I — §1 Trạng thái nhận thức của thế giới ngoài][c-pre], `CANON`, giữ baseline trước sự kiện trong nguồn đó: đã cho lộ năng lực dân dụng/phép thuật công nghiệp hóa, y tế, AI và hạ tầng, nhưng chưa công khai toàn bộ quân lực, hạ tầng ngoài hành tinh, nguồn năng lượng cấp sao hay trần năng lực thật. Bên ngoài vẫn chưa biết Mẫu quốc là nền văn minh Type II.
-
-Snapshot kế thừa chứng minh mức state được nguồn sau lưu lại; không chứng minh mọi thành phần đã đạt ngay khi CP1 kết thúc.
+Tiến trình tiếp đoàn, thay đổi tri thức, phản ứng và state tích lũy sau breakpoint thuộc [interval CP1→CP2][interval], không thuộc boundary tức thời này. Source mới đã recovery việc có một số phái đoàn cơ sở/ban đầu trong khoảng đó; thứ tự và itinerary từng đoàn vẫn chưa khóa.
 
 ```text
 S1 IMMEDIATELY AFTER CP1
@@ -92,21 +95,9 @@ STATE IMMEDIATELY BEFORE CP2
 
 ## 8. Ranh giới giữa hai checkpoint
 
-[Handoff §4.1][h-id] ghi khoảng cách CP1 → CP2 **≈ 2 năm**, dưới nhãn `[USER-PROVIDED]`. Phần thời gian này tiếp tục giữ provenance được ghi lại từ lời tác giả.
+[Handoff §4.1][h-id] ghi CP1 → CP2 **≈ 2 năm**, dưới nhãn `[USER-PROVIDED]`. [Interval CP1→CP2][interval] sở hữu phần lịch sử giữa hai breakpoint và final pre-CP2 state. Khoảng thời gian này không tự cung cấp ngày kết thúc CP1 hoặc danh sách event.
 
-```text
-CP1 END — chưa có mốc kết thúc chi tiết
-    ↓
-POST-OPENING ADAPTATION
-    ↓
-≈ 2 YEARS — khoảng cách được ghi lại giữa CP1 và CP2
-    ↓
-CP2 — giữ giới hạn identity tại checkpoint/state index
-```
-
-Repository chưa đủ để reconstruct đầy đủ thích nghi trong khoảng này. Thương mại, công nghệ, lao động, nhận thức về outsider, truyền thông và institutional response là các miền có thể đổi nhanh theo mô tả runtime trong handoff, không phải historical event list.
-
-Tệp này không chuyển vụ đánh chặn/reveal quân sự trong nguồn CP2 thành CP1 và không xác nhận thêm identity CP2; xem [checkpoint/state index — §4 CP2][index-cp2].
+CP2 hiện được nhận diện theo recovery reveal và yêu cầu migration của tác giả; xem [owner CP2][cp2]. Danh tính các nước láng giềng trong mô tả cũ và nền chính trị proxy vẫn chưa được xác định. Không kéo reveal quân sự về CP1.
 
 ## 9. Những cầu nối chưa đủ source
 
@@ -119,7 +110,7 @@ Các cầu nối còn lại là **REPOSITORY GAP — author state not establishe
 | Ai phản hồi lời mời đầu tiên | [Địa chính trị §XVI — Những điểm còn mở cần quyết định sau][g-open] chưa chốt cơ chế phản hồi và thứ tự phá hàng/tiếp xúc. |
 | Sequence tiếp đoàn nào được chấp nhận | [Sứ đoàn §2][d-draft] vẫn là draft; các chuỗi tác nghiệp trong hạ tầng vẫn là phương án/khuyến nghị. |
 | Quan hệ giữa DMZ verification và deeper entry | Mô hình [địa chính trị §XIII][g-delegation] là suy luận; chưa đủ để xác nhận việc nối với itinerary draft. |
-| S1 tức thời so với state tích lũy trước sự kiện trong nguồn CP2 | [Địa chính trị §XIV.2][g-post] và [checkpoint 2.md §I.1][c-pre] chưa chia đầy đủ mốc đạt từng thành phần. |
+| S1 tức thời so với state tích lũy trước sự kiện trong nguồn CP2 | [Địa chính trị §XIV.2][g-post] và [interval §6][c-pre] chưa chia đầy đủ mốc đạt từng thành phần. |
 | Historical adaptation trong khoảng hai năm | [Handoff §4.1][h-id] giữ khoảng thời gian và mô tả runtime, không giữ đủ diễn biến theo actor/domain. |
 
 ## 10. Source anchor và giới hạn thẩm quyền
@@ -149,6 +140,7 @@ Các checkpoint đánh số trong [phương pháp sáng tác §XIII — Không e
 [y-scan]: <the_kingdom_he_thong_suc_khoe.md#2-hệ-thống-kiểm-soát-bệnh-của-người-ngoài>
 [s-embassy]: <the_kingdom_he_thong_phan_gian_va_kiem_soat_tri_thuc.md#ii-lớp-1--nhân-sự-đại-sứ-quán-tiền-tiêu>
 [S]: <the_kingdom_he_thong_phan_gian_va_kiem_soat_tri_thuc.md>
-[c-pre]: <checkpoint%202.md#i-bối-cảnh-chiến-lược-trước-sự-kiện>
+[c-pre]: <TK_TIMELINE_INTERVAL_CP01_CP02.md#6-final-pre-cp2-state>
 [m-example-1]: <the_kingdom_phuong_phap_sang_tac_fiction.md#xiii-không-escalation-chỉ-vì-checkpoint-trước-lớn>
-[index-cp2]: <../THE_KINGDOM_CHECKPOINT_STATE_INDEX.md#4-cp2>
+[interval]: <TK_TIMELINE_INTERVAL_CP01_CP02.md>
+[cp2]: <TK_TIMELINE_CP02_REVEAL.md>

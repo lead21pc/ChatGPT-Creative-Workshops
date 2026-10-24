@@ -1,5 +1,12 @@
 # The Kingdom / Mẫu quốc — Hạ tầng, không lưu, giao thông và quy trình mở cửa
 
+```text
+SOURCE_ID: TK-DOM-INFRA
+ROLE: DOMAIN
+STATUS: ACTIVE
+SCOPE: Hạ tầng, không lưu và capabilities thường trực; phương án mở cửa giữ status riêng.
+```
+
 > Tài liệu này tổng hợp các ý chính đã được xác lập trong trao đổi hiện tại.  
 > Những mục được ghi là **phương án phân tích** chưa nên xem là canon nếu chưa được chốt riêng.
 
@@ -51,6 +58,10 @@ Hạ tầng của mẫu quốc không bị ràng buộc hoàn toàn bởi logic 
 - khai thác khoáng sản trên các hành tinh khác;
 - nông nghiệp có thể đặt trên các mặt trăng của hành tinh khác;
 - các hệ thống ngoài hành tinh này chủ yếu phục vụ **mẫu quốc trên hành tinh quê nhà**.
+
+**RECOVERED USER-PROVIDED STATE / DECIDED về ontology tác giả:** công nghệ và phép thuật đã được tích hợp/đồng nhất ở mức rất cao trong vận hành Mẫu quốc; không mặc định là hai hệ độc lập chỉ chạy cạnh nhau. Provenance: `CHECKPOINT_2_REVEAL_WORLDSTATE_CURRENT.md` CP2-STATE-03, UPDATED 2026-10-25, tại `D:\`. [POT §VI](the_kingdom_POT_personal_terminal_watch.md#vi-kiến-trúc-công-nghệphép-thuật) là ví dụ canon về tích hợp trong cùng kiến trúc; không từ đó tự chọn cơ chế vật lý chung. Đây là persistent world truth, không phải năng lực được CP2 tạo ra, cũng không phải tri thức tự có của actor ngoài.
+
+**CURRENT / SAME:** opening KS-02 nhắc lại Type II phục vụ đời sống và hạ tầng ngoài hành tinh phục vụ quê nhà. Lý do sâu hơn khiến quê nhà là trung tâm vẫn **UNDER CONSIDERATION**, không chốt một nguyên nhân duy nhất.
 
 Do đó nhiều nút thắt kiểu hiện đại như nhiên liệu, quỹ đất, khoảng cách vận chuyển hay phụ thuộc tài nguyên địa phương bị giảm mạnh.
 

@@ -1,28 +1,66 @@
-# The Kingdom / Mẫu quốc — Sự kiện thử nước, đánh chặn và phản ứng quốc tế
+# The Kingdom — Checkpoint 2: Interception and Reveal
 
-> Tài liệu này tổng hợp kịch bản khủng hoảng đã bàn trong chat hiện tại.  
-> Phân loại:
-> - **CANON / đã chốt:** premise người dùng đã xác lập trực tiếp.
-> - **PHƯƠNG ÁN THIẾT KẾ:** cách dàn dựng cụ thể đang được dùng để kiểm tra worldbuilding, chưa mặc định là canon cuối cùng.
-> - **HỆ QUẢ SUY LUẬN:** phản ứng logic có thể phát sinh từ canon và phương án trên.
+```text
+SOURCE_ID: TK-TL-CP02
+ROLE: CHECKPOINT
+STATUS: ACTIVE
+SCOPE: Vụ thử nước, đánh chặn, attribution và military/mage reveal; boundary tức thời, không sở hữu phản ứng nhiều ngày sau.
+```
 
----
+> Phân loại giữ riêng: **CANON / USER-PROVIDED STATE**, **DECIDED**, **PHƯƠNG ÁN THIẾT KẾ**, **HỆ QUẢ SUY LUẬN**, **UNKNOWN**. ACTIVE là vai trò source hiện hành; không có nghĩa mọi dàn dựng hoặc kết quả đã được hoàn thiện.
+
+## 0. Identity, boundary và recovery
+
+**Identity hiện hành:** CP2 = hostile/aggression / breakpoint đánh chặn và reveal quân sự. Yêu cầu migration của tác giả và recovery `CHECKPOINT_2_REVEAL_WORLDSTATE_CURRENT.md` liên kết CP2 với sự kiện này; không còn chỉ suy identity từ filename. [Handoff gốc §4.1](../two_paracosms_the_kingdom_vs_the_academy.md#41-checkpoint-model) giữ mô tả “các nước láng giềng bắt đầu hostile/aggression” và khoảng CP1→CP2 ≈ 2 năm. Danh tính các nước/cơ quan, quan hệ cụ thể với mô tả “láng giềng”, ngày tháng và nền chính trị vẫn chưa được xác định.
+
+**PRE_BOUNDARY:** [final state của interval CP1→CP2](TK_TIMELINE_INTERVAL_CP01_CP02.md#6-final-pre-cp2-state). **BREAKPOINT:** vụ thử phản ứng → đánh chặn → công khai trách nhiệm và lực lượng. **RESULTING BOUNDARY:** năng lực reveal và sự phân tầng trách nhiệm trở thành dữ kiện công khai; đánh giá từng actor, hệ quả 1h/24h/72h và normalization thuộc [material hậu CP2](TK_TIMELINE_POST_CP02.md), không nằm trong owner breakpoint này.
+
+### 0.1 Premise reveal được recovery
+
+**USER-PROVIDED STATE / DECIDED ở mức premise**, theo CP2-STATE-02 và opening KS-04:
+
+- 1 chiến hạm chỉ huy cấp sao và 2 tuần hạm cấp sao; đây là lực lượng được reveal cho sự kiện, không phải toàn bộ quân lực hoặc trần chiến lực.
+- Protection Totem bao bọc Mẫu quốc; sĩ quan pháp sư cấp cao mặc quân phục đứng trên các Protection Totem.
+- Ba chiến hạm neo trong tầng bình lưu/phần khí quyển trên lãnh thổ Mẫu quốc. ISS có thể thấy khi điều kiện quan sát phù hợp.
+- Trường lực trên ba chiến hạm nhìn thấy bằng mắt thường.
+- Chiến hạm/hệ thống liên quan gây nhiễu toàn bộ radar các nước khác, khiến radar ngoài Mẫu quốc không lấy được dữ liệu hữu ích **về chúng**. Không tự mở rộng thành mọi radar trên hành tinh mất mọi chức năng.
+- Mẫu quốc chủ ý cho quan sát bằng mắt thường. Camera, kính thiên văn, ảnh vệ tinh quang học, hồng ngoại và cảm biến thụ động khác có được dữ liệu hay không vẫn **UNKNOWN**.
+- KS-04 giữ tạo tác/construct trấn môn bằng vật liệu hiếm, tinh thể và phép thuật ở trước Cổng Chính trên bầu trời. Không tự đồng nhất construct, Protection Totem và chiến hạm thành cùng một vật thể.
+
+Các xác nhận về trường lực, radar, vị trí neo và ISS **NEWER THAN REPO / omission resolved tại đây**. Chúng bổ sung nguồn cũ, không xác nhận thứ tự xuất hiện, mốc phút hoặc cơ chế shield trong §IV–V.
+
+### 0.2 Pháp sư và giới hạn tri thức
+
+CP2-STATE-04 / CP2-D02: **DECIDED về chức năng kể chuyện, NOT COMPLETED về dàn dựng.** Pháp sư quân đội phải biểu hiện năng lực thật đủ để bên ngoài tái xem xét mô hình “chỉ là công nghệ/lừa thị giác”; không để ba chiến hạm gánh toàn bộ breakpoint. **UNKNOWN:** họ làm gì, quan hệ nhân quả quan sát được ra sao, cách loại trừ thiết bị giấu kín, mức lặp lại và dữ liệu kỹ thuật. Pháp sư đứng trên Totem chưa tự chứng minh các điều này.
+
+**WORLD TRUTH / USER-PROVIDED STATE:** Type II thật và tích hợp công nghệ–phép thuật ở mức rất cao thuộc [domain hạ tầng §2.1](the_kingdom_ha_tang_khong_luu_mo_cua.md#21-nguyên-tắc-chung). CP2-STATE-03 không cấp cùng tri thức cho người ngoài. Họ thấy năng lực, không tự biết cơ chế, nguồn năng lượng, quy mô hạm đội hoặc trần sức mạnh; kết luận chính xác về Kardashev vẫn **UNKNOWN** (CP2-O04).
+
+### 0.3 Direct delta và boundary state
+
+- **DECIDED / PREMISE:** từ quân lực chưa công khai sang reveal lực lượng có tổ chức, trường lực hữu hình và giới hạn radar ngoài đã nêu ở §0.1.
+- **CANON + DECIDED recovery:** attribution công khai phân biệt các cấp trách nhiệm (§VI); “biết mà không ngăn” không bị đổi thành “tài trợ”. Phá plausible deniability là chức năng của attribution; không tự chứng minh mọi nhà nước đã cập nhật hành vi như nhau.
+- **DECIDED, NOT COMPLETED:** breakpoint về phép thuật phải có giá trị chứng minh riêng (§0.2). Không báo nó đã thành công chỉ vì có pháp sư trong đội hình.
+- **UNKNOWN:** thời điểm sự cố đóng chính xác, chế tài, phản ứng tức thời từng actor và mức tái phân loại ontology. Yêu cầu method là kết thúc sự cố rồi đời sống tiếp tục; không dùng nó như event log đã xác nhận.
+
+“Ba tầng breakpoint” (công nghệ / taxonomy phép thuật / proxy) và “taxonomy sụp” trong CP2-U02/U03 vẫn **UNDER CONSIDERATION**, không phải kết luận bắt buộc của mọi actor.
+
+### 0.4 Nền chính trị chưa được khóa
+
+Tác nhân trực tiếp là khủng bố có động cơ riêng, không phải quân đội nhà nước giả dạng (opening KS-03). Recovery CP2-STATE-05 / CP2-P05/C02 yêu cầu làm chắc lại tiền đề cường quốc biết trước và cố ý ngó lơ. Vì vậy block **CANON** cũ ở §II.2 được giữ để bảo toàn provenance nhưng **không còn là xác nhận current vô điều kiện** về hành vi các cường quốc: đó là premise đang tái thẩm định.
+
+Chưa chọn quốc gia, sponsor, chain of command hoặc động cơ cụ thể. Khả năng hỗ trợ tư nhân không phải xác nhận đã có hỗ trợ. Khi stress-test phải dùng tri thức tiền-CP2, không dùng reveal tương lai để biện minh quyết định cũ. Work order recovery là khóa world-state reveal trước rồi quay lại chính trị; task này chỉ di chuyển ownership và giữ giới hạn đó, không tự thiết kế nguyên nhân.
+
+### 0.5 Provenance và trạng thái phần kế thừa
+
+Recovery từ `D:\CHECKPOINT_2_REVEAL_WORLDSTATE_CURRENT.md` và `D:\KINGDOM_OPENING_WORLDSTATE_CURRENT.md`, UPDATED 2026-10-25. Chỉ các claim được xác định ở đây được migrate; handoff không thay toàn bộ canon.
+
+Các §I–VII, XII dưới đây kế thừa material từ `checkpoint 2.md` ở baseline `aa95e4f`, với sửa vai trò pre-state và tách phần hậu checkpoint. Mốc phút, thao tác, lời tuyên bố và chi tiết chưa được recovery xác nhận vẫn là **PHƯƠNG ÁN THIẾT KẾ**, kể cả khi đứng cạnh premise đã quyết định. Phần không có nhãn riêng không tự nhận nhãn CANON từ mục lân cận.
 
 # I. Bối cảnh chiến lược trước sự kiện
 
 ## 1. Trạng thái nhận thức của thế giới ngoài
 
-**CANON**
-
-- Mẫu quốc tồn tại khoảng 2.000 năm trong trạng thái cô lập.
-- Thế giới ngoài biết đây là một quốc gia bí ẩn, từng tiêu diệt các lực lượng xâm phạm vượt ngưỡng cho phép.
-- Thế giới ngoài **không biết** Mẫu quốc là một nền văn minh Kardashev Type II.
-- Mẫu quốc chủ động chỉ cho lộ:
-  - công nghệ dân dụng vượt xa;
-  - phép thuật công nghiệp hóa;
-  - y tế, AI và hạ tầng vượt cấp;
-  - nhưng chưa công khai toàn bộ quân lực, hạ tầng ngoài hành tinh, nguồn năng lượng cấp sao hay trần năng lực thật.
-- Mục tiêu mở cửa chủ yếu là trao đổi văn hóa, không phải tìm kiếm tài nguyên hay công nghệ từ bên ngoài.
+Baseline tích lũy thuộc [interval §6](TK_TIMELINE_INTERVAL_CP01_CP02.md#6-final-pre-cp2-state): tiếp xúc dân dụng hạn chế, chưa công khai quân lực/trần chiến lược và chưa biết Type II. Đây là precondition, không phải delta CP2. Các giả thuyết cạnh tranh tiền-CP2 còn mở tại [interval §4](TK_TIMELINE_INTERVAL_CP01_CP02.md#4-actor-và-institutional-reactions).
 
 ## 2. Vấn đề chiến lược của các cường quốc
 
@@ -51,7 +89,7 @@ Vì vậy, một số tác nhân bên ngoài có động cơ muốn **“test th
 
 ## 1. Lực lượng tấn công
 
-**CANON / PHƯƠNG ÁN THIẾT KẾ**
+**PREMISE ĐÃ RECOVERY + PHƯƠNG ÁN THIẾT KẾ** — chỉ bản chất lực lượng khủng bố có động cơ riêng đã chốt; các mục tiêu cụ thể dưới đây vẫn là ứng viên.
 
 - Bên trực tiếp gây chuyện là **một lực lượng khủng bố có thật, có động cơ riêng**, không phải quân đội nhà nước giả dạng.
 - Mục tiêu của chúng không phải chinh phục Mẫu quốc.
@@ -64,7 +102,7 @@ Vì vậy, một số tác nhân bên ngoài có động cơ muốn **“test th
 
 ## 2. Vai trò của các cường quốc đứng ngoài
 
-**CANON**
+**RETAINED SOURCE LABEL: CANON — CURRENT PREMISE UNDER REASSESSMENT**, xem §0.4. Phần sau ghi premise cũ, không xác nhận đã hoàn tất stress-test chính trị.
 
 - Một hoặc nhiều cường quốc biết trước ở mức đáng kể rằng hành động này có thể xảy ra.
 - Thay vì chủ động ngăn chặn, họ:
@@ -193,7 +231,7 @@ Phương án hiện tại:
 
 ## Pha 4 — phút 30 đến phút 45: reveal quân lực tầng một
 
-**CANON / PHƯƠNG ÁN THIẾT KẾ**
+**DECIDED PREMISE / PHƯƠNG ÁN THIẾT KẾ** — cấu hình chính được recovery ở §0.1; vai trò biểu tượng, trình tự và mốc phút dưới đây vẫn là dàn dựng.
 
 Đội hình công khai gồm:
 
@@ -320,119 +358,6 @@ Phiên bản trên được đề xuất vì:
 
 ---
 
-# VIII. Phản ứng trong 1 giờ đầu
-
-## 0. Nguyên tắc nền cho toàn bộ Phần VIII–X
-
-**CANON**
-
-Mẫu quốc là thực thể bất đối xứng tuyệt đối, không tham gia, không cần, không xin công nhận từ bất kỳ khung luật quốc tế nào hiện có. Vì vậy phản ứng của thế giới ngoài **không được mô phỏng theo logic deterrence đối xứng** (nơi các bên đều cần một trọng tài — dư luận, luật quốc tế, đồng minh — để phân xử đúng sai).
-
-Khủng hoảng thật không phải "làm sao chứng minh mình đúng trước Mẫu quốc hoặc trước thế giới". Khủng hoảng là **khủng hoảng nhận thức luận (epistemic crisis)**: các cường quốc phát hiện ra họ đã đạp trúng một thứ họ không đo lường được, và không có cách nào kiểm chứng nó biết gì, đã biết bao lâu, và ranh giới mới nằm ở đâu.
-
-## 1. Các cường quốc bị nêu tên
-
-**HỆ QUẢ SUY LUẬN**
-
-Đây không phải khủng hoảng kiểm soát narrative — không có narrative nào đáng kiểm soát khi bên phán xét không cần dư luận đồng thuận. Khủng hoảng thật là **khủng hoảng hồi tố**:
-
-- mọi quyết định, mọi kênh liên lạc, mọi hoạt động trong quá khứ có liên quan dù gián tiếp đến Mẫu quốc giờ phải được coi là *có thể đã bị biết từ trước*;
-- câu hỏi ám ảnh phòng tình huống không phải "họ có bằng chứng gì" mà là **"chúng ta không biết họ đã biết những gì, trong bao lâu, và vì sao từng im lặng"**;
-- đây là nỗi sợ không có đáy — không đo lường được nên không có hành động nào rõ ràng để giảm nó.
-
-Phản xạ đầu tiên hợp lý nhất không phải soạn tuyên bố phủ nhận, mà là **cắt toàn bộ kênh liên lạc liên quan** — không phải để che giấu, mà vì không ai còn biết kênh nào là an toàn nữa.
-
-## 2. Các cường quốc không liên quan
-
-**HỆ QUẢ SUY LUẬN**
-
-Phản ứng hợp lý không dừng ở "xem đây là bài học miễn phí". Sâu hơn:
-
-- mỗi cường quốc buộc phải tự hồi tố lại chính lịch sử quan hệ của mình với Mẫu quốc, dù chưa từng bị nêu tên — vì "chưa bị nêu tên" không đồng nghĩa "chưa từng bị biết";
-- động lực hợp tác quốc tế để "đối phó chung" với Mẫu quốc yếu đi, không mạnh lên — vì mỗi bên giờ nghi ngờ các bên còn lại cũng đang giấu một phần bị Mẫu quốc "cầm thóp" mà không công khai; đoàn kết đối phó đòi hỏi tin tưởng lẫn nhau, và lòng tin đó vừa bị xói mòn cùng lúc với niềm tin vào chính hệ thống luật quốc tế.
-
-## 3. Công chúng toàn cầu
-
-Không đổi — công chúng lần đầu nhìn thấy quân phục pháp sư cấp cao, cấu trúc shield quy mô lớn, construct chiến lược, chiến hạm và tuần hạm cấp sao, hệ thống công khai chứng cứ thời gian thực. Sự kiện trở thành reveal quân sự công khai đầu tiên có quy mô lớn.
-
----
-
-# IX. Phản ứng sau 24 giờ
-
-## 1. Bên bị nêu tên
-
-**HỆ QUẢ SUY LUẬN**
-
-Không có ba phương án cân nhắc chiến lược kiểu "phủ nhận / tách trách nhiệm / im lặng chiến thuật" — vì cả ba đều giả định còn tồn tại một trọng tài đáng thuyết phục. Cũng không có phương án "dò kênh phi chính thức để đọc luật" — vì điều đó vẫn ngầm giả định có cách kiểm chứng được, trong khi bản chất của khủng hoảng này là **không có cách nào kiểm chứng**. Phản ứng thật duy nhất hợp lý:
-
-### Đóng băng hành vi, không đóng băng lời nói
-Công khai vẫn có thể phát ngôn cứng — vì áp lực chính trị nội bộ, vì không thể để dân trong nước thấy chính phủ câm lặng hoàn toàn. Nhưng mọi hành động thực chất (dòng tiền, tuyến hậu cần, mạng lưới proxy) đều dừng lại ngay lập tức, và ở lại trạng thái đóng băng đó vô thời hạn — vì không có phép thử nào an toàn để dò ranh giới mới nằm ở đâu. Mọi phỏng đoán về "ranh giới" chỉ là suy diễn nội bộ, không có cách xác thực, và bản thân việc thử xác thực (bằng hành động) chính là rủi ro lớn nhất.
-
-## 2. Đồng minh của bên bị nêu tên
-
-- không đứng ra bảo vệ nguyên tắc chung, vì bảo vệ nguyên tắc chỉ có ý nghĩa nếu nguyên tắc đó còn ràng buộc được bên mạnh nhất trong phòng — mà rõ ràng nó không;
-- ưu tiên tách mình khỏi sponsor càng nhanh càng tốt, thay vì đoàn kết phòng thủ;
-- không kêu gọi kiềm chế lẫn nhau theo nghĩa ngoại giao cổ điển — mà âm thầm tự kiểm tra xem chính mình có đang đứng gần một "ổ mìn" tương tự hay không.
-
-## 3. Các nước nhỏ và trung lập
-
-- không tìm cách thiết lập kênh ngoại giao trực tiếp với Mẫu quốc theo mô hình song phương truyền thống — vì lời mời đối thoại ngang hàng chỉ có giá trị nếu bên nhận cần nó;
-- thay vào đó, quan sát cách Mẫu quốc phân loại các cấp trách nhiệm trong vụ này như một "văn bản luật án lệ" bất thành văn, và điều chỉnh hành vi tương lai theo án lệ đó — không phải vì đồng thuận, mà vì sinh tồn.
-
----
-
-# X. Phản ứng sau 72 giờ
-
-## 1. Học thuyết chiến lược về Mẫu quốc thay đổi
-
-Trước sự kiện: quốc gia bí ẩn, công nghệ và phép thuật vượt cấp, bất khả xâm phạm.
-
-Sau sự kiện: thực thể có thể đánh chặn chiến tranh vùng xám, truy nguyên chuỗi trách nhiệm, công khai bằng chứng, triển khai lực lượng quân sự không cùng chuẩn hiện đại — và vẫn giữ kín trần năng lực thật.
-
-## 2. Câu hỏi trung tâm không còn là năng lực, mà là phạm vi giám sát
-
-**HỆ QUẢ SUY LUẬN**
-
-Không còn là "làm sao test giới hạn sức mạnh". Câu hỏi mới, đúng bản chất bất đối xứng tuyệt đối:
-
-> **"Có bao nhiêu bên khác đang bị theo dõi tương tự mà chưa bị gọi tên — và im lặng có phải là chiến lược duy nhất còn hợp lý?"**
-
-Đây là dạng lo sợ mang tính lan tỏa hơn chiến tranh ủy nhiệm mất giá trị (dù điều đó vẫn đúng): nó tạo ra nghi kỵ lẫn nhau *giữa các cường quốc với nhau*, không chỉ giữa từng cường quốc với Mẫu quốc — vì mỗi bên giờ phải tự hỏi liệu bên cạnh mình có đang bị Mẫu quốc nắm thóp một chuyện gì mà mình không hề hay biết. Hợp tác quốc tế để đối phó Mẫu quốc vì vậy khó hình thành hơn, không dễ hơn.
-
-## 3. Chiến tranh ủy nhiệm mất phần lớn giá trị
-
-Công thức:
-
-```text
-proxy
-→ vẫn bị attribution
-→ sponsor có thể bị công khai
-→ khả năng phủ nhận giảm mạnh
-→ mất uy tín
-→ vẫn không đo được trần sức mạnh thật
-```
-
-Đây là hệ quả phái sinh của mục 2, không phải hệ quả trung tâm — vì bản thân proxy war chỉ là một biểu hiện cụ thể của nỗi sợ bị giám sát mà không biết phạm vi.
-
----
-
-# XI. Ý nghĩa dài hạn
-
-Sự kiện không chỉ là một trận đánh chặn.
-
-Nó đóng ba vai trò:
-
-1. **Phiên tòa công khai**  
-   Mẫu quốc phân loại và công bố trách nhiệm.
-
-2. **Buổi reveal quân sự tầng một**  
-   Thế giới lần đầu thấy lực lượng quân sự có tổ chức của Mẫu quốc.
-
-3. **Tái định nghĩa chiến tranh vùng xám**  
-   Mẫu quốc tuyên bố proxy, khủng bố thử phản ứng và dung túng có chủ đích không tạo ra vùng miễn trách nhiệm.
-
----
-
 # XII. Điểm chưa chốt
 
 - Tên và ý thức hệ cụ thể của lực lượng khủng bố.
@@ -447,3 +372,7 @@ Nó đóng ba vai trò:
   - tại các thủ đô,
   - hay qua một hệ thống truyền thông toàn cầu có giới hạn.
 - Hình phạt cụ thể đối với từng cấp trách nhiệm sau khi attribution hoàn tất.
+
+## 13. Cầu nối còn mở sau recovery
+
+Ngoài §XII: loại dữ liệu quang học ngoài mắt thường; biểu hiện cụ thể của pháp sư và bằng chứng nhân quả; mức mỗi actor có thể kết luận về Type II; nền chính trị proxy; mốc đóng breakpoint và boundary state của từng bên. Phần phản ứng nhiều giờ/ngày, ý nghĩa dài hạn và tuyến Nga sau reveal được giữ tại [material hậu CP2](TK_TIMELINE_POST_CP02.md), không phải event CP2 đã được xác nhận.

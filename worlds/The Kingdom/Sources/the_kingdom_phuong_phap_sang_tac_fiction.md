@@ -1,5 +1,12 @@
 # The Kingdom — Phương pháp sáng tác fiction
 
+```text
+SOURCE_ID: TK-METHOD-FICTION
+ROLE: RUNTIME / AUTHORING METHOD
+STATUS: ACTIVE
+SCOPE: World-state centric fiction, checkpoint/interval, progression và giới hạn tri thức.
+```
+
 > Tài liệu này mô tả **cách tác phẩm được xây dựng và vận hành**, không phải lore nội bộ của The Kingdom.  
 > Trọng tâm là cấu trúc sáng tác, nhịp kể, cách tạo drama và cách tránh các failure mode của power fantasy, slice of life và science-fiction escalation.
 
@@ -208,7 +215,7 @@ tàu cấp sao
 
 Các sự kiện lớn trong The Kingdom không được xem là các chương nối tiếp bắt buộc.
 
-Chúng là **checkpoint**.
+Chúng là **checkpoint**. Breakpoint chỉ sở hữu sự kiện và direct boundary delta; progression sau đó thuộc interval. Các checkpoint A/B bên dưới và số 1–5 ở §XIII là **ví dụ phương pháp**, không gán số lịch sử cho tuyến Nga hoặc reveal.
 
 Checkpoint làm thay đổi world-state.
 
@@ -962,3 +969,25 @@ Còn phần lớn fiction nằm ở:
 Vì vậy cấu trúc cuối cùng có thể tóm lại bằng một câu:
 
 > **Thế giới là main character; fantasy là động cơ; con người là nơi drama xảy ra.**
+
+# XXIX. Temporal ownership và runtime xuyên timeline
+
+**CURRENT METHOD / chỉ dẫn tác giả trong task restructure 2026-10-25**, đối chiếu opening KS-08/KR-01 và CP2-STATE-06:
+
+```text
+CHECKPOINT → INTERVAL → CHECKPOINT → INTERVAL
+```
+
+Checkpoint là breakpoint đổi world-state: pre-boundary state tối thiểu, event, direct delta, resulting boundary state và gap riêng của event. Nó không chứa toàn bộ hệ quả về sau.
+
+Interval là nơi timeline progression: event nhỏ, phản ứng actor/institution/faction/society, POV, thay đổi tri thức, adaptation, normalization và state tích lũy trước breakpoint tiếp theo. Một interval chưa đủ dữ liệu vẫn có temporal owner; không tự phát minh diễn biến để lấp nó.
+
+Domain source giữ hệ thống thường trực, capability và institution, không trở thành timeline log. [Index](../THE_KINGDOM_CHECKPOINT_STATE_INDEX.md) chỉ điều hướng owner; location hoặc source ID không tạo canon.
+
+POV là góc actor có thời điểm, không phải main character. Khi một fact ảnh hưởng quyết định phải xác định **ACTOR + TIME + AVAILABLE INFORMATION**; actor tại T1 không được biết điều chỉ có ở T2. Không bắt buộc tạo schema, một file mỗi POV hoặc track mọi actor.
+
+Các distinction world truth / observation / internal analysis / public information / social interpretation phải được giữ; thiết kế cụ thể bốn lớp, năm trạng thái fact và quy tắc nén POV trong [method POV](the_kingdom_pov_perspective_architecture.md#xxi-runtime-xuyên-timeline-và-recovery) vẫn theo status riêng. Không nâng toàn bộ proposal thành accepted method.
+
+Recovery opening KS-06/KC-01 và POV established state: phản ứng có thể phát sinh ở institution, faction, house hoặc cá nhân. Sai lầm có thể đến từ bất đối xứng thông tin, thiên kiến xác nhận, sĩ diện/danh dự, áp lực và chi phí xuống thang. Không mặc định actor luôn tối ưu chiến lược, cũng không làm họ mất lý trí chỉ để phục vụ checkpoint.
+
+Nguồn recovery: `KINGDOM_OPENING_WORLDSTATE_CURRENT.md` KS-06/08, KP-02/03/04, KR-01/02/03, KC-01 và `THE_KINGDOM_POV_PERSPECTIVE_CURRENT.md` established state, UPDATED 2026-10-25, tại `D:\`. Ví dụ và hướng dẫn chưa thực hiện trong handoff không tự thành event hay kiểm thử đã chạy.

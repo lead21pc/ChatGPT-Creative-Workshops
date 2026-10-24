@@ -1,5 +1,12 @@
 # The Kingdom — Kiến trúc POV và Perspective
 
+```text
+SOURCE_ID: TK-METHOD-POV
+ROLE: RUNTIME / AUTHORING METHOD
+STATUS: ACTIVE
+SCOPE: POV/perspective xuyên timeline; phần đã xác lập và các thiết kế chưa được chấp nhận giữ riêng.
+```
+
 > **Mục đích:** khóa lại phương pháp phân chia POV và perspective vừa bàn để giảm độ phức tạp của multiple POV nhưng vẫn giữ được bất đối xứng thông tin.
 >
 > **Phạm vi:** đây là tài liệu về **phương pháp kể chuyện**, không phải lore nội bộ.
@@ -822,3 +829,17 @@ Và invariant quan trọng nhất:
 > **Giảm POV không được làm mất logic phía sau institution.**
 
 > **Bất đối xứng thông tin được giữ bằng cách tách: sự thật, quan sát, phân tích nội bộ, công bố và diễn giải xã hội.**
+
+# XXI. Runtime xuyên timeline và recovery
+
+**CURRENT / SAME:** recovery `THE_KINGDOM_POV_PERSPECTIVE_CURRENT.md` (UPDATED 2026-10-25, tại `D:\`) xác nhận không có MC trung tâm, isometric ở toàn cục và chọn actor theo chức năng tại thời điểm đó. POV chạy xuyên checkpoint lẫn interval; không là cây ontology hoặc collection file theo từng nhân vật.
+
+**CURRENT METHOD theo yêu cầu tác giả:** tri thức phải có tọa độ `ACTOR + TIME + AVAILABLE INFORMATION`. World truth không đồng nhất observation; observation không đồng nhất internal analysis; internal analysis không đồng nhất public information; public information không đồng nhất social interpretation. Future-checkpoint knowledge không được có sẵn trong interval trước nó.
+
+**RECOVERED USER-PROVIDED STATE — NEWER phần chưa ghi đủ:** phản ứng/xung đột có thể ở institution, faction, house và cá nhân. Ở tầng house/cá nhân, bất đối xứng thông tin, thiên kiến xác nhận, sĩ diện/danh dự gia tộc, sức ép đa chiều và chi phí rút lui có thể tạo hành vi; không cần biến actor thành ngu. Institution chỉ cần đủ cấu trúc để quyết định/hậu quả có nguyên nhân; không mặc định cần mô phỏng xã hội toàn diện.
+
+**ALREADY REPRESENTED / UNDER CONSIDERATION:** bốn lớp kể chuyện, năm trạng thái fact, quy tắc cắt POV, ba loại POV, ambient media nén perspective và handoff bằng biến nhân quả đã có ở §III–XVI. Recovery không có bằng chứng toàn bộ đã được tác giả chấp thuận; giữ nguyên nhãn đề xuất và hệ quả trong các section đó. Khung institution gồm chức năng/quyền lực/nguồn lực/ràng buộc/đường quyết định ở handoff §4.G cũng vẫn **UNDER CONSIDERATION**, không phải schema bắt buộc.
+
+**NOT RUN / STILL UNKNOWN:** thử một arc cụ thể và so sánh nhiều POV với POV + đầu ra thể chế + media chưa chạy; chưa có ngưỡng “vừa đủ”, giới hạn POV toàn cục, số lớp bắt buộc cho mỗi event hay cơ chế độ tin cậy media chung. Chỉ externalize POV khi nó chứng minh/thay đổi decision, knowledge, interpretation, institutional reaction hoặc state transition. Không tạo bureaucracy hoặc media ecology chỉ để lấp bảng.
+
+Recovery §5 “None currently established” về decided-but-incomplete vẫn được giữ; tài liệu tồn tại là externalization, không phải acceptance hay narrative validation. Không thay các ví dụ trong source thành lore hoặc các scene thật. Điều hướng owner timeline tại [index](../THE_KINGDOM_CHECKPOINT_STATE_INDEX.md).
