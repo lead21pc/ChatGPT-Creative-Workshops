@@ -5,9 +5,9 @@ SOURCE_ID: TK-DOM-POT
 RUNTIME_ROLE: CURRENT_SOURCE
 ROLE: DOMAIN
 STATUS: ACTIVE / MIXED EPISTEMIC STATUS
-SCOPE: Thiết bị POT; canon khả năng và chi tiết còn mở.
-AUTHORITY_BOUNDARY: Chỉ state/claim trong SCOPE và theo epistemic status từng mục; ACTIVE không chấp nhận mọi proposal hoặc lịch sử simulation.
-CROSS_OWNER_BOUNDARY: TK-DOM-INFRA, TK-DOM-LANGUAGE-RELIGION; chỉ giao diện/phạm vi liên quan, không chuyển ownership hoặc tạo hard dependency.
+SCOPE: POT device; established capabilities and unresolved details.
+AUTHORITY_BOUNDARY: Only claims within SCOPE and their section-level epistemic status; ACTIVE does not accept every proposal or simulated history.
+CROSS_OWNER_BOUNDARY: TK-DOM-INFRA, TK-DOM-LANGUAGE-RELIGION; Relevant interfaces only; no ownership transfer or hard dependency is created.
 LOAD_MODE: FULL_FILE
 ```
 

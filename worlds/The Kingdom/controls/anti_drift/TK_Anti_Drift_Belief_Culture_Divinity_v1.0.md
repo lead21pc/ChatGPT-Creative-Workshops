@@ -1,27 +1,32 @@
-# The Kingdom — Niềm tin, văn hóa và thần tính v1.0
+# The Kingdom — Belief, Culture and Divinity v1.0
 
 Status: ACTIVE
 Version: 1.0
 Role: REASONING_OVERLAY
 Control_ID: BELIEF
 
-## Kích hoạt và thẩm quyền
+## Activation and Authority
 
-Áp dụng khi ý nghĩa văn hóa/tôn giáo, truyền bá, thực hành, biến đổi hoặc nhận diện biểu tượng quyết định kết luận. Chỉ nhắc keyword hoặc tra cứu fact trực tiếp không tự kích hoạt audit miền. Router chọn và nạp FULL_FILE sau SOURCE_LOAD/RECONCILIATION; chỉ suy luận ở PROMPT_EXECUTION. Kế thừa CI/Router về canon, nguồn, status, permission và partial/block; không chọn nguồn, sửa open state, tự cấp quyền hoặc quyết actor outcome. Thiếu decisive premise phải conditional hoặc chặn phần phụ thuộc. Không mở full domain chỉ để đủ checklist.
+Apply when cultural/religious meaning, transmission, practice, change, or symbolic recognition decides the answer. A keyword or direct lookup alone does not require a full audit. The Router judges semantic applicability after source loading/reconciliation, expands required and applicable conditional controls, and FULL_FILE-loads selected overlays before PROMPT_EXECUTION.
 
+Inherit CI/Router operation, source, status, time, and canon boundaries. This overlay grants no source authority, acceptance, action permission, or actor outcome; it cannot waive gates. Missing decisive evidence blocks dependent reasoning or requires an explicitly conditional branch. Continue independently supported work when appropriate.
 
-## Claim văn hóa và phạm vi
+## Meaning, Practice, and Transmission
 
-DOCTRINE != BELIEF != RITUAL != IDENTITY != INSTITUTION. Norm, thực hành, declaration, chân thành, membership hoặc visual marker không tự tương đương; cũng không cấm chúng cùng có bằng chứng. Prohibition không chứng minh không có hành vi bị cấm. Doctrine và practice trái nhau có thể cùng tồn tại; không tự giải source conflict bằng viện culture/hypocrisy chưa có căn cứ.
+Distinguish doctrine, belief, ritual, norm, identity, institution, and actual practice. Establish relevant people, place, time, and scope; neither sameness nor difference follows from a shared label. Claim commonality only with evidence of the shared feature; preserve supported variation. Transmission needs supported carriers, access, interpretation, incentives, institutions, and time when material. Do not invent a historical transmission chain to explain resemblance.
 
-Giữ evidenced group/place/audience/time; không suy cả country cùng culture, không tự tạo subculture/dissent để realistic. Commonality đã xác lập cũng hợp lệ. Giữ claim về transmission, carrier/access, audience, meaning thay đổi/mất/giữ khi task cần; tên giống không bảo đảm meaning giống, không bịa school/clergy/adoption rate.
+Declaration, sincerity, membership, and visual markers do not automatically imply each other; they may coexist when evidenced. Prohibition does not prove the prohibited behavior absent. Doctrine and contrary practice can coexist; do not resolve a source conflict by inventing culture or hypocrisy. A country is not automatically one culture; do not fabricate subcultures/dissent for realism, schools, clergy, or adoption rates. Similar names do not guarantee shared meaning. Preserve evidenced audience and changed/lost/retained meanings.
 
-## Thần tính và biểu tượng
+DIVINE EXISTENCE != THEOLOGICAL CORRECTNESS. A demonstrated miracle does not give every observer the same meaning or prove every doctrine. Separate world truth, observability, actor belief, public expression, private doubt, and institutional interpretation. ACTOR owns reception; INSTITUTION owns authority/operation; ECONOMY owns decisive economic mechanisms.
 
-DIVINE EXISTENCE != THEOLOGICAL INTERPRETATION; OBSERVABLE MIRACLE != SHARED RELIGIOUS MEANING. Thần thật không bị giảm thành social fiction; sự tồn tại không tự là actor biết/tin/hiểu cosmology. Giữ hiệu ứng ma thuật đã xác lập đúng scope, không ghi đè bằng psychology generic.
+Do not reduce real divine existence to social fiction or overwrite established magical effects with generic psychology. Existence does not establish actor knowledge of cosmology. Distinguish declared meaning, audience recognition, and actual effect; no universal audience or interpretation is presumed. Technology, incentives, coercion, or migration changes conditions without selecting cultural responses. Open introduction/access/adoption/reinterpretation/practice/persistence only when decisive; CRISIS retains operational conflict scope.
 
-MYTHIC RESONANCE != HISTORICAL IDENTITY. Hyperborea là naming/design resonance tác giả cho, không Greek lineage, contact, Apollo religion hoặc literal Pindar canon. World Tree/Ma'at biểu tượng có ranh giới theo nguồn; recognition/legitimacy không tự là command/legal authority/resources/obedience. Tách declared meaning, audience nhận ra và effect; không tạo interpretation hoặc universal audience.
+## Native Semantic Boundaries
 
-## Thay đổi và dừng
+Hyperborea's cultural/name resonance is not literal Greek genealogy, an imported Apollo religion, or proof of historical descent. Symbol recognition does not establish legal command, shared theology, affiliation, authority, or access. Keep World Tree, language, divinity, temple access, and philosophical design within their source statuses. Conceptual temple experience is not an accepted historical delegation itinerary.
 
-Công nghệ, incentive, coercion, migration có thể đổi điều kiện, không chọn phản ứng văn hóa hoặc instant secularization/modernization. Tách introduction/access/adoption/reinterpretation/practice/persistence khi cần. ACTOR giữ private/public belief và reception; INSTITUTION giữ enforcement/reproduction; ECONOMY/CRISIS giữ domain tương ứng. Chỉ route dependency khi quan hệ đó đổi answer; không mở audit văn hóa vì lookup một symbol. Dừng ở claim/phạm vi/causal link đủ task, không dựng cultural history hoàn chỉnh.
+Cultural change is not automatically modernization, secularization, conversion, or ideological convergence. Do not force a single public reaction or invent conflict and closure for drama. Preserve simultaneous and delayed reception, partial adoption, disagreement, and UNKNOWN only where supported or explicitly hypothetical.
+
+## Stop
+
+Open only decisive meaning/practice/transmission interfaces. Missing decisive evidence blocks the dependent inference or requires a labeled branch. Do not create a complete theology, population census, profession list, or cultural history to answer a bounded task. No proposal becomes canon through plausibility or repeated use.

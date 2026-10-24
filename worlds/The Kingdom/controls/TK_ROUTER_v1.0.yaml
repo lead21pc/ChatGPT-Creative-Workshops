@@ -63,13 +63,13 @@ control_selection:
 controls:
 - id: TEMPORAL
   stem: TK_Anti_Drift_Temporal_World_State
-  select_when: thứ tự, pre-state, delta, tích lũy, khoảng thời gian hoặc tri thức tương lai ảnh hưởng
-    kết luận
+  select_when: order, pre-state, deltas, accumulated consequences, elapsed time, or future knowledge can change
+    the conclusion
   requires: []
   conditional_requires: []
 - id: ACTOR
   stem: TK_Anti_Drift_Actor_Knowledge_Reception_Model_Update
-  select_when: kết luận phụ thuộc actor nhận gì, hiểu/tin/đánh giá gì hoặc thay đổi phản ứng
+  select_when: actor receipt, interpretation, belief, appraisal, or updating materially determines the answer
   requires:
   - RELATION
   conditional_requires:
@@ -83,34 +83,33 @@ controls:
     target: ECONOMY
 - id: RELATION
   stem: TK_Anti_Drift_State_Relation_Architecture
-  select_when: quan hệ, ranh giới owner, phân công chức năng hoặc tác động giữa miền quyết định kết luận
+  select_when: typed relations, owner boundaries, function allocation, or cross-domain effects decide the conclusion
   requires: []
   conditional_requires: []
 - id: INSTITUTION
   stem: TK_Anti_Drift_World_Institutional_Logic
-  select_when: khả năng vận hành, thẩm quyền, thể chế, phản gián, luật hoặc failure interface ảnh hưởng
-    kết luận
+  select_when: institutional operation, authority, law, counterintelligence, or failure interfaces materially
+    affect the answer
   requires: []
   conditional_requires:
   - when: economic_mechanism_material
     target: ECONOMY
 - id: IRL
   stem: TK_Anti_Drift_IRL_Baseline_Divergence
-  select_when: áp dụng dữ kiện/quốc gia/thể chế thật vào trạng thái hư cấu hoặc so sánh qua thời điểm
+  select_when: real-world countries, institutions, facts, or time-bound references are localized into TK state
   requires: []
   conditional_requires:
   - when: actor_reception_material
     target: ACTOR
 - id: ECONOMY
   stem: TK_Anti_Drift_Economy_Trade_Abundance
-  select_when: khan hiếm, giá trị, tiếp cận, thương mại, logistics, lao động hoặc can thiệp kinh tế quyết
-    định kết luận
+  select_when: scarcity, value, access, trade, logistics, labor, or economic intervention decides the answer
   requires: []
   conditional_requires: []
 - id: BELIEF
   stem: TK_Anti_Drift_Belief_Culture_Divinity
-  select_when: ý nghĩa văn hóa/tôn giáo, truyền bá, thực hành, biến đổi hoặc nhận diện biểu tượng quyết
-    định kết luận
+  select_when: cultural/religious meaning, transmission, practice, change, or symbolic recognition decides
+    the answer
   requires: []
   conditional_requires:
   - when: actor_reception_material
@@ -121,8 +120,8 @@ controls:
     target: ECONOMY
 - id: CRISIS
   stem: TK_Anti_Drift_Strategic_Crisis_Conflict
-  select_when: đánh chặn, khủng bố/proxy, biên giới, chỉ huy, triển khai hoặc leo/xuống thang ảnh hưởng
-    kết luận
+  select_when: interception, terrorism/proxy action, borders, command, deployment, or escalation affects a
+    transition
   requires:
   - TEMPORAL
   - RELATION
@@ -131,7 +130,7 @@ controls:
     target: ECONOMY
 - id: NARRATIVE
   stem: TK_Anti_Drift_World_State_Narrative_Assumption_Failure
-  select_when: thiết kế/kể checkpoint, perspective, payoff hoặc áp lực thể loại ảnh hưởng kết luận
+  select_when: checkpoint design, perspective, payoff, or genre pressure can change the requested reasoning
   requires:
   - TEMPORAL
   - ACTOR
@@ -149,51 +148,73 @@ failures:
   control_conflict: BLOCK_DEPENDENT_REASONING
   secondary_nondecisive_gap: SOURCE_LOAD_PARTIAL
 policies:
-  entry: CI sở hữu entry cho mọi current-dependent lookup, comparison, simulation, audit, design, mutation,
-    integration, reconciliation, event/checkpoint hoặc IRL application. Generic task tự đủ không cần current
-    có thể bỏ qua. Repository ACTIVE không là Project deployment.
-  prompt_route_only: Chỉ xác định requested operation/stage/scope, time relation/checkpoint/interval,
-    candidate owner và actor/country/domain, evidence, overlay applicability và canon-change permission.
-    Không world premise, resolved gap, simulation conclusion hoặc outcome. Reroute khi material scope
-    đổi.
-  bootstrap: Đọc FULL_FILE index/open issues cùng current package. Đọc record FULL_FILE khi một điều kiện
-    record_read_when có thể quyết task. Index chỉ discovery, open issues chỉ giữ unresolved; entry không
-    tự giải quyết gap.
-  owner_gate: Xác lập SOURCE_ID, runtime role, semantic role, scope, authority/cross-owner boundary và
-    load mode từ current header + admission + author decision. Filename/location/catalog/date không cấp
-    authority; duplicate/unknown/missing decisive owner chặn dependent work. New unadmitted input vẫn
-    UNCONFIRMED. Current source không tự có nghĩa mọi section CANON. Future actor/event owner được admit
-    bằng manifest/header/index sau scoped review, không cần sửa Router core.
-  temporal_gate: Khi thời gian quyết định, xác lập checkpoint/interval/event, quan hệ thời gian, pre/post
-    state, future exclusions và actor-information boundary trước simulation. CURRENT source có thể giữ
-    truth lịch sử mà actor tại T chưa biết; không suy thời gian chỉ từ số file. Thiếu decisive chronology/access
-    chặn transition hoặc conditional proposal, không tự điền.
-  source_load: FULL_FILE là default và chế độ duy nhất v1.0. Hit/snippet/header/summary/memory/prior answer
-    không chứng minh đọc đủ. Giữ qualifiers/exceptions/mixed status và owner boundaries. V1.0 không có
-    node closure contract hoặc hard lore-dependency registry; material referenced owner phải đọc khi claim
-    phụ thuộc, không suy mọi mention là dependency. Không tuyên bố package completeness nếu chỉ đọc task-local.
-  reconciliation: 'CI sở hữu canon-status discipline: latest explicit scoped author decision, accepted
-    current controlling source và older explicitly preserved facts. Routing record chỉ truy provenance,
-    không tự resolve. Giữ CURRENT, HISTORICAL, SUPERSEDED, UNKNOWN, DEFERRED, CONFLICTED, INFERENCE, HYPOTHETICAL,
-    PROPOSAL, UNVERIFIED và qualifiers gốc. Câu hỏi/compatibility/silence/repetition không acceptance.
-    New unsupported input vẫn UNCONFIRMED. Rút dependent conclusions khi premise accepted đổi, không bịa
-    replacement consequences.'
-  access: Đọc nguồn current có quyền từ Project Sources/Library hoặc local repo theo môi trường và yêu
-    cầu; không mặc định Library path/connector như FTH. Read permission không canon authority. Source_archive
-    không current input/discovery/fallback/regeneration. Chỉ provenance/history/audit/recovery được yêu
-    cầu rõ hoặc historical record được nguồn dẫn cần đối chiếu; không dùng sự thiếu current để tự phục
-    hồi. Local control-design reads không giả làm canon reads.
-  overlays: Chọn semantic applicability sau source loading/reconciliation, không từ keyword. Chọn highest
-    ACTIVE numeric version; không recursion archive, không candidate lifecycle. Expand requires và conditional
-    edges đã được đánh giá true transitively; chưa quyết applicability không được giả false để bypass
-    control. Missing/ambiguous/cycle chặn phần phụ thuộc. FULL_FILE mọi selected overlay trước execution;
-    glossary không runtime prerequisite. Overlay không cấp canon/source authority/thao tác, không đổi
-    actor outcome.
-  execution: Chỉ thực hiện requested operation sau gates. Pipeline giữ transformation/stop; overlay giữ
-    reasoning scope. Bounded task không thành full domain model. Missing decisive premise phải chặn hoặc
-    explicit conditional branch, không lấy hypothesis làm current fact. Chỉ partial khi named secondary
-    gap demonstrably không đổi bounded conclusion; independent work tiếp tục được.
-  pre_response: Recheck operation/stage, time, actor access/information, owners/current statuses, read
-    proofs, unresolved gaps, overlay boundaries/dependencies và canon permission. Báo đúng evidence class;
-    repository structural check không chứng minh live retrieval hoặc LLM semantic compliance. Không tự
-    tìm/chọn/đọc/xác nhận CI ở runtime; core references chỉ cho maintenance compatibility.
+  entry: CI owns entry for materially current-dependent lookup, comparison, audit, simulation, design, mutation,
+    integration, migration, reconciliation, event/checkpoint work, and IRL application. A self-sufficient generic
+    task may bypass routing. Repository ACTIVE does not prove Project deployment.
+  prompt_route_only: Identify only the requested operation/stage/scope, checkpoint/interval/time relation,
+    candidate owners and actor/country/domain, evidence needs, potential overlays, and canon-change permission.
+    Establish no world premise, resolved gap, simulated conclusion, or outcome. Reroute when material scope
+    changes.
+  bootstrap: Start normal lore access in ChatGPT Library folder "TK Source". FULL_FILE-read the current source
+    index and open issues from the applicable current package. FULL_FILE-read the reconciliation record when
+    a record_read_when condition can decide the task. Index entries discover owners; issue entries preserve
+    gaps, not solutions.
+  owner_gate: Establish admitted SOURCE_ID, runtime and semantic roles, status, scope, authority/cross-owner
+    boundaries, and load mode from current headers, admission, reconciliation, and scoped author decisions.
+    Filename, folder, Library location, Project presence, catalog listing, or date grants no authority. Duplicate/unknown/missing
+    decisive identity blocks dependent work. An external identical name is not the same current source. Unsupported
+    new input remains UNCONFIRMED. CURRENT_SOURCE does not mean every section is CANON. Admit future actor/event
+    owners through scoped review, manifest, header, and index without changing Router core.
+  temporal_gate: When time is decisive, establish checkpoint/interval/event, temporal relation, pre/post state,
+    future exclusions, and actor-information boundaries before simulation. A current source may preserve historical
+    truth unknown to an actor at T. Do not infer time from filename numbering alone. Missing decisive chronology/access
+    blocks the transition or requires an explicit conditional proposal.
+  source_load: FULL_FILE is the default and only v1.0 load mode. A hit, snippet, header, summary, memory, or
+    previous answer does not prove a full read. Preserve qualifiers, exceptions, mixed statuses, and owner
+    boundaries. There is no node-closure contract or hard lore-dependency registry. Read materially referenced
+    owners when the claim depends on them; mention alone is not dependency. A task-local read does not prove
+    package completeness.
+  reconciliation: 'CI owns canon/status discipline: latest explicit scoped author decision, accepted current
+    controlling source, and explicitly preserved older facts. The record routes provenance and does not resolve
+    itself. Preserve CURRENT, HISTORICAL, SUPERSEDED, UNKNOWN, DEFERRED, CONFLICTED, INFERENCE, HYPOTHETICAL,
+    PROPOSAL, UNVERIFIED, and source qualifiers. Questions, compatibility, silence, or repetition are not acceptance.
+    Unsupported input remains UNCONFIRMED. Withdraw dependent conclusions when an accepted premise changes
+    without inventing replacement consequences.'
+  access: 'Use the normal order: Library "TK Source", then Project Sources/explicitly supplied current project
+    files, then an explicitly authorized task-local external source. Move to a later authorized surface when
+    the earlier one is unavailable, insufficient, or a scoped user instruction supplies the relevant current
+    source; establish identity/status/scope/owner/reconciliation there before relying on it. Do not fabricate
+    Library presence or a successful read. An environment allowing local maintenance reads does not make repository
+    files automatic runtime lore. Read permission and access location grant no canon authority. Source_archive
+    is excluded from current discovery, loading, fallback, and regeneration. Only explicit provenance/history/audit/recovery
+    scope or a current source identifying a historical record permits the relevant historical comparison; missing
+    current state never authorizes recovery. Local control-design reads are not canon reads.'
+  overlays: Judge semantic applicability after source loading/reconciliation, not from keywords. Select the
+    highest explicit ACTIVE numeric version among direct children; never recurse into archives or require a
+    candidate lifecycle. Transitively expand requires and conditional edges judged applicable. Unresolved applicability
+    cannot be assumed false to bypass a required control. Missing/ambiguous/cyclic required controls block
+    dependent reasoning. FULL_FILE-read selected overlays before execution. Glossary is not a runtime prerequisite.
+    Overlays grant no canon, source authority, operation, or actor outcome.
+  execution: Execute only the requested operation after gates. Pipeline owns transformations/stopping; overlays
+    own scoped reasoning. A bounded task does not require a full domain model. Block missing decisive premises
+    or branch explicitly; do not use a hypothesis as current fact. Partial loading is valid only for a named
+    secondary gap demonstrably unable to change the bounded conclusion. Independent supported work may continue.
+  pre_response: Recheck operation/stage, time, actor access/information, current owner statuses, actual read
+    evidence, unresolved gaps, overlay boundaries/dependencies, and canon permission. Report the correct evidence
+    class. Repository checks prove neither live Library retrieval nor model semantic compliance. REPOSITORY
+    ACTIVE != LIBRARY SYNCHRONIZED != LIVE PROJECT DEPLOYED. Never discover/select/load/confirm active CI at
+    runtime; core references are maintenance compatibility checks.
+source_access:
+  primary_library_folder: TK Source
+  normal_order:
+  - LIBRARY
+  - PROJECT_SOURCES
+  - AUTHORIZED_EXTERNAL
+  external_authorization: TASK_LOCAL_EXPLICIT
+  repository_role: MAINTENANCE_NOT_AUTOMATIC_RUNTIME_SOURCE
+  location_grants_authority: false
+  project_presence_grants_authority: false
+  external_name_grants_identity: false
+  library_contents_verified: false
+  library_synchronization: NOT_PERFORMED
+  live_project_deployment: NOT_PERFORMED

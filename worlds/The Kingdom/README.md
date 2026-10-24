@@ -1,115 +1,81 @@
 # The Kingdom
 
-**The Kingdom** là project/paracosm; **Hyperborea** là quốc gia trong paracosm. Hyperborea là tên quốc gia hiện hành; tên giữ chỗ cũ đã ngừng dùng trong nguồn current, chỉ giữ trong archive/provenance. Namespace `TK-*` không đổi vì đổi tên quốc gia.
+The Kingdom is the project/paracosm. Hyperborea is the country within it. The previous country placeholder is retired in current sources and preserved only in history/provenance. Renaming the country does not change TK-* source identities.
 
-Đây là worldbuilding cá nhân: thế giới vận động, lịch sử/hệ quả tích lũy; không có nhân vật chính trung tâm. Nhân vật là camera, fantasy tạo hệ quả qua con người và hệ thống. Repository chỉ externalize một phần thế giới của tác giả; thiếu dữ kiện không chứng minh tác giả chưa biết.
+This is personal worldbuilding centered on a moving world and accumulated consequences. Characters provide cameras; there is no central protagonist. The repository externalizes only part of the author's world. Missing repository detail does not establish missing author knowledge. Lore bodies retain their source language; control and management artifacts use English.
 
-## Cấu trúc nguồn
+## Source Layout and Authority
 
-```text
-The Kingdom/
-├─ README.md
-├─ THE_KINGDOM_CHECKPOINT_STATE_INDEX.md
-├─ TK_CURRENT_SOURCE_INDEX.md
-├─ TK_RECONCILIATION_RECORD.md
-├─ TK_OPEN_ISSUES_CURRENT.md
-├─ MANIFEST.md
-├─ TK_TIMELINE_*.md
-├─ TK_METHOD_*.md
-├─ TK_DOMAIN_*.md
-├─ controls/
-│  └─ anti_drift/
-├─ tools/
-├─ tests/
-└─ Source_archive/
-```
+Current owners remain at the package root as TK_TIMELINE_*, TK_METHOD_*, and TK_DOMAIN_* files. [Current discovery](TK_CURRENT_SOURCE_INDEX.md) lists admitted identities/scopes. [Temporal navigation](THE_KINGDOM_CHECKPOINT_STATE_INDEX.md) keeps boundaries separate from persistent domains. [Reconciliation](TK_RECONCILIATION_RECORD.md) tracks accepted changes/provenance; [open issues](TK_OPEN_ISSUES_CURRENT.md) retain unresolved states; [manifest](MANIFEST.md) admits package paths and integrity metadata.
 
-- Active root là owner current trong scope và theo nhãn từng phần; ACTIVE không biến mọi draft/proposal thành canon.
-- `controls/` giữ CI, anti-drift, workflow và câu hỏi kiểm tra. CONTROL != LORE SOURCE. CI repository hiện hành là TK CI v1.0; trạng thái CI đang cài trong live Project chưa được kiểm chứng.
-- `Source_archive/` là lịch sử/provenance chỉ đọc sau migration; không current authority, không fallback, không tự nạp. Không sửa ngược lịch sử để khớp current.
+ACTIVE identifies a source/control role, not acceptance of all proposals or simulations inside it. Keep CANON, USER-PROVIDED STATE, DECIDED, PROPOSAL, UNDER CONSIDERATION, INFERENCE, UNKNOWN, STALE, and CONFLICTED distinct. Source detail and explicit scoped author decisions retain their authority. Neither index, manifest, nor directory location canonizes content.
 
-```text
-DO NOT USE Source_archive TO FILL A GAP IN ACTIVE SOURCES.
-```
+Source_archive is historical provenance, not current authority, fallback, or regeneration input. Do not use it to fill a gap in active sources. Read a historical record only under explicit history/provenance/audit/recovery scope or when a current source identifies the relevant comparison. Archive files remain byte-exact.
 
-Chỉ đọc khi tác giả yêu cầu history/provenance/audit/recovery hoặc active source dẫn rõ historical record cần đối chiếu. Link provenance không nhập cả handoff thành canon hoặc cho phép phục hồi lore. Khi thiếu current source, giữ UNKNOWN/repository gap.
+## Library Runtime Contract
 
-## Nguồn active và điều hướng
+The exact ChatGPT Library folder is **"TK Source"**. This is a Library location, not a repository directory. Normal lore access order:
 
-Bắt đầu từ [current source index](TK_CURRENT_SOURCE_INDEX.md); khi thời gian quan trọng dùng thêm [timeline index](THE_KINGDOM_CHECKPOINT_STATE_INDEX.md). Bảng sau chỉ điều hướng owner, không là registry hoặc bảng xếp authority.
+1. Library folder "TK Source".
+2. Project Sources / explicitly supplied current project files.
+3. Explicitly authorized task-local external source.
 
-| SOURCE_ID | Tệp | Vai trò và phạm vi |
-|---|---|---|
-| TK-DOM-GEO | [TK_DOMAIN_GEOPOLITICS.md](TK_DOMAIN_GEOPOLITICS.md) | DOMAIN — Địa chính trị, DMZ, đối ngoại, động cơ mở cửa và các lựa chọn còn mở. |
-| TK-DOM-INFRA | [TK_DOMAIN_INFRASTRUCTURE.md](TK_DOMAIN_INFRASTRUCTURE.md) | DOMAIN — Hạ tầng, không lưu và capabilities thường trực; phương án mở cửa giữ status riêng. |
-| TK-DOM-COUNTERINTEL | [TK_DOMAIN_COUNTERINTELLIGENCE.md](TK_DOMAIN_COUNTERINTELLIGENCE.md) | DOMAIN — Phản gián, quyền tiếp cận, tri thức và attribution; cơ chế đề xuất giữ riêng. |
-| TK-DOM-HEALTH | [TK_DOMAIN_HEALTH.md](TK_DOMAIN_HEALTH.md) | DOMAIN — An toàn sinh học, điều trị và quyền y tế; chi tiết chưa xác định vẫn mở. |
-| TK-DOM-LANGUAGE-RELIGION | [TK_DOMAIN_LANGUAGE_RELIGION.md](TK_DOMAIN_LANGUAGE_RELIGION.md) | DOMAIN / DESIGN PHILOSOPHY — Universal Language, thần tính, World Tree và triết lý; không xác nhận quyền tiếp cận. |
-| TK-DOM-LAW | [TK_DOMAIN_LAW.md](TK_DOMAIN_LAW.md) | DOMAIN — Luật V2 đang tái thiết kế; Luật Ngoại Nhân chỉ áp dụng ngoại nhân đã bị bắt. |
-| TK-METHOD-FICTION | [TK_METHOD_FICTION.md](TK_METHOD_FICTION.md) | RUNTIME / AUTHORING METHOD — World-state, checkpoint/interval, progression và giới hạn tri thức. |
-| TK-DOM-POT | [TK_DOMAIN_POT.md](TK_DOMAIN_POT.md) | DOMAIN — Thiết bị POT; canon khả năng và chi tiết còn mở. |
-| TK-METHOD-POV | [TK_METHOD_POV_PERSPECTIVE.md](TK_METHOD_POV_PERSPECTIVE.md) | RUNTIME / AUTHORING METHOD — POV xuyên timeline; nguyên tắc đã xác lập và thiết kế chưa accepted giữ riêng. |
-| TK-DOM-DELEGATION | [TK_DOMAIN_OPENING_DELEGATION.md](TK_DOMAIN_OPENING_DELEGATION.md) | DOMAIN / OPENING DESIGN — Mandate xác minh, itinerary draft và câu hỏi; không phải event log. |
-| TK-TL-CP01 | [TK_TIMELINE_CP01_OPENING.md](TK_TIMELINE_CP01_OPENING.md) | CHECKPOINT — Breakpoint mở cửa; pre-state tối thiểu, direct delta và boundary state CP1. |
-| TK-TL-I01-02 | [TK_TIMELINE_INTERVAL_CP01_CP02.md](TK_TIMELINE_INTERVAL_CP01_CP02.md) | INTERVAL — Sau boundary CP1 đến ngay trước CP2; progression, phản ứng và state tích lũy có nguồn. |
-| TK-TL-CP02 | [TK_TIMELINE_CP02_REVEAL.md](TK_TIMELINE_CP02_REVEAL.md) | CHECKPOINT — Vụ thử nước, đánh chặn, attribution và military/mage reveal; boundary tức thời, không sở hữu phản ứng nhiều ngày sau. |
-| TK-TL-POST02 | [TK_TIMELINE_POST_CP02.md](TK_TIMELINE_POST_CP02.md) | POST-CHECKPOINT MATERIAL — Premise logistics sau CP2 chưa có số checkpoint; phụ lục simulation lịch sử không là baseline phản ứng current. |
+The expected Library package contains TK_CURRENT_SOURCE_INDEX.md, TK_OPEN_ISSUES_CURRENT.md, TK_RECONCILIATION_RECORD.md, THE_KINGDOM_CHECKPOINT_STATE_INDEX.md, and all 14 admitted current timeline/method/domain owners. Future country/actor/event owners join only after material exists and scoped admission is accepted. The exact current path list is in the manifest's runtime_source_package contract. CI, Router, Pipeline, overlays, glossary, support controls, tests, and maintenance files remain outside this lore package.
 
-## Cách vận hành và giới hạn tri thức
+LIBRARY LOCATION != CANON AUTHORITY. PROJECT SOURCE PRESENCE != AUTOMATIC AUTHORITY. EXTERNAL IDENTICAL NAME != SAME CURRENT SOURCE. Establish admitted identity, role, status, scope, owner boundary, reconciliation state, and author decisions at every access surface. An unavailable Library may lead to the next authorized surface; it does not authorize archive fallback or arbitrary external sources.
 
-```text
-CHECKPOINT → INTERVAL → CHECKPOINT
-CP1 → I01-02 (≈ 2 năm) → CP2 → POST02
-```
+The repository is the maintenance/version-controlled implementation location. REPOSITORY PACKAGE != LIBRARY DEPLOYMENT STATE. Local source reads for this maintenance task do not prove runtime retrieval.
 
-Checkpoint giữ breakpoint/direct boundary delta. Interval giữ progression, thích nghi, tiếp xúc, phản ứng/state tích lũy; không đủ nguồn để tự viết hai năm lịch sử. Domain giữ hệ thống thường trực, method giữ cách kể. Không đồng nhất S1 tức thời với final pre-CP2 state.
+| Evidence | State |
+| --- | --- |
+| Router configured for Library "TK Source" | YES |
+| Library folder/file presence inspected | NO |
+| Library contents verified | NO |
+| Library synchronization/upload | NOT_PERFORMED |
+| Live ChatGPT Project deployment | NOT_PERFORMED |
+| Live retrieval/model compliance | NOT_VERIFIED |
 
-WORLD STATE là trục cấu trúc. POV dùng **ACTOR + TIME + AVAILABLE INFORMATION**: world truth, quan sát, phân tích nội bộ, công bố và diễn giải xã hội khác nhau. Không kéo tri thức tương lai về quá khứ, không có phản ứng chung cho nhân loại.
+REPOSITORY ACTIVE != LIBRARY SYNCHRONIZED != LIVE PROJECT DEPLOYED.
 
-[Method fiction](TK_METHOD_FICTION.md) khóa payoff: **vả assumption/model, không làm actor ngu**; CP1 sửa ước lượng, CP2 phá mô hình/phân loại, cargo sau CP2 bộc lộ normality gap. Đây là chức năng tác giả, không là kết luận đồng nhất mọi actor. CP3 chỉ là candidate đang cân nhắc trong method, không có timeline owner.
+## Native Runtime and Boundaries
 
-## Tham chiếu thực tế
+PERSISTENT DOMAIN/ACTOR STATE + TEMPORAL WORLD STATE + CHECKPOINT/INTERVAL/EVENT DELTAS + ACTOR-SPECIFIC INFORMATION is TK-native. CP1 -> interval of approximately two years -> CP2 -> post-CP2 material. A checkpoint owns its direct boundary delta; an interval owns progression/accumulated state. Immediate S1 is not automatically final pre-CP2 state. Missing history is not permission to invent events.
 
-**IRL REFERENCE != CURRENT THE KINGDOM STATE.** Phân biệt IRL REFERENCE @ TIME, KINGDOM DIVERGENCE và ACTOR STATE @ T; nền khoảng 2003 không tự thành trạng thái IRL 2026. Chỉ externalize divergence ảnh hưởng quyết định; không tự nhập lịch sử/chính sách thật vào fiction.
+WORLD TRUTH -> OBSERVABLE SLICE -> ACTOR INFORMATION -> MODEL -> DECISION -> ACTION -> INTERACTION -> NEW WORLD STATE. Each actor requires ACTOR + TIME + ACCESS PATH. Do not import future reveal into earlier knowledge or a universal reaction for humanity. [Fiction method](TK_METHOD_FICTION.md) preserves assumption/model failure without making actors stupid: CP1 estimation, CP2 reclassification, and post-CP2 cargo normality gap are authorial functions, not universal actor conclusions. CP3 remains UNDER CONSIDERATION without a current owner.
 
-## Giới hạn kiểm chứng
+IRL REFERENCE @ TIME, TK DIVERGENCE, and ACTOR STATE @ T differ. A roughly 2003 baseline does not automatically become IRL 2026. [Law](TK_DOMAIN_LAW.md) retains reset/scoped foreigner recovery; domestic law is not designed. [Perspective method](TK_METHOD_POV_PERSPECTIVE.md) retains unaccepted design. [Delegation](TK_DOMAIN_OPENING_DELEGATION.md) retains draft itinerary. No UNKNOWN or CONFLICTED lore was resolved in this correction.
 
-Giữ riêng CANON, USER-PROVIDED STATE, DECIDED, PROPOSAL, UNDER CONSIDERATION, INFERENCE, UNKNOWN, STALE, CONFLICTED. Method POV còn thiết kế chưa accepted; luật còn reset/recovery ngoại nhân có phạm vi; itinerary chưa là lịch sử. Luật nội quốc chưa thiết kế; handoff báo prototype Tree nhưng repository chưa có asset để kiểm chứng.
+## Management Stack v1.0
 
-Migration local không cài CI, không cập nhật ChatGPT Project/Library và không chứng minh runtime. README chỉ định hướng; source chi tiết và xác nhận mới hơn của tác giả giữ thẩm quyền tương ứng. Stack quản lý v1.0 bên dưới thay giới hạn không-Router của migration trước; không có archive promotion hoặc registry ontology.
+All 13 versioned controls are ACTIVE in the repository, with no candidate lifecycle:
 
-
-## Stack quản lý v1.0
-
-Tất cả control v1.0 dưới đây có Status: ACTIVE trong repository; REPOSITORY ACTIVE != LIVE CHATGPT PROJECT DEPLOYED. Task này không deploy hoặc xác nhận runtime retrieval/compliance.
-
-- [TK CI v1.0](controls/TK_CI_v1.0.md): kernel tự chứa semantics Global Native v9.0; FTH CI 3.4 chỉ là structural reference, không runtime dependency.
-- [TK Router v1.0](controls/TK_ROUTER_v1.0.yaml): default cho mọi current-dependent task; generic task tự đủ có thể bỏ qua. CI sở hữu entry, Router sở hữu chọn/nạp/đối chiếu owner và overlay, không tự chọn CI runtime.
-- [Authoring Pipeline](controls/TK_AUTHORING_PIPELINE_v1.0.md): biến đổi được yêu cầu và điểm dừng, không source authority.
-- [Glossary](controls/TK_CONTROL_VOCABULARY_GLOSSARY_v1.0.md): hỗ trợ viết/đọc, không prerequisite runtime.
-- Chín overlay trong `controls/anti_drift/`: Temporal, Actor, Relation, Institution, IRL, Economy, Belief, Crisis, Narrative. Chỉ chọn khi semantic applicability quyết định task, highest ACTIVE numeric; không keyword-only hoặc candidate lifecycle.
-- [Current source index](TK_CURRENT_SOURCE_INDEX.md) tách [temporal index](THE_KINGDOM_CHECKPOINT_STATE_INDEX.md); [reconciliation](TK_RECONCILIATION_RECORD.md) giữ quyết định/migration và coverage; [open issues](TK_OPEN_ISSUES_CURRENT.md) giữ unresolved, không tạo canon.
-- [Manifest](MANIFEST.md) nhận current paths/hashes và nêu bảo trì. `tools/validate_kingdom_package.py` chỉ kiểm; `--write` chỉ vùng generated catalog/hash, không source text hoặc lore.
+| Artifact | Responsibility |
+| --- | --- |
+| [CI](controls/TK_CI_v1.0.md) | Self-contained Global Native v9.0 semantics, task/stage/canon discipline, and Router entry. FTH CI 3.4 is structural reference only. |
+| [Router](controls/TK_ROUTER_v1.0.yaml) | Access/discovery, owner/temporal gates, full reads, reconciliation routing, and numeric ACTIVE overlay/dependency selection. It never selects active CI at runtime. |
+| [Pipeline](controls/TK_AUTHORING_PIPELINE_v1.0.md) | Requested transformations, early Router handoff, and stopping; no source authority. |
+| [Glossary](controls/TK_CONTROL_VOCABULARY_GLOSSARY_v1.0.md) | Maintenance vocabulary; no runtime prerequisite. |
+| Nine overlays in controls/anti_drift | TEMPORAL, ACTOR, RELATION, INSTITUTION, IRL, ECONOMY, BELIEF, CRISIS, NARRATIVE; selected semantically after source/reconciliation gates. |
 
 ```text
-PROMPT_ROUTE_ONLY → BOOTSTRAP_GATE → OWNER_GATE → TEMPORAL_GATE
-→ SOURCE_LOAD → RECONCILIATION → ANTI_DRIFT_OVERLAY_GATE
-→ PROMPT_EXECUTION → PRE_RESPONSE_CHECK
+PROMPT_ROUTE_ONLY -> BOOTSTRAP_GATE -> OWNER_GATE -> TEMPORAL_GATE
+-> SOURCE_LOAD -> RECONCILIATION -> ANTI_DRIFT_OVERLAY_GATE
+-> PROMPT_EXECUTION -> PRE_RESPONSE_CHECK
 ```
 
-Header owner gồm SOURCE_ID, RUNTIME_ROLE, ROLE, STATUS, SCOPE, AUTHORITY_BOUNDARY, CROSS_OWNER_BOUNDARY, LOAD_MODE. V1.0 chỉ FULL_FILE; future actor/event owner cần material và scoped admission, không file trống. FULL MANAGEMENT STACK != FTH CLONE: TK giữ persistent owner + temporal delta + actor information, không AFM/country/module assumptions của FTH.
+Owner headers retain SOURCE_ID, RUNTIME_ROLE, ROLE, STATUS, SCOPE, AUTHORITY_BOUNDARY, CROSS_OWNER_BOUNDARY, and LOAD_MODE. v1.0 uses FULL_FILE only. Header/hit/summary/memory is not a full-read proof. Missing decisive input blocks dependent work; partial loading requires a named secondary gap unable to change the bounded conclusion. Shared management scale does not import FTH ontology.
 
-## Bảo trì và bằng chứng
+## Maintenance and Evidence
 
-Từ repository root:
+From the repository root:
 
 ```powershell
 python -B "worlds/The Kingdom/tools/validate_kingdom_package.py" --check
 python -B -m unittest discover -s "worlds/The Kingdom/tests"
 ```
 
-Mặc định tool chỉ đọc. Khi đã xem lỗi stale và kiểm cấu trúc, `--write` chỉ cập nhật generated catalog/hash rồi phải chạy `--check` lại. PyYAML dùng để đọc YAML (môi trường tác vụ có sẵn 6.0.3). Numeric version: 1.9 < 1.10; chỉ ACTIVE được chọn, archived/superseded/retired hoặc status khác không đủ điều kiện.
+The validator defaults to read-only checking. After reviewing structural validity and staleness, --write updates only GENERATED SOURCE CATALOG in the current index and GENERATED HASHES in the manifest; run --check again. It never rewrites lore, admits sources, infers canon/dependencies, or rebuilds archives. PyYAML is required for Router parsing; the task environment already provides it. Numeric selection satisfies 1.9 < 1.10 and excludes every non-ACTIVE status.
 
-Tests kiểm structural contracts, dependency resolution và mutation failures; sáu tình huống trong `tests/control_cases.json` là protocol chưa chạy model, không semantic PASS qua substring. Không current build input từ archive; rollback dùng Git history.
+Tests verify structural contracts and failures. Prompts in tests/control_cases.json are unexecuted model protocols, not semantic PASS evidence from substring checks. This task performs no Library upload, live deployment, Git stage, commit, push, branch switch, or tag. Rollback uses Git history, not archive regeneration.
 
-Bốn CI và anti-drift cũ được thay sau coverage, lưu tại `Source_archive/controls_legacy/`. Workflow seed nhiều paracosm và bộ câu hỏi stress-test giữ độc lập, không cạnh tranh CI/Router. Archive cũ giữ byte, không chỉnh wording cho giống stack mới.
+The five superseded legacy controls remain in Source_archive/controls_legacy after the previously verified coverage migration. [Independent seed workflow](controls/multi_paracosm_hub_workflow.md) remains unchanged. [Stress-test questions](controls/TK_WORLDBUILDING_STRESS_TEST.md) remain a separate NOT_RUN verification aid, translated without becoming lore or a model test result.

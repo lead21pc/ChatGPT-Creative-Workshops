@@ -1,31 +1,30 @@
-# The Kingdom — Kinh tế, giao thương và dư dả v1.0
+# The Kingdom — Economy, Trade and Abundance v1.0
 
 Status: ACTIVE
 Version: 1.0
 Role: REASONING_OVERLAY
 Control_ID: ECONOMY
 
-## Kích hoạt và thẩm quyền
+## Activation and Authority
 
-Áp dụng khi khan hiếm, giá trị, tiếp cận, thương mại, logistics, lao động hoặc can thiệp kinh tế quyết định kết luận. Chỉ nhắc keyword hoặc tra cứu fact trực tiếp không tự kích hoạt audit miền. Router chọn và nạp FULL_FILE sau SOURCE_LOAD/RECONCILIATION; chỉ suy luận ở PROMPT_EXECUTION. Kế thừa CI/Router về canon, nguồn, status, permission và partial/block; không chọn nguồn, sửa open state, tự cấp quyền hoặc quyết actor outcome. Thiếu decisive premise phải conditional hoặc chặn phần phụ thuộc. Không mở full domain chỉ để đủ checklist.
+Apply when scarcity, value, access, trade, logistics, labor, or economic intervention decides the answer. A keyword or direct lookup alone does not require a full audit. The Router judges semantic applicability after source loading/reconciliation, expands required and applicable conditional controls, and FULL_FILE-loads selected overlays before PROMPT_EXECUTION.
 
+Inherit CI/Router operation, source, status, time, and canon boundaries. This overlay grants no source authority, acceptance, action permission, or actor outcome; it cannot waive gates. Missing decisive evidence blocks dependent reasoning or requires an explicitly conditional branch. Continue independently supported work when appropriate.
 
-## Độ sâu và các trục khác nhau
+## Economic Interface and Depth
 
-TASK-LOCAL CLOSURE > DOMAIN COMPLETENESS; CAUSAL CLOSURE != ACCOUNTING CLOSURE. EARTH SCARCITY != HYPERBOREA SCARCITY; EARTH STRATEGIC VALUE != HYPERBOREA STRATEGIC VALUE; PRICE != VALUE != SCARCITY != ACCESS. Type II/phép thuật có thể đổi vật chất, năng lượng, lao động, vận chuyển, ownership hoặc allocation, nhưng không tự xóa mọi constraint. Không giữ tiền/giá/thị trường/bank/GDP/labor mặc định IRL hoặc bịa cơ chế hậu-khan-hiếm toàn diện.
+Use TASK_LOCAL causal closure, not a mandatory world accounting model. Earth scarcity/value assumptions do not automatically govern Type II Hyperborea. PRICE != VALUE != SCARCITY != ACCESS. Distinguish production capability, actual supply, ownership, allocation, permission, distribution, substitution, and demand. Abundance in one resource does not establish universal access, unlimited logistics, free labor, or zero political/strategic cost.
 
-## MUST_OPEN / MAY_STOP
+MUST_OPEN: open the next layer when requested or when it can change the conclusion, feasibility, authority/veto, permission, resources/capacity, information, exploit/failure, simultaneous overload, or a receiver's refusal/loop. Relevant mechanisms include scarcity/abundance, property/access, pricing/allocation, substitution, bottlenecks, payment/settlement, regulation, insurance/liability, externalities, market power/arbitrage/grey markets, and labor adaptation. Interest, apparent realism, missing numbers, or wider relevance alone is insufficient. Explain why an opened layer matters when needed; do not dump a checklist.
 
-MUST_OPEN lớp kế tiếp khi user yêu cầu hoặc thay đổi cơ chế đó đổi conclusion, feasibility, authority/veto, permission, resource/capacity, thông tin, exploit/failure, simultaneous overload hoặc receiver có thể từ chối/loop. Sự thú vị, vẻ realistic, thiếu con số hoặc wider relevance không đủ. Giải thích ngắn vì sao lớp đang mở có hệ quả khi cần, không dump checklist.
+MAY_STOP: stop when input -> flow -> output, decisive actors/authority/access/incentives, constraints, and relevant failure receivers close the causal chain without a hidden conclusion-changing link. Nondecisive UNKNOWN may persist; stopping does not hide gaps. CAUSAL CLOSURE != ACCOUNTING CLOSURE. A black box is not omnipotence or flattened ontology. Distinguish payer, receiver, and beneficiary. Do not impose IRL money, markets, banking, GDP, or labor by default, invent comprehensive post-scarcity institutions, or build a fiscal/banking/macroeconomic model for a bounded ship, quarantine, or device interface.
 
-MAY_STOP khi interface đã đủ input→flow→output, actor/authority/access/incentive cần thiết, constraint, failure receiver nếu liên quan và không còn hidden link đổi kết luận. UNKNOWN có thể tồn tại lâu nếu không quyết định answer. Không biến stop thành im lặng hay giấu gap. Black box không là omnipotence/flattened ontology.
+## Trade and Conditional Stabilization
 
-## Thương mại và can thiệp
+Trade requires an evidenced interface, counterpart, scope, authorization, route, timing, logistics, and information when those affect the answer. A Russian trading relationship does not automatically confer diplomatic representation, technology transfer, military access, universal import permissions, or later treaty terms. Do not invent reserves, resource inventories, commodity lists, or institutions to make a mechanism work.
 
-Phân biệt payer/receiver/beneficiary, value/price, scarcity/access, supply/demand/allocation, ownership, substitution, bottleneck, logistics, payment/settlement, regulation, insurance/liability, externality, market power, arbitrage/grey market và labor adaptation chỉ khi task cần. Không mở full fiscal/banking/macroeconomic model cho tuyến tàu/kiểm dịch/thiết bị. Nga có historical trade không tự có đại diện ngoại giao, ownership công nghệ hoặc quyền quân sự; cargo public không tự technology transfer.
+State stabilization is conditional on local failure exceeding absorption and threatening an essential function, with a supported current authority/interface or an explicitly chosen premise. Separate willingness, authorization, capacity, timing, cost, implementation, and result. Preserve restored continuity, controlled degradation, and failure branches; do not assume perfect recovery, unlimited reserves, or an infinite safety net. Reallocation, procurement, subsidy, takeover, and quotas are options, not established agencies/capabilities. INSTITUTION/CRISIS may use the interface, but ECONOMY retains economic depth and MUST_OPEN/MAY_STOP.
 
-STATE_STABILIZATION chỉ là conditional interface khi local failure vượt absorption và đe dọa essential function, có current authority/interface hoặc premise được chọn rõ. Intervention attempt → restored continuity / controlled degradation / failure. Không tạo tiền, vật tư, budget, reserve, quyền hoặc perfect balance. Reallocation/procurement/subsidy/takeover/quota là lớp phương án, không cơ quan/năng lực đã có. Không port FTH Facility/Dorm/Forum/Rule Zone, Credits hoặc multi-polar state thành nền TK.
+## Boundaries and Stop
 
-## Số liệu và dừng
-
-Chỉ định lượng khi được yêu cầu và có anchor/model giả định được cho phép; nếu thiếu, giữ unknown hoặc range có premise rõ. Không giả xác suất/giá/throughput canon. Dừng ở interface đủ task, nêu unknown có hệ quả; patch được yêu cầu phải minimum viable proposal, không tự tạo subsystem.
+Do not import FTH Facility/Dorm/Forum/Rule Zone, Credits, or multipolar-state ontology, or impose Earth institutions as a universal template. Quantify only when requested and supported by anchors or an authorized assumption model; otherwise preserve UNKNOWN or a premise-labeled range. Do not canonize invented probabilities, prices, or throughput. If decisive evidence is missing, block dependent conclusions or branch explicitly. Audit identifies gaps/trade-offs; requested patches remain minimum viable proposals, without creating a subsystem. Simulation is not history. Stop at sufficient task-local closure.

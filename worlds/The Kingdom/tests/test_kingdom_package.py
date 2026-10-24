@@ -62,7 +62,8 @@ class PackageTests(unittest.TestCase):
     def test_numeric_version_and_highest_active(self):
         folder = self.root / 'control_versions'
         folder.mkdir()
-        for version,status in [('1.9','ACTIVE'),('1.10','ACTIVE'),('1.11','SUPERSEDED'),('9.0','RETIRED')]:
+        for version,status in [('1.9','ACTIVE'),('1.10','ACTIVE'),('1.11','SUPERSEDED'),
+                               ('9.0','RETIRED'),('99.0','ARCHIVED')]:
             (folder/f'TK_TEST_v{version}.md').write_text(
                 f'# Test\n\nStatus: {status}\nVersion: {version}\n',encoding='utf-8')
         self.assertLess(PACKAGE.numeric_version('1.9'),PACKAGE.numeric_version('1.10'))
@@ -225,7 +226,7 @@ class PackageTests(unittest.TestCase):
         cases=json.loads((self.root/'tests/control_cases.json').read_text(encoding='utf-8'))
         self.assertEqual('NOT_RUN',cases['model_execution'])
         self.assertEqual('STRUCTURAL_FIXTURE_ONLY',cases['evidence'])
-        self.assertEqual(6,len(cases['cases']))
+        self.assertEqual(7,len(cases['cases']))
         plan=PACKAGE.inspect(self.root)
         ids=set()
         for case in cases['cases']:
@@ -236,6 +237,72 @@ class PackageTests(unittest.TestCase):
             self.assertTrue(set(selected)<=plan['resolved'].keys())
             self.assertTrue(case['prompt'] and case['review_criteria'])
         # No generated answer, substring scorer, or semantic-compliance result exists.
+
+    def test_library_first_contract_and_runtime_lore_package(self):
+        plan = PACKAGE.inspect(self.root)
+        access = plan['router']['source_access']
+        self.assertEqual('TK Source', access['primary_library_folder'])
+        self.assertEqual(['LIBRARY', 'PROJECT_SOURCES', 'AUTHORIZED_EXTERNAL'], access['normal_order'])
+        self.assertEqual('TASK_LOCAL_EXPLICIT', access['external_authorization'])
+        self.assertIs(False, access['location_grants_authority'])
+        self.assertIs(False, access['project_presence_grants_authority'])
+        self.assertIs(False, access['external_name_grants_identity'])
+        self.assertIs(False, access['library_contents_verified'])
+        self.assertEqual('NOT_PERFORMED', access['library_synchronization'])
+        contract = PACKAGE.load_contract((self.root/'MANIFEST.md').read_text(encoding='utf-8'))
+        runtime = contract['runtime_source_package']
+        self.assertEqual(18, len(runtime['paths']))
+        self.assertFalse(set(plan['resolved'].values()) & set(runtime['paths']))
+        self.assertFalse((self.root/'TK Source').exists())
+
+    def test_wrong_library_folder_is_rejected_in_router_and_manifest(self):
+        for name, needle, replacement, error in [
+            ('controls/TK_ROUTER_v1.0.yaml', 'primary_library_folder: TK Source',
+             'primary_library_folder: Wrong Source', 'Library access'),
+            ('MANIFEST.md', '"library_folder": "TK Source"',
+             '"library_folder": "Wrong Source"', 'Library target')]:
+            with self.subTest(name=name):
+                path = self.root/name
+                original = path.read_bytes()
+                self.edit(name, needle, replacement)
+                self.failure(error)
+                path.write_bytes(original)
+
+    def test_access_order_and_authority_cannot_be_promoted(self):
+        path = self.root/'controls/TK_ROUTER_v1.0.yaml'
+        original = path.read_bytes()
+        for old, new in [
+            ('  - LIBRARY\n  - PROJECT_SOURCES', '  - PROJECT_SOURCES\n  - LIBRARY'),
+            ('location_grants_authority: false', 'location_grants_authority: true'),
+            ('project_presence_grants_authority: false', 'project_presence_grants_authority: true'),
+            ('external_name_grants_identity: false', 'external_name_grants_identity: true'),
+            ('external_authorization: TASK_LOCAL_EXPLICIT', 'external_authorization: AUTOMATIC'),
+            ('library_contents_verified: false', 'library_contents_verified: true')]:
+            with self.subTest(change=old):
+                self.edit('controls/TK_ROUTER_v1.0.yaml', old, new)
+                self.failure('Library access')
+                path.write_bytes(original)
+
+    def test_controls_and_missing_owners_rejected_in_library_package(self):
+        name = 'MANIFEST.md'
+        path = self.root/name
+        original = path.read_bytes()
+        for replacement in ['controls/TK_CI_v1.0.md', 'TK_OPEN_ISSUES_CURRENT.md']:
+            with self.subTest(replacement=replacement):
+                # Only mutate the runtime list, leaving maintenance admission intact.
+                text = original.decode('utf-8')
+                prefix, suffix = text.split('"runtime_source_package":', 1)
+                suffix = suffix.replace('"TK_DOMAIN_LAW.md"', json.dumps(replacement), 1)
+                path.write_text(prefix+'"runtime_source_package":'+suffix, encoding='utf-8')
+                self.failure('Runtime lore package')
+                path.write_bytes(original)
+
+    def test_conservative_yaml_rejects_anchors_aliases_merges_and_tags(self):
+        for text in ['a: &x value\n', 'a: *x\n', 'a: {<<: {b: value}}\n',
+                     'a: {"<<": value}\n', 'a: !custom value\n', 'a: !!str value\n']:
+            with self.subTest(yaml=text):
+                with self.assertRaises(PACKAGE.ValidationError):
+                    PACKAGE.yaml_data(text)
 
 
 if __name__=='__main__':

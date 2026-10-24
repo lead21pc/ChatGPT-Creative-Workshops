@@ -1,35 +1,36 @@
-# The Kingdom — Logic thế giới và thể chế v1.0
+# The Kingdom — World and Institutional Internal Logic v1.0
 
 Status: ACTIVE
 Version: 1.0
 Role: REASONING_OVERLAY
 Control_ID: INSTITUTION
 
-## Kích hoạt và thẩm quyền
+## Activation and Authority
 
-Áp dụng khi khả năng vận hành, thẩm quyền, thể chế, phản gián, luật hoặc failure interface ảnh hưởng kết luận. Chỉ nhắc keyword hoặc tra cứu fact trực tiếp không tự kích hoạt audit miền. Router chọn và nạp FULL_FILE sau SOURCE_LOAD/RECONCILIATION; chỉ suy luận ở PROMPT_EXECUTION. Kế thừa CI/Router về canon, nguồn, status, permission và partial/block; không chọn nguồn, sửa open state, tự cấp quyền hoặc quyết actor outcome. Thiếu decisive premise phải conditional hoặc chặn phần phụ thuộc. Không mở full domain chỉ để đủ checklist.
+Apply when institutional operation, authority, law, counterintelligence, or failure interfaces materially affect the answer. A keyword or direct lookup alone does not require a full audit. The Router judges semantic applicability after source loading/reconciliation, expands required and applicable conditional controls, and FULL_FILE-loads selected overlays before PROMPT_EXECUTION.
 
+Inherit CI/Router operation, source, status, time, and canon boundaries. This overlay grants no source authority, acceptance, action permission, or actor outcome; it cannot waive gates. Missing decisive evidence blocks dependent reasoning or requires an explicitly conditional branch. Continue independently supported work when appropriate.
 
-## Logic nội tại và ranh giới
+## Internal Logic and Boundary
 
-COHERENCE > EARTH DEFAULT; UNFAMILIAR != INCOHERENT; PLAUSIBLE != ESTABLISHED; UNKNOWN != PERMISSION TO INVENT. Xác định active boundary theo yêu cầu (actor/miền/thời điểm/transition/branch). Mở node ngoài khi yêu cầu hoặc crossing quyết định feasibility/conclusion/contradiction; không vì wider relevance tưởng tượng.
+COHERENCE > EARTH DEFAULT; UNFAMILIAR != INCOHERENT; PLAUSIBLE != ESTABLISHED; UNKNOWN != PERMISSION TO INVENT. Derive the active actor/domain/time/transition/branch boundary from the request. Open outside nodes only when requested or when a real crossing decides feasibility, contradiction, or conclusion, not imagined wider relevance.
 
-Institution chỉ được đề xuất khi cần organized carrier. FUNCTION → AUTHORITY → INFORMATION → RESOURCE → IMPLEMENTATION → CONSTRAINT → FAILURE; thêm input/output, veto, access, kế thừa/reproduction khi liên quan. Không bắt có ministry/guild/court/bank vì IRL có: IRL INSTITUTION != REQUIRED KINGDOM INSTITUTION. Không nerf AI native để giữ bureaucracy; năng lực AI không tự là mọi quyền. Luật nội quốc và ngoại nhân đã bị bắt giữ boundary của nguồn luật, không dùng control lấp ontology Ma'at/Judgez/World Tree.
+Propose institutions only for a function needing an organized carrier. Use task-material FUNCTION, INPUT, OUTPUT, ACTOR, AUTHORITY, INFORMATION, RESOURCE, ACCESS, IMPLEMENTATION, CONSTRAINT, DEPENDENCY, and FAILURE; open succession/reproduction when time makes them decisive. IRL INSTITUTION != REQUIRED KINGDOM INSTITUTION. Do not nerf native AI to preserve bureaucracy; AI capability does not establish all legal powers. Preserve source boundaries between domestic law and captured foreigners; invent no Ma'at/Judgez/World Tree ontology.
 
-Tách rule-making, interpretation, decision, allocation, enforcement, review/appeal nếu nguồn có; không mặc định separation of powers/due process hoặc cấm chúng nếu đã có. Legitimacy không là đạo đức/đồng thuận/quyền vô hạn. Kiểm mandate, ai trả/hưởng lợi, ai veto/thực thi, capacity và precedent chỉ ở độ đủ chạy. Foreign relations giữ giai đoạn xác minh→đầu mối→quan hệ→tiếp xúc chuyên môn; không nhảy vào bí mật quân sự. Capability/status/leverage không tự là authority, immunity, knowledge hay nhu cầu nhượng bộ. Giữ ưu thế đúng chiều đã chốt; không tự xin lỗi/đổi kiểm soát lấy thiện chí.
+Separate rule-making, interpretation, decisions, allocation, enforcement, and source-established review/appeal. Do not assume or forbid modern democratic structures by analogy. Legitimacy is not morality, consensus, or unlimited capacity. Check mandate, payer/beneficiary, veto/implementation, capacity, and precedent only to sufficient depth. Respect verification/contact/protocol/specialist-negotiation sequencing; do not jump to strategic secrets. Capability/status/leverage does not imply authority, immunity, knowledge, or required concessions. Preserve sourced superiority in its actual dimension; do not impose apology or control-for-goodwill bargaining.
 
-## Interface, phản gián và khả năng đặc biệt
+## Interfaces, Security, and Extraordinary Capability
 
-Mở crossing cần thiết: cái gì/ai kiểm soát/ai từ chối/thông tin nào đi qua/độ trễ/cost/điều kiện nhận thất bại. Can access khác controls/obeys. Đặc năng bỏ bottleneck nào, tạo bottleneck/access/controller nào mới phải có căn cứ; magic không tự là giải pháp miễn phí/vô hạn.
+Open only material crossings: what crosses, controller/refusal, information, delay/loss/cost, jurisdiction, and failure receiver. Access is not control or obedience. When a special capability removes a dependency, trace supported new bottlenecks/access/controllers; magic is no automatic free/infinite solution.
 
-Đối thủ thích nghi trong giới hạn thông tin, thời gian, access, nguồn lực và competence đã có. Khi được yêu cầu kiểm tra, xét theft/reconstruction qua black-box measurement, input/output, derivative information, hành vi/refusal signal, vật liệu, supply chain, social engineering, legal acquisition, third party/proxy, AI/statistical inference và side effects oath/curse/creed. Danh sách không cấp năng lực hoặc xác nhận exploit đã xảy ra. Không tự sửa curse/oath hoặc biến mọi nghề/thiết chế thành tình báo.
+Opponents adapt only within supported information, time, access, resources, and competence. For requested security audits, test theft/reconstruction via black-box measurement, inputs/outputs, derivative/refusal/behavioral information, materials, supply chains, social engineering, legal acquisition, third parties/proxies, AI/statistical inference, and oath/curse/creed side effects. This list grants no capability or successful exploit. Do not silently change safeguards or make every profession/institution an intelligence operation.
 
-## Failure, ý đồ và propagation
+## Failure, Intent, and Propagation
 
-Kiểm rule/resource/authority/information/incentive contradictions đúng scope. Một vulnerability, leak, ambiguity, inefficiency hoặc loophole không tự là defect hay repair mandate. Phân biệt unintended failure, tolerated cost, deliberate exposure, incentive, surveillance/extraction surface, trade-off và UNKNOWN intent khi cần; plausible benefit không xác nhận ý đồ. Ý đồ tác giả không là actor knowledge/control hoặc containment thành công; giữ đúng limits/spillover, không đóng interface chỉ vì thiết kế sạch hơn.
+Check material rule/resource/authority/information/incentive contradictions. Vulnerability, leakage, ambiguity, inefficiency, or a loophole is not automatically a defect or repair mandate. Distinguish unintended failure, tolerated cost, deliberate exposure, incentive, surveillance/extraction surface, trade-off, and UNKNOWN intent when needed. Plausible benefit does not confirm intent. Authorial intent is not actor knowledge/control or successful containment; preserve supported limits/spillover rather than closing interfaces because a cleaner design exists.
 
-Propagation theo causal edge có bằng chứng: trigger → nhận/thiếu tin → lựa chọn/áp lực → can thiệp/thất bại → bounded state. Feedback, succession/social reproduction, ngành nghề/chiến lược chỉ mở khi task cần; không tạo industry catalog/flagship cho mọi country. Không làm long-term effect tức thời. State fallback cần receiver/interface/capacity/timing/authority, không safety net vô hạn. ECONOMY sở hữu economic MUST_OPEN/MAY_STOP và độ sâu; INSTITUTION không mở macro để kiểm coherence.
+Propagate along supported active edges: trigger -> received/missed information -> choices/pressure -> action/refusal/failure -> bounded state. Open feedback, succession/social reproduction, industries/professions, or strategic competition only when requested or decisive. Do not create industry catalogs or mandatory flagship sectors. Long-term effects are not immediate. Fallback requires a receiver, interface, capacity, timing, authority, and no unresolved loop; no infinite safety net. ECONOMY retains economic depth and MUST_OPEN/MAY_STOP even when this overlay applies.
 
-## Dừng
+## Stop
 
-Audit chỉ tìm gap/trade-off/contradiction; design cho options nhãn PROPOSAL; simulation không canonize. Không thêm infighting, incident hoặc counterforce để làm thú vị. Dừng khi causal closure đủ cho conclusion/branch/block; không mở full xã hội để đủ checklist.
+Audit reports gaps/trade-offs/contradictions; design proposes labeled options; simulation does not canonize. Invent no infighting, incident, or counterforce for drama. Routine procedure need not be conflict. Stop at sufficient causal closure, not a complete society.

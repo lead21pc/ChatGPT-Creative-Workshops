@@ -23,6 +23,18 @@ ROLE_VALUES = {'DOMAIN', 'DOMAIN / DESIGN PHILOSOPHY', 'DOMAIN / OPENING DESIGN'
                'POST-CHECKPOINT MATERIAL', 'ACTOR', 'EVENT'}
 CORE = {'CI': 'CI_KERNEL', 'PIPELINE': 'AUTHORING_PROCEDURE',
         'GLOSSARY': 'MAINTENANCE_REFERENCE'}
+SOURCE_ACCESS = {
+    'primary_library_folder': 'TK Source',
+    'normal_order': ['LIBRARY', 'PROJECT_SOURCES', 'AUTHORIZED_EXTERNAL'],
+    'external_authorization': 'TASK_LOCAL_EXPLICIT',
+    'repository_role': 'MAINTENANCE_NOT_AUTOMATIC_RUNTIME_SOURCE',
+    'location_grants_authority': False,
+    'project_presence_grants_authority': False,
+    'external_name_grants_identity': False,
+    'library_contents_verified': False,
+    'library_synchronization': 'NOT_PERFORMED',
+    'live_project_deployment': 'NOT_PERFORMED',
+}
 
 
 class ValidationError(ValueError):
@@ -76,7 +88,7 @@ def yaml_data(text):
         result = {}
         for key, value in node.value:
             name = loader.construct_object(key)
-            require(isinstance(name, str) and name not in result,
+            require(isinstance(name, str) and name != '<<' and name not in result,
                     'YAML duplicate or non-string mapping key')
             result[name] = loader.construct_object(value)
         return result
@@ -84,6 +96,9 @@ def yaml_data(text):
     UniqueLoader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG,
                                  unique_mapping)
     try:
+        require(not any(isinstance(token, (yaml.tokens.AnchorToken, yaml.tokens.AliasToken,
+                                          yaml.tokens.TagToken)) for token in yaml.scan(text)),
+                'YAML anchors, aliases, and explicit tags are prohibited')
         result = yaml.load(text, Loader=UniqueLoader)
     except yaml.YAMLError as error:
         raise ValidationError(f'Invalid YAML: {error}') from error
@@ -250,7 +265,8 @@ def load_contract(text):
     except json.JSONDecodeError as error:
         raise ValidationError(f'Invalid manifest JSON: {error}') from error
     require(isinstance(contract, dict) and set(contract) ==
-            {'version', 'status', 'sources', 'navigation', 'records', 'support_controls', 'maintenance'},
+            {'version', 'status', 'sources', 'navigation', 'records', 'support_controls',
+             'maintenance', 'runtime_source_package'},
             'Unknown/missing admission contract fields')
     require(contract['status'] == 'ACTIVE' and contract['version'] == '1.0',
             'Unsupported admission contract version/status')
@@ -263,6 +279,21 @@ def load_contract(text):
     require(len(all_paths) == len(set(all_paths)), 'Duplicate package path')
     require(all(Path(p).parent == Path('.') for p in contract['sources']),
             'Current owners must be at package root')
+    runtime = contract['runtime_source_package']
+    require(isinstance(runtime, dict) and set(runtime) ==
+            {'library_folder', 'paths', 'contents_verified', 'synchronization', 'deployment'},
+            'Runtime source package contract mismatch')
+    require(runtime['library_folder'] == 'TK Source' and
+            runtime['contents_verified'] is False and
+            runtime['synchronization'] == runtime['deployment'] == 'NOT_PERFORMED',
+            'Runtime Library target or deployment evidence mismatch')
+    expected = set(contract['sources']) | {'TK_CURRENT_SOURCE_INDEX.md',
+                 'TK_OPEN_ISSUES_CURRENT.md', 'TK_RECONCILIATION_RECORD.md',
+                 'THE_KINGDOM_CHECKPOINT_STATE_INDEX.md'}
+    require(isinstance(runtime['paths'], list) and
+            all(isinstance(p, str) for p in runtime['paths']) and
+            len(runtime['paths']) == len(expected) and set(runtime['paths']) == expected,
+            'Runtime lore package must contain exactly current owners and source bootstrap/navigation')
     return contract
 
 
@@ -349,11 +380,16 @@ def inspect(root):
     texts[router_name] = inputs[router_name].decode('utf-8-sig')
     require(set(router) == {'schema_version','status','router_version','ci_version','upstream_base',
                            'core_controls','runtime','bootstrap','owners','control_selection',
-                           'controls','failures','policies'}, 'Router top-level contract mismatch')
+                           'controls','failures','policies','source_access'}, 'Router top-level contract mismatch')
     require(router['schema_version'] == 1 and router['status'] == 'ACTIVE' and
             router['upstream_base'] == '9.0', 'Router schema/status/base mismatch')
     require(router['runtime'] == {'entry': STAGES[0], 'stages': STAGES, 'deployment': 'NOT_PERFORMED'},
             'Runtime stages or deployment contract mismatch')
+    require(router['source_access'] == SOURCE_ACCESS and
+            all(router['source_access'][key] is False for key in
+                ('location_grants_authority', 'project_presence_grants_authority',
+                 'external_name_grants_identity', 'library_contents_verified')),
+            'Library access order, authority, or deployment evidence contract mismatch')
     require(router['bootstrap'] == {'full_file':['TK_CURRENT_SOURCE_INDEX.md','TK_OPEN_ISSUES_CURRENT.md'],
                                    'reconciliation_record':'TK_RECONCILIATION_RECORD.md',
                                    'record_read_when':['conflict','supersession','provenance','source replacement','authority','migration']},

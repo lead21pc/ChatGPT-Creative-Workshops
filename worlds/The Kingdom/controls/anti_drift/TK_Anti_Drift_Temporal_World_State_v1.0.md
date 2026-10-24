@@ -1,27 +1,28 @@
-# The Kingdom — Tính toàn vẹn trạng thái theo thời gian v1.0
+# The Kingdom — Temporal World-State Integrity v1.0
 
 Status: ACTIVE
 Version: 1.0
 Role: REASONING_OVERLAY
 Control_ID: TEMPORAL
 
-## Kích hoạt và thẩm quyền
+## Activation and Authority
 
-Áp dụng khi thứ tự, pre-state, delta, tích lũy, khoảng thời gian hoặc tri thức tương lai ảnh hưởng kết luận. Chỉ nhắc keyword hoặc tra cứu fact trực tiếp không tự kích hoạt audit miền. Router chọn và nạp FULL_FILE sau SOURCE_LOAD/RECONCILIATION; chỉ suy luận ở PROMPT_EXECUTION. Kế thừa CI/Router về canon, nguồn, status, permission và partial/block; không chọn nguồn, sửa open state, tự cấp quyền hoặc quyết actor outcome. Thiếu decisive premise phải conditional hoặc chặn phần phụ thuộc. Không mở full domain chỉ để đủ checklist.
+Apply when order, pre-state, deltas, accumulated consequences, elapsed time, or future knowledge can change the conclusion. A keyword or direct lookup alone does not require a full audit. The Router judges semantic applicability after source loading/reconciliation, expands required and applicable conditional controls, and FULL_FILE-loads selected overlays before PROMPT_EXECUTION.
 
+Inherit CI/Router operation, source, status, time, and canon boundaries. This overlay grants no source authority, acceptance, action permission, or actor outcome; it cannot waive gates. Missing decisive evidence blocks dependent reasoning or requires an explicitly conditional branch. Continue independently supported work when appropriate.
 
-## Ranh giới và phép chuyển
+## Boundaries and Transitions
 
-CHECKPOINT → BOUNDARY CHANGE; INTERVAL → WORLD LIVES WITH CHANGE; EVENT → SCOPED TRANSITION. Resulting state trở thành input của transition sau. S0 → E1 → S1 → E2 → S2 không bỏ các bước chỉ vì kết quả lớn đã được tác giả định hướng. Checkpoint giữ direct boundary delta, không chứa toàn bộ lịch sử/hệ quả về sau. Interval không là chỗ trống chờ spectacle; persistent domain không là event log.
+CHECKPOINT -> BOUNDARY CHANGE; INTERVAL -> WORLD LIVES WITH CHANGE; EVENT -> SCOPED TRANSITION. RESULTING STATE -> INPUT TO NEXT TRANSITION. Preserve S0 -> E1 -> S1 -> E2 -> S2; a desired large result does not supply missing steps. Checkpoints own direct boundary changes, not all later history. Intervals contain progression, not empty space awaiting spectacle. Persistent domains are not event logs.
 
-Thiết lập đúng quan hệ thời gian đã có: pre-state, event/premise, affected owners, thông tin khả dụng, direct delta, resulting state và hậu quả chưa rõ, chỉ mở phần task cần. Không thêm ngày, itinerary hoặc timestamp khi nguồn chỉ có thứ tự tương đối. S1 tức thời không tự là final pre-CP2 state. Chưa có đủ hai năm lịch sử phải giữ gap; không nén điều tra/thích nghi/tình báo/thể chế thành kết quả tức thời.
+Establish only task-material, evidenced pre-state, event/premise, affected owners, available information, direct delta, resulting state, and unresolved consequences. Relative order does not establish dates or itineraries. Immediate S1 is not final pre-CP2 state. Keep missing two-year history open; do not compress investigation, contact, intelligence, adaptation, and institutional response into an instant result.
 
-## Kế thừa và các đồng hồ
+## Persistence and Different Clocks
 
-WORLD STATE @ T1 != WORLD STATE @ T2; FUTURE CHECKPOINT KNOWLEDGE != CURRENT AVAILABLE INFORMATION. Không kéo reveal CP2 về actor CP1. Chuyển camera không reset mất mát, quan hệ, quy tắc, tri thức, nguồn lực hoặc bất tiện đã có. Recovery và normalization là transition cần thời gian/cơ chế đã xác lập, không reset và không đồng bộ mọi xã hội.
+WORLD STATE @ T1 != WORLD STATE @ T2. FUTURE CHECKPOINT STATE != CURRENT AVAILABLE INFORMATION. Do not let CP2 reveal satisfy CP1 knowledge. Changing POV never resets established losses, relations, rules, knowledge, resources, or inconvenience. Recovery and normalization require their established paths/time; neither resets state or synchronizes every society.
 
-Không dựng mọi event/background. Giữ context ngoài scope ở độ phân giải đủ để interface đang xét không teleport hệ quả. Phân biệt formation, current state, degradation và recovery khi quyết định phụ thuộc chúng. Chưa có end của POST02 không tự tạo interval CP2→CP3. Không tạo CP3 từ hướng đang cân nhắc.
+Do not generate every background event. Preserve outside context at the resolution needed to prevent teleporting consequences across the active interface. Distinguish formation/current state/degradation/recovery when decisive. An open POST02 end does not create CP2->CP3 or canonize the contemplated CP3.
 
-## Dừng
+## Stop and Ownership
 
-Dừng khi temporal boundary và chuỗi quyết định task đã có căn cứ, đã phân nhánh tường minh hoặc bị chặn ở gap rõ. Không mô phỏng toàn lịch sử để làm đầy. Actor tiếp nhận thông tin thuộc ACTOR; feasibility vận hành thuộc CRISIS; overlay này không chọn phản ứng hay kết quả.
+Stop at a supported temporal boundary/chain, explicit branch, or named decisive gap. Do not complete the world's history. ACTOR owns reception, CRISIS owns operational feasibility; this overlay chooses no response or outcome.

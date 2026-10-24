@@ -1,30 +1,39 @@
-# The Kingdom — Từ vựng control v1.0
+# The Kingdom Control Vocabulary Glossary v1.0
 
 Status: ACTIVE
 Version: 1.0
 Role: MAINTENANCE_REFERENCE
 
-Đây là tài liệu hỗ trợ viết/đọc control, không canon, source authority, Router, CI, ontology, schema hoặc validator. Không là runtime prerequisite. Định nghĩa phục vụ cách dùng đã có; nếu mâu thuẫn owner, sửa glossary theo owner. A != B là không tự suy ra/tương đương, không cấm quan hệ có bằng chứng. Chữ quyền/biết/chấp nhận phải rõ subject/object/scope, không dịch mọi nghĩa thành một.
+This is a maintenance reference, not a runtime prerequisite, source owner, additional gate, or authority. CI owns behavioral/canon discipline; Router owns routing; Pipeline owns transformations; specialized overlays own scoped reasoning. Terms do not prove their own applicability.
 
-| Term | Nghĩa trong stack và ranh giới |
+| Term | Meaning and boundary |
 | --- | --- |
-| CURRENT SOURCE | Nguồn current được nhận vào package đúng scope, không toàn bộ nội dung thành canon |
-| OWNER | Nguồn giữ claim/miền; không property/quyền lực trong thế giới |
-| CHECKPOINT | Breakpoint giữ pre-state tối thiểu, event/direct delta/boundary |
-| INTERVAL | Khoảng progression giữa boundary; state tích lũy, không chỗ trống |
-| EVENT | Transition có phạm vi trong timeline, không tự thành checkpoint |
-| WORLD STATE | Trạng thái thế giới tại T; không reset khi đổi camera |
-| ACTOR STATE | Thông tin, model, mục tiêu/constraint/capability của actor tại T có căn cứ |
-| ACTOR INFORMATION | Nội dung actor thực có access/nhận ở T; không author truth |
-| OBSERVATION | Dữ liệu quan sát, không tự hiểu cơ chế hoặc tin cậy đúng |
-| MODEL | Giả thuyết/khung actor dùng; không world truth hoặc private intent của mọi cơ quan |
-| DIVERGENCE | Phần lịch sử TK khác baseline IRL, không license tự cập nhật |
-| RECONCILIATION | Ghi provenance quyết định chấp nhận/thay thế có scope; không lore owner |
-| OPEN ISSUE | Unknown/conflict/deferred có hệ quả; entry không tạo canon hoặc hard dependency |
-| OVERLAY | Kỷ luật suy luận scope cụ thể sau source gate, không bộ chọn kết quả |
-| ROUTER | Chọn owner/nạp/đối chiếu/chọn control; không chọn thao tác thay CI |
-| PIPELINE | Chuyển đổi được yêu cầu và điểm dừng; không authority để nhập canon |
-| ACTIVE | Vai trò repository của control/source; không accepted mọi claim hoặc deployed |
-| AUTHORITY / MANDATE / ACCESS | Thẩm quyền / nhiệm vụ được giao / đường tiếp cận; không thay nhau |
-| CAUSAL CLOSURE / FULL_FILE | Đủ nhân quả cho task / đã đọc đủ tệp; closure suy luận không là read proof |
-| STRUCTURAL PASS | Đạt phép kiểm dữ liệu/tệp; không semantic compliance hoặc live behavior |
+| SOURCE_ID | Stable admitted owner identity; a filename or location does not establish identity or authority. |
+| CURRENT_SOURCE | Runtime owner role, not blanket acceptance of every statement in the file. |
+| PERSISTENT OWNER | Domain/actor state that persists across checkpoints; event mention does not move ownership. |
+| CHECKPOINT | Breakpoint and direct resulting boundary state. |
+| INTERVAL | Progression and accumulated state between boundaries. |
+| EVENT | Scoped temporal transition, not the full persistent definition of affected owners. |
+| WORLD STATE @ T | Supported world state at a particular time, distinct from later truth. |
+| ACTOR INFORMATION @ T | What a specified actor can receive by a supported access path at T. |
+| OBSERVATION / MODEL / PUBLIC MEANING | Different epistemic layers; none automatically implies the others. |
+| LIBRARY SOURCE | Access via ChatGPT Library folder "TK Source"; location does not confer canon authority. |
+| PROJECT SOURCE | Project Sources or explicitly supplied current project files; presence does not confer authority. |
+| AUTHORIZED EXTERNAL SOURCE | Task-local source explicitly permitted for access; a matching name is not admitted current identity. |
+| REPOSITORY PACKAGE | Maintenance/version-controlled implementation; not proof of runtime retrieval or Library synchronization. |
+| FULL_FILE | Complete file read, including qualifiers/statuses; a hit, snippet, header, summary, or memory is insufficient. |
+| SOURCE_LOAD_BLOCKED | Decisive source/control/identity is missing or ambiguous; block only dependent work. |
+| SOURCE_LOAD_PARTIAL | Named secondary gap demonstrably cannot change the bounded conclusion; not permission to guess a decisive premise. |
+| UNKNOWN / DEFERRED / CONFLICTED | Preserve the source's unresolved state and qualifiers until a scoped decision/evidence changes it. |
+| REPOSITORY GAP | Author state is not established here; not automatically AUTHOR UNKNOWN. |
+| AUTHOR-KNOWN / REPO-UNKNOWN | Author knowledge exceeds externalized repository state. |
+| REPO-KNOWN / SESSION-UNKNOWN | Relevant repository material has not yet been read in the session. |
+| INFERENCE / HYPOTHETICAL / PROPOSAL | Derived, conditional, or proposed material; no automatic canonization. |
+| ARCHIVE | Historical provenance only under authorized history/audit/recovery scope; never current fallback or regeneration input. |
+| RECONCILIATION | Scoped resolution/provenance tracking under explicit author decisions; record presence does not itself resolve a conflict. |
+| REQUIRES / CONDITIONAL_REQUIRES | Router overlay edges; expand transitive requirements and semantically applicable conditions, not keyword matching. |
+| MUST_OPEN / MAY_STOP | Open decisive economic mechanisms; stop when task-local causal closure is sufficient. |
+| CAPABILITY / AUTHORITY / ACCESS / SUCCESS | Different relations; no automatic conversion. |
+| IMPLEMENTED / VERIFIED / LIVE VERIFIED | Different evidence states. Structural tests do not demonstrate model compliance or deployment. |
+
+Shared management scale does not imply a shared paracosm runtime. Do not import FTH module/facility/currency/profession/war ontology from these management terms.

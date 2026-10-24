@@ -1,25 +1,26 @@
-# The Kingdom — Baseline IRL và lịch sử phân kỳ v1.0
+# The Kingdom — IRL Baseline and Alternate-History Divergence v1.0
 
 Status: ACTIVE
 Version: 1.0
 Role: REASONING_OVERLAY
 Control_ID: IRL
 
-## Kích hoạt và thẩm quyền
+## Activation and Authority
 
-Áp dụng khi áp dụng dữ kiện/quốc gia/thể chế thật vào trạng thái hư cấu hoặc so sánh qua thời điểm. Chỉ nhắc keyword hoặc tra cứu fact trực tiếp không tự kích hoạt audit miền. Router chọn và nạp FULL_FILE sau SOURCE_LOAD/RECONCILIATION; chỉ suy luận ở PROMPT_EXECUTION. Kế thừa CI/Router về canon, nguồn, status, permission và partial/block; không chọn nguồn, sửa open state, tự cấp quyền hoặc quyết actor outcome. Thiếu decisive premise phải conditional hoặc chặn phần phụ thuộc. Không mở full domain chỉ để đủ checklist.
+Apply when real-world countries, institutions, facts, or time-bound references are localized into TK state. A keyword or direct lookup alone does not require a full audit. The Router judges semantic applicability after source loading/reconciliation, expands required and applicable conditional controls, and FULL_FILE-loads selected overlays before PROMPT_EXECUTION.
 
+Inherit CI/Router operation, source, status, time, and canon boundaries. This overlay grants no source authority, acceptance, action permission, or actor outcome; it cannot waive gates. Missing decisive evidence blocks dependent reasoning or requires an explicitly conditional branch. Continue independently supported work when appropriate.
 
-## Định vị dữ kiện
+## Time-Bound Localization
 
-IRL REFERENCE @ T + KINGDOM DIVERGENCE = KINGDOM STATE @ T chỉ khi các thành phần đã xác lập đủ cho claim đang dùng. Đây là phân lớp căn cứ, không công thức điền lịch sử còn thiếu. Không lấy IRL 2003 + latest IRL 2026 làm Kingdom 2026. Tên/identity country thật giữ trừ khi canon thay đổi; thông tin hiện hành không tự ghi đè alternate history.
+IRL REFERENCE != TK CURRENT STATE. Establish the reference date, relevant real-world baseline, known TK divergence, and the actor/world state at the task time. Do not combine a 2003 premise with the latest 2026 facts by default. An actual country retains its identity unless supported divergence changes the relevant property; neither genericize it into an invented nation nor import its entire later history.
 
-Với biến ảnh hưởng quyết định, ghi baseline thực tế (thời điểm/jurisdiction), phần PRESERVED/MODIFIED/DIVERGED/UNKNOWN trong The Kingdom và ACTOR STATE @ T. Fact thế giới thật được kiểm chứng không tự là fact hư cấu; fact hư cấu không là tuyên bố lịch sử IRL. Nếu fiction chưa chốt divergence quyết định, conditional branch hoặc block, không nhập trạng thái mới nhất làm default.
+Classify a material relation to the reference as PRESERVED, MODIFIED, DIVERGED, or UNKNOWN only with evidence. Baseline + divergence permits a bounded inference, not automatic later IRL state. Distinguish authorial world truth from what each actor can receive and believe at T. ACTOR owns reception when material; INSTITUTION owns the localized institutional interface.
 
-## Nguồn thực tế và áp dụng
+Establish reference jurisdiction as well as time when material. Fictional facts are not claims about actual IRL history. Comparisons, mechanism analogies, feasibility checks, and negative tests do not grant local authority. Do not use a newer real-world neutral-state, alliance, or policy fact to lock an example that was only source inference. This overlay chooses neither divergence, checkpoint dates, nor actor policy; research alone authorizes no lore update.
 
-Tham chiếu IRL có thể là comparison, mechanism analogy, feasibility/negative test, không local authority. Chỉ tra cứu claim thay đổi theo thời gian khi cách dùng cần; dùng nguồn chính thức/primary và ghi mốc phù hợp. Không tạo registry/dossier mọi nước; chỉ externalize divergence làm đổi quyết định. Tách subject thực, institution thực và mô hình actor ở fiction-time. Không dùng quốc gia trung lập, liên minh hay chính sách IRL mới để khóa một ví dụ vốn là suy luận trong nguồn.
+## Evidence and Stop
 
-## Dừng
+Verify material time-sensitive real-world claims against suitable primary sources when access is available; report an unverified dependency when it is not. A real-world citation establishes its scoped reference claim, not fictional acceptance. An analogy suggests a mechanism, not canon, identity, authority, or an inevitable outcome. Do not construct comprehensive country dossiers or silently fill missing geography, treaties, borders, trade, and historical divergence.
 
-Dừng khi phần thực/giả định/phân kỳ và ảnh hưởng tới task rõ. Control này không chọn divergence, ngày CP1/CP2 hoặc actor policy; không cập nhật lore vì kết quả research. ACTOR kiểm đường thông tin trong thế giới, INSTITUTION kiểm vận hành, Router xử lý nguồn current và status.
+Missing decisive divergence blocks that application or requires an explicit conditional branch. Keep nondecisive gaps named and continue independent work. Stop when the requested localization/comparison is supported; do not redesign TK to match Earth or overwrite alternate history for familiarity.

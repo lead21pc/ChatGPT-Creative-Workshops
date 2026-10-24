@@ -4,37 +4,37 @@ Status: ACTIVE
 Version: 1.0
 Role: AUTHORING_PROCEDURE
 
-## Phạm vi và quyền
+## Responsibility and Activation
 
-Điều khiển phép chuyển đổi được yêu cầu và điểm dừng, không sở hữu canon, lựa chọn nguồn, truth status hoặc kết quả actor. CI giữ thao tác/giai đoạn và quyền vào Router; Router giữ discovery/owner/nạp/đối chiếu/chọn overlay. Pipeline chỉ khai báo thông tin cần và biến đổi material được phép. Tác vụ The Kingdom không tự thu hẹp thành Hyperborea; giữ đúng quốc gia/miền/thời điểm/phạm vi mà yêu cầu xác lập. Không giữ state ngoài ngữ cảnh task.
+Govern only requested transformations and their stop points. CI owns operation/stage, canon discipline, and Router entry. Router owns source access, discovery, owner resolution, loading, reconciliation routing, and overlay selection. This procedure declares information needs; it grants no source authority and selects no actor outcome. Retain no state outside the task context.
 
-## Chọn phép biến đổi
+Preserve the requested project, country, actor, domain, time, and branch scope. The Kingdom is not an alias for Hyperborea. Activate by requested function, not keywords. Lookup/audit does not silently become design. Use an adequate existing seed or primitive set directly; do not manufacture stages to fill a diagram.
 
-Chỉ kích hoạt khi chức năng yêu cầu có biến đổi, không từ keyword. Tra cứu hoặc audit đơn thuần không tự thành thiết kế. Dùng trực tiếp seed/primitives đã đủ; không bắt đi qua mọi bước để đủ sơ đồ.
+## Transformation and Stop Contract
 
-| Yêu cầu | Phép làm và điểm dừng |
+| Request | Transformation and stop point |
 | --- | --- |
-| Triết xuất chat/note/handoff | Tách claim, căn cứ và status; dừng ở current-state extraction, chưa nhập canon |
-| Source cũ trộn nhiều lớp | Tách primitives/qualifier/current/history/proposal/unknown; không một old file = một new owner |
-| Seed/functional abstraction | Bỏ implementation không thiết yếu, giữ intent và quan hệ quyết định; dừng seed |
-| Phân rã primitive | Chỉ tách chức năng/điều kiện/thẩm quyền/nguồn lực/quan hệ/state/transition có giá trị; không lấp slot |
-| Author decision | Đề xuất delta đúng scope và các owner chịu tác động; không chấp nhận hệ quả suy diễn kèm theo |
-| Checkpoint idea | Đề xuất breakpoint, pre-state, direct delta/resulting boundary, gap; chưa thành checkpoint lịch sử |
-| Interval material / event | Đề xuất transition trong interval, affected owner, thông tin khả dụng, hệ quả chưa rõ; không tự dựng hai năm |
-| So sánh với current | Đối chiếu relevant owner; báo tương thích/xung đột/phụ thuộc; không tự sửa |
-| IRL localization | Baseline @ time → divergence đã biết → actor state @ T; dừng ứng dụng/đề xuất có điều kiện |
-| Di chuyển legacy owner | Triết xuất → kiểm coverage/status/link → archive byte-exact; không dùng archive phục hồi lore |
-| Quyết định accepted → implementation proposal | Đề xuất thay đổi file/delta/kiểm tra đúng scope; chưa triển khai nếu chỉ yêu cầu proposal |
-| Triển khai đã được yêu cầu rõ | Thực hiện scope đã cho, kiểm chứng, báo giới hạn; không suy thêm commit/push/deploy |
+| Chat/note/handoff extraction | Separate claims, evidence, qualifiers, and status; stop before canon integration |
+| Mixed historical source | Separate current/history/proposal/unknown primitives; one old file does not require one new owner |
+| Functional seed extraction | Remove nonessential implementation, retain intent and decisive causal relations; stop at seed |
+| Primitive decomposition | Expose only material functions, conditions, actors, resources, authority, constraints, interfaces, states, and relations; never fill empty slots |
+| Author decision | Produce a scoped delta and affected-owner proposal; acceptance does not include imagined dependencies |
+| Checkpoint idea | Propose pre-state, breakpoint, direct delta, resulting boundary, and gaps; not a historical checkpoint |
+| Interval/event material | Propose the bounded transition, affected owners, available information, and unresolved consequences; invent no missing history |
+| Current-state comparison | Compare routed constraints and report compatibility/conflict/unknown; no automatic repair |
+| IRL localization | Establish reference @ time, known divergence, and actor state @ T; stop at scoped application/proposal |
+| Legacy owner migration | Extract, verify coverage/status/links, then archive byte-exact; never rebuild from archive |
+| Accepted decision to implementation proposal | Propose affected files/deltas/checks; do not execute when only a proposal was requested |
+| Explicitly authorized implementation | Implement and verify only the authorized scope; infer no commit/push/deployment permission |
 
-EXTRACTION != CANON INTEGRATION; DESIGN != IMPLEMENTATION; SIMULATION != TIMELINE HISTORY. A seed không chỉ là bản tóm tắt: giữ lõi chức năng/nhân quả; không genericize đến mất ý nghĩa. Không reverse-define seed từ implementation ưa thích. Quan hệ cần nhưng chưa có vẫn UNKNOWN.
+EXTRACTION != ACCEPTANCE; PROPOSAL != CANON; DESIGN != IMPLEMENTATION; SIMULATION != HISTORY; IMPLEMENTATION != COMMIT. A seed is a functional/causal core, not merely a shorter summary. Do not genericize away meaning, reverse-define the seed from a preferred implementation, or invent a necessary but unsupported relation.
 
-## Handoff sớm vào Router
+## Early Router Handoff
 
-Trước phép biến đổi đầu tiên cần current state, nêu information need và vào Router, có thể trước seed hoặc trong comparison. Không cố nạp toàn project; không dùng dữ liệu ngoài làm authority. Input mới có thể là premise, requirement, correction hoặc proposal, không gom chung thành fact. Khi scope/thời điểm/owner mở rộng, route lại phần phụ thuộc trước khi dùng. Pipeline không chọn nguồn thay một premise bị chặn.
+Before the first transformation needing current state, declare that need and enter the Router, even before extraction if necessary. Normal lore retrieval begins at Library "TK Source" under the Router's access order; do not load the entire world or promote external information by location. New input may be a requirement, premise, correction, or proposal, not one flattened fact status.
 
-Router đã nạp/reconcile xong mới tiếp tục phần có căn cứ và các overlay nó chọn. Thiếu Pipeline chặn đúng transformation; thiếu nguồn/control chặn bước phụ thuộc; phần độc lập vẫn tiếp tục. Conditional design premise không giả làm current fact để vượt cổng bị chặn.
+Reroute before using materially expanded scope/time/owners. Resume only after required source/reconciliation/overlay gates. A conditional design premise cannot replace a blocked current fact. Missing Pipeline blocks its dependent transformation; missing decisive evidence blocks its dependent step; independently supported work may continue.
 
-## Kiểm trước khi dừng
+## Completion Check
 
-Giữ terminology, qualifiers và epistemic status; không viết lore prose thay tài liệu mô phỏng khi không yêu cầu. Comparison không tự xin repair; compatibility không là acceptance; accepted premise không chấp nhận dependency tưởng tượng. Proposal phải nêu vấn đề, giả định, delta và phạm vi nếu được chấp nhận. Không thêm simulation, hệ quả bậc hai, alternative hoặc kế hoạch nhập nếu yêu cầu không cần. Dừng đúng sản phẩm đã yêu cầu.
+Preserve terminology, qualifiers, and epistemic states. Do not turn externalization into fiction prose unless requested. Comparison does not request repair; compatibility does not establish acceptance. A requested proposal states its problem, assumptions, scoped delta, and affected canon if accepted. Do not append simulation, second-order effects, alternatives, or an integration plan unless needed for the requested function. Stop at the requested product.

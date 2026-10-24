@@ -1,33 +1,38 @@
-# The Kingdom — Kể trạng thái thế giới và thất bại của assumption v1.0
+# The Kingdom — World-State Narrative and Assumption Failure v1.0
 
 Status: ACTIVE
 Version: 1.0
 Role: REASONING_OVERLAY
 Control_ID: NARRATIVE
 
-## Kích hoạt và thẩm quyền
+## Activation and Authority
 
-Áp dụng khi thiết kế/kể checkpoint, perspective, payoff hoặc áp lực thể loại ảnh hưởng kết luận. Chỉ nhắc keyword hoặc tra cứu fact trực tiếp không tự kích hoạt audit miền. Router chọn và nạp FULL_FILE sau SOURCE_LOAD/RECONCILIATION; chỉ suy luận ở PROMPT_EXECUTION. Kế thừa CI/Router về canon, nguồn, status, permission và partial/block; không chọn nguồn, sửa open state, tự cấp quyền hoặc quyết actor outcome. Thiếu decisive premise phải conditional hoặc chặn phần phụ thuộc. Không mở full domain chỉ để đủ checklist.
+Apply when checkpoint design, perspective, payoff, or genre pressure can change the requested reasoning. A keyword or direct lookup alone does not require a full audit. The Router judges semantic applicability after source loading/reconciliation, expands required and applicable conditional controls, and FULL_FILE-loads selected overlays before PROMPT_EXECUTION.
 
+Inherit CI/Router operation, source, status, time, and canon boundaries. This overlay grants no source authority, acceptance, action permission, or actor outcome; it cannot waive gates. Missing decisive evidence blocks dependent reasoning or requires an explicitly conditional branch. Continue independently supported work when appropriate.
 
-## DNA và chức năng tác giả
+## World-State Center and Perspective
 
-WORLD STATE = STRUCTURAL CENTER; POV = CAMERA; IMPORTANT ACTOR != MAIN CHARACTER; CHECKPOINT != CHAPTER CLIMAX; EVENT MAGNITUDE != UNIFORM REACTION; NEXT CHECKPOINT != BIGGER SPECTACLE. Fantasy sinh hệ quả xã hội; chuyện nghề nghiệp, báo/radio/podcast/TV, công văn, gossip, meme và đời thường giữa checkpoint là fiction có giá trị, không cần villain hoặc plot escalation.
+WORLD STATE IS STRUCTURALLY CENTRAL. POV = CAMERA, not an automatic protagonist or center of causality. A checkpoint is not necessarily a climax, a larger spectacle, or a forced escalation. Ordinary life, media, institutions, waiting, adaptation, and normalization are valid material. Event magnitude does not fix reaction magnitude; consequence and reception must follow the supported interface.
 
-CP1 REVISES THE ESTIMATE; CP2 BREAKS THE MODEL; POST-CP2 CARGO EXPOSES NORMALITY GAP. Đây là chức năng tác giả, không universal actor conclusion, không dữ kiện actor tự biết Type II. Cargo có chiều sâu công nghệ người ngoài coi crown-jewel nhưng Hyperborea dùng logistics; possible interest không actual reaction. CP3 vẫn under consideration trong method, không timeline owner/canon.
+CP1 estimation, CP2 model failure, and the normality gap are authorial design functions, not beliefs automatically shared by every actor. Distinguish world truth -> observable slice -> actor information -> model -> decision -> action -> interaction -> changed state. The contemplated CP3 remains UNDER CONSIDERATION and has no current owner. Do not invent CP3, tours, actors, events, or checkpoint endpoints to complete an arc.
 
-## Payoff có căn cứ
+Post-CP2 cargo can expose technology outsiders would treat as crown-jewel capability while Hyperborea treats it as logistics; possible interest is not an actual sourced reaction. Professional life, radio/podcasts/TV, official documents, gossip, and memes are valid fiction without a villain. Keep world consequences rather than imposing a chapter-climax structure.
 
-STEELMAN → REASONABLE MODEL → EVIDENCE → MODEL FAILURE → RECLASSIFICATION là khung payoff, không chuỗi mọi actor buộc hoàn thành. Không STRAW MAN → STUPIDITY → HUMILIATION. Giữ thông tin lịch sử, institution/incentives/bias/status/honor/uncertainty/pressure/cost xuống thang khiến sai lầm earned; đừng cho sai chỉ để Hyperborea thắng. MODEL FAILURE không tự là immediate correct model; ACTOR giữ bước cập nhật cụ thể.
+## Assumption Failure and Power
 
-Hyperborea xử lý công việc/sự cố trong world logic, không biết mình là power fantasy. Không biến power thành mong thống trị hoặc cultural exchange thành cover mặc định; không biến non-expansion thành thụ động/pacifism. Ngoại giới tự diễn giải hành động, không mặc định đó là ý tác giả hoặc chủ ý signaling.
+When relevant, steelman the actor's supported prior model, accessible evidence, prediction, failure, and reclassification. Failure does not prove stupidity, and the full sequence is not mandatory for every actor. Preserve simultaneous, delayed, incomplete, resistant, or stale updating where supported. Do not make others irrational merely to demonstrate Hyperborea's power.
 
-## POV và consequential state
+Power is not automatic domination, universal cultural conversion, passivity, defensive apology, concessions, or hostility. Neither protagonist gravity nor a genre template grants actions. Preserve actors' established position, incentives, authority, information, and alternatives. ACTOR owns reception; TEMPORAL owns state inheritance; CRISIS owns operational transitions rather than narrative payoff.
 
-Perspective không bắt buộc POV; dùng direct POV khi private knowledge/decision/pressure/consequence thực sự cần. Institution phải đủ causal structure dù chỉ hiện output. Không nâng thiết kế bốn lớp/năm trạng thái fact của method POV thành accepted schema bắt buộc. Media không đọc nội tâm kín nếu thiếu path; gossip có thể đúng/sai/một phần khi source/premise hỗ trợ.
+Hyperborea acts within world logic, without knowing it is in a power fantasy. Cultural exchange is not a presumed cover, and non-expansion is not automatic pacifism/passivity. Outsider interpretation is not authorial intent or deliberate signaling. Model failure does not immediately produce a correct model; supported institutional pressure, bias, honor/status, uncertainty, and retreat costs may make an error earned without forcing humiliation.
 
-IMPORTANCE != IMMUNITY: không dùng kế hoạch tương lai, unfinished arc hoặc giá trị chính trị làm shield; cũng không chọn chết để chứng minh tàn nhẫn. Unknown protection không là absent protection hoặc emergency save. Nếu nguồn có hồi sinh/cứu hộ, giữ đúng eligibility/controller/time/cost/failure đã có, không tự thêm luật mortality. Hậu quả tiếp tục khi đổi camera; bounded loss có thể ở local.
+## Viewpoint, Mortality, and Stop
 
-## Dừng
+Perspective need not always be a literal POV scene. Private information requires a valid access path; a camera does not grant omniscience. The four-layer/five-state method remains a proposal where not accepted; compression cannot silently remove decisive institutional depth. Do not turn method design into a mandatory scene format.
 
-Thiết kế/kể theo requested stage, không tự viết scene khi audit hoặc biến simulation thành lịch sử. Không tạo full actor roster, media ecology, mô hình mortality/relationship hay hồ sơ quốc gia trống. Dừng ở chức năng kể/phần assumption thất bại được yêu cầu; source và tác giả quyết canon.
+IMPORTANCE != IMMUNITY. Unknown protection does not prove absent protection or authorize a rescue. Apply only source-established mortality, resurrection, intervention, and recovery limits. Do not invent a full protection roster, mandatory death, survival, relationship outcome, or a separate mortality family.
+
+Future plans, unfinished arcs, and political value grant no shield; death is not required to demonstrate cruelty. Preserve established eligibility, controller, time, cost, and failure limits for rescue/resurrection. Consequences survive a camera change; a loss may remain local. Institutions still need sufficient causal structure even if only their output is shown. Media cannot read private minds without an access path; sourced or explicitly premised gossip may be true, false, or partial. Do not build a full actor roster, media ecology, mortality/relationship model, or empty country dossiers.
+
+Audit checks assumptions and consequences without redesign; design labels proposals; simulation remains noncanonical until explicit acceptance. Stop when the requested function is fulfilled, without forced closure, conflict, redemption, victory, or a coauthored next scene.

@@ -5,9 +5,9 @@ SOURCE_ID: TK-METHOD-POV
 RUNTIME_ROLE: CURRENT_SOURCE
 ROLE: RUNTIME / AUTHORING METHOD
 STATUS: ACTIVE
-SCOPE: POV xuyên timeline; nguyên tắc đã xác lập và thiết kế chưa accepted giữ riêng.
-AUTHORITY_BOUNDARY: Chỉ phương pháp kể/suy luận và nhãn từng mục; không lore hoặc acceptance của proposal.
-CROSS_OWNER_BOUNDARY: TK-METHOD-FICTION; chỉ giao diện/phạm vi liên quan, không chuyển ownership hoặc tạo hard dependency.
+SCOPE: Perspective across the timeline; established principles remain distinct from unaccepted designs.
+AUTHORITY_BOUNDARY: Only claims within SCOPE and their section-level epistemic status; ACTIVE does not accept every proposal or simulated history.
+CROSS_OWNER_BOUNDARY: TK-METHOD-FICTION; Relevant interfaces only; no ownership transfer or hard dependency is created.
 LOAD_MODE: FULL_FILE
 ```
 

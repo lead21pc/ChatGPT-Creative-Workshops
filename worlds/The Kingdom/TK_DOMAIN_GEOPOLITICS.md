@@ -5,9 +5,9 @@ SOURCE_ID: TK-DOM-GEO
 RUNTIME_ROLE: CURRENT_SOURCE
 ROLE: DOMAIN
 STATUS: ACTIVE / MIXED EPISTEMIC STATUS
-SCOPE: Địa chính trị, DMZ, đối ngoại, động cơ mở cửa và các lựa chọn còn mở.
-AUTHORITY_BOUNDARY: Chỉ state/claim trong SCOPE và theo epistemic status từng mục; ACTIVE không chấp nhận mọi proposal hoặc lịch sử simulation.
-CROSS_OWNER_BOUNDARY: TK-DOM-INFRA, TK-DOM-DELEGATION, TK-TL-CP01, TK-TL-POST02; chỉ giao diện/phạm vi liên quan, không chuyển ownership hoặc tạo hard dependency.
+SCOPE: Geopolitics, DMZ, foreign relations, opening motives, and unresolved choices.
+AUTHORITY_BOUNDARY: Only claims within SCOPE and their section-level epistemic status; ACTIVE does not accept every proposal or simulated history.
+CROSS_OWNER_BOUNDARY: TK-DOM-INFRA, TK-DOM-DELEGATION, TK-TL-CP01, TK-TL-POST02; Relevant interfaces only; no ownership transfer or hard dependency is created.
 LOAD_MODE: FULL_FILE
 ```
 

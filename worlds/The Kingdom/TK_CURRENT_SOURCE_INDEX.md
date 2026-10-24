@@ -4,34 +4,34 @@ Status: ACTIVE
 Version: 1.0
 Role: CURRENT_DISCOVERY
 
-## Contract nguồn
+## Source Contract
 
-Index quản discovery SOURCE_ID → path/role/scope, không canon authority, world ontology, dependency graph hoặc timeline log. Manifest nhận current source paths; header của từng owner giữ RUNTIME_ROLE, ROLE, STATUS, SCOPE, AUTHORITY_BOUNDARY, CROSS_OWNER_BOUNDARY, LOAD_MODE. CROSS_OWNER_BOUNDARY chỉ là ranh giới/interface, không hard dependency; đọc owner khác khi claim đang dùng cần nó. Không có trường không được Router/validator dùng.
+This index maps SOURCE_ID to path, role, and scope. It is not canon authority, world ontology, a dependency graph, or a timeline log. The manifest admits paths; owner headers retain RUNTIME_ROLE, ROLE, STATUS, SCOPE, AUTHORITY_BOUNDARY, CROSS_OWNER_BOUNDARY, and LOAD_MODE. CROSS_OWNER_BOUNDARY identifies interfaces, not hard dependencies. Read a referenced owner when the active claim materially depends on it.
 
-Giữ persistent domain/actor state, temporal delta và actor-information riêng. Future country/actor/event owner chỉ thêm khi material đủ và có quyết định scope; không tạo placeholder. V1.0 chỉ FULL_FILE; không giả node closure. SOURCE_ID không đổi chỉ vì tên tệp đổi. Catalog stale không cho phép suy current từ archive; chặn dependent use và bảo trì đúng generated region.
+Normal runtime bootstrap starts in ChatGPT Library folder "TK Source" with this index and [open issues](TK_OPEN_ISSUES_CURRENT.md); read the [reconciliation record](TK_RECONCILIATION_RECORD.md) when its trigger applies. The expected Library package also includes the [timeline index](THE_KINGDOM_CHECKPOINT_STATE_INDEX.md) and every admitted current owner below. Project Sources/explicit current project files are the next access surface, followed by explicitly authorized task-local external sources. Location/presence/name grants no authority or current identity. Repository maintenance does not prove Library contents, synchronization, or live deployment; none has been performed or verified here.
+
+Persistent domain/actor state, temporal delta, and actor information remain distinct. Add a future country/actor/event owner only with actual material and scoped admission; create no placeholder. v1.0 uses FULL_FILE only, without invented node closure. SOURCE_ID survives renaming. A stale catalog blocks dependent use and requires scoped generated-region maintenance; it never permits archive fallback.
 
 <!-- BEGIN GENERATED SOURCE CATALOG -->
 | SOURCE_ID | Path | ROLE | SCOPE |
 | --- | --- | --- | --- |
-| `TK-DOM-COUNTERINTEL` | `TK_DOMAIN_COUNTERINTELLIGENCE.md` | DOMAIN | Phản gián, quyền tiếp cận, tri thức và attribution; cơ chế đề xuất giữ riêng. |
-| `TK-DOM-DELEGATION` | `TK_DOMAIN_OPENING_DELEGATION.md` | DOMAIN / OPENING DESIGN | Mandate xác minh, itinerary draft và câu hỏi; không phải event log. |
-| `TK-DOM-GEO` | `TK_DOMAIN_GEOPOLITICS.md` | DOMAIN | Địa chính trị, DMZ, đối ngoại, động cơ mở cửa và các lựa chọn còn mở. |
-| `TK-DOM-HEALTH` | `TK_DOMAIN_HEALTH.md` | DOMAIN | An toàn sinh học, điều trị và quyền y tế; chi tiết chưa xác định vẫn mở. |
-| `TK-DOM-INFRA` | `TK_DOMAIN_INFRASTRUCTURE.md` | DOMAIN | Hạ tầng, không lưu và capabilities thường trực; phương án mở cửa giữ status riêng. |
-| `TK-DOM-LANGUAGE-RELIGION` | `TK_DOMAIN_LANGUAGE_RELIGION.md` | DOMAIN / DESIGN PHILOSOPHY | Universal Language, thần tính, World Tree và triết lý; không xác nhận quyền tiếp cận. |
-| `TK-DOM-LAW` | `TK_DOMAIN_LAW.md` | DOMAIN | Luật V2 đang tái thiết kế; Luật Ngoại Nhân chỉ áp dụng ngoại nhân đã bị bắt. |
-| `TK-DOM-POT` | `TK_DOMAIN_POT.md` | DOMAIN | Thiết bị POT; canon khả năng và chi tiết còn mở. |
-| `TK-METHOD-FICTION` | `TK_METHOD_FICTION.md` | RUNTIME / AUTHORING METHOD | World-state, checkpoint/interval, progression và giới hạn tri thức. |
-| `TK-METHOD-POV` | `TK_METHOD_POV_PERSPECTIVE.md` | RUNTIME / AUTHORING METHOD | POV xuyên timeline; nguyên tắc đã xác lập và thiết kế chưa accepted giữ riêng. |
-| `TK-TL-CP01` | `TK_TIMELINE_CP01_OPENING.md` | CHECKPOINT | Breakpoint mở cửa; pre-state tối thiểu, direct delta và boundary state CP1. |
-| `TK-TL-CP02` | `TK_TIMELINE_CP02_REVEAL.md` | CHECKPOINT | Vụ thử nước, đánh chặn, attribution và military/mage reveal; boundary tức thời, không sở hữu phản ứng nhiều ngày sau. |
-| `TK-TL-I01-02` | `TK_TIMELINE_INTERVAL_CP01_CP02.md` | INTERVAL | Sau boundary CP1 đến ngay trước CP2; progression, phản ứng và state tích lũy có nguồn. |
-| `TK-TL-POST02` | `TK_TIMELINE_POST_CP02.md` | POST-CHECKPOINT MATERIAL | Sau reveal CP2; premise logistics chưa có số checkpoint và phụ lục simulation lịch sử, không là baseline phản ứng current. Không xác định CP3. |
+| `TK-DOM-COUNTERINTEL` | `TK_DOMAIN_COUNTERINTELLIGENCE.md` | DOMAIN | Counterintelligence, access, knowledge, and attribution; proposed mechanisms retain their own status. |
+| `TK-DOM-DELEGATION` | `TK_DOMAIN_OPENING_DELEGATION.md` | DOMAIN / OPENING DESIGN | Verification mandate, draft itinerary, and questions; not an event log. |
+| `TK-DOM-GEO` | `TK_DOMAIN_GEOPOLITICS.md` | DOMAIN | Geopolitics, DMZ, foreign relations, opening motives, and unresolved choices. |
+| `TK-DOM-HEALTH` | `TK_DOMAIN_HEALTH.md` | DOMAIN | Biosecurity, treatment, and healthcare entitlements; unspecified details remain open. |
+| `TK-DOM-INFRA` | `TK_DOMAIN_INFRASTRUCTURE.md` | DOMAIN | Infrastructure, air traffic, and persistent capabilities; opening designs retain their own status. |
+| `TK-DOM-LANGUAGE-RELIGION` | `TK_DOMAIN_LANGUAGE_RELIGION.md` | DOMAIN / DESIGN PHILOSOPHY | Universal Language, divinity, World Tree, and design philosophy; no access authorization is established. |
+| `TK-DOM-LAW` | `TK_DOMAIN_LAW.md` | DOMAIN | Law V2 under redesign; Luật Ngoại Nhân applies only to foreigners already arrested. |
+| `TK-DOM-POT` | `TK_DOMAIN_POT.md` | DOMAIN | POT device; established capabilities and unresolved details. |
+| `TK-METHOD-FICTION` | `TK_METHOD_FICTION.md` | RUNTIME / AUTHORING METHOD | World state, checkpoints/intervals, progression, and information boundaries. |
+| `TK-METHOD-POV` | `TK_METHOD_POV_PERSPECTIVE.md` | RUNTIME / AUTHORING METHOD | Perspective across the timeline; established principles remain distinct from unaccepted designs. |
+| `TK-TL-CP01` | `TK_TIMELINE_CP01_OPENING.md` | CHECKPOINT | Opening breakpoint; minimal pre-state, direct delta, and resulting CP1 boundary. |
+| `TK-TL-CP02` | `TK_TIMELINE_CP02_REVEAL.md` | CHECKPOINT | Hostile test, interception, attribution, and military/mage reveal; immediate boundary, excluding multi-day later reactions. |
+| `TK-TL-I01-02` | `TK_TIMELINE_INTERVAL_CP01_CP02.md` | INTERVAL | After the CP1 boundary until immediately before CP2; sourced progression, reactions, and accumulated state. |
+| `TK-TL-POST02` | `TK_TIMELINE_POST_CP02.md` | POST-CHECKPOINT MATERIAL | Post-CP2 logistics premise without a checkpoint number; historical simulation appendix is not the current reaction baseline. |
 
 <!-- END GENERATED SOURCE CATALOG -->
 
-## Navigation
+## Navigation and Integrity
 
-[Timeline index](THE_KINGDOM_CHECKPOINT_STATE_INDEX.md) giữ CP1 → interval → CP2 → POST02; không CP3. [Open issues](TK_OPEN_ISSUES_CURRENT.md) giữ unknown/conflict/deferred có hệ quả; entry không resolve. [Reconciliation](TK_RECONCILIATION_RECORD.md) chỉ truy quyết định/provenance khi điều kiện Router đòi hỏi. [CI](controls/TK_CI_v1.0.md) → [Router](controls/TK_ROUTER_v1.0.yaml) → [Pipeline](controls/TK_AUTHORING_PIPELINE_v1.0.md) theo chức năng yêu cầu, không bắt mọi task qua authoring.
-
-Current thiếu thì UNKNOWN/gap, không tự nạp archive. Repository ACTIVE != live Project deployed. Header/index/manifest/hash không nâng epistemic status của lore.
+Use [temporal navigation](THE_KINGDOM_CHECKPOINT_STATE_INDEX.md) for boundaries, [manifest](MANIFEST.md) for admission/integrity, and [Router](controls/TK_ROUTER_v1.0.yaml) for runtime gates. Index discovery is not proof of a full source read. Source statuses and explicit author decisions retain their own authority.

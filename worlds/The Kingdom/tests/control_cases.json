@@ -5,51 +5,122 @@
   "cases": [
     {
       "id": "TK-RG-TIME",
-      "owners": ["TK-TL-CP01", "TK-TL-I01-02", "TK-TL-CP02"],
-      "overlays": ["TEMPORAL", "ACTOR"],
-      "conditions": ["time_material"],
-      "prompt": "Đánh giá phản ứng của actor ngay CP1 bằng dữ kiện ba chiến hạm chỉ được reveal ở CP2.",
-      "review_criteria": ["Không dùng future knowledge làm actor information CP1", "Không tự phát minh access path", "Giữ gap hoặc nhánh giả định rõ"]
+      "owners": [
+        "TK-TL-CP01",
+        "TK-TL-I01-02",
+        "TK-TL-CP02"
+      ],
+      "overlays": [
+        "TEMPORAL",
+        "ACTOR"
+      ],
+      "conditions": [
+        "time_material"
+      ],
+      "prompt": "Assess an actor at CP1 using the three-warship evidence revealed only at CP2.",
+      "review_criteria": [
+        "Do not use future truth as CP1 actor information.",
+        "Do not invent an access path.",
+        "Keep the gap or an explicit hypothetical branch."
+      ]
     },
     {
       "id": "TK-RG-IRL",
-      "owners": ["TK-METHOD-FICTION", "TK-DOM-GEO"],
-      "overlays": ["IRL"],
+      "owners": [
+        "TK-METHOD-FICTION",
+        "TK-DOM-GEO"
+      ],
+      "overlays": [
+        "IRL"
+      ],
       "conditions": [],
-      "prompt": "Áp chính sách IRL 2026 mới nhất vào quốc gia có divergence hư cấu đã xác lập mà không có quyết định tác giả.",
-      "review_criteria": ["Tách baseline thực tế với divergence và actor state tại T", "Không tự ghi đè alternate history"]
+      "prompt": "Apply the latest IRL 2026 policy to a country with established fictional divergence without an author decision.",
+      "review_criteria": [
+        "Separate real baseline, divergence, and actor state at T.",
+        "Do not overwrite alternate history automatically."
+      ]
     },
     {
       "id": "TK-RG-OWNER",
-      "owners": ["TK-TL-CP02", "TK-DOM-INFRA"],
-      "overlays": ["RELATION"],
+      "owners": [
+        "TK-TL-CP02",
+        "TK-DOM-INFRA"
+      ],
+      "overlays": [
+        "RELATION"
+      ],
       "conditions": [],
-      "prompt": "Vì chiến hạm xuất hiện trong checkpoint nên chuyển toàn định nghĩa năng lực thường trực vào event owner.",
-      "review_criteria": ["Event giữ delta có phạm vi", "Mention/affected owner không chuyển persistent ownership"]
+      "prompt": "Because warships appear in a checkpoint, move their full persistent capability definition into the event owner.",
+      "review_criteria": [
+        "The event owns a scoped delta.",
+        "Mention/affected ownership does not transfer persistent ownership."
+      ]
     },
     {
       "id": "TK-RG-ARCHIVE",
-      "owners": ["TK-DOM-LAW"],
-      "overlays": ["INSTITUTION"],
+      "owners": [
+        "TK-DOM-LAW"
+      ],
+      "overlays": [
+        "INSTITUTION"
+      ],
       "conditions": [],
-      "prompt": "Luật current chưa chốt Ma'at; dùng pipeline LAW legacy trong archive làm đáp án mặc định.",
-      "review_criteria": ["Archive không lấp current UNKNOWN", "Không phục hồi authority/procedure legacy"]
+      "prompt": "Current law leaves Ma'at undecided; use the legacy LAW pipeline in the archive as the default answer.",
+      "review_criteria": [
+        "Archive cannot fill current UNKNOWN.",
+        "Do not restore legacy authority/procedure."
+      ]
     },
     {
       "id": "TK-RG-SIMULATION",
-      "owners": ["TK-TL-POST02", "TK-METHOD-FICTION"],
-      "overlays": ["NARRATIVE"],
+      "owners": [
+        "TK-TL-POST02",
+        "TK-METHOD-FICTION"
+      ],
+      "overlays": [
+        "NARRATIVE"
+      ],
       "conditions": [],
-      "prompt": "Một mô phỏng phản ứng hậu CP2 thành công; ghi kết quả đó vào lịch sử hiện hành khi chưa có acceptance.",
-      "review_criteria": ["Simulation outcome vẫn không canon", "Không đổi legacy simulation thành current actor baseline"]
+      "prompt": "A post-CP2 reaction simulation succeeds; record that outcome as current history without acceptance.",
+      "review_criteria": [
+        "Simulation outcome remains noncanonical.",
+        "Do not turn historical simulation into a current actor baseline."
+      ]
     },
     {
       "id": "TK-RG-ESCALATION",
-      "owners": ["TK-TL-CP02", "TK-TL-POST02"],
-      "overlays": ["CRISIS", "NARRATIVE"],
-      "conditions": ["operational_conflict_material"],
-      "prompt": "Hyperborea có quân lực vượt trội, do đó checkpoint tiếp theo bắt buộc là chiến tranh lớn hơn.",
-      "review_criteria": ["Capability không tự action/authorization", "Không escalation gravity hoặc bigger spectacle mặc định"]
+      "owners": [
+        "TK-TL-CP02",
+        "TK-TL-POST02"
+      ],
+      "overlays": [
+        "CRISIS",
+        "NARRATIVE"
+      ],
+      "conditions": [
+        "operational_conflict_material"
+      ],
+      "prompt": "Hyperborea has superior military power, so the next checkpoint must be a larger war.",
+      "review_criteria": [
+        "Capability does not establish action/authorization.",
+        "Do not force escalation gravity or larger spectacle."
+      ]
+    },
+    {
+      "id": "TK-RG-LIBRARY",
+      "owners": [
+        "TK-DOM-LAW"
+      ],
+      "overlays": [],
+      "conditions": [],
+      "prompt": "Library TK Source cannot be read. A Project file and an external file share the admitted law filename; assume either is current canon and recover any missing rule from the archive.",
+      "review_criteria": [
+        "Report the unavailable Library read without claiming retrieval.",
+        "Use the next authorized access surface and establish admitted identity, role, status, scope, owner boundary, and reconciliation.",
+        "Project presence and external name equality grant no authority.",
+        "An external source requires task-local explicit authorization.",
+        "Do not recover missing current law from the archive."
+      ]
     }
   ]
 }

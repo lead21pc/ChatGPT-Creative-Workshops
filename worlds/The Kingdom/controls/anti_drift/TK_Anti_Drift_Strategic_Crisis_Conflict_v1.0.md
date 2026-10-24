@@ -1,33 +1,32 @@
-# The Kingdom — Khủng hoảng chiến lược và xung đột v1.0
+# The Kingdom — Strategic Crisis and Conflict State v1.0
 
 Status: ACTIVE
 Version: 1.0
 Role: REASONING_OVERLAY
 Control_ID: CRISIS
 
-## Kích hoạt và thẩm quyền
+## Activation and Authority
 
-Áp dụng khi đánh chặn, khủng bố/proxy, biên giới, chỉ huy, triển khai hoặc leo/xuống thang ảnh hưởng kết luận. Chỉ nhắc keyword hoặc tra cứu fact trực tiếp không tự kích hoạt audit miền. Router chọn và nạp FULL_FILE sau SOURCE_LOAD/RECONCILIATION; chỉ suy luận ở PROMPT_EXECUTION. Kế thừa CI/Router về canon, nguồn, status, permission và partial/block; không chọn nguồn, sửa open state, tự cấp quyền hoặc quyết actor outcome. Thiếu decisive premise phải conditional hoặc chặn phần phụ thuộc. Không mở full domain chỉ để đủ checklist.
+Apply when interception, terrorism/proxy action, borders, command, deployment, or escalation affects a transition. A keyword or direct lookup alone does not require a full audit. The Router judges semantic applicability after source loading/reconciliation, expands required and applicable conditional controls, and FULL_FILE-loads selected overlays before PROMPT_EXECUTION.
 
+Inherit CI/Router operation, source, status, time, and canon boundaries. This overlay grants no source authority, acceptance, action permission, or actor outcome; it cannot waive gates. Missing decisive evidence blocks dependent reasoning or requires an explicitly conditional branch. Continue independently supported work when appropriate.
 
-## Boundary và transition
+## Bounded Strategic Transitions
 
-Khủng bố, proxy, đánh chặn, biên giới, security crisis, signaling và xung đột có giới hạn dùng cùng kỷ luật nhân quả, không mặc định Total War. Scope theo yêu cầu actor/miền/địa lý/thời điểm; smaller scope không giảm rigor. Ngoài scope là background/external pressure, chỉ vào active khi có causal interface xác lập hoặc được yêu cầu.
+Apply to the actual scope: terrorism/proxy action, interception, border control, signaling, command, deployment, or escalation. A crisis is not automatically total war. Trace information -> objective -> authority -> available/deployable/sustainable capability -> attempt -> result -> adaptation/termination. TEMPORAL owns sequence/state inheritance and RELATION owns typed boundaries. Do not turn capability, desire, permission, attempt, or survival into success.
 
-CAPABILITY != DEPLOYED CAPABILITY != AUTHORIZED CAPABILITY != ACTION; ORDER != EXECUTION != SUCCESS. Kiểm chỉ link quyết định: thông tin/interpretation → mục tiêu → quyền/mandate → năng lực sẵn ở đây/bây giờ → chuẩn bị/route/permission/sustainment → attempt → result → adaptation/termination. Không bắt mọi actor qua thang peacetime→totalwar hoặc bịa exact force table.
+Open routes, transport, basing, command, communications, supply, losses, recovery, and actor response only when decisive. An alliance does not prove shared command. Nominal capability is not simultaneously deployable or indefinitely sustainable force. Preserve material losses and constraints across later steps; changing POV cannot restore them. Operational, political, logistical, intelligence, and public clocks need not align.
 
-## Giữ state thực thi
+Keep the requested actor/domain/geography/time/branch scope; a smaller scope retains causal rigor. Outside context stays background unless a supported crossing or request makes it active. A route does not prove throughput, timing, secrecy, return, or permission. Do not create troops, ammunition, energy, healing, spares, intelligence, or capacity from nothing. Repair/replacement/withdrawal requires a timed, costly, supported transition. Alliance does not imply shared intelligence, basing, overflight, or sustainment; grievance does not establish coalition or belligerency. State knowledge is not every agency's knowledge. Split internal actors only when information/authority changes the result, without inventing friction/coordination. Repair and succession clocks may differ too.
 
-Movement cần route; route không tự throughput/timing/secrecy/return/permission. Không tạo quân, đạn, năng lượng, healing, phụ tùng, intelligence hay capacity từ hư không. Loss persists qua scene/POV; sửa chữa/thay thế/rút quân là transition có time/cost/interface, không reset. Alliance != shared command/intelligence/basing/overflight/sustainment; grievance không tự coalition hoặc belligerency.
+## Attribution and Failure
 
-Các đồng hồ combat, intelligence, logistics, diplomacy, repair, politics và succession không đồng bộ. State knows không là mọi agency biết. Tách actor nội bộ khi info/authority khác đổi result; không bịa phối hợp/friction. Phản gián attribution phân cấp execute/sponsor/support/facilitate/knowingly-not-prevent/negligence/uninvolved theo nguồn; biết không ngăn không tự tài trợ.
+Separate perpetration, sponsorship, funding, equipment, intent, authorization, knowledge, ability to prevent, refusal to prevent, proof, and public attribution. Knowing without preventing is not automatically sponsorship. Source gaps about hostile states/proxies remain open; do not designate every neighbor or reverse-justify S0 with the later reveal. Observation/attribution accessible to one actor is not universal public proof.
 
-## UNKNOWN, failure và kết quả
+Preserve sourced execute/sponsor/support/facilitate/knowingly-not-prevent/negligence/uninvolved distinctions. CP2's narrative need does not validate its proxy-politics premise. Nondecisive gaps may remain black boxes; a branching gap needs an explicit branch. Do not fill a decisive gap with a plausible value merely to continue. Containment, delay, negotiation, loss, or no action may be supported branches; no actor must optimize or maximize escalation. Operational attribution does not authorize designing subsequent laws/punishments. Independent actors/theaters may continue when another transition is blocked.
 
-Gap không ảnh hưởng transition có thể giữ black box; gap tạo nhánh thì conditional; gap quyết quyền/route/resource/info/capability/fallback phải block hoặc branch. Không điền plausible value để chạy tiếp. Fallback cần receiver/interface/capacity/time/authority không loop, có thể quá tải. Intervention chỉ attempt, không plot armor.
+Missing decisive authority, capability, route, timing, access, or intent blocks the transition or opens a clearly conditional branch. A fallback needs a supported receiver, interface, capacity, authority, and time; do not invent infinite fallback, frictionless adaptation, or guaranteed prevention. ECONOMY governs decisive resource mechanisms. ACTOR governs reception when selected; do not use retrospective world truth as pre-action actor information.
 
-Không power-score thắng thua, không forced capture/death/save, không intelligence toàn tri, không hạ competence để phục vụ reveal. TOTAL WAR CAPABILITY != TOTAL WAR MUST OCCUR; LARGE INCIDENT != REQUIRED LARGER NEXT INCIDENT. Containment/delay/negotiation/loss/no-action có thể là nhánh khi đủ premise, không mặc định phải tối ưu hay tối đa leo thang. Nhu cầu CP2 không chứng minh nền proxy politics hợp lý.
+## Stop
 
-## Dừng
-
-Giữ scale do user chọn; chỉ mở chi tiết đổi feasibility/time/info/authority/resource/failure/decision/outcome. Dừng ở closure hoặc named block; actor/theater độc lập vẫn tiếp tục được. Không port AF/RF/ML/Seaborne doctrine, capacity hoặc routes. Overlay không thiết kế luật/hình phạt sau attribution.
+Do not force an escalation ladder, force tables, power scores, larger spectacle, mandatory deaths, or miraculous rescues. No AF/RF/ML/Seaborne hooks or FTH war ontology. Distinguish bounded intervention, de-escalation, refusal, failure, and termination without assigning an endpoint in advance. Stop at the requested transition/result; simulation is not accepted history.

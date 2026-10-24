@@ -5,9 +5,9 @@ SOURCE_ID: TK-METHOD-FICTION
 RUNTIME_ROLE: CURRENT_SOURCE
 ROLE: RUNTIME / AUTHORING METHOD
 STATUS: ACTIVE
-SCOPE: World-state, checkpoint/interval, progression và giới hạn tri thức.
-AUTHORITY_BOUNDARY: Chỉ phương pháp kể/suy luận và nhãn từng mục; không lore hoặc acceptance của proposal.
-CROSS_OWNER_BOUNDARY: TK-METHOD-POV, TK-TL-CP01, TK-TL-I01-02, TK-TL-CP02, TK-TL-POST02; chỉ giao diện/phạm vi liên quan, không chuyển ownership hoặc tạo hard dependency.
+SCOPE: World state, checkpoints/intervals, progression, and information boundaries.
+AUTHORITY_BOUNDARY: Only claims within SCOPE and their section-level epistemic status; ACTIVE does not accept every proposal or simulated history.
+CROSS_OWNER_BOUNDARY: TK-METHOD-POV, TK-TL-CP01, TK-TL-I01-02, TK-TL-CP02, TK-TL-POST02; Relevant interfaces only; no ownership transfer or hard dependency is created.
 LOAD_MODE: FULL_FILE
 ```
 

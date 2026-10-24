@@ -5,9 +5,9 @@ SOURCE_ID: TK-DOM-DELEGATION
 RUNTIME_ROLE: CURRENT_SOURCE
 ROLE: DOMAIN / OPENING DESIGN
 STATUS: ACTIVE / MIXED EPISTEMIC STATUS
-SCOPE: Mandate xác minh, itinerary draft và câu hỏi; không phải event log.
-AUTHORITY_BOUNDARY: Chỉ state/claim trong SCOPE và theo epistemic status từng mục; ACTIVE không chấp nhận mọi proposal hoặc lịch sử simulation.
-CROSS_OWNER_BOUNDARY: TK-DOM-GEO, TK-DOM-INFRA, TK-DOM-HEALTH, TK-DOM-LANGUAGE-RELIGION, TK-TL-CP01; chỉ giao diện/phạm vi liên quan, không chuyển ownership hoặc tạo hard dependency.
+SCOPE: Verification mandate, draft itinerary, and questions; not an event log.
+AUTHORITY_BOUNDARY: Only claims within SCOPE and their section-level epistemic status; ACTIVE does not accept every proposal or simulated history.
+CROSS_OWNER_BOUNDARY: TK-DOM-GEO, TK-DOM-INFRA, TK-DOM-HEALTH, TK-DOM-LANGUAGE-RELIGION, TK-TL-CP01; Relevant interfaces only; no ownership transfer or hard dependency is created.
 LOAD_MODE: FULL_FILE
 ```
 
