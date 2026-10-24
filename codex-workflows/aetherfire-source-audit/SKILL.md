@@ -1,9 +1,11 @@
 ---
 name: aetherfire-source-audit
-description: Đọc lại và đối chiếu nguồn Markdown Project Feather Core/AetherFire; kiểm tra conflict, unknown, deferred, logic và mốc canon; cập nhật an toàn cả tài liệu độc lập lẫn gói sinh tự động Project Feather Core sau khi người dùng chốt. Không tự viết lore hoặc áp cho dự án khác.
+description: Tra cứu, audit và đối chiếu nguồn Markdown/canon của Project Feather Core (Feather Core - FTH, FTH; tên cũ AetherFire Project), gồm AetherFire và các domain FTH khác; cập nhật nguồn/package sau khi người dùng chốt. Không tự viết lore hoặc áp cho paracosm khác.
 ---
 
-# AetherFire source audit
+# Feather Core / AetherFire source audit
+
+Dùng skill cho tác vụ nguồn/canon FTH dù yêu cầu chỉ nhắc `Project Feather Core`, `Feather Core - FTH` hoặc `FTH`, không cần có từ AetherFire. `AetherFire Project` là tên project cũ; AetherFire hiện là một quốc gia trong FTH, không giới hạn skill vào quốc gia đó. Giữ ID `aetherfire-source-audit` để tương thích lời gọi cũ. Không kích hoạt chỉ vì đang ở thư mục FTH nếu tác vụ thuần Git; không áp cho The Kingdom hoặc Fanfiction Engine/The Academy.
 
 ## Ranh giới điều phối
 

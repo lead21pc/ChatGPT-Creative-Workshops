@@ -1,0 +1,7 @@
+interface:
+  display_name: "Feather Core / AetherFire Source Audit"
+  short_description: "Tra cứu và audit nguồn canon Feather Core / FTH"
+  default_prompt: "Dùng $aetherfire-source-audit để đối chiếu claim nguồn này với canon hiện hành của Project Feather Core (FTH)."
+
+policy:
+  allow_implicit_invocation: true
