@@ -1,159 +1,72 @@
 # The Kingdom
 
-> **Outdated concepts — for reference only.**
+**The Kingdom** là project/paracosm; **Hyperborea** là quốc gia trong paracosm. Hyperborea là tên quốc gia hiện hành; tên giữ chỗ cũ đã ngừng dùng trong nguồn current, chỉ giữ trong archive/provenance. Namespace `TK-*` không đổi vì đổi tên quốc gia.
 
-## Mục đích của README này
+Đây là worldbuilding cá nhân: thế giới vận động, lịch sử/hệ quả tích lũy; không có nhân vật chính trung tâm. Nhân vật là camera, fantasy tạo hệ quả qua con người và hệ thống. Repository chỉ externalize một phần thế giới của tác giả; thiếu dữ kiện không chứng minh tác giả chưa biết.
 
-Tài liệu này là lớp định hướng để đọc The Kingdom đúng cách, đặc biệt cho LLM. Nó không phải world bible, không thay thế các source chi tiết, và không có quyền tự lấp những phần chưa được externalize.
-
-```text
-REPOSITORY STATE != TOÀN BỘ PARACOSM
-UNKNOWN != EMPTY
-UNKNOWN != PERMISSION TO INVENT
-```
-
-## The Kingdom là gì
-
-The Kingdom là một paracosm vận hành như **mô phỏng lịch sử có trạng thái, có tích lũy hệ quả và phụ thuộc đường đi**. Nó không được xây quanh một cốt truyện tuyến tính, một nhân vật chính con người, hay một chuỗi cao trào phải liên tục lớn hơn.
-
-Về nguồn gốc ý niệm, The Kingdom được sinh ra như một **phản đề đối với trope một cường quốc vượt trội xuất hiện từ bên ngoài, áp đặt hoặc rao giảng mô hình chính trị, rồi dùng phản ứng của thế giới để tự ca tụng sự cường đại của mình**. Đây là mục tiêu thiết kế fiction, không phải tuyên bố rằng một hệ tư tưởng hay mô hình chính trị ngoài đời là đúng hoặc sai.
-
-Trong cấu trúc hiện tại, **không có MC là con người**. Thứ gần với MC nhất là **thế giới trong quá trình phản ứng với bất đối xứng**.
+## Cấu trúc nguồn
 
 ```text
-BẤT ĐỐI XỨNG
-+ PHẢN ỨNG PHÂN TÁN
-+ PHỤ THUỘC ĐƯỜNG ĐI
-+ KÝ ỨC LỊCH SỬ
-= FICTION
+The Kingdom/
+├─ README.md
+├─ THE_KINGDOM_CHECKPOINT_STATE_INDEX.md
+├─ TK_TIMELINE_*.md
+├─ TK_METHOD_*.md
+├─ TK_DOMAIN_*.md
+├─ controls/
+└─ Source_archive/
 ```
 
-Mẫu quốc là một nguồn bất đối xứng cực lớn, nhưng không phải một nhân vật chính cần được tác phẩm chứng minh là đúng, cần được người ngoài ngưỡng mộ, hay cần liên tục có cảnh khoe sức mạnh.
-
-## The Kingdom làm gì
-
-Câu hỏi trung tâm của The Kingdom không phải:
-
-> Ai thắng?
-
-mà gần hơn với:
-
-> Sau khi một sự kiện xảy ra trong trạng thái hiện tại, thế giới này sẽ trở thành gì?
-
-Cấu trúc vận hành cơ bản:
+- Active root là owner current trong scope và theo nhãn từng phần; ACTIVE không biến mọi draft/proposal thành canon.
+- `controls/` giữ CI, anti-drift, workflow và câu hỏi kiểm tra. CONTROL != LORE SOURCE. Chưa xác định CI nào đang cài trong ChatGPT Project; vị trí tệp không chứng minh activation/runtime.
+- `Source_archive/` là lịch sử/provenance chỉ đọc sau migration; không current authority, không fallback, không tự nạp. Không sửa ngược lịch sử để khớp current.
 
 ```text
-TRẠNG THÁI THẾ GIỚI S0
-        ↓
-sự kiện / checkpoint / tiên đề fantasy tạo ma sát
-        ↓
-nhà nước, tổ chức, thị trường, khoa học, tôn giáo, văn hóa,
-truyền thông, cộng đồng và cá nhân phản ứng theo điều họ biết
-        ↓
-hệ quả pháp lý / chính trị / kinh tế / xã hội / nhận thức
-        ↓
-thích nghi
-        ↓
-BÌNH THƯỜNG MỚI S1
-        ↓
-checkpoint tiếp theo kế thừa S1
+DO NOT USE Source_archive TO FILL A GAP IN ACTIVE SOURCES.
 ```
 
-Checkpoint là **mốc làm đổi trạng thái lịch sử**, không phải chương truyện. Phần lớn fiction có thể sống trong khoảng giữa các checkpoint: báo chí, công văn, tranh luận khoa học, thay đổi luật, logistics, đời sống, lời đồn, meme, chuyện nghề nghiệp, xung đột nhỏ và các câu chuyện nhân vật.
+Chỉ đọc khi tác giả yêu cầu history/provenance/audit/recovery hoặc active source dẫn rõ historical record cần đối chiếu. Link provenance không nhập cả handoff thành canon hoặc cho phép phục hồi lore. Khi thiếu current source, giữ UNKNOWN/repository gap.
 
-Thế giới không reset sau mỗi sự kiện. Hệ quả phải tích lũy.
+## Nguồn active và điều hướng
 
-## Fantasy là máy sinh hệ quả, không phải trang trí
+Bắt đầu từ [timeline index](THE_KINGDOM_CHECKPOINT_STATE_INDEX.md) khi câu hỏi có thời điểm. Bảng sau chỉ điều hướng owner, không là registry hoặc bảng xếp authority.
 
-Fantasy trong The Kingdom phải tạo lực lên xã hội. Một tiên đề có giá trị khi sự tồn tại của nó buộc thế giới phải phản ứng.
+| SOURCE_ID | Tệp | Vai trò và phạm vi |
+|---|---|---|
+| TK-DOM-GEO | [TK_DOMAIN_GEOPOLITICS.md](TK_DOMAIN_GEOPOLITICS.md) | DOMAIN — Địa chính trị, DMZ, đối ngoại, động cơ mở cửa và các lựa chọn còn mở. |
+| TK-DOM-INFRA | [TK_DOMAIN_INFRASTRUCTURE.md](TK_DOMAIN_INFRASTRUCTURE.md) | DOMAIN — Hạ tầng, không lưu và capabilities thường trực; phương án mở cửa giữ status riêng. |
+| TK-DOM-COUNTERINTEL | [TK_DOMAIN_COUNTERINTELLIGENCE.md](TK_DOMAIN_COUNTERINTELLIGENCE.md) | DOMAIN — Phản gián, quyền tiếp cận, tri thức và attribution; cơ chế đề xuất giữ riêng. |
+| TK-DOM-HEALTH | [TK_DOMAIN_HEALTH.md](TK_DOMAIN_HEALTH.md) | DOMAIN — An toàn sinh học, điều trị và quyền y tế; chi tiết chưa xác định vẫn mở. |
+| TK-DOM-LANGUAGE-RELIGION | [TK_DOMAIN_LANGUAGE_RELIGION.md](TK_DOMAIN_LANGUAGE_RELIGION.md) | DOMAIN / DESIGN PHILOSOPHY — Universal Language, thần tính, World Tree và triết lý; không xác nhận quyền tiếp cận. |
+| TK-DOM-LAW | [TK_DOMAIN_LAW.md](TK_DOMAIN_LAW.md) | DOMAIN — Luật V2 đang tái thiết kế; Luật Ngoại Nhân chỉ áp dụng ngoại nhân đã bị bắt. |
+| TK-METHOD-FICTION | [TK_METHOD_FICTION.md](TK_METHOD_FICTION.md) | RUNTIME / AUTHORING METHOD — World-state, checkpoint/interval, progression và giới hạn tri thức. |
+| TK-DOM-POT | [TK_DOMAIN_POT.md](TK_DOMAIN_POT.md) | DOMAIN — Thiết bị POT; canon khả năng và chi tiết còn mở. |
+| TK-METHOD-POV | [TK_METHOD_POV_PERSPECTIVE.md](TK_METHOD_POV_PERSPECTIVE.md) | RUNTIME / AUTHORING METHOD — POV xuyên timeline; nguyên tắc đã xác lập và thiết kế chưa accepted giữ riêng. |
+| TK-DOM-DELEGATION | [TK_DOMAIN_OPENING_DELEGATION.md](TK_DOMAIN_OPENING_DELEGATION.md) | DOMAIN / OPENING DESIGN — Mandate xác minh, itinerary draft và câu hỏi; không phải event log. |
+| TK-TL-CP01 | [TK_TIMELINE_CP01_OPENING.md](TK_TIMELINE_CP01_OPENING.md) | CHECKPOINT — Breakpoint mở cửa; pre-state tối thiểu, direct delta và boundary state CP1. |
+| TK-TL-I01-02 | [TK_TIMELINE_INTERVAL_CP01_CP02.md](TK_TIMELINE_INTERVAL_CP01_CP02.md) | INTERVAL — Sau boundary CP1 đến ngay trước CP2; progression, phản ứng và state tích lũy có nguồn. |
+| TK-TL-CP02 | [TK_TIMELINE_CP02_REVEAL.md](TK_TIMELINE_CP02_REVEAL.md) | CHECKPOINT — Vụ thử nước, đánh chặn, attribution và military/mage reveal; boundary tức thời, không sở hữu phản ứng nhiều ngày sau. |
+| TK-TL-POST02 | [TK_TIMELINE_POST_CP02.md](TK_TIMELINE_POST_CP02.md) | POST-CHECKPOINT MATERIAL — Premise logistics sau CP2 chưa có số checkpoint; phụ lục simulation lịch sử không là baseline phản ứng current. |
 
-Universal Language không chỉ là một tính năng dịch thuật; nó tạo áp lực lên bản sắc, ngoại giao, giáo dục và quyền độc quyền của ngôn ngữ như điều kiện để hiểu nhau. Thần tính có thể xác minh không chỉ tạo cảnh phép màu; nó tạo áp lực lên thần học, thẩm quyền tôn giáo và cách con người phân biệt đức tin với quan sát. Y tế vượt cấp không chỉ chứng minh công nghệ mạnh; nó tạo vấn đề về quyền tiếp cận, cư trú, nhập tịch, đạo đức và bất bình đẳng. Năng lực quân sự vượt chuẩn không tự động dẫn tới chiến tranh lớn hơn; nó thay đổi học thuyết, đánh giá rủi ro và hành vi của các tác nhân.
-
-Type II vì vậy không phải một power level. Nó phải xuất hiện trước hết dưới dạng **hạ tầng, năng lượng, y tế, logistics, giao thông, sản xuất và đời sống đã bình thường hóa**.
-
-## Show, don't tell theo cách của The Kingdom
-
-The Kingdom vẫn có action. Action xuất hiện khi logic thế giới cần nó, không phải vì tác phẩm cần một màn biểu diễn.
+## Cách vận hành và giới hạn tri thức
 
 ```text
-có sự cố     → xử lý
-có khách     → tiếp nhận
-có bệnh      → kiểm dịch / điều trị theo quyền
-có hàng      → vận chuyển
-có tấn công  → đánh chặn
+CHECKPOINT → INTERVAL → CHECKPOINT
+CP1 → I01-02 (≈ 2 năm) → CP2 → POST02
 ```
 
-Mẫu quốc không cần tự nói:
+Checkpoint giữ breakpoint/direct boundary delta. Interval giữ progression, thích nghi, tiếp xúc, phản ứng/state tích lũy; không đủ nguồn để tự viết hai năm lịch sử. Domain giữ hệ thống thường trực, method giữ cách kể. Không đồng nhất S1 tức thời với final pre-CP2 state.
 
-> Chúng tôi mạnh hơn các anh.
+WORLD STATE là trục cấu trúc. POV dùng **ACTOR + TIME + AVAILABLE INFORMATION**: world truth, quan sát, phân tích nội bộ, công bố và diễn giải xã hội khác nhau. Không kéo tri thức tương lai về quá khứ, không có phản ứng chung cho nhân loại.
 
-Thay vào đó, hệ thống của Mẫu quốc vận hành. **Người quan sát bên ngoài tự va vào bằng chứng**, rồi tự diễn giải nó.
+[Method fiction](TK_METHOD_FICTION.md) khóa payoff: **vả assumption/model, không làm actor ngu**; CP1 sửa ước lượng, CP2 phá mô hình/phân loại, cargo sau CP2 bộc lộ normality gap. Đây là chức năng tác giả, không là kết luận đồng nhất mọi actor. CP3 chỉ là candidate đang cân nhắc trong method, không có timeline owner.
 
-```text
-HÀNH ĐỘNG / HẠ TẦNG / QUY TRÌNH
-        ↓
-BẰNG CHỨNG QUAN SÁT ĐƯỢC
-        ↓
-ACTOR BÊN NGOÀI QUAN SÁT
-        ↓
-DIỄN GIẢI
-        ↓
-BÁO CÁO / TRUYỀN THÔNG / HỌC THUYẾT / LUẬT / LỜI ĐỒN
-        ↓
-PHẢN ỨNG MỚI
-        ↓
-LỊCH SỬ
-```
+## Tham chiếu thực tế
 
-Vì vậy, **tell chủ yếu là việc của actor bên ngoài**: nhà khoa học, nhà ngoại giao, quân đội, tình báo, báo chí, giáo hội, doanh nghiệp, người dân, diễn đàn, podcast hoặc lời đồn. Những lời giải thích đó có thể đúng, sai, thiếu dữ liệu, bị thiên kiến hoặc mâu thuẫn lẫn nhau.
+**IRL REFERENCE != CURRENT THE KINGDOM STATE.** Phân biệt IRL REFERENCE @ TIME, KINGDOM DIVERGENCE và ACTOR STATE @ T; nền khoảng 2003 không tự thành trạng thái IRL 2026. Chỉ externalize divergence ảnh hưởng quyết định; không tự nhập lịch sử/chính sách thật vào fiction.
 
-Một nhãn như "tàu vũ trụ", "force field", "pháp sư", "FTL" hay "siêu vũ khí" có thể chỉ là từ vựng của người quan sát. Nó không tự động trở thành ontology thật của Mẫu quốc.
+## Giới hạn kiểm chứng
 
-## Vì sao đây không phải nation power fantasy
+Giữ riêng CANON, USER-PROVIDED STATE, DECIDED, PROPOSAL, UNDER CONSIDERATION, INFERENCE, UNKNOWN, STALE, CONFLICTED. Method POV còn thiết kế chưa accepted; luật còn reset/recovery ngoại nhân có phạm vi; itinerary chưa là lịch sử. Luật nội quốc chưa thiết kế; handoff báo prototype Tree nhưng repository chưa có asset để kiểm chứng.
 
-Bất đối xứng trong The Kingdom là **điều kiện tạo áp lực lên thế giới**, không phải phần thưởng để Mẫu quốc được tung hô.
-
-Nếu một cường quốc bên ngoài sai, sai lầm phải phát sinh từ thông tin họ có, lợi ích, lịch sử, thiên kiến, áp lực chính trị, cấu trúc tổ chức hoặc đánh giá sai hợp lý. Không làm actor khác ngu đi chỉ để Mẫu quốc có cảnh "vả mặt".
-
-Mẫu quốc cũng không hành động như thể nó biết mình đang ở trong một power fantasy. Một năng lực lớn có thể xuất hiện chỉ vì nó là công cụ bình thường phù hợp với công việc đang làm. Việc người ngoài thấy nó khủng khiếp, nhục nhã, đáng sợ hay đáng ngưỡng mộ là **trạng thái của người quan sát**, không phải mặc định ý định của Mẫu quốc và cũng không phải phán quyết của tác giả.
-
-```text
-SHOW != PERFORMANCE
-OBSERVED CAPABILITY != FULL CAPABILITY CEILING
-OUTSIDER LABEL != TRUE ONTOLOGY
-OUTSIDER REACTION != AUTHORIAL VERDICT
-HISTORICAL MAGNITUDE != SAME EMOTIONAL REACTION FOR EVERY PERSON
-ACTION != REQUIRED ESCALATION
-CHECKPOINT != CHAPTER
-POWER != NARRATIVE VALIDATION
-```
-
-## Cách đọc đúng chuẩn
-
-1. **Bắt đầu từ trạng thái thế giới hiện tại.** Mọi checkpoint kế thừa lịch sử trước đó; không được xử lý mỗi sự kiện như một truyện độc lập.
-2. **Giữ giới hạn nhận thức của actor.** Một actor chỉ được dùng thông tin đã quan sát được, kiến thức nền, thiên kiến, lợi ích và kênh thông tin mà họ thực sự có. Không ai được "đọc script".
-3. **Tách hành động khỏi diễn giải.** Mẫu quốc làm X không đồng nghĩa Mẫu quốc muốn truyền thông điệp Y, trừ khi source xác nhận. Diễn giải của người ngoài là dữ liệu về người quan sát, không tự động là sự thật về Mẫu quốc.
-4. **Không viết một "phản ứng của nhân loại" duy nhất.** Cùng một sự kiện phải có nhiều thực tại xã hội: chính phủ, khoa học, quân đội, tôn giáo, doanh nghiệp, địa phương và cá nhân có thể hiểu khác nhau.
-5. **Không suy từ cái đã thấy thành toàn bộ trần năng lực.** Reveal một khả năng chỉ chứng minh khả năng đó tồn tại trong điều kiện đã quan sát; không tự suy cơ chế, giới hạn, nguồn năng lượng hay toàn bộ cosmology.
-6. **Không ép The Kingdom vào cấu trúc MC → villain → escalation → climax.** Action có thể lớn, nhưng sau khi sự kiện được xử lý, thế giới có thể quay lại logistics, luật, văn hóa, đời sống và thích nghi.
-7. **Không biến chênh lệch năng lực thành power fantasy.** Câu hỏi cần theo dõi là thế giới thay đổi ra sao dưới bất đối xứng, không phải Mẫu quốc có thể "vả" thêm ai.
-8. **Khi source thiếu, giữ UNKNOWN.** Repository là externalization một phần; chưa thấy trong file không đồng nghĩa không tồn tại, và cũng không cho phép model tự sáng tác để lấp chỗ trống.
-
-## Nhịp cốt lõi
-
-```text
-BÌNH THƯỜNG
-→ ma sát do fantasy / checkpoint
-→ phản ứng của người và hệ thống
-→ hệ quả
-→ thích nghi
-→ BÌNH THƯỜNG MỚI
-```
-
-The Kingdom được đọc đúng khi người đọc hoặc LLM theo dõi **quá trình thế giới hấp thụ bất đối xứng** thay vì chỉ nhìn vào bản thân bất đối xứng.
-
-## Source định hướng
-
-Để hiểu phương pháp sáng tác, ưu tiên `Sources/the_kingdom_phuong_phap_sang_tac_fiction.md`. Để hiểu cách tiên đề tạo áp lực nhận thức, xem `Sources/the_kingdom_language_religion_meta.md`. Để hiểu mở cửa và tiếp xúc ban đầu, xem `Sources/the_kingdom_su_doan_xac_minh_va_stress_test.md` và `Sources/the_kingdom_ha_tang_khong_luu_mo_cua.md`. Các hệ quả chuyên biệt tiếp tục được externalize trong các source như hệ thống sức khỏe, kiểm soát tri thức/phản gián và các checkpoint.
-
-README này chỉ là lớp định hướng. **Source cụ thể và author-confirmed state mới hơn có quyền cao hơn phần mô tả khái quát tại đây.**
+Migration local không cài CI, không cập nhật ChatGPT Project/Library và không chứng minh runtime. README chỉ định hướng; source chi tiết và xác nhận mới hơn của tác giả giữ thẩm quyền tương ứng. Không có Router, Manifest, registry hay archive promotion trong layout này.
