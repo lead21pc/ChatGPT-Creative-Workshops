@@ -29,12 +29,12 @@ Với cầu nối còn thiếu, mặc định ghi **REPOSITORY GAP — author st
 
 ## 2. Tổng quan timeline
 
-Đọc chuỗi này cùng status tại §3–4; mũi tên không chứng minh draft đã xảy ra hoặc lấp các cầu nối thiếu.
+Nguồn lịch sử CP1: [Sources/checkpoint 1.md][cp1-owner]. Đọc chuỗi này cùng status tại §3–4; mũi tên không chứng minh draft đã xảy ra hoặc lấp các cầu nối thiếu.
 
 ```text
 PRE-CP1 / S0
     ↓
-CP1 — chuyển sang mở cửa; identity được ghi trong handoff
+CP1 — chuyển sang mở cửa; historical owner: Sources/checkpoint 1.md
     ↓
 DIRECT STATE DELTA — xem §3.3; giữ nhãn gốc
     ↓
@@ -53,13 +53,15 @@ trạng thái trước sự kiện trong nguồn CP2
 
 ### 3.1 Identity
 
-**Identity được ghi lại:** “bắt đầu mở cửa / mở thương mại”.
+**Historical owner:** [Sources/checkpoint 1.md — §1 Identity và phạm vi][cp1-id]. **Identity:** “Bắt đầu mở cửa / mở thương mại”.
 
-**Provenance:** [H §4.1 — Checkpoint model][h-id], nhãn `[USER-PROVIDED]`. [H — End state][h-end] xác định toàn tệp là analysis/handoff snapshot, không phải canon source của paracosm. Index giữ identity được ghi lại; không nâng handoff hoặc các phân tích khác trong đó thành historical canon owner.
+**Provenance:** identity ban đầu được recovery từ lời tác giả ghi tại [H §4.1 — Checkpoint model][h-id], nhãn `[USER-PROVIDED]`, và nay được externalize thành CP1 historical ownership theo yêu cầu tường minh của tác giả. [H — End state][h-end] vẫn xác định handoff là analysis/snapshot, không phải canon source; việc chuyển ownership không nhập toàn bộ handoff vào canon. Index dẫn tới owner mới, không tự tạo historical fact.
 
-**MISSING BRIDGE / UNRESOLVED SEMANTIC:** delta chính xác của “mở thương mại” chưa được externalize đủ. Nga đã được cấp phép giao dịch hàng hóa trực tiếp trong thời kỳ đóng cửa ([G §IV — Quan hệ lịch sử với Nga][g-russia]; [G §V — Trao đổi hàng hóa thời kỳ đóng cửa][g-trade], các block `CANON`). Không diễn giải CP1 thành “trước đó không có thương mại”. Thay đổi về đối tác, hàng hóa, quyền tiếp cận, giấy phép hay tuyến vận tải vẫn là **REPOSITORY GAP — author state not established by this index**.
+**MISSING BRIDGE / UNRESOLVED SEMANTIC:** [CP1 §9 — Những cầu nối chưa đủ source][cp1-gaps] tiếp tục giữ delta chính xác của “mở thương mại” là chưa được externalize đủ. Nga đã được cấp phép giao dịch hàng hóa trực tiếp trong thời kỳ đóng cửa ([G §IV — Quan hệ lịch sử với Nga][g-russia]; [G §V — Trao đổi hàng hóa thời kỳ đóng cửa][g-trade], các block `CANON`). Không diễn giải CP1 thành “trước đó không có thương mại”. Thay đổi về đối tác, hàng hóa, quyền tiếp cận, giấy phép hay tuyến vận tải vẫn là **REPOSITORY GAP — author state not established by this index**.
 
 ### 3.2 Pre-CP1 / S0
+
+Baseline lịch sử CP1 được giữ tại [CP1 §2 — Trạng thái trước checkpoint][cp1-pre]; bảng dưới tiếp tục dẫn domain detail và nhãn nguồn.
 
 | State cần tìm | Source anchor | Status / giới hạn |
 |---|---|---|
@@ -70,6 +72,8 @@ trạng thái trước sự kiện trong nguồn CP2
 
 ### 3.3 Trigger / transition
 
+Đọc chuyển tiếp lịch sử trước tiên tại [CP1 §3 — Trigger][cp1-trigger], [§4 — Chuyển tiếp checkpoint đã xác nhận][cp1-transition] và [§6 — Direct state delta][cp1-delta]. Các anchor domain dưới đây giữ bằng chứng và status chi tiết.
+
 | Thành phần chuyển trạng thái | Source anchor | Status gốc / cách dùng |
 |---|---|---|
 | Lời mời qua các đấng tối cao | [G §IX — §1 Kênh mở cửa][g-invite]; [D §1 — Bối cảnh đã chốt][d-context] | G §1: `CANON`; D đặt trong bối cảnh đã chốt. |
@@ -79,6 +83,8 @@ trạng thái trước sự kiện trong nguồn CP2
 | Áp lực cấm vận văn hóa và chuỗi “phá hàng” | [G §X — §2][g-culture]; [G §XI — Các nước nhỏ, trung lập và hiện tượng “phá hàng”][g-cascade] | `HỆ QUẢ SUY LUẬN`; không dùng chuỗi nước A/B/C như danh sách các chuyến tiếp xúc đã xảy ra. |
 
 ### 3.4 Tiếp xúc đầu tiên và các interface mở cửa
+
+[CP1 §5 — Interface mở cửa liên quan][cp1-interfaces] phân biệt sử dụng đã xác nhận, candidate/draft và capability/domain reference; implementation chi tiết tiếp tục ở các source dưới đây.
 
 | Phần cần tìm | Source anchor | Temporal / epistemic boundary |
 |---|---|---|
@@ -95,6 +101,8 @@ Hạ tầng nền tại [I §2][i-base], [I §3][i-airspace] và các interface 
 
 ### 3.5 Direct / inherited post-opening state
 
+Phân biệt delta trực tiếp và state kế thừa theo [CP1 §6][cp1-delta] và [§7 — Trạng thái hậu mở cửa][cp1-post]. Snapshot trong C vẫn chỉ là bằng chứng cho state ở thời điểm source C lưu lại.
+
 | Lớp state | Source anchor | Status / giới hạn thời gian |
 |---|---|---|
 | Direct political delta của lời mời | Các anchor tại §3.3 | Giữ riêng `CANON`, nhãn trộn và hệ quả suy luận; không đồng nhất mục tiêu chính trị với mọi kết quả đã đạt. |
@@ -105,13 +113,15 @@ C giữ một snapshot hậu mở cửa được kế thừa. Snapshot đó khô
 
 ### 3.6 Khoảng giữa hai checkpoint
 
-**Khoảng cách được ghi lại:** CP1 → CP2 ≈ 2 năm, theo [H §4.1][h-id], nhãn `[USER-PROVIDED]`, với giới hạn handoff tại §3.1.
+**Ranh giới lịch sử:** [CP1 §8 — Ranh giới giữa hai checkpoint][cp1-interval]. Khoảng cách CP1 → CP2 ≈ 2 năm tiếp tục giữ provenance từ [H §4.1][h-id], nhãn `[USER-PROVIDED]`; ownership mới không tự bổ sung lịch sử thích nghi.
 
 **Coverage repository:** chưa đủ để tái dựng đầy đủ diễn biến thích nghi trong khoảng này. H §4.1 nêu thương mại, công nghệ, lao động, nhận thức về outsider, truyền thông, interest conflict và institutional response là các miền có thể đổi nhanh. Đây là **phạm vi thích nghi có thể/dự kiến trong mô tả runtime**, không phải event list đã xảy ra.
 
 [S §X — §2 Chuyển cuộc chơi từ “lấy bí mật” sang “tìm cái có thể học hợp pháp”][s-adapt] nói đến thay đổi sau vài lần thất bại, nhưng không cung cấp ngày hoặc chuỗi event để index đặt chắc vào khoảng này. Không biến khoảng hai năm thành một timeline do model bổ sung.
 
 ### 3.7 Những cầu nối còn thiếu
+
+[CP1 §9 — Những cầu nối chưa đủ source][cp1-gaps] giữ các gap lịch sử sau khi chuyển ownership; các anchor domain dưới đây tiếp tục cho biết giới hạn bằng chứng.
 
 Tất cả các hàng sau là **REPOSITORY GAP — author state not established by this index**, không tự phân loại thành tác giả chưa biết hoặc đã biết.
 
@@ -167,7 +177,8 @@ Không dùng các phản ứng sau sự kiện ở C §VIII–XI để lấp kho
 
 | Source | Phần đang được lưu / vai trò điều hướng |
 |---|---|
-| [H — Handoff snapshot][H] | Identity checkpoint được ghi từ lời tác giả, khoảng thời gian, mô tả runtime; toàn tệp tự giới hạn là analysis/handoff. |
+| [CP1 — checkpoint 1.md][cp1-owner] | Historical owner cho identity, chuyển tiếp CP1, delta/resulting state có bằng chứng và gap; domain detail tiếp tục thuộc source riêng. |
+| [H — Handoff snapshot][H] | Provenance gốc của CP1 identity, khoảng thời gian và mô tả runtime; CP1 historical owner đã chuyển tới source mới. H vẫn giữ giới hạn analysis/handoff. |
 | [G — Địa chính trị, DMZ và quan hệ quốc tế][G] | S0, giao dịch Nga trước mở cửa, chuyển tiếp chính trị, mandate đoàn và mô tả sau mở cửa. |
 | [D — Sứ đoàn xác minh và stress-test][D] | Bối cảnh đã chốt; draft tiếp đón; câu hỏi suy từ logic (§3), phương án “tại sao bây giờ” (§4), stress-test (§5), điểm mở (§6). |
 | [I — Hạ tầng, không lưu và mở cửa][I] | Hạ tầng thường trực và phương án interface vật lý/tác nghiệp; không phải một event log CP1. |
@@ -179,7 +190,7 @@ Các mệnh đề lặp trong nhiều nguồn không tạo thứ bậc mới. In
 
 ## 6. Loại trừ và chống đọc nhầm
 
-- **Method example != history.** [Phương pháp sáng tác §V][m-example-a] dùng Checkpoint A/B và [§XIII][m-example-1] dùng “Checkpoint 1: reveal quân sự; Checkpoint 2: mở tuyến vận tải” dưới chữ “Ví dụ”. Không dùng chúng làm chronology cạnh tranh với identity ghi trong H. [POV–perspective][V] là phương pháp kể chuyện, không phải event log.
+- **Method example != history.** [Phương pháp sáng tác §V][m-example-a] dùng Checkpoint A/B và [§XIII][m-example-1] dùng “Checkpoint 1: reveal quân sự; Checkpoint 2: mở tuyến vận tải” dưới chữ “Ví dụ”. Không dùng chúng làm chronology cạnh tranh với identity lịch sử tại [CP1 §1][cp1-id]; H tiếp tục giữ provenance gốc. [POV–perspective][V] là phương pháp kể chuyện, không phải event log.
 - **Persistent infrastructure != checkpoint delta.** Hạ tầng [I §2–3][i-base], [y tế][Y], [POT][P], [Universal Language và tôn giáo][L] không tự trở thành CP1-created. Mô tả một người vào Thần Điện không tự xác nhận quyền vào của đoàn đầu tiên.
 - **Historical snapshot != duplicate error.** [C §I][c-pre] có thể hợp lý khi giữ state kế thừa làm input sự kiện mới; đọc nó khi phục hồi hậu mở cửa nhưng giữ giới hạn tại §3.5.
 - **Mixed status must remain mixed.** Giữ riêng `CANON`, `HỆ QUẢ SUY LUẬN`, `DRAFT`, `PHƯƠNG ÁN THIẾT KẾ` và nhãn trộn. Phần không gắn nhãn không tự thừa hưởng certainty do index cần chuỗi liên tục.
@@ -250,3 +261,13 @@ Các mệnh đề lặp trong nhiều nguồn không tạo thứ bậc mới. In
 [m-example-a]: <Sources/the_kingdom_phuong_phap_sang_tac_fiction.md#v-checkpoint-không-phải-chương>
 [m-example-1]: <Sources/the_kingdom_phuong_phap_sang_tac_fiction.md#xiii-không-escalation-chỉ-vì-checkpoint-trước-lớn>
 [ci-status]: <The_Kingdom_CI_English_Compact_Revised.md#canon-and-epistemic-state>
+[cp1-owner]: <Sources/checkpoint%201.md>
+[cp1-id]: <Sources/checkpoint%201.md#1-identity-và-phạm-vi>
+[cp1-pre]: <Sources/checkpoint%201.md#2-trạng-thái-trước-checkpoint>
+[cp1-trigger]: <Sources/checkpoint%201.md#3-trigger>
+[cp1-transition]: <Sources/checkpoint%201.md#4-chuyển-tiếp-checkpoint-đã-xác-nhận>
+[cp1-interfaces]: <Sources/checkpoint%201.md#5-interface-mở-cửa-liên-quan>
+[cp1-delta]: <Sources/checkpoint%201.md#6-direct-state-delta>
+[cp1-post]: <Sources/checkpoint%201.md#7-trạng-thái-hậu-mở-cửa>
+[cp1-interval]: <Sources/checkpoint%201.md#8-ranh-giới-giữa-hai-checkpoint>
+[cp1-gaps]: <Sources/checkpoint%201.md#9-những-cầu-nối-chưa-đủ-source>
