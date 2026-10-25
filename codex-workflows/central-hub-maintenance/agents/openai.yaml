@@ -1,0 +1,5 @@
+interface:
+  display_name: "Bảo trì Central Hub"
+  short_description: "Tra cứu, audit và bảo trì control Central Hub"
+policy:
+  allow_implicit_invocation: true
