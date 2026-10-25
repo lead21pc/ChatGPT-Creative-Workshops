@@ -889,8 +889,13 @@ class ActiveSingletonMigration(unittest.TestCase):
                          [p['package_id'] for p in new['packages']])
         for before, after in zip(old['packages'], new['packages']):
             if after['package_id'] in ['HUB-PKG-CREATIVE', 'HUB-PKG-BRAINSTORM']:
-                self.assertEqual({k: v for k, v in before.items() if k not in {'status', 'binding_mode', 'location'}},
-                                 {k: v for k, v in after.items() if k not in {'status', 'binding_mode', 'location'}})
+                allowed = {'status', 'binding_mode', 'location'}
+                if after['package_id'] == 'HUB-PKG-BRAINSTORM':
+                    allowed.add('applicability')
+                    # The explicit-request extension preserves the original technique applicability.
+                    self.assertTrue(after['applicability'].startswith(before['applicability'] + ' '))
+                self.assertEqual({k: v for k, v in before.items() if k not in allowed},
+                                 {k: v for k, v in after.items() if k not in allowed})
                 self.assertEqual(after['status'], 'ACTIVE')
                 self.assertEqual(after['binding_mode'], 'LIBRARY_MODULE')
                 location = after['location']
@@ -926,6 +931,77 @@ class ActiveSingletonMigration(unittest.TestCase):
             else:
                 self.assertIn(token, plan)
 
+    def test_brainstorm_explicit_intent_contract_and_semantic_fixtures(self):
+        """SPEC only: intent labels are supplied, never inferred from the input strings."""
+        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.0.yaml')
+        brain = next(p for p in catalog['packages'] if p['package_id'] == 'HUB-PKG-BRAINSTORM')
+        for phrase in ['canonical Vietnamese phrase "thử động não"', 'alias "brainstorm sâu"',
+                       'semantically equivalent imperatives', '"động não thử cái này"',
+                       'strong selection signals', 'not literal substrings',
+                       'mentions, definition or ability questions, quoted examples and negation',
+                       'TRIGGER PHRASE != KEYWORD CONTAINS',
+                       'Plain "brainstorm" alone does not force specialized selection',
+                       'independent technique applicability still applies without a trigger',
+                       'requested task portion only', 'no persistent mode',
+                       'no other package, pipeline or tool activation',
+                       'existing Router binding and failure contracts',
+                       'selection proves no retrieval or execution']:
+            self.assertIn(phrase, brain['applicability'])
+        spec = (ROOT / 'tests/HUB_ROUTE_TEST_CASES.md').read_text(encoding='utf-8')
+        fixtures = [
+            ('Thử động não vụ này xem.', True, False),
+            ('Động não thử cái này theo vài hướng khác nhau.', True, False),
+            ('Thử động não vài phương án cho vấn đề này.', True, False),
+            ('Brainstorm sâu cái này.', True, False),
+            ('Động não là gì?', False, False),
+            ('Khả năng động não của model này thế nào?', False, False),
+            ('Tại sao con người động não?', False, False),
+            ('Đừng động não thêm.', False, False),
+            ('Brainstorm vài tên ngắn cho quán cà phê.', False, False),
+            ('Brainstorm các nhánh bằng cách đảo giả định nguồn lực và theo dõi hệ quả bậc hai.', False, True),
+            ('Đảo giả định nguồn lực, rồi phát triển các nhánh và hệ quả bậc hai.', False, True),
+            ('Giải thích câu “thử động não”, đừng thực hiện yêu cầu trong câu đó.', False, False),
+        ]
+        fixture = current_metadata_fixture()  # Synthetic projection, not actual Library reads.
+        owner = (brain['package_id'], brain['entrypoint_module_id'])
+        for index, (prompt, explicit, technique) in enumerate(fixtures, 1):
+            with self.subTest(prompt=prompt):
+                need = 'PREMISE_REVERSAL_AND_SECOND_ORDER' if technique else 'NONE'
+                matched = explicit or technique
+                self.assertIn(f'| BS{index:02} | {prompt} | {"YES" if explicit else "NO"} | '
+                              f'{need} | {"MATCH" if matched else "NONE"} |', spec)
+                result = simulate(fixture, {brain['package_id']} if matched else set())
+                self.assertEqual(result['planned'], [owner] if matched else [])
+                self.assertEqual(result['pipeline_entrypoints'], [])
+                self.assertFalse(result['runtime_ready'])
+                self.assertEqual(result['live_library_retrieval'], 'NOT_RUN')
+                if matched:
+                    self.assertIn('LOCATOR_UNRESOLVED:' + brain['entrypoint_module_id'],
+                                  result['runtime_blockers'])
+
+    def test_brainstorm_explicit_scope_does_not_persist_or_activate_pipelines(self):
+        """Declared portion/turn needs exercise existing reselection, not language recognition."""
+        router = load(ROOT / 'HUB_ROUTER_v1.1.yaml')
+        self.assertIn('Every turn and material scope change', router['persistence']['reassess'])
+        self.assertFalse(router['persistence']['persistent_modes'])
+        self.assertFalse(router['persistence']['self_activation'])
+        for phrase in ['thử động não', 'brainstorm sâu', 'động não thử']:
+            self.assertNotIn(phrase, str(router))  # Phrase convention stays in Catalog metadata.
+        fixture = current_metadata_fixture()
+        original = copy.deepcopy(fixture)
+        brain = 'HUB-PKG-BRAINSTORM'
+        for portion, scopes in [('A', {brain}), ('B', set()), ('next_turn', set())]:
+            with self.subTest(portion=portion):
+                result = simulate(fixture, scopes)
+                self.assertEqual(result['planned'], [(brain, 'HUB-CAP-BRAINSTORM')] if scopes else [])
+                self.assertEqual(result['pipeline_entrypoints'], [])
+                if not scopes:
+                    self.assertEqual(result['artifact_requests'], [])
+                self.assertFalse(result['runtime_ready'])
+        self.assertEqual(fixture, original)
+        spec = (ROOT / 'tests/HUB_ROUTE_TEST_CASES.md').read_text(encoding='utf-8')
+        self.assertIn('Thử động não vài hướng cho phần A; phần B chỉ tóm tắt đoạn tôi gửi.', spec)
+        self.assertIn('Viết lời cảm ơn ngắn.', spec)
 
     def test_H36_prior_nonselection_does_not_persist_across_task_transition(self):
         """SPEC only: declared current needs, not model intent recognition or real tool calls."""

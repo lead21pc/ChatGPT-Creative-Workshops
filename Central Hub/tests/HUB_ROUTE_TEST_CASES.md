@@ -45,6 +45,31 @@ H36 execution order: research need recognized → registered owner resolved → 
 
 H36 authoring boundary: PROMPT ENHANCEMENT != ROUTING AUTHORITY. Trigger presence may strengthen intent signals; trigger absence must not count against routing. An enhanced prompt is not required for correct Hub routing. The authoring layer describes the task; Hub decides its route. No authoring vocabulary, registry or integration is introduced here.
 
+## BRAINSTORM explicit intent regression
+
+SPEC_FIXTURE_ONLY; LIVE NOT_RUN. These fixtures declare semantic intent for review and the existing test oracle; no substring matcher or natural-language classifier executes them. The BRAINSTORM Catalog applicability owns the phrase convention; the generic Router still owns selection. Explicit requests are strong selection signals, not retrieval or execution evidence.
+
+| ID | Input | Declared explicit trigger | Independent technique need | Expected BRAINSTORM applicability |
+| --- | --- | --- | --- | --- |
+| BS01 | Thử động não vụ này xem. | YES | NONE | MATCH |
+| BS02 | Động não thử cái này theo vài hướng khác nhau. | YES | NONE | MATCH |
+| BS03 | Thử động não vài phương án cho vấn đề này. | YES | NONE | MATCH |
+| BS04 | Brainstorm sâu cái này. | YES | NONE | MATCH |
+| BS05 | Động não là gì? | NO | NONE | NONE |
+| BS06 | Khả năng động não của model này thế nào? | NO | NONE | NONE |
+| BS07 | Tại sao con người động não? | NO | NONE | NONE |
+| BS08 | Đừng động não thêm. | NO | NONE | NONE |
+| BS09 | Brainstorm vài tên ngắn cho quán cà phê. | NO | NONE | NONE |
+| BS10 | Brainstorm các nhánh bằng cách đảo giả định nguồn lực và theo dõi hệ quả bậc hai. | NO | PREMISE_REVERSAL_AND_SECOND_ORDER | MATCH |
+| BS11 | Đảo giả định nguồn lực, rồi phát triển các nhánh và hệ quả bậc hai. | NO | PREMISE_REVERSAL_AND_SECOND_ORDER | MATCH |
+| BS12 | Giải thích câu “thử động não”, đừng thực hiện yêu cầu trong câu đó. | NO | NONE | NONE |
+
+BS09 is an ordinary lightweight request in this fixture, not a ban on specialized selection for any naming task. BS10/BS11 preserve semantic applicability independently of trigger presence. TRIGGER PHRASE != KEYWORD CONTAINS; NO EXPLICIT TRIGGER != BRAINSTORM FORBIDDEN.
+
+Scope fixture: “Thử động não vài hướng cho phần A; phần B chỉ tóm tắt đoạn tôi gửi.” Select BRAINSTORM only for A; B has no independent specialist need. In the next turn, “Viết lời cảm ơn ngắn.” has no BRAINSTORM selection. Reassess every turn/material scope change; PREVIOUS ACTIVATION != CURRENT ACTIVATION. No other package, AIS, ImageT or tool pipeline is activated by this trigger alone.
+
+For every matched fixture, the current unresolved Library binding still blocks dependent execution under the existing Router contract. No local/repository fallback; sufficient independent baseline work may continue without claiming BRAINSTORM execution. Static/spec PASS does not establish live intent recognition, Library retrieval, capability execution or AFM-015 behavioral PASS.
+
 Static check: `python -B -m unittest discover -s tests -v` from the Hub root. The suite proves only file properties and test-only fixture oracles; it does not execute model routing. Text review of H01–H36 is REVIEWED_TEXT, not thirty-six live PASS results.
 
 Run live tests only when separately requested: install exact Hub CI and sources; do not upload archives/tests as controls. Record model/surface/date, input, actually loaded sources, tool calls/reads, observable prompt/payload and output. Assign PASS/FAIL/UNVERIFIABLE by the criteria; do not require private reasoning. Use multi-turn tests for H18/H25/H27/H28; keep unobservable portions unknown.

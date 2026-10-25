@@ -55,7 +55,14 @@ packages:
   status: ACTIVE
   version: '1.0'
   applicability: Premise-changing branches, reversal or relaxation, second-order consequences, feedback or links
-    between incomplete premises; not ordinary brainstorming alone.
+    between incomplete premises; not ordinary brainstorming alone. Explicit user requests using the canonical
+    Vietnamese phrase "thử động não", the alias "brainstorm sâu", or semantically equivalent imperatives such as
+    "động não thử cái này" are strong selection signals for this specialized capability. Interpret request intent,
+    not literal substrings; mentions, definition or ability questions, quoted examples and negation are not explicit
+    triggers. TRIGGER PHRASE != KEYWORD CONTAINS. Plain "brainstorm" alone does not force specialized selection;
+    independent technique applicability still applies without a trigger. Scope explicit requests to the requested
+    task portion only; no persistent mode. BRAINSTORM selection grants no other package, pipeline or tool activation
+    and remains subject to existing Router binding and failure contracts; selection proves no retrieval or execution.
   location:
     class: LIBRARY
     root: Central Hub Config

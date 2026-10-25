@@ -21,7 +21,8 @@ BASELINE = {
     'HUB_CI_v1.1.md': '7bb946874663627060d28e47674decb07ba99f51acbffb6550db98d65746157b',
     'HUB_ROUTER_v1.1.yaml': 'ab7c67ae3ad97e7131db7e282b53c5540c11cd4249994f8f87cac0fb8a3462e6',
     'HUB_ARCHITECTURE_v1.0.md': '6c7d6663afa9bd17c2eb80a8036f52f5f70ab32237fcaba65358cabc21787b7e',
-    'HUB_PACKAGE_CATALOG_v1.0.yaml': '7ca15560d3e9f7a3ba44470490c17103aa4db56f8da6fa314c65636d4ae58cdf',
+    # Refreshed for BRAINSTORM applicability only; Shopping remains outside the active Catalog.
+    'HUB_PACKAGE_CATALOG_v1.0.yaml': 'f5a6728576ba6735fee814d33f504b3428922d5c4f92bffab624d9e6b4b54e7b',
     'tool_pipelines/AIS/AIS_PIPELINE_v1.1.md': '68763c5bc3a19dbfae17535daebcc5e95e6279368153583470285334d6e2ffd6',
     'tool_pipelines/AIS/AIS_ROUTER_v1.2.yaml': 'c977b5adb74436e066192d240304e5e898b320d086cf3352ce5a59c542d03dbf',
 }

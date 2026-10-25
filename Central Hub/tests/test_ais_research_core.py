@@ -24,7 +24,8 @@ BASELINE = {
     'tool_pipelines/AIS/AIS_PIPELINE_v1.0.md': 'c7f78f10be855d6b77aa3e0bbf67c3856c7fa42f890382752056de71abd10f69',
     'tool_pipelines/AIS/AIS_ROUTER_v1.1.yaml': 'ea5e22648fdcb1da239126ec25220b474444de11521887cd93711f41b4b32901',
     'tool_pipelines/AIS/tests/ROUTE_TEST_CASES.md': '3519fd3f596043e157b987129afbd51872f991faf889fb91162ac754f51529d3',
-    'tests/HUB_ROUTE_TEST_CASES.md': 'db3903d41a1ad72014ca940c6fb129a07ede3d87f1861781b94ddc2213d176d9',
+    # Refreshed for the authorized BRAINSTORM intent fixtures; AIS contracts are unchanged.
+    'tests/HUB_ROUTE_TEST_CASES.md': '06290dbf41735e842e112991bba801aebae5527724fa1dcbc6e4e8bb28ad0969',
 }
 
 
