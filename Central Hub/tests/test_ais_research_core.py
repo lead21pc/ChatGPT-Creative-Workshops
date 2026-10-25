@@ -19,13 +19,14 @@ POLICY = load(BASE / 'AIS_ROUTER_v1.2.yaml')
 # Captured before this task's edits, from the clean local 603bd01 working tree.
 BASELINE = {
     'HUB_CI_v1.1.md': '7bb946874663627060d28e47674decb07ba99f51acbffb6550db98d65746157b',
-    'HUB_ROUTER_v1.1.yaml': 'ab7c67ae3ad97e7131db7e282b53c5540c11cd4249994f8f87cac0fb8a3462e6',
-    'HUB_ARCHITECTURE_v1.0.md': '6c7d6663afa9bd17c2eb80a8036f52f5f70ab32237fcaba65358cabc21787b7e',
+    # Refreshed only for the authorized Library identity correction; AIS owners are unchanged.
+    'HUB_ROUTER_v1.1.yaml': 'b63baa9a9461b90f12c61b35dbe572270ac16826e38c66f8a95128ad32e705de',
+    'HUB_ARCHITECTURE_v1.0.md': 'da62208fd10ed46d2a453fb72c55a0475185583d107edc2196b5b503eae738b5',
     'tool_pipelines/AIS/AIS_PIPELINE_v1.0.md': 'c7f78f10be855d6b77aa3e0bbf67c3856c7fa42f890382752056de71abd10f69',
     'tool_pipelines/AIS/AIS_ROUTER_v1.1.yaml': 'ea5e22648fdcb1da239126ec25220b474444de11521887cd93711f41b4b32901',
     'tool_pipelines/AIS/tests/ROUTE_TEST_CASES.md': '3519fd3f596043e157b987129afbd51872f991faf889fb91162ac754f51529d3',
-    # Refreshed for the authorized BRAINSTORM intent fixtures; AIS contracts are unchanged.
-    'tests/HUB_ROUTE_TEST_CASES.md': '06290dbf41735e842e112991bba801aebae5527724fa1dcbc6e4e8bb28ad0969',
+    # Refreshed for the authorized Library identity rule; AIS contracts are unchanged.
+    'tests/HUB_ROUTE_TEST_CASES.md': 'ca1cc1e36d33590f8916e636493bf477472a4750c83e45548fdea2f904936d65',
 }
 
 

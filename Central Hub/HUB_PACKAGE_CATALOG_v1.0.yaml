@@ -69,9 +69,13 @@ packages:
     locator: null
     library_file_id: null
     library_version_id: null
-    verification: NOT_PERFORMED
-    resolution: UNRESOLVED
-    retrieval_mechanism: UNRESOLVED; no runtime retrieval before actual upload and exact identity binding.
+    observed_path: Central Hub Config/HUB-CAP-BRAINSTORM_v1.0.md
+    verification: CODEX_UI_OBSERVED_FULL_FILE_HEADERS_BODY_SCOPED_IDENTITY
+    resolution: RESOLVED
+    retrieval_mechanism: Root-scoped Library listing/search and specific-object full read verified through UI;
+      observed_path is a discovery hint only, not identity or a demonstrated stable object URL. Internal IDs and
+      durable locator remain unavailable. Re-resolve and verify the current object before scoped execution.
+      HUB_RUNTIME_RETRIEVAL_NOT_VERIFIED; EXECUTION_NOT_RUN.
   local_catalog: null
   requires: []
   binding_mode: LIBRARY_MODULE
@@ -111,7 +115,8 @@ packages:
   local_catalog: null
   requires: []
   binding_mode: LEGACY_PROJECT_SOURCE
-live_integration: LIVE INTEGRATION PARTIAL FOR PRIOR TECHNICAL_ONLY_LIBRARY_STACK; CREATIVE_BRAINSTORM_LIBRARY_NOT_PERFORMED
+live_integration: LIVE INTEGRATION PARTIAL FOR PRIOR TECHNICAL_ONLY_LIBRARY_STACK; CREATIVE_LIBRARY_NOT_PERFORMED;
+  BRAINSTORM_ROOT_SCOPED_UI_RESOLUTION_VERIFIED; BRAINSTORM_HUB_RUNTIME_RETRIEVAL_NOT_VERIFIED; BRAINSTORM_EXECUTION_NOT_RUN
 active_revision_evidence:
   basis: USER_REPORTED; not independently reproduced
   artifact_version: '1.0'

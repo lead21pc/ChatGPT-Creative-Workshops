@@ -173,9 +173,11 @@ eligibility:
 library:
   root: Central Hub Config
   invariant: CENTRAL HUB CONFIG = SOLE LIBRARY DISCOVERY ROOT.
-  request: Bound root plus exact accepted locator, Module ID, Package ID, role and version; never use repository_path
-    as runtime locator.
-  missing_locator: UNRESOLVED; no retrieval, no broadened search.
+  request: Central Hub Config plus accepted Module ID, Package ID, role, status and artifact version. Use verified
+    internal identity when available; otherwise resolve the specific Library object within that root. A filename
+    or display name is a discovery hint, not identity. Never use repository_path as runtime locator.
+  missing_locator: Internal IDs or locator absent does not forbid root-scoped resolution. Retain UNRESOLVED until
+    one identity path passes; no execution, broadened search or non-Library substitute while unresolved.
   unavailable: UNVERIFIED / UNRESOLVED; metadata/spec planning only, never module execution.
   scope: Search/resolve only inside Central Hub Config. If the tool cannot enforce that root, stop; do not discover
     it by whole-Library search.
@@ -189,11 +191,22 @@ library:
   - archive
   - lookalike_filename
   - latest_version_guess
-  retrieval_mechanism: Prefer verified library_file_id only if actual runtime supports addressing it. Otherwise
-    scoped listing/search within Central Hub Config, then exact object identity and header verification. Direct-fetch
-    capability is UNVERIFIED; no invented operation. Cannot establish root or bound object identity => BLOCK_DEPENDENT.
-  duplicate: 'Multiple matching ACTIVE identities in the scoped deployment are ambiguous: block; do not pick rank,
-    newest or a lookalike.'
+  retrieval_mechanism: 'Two identity paths within the same LIBRARY_MODULE binding. A: prefer the verified bound
+    library_file_id and Library revision when exposed and usable; verify the exact object, FULL_FILE, all required
+    headers and material body. A mismatch blocks; do not switch paths to evade it. B: when usable internal identity
+    is not exposed, list/search only within Central Hub Config, open the specific candidate object and read FULL_FILE;
+    verify Module ID, Package ID, Runtime role, Status ACTIVE, bound artifact Version and material body/responsibility
+    against accepted metadata. Establish exactly one acceptable ACTIVE identity through sufficient observable scoped
+    coverage: finish relevant pagination/loading and inspect all plausible matches, including differently named
+    candidates; an unread candidate or incomplete coverage leaves UNRESOLVED. Record the root, scope, opened object,
+    full-read evidence and duplicate-check limits. One item on one screen or a filename match is insufficient.
+    Hidden IDs may remain null; never infer Library revision from artifact Version or "current version". Record a
+    durable object locator only if its usefulness/stability is demonstrated; an in-session object reference is not
+    automatically a stable URL. Direct-fetch capability remains UNVERIFIED. Cannot establish root, full content or
+    one acceptable identity => BLOCK_DEPENDENT. Neither path admits repository/local/legacy substitutes.'
+  duplicate: 'Multiple valid matching ACTIVE identities block; do not pick first, rank, newest, filename or
+    "current version". If available scoped coverage cannot establish one acceptable identity, retain UNRESOLVED.
+    NO DUPLICATE OBSERVED IN SUFFICIENT SCOPED SEARCH != GLOBAL UNIQUENESS MATHEMATICALLY PROVEN.'
 verification:
   read: FULL_FILE
   headers:
@@ -241,7 +254,8 @@ failure:
   conflicting_modules: Expose the conflict; split independent scopes where valid, otherwise BLOCK_DEPENDENT.
   partial_refinement: Keep base coverage outside matched scope; no single winner.
   scope_changed: Reassess selection and affected closure/read requirements before dependent work.
-  library_unavailable_or_locator_unresolved: UNRESOLVED / NOT VERIFIED; no actual retrieval or execution claim.
+  library_unavailable_or_locator_unresolved: If neither Library identity path can be verified, retain UNRESOLVED /
+    NOT VERIFIED and block dependent execution; an absent internal ID alone is not a failed root-scoped resolution.
   snippet_header_or_lookalike: BLOCK_DEPENDENT; no FULL_FILE proof or equivalent substitution.
   unsupported_cross_package_relation: BLOCK_DEPENDENT; never invent admission, owner context or hierarchy.
   independent_work: BLOCK ONLY DEPENDENT WORK WHERE POSSIBLE. CONTINUE INDEPENDENT HUB-BASELINE WORK WHEN SUFFICIENT.
@@ -268,8 +282,10 @@ evidence:
   result_record: candidates/integration_v1.1/HUB_V1_1_LIVE_INTEGRATION_RESULT.md; repository evidence only, never a runtime
     dependency.
 binding_dispatch:
-  LIBRARY_MODULE: Central Hub Config only. Require exact bound library_file_id and artifact Version, plus FULL_FILE
-    and headers. Never accept legacy source.
+  LIBRARY_MODULE: Central Hub Config only. Apply library.retrieval_mechanism path A or B to establish one exact
+    Library object, FULL_FILE, required headers and material body before scoped execution. Internal IDs are preferred
+    when exposed and verified, not mandatory when path B succeeds. Wrong root, ambiguity, incomplete read, header/body
+    mismatch or unverified identity blocks dependent execution. Never accept legacy source or non-Library fallback.
   LEGACY_PROJECT_SOURCE: Transitional compatibility only for explicitly declared unmigrated entries. Catalog
     Package/Module IDs are technical routing aliases. Read exact declared_source_path/source_name in Project Sources
     fully; verify existing title/version and responsibility boundaries. No fabricated new headers, no Library discovery;

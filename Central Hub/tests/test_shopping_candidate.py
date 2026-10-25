@@ -19,10 +19,11 @@ CASES = CANDIDATE / 'SHOPPING_TEST_CASES.md'
 # Captured from clean main 28adb1a before M2; intentional candidate-only scope.
 BASELINE = {
     'HUB_CI_v1.1.md': '7bb946874663627060d28e47674decb07ba99f51acbffb6550db98d65746157b',
-    'HUB_ROUTER_v1.1.yaml': 'ab7c67ae3ad97e7131db7e282b53c5540c11cd4249994f8f87cac0fb8a3462e6',
-    'HUB_ARCHITECTURE_v1.0.md': '6c7d6663afa9bd17c2eb80a8036f52f5f70ab32237fcaba65358cabc21787b7e',
-    # Refreshed for BRAINSTORM applicability only; Shopping remains outside the active Catalog.
-    'HUB_PACKAGE_CATALOG_v1.0.yaml': 'f5a6728576ba6735fee814d33f504b3428922d5c4f92bffab624d9e6b4b54e7b',
+    # Refreshed only for the authorized Library identity correction; Shopping remains inactive.
+    'HUB_ROUTER_v1.1.yaml': 'b63baa9a9461b90f12c61b35dbe572270ac16826e38c66f8a95128ad32e705de',
+    'HUB_ARCHITECTURE_v1.0.md': 'da62208fd10ed46d2a453fb72c55a0475185583d107edc2196b5b503eae738b5',
+    # Refreshed for observed BRAINSTORM UI identity evidence; Shopping remains outside the active Catalog.
+    'HUB_PACKAGE_CATALOG_v1.0.yaml': '4d841f8f0ca37220772cec1253d633004a38dfae330656f917554e7058a6d443',
     'tool_pipelines/AIS/AIS_PIPELINE_v1.1.md': '68763c5bc3a19dbfae17535daebcc5e95e6279368153583470285334d6e2ffd6',
     'tool_pipelines/AIS/AIS_ROUTER_v1.2.yaml': 'c977b5adb74436e066192d240304e5e898b320d086cf3352ce5a59c542d03dbf',
 }

@@ -68,7 +68,7 @@ BS09 is an ordinary lightweight request in this fixture, not a ban on specialize
 
 Scope fixture: “Thử động não vài hướng cho phần A; phần B chỉ tóm tắt đoạn tôi gửi.” Select BRAINSTORM only for A; B has no independent specialist need. In the next turn, “Viết lời cảm ơn ngắn.” has no BRAINSTORM selection. Reassess every turn/material scope change; PREVIOUS ACTIVATION != CURRENT ACTIVATION. No other package, AIS, ImageT or tool pipeline is activated by this trigger alone.
 
-For every matched fixture, the current unresolved Library binding still blocks dependent execution under the existing Router contract. No local/repository fallback; sufficient independent baseline work may continue without claiming BRAINSTORM execution. Static/spec PASS does not establish live intent recognition, Library retrieval, capability execution or AFM-015 behavioral PASS.
+For every matched fixture, selection alone does not authorize execution. The selected Library object must pass either verified direct identity or sufficient root-scoped identity, FULL_FILE, header/body and ambiguity checks; unresolved identity blocks dependent execution. Recorded UI resolution does not prove a later actual Hub runtime read. No local/repository fallback; sufficient independent baseline work may continue without claiming BRAINSTORM execution. Static/spec PASS does not establish live intent recognition, Library retrieval, capability execution or AFM-015 behavioral PASS.
 
 Static check: `python -B -m unittest discover -s tests -v` from the Hub root. The suite proves only file properties and test-only fixture oracles; it does not execute model routing. Text review of H01–H36 is REVIEWED_TEXT, not thirty-six live PASS results.
 

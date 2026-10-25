@@ -16,7 +16,7 @@ CATALOG = ROOT / 'candidates/HUB_PACKAGE_CATALOG_v0.1.yaml'
 INTEGRATION = ROOT / 'candidates/integration_v1.1'
 
 
-def integration_read_spec(entry, observations):
+def integration_read_spec(entry, observations, *, direct_identity_usable=True, scoped_search_sufficient=False):
     """SPEC only: supplied observations, no retrieval or natural-language routing."""
     if len(observations) != 1:
         raise Closed('missing or ambiguous exact source')
@@ -28,8 +28,23 @@ def integration_read_spec(entry, observations):
         expected = dict(module_id=entry['entrypoint_module_id'],
                         package_id=entry['package_id'], runtime_role=entry['runtime_role'],
                         status=entry['status'], version=entry['version'],
-                        root=location['root'], library_file_id=location['library_file_id'],
-                        library_version_id=location['library_version_id'])
+                        root=location['root'])
+        if location['root'] != 'Central Hub Config' or observed.get('location') != 'LIBRARY':
+            raise Closed('wrong root or non-Library substitute')
+        if entry['status'] != 'ACTIVE' or observed.get('body_matches') is not True:
+            raise Closed('inactive or material body mismatch')
+        if direct_identity_usable:
+            if not location.get('library_file_id'):
+                raise Closed('missing verified direct identity')
+            expected['library_file_id'] = location['library_file_id']
+            if location.get('library_version_id') is not None:
+                expected['library_version_id'] = location['library_version_id']
+        else:
+            # Declared fixture evidence only, not a Library search or completeness detector.
+            if not scoped_search_sufficient or not observed.get('opened_object'):
+                raise Closed('unresolved scoped coverage or object identity')
+            if observed.get('library_file_id') is not None or observed.get('library_version_id') is not None:
+                raise Closed('unverified internal identity')
         if any(observed.get(k) != v for k, v in expected.items()):
             raise Closed('Library binding mismatch; no fallback')
     elif entry['binding_mode'] == 'LEGACY_PROJECT_SOURCE':
@@ -41,7 +56,9 @@ def integration_read_spec(entry, observations):
     else:
         raise Closed('unsupported binding')
     return dict(evidence='SPEC_SIMULATION_ONLY', runtime_ready=False,
-                live_integration='NOT_RUN', module_id=entry['entrypoint_module_id'])
+                live_integration='NOT_RUN', module_id=entry['entrypoint_module_id'],
+                library_file_id=observed.get('library_file_id'),
+                library_version_id=observed.get('library_version_id'))
 
 
 class IntegrationContracts(unittest.TestCase):
@@ -53,7 +70,7 @@ class IntegrationContracts(unittest.TestCase):
     def technical_observation(self):
         return dict(module_id='HUB-DOM-TECHNICAL', package_id='HUB-PKG-TECHNICAL',
                     runtime_role='REASONING_PROFILE', status='ACTIVE', version='1.0',
-                    root='Central Hub Config',
+                    root='Central Hub Config', location='LIBRARY', body_matches=True,
                     library_file_id='libfile_bab7d55cd85c819198291acf135099fd',
                     library_version_id='1', read_kind='FULL_FILE', has_more=False)
 
@@ -830,7 +847,14 @@ class ActiveSingletonMigration(unittest.TestCase):
             ' Neither prior package selection nor prior package non-selection is evidence for the current routing decision.'
             " When current requirements match a registered owner's Catalog applicability, select that owner before executing its behavior."
             ' Direct tool availability does not bypass package selection.')
-        self.assertEqual(after, expected)  # Only the explicit current-task selection clarification is admitted.
+        library_changes = {'request', 'missing_locator', 'retrieval_mechanism', 'duplicate'}
+        self.assertEqual(set(after['library']), set(expected['library']))
+        self.assertEqual({k: v for k, v in after['library'].items() if k not in library_changes},
+                         {k: v for k, v in expected['library'].items() if k not in library_changes})
+        expected['library'] = after['library']  # Bounded identity correction checked below.
+        expected['binding_dispatch']['LIBRARY_MODULE'] = after['binding_dispatch']['LIBRARY_MODULE']
+        expected['failure']['library_unavailable_or_locator_unresolved'] = after['failure']['library_unavailable_or_locator_unresolved']
+        self.assertEqual(after, expected)  # Selection/composition and all other owners stay unchanged.
         for key in ['architecture', 'root_catalog']:
             contract = after['contracts'][key]
             self.assertTrue((ROOT / contract['file']).is_file())
@@ -877,7 +901,7 @@ class ActiveSingletonMigration(unittest.TestCase):
                 for relation in ['Refines:', 'Complements:', 'Requires:']:
                     self.assertNotIn(relation, prefix.decode('utf-8'))
 
-    def test_single_bindings_unresolved_migrations_and_four_smoke_cases(self):
+    def test_single_bindings_scoped_resolution_and_four_smoke_cases(self):
         old = load(ROOT / 'candidates/promotion_v1.1/HUB_PACKAGE_CATALOG_v1.0.yaml')
         new = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.0.yaml')
         self.assertEqual(new['status'], 'ACTIVE')
@@ -900,8 +924,16 @@ class ActiveSingletonMigration(unittest.TestCase):
                 self.assertEqual(after['binding_mode'], 'LIBRARY_MODULE')
                 location = after['location']
                 self.assertEqual((location['class'], location['root']), ('LIBRARY', 'Central Hub Config'))
-                self.assertEqual(location['resolution'], 'UNRESOLVED')
-                self.assertEqual(location['verification'], 'NOT_PERFORMED')
+                if after['package_id'] == 'HUB-PKG-BRAINSTORM':
+                    self.assertEqual(location['resolution'], 'RESOLVED')
+                    self.assertEqual(location['verification'],
+                                     'CODEX_UI_OBSERVED_FULL_FILE_HEADERS_BODY_SCOPED_IDENTITY')
+                    self.assertEqual(location['observed_path'], 'Central Hub Config/HUB-CAP-BRAINSTORM_v1.0.md')
+                    for phrase in ['discovery hint only', 'HUB_RUNTIME_RETRIEVAL_NOT_VERIFIED', 'EXECUTION_NOT_RUN']:
+                        self.assertIn(phrase, location['retrieval_mechanism'])
+                else:
+                    self.assertEqual(location['resolution'], 'UNRESOLVED')
+                    self.assertEqual(location['verification'], 'NOT_PERFORMED')
                 for key in ['locator', 'library_file_id', 'library_version_id']:
                     self.assertIsNone(location[key])
                 self.assertNotIn('PROJECT_SOURCE', str(after))
@@ -920,6 +952,10 @@ class ActiveSingletonMigration(unittest.TestCase):
             self.assertIsNone(after['local_catalog'])
             self.assertEqual(after['requires'], [])
         plan = (ROOT / 'HUB_LIBRARY_SINGLETON_MIGRATION.md').read_text(encoding='utf-8')
+        for phrase in ['CODEX_UI_OBSERVED', 'NO DUPLICATE OBSERVED IN SUFFICIENT SCOPED SEARCH',
+                       'HUB_RUNTIME_RETRIEVAL_NOT_VERIFIED', 'EXECUTION_NOT_RUN',
+                       'Không tuyên bố so sánh byte-exact', 'không chứng minh object URL bền vững']:
+            self.assertIn(phrase, plan)
         cases = [line for line in plan.splitlines() if line.startswith('| S0')]
         self.assertEqual(len(cases), 4)
         for index, line in enumerate(cases, 1):
@@ -930,6 +966,103 @@ class ActiveSingletonMigration(unittest.TestCase):
                 self.assertIn('gỡ khỏi live Project Sources', plan)
             else:
                 self.assertIn(token, plan)
+
+    def test_library_two_identity_paths_preserve_existing_guards(self):
+        router = load(ROOT / 'HUB_ROUTER_v1.1.yaml')
+        library = router['library']
+        self.assertEqual(library['root'], 'Central Hub Config')
+        for phrase in ['A: prefer the verified bound', 'B: when usable internal identity is not exposed',
+                       'FULL_FILE', 'Status ACTIVE', 'bound artifact Version', 'material body/responsibility',
+                       'exactly one acceptable ACTIVE identity', 'finish relevant pagination/loading',
+                       'including differently named candidates', 'incomplete coverage leaves UNRESOLVED',
+                       'One item on one screen or a filename match is insufficient',
+                       'Hidden IDs may remain null', 'never infer Library revision',
+                       'an in-session object reference is not automatically a stable URL',
+                       'A mismatch blocks; do not switch paths to evade it']:
+            self.assertIn(phrase, library['retrieval_mechanism'])
+        self.assertIn('NO DUPLICATE OBSERVED IN SUFFICIENT SCOPED SEARCH', library['duplicate'])
+        self.assertIn('GLOBAL UNIQUENESS MATHEMATICALLY PROVEN', library['duplicate'])
+        self.assertIn('not mandatory when path B succeeds', router['binding_dispatch']['LIBRARY_MODULE'])
+        self.assertIn('ONE PACKAGE = ONE RUNTIME BINDING', router['binding_dispatch']['singularity'])
+        self.assertEqual(set(library['forbidden_fallbacks']), {
+            'other_library_root', 'repository', 'local_filesystem', 'project_sources_for_library_binding',
+            'memory', 'prior_chat', 'archive', 'lookalike_filename', 'latest_version_guess'})
+        self.assertEqual(router['verification']['read'], 'FULL_FILE')
+        self.assertEqual(router['verification']['headers'],
+                         ['Module ID', 'Package ID', 'Runtime role', 'Status', 'Version'])
+        architecture = (ROOT / 'HUB_ARCHITECTURE_v1.0.md').read_text(encoding='utf-8')
+        for phrase in ['Two identity paths serve one LIBRARY_MODULE binding',
+                       'Hidden internal IDs may remain null', 'NAME MATCH != IDENTITY',
+                       'SEARCH RESULT != MODULE READ', 'NOT FOUND != FALSE']:
+            self.assertIn(phrase, architecture)
+
+    def library_identity_fixture(self, package='HUB-PKG-TECHNICAL'):
+        """Declared Library observations; never accesses the platform or infers evidence."""
+        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.0.yaml')
+        entry = next(p for p in catalog['packages'] if p['package_id'] == package)
+        observed = dict(module_id=entry['entrypoint_module_id'], package_id=package,
+                        runtime_role=entry['runtime_role'], status='ACTIVE', version=entry['version'],
+                        root='Central Hub Config', location='LIBRARY', read_kind='FULL_FILE', has_more=False,
+                        body_matches=True, opened_object='SYNTHETIC_CURRENT_SURFACE_OBJECT')
+        return entry, observed
+
+    def test_library_direct_identity_full_read_body_and_bound_revision(self):
+        entry, observed = self.library_identity_fixture()
+        observed.update(library_file_id=entry['location']['library_file_id'],
+                        library_version_id=entry['location']['library_version_id'])
+        result = integration_read_spec(entry, [observed])
+        self.assertEqual(result['library_file_id'], entry['location']['library_file_id'])
+        self.assertEqual(result['library_version_id'], entry['location']['library_version_id'])
+        self.assertFalse(result['runtime_ready'])
+        for key, value in [('body_matches', False), ('library_file_id', 'wrong-object'),
+                           ('library_version_id', 'wrong-revision')]:
+            with self.subTest(key=key), self.assertRaises(Closed):
+                integration_read_spec(entry, [dict(observed, **{key: value})], scoped_search_sufficient=True)
+
+    def test_library_root_scoped_identity_without_internal_ids_is_generic(self):
+        for package in ['HUB-PKG-TECHNICAL', 'HUB-PKG-CREATIVE', 'HUB-PKG-BRAINSTORM']:
+            with self.subTest(package=package):
+                entry, observed = self.library_identity_fixture(package)
+                before = copy.deepcopy(entry)
+                result = integration_read_spec(entry, [observed], direct_identity_usable=False,
+                                               scoped_search_sufficient=True)
+                self.assertEqual(result['module_id'], entry['entrypoint_module_id'])
+                self.assertIsNone(result['library_file_id'])
+                self.assertIsNone(result['library_version_id'])
+                self.assertEqual(result['live_integration'], 'NOT_RUN')
+                self.assertFalse(result['runtime_ready'])
+                self.assertEqual(entry, before)  # Do not erase existing verified IDs or invent missing ones.
+
+    def test_library_scoped_wrong_headers_partial_body_root_and_substitutes_rejected(self):
+        entry, observed = self.library_identity_fixture('HUB-PKG-BRAINSTORM')
+        observed['filename'] = 'HUB-CAP-BRAINSTORM_v1.0.md'  # A perfect name cannot fix bad identity.
+        mutations = [('module_id', 'OTHER'), ('package_id', 'OTHER'), ('runtime_role', 'DOMAIN_CONTROL'),
+                     ('status', 'CANDIDATE'), ('status', 'INACTIVE'), ('version', '1.1'),
+                     ('read_kind', 'SNIPPET'), ('read_kind', 'HEADER_ONLY'), ('has_more', True),
+                     ('body_matches', False), ('body_matches', None), ('root', 'Other root'),
+                     ('opened_object', None)]
+        mutations += [('location', source) for source in
+                      ['repository', 'local_filesystem', 'PROJECT_SOURCES', 'memory', 'prior_chat', 'archive']]
+        for key, value in mutations:
+            with self.subTest(key=key, value=value), self.assertRaises(Closed):
+                integration_read_spec(entry, [dict(observed, **{key: value})],
+                                      direct_identity_usable=False, scoped_search_sufficient=True)
+
+    def test_library_scoped_duplicates_unknown_coverage_and_revision_guessing_block(self):
+        entry, observed = self.library_identity_fixture('HUB-PKG-BRAINSTORM')
+        for observations in [[], [observed, dict(observed, opened_object='SYNTHETIC_SECOND_OBJECT')]]:
+            with self.subTest(observations=observations), self.assertRaises(Closed):
+                integration_read_spec(entry, observations, direct_identity_usable=False,
+                                      scoped_search_sufficient=True)
+        with self.assertRaises(Closed):  # One visible match without sufficient coverage is still unresolved.
+            integration_read_spec(entry, [observed], direct_identity_usable=False)
+        current_label = dict(observed, displayed_revision='Current version')
+        result = integration_read_spec(entry, [current_label], direct_identity_usable=False,
+                                       scoped_search_sufficient=True)
+        self.assertIsNone(result['library_version_id'])
+        with self.assertRaises(Closed):
+            integration_read_spec(entry, [dict(current_label, library_version_id='1')],
+                                  direct_identity_usable=False, scoped_search_sufficient=True)
 
     def test_brainstorm_explicit_intent_contract_and_semantic_fixtures(self):
         """SPEC only: intent labels are supplied, never inferred from the input strings."""
