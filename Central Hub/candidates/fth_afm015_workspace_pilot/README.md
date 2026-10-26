@@ -125,6 +125,7 @@ CURRENT/UNKNOWN/ASSUMPTION/PROPOSAL là nhãn dùng khi cần rõ trạng thái,
 - Đặc tả: xem TEST_CASES.md; expected behavior là tiêu chí, không phải quan sát model.
 - `PHASE_2_BEHAVIORAL_PASS`: người dùng xác nhận cả A/B/C PASS sau ba actual clean-chat Central Hub run; `USER-CONFIRMED_PHASE_2_BEHAVIORAL_PASS`, Codex không tái hiện độc lập. [Output nguyên văn](PHASE_2_RUNTIME_OUTPUTS.md) là evidence, không là runtime control hoặc FTH source.
 - `PHASE_3_SEMANTIC_RECONCILIATION_PASS`: [đối chiếu semantic](PHASE_3_SEMANTIC_RECONCILIATION.md) đã chuẩn bị được theo baseline và owner/state. PASS chỉ xác nhận khả năng đưa material vào workspace kiểm tra, không phải admission hay chấp nhận canon.
+- `PHASE_4_FTH_ROUND_TRIP_DRY_RUN_PASS` / `NO_ADMISSION_PERFORMED`: [patch đề xuất không có authority](PHASE_4_AFM015_PROPOSED.patch) đã được kiểm tra khả năng áp dụng và ranh giới theo [báo cáo dry run](PHASE_4_ADMISSION_DRY_RUN.md); P1/P2 chưa được chấp nhận, C-A được route sang AFM-012 nếu tiếp tục.
 - Integrated runtime smoke có `USER_CONFIRMED_LIVE_PASS` đúng scope ở trên; complete internal retrieval trace và hành vi riêng của pilot vẫn chưa được xác minh. Không coi full C01–C12 live là prerequisite của Case A.
 - A/B/C là kết quả đã được tác giả xác nhận, không suy toàn bộ C01–C12, global Hub hay các module FTH khác đã PASS. Các UNKNOWN và owner crossings tiếp tục được giữ trong hồ sơ Phase 3.
 - Không đổi current FTH/Hub, không stage/commit/push/deploy và không thực hiện admission trong đợt reconciliation này.
