@@ -123,12 +123,11 @@ CURRENT/UNKNOWN/ASSUMPTION/PROPOSAL là nhãn dùng khi cần rõ trạng thái,
 ## Trạng thái chuẩn bị
 
 - Đặc tả: xem TEST_CASES.md; expected behavior là tiêu chí, không phải quan sát model.
-- `BEHAVIORAL_NOT_RUN`: chưa chạy ba case trong actual Central Hub.
-- `PHASE_2_PREPARED — CURRENT HUB BASELINE RECONCILED — AFM-015 BEHAVIORAL CASES NOT RUN`: snapshot và tài liệu chuẩn bị đã được đối chiếu; không phải Case A/B/C behavioral PASS.
+- `PHASE_2_BEHAVIORAL_PASS`: người dùng xác nhận cả A/B/C PASS sau ba actual clean-chat Central Hub run; `USER-CONFIRMED_PHASE_2_BEHAVIORAL_PASS`, Codex không tái hiện độc lập. [Output nguyên văn](PHASE_2_RUNTIME_OUTPUTS.md) là evidence, không là runtime control hoặc FTH source.
+- `PHASE_3_SEMANTIC_RECONCILIATION_PASS`: [đối chiếu semantic](PHASE_3_SEMANTIC_RECONCILIATION.md) đã chuẩn bị được theo baseline và owner/state. PASS chỉ xác nhận khả năng đưa material vào workspace kiểm tra, không phải admission hay chấp nhận canon.
 - Integrated runtime smoke có `USER_CONFIRMED_LIVE_PASS` đúng scope ở trên; complete internal retrieval trace và hành vi riêng của pilot vẫn chưa được xác minh. Không coi full C01–C12 live là prerequisite của Case A.
-- Case A sẵn sàng làm test thực trong chat sạch: cung cấp FULL_FILE README/envelope này, FULL_FILE snapshot, và chỉ block `Case A — khám phá nội miền / Prompt để gửi` trong `TEST_CASES.md`. Giữ rubric ngoài runtime prompt; không nạp sẵn owner FTH ngoài miền, không ép leaf và không yêu cầu AIS/TECHNICAL/ImageT nếu không có nhu cầu material do runtime xác lập.
-- Chưa có candidate output từ Hub để semantic-diff. Chưa đủ đầu vào thực hiện Phase 3.
-- Không đổi current FTH/Hub, không stage/commit/push/deploy, không admission, không Phase 3.
+- A/B/C là kết quả đã được tác giả xác nhận, không suy toàn bộ C01–C12, global Hub hay các module FTH khác đã PASS. Các UNKNOWN và owner crossings tiếp tục được giữ trong hồ sơ Phase 3.
+- Không đổi current FTH/Hub, không stage/commit/push/deploy và không thực hiện admission trong đợt reconciliation này.
 
 ## Kiểm chứng cục bộ đã thực hiện
 
