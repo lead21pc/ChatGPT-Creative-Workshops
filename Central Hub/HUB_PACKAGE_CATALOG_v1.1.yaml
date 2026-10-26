@@ -8,7 +8,8 @@ active: true
 runtime_ready: true
 identity_binding: EXACT_INSTALLED_V1_1_CI_ROUTER_CONTRACT
 library_discovery_root: Central Hub Config
-live_library_retrieval: TECHNICAL_ACTIVE_1_0_USER_REPORTED
+live_library_retrieval: TECHNICAL_ACTIVE_1_0_USER_REPORTED; CONCEPT_PACKAGE_CHATGPT_OBSERVED_LIBRARY_INSPECTION_VERIFIED;
+  CONCEPT_PACKAGE_HUB_RUNTIME_RETRIEVAL_NOT_VERIFIED
 packages:
 - package_id: HUB-PKG-TECHNICAL
   entrypoint_module_id: HUB-DOM-TECHNICAL
@@ -43,12 +44,18 @@ packages:
     class: LIBRARY
     root: Central Hub Config
     locator: null
-    library_file_id: null
+    library_file_id: libfile_25fe61415e408191b974235fa6608edf
     library_version_id: null
-    verification: NOT_PERFORMED
-    resolution: UNRESOLVED
-    retrieval_mechanism: Root-scoped Library resolution or verified direct identity; FULL_FILE and exact headers/body
-      required. NOT_INSTALLED_BY_THIS_TASK; OLD_REVISION_VERIFIED != NEW_REVISION_VERIFIED.
+    observed_path: Central Hub Config/HUB-DOM-CONCEPT-DEVELOPMENT_v1.0.md
+    observed_surface_file_id: file_00000000e0e48211989902592a6479f8
+    surface_id_usage: Evidence/debug only; not assumed portable canonical locator.
+    verification: CHATGPT_OBSERVED_FULL_FILE_BYTE_EXACT_VERIFIED
+    resolution: RESOLVED
+    read_evidence: FULL_FILE 45/45; has_more=false; 6212 bytes; repository/Library SHA-256
+      5C446E9034FC7CBE106F835AE51381917F6FC49F34BEC084B75749FADF3D2578 matched.
+    duplicate_check: NO_DUPLICATE_OBSERVED_IN_INSPECTED_CENTRAL_HUB_CONFIG_SCOPE
+    retrieval_mechanism: Root-scoped Library listing/read/materialization verified for this binding. Runtime use still
+      requires the exact bound identity, FULL_FILE and headers/body checks; no repository or Project Source fallback.
   local_catalog:
     module_id: HUB-CATALOG-CONCEPT-DEVELOPMENT
     package_id: HUB-PKG-CONCEPT-DEVELOPMENT
@@ -59,12 +66,18 @@ packages:
       class: LIBRARY
       root: Central Hub Config
       locator: null
-      library_file_id: null
+      library_file_id: libfile_a7fa47cd4e10819194237840dde6c86f
       library_version_id: null
-      verification: NOT_PERFORMED
-      resolution: UNRESOLVED
-      retrieval_mechanism: Root-scoped Library resolution or verified direct identity; FULL_FILE and exact headers/body
-        required. NOT_INSTALLED_BY_THIS_TASK; OLD_REVISION_VERIFIED != NEW_REVISION_VERIFIED.
+      observed_path: Central Hub Config/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.0.yaml
+      observed_surface_file_id: file_00000000c62482078eb5f87f6885de71
+      surface_id_usage: Evidence/debug only; not assumed portable canonical locator.
+      verification: CHATGPT_OBSERVED_FULL_FILE_BYTE_EXACT_VERIFIED
+      resolution: RESOLVED
+      read_evidence: FULL_FILE 57/57; has_more=false; 2766 bytes; repository/Library SHA-256
+        A58C64CD1A64431EA930D267B4E69C06A03783CB7D833E34887311A5C3317D98 matched.
+      duplicate_check: NO_DUPLICATE_OBSERVED_IN_INSPECTED_CENTRAL_HUB_CONFIG_SCOPE
+      retrieval_mechanism: Root-scoped Library listing/read/materialization verified for this binding. Runtime use still
+        requires the exact bound identity, FULL_FILE and headers/body checks; no repository or Project Source fallback.
   requires: []
   binding_mode: LIBRARY_MODULE
 - package_id: HUB-PKG-AIS
@@ -103,8 +116,22 @@ packages:
   local_catalog: null
   requires: []
   binding_mode: LEGACY_PROJECT_SOURCE
-live_integration: PRIOR_SINGLETON_STACK_EVIDENCE_ONLY; CONCEPT_PACKAGE_LIBRARY_INSTALL_NOT_PERFORMED; NEW_LEAF_REVISIONS_NOT_VERIFIED;
-  LIVE_ROUTING_NOT_RUN
+live_integration: TECHNICAL_PRIOR_EVIDENCE_RETAINED; CONCEPT_PACKAGE_FOUR_OBJECT_LIBRARY_INSTALLATION_AND_FULL_FILE_IDENTITY_CONTENT_BYTE_MATCH_CHATGPT_OBSERVED;
+  NO_DUPLICATE_OBSERVED_IN_INSPECTED_CENTRAL_HUB_CONFIG_SCOPE; HUB_RUNTIME_RETRIEVAL_NOT_VERIFIED;
+  INTEGRATED_RUNTIME_SMOKE_USER_CONFIRMED_PASS_2026_10_27
+concept_development_evidence:
+  library_evidence_basis: CHATGPT_OBSERVED / USER_PROVIDED; not independently reproduced by Codex
+  runtime_evidence_basis: USER_CONFIRMED_LIVE_PASS; not independently reproduced by Codex
+  root: Central Hub Config
+  root_scoped_listing_objects_observed: 5
+  concept_objects_verified: 4
+  duplicate_check: NO_DUPLICATE_OBSERVED_IN_INSPECTED_CENTRAL_HUB_CONFIG_SCOPE
+  identity_content: FULL_FILE headers/body matched
+  repository_byte_match: VERIFIED
+  hub_runtime_retrieval: NOT_VERIFIED
+  central_hub_project_switch: USER_CONFIRMED_FOR_INTEGRATED_RUNTIME_SMOKE
+  live_routing: USER_CONFIRMED_PASS_FOR_INTEGRATED_RUNTIME_SMOKE_2026_10_27
+  c01_c12_live: NOT_RUN
 active_revision_evidence:
   basis: USER_REPORTED; not independently reproduced
   artifact_version: '1.0'

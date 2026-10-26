@@ -36,7 +36,7 @@ Không có hard Requires giữa hai leaf hoặc sang AIS/ImageT. Entrypoint và 
 | CREATIVE | HUB-PKG-CREATIVE / 1.0 | HUB-PKG-CONCEPT-DEVELOPMENT / 1.1 | Đổi runtime owner và thu hẹp body vào realization |
 | BRAINSTORM | HUB-PKG-BRAINSTORM / 1.0 | HUB-PKG-CONCEPT-DEVELOPMENT / 1.1 | Đổi runtime owner/delegation; kỹ thuật từ Branching trở đi nguyên byte |
 
-Hai leaf giữ Module ID và role. Đây là revision mới, không sửa bound 1.0 tại chỗ. `ACTIVE` và root `runtime_ready: true` giữ nghĩa eligibility của bộ contract đã được chấp nhận, không chứng minh cài Library; location UNRESOLVED vẫn chặn phần thực thi phụ thuộc. Không tạo global blocker cho các phần Hub độc lập. Không chuyển ID hoặc UI verification của 1.0 sang 1.1. TECHNICAL/AIS/ImageT root entries và toàn bộ control/pipeline bytes giữ nguyên; chỉ package count/topology metadata thay đổi.
+Hai leaf giữ Module ID và role. Đây là revision mới, không sửa bound 1.0 tại chỗ. Tại thời điểm migration commit, `ACTIVE` và root `runtime_ready: true` chỉ mang nghĩa eligibility của bộ contract đã được chấp nhận, chưa chứng minh cài Library; location khi đó `UNRESOLVED` và chặn phần thực thi phụ thuộc. Không tạo global blocker cho các phần Hub độc lập. Không chuyển ID hoặc UI verification của 1.0 sang 1.1. TECHNICAL/AIS/ImageT root entries và toàn bộ control/pipeline bytes giữ nguyên; chỉ package count/topology metadata thay đổi.
 
 ## Mapping từng section miniConcept 2.2
 
@@ -72,11 +72,28 @@ Tất cả bốn artifact sau phải được đặt trong **Library / Central H
 
 Package ID của cả bốn là `HUB-PKG-CONCEPT-DEVELOPMENT`, Status `ACTIVE`. YAML catalog dùng `module_id`, `package_id`, `runtime_role`, `scope`, `status`, `version` tương ứng năm header và Scope; đây là syntax catalog đã dùng, không là identity scheme mới.
 
-Trạng thái của cả bốn: Library installation **NOT_PERFORMED**, retrieval/identity **NOT_VERIFIED**, binding **UNRESOLVED**, behavioral/live routing **NOT_RUN**. Không upload, sửa Library, deploy Project hoặc xóa miniConcept Project trong tác vụ này. Root/local Catalog giữ internal IDs/locator null và không nhập evidence revision cũ.
+Trạng thái tại thời điểm migration commit của cả bốn: Library installation **NOT_PERFORMED**, retrieval/identity **NOT_VERIFIED**, binding **UNRESOLVED**, behavioral/live routing **NOT_RUN**. Tác vụ migration không upload, sửa Library, deploy Project hoặc xóa miniConcept Project. Root/local Catalog ban đầu giữ internal IDs/locator null và không nhập evidence revision cũ.
 
 BRAINSTORM 1.0 trước migration từng được Codex quan sát qua UI/full rendered text trong đúng root, với kiểm tra trùng có phạm vi. Bằng chứng đó chỉ áp dụng `HUB-PKG-BRAINSTORM / 1.0`; nằm cùng stack cũ đã lưu. Không chứng minh 1.1 hoặc đường package mới. Không có micro execution hoặc AFM-015 A/B/C PASS từ migration này.
 
-## Cài đặt thủ công an toàn
+## Evidence reconciliation hậu migration
+
+Smoke inspection hiện tại là **CHATGPT-OBSERVED / USER-PROVIDED**; Codex không tự quan sát Library. Root-scoped listing của `Central Hub Config` thấy đúng năm object gồm TECHNICAL và bốn object concept mới, không quan sát duplicate khác cho bốn identity mới trong phạm vi đã kiểm. Từng object mới đã được mở `FULL_FILE`, xác nhận exact Module ID / Package ID / Runtime role / Status / artifact Version, kiểm body và materialized bytes khớp repository byte-exact:
+
+| Artifact | `library_file_id` | surface `file_id` | FULL_FILE / size | Repository/Library SHA-256 |
+| --- | --- | --- | --- | --- |
+| HUB-DOM-CONCEPT-DEVELOPMENT / 1.0 | `libfile_25fe61415e408191b974235fa6608edf` | `file_00000000e0e48211989902592a6479f8` | 45/45, `has_more=false`, 6212 bytes | `5C446E9034FC7CBE106F835AE51381917F6FC49F34BEC084B75749FADF3D2578` |
+| HUB-CATALOG-CONCEPT-DEVELOPMENT / 1.0 | `libfile_a7fa47cd4e10819194237840dde6c86f` | `file_00000000c62482078eb5f87f6885de71` | 57/57, `has_more=false`, 2766 bytes | `A58C64CD1A64431EA930D267B4E69C06A03783CB7D833E34887311A5C3317D98` |
+| HUB-DOM-CREATIVE / 1.1 | `libfile_9a5f1f01a39c8191b3b299cbe8c03b8b` | `file_000000005f1482079a499865628b7576` | 15/15, `has_more=false`, 1633 bytes | `0430934D81B57743854543C52D9B78100D6209D8415A59C890E89F19296B4052` |
+| HUB-CAP-BRAINSTORM / 1.1 | `libfile_9573068db03081918819492a2f297377` | `file_000000008a6c8211b0b9236c790d343f` | 50/50, `has_more=false`, 3167 bytes | `3758BF748AB11886656F0EA2A73472323301D14E7BF93BCA5767079FEA824843` |
+
+Các surface `file_id` chỉ là evidence/debug và không được coi là portable canonical locator. Smoke không cung cấp `library_version_id` đáng tin cậy hoặc locator bền vững, nên hai field đó tiếp tục `null`; artifact Version không suy ra Library revision. Evidence mới thay state Library object/binding cũ bằng `CHATGPT_OBSERVED_FULL_FILE_BYTE_EXACT_VERIFIED / RESOLVED`, nhưng không kế thừa từ BRAINSTORM 1.0 và không thay contract phải xác minh exact object/read khi runtime sử dụng.
+
+Ranh giới hiện hành: repository migration **IMPLEMENTED**; static/spec **VERIFIED**; Library installation/object/identity/content/byte match **OBSERVED/VERIFIED** theo attribution trên. Ngày 2026-10-27, người dùng xác nhận **PASS** cho một integrated Central Hub runtime smoke qua exact Hub/AIS/TECHNICAL/Concept/Brainstorm/Creative revisions; xem `RUNTIME_EVIDENCE_CHANGELOG.md`. PASS này xác nhận đúng scoped integrated path, không phải global Hub PASS. Từng Hub runtime retrieval trace vẫn **NOT VERIFIED**; toàn bộ C01-C12 live, micro-test và AFM-015 A/B/C vẫn **NOT RUN** ngoài phần đóng góp đã được exercise trong integrated smoke. Không có evidence cho việc retire miniConcept Project thật.
+
+## Trình tự cài đặt thủ công an toàn đã lập tại migration
+
+Các bước dưới đây là ordering gốc của migration, không phải log khẳng định mọi bước đã chạy. Evidence hậu migration ở trên đã xác nhận phần Library object/listing/full-read/byte-match tương ứng các bước 2–4; chưa xác nhận controlled Project switch, live smoke hoặc retirement ở các bước 5–8.
 
 1. Giữ bộ Project Instructions/source roster hiện đang chạy và các Library object cũ. Không xóa/retire chúng trước khi replacement path được kiểm. Snapshot Router trước migration cùng Root Catalog/Architecture cũ và leaf 1.0 nằm trong archive nêu dưới.
 2. Kiểm trong đúng `Central Hub Config` xem đã có từng identity mới hay chưa. Nếu cần, upload nguyên bốn artifact ở bảng trên. Không tạo ACTIVE duplicate. Không dùng filename, header riêng lẻ hoặc trạng thái “Current version” làm identity proof.

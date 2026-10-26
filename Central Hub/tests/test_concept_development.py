@@ -146,30 +146,66 @@ class ConceptDevelopmentTests(unittest.TestCase):
             fixture['artifacts']['HUB-CAP-BRAINSTORM'][0]['read_kind'] = read_kind
             self.assertIn((PACKAGE, 'HUB-CAP-BRAINSTORM'), simulate(fixture, {'BRAINSTORM'})['blocked'])
 
-    def test_unverified_new_bindings_cannot_inherit_old_evidence(self):
+    def test_verified_library_bindings_preserve_runtime_evidence_boundary(self):
         package = next(p for p in self.root['packages'] if p['package_id'] == PACKAGE)
-        self.assertTrue(self.root['runtime_ready'])  # Root eligibility is unchanged; bindings still block execution.
-        for location in [package['location'], package['local_catalog']['location'],
-                         *[row['location'] for row in self.local['entries']]]:
+        self.assertTrue(self.root['runtime_ready'])  # Root eligibility remains distinct from live execution.
+        locations = {
+            CORE: package['location'],
+            CATALOG: package['local_catalog']['location'],
+            **{row['module_id']: row['location'] for row in self.local['entries']},
+        }
+        expected = {
+            CORE: ('libfile_25fe61415e408191b974235fa6608edf',
+                   'file_00000000e0e48211989902592a6479f8',
+                   'Central Hub Config/HUB-DOM-CONCEPT-DEVELOPMENT_v1.0.md'),
+            CATALOG: ('libfile_a7fa47cd4e10819194237840dde6c86f',
+                      'file_00000000c62482078eb5f87f6885de71',
+                      'Central Hub Config/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.0.yaml'),
+            'HUB-DOM-CREATIVE': ('libfile_9a5f1f01a39c8191b3b299cbe8c03b8b',
+                                 'file_000000005f1482079a499865628b7576',
+                                 'Central Hub Config/HUB-DOM-CREATIVE_v1.1.md'),
+            'HUB-CAP-BRAINSTORM': ('libfile_9573068db03081918819492a2f297377',
+                                   'file_000000008a6c8211b0b9236c790d343f',
+                                   'Central Hub Config/HUB-CAP-BRAINSTORM_v1.1.md'),
+        }
+        for module, location in locations.items():
             self.assertEqual(location['root'], 'Central Hub Config')
-            self.assertEqual(location['verification'], 'NOT_PERFORMED')
-            self.assertEqual(location['resolution'], 'UNRESOLVED')
-            for key in ['locator', 'library_file_id', 'library_version_id']:
-                self.assertIsNone(location[key])
+            self.assertEqual(location['verification'], 'CHATGPT_OBSERVED_FULL_FILE_BYTE_EXACT_VERIFIED')
+            self.assertEqual(location['resolution'], 'RESOLVED')
+            self.assertEqual((location['library_file_id'], location['observed_surface_file_id'],
+                              location['observed_path']), expected[module])
+            self.assertEqual(location['duplicate_check'],
+                             'NO_DUPLICATE_OBSERVED_IN_INSPECTED_CENTRAL_HUB_CONFIG_SCOPE')
+            self.assertIsNone(location['locator'])
+            self.assertIsNone(location['library_version_id'])  # Artifact Version does not infer Library revision.
+            self.assertNotIn('PROJECT_SOURCE', str(location))
+        evidence = self.root['concept_development_evidence']
+        self.assertEqual(evidence['library_evidence_basis'],
+                         'CHATGPT_OBSERVED / USER_PROVIDED; not independently reproduced by Codex')
+        self.assertEqual(evidence['runtime_evidence_basis'],
+                         'USER_CONFIRMED_LIVE_PASS; not independently reproduced by Codex')
+        self.assertEqual(evidence['hub_runtime_retrieval'], 'NOT_VERIFIED')
+        self.assertEqual(evidence['central_hub_project_switch'],
+                         'USER_CONFIRMED_FOR_INTEGRATED_RUNTIME_SMOKE')
+        self.assertEqual(evidence['live_routing'],
+                         'USER_CONFIRMED_PASS_FOR_INTEGRATED_RUNTIME_SMOKE_2026_10_27')
+        self.assertEqual(evidence['c01_c12_live'], 'NOT_RUN')
+        self.assertNotIn('LIVE_VERIFIED', str(self.root))
         row = next(p for p in self.local['entries'] if p['module_id'] == 'HUB-CAP-BRAINSTORM')
         entry = dict(row, entrypoint_module_id=row['module_id'], binding_mode='LIBRARY_MODULE')
         observed = dict(module_id=row['module_id'], package_id=PACKAGE, runtime_role='CAPABILITY',
                         status='ACTIVE', version='1.1', root='Central Hub Config', location='LIBRARY',
-                        read_kind='FULL_FILE', has_more=False, body_matches=True, opened_object='SPEC_ONLY')
-        with self.assertRaises(Closed):
-            integration_read_spec(entry, [observed], direct_identity_usable=False)
-        result = integration_read_spec(entry, [observed], direct_identity_usable=False, scoped_search_sufficient=True)
+                        read_kind='FULL_FILE', has_more=False, body_matches=True,
+                        library_file_id=row['location']['library_file_id'])
+        result = integration_read_spec(entry, [observed])
         self.assertFalse(result['runtime_ready'])
+        self.assertEqual(result['live_integration'], 'NOT_RUN')
+        self.assertIsNone(result['library_version_id'])
         for key, wrong in [('version', '1.0'), ('package_id', 'HUB-PKG-BRAINSTORM'),
                            ('root', 'Other root'), ('location', 'repository')]:
             with self.subTest(key=key), self.assertRaises(Closed):
                 integration_read_spec(entry, [dict(observed, **{key: wrong})],
-                                      direct_identity_usable=False, scoped_search_sufficient=True)
+                                      direct_identity_usable=True)
 
     def test_C06_C10_C11_scoped_reasoning_contract_not_behavioral_proof(self):
         # REVIEWED_TEXT guards; only a real model run can establish these behaviors.

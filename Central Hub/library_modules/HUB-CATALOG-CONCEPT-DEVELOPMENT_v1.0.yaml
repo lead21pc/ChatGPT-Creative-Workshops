@@ -18,12 +18,18 @@ entries:
     class: LIBRARY
     root: Central Hub Config
     locator: null
-    library_file_id: null
+    library_file_id: libfile_9a5f1f01a39c8191b3b299cbe8c03b8b
     library_version_id: null
-    verification: NOT_PERFORMED
-    resolution: UNRESOLVED
-    retrieval_mechanism: Root-scoped Library resolution or verified direct identity; FULL_FILE and exact headers/body
-      required. NOT_INSTALLED_BY_THIS_TASK; OLD_REVISION_VERIFIED != NEW_REVISION_VERIFIED.
+    observed_path: Central Hub Config/HUB-DOM-CREATIVE_v1.1.md
+    observed_surface_file_id: file_000000005f1482079a499865628b7576
+    surface_id_usage: Evidence/debug only; not assumed portable canonical locator.
+    verification: CHATGPT_OBSERVED_FULL_FILE_BYTE_EXACT_VERIFIED
+    resolution: RESOLVED
+    read_evidence: FULL_FILE 15/15; has_more=false; 1633 bytes; repository/Library SHA-256
+      0430934D81B57743854543C52D9B78100D6209D8415A59C890E89F19296B4052 matched.
+    duplicate_check: NO_DUPLICATE_OBSERVED_IN_INSPECTED_CENTRAL_HUB_CONFIG_SCOPE
+    retrieval_mechanism: Root-scoped Library listing/read/materialization verified for this binding. Runtime use still
+      requires the exact bound identity, FULL_FILE and headers/body checks; no repository or Project Source fallback.
   refines: []
   complements: []
   requires: []
@@ -46,12 +52,18 @@ entries:
     class: LIBRARY
     root: Central Hub Config
     locator: null
-    library_file_id: null
+    library_file_id: libfile_9573068db03081918819492a2f297377
     library_version_id: null
-    verification: NOT_PERFORMED
-    resolution: UNRESOLVED
-    retrieval_mechanism: Root-scoped Library resolution or verified direct identity; FULL_FILE and exact headers/body
-      required. NOT_INSTALLED_BY_THIS_TASK; OLD_REVISION_VERIFIED != NEW_REVISION_VERIFIED.
+    observed_path: Central Hub Config/HUB-CAP-BRAINSTORM_v1.1.md
+    observed_surface_file_id: file_000000008a6c8211b0b9236c790d343f
+    surface_id_usage: Evidence/debug only; not assumed portable canonical locator.
+    verification: CHATGPT_OBSERVED_FULL_FILE_BYTE_EXACT_VERIFIED
+    resolution: RESOLVED
+    read_evidence: FULL_FILE 50/50; has_more=false; 3167 bytes; repository/Library SHA-256
+      3758BF748AB11886656F0EA2A73472323301D14E7BF93BCA5767079FEA824843 matched.
+    duplicate_check: NO_DUPLICATE_OBSERVED_IN_INSPECTED_CENTRAL_HUB_CONFIG_SCOPE
+    retrieval_mechanism: Root-scoped Library listing/read/materialization verified for this binding. Runtime use still
+      requires the exact bound identity, FULL_FILE and headers/body checks; no repository or Project Source fallback.
   refines: []
   complements: []
   requires: []
