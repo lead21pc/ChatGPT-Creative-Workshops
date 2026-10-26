@@ -831,13 +831,13 @@ class PromotionContracts(unittest.TestCase):
         self.assertTrue((historical_source('domains/technical/TECHNICAL_v1.0.md')).is_file())
 
 
-class ActiveSingletonMigration(unittest.TestCase):
+class PriorSingletonMigration(unittest.TestCase):
     def test_repository_activation_preserves_accepted_router_algorithm(self):
         promotion = ROOT / 'candidates/promotion_v1.1'
         self.assertEqual((ROOT / 'HUB_CI_v1.1.md').read_bytes(),
                          (promotion / 'HUB_CI_v1.1.md').read_bytes())
         before = load(promotion / 'HUB_ROUTER_v1.1.yaml')
-        after = load(ROOT / 'HUB_ROUTER_v1.1.yaml')
+        after = load(historical_source('HUB_ROUTER_v1.1.yaml'))
         expected = copy.deepcopy(before)
         expected['deployment'] = 'REPOSITORY_ACTIVE; PROJECT_DEPLOYMENT_NOT_VERIFIED'
         expected['binding_dispatch']['LEGACY_PROJECT_SOURCE'] = expected['binding_dispatch']['LEGACY_PROJECT_SOURCE'].replace('four explicitly declared', 'explicitly declared')
@@ -857,9 +857,9 @@ class ActiveSingletonMigration(unittest.TestCase):
         self.assertEqual(after, expected)  # Selection/composition and all other owners stay unchanged.
         for key in ['architecture', 'root_catalog']:
             contract = after['contracts'][key]
-            self.assertTrue((ROOT / contract['file']).is_file())
+            self.assertTrue(historical_source(contract['file']).is_file())
             self.assertEqual(contract['status'], 'ACTIVE')
-        architecture = (ROOT / 'HUB_ARCHITECTURE_v1.0.md').read_text(encoding='utf-8')
+        architecture = (historical_source('HUB_ARCHITECTURE_v1.0.md')).read_text(encoding='utf-8')
         previous = (promotion / 'HUB_ARCHITECTURE_v1.0.md').read_text(encoding='utf-8')
         self.assertIn('Status: ACTIVE', architecture)
         self.assertIn('UNRESOLVED', architecture)
@@ -875,8 +875,8 @@ class ActiveSingletonMigration(unittest.TestCase):
             self.assertIn(invariant, architecture)
         self.assertIn('Runtime control language: English only', architecture)
         readme = (ROOT / 'README.md').read_text(encoding='utf-8')
-        for name in ['HUB_CI_v1.1.md', 'HUB_ROUTER_v1.1.yaml', 'HUB_ARCHITECTURE_v1.0.md',
-                     'HUB_PACKAGE_CATALOG_v1.0.yaml', 'REPOSITORY ACTIVE != PROJECT DEPLOYED']:
+        for name in ['HUB_CI_v1.1.md', 'HUB_ROUTER_v1.1.yaml', 'HUB_ARCHITECTURE_v1.1.md',
+                     'HUB_PACKAGE_CATALOG_v1.1.yaml', 'REPOSITORY ACTIVE != PROJECT DEPLOYED']:
             self.assertIn(name, readme)
         self.assertNotIn('Router active vẫn v1.0', readme)
 
@@ -886,7 +886,7 @@ class ActiveSingletonMigration(unittest.TestCase):
             ('HUB-CAP-BRAINSTORM', 'HUB-PKG-BRAINSTORM', 'CAPABILITY', 'capabilities/BRAINSTORM_v1.0.md')]
         for module, package, role, source in modules:
             with self.subTest(module=module):
-                data = (ROOT / ('library_modules/' + module + '_v1.0.md')).read_bytes()
+                data = historical_source('library_modules/' + module + '_v1.0.md').read_bytes()
                 prefix, body = data.split(b'Version: 1.0\n', 1)
                 self.assertEqual(body, (historical_source(source)).read_bytes().split(b'\n', 1)[1])
                 header = prefix.decode('utf-8').splitlines()
@@ -903,7 +903,7 @@ class ActiveSingletonMigration(unittest.TestCase):
 
     def test_single_bindings_scoped_resolution_and_four_smoke_cases(self):
         old = load(ROOT / 'candidates/promotion_v1.1/HUB_PACKAGE_CATALOG_v1.0.yaml')
-        new = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.0.yaml')
+        new = load(historical_source('HUB_PACKAGE_CATALOG_v1.0.yaml'))
         self.assertEqual(new['status'], 'ACTIVE')
         self.assertTrue(new['active'])
         self.assertEqual(new['deployment'], 'REPOSITORY_ACTIVE; PROJECT_DEPLOYMENT_NOT_VERIFIED')
@@ -951,7 +951,7 @@ class ActiveSingletonMigration(unittest.TestCase):
                 self.assertEqual(before, after)  # TECHNICAL and ImageT unchanged.
             self.assertIsNone(after['local_catalog'])
             self.assertEqual(after['requires'], [])
-        plan = (ROOT / 'HUB_LIBRARY_SINGLETON_MIGRATION.md').read_text(encoding='utf-8')
+        plan = (historical_source('HUB_LIBRARY_SINGLETON_MIGRATION.md')).read_text(encoding='utf-8')
         for phrase in ['CODEX_UI_OBSERVED', 'NO DUPLICATE OBSERVED IN SUFFICIENT SCOPED SEARCH',
                        'HUB_RUNTIME_RETRIEVAL_NOT_VERIFIED', 'EXECUTION_NOT_RUN',
                        'Không tuyên bố so sánh byte-exact', 'không chứng minh object URL bền vững']:
@@ -990,7 +990,7 @@ class ActiveSingletonMigration(unittest.TestCase):
         self.assertEqual(router['verification']['read'], 'FULL_FILE')
         self.assertEqual(router['verification']['headers'],
                          ['Module ID', 'Package ID', 'Runtime role', 'Status', 'Version'])
-        architecture = (ROOT / 'HUB_ARCHITECTURE_v1.0.md').read_text(encoding='utf-8')
+        architecture = (ROOT / 'HUB_ARCHITECTURE_v1.1.md').read_text(encoding='utf-8')
         for phrase in ['Two identity paths serve one LIBRARY_MODULE binding',
                        'Hidden internal IDs may remain null', 'NAME MATCH != IDENTITY',
                        'SEARCH RESULT != MODULE READ', 'NOT FOUND != FALSE']:
@@ -998,7 +998,7 @@ class ActiveSingletonMigration(unittest.TestCase):
 
     def library_identity_fixture(self, package='HUB-PKG-TECHNICAL'):
         """Declared Library observations; never accesses the platform or infers evidence."""
-        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.0.yaml')
+        catalog = load(historical_source('HUB_PACKAGE_CATALOG_v1.0.yaml'))
         entry = next(p for p in catalog['packages'] if p['package_id'] == package)
         observed = dict(module_id=entry['entrypoint_module_id'], package_id=package,
                         runtime_role=entry['runtime_role'], status='ACTIVE', version=entry['version'],
@@ -1066,7 +1066,7 @@ class ActiveSingletonMigration(unittest.TestCase):
 
     def test_brainstorm_explicit_intent_contract_and_semantic_fixtures(self):
         """SPEC only: intent labels are supplied, never inferred from the input strings."""
-        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.0.yaml')
+        catalog = load(historical_source('HUB_PACKAGE_CATALOG_v1.0.yaml'))
         brain = next(p for p in catalog['packages'] if p['package_id'] == 'HUB-PKG-BRAINSTORM')
         for phrase in ['canonical Vietnamese phrase "thử động não"', 'alias "brainstorm sâu"',
                        'semantically equivalent imperatives', '"động não thử cái này"',
@@ -1146,7 +1146,7 @@ class ActiveSingletonMigration(unittest.TestCase):
                        'Direct tool availability does not bypass package selection']:
             self.assertIn(phrase, rule)
         self.assertNotIn('AIS', rule)  # Applicability remains catalog-owned and package-independent.
-        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.0.yaml')
+        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.1.yaml')
         ais = next(p for p in catalog['packages'] if p['package_id'] == 'HUB-PKG-AIS')
         self.assertEqual(ais['entrypoint_module_id'], 'HUB-PIPE-AIS')
         self.assertIn('explicit search requests', ais['applicability'])

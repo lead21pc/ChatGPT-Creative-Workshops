@@ -18,7 +18,14 @@ LEGACY_PATHS = frozenset(['HUB_CI_v1.0.md', 'HUB_ROUTER_v1.0.yaml', 'domains/tec
 AIS_ARCHIVE = ROOT / 'Source_archive/AIS research-core promotion 2026-10-21'
 AIS_PREDECESSORS = frozenset(['tool_pipelines/AIS/AIS_PIPELINE_v1.0.md', 'tool_pipelines/AIS/AIS_ROUTER_v1.1.yaml'])
 
+CONCEPT_ARCHIVE = ROOT / 'Source_archive/Concept development migration 2026-10-26'
+CONCEPT_PREDECESSORS = frozenset(['HUB_ARCHITECTURE_v1.0.md', 'HUB_PACKAGE_CATALOG_v1.0.yaml',
+    'HUB_ROUTER_v1.1.yaml', 'HUB_LIBRARY_SINGLETON_MIGRATION.md',
+    'library_modules/HUB-DOM-CREATIVE_v1.0.md', 'library_modules/HUB-CAP-BRAINSTORM_v1.0.md'])
+
 def historical_source(path):
+    if path in CONCEPT_PREDECESSORS:
+        return CONCEPT_ARCHIVE / path  # Historical assertions only, never active resolution.
     if path in AIS_PREDECESSORS:
         return AIS_ARCHIVE / path  # Explicit history checks only, never runtime fallback.
     return LEGACY_ARCHIVE / path if path in LEGACY_PATHS else ROOT / path

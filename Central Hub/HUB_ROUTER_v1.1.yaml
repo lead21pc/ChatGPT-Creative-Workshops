@@ -10,14 +10,14 @@ activation_notice: Normal runtime contract after manual installation with exact 
 kind: Behavioral contract, not executable routing or Library storage implementation.
 contracts:
   architecture:
-    file: HUB_ARCHITECTURE_v1.0.md
+    file: HUB_ARCHITECTURE_v1.1.md
     module_id: HUB-CORE-ARCH
-    version: '1.0'
+    version: '1.1'
     status: ACTIVE
   root_catalog:
-    file: HUB_PACKAGE_CATALOG_v1.0.yaml
+    file: HUB_PACKAGE_CATALOG_v1.1.yaml
     module_id: HUB-CORE-PACKAGE-CATALOG
-    version: '1.0'
+    version: '1.1'
     status: ACTIVE
   binding_scope: Exact manually installed v1.1 Project Sources. Never discover earlier design or trial controls
     as substitutes.

@@ -1,0 +1,212 @@
+"""STATIC / declared SPEC fixtures only; no LLM, Library, deployment or canon execution."""
+import copy
+from pathlib import Path
+import re
+import subprocess
+import unittest
+
+from test_hub_contracts import ROOT, CONCEPT_ARCHIVE, load
+from test_hub_router_candidate import synthetic_module, synthetic_fixture, simulate, integration_read_spec
+from test_hub_contracts import Closed
+
+
+PACKAGE = 'HUB-PKG-CONCEPT-DEVELOPMENT'
+CORE = 'HUB-DOM-CONCEPT-DEVELOPMENT'
+CATALOG = 'HUB-CATALOG-CONCEPT-DEVELOPMENT'
+BASELINE = 'ee104645e89939341cd45deba465b5d71da64521'
+
+
+def current_fixture():
+    """Project current interfaces into the existing SPEC oracle; scopes are declared, not inferred."""
+    core = synthetic_module(CORE, PACKAGE, {'CORE', 'CREATIVE', 'BRAINSTORM'})
+    fixture = synthetic_fixture(core)
+    catalog = synthetic_module(CATALOG, PACKAGE, set(), role='PACKAGE_CATALOG')
+    fixture['packages'][0]['local_catalog'] = catalog
+    fixture['artifacts'][CATALOG] = [dict(copy.deepcopy(catalog), read_kind='FULL_FILE')]
+    local = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.0.yaml')
+    leaves = []
+    for row in local['entries']:
+        scope = 'CREATIVE' if row['module_id'] == 'HUB-DOM-CREATIVE' else 'BRAINSTORM'
+        leaf = synthetic_module(row['module_id'], row['package_id'], {scope},
+                                role=row['runtime_role'], version=row['version'],
+                                location=copy.deepcopy(row['location']))
+        leaves.append(leaf)
+        fixture['artifacts'][leaf['module_id']] = [dict(copy.deepcopy(leaf), read_kind='FULL_FILE')]
+    fixture['local_catalogs'][PACKAGE] = leaves
+    return fixture
+
+
+class ConceptDevelopmentTests(unittest.TestCase):
+    def setUp(self):
+        self.root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.1.yaml')
+        self.local = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.0.yaml')
+        self.core = (ROOT / 'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.0.md').read_text(encoding='utf-8')
+        self.notes = (ROOT / 'CONCEPT_DEVELOPMENT_MIGRATION.md').read_text(encoding='utf-8')
+
+    def test_four_root_owners_and_package_local_inventory(self):
+        self.assertEqual(self.root['version'], '1.1')
+        self.assertEqual({p['package_id'] for p in self.root['packages']},
+                         {'HUB-PKG-TECHNICAL', PACKAGE, 'HUB-PKG-AIS', 'HUB-PKG-IMAGET'})
+        package = next(p for p in self.root['packages'] if p['package_id'] == PACKAGE)
+        self.assertEqual((package['entrypoint_module_id'], package['runtime_role'], package['version']),
+                         (CORE, 'DOMAIN_CONTROL', '1.0'))
+        self.assertEqual(package['binding_mode'], 'LIBRARY_MODULE')
+        self.assertEqual(package['requires'], [])
+        self.assertEqual(package['local_catalog']['module_id'], CATALOG)
+        self.assertEqual(package['local_catalog']['package_id'], PACKAGE)
+        self.assertEqual((self.local['module_id'], self.local['package_id'], self.local['runtime_role'],
+                          self.local['status'], self.local['version']),
+                         (CATALOG, PACKAGE, 'PACKAGE_CATALOG', 'ACTIVE', '1.0'))
+        self.assertEqual({p['module_id'] for p in self.local['entries']},
+                         {'HUB-DOM-CREATIVE', 'HUB-CAP-BRAINSTORM'})
+        for leaf_name in ['HUB-DOM-CREATIVE', 'HUB-CAP-BRAINSTORM', 'thử động não', 'brainstorm sâu']:
+            self.assertNotIn(leaf_name, str(self.root))  # Root knows only the package interface.
+
+    def test_router_changes_only_exact_pins_and_global_owners_stay(self):
+        previous = load(CONCEPT_ARCHIVE / 'HUB_ROUTER_v1.1.yaml')
+        expected = copy.deepcopy(previous)
+        for key, name in [('architecture', 'HUB_ARCHITECTURE_v1.1.md'),
+                          ('root_catalog', 'HUB_PACKAGE_CATALOG_v1.1.yaml')]:
+            expected['contracts'][key]['file'] = name
+            expected['contracts'][key]['version'] = '1.1'
+        self.assertEqual(load(ROOT / 'HUB_ROUTER_v1.1.yaml'), expected)
+        before = load(CONCEPT_ARCHIVE / 'HUB_PACKAGE_CATALOG_v1.0.yaml')
+        for package in ['HUB-PKG-TECHNICAL', 'HUB-PKG-AIS', 'HUB-PKG-IMAGET']:
+            self.assertEqual(next(p for p in before['packages'] if p['package_id'] == package),
+                             next(p for p in self.root['packages'] if p['package_id'] == package))
+        original = subprocess.check_output(['git', 'show', BASELINE + ':Central Hub/HUB_CI_v1.1.md'], cwd=ROOT)
+        self.assertEqual((ROOT / 'HUB_CI_v1.1.md').read_bytes(), original)
+
+    def test_library_headers_ownership_and_exact_leaf_revisions(self):
+        for module, version, role in [(CORE, '1.0', 'DOMAIN_CONTROL'),
+                                      ('HUB-DOM-CREATIVE', '1.1', 'DOMAIN_CONTROL'),
+                                      ('HUB-CAP-BRAINSTORM', '1.1', 'CAPABILITY')]:
+            text = (ROOT / f'library_modules/{module}_v{version}.md').read_text(encoding='utf-8')
+            for key, value in [('Module ID', module), ('Package ID', PACKAGE), ('Runtime role', role),
+                               ('Status', 'ACTIVE'), ('Version', version)]:
+                self.assertEqual(re.findall(r'^' + key + r': (.+)$', text, re.M), [value])
+        for row in self.local['entries']:
+            self.assertEqual(row['version'], '1.1')
+            self.assertEqual(row['package_id'], PACKAGE)
+            self.assertEqual(row['requires'], [])
+        previous = (CONCEPT_ARCHIVE / 'library_modules/HUB-CAP-BRAINSTORM_v1.0.md').read_bytes()
+        current = (ROOT / 'library_modules/HUB-CAP-BRAINSTORM_v1.1.md').read_bytes()
+        marker = b'## Branching by premise change'
+        self.assertEqual(previous.split(marker, 1)[1], current.split(marker, 1)[1])
+
+    def test_C01_C07_core_only_and_C02_C03_C04_scoped_leaves(self):
+        # Supplied semantic needs exercise the existing growing-package oracle.
+        cases = [('C01', {'CORE'}, set()), ('C07', {'CORE'}, set()),
+                 ('C02', {'CREATIVE'}, {'HUB-DOM-CREATIVE'}),
+                 ('C03', {'BRAINSTORM'}, {'HUB-CAP-BRAINSTORM'}),
+                 ('C04', {'CREATIVE', 'BRAINSTORM'}, {'HUB-DOM-CREATIVE', 'HUB-CAP-BRAINSTORM'})]
+        for case, scopes, leaves in cases:
+            with self.subTest(case=case):
+                result = simulate(current_fixture(), scopes)
+                self.assertEqual({module for _, module in result['planned']}, leaves)
+                self.assertEqual(result['spec_reads'][:2], [CORE, CATALOG])
+                self.assertEqual(result['local_catalogs_consulted'], [PACKAGE])
+                self.assertFalse(result['pipeline_entrypoints'])
+                self.assertFalse(result['runtime_ready'])
+                self.assertIn('| ' + case + ' |', self.notes)
+
+    def test_C05_C09_baseline_and_no_route_inertia(self):
+        fixture = current_fixture()
+        original = copy.deepcopy(fixture)
+        routes = []
+        for scopes in [set(), {'BRAINSTORM'}, set()]:
+            result = simulate(fixture, scopes)
+            routes.append({module for _, module in result['planned']})
+            if not scopes:
+                self.assertEqual(result['artifact_requests'], [])
+        self.assertEqual(routes, [set(), {'HUB-CAP-BRAINSTORM'}, set()])
+        self.assertEqual(fixture, original)
+        old = load(CONCEPT_ARCHIVE / 'HUB_PACKAGE_CATALOG_v1.0.yaml')
+        old_brain = next(p for p in old['packages'] if p['package_id'] == 'HUB-PKG-BRAINSTORM')
+        brain = next(p for p in self.local['entries'] if p['module_id'] == 'HUB-CAP-BRAINSTORM')
+        self.assertEqual(brain['applicability'], old_brain['applicability'])
+        for phrase in ['thử động não', 'brainstorm sâu', 'not literal substrings',
+                       'mentions, definition or ability questions, quoted examples and negation']:
+            self.assertIn(phrase, brain['applicability'])
+
+    def test_C08_missing_leaf_and_catalog_block_dependent_only(self):
+        fixture = current_fixture()
+        del fixture['artifacts']['HUB-CAP-BRAINSTORM']
+        result = simulate(fixture, {'CREATIVE', 'BRAINSTORM'})
+        self.assertIn((PACKAGE, 'HUB-CAP-BRAINSTORM'), result['blocked'])
+        self.assertIn((PACKAGE, 'HUB-DOM-CREATIVE'), result['spec_verified'])
+        self.assertTrue(all('repository' not in item.lower() for item in result['artifact_requests']))
+        fixture = current_fixture()
+        del fixture['artifacts'][CATALOG]
+        result = simulate(fixture, {'BRAINSTORM'})
+        self.assertIn(PACKAGE, result['blocked'])
+        self.assertNotIn('HUB-CAP-BRAINSTORM', result['spec_reads'])
+        for read_kind in ['HEADER_ONLY', 'SNIPPET']:
+            fixture = current_fixture()
+            fixture['artifacts']['HUB-CAP-BRAINSTORM'][0]['read_kind'] = read_kind
+            self.assertIn((PACKAGE, 'HUB-CAP-BRAINSTORM'), simulate(fixture, {'BRAINSTORM'})['blocked'])
+
+    def test_unverified_new_bindings_cannot_inherit_old_evidence(self):
+        package = next(p for p in self.root['packages'] if p['package_id'] == PACKAGE)
+        self.assertTrue(self.root['runtime_ready'])  # Root eligibility is unchanged; bindings still block execution.
+        for location in [package['location'], package['local_catalog']['location'],
+                         *[row['location'] for row in self.local['entries']]]:
+            self.assertEqual(location['root'], 'Central Hub Config')
+            self.assertEqual(location['verification'], 'NOT_PERFORMED')
+            self.assertEqual(location['resolution'], 'UNRESOLVED')
+            for key in ['locator', 'library_file_id', 'library_version_id']:
+                self.assertIsNone(location[key])
+        row = next(p for p in self.local['entries'] if p['module_id'] == 'HUB-CAP-BRAINSTORM')
+        entry = dict(row, entrypoint_module_id=row['module_id'], binding_mode='LIBRARY_MODULE')
+        observed = dict(module_id=row['module_id'], package_id=PACKAGE, runtime_role='CAPABILITY',
+                        status='ACTIVE', version='1.1', root='Central Hub Config', location='LIBRARY',
+                        read_kind='FULL_FILE', has_more=False, body_matches=True, opened_object='SPEC_ONLY')
+        with self.assertRaises(Closed):
+            integration_read_spec(entry, [observed], direct_identity_usable=False)
+        result = integration_read_spec(entry, [observed], direct_identity_usable=False, scoped_search_sufficient=True)
+        self.assertFalse(result['runtime_ready'])
+        for key, wrong in [('version', '1.0'), ('package_id', 'HUB-PKG-BRAINSTORM'),
+                           ('root', 'Other root'), ('location', 'repository')]:
+            with self.subTest(key=key), self.assertRaises(Closed):
+                integration_read_spec(entry, [dict(observed, **{key: wrong})],
+                                      direct_identity_usable=False, scoped_search_sufficient=True)
+
+    def test_C06_C10_C11_scoped_reasoning_contract_not_behavioral_proof(self):
+        # REVIEWED_TEXT guards; only a real model run can establish these behaviors.
+        for phrase in ['Institutions only when material', 'Do not run an institutional checklist',
+                       'Do not emit an irrelevant-axis or NOT MATERIAL report',
+                       'Incidental appeal is not a defect', 'realization of a branch does not accept it',
+                       'Findings do not authorize redesign', 'Introduce a primitive only when',
+                       'INTERACTION != CONTAINMENT', 'CO-OCCURRENCE != DEPENDENCY',
+                       'POWER != AUTHORITY', 'CHRONOLOGY != CAUSALITY',
+                       'COOPERATION != PERMANENT COUPLING']:
+            self.assertIn(phrase, self.core)
+        for duplicate in ['CONTROL GROUNDING:', 'DISCOURSE FIDELITY:', 'EPISTEMIC NON-ESCALATION:',
+                          '## Output Contract', '## Explanation and Reader Calibration']:
+            self.assertNotIn(duplicate, self.core)
+        self.assertEqual(re.findall(r'^\| (C\d{2}) \|', self.notes, re.M), [f'C{i:02}' for i in range(1, 13)])
+
+    def test_C12_retirement_and_predecessor_bytes(self):
+        for relative in ['HUB_PACKAGE_CATALOG_v1.0.yaml', 'HUB_ARCHITECTURE_v1.0.md',
+                         'library_modules/HUB-DOM-CREATIVE_v1.0.md',
+                         'library_modules/HUB-CAP-BRAINSTORM_v1.0.md', 'HUB_LIBRARY_SINGLETON_MIGRATION.md',
+                         'HUB_ROUTER_v1.1.yaml']:
+            original = subprocess.check_output(['git', 'show', BASELINE + ':Central Hub/' + relative], cwd=ROOT)
+            self.assertEqual((CONCEPT_ARCHIVE / relative).read_bytes(), original)
+            if relative != 'HUB_ROUTER_v1.1.yaml':
+                self.assertFalse((ROOT / relative).exists())
+        mini = ROOT.parent / 'llm-controls/project-instruction-designs/Project CI'
+        for version in ['2.1', '2.2']:
+            name = f'miniConcept_CI_v{version}.md'
+            original = subprocess.check_output(['git', 'show', BASELINE + ':llm-controls/project-instruction-designs/Project CI/' + name], cwd=ROOT)
+            self.assertEqual((mini / 'source_archive' / name).read_bytes(), original)
+            self.assertFalse((mini / name).exists())
+        for text in [str(self.root), str(self.local), self.core,
+                     (ROOT / 'library_modules/HUB-DOM-CREATIVE_v1.1.md').read_text(encoding='utf-8'),
+                     (ROOT / 'library_modules/HUB-CAP-BRAINSTORM_v1.1.md').read_text(encoding='utf-8')]:
+            self.assertNotIn('miniConcept_CI', text)
+            self.assertNotIn('Source_archive', text)
+
+
+if __name__ == '__main__':
+    unittest.main()

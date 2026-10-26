@@ -51,13 +51,13 @@ class AuthoringCandidateTests(unittest.TestCase):
                                  vector['expected'])
 
     def test_no_active_admission_even_with_exact_trigger(self):
-        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.0.yaml')
-        self.assertEqual(len(catalog['packages']), 5)
+        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.1.yaml')
+        self.assertEqual(len(catalog['packages']), 4)
         self.assertNotIn('HUB-PKG-AUTHORING', {p['package_id'] for p in catalog['packages']})
         for target in TARGETS:
             self.assertEqual(trigger_spec(f'/AUTHOR {target}'), target)
         for name in ('HUB_CI_v1.1.md', 'HUB_ROUTER_v1.1.yaml',
-                     'HUB_PACKAGE_CATALOG_v1.0.yaml', 'HUB_ARCHITECTURE_v1.0.md'):
+                     'HUB_PACKAGE_CATALOG_v1.1.yaml', 'HUB_ARCHITECTURE_v1.1.md'):
             self.assertNotIn('HUB-PKG-AUTHORING', (ROOT / name).read_text(encoding='utf-8'))
 
     def test_required_behavior_review_and_evidence_labels(self):

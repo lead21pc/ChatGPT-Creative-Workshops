@@ -47,7 +47,7 @@ H36 authoring boundary: PROMPT ENHANCEMENT != ROUTING AUTHORITY. Trigger presenc
 
 ## BRAINSTORM explicit intent regression
 
-SPEC_FIXTURE_ONLY; LIVE NOT_RUN. These fixtures declare semantic intent for review and the existing test oracle; no substring matcher or natural-language classifier executes them. The BRAINSTORM Catalog applicability owns the phrase convention; the generic Router still owns selection. Explicit requests are strong selection signals, not retrieval or execution evidence.
+SPEC_FIXTURE_ONLY; LIVE NOT_RUN. These fixtures declare semantic intent for review and the existing test oracle; no substring matcher or natural-language classifier executes them. The concept package-local Catalog applicability owns the BRAINSTORM phrase convention; the generic Router selects the package and validates its returned leaf selection. Explicit requests are strong selection signals, not retrieval or execution evidence.
 
 | ID | Input | Declared explicit trigger | Independent technique need | Expected BRAINSTORM applicability |
 | --- | --- | --- | --- | --- |

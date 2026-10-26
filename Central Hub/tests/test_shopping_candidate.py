@@ -10,7 +10,7 @@ import re
 import unittest
 from decimal import Decimal
 
-from test_hub_contracts import ROOT, load
+from test_hub_contracts import ROOT, load, historical_source
 
 
 CANDIDATE = ROOT / 'candidates/shopping_v0'
@@ -111,14 +111,14 @@ class ShoppingCandidateStaticTests(unittest.TestCase):
         self.assertIn('explicitly authorized isolated candidate test', text)
         self.assertIn('no runtime Library binding', text)
 
-    def test_active_sources_unchanged_and_shopping_not_admitted(self):
+    def test_preserved_baseline_and_shopping_not_admitted(self):
         for path, expected in BASELINE.items():
             with self.subTest(path=path):
-                data = (ROOT / path).read_bytes()
+                data = historical_source(path).read_bytes()
                 self.assertEqual(hashlib.sha256(data).hexdigest(), expected)
                 self.assertNotIn(b'HUB-PKG-SHOPPING', data)
-        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.0.yaml')
-        self.assertEqual(len(catalog['packages']), 5)
+        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.1.yaml')
+        self.assertEqual(len(catalog['packages']), 4)
         self.assertNotIn('HUB-PKG-SHOPPING', {p['package_id'] for p in catalog['packages']})
 
     def test_negative_escalation_guards_and_existing_owners(self):

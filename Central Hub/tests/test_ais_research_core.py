@@ -25,8 +25,8 @@ BASELINE = {
     'tool_pipelines/AIS/AIS_PIPELINE_v1.0.md': 'c7f78f10be855d6b77aa3e0bbf67c3856c7fa42f890382752056de71abd10f69',
     'tool_pipelines/AIS/AIS_ROUTER_v1.1.yaml': 'ea5e22648fdcb1da239126ec25220b474444de11521887cd93711f41b4b32901',
     'tool_pipelines/AIS/tests/ROUTE_TEST_CASES.md': '3519fd3f596043e157b987129afbd51872f991faf889fb91162ac754f51529d3',
-    # Refreshed for the authorized Library identity rule; AIS contracts are unchanged.
-    'tests/HUB_ROUTE_TEST_CASES.md': 'ca1cc1e36d33590f8916e636493bf477472a4750c83e45548fdea2f904936d65',
+    # Refreshed for package-local trigger ownership metadata; AIS contracts are unchanged.
+    'tests/HUB_ROUTE_TEST_CASES.md': '094966e895ed06406a97cdd66ad1e3d1a473117ef0cb32d3d95b57e6180ff745',
 }
 
 
@@ -99,7 +99,7 @@ class AISResearchStaticTests(unittest.TestCase):
         self.assertEqual(re.findall(r'`(AIS_ROUTER_[^`]+\.yaml)`', pipeline), ['AIS_ROUTER_v1.2.yaml'])
         self.assertIn('Status: ACTIVE', pipeline)
         self.assertIn('without reassessing the whole turn', pipeline)
-        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.0.yaml')
+        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.1.yaml')
         ais = next(p for p in catalog['packages'] if p['package_id'] == 'HUB-PKG-AIS')
         self.assertEqual(ais['version'], '1.1')
         self.assertEqual(ais['binding_mode'], 'LEGACY_PROJECT_SOURCE')

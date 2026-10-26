@@ -1,0 +1,57 @@
+format_version: '1'
+module_id: HUB-CATALOG-CONCEPT-DEVELOPMENT
+package_id: HUB-PKG-CONCEPT-DEVELOPMENT
+runtime_role: PACKAGE_CATALOG
+scope: Scoped selection metadata for the concept-development package; no global package routing or execution.
+status: ACTIVE
+version: '1.0'
+entries:
+- module_id: HUB-DOM-CREATIVE
+  package_id: HUB-PKG-CONCEPT-DEVELOPMENT
+  runtime_role: DOMAIN_CONTROL
+  status: ACTIVE
+  version: '1.1'
+  applicability: Realization/deepening inside the supplied selected premise through imagery, action, rhythm, situations,
+    relationships and functional fictional detail; not a fiction topic alone. A material premise change does not
+    by itself select Creative.
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    locator: null
+    library_file_id: null
+    library_version_id: null
+    verification: NOT_PERFORMED
+    resolution: UNRESOLVED
+    retrieval_mechanism: Root-scoped Library resolution or verified direct identity; FULL_FILE and exact headers/body
+      required. NOT_INSTALLED_BY_THIS_TASK; OLD_REVISION_VERIFIED != NEW_REVISION_VERIFIED.
+  refines: []
+  complements: []
+  requires: []
+- module_id: HUB-CAP-BRAINSTORM
+  package_id: HUB-PKG-CONCEPT-DEVELOPMENT
+  runtime_role: CAPABILITY
+  status: ACTIVE
+  version: '1.1'
+  applicability: Premise-changing branches, reversal or relaxation, second-order consequences, feedback or links
+    between incomplete premises; not ordinary brainstorming alone. Explicit user requests using the canonical
+    Vietnamese phrase "thử động não", the alias "brainstorm sâu", or semantically equivalent imperatives such
+    as "động não thử cái này" are strong selection signals for this specialized capability. Interpret request
+    intent, not literal substrings; mentions, definition or ability questions, quoted examples and negation are
+    not explicit triggers. TRIGGER PHRASE != KEYWORD CONTAINS. Plain "brainstorm" alone does not force specialized
+    selection; independent technique applicability still applies without a trigger. Scope explicit requests to
+    the requested task portion only; no persistent mode. BRAINSTORM selection grants no other package, pipeline
+    or tool activation and remains subject to existing Router binding and failure contracts; selection proves
+    no retrieval or execution.
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    locator: null
+    library_file_id: null
+    library_version_id: null
+    verification: NOT_PERFORMED
+    resolution: UNRESOLVED
+    retrieval_mechanism: Root-scoped Library resolution or verified direct identity; FULL_FILE and exact headers/body
+      required. NOT_INSTALLED_BY_THIS_TASK; OLD_REVISION_VERIFIED != NEW_REVISION_VERIFIED.
+  refines: []
+  complements: []
+  requires: []
