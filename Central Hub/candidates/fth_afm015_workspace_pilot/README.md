@@ -25,13 +25,23 @@ Chỉ là artifact thử nghiệm cục bộ: không active, không runtime sour
 `FULL_FILE REMAINS THE BASELINE`
 `NODE_OR_FULL IS OUT OF SCOPE`
 
-## Baseline quan sát được
+## Baseline lịch sử khi chuẩn bị pilot
 
 Repository root là `C:/Users/Sheeplark/Desktop/CI Versioning Audit & Changelog`; branch `main`, HEAD như trên. Working tree và staging sạch tại preflight; HEAD so với `origin/main` cục bộ là `0 / 0`. HEAD đã khác mốc Phase 1 `fabaab45029e6dad946889faccb4b174549a3479`; phép `git diff --name-only` giữa hai commit không ghi nhận thay đổi dưới FTH hoặc Central Hub. Truy vấn remote trực tiếp thất bại với `schannel: AcquireCredentialsHandle failed: SEC_E_NO_CREDENTIALS`; chưa xác nhận GitHub hiện tại.
 
 FTH repository hiện dùng CI 3.4, Source Router 5.0, Authoring Pipeline 1.1. Pipeline 1.0 còn là bản rollback; candidate không tự active. Nguồn AFM-015, open state và quyết định tách miền được đọc lại từ working tree hiện tại, không dùng Memory, prior-chat hoặc archive làm fallback.
 
-Central Hub repository hiện dùng CI 1.1, Router 1.1, Architecture 1.0 và root Catalog 1.0. Catalog có năm entry CREATIVE, TECHNICAL, BRAINSTORM, AIS, ImageT. Thư mục `Central Hub/candidates/` đã chứa các thử nghiệm Markdown theo nhóm; pilot dùng lại cách đặt này. Không tạo hệ package, registry hoặc owner mới.
+Tại preflight 2026-10-25, Central Hub repository dùng CI 1.1, Router 1.1, Architecture 1.0 và root Catalog 1.0, với năm entry CREATIVE, TECHNICAL, BRAINSTORM, AIS, ImageT. Đây là baseline lịch sử, đã được thay bằng trạng thái hiện hành dưới đây. Thư mục `Central Hub/candidates/` đã chứa các thử nghiệm Markdown theo nhóm; pilot dùng lại cách đặt này.
+
+## Baseline Hub và snapshot hiện hành cho pilot
+
+Preflight reconciliation: branch `main`, HEAD `866a38dfedbe60caba00afa0372412b05f9ff419`; `origin/main` và remote main được quan sát cùng SHA. Snapshot hiện vẫn bằng source AFM-015 trong working tree từng byte: `6022` byte, SHA-256 `8d14eb73c4587db297d46c9804f9d262dc605513a93d13ed3c2b6f0eb58d27d5`. `SNAPSHOT BASELINE STILL CURRENT FOR THIS PILOT`; snapshot không được tạo lại.
+
+Hub hiện dùng CI 1.1, Router 1.1, Architecture 1.1 và root Catalog 1.1. Root có TECHNICAL, `HUB-PKG-CONCEPT-DEVELOPMENT`, AIS và ImageT. Concept Development sở hữu entrypoint `HUB-DOM-CONCEPT-DEVELOPMENT` 1.0 / `DOMAIN_CONTROL` và package-local catalog `HUB-CATALOG-CONCEPT-DEVELOPMENT` 1.0 / `PACKAGE_CATALOG`; `HUB-CAP-BRAINSTORM` 1.1 / `CAPABILITY` và `HUB-DOM-CREATIVE` 1.1 / `DOMAIN_CONTROL` là hai leaf được chọn độc lập, không phải root package riêng.
+
+Bốn object concept được ChatGPT quan sát/người dùng cung cấp evidence trong `Central Hub Config`: root-scoped listing không thấy duplicate cho bốn identity trong phạm vi kiểm, FULL_FILE identity/content và Library/repository bytes khớp; Catalog ghi binding `RESOLVED`. `locator` và `library_version_id` vẫn `null`; surface ID chỉ là evidence/debug. Không suy direct fetch hay complete Hub runtime retrieval trace từ evidence này.
+
+Một integrated Central Hub runtime smoke ngày 2026-10-27 đã được người dùng xác nhận PASS cho một đường thực thi có AIS, TECHNICAL, Concept Development, BRAINSTORM và CREATIVE, theo đúng revision và giới hạn trong `Central Hub/RUNTIME_EVIDENCE_CHANGELOG.md`. Đây không phải global Hub PASS, không xác minh từng retrieval trace và không chứng minh hành vi pilot AFM-015. Toàn bộ C01–C12 live chưa chạy và không là prerequisite của pilot này trừ khi chính test AFM-015 cho thấy dependency cụ thể.
 
 ## Trạng thái hiện hành phải bảo vệ
 
@@ -88,8 +98,8 @@ Nếu một ý tưởng cần thay đổi phần của owner khác, ghi rõ scop
 2. Cung cấp FULL_FILE README này và FULL_FILE snapshot bằng đầu vào người dùng của chat, rồi gửi đúng một block prompt tương ứng trong [TEST_CASES.md](TEST_CASES.md). Không gửi rubric/đáp án mong đợi cho model như một phần của prompt. Nếu nền tảng không đọc được toàn nội dung thì chưa chạy case hợp lệ; lời tự nhận đã đọc không tự chứng minh retrieval.
 3. Đầu vào lore là tài liệu làm việc do người dùng cung cấp, không phải package control hay Library binding. Đây không phải dùng local file thay cho một control Library bị thiếu. Nội dung trích dẫn không được tự kích hoạt quyền canon/Router FTH.
 4. Hub CI giữ stage/truth/action; Hub Router chọn control theo task thực tế. Không ép baseline NONE khi Catalog applicability thực sự đòi control; cũng không tự bật BRAINSTORM chỉ vì có chữ brainstorm. Nếu baseline đủ, Hub có thể làm phần độc lập; không gọi đó là đã thực thi capability bị chặn.
-5. CREATIVE và BRAINSTORM: artifact ACTIVE/1.0 có trong repository nhưng Catalog hiện ghi Library locator `UNRESOLVED`, live verification `NOT_PERFORMED`. Nếu phần việc được chọn phụ thuộc chúng, giữ blocker; không dùng bản local/legacy/archive làm fallback. Đọc file local để soạn spec không chứng minh module đã được nạp trong actual Hub. Pilot không sửa binding hoặc yêu cầu sửa FTH CI/Router để chạy.
-6. Không case nào yêu cầu tra cứu chứng cứ ngoài đời, AIS, ImageT hoặc TECHNICAL. Nếu runtime phát sinh nhu cầu ngoài scope, ghi rõ thay đổi trước khi đọc/gọi thêm; không import lịch sử thật từ tên cảm hứng.
+5. Hub/Concept Development chọn zero, one hoặc both leaf theo nhu cầu thực tế; không ép chọn BRAINSTORM hay CREATIVE. Bốn binding concept đã được resolve ở mức evidence nêu trên, nhưng mỗi lần runtime vẫn phải đáp ứng contract exact identity/FULL_FILE. Nếu control được chọn thực sự không đọc/xác minh được, chặn phần phụ thuộc và không dùng local/Project Source/legacy/archive làm fallback. Pilot không sửa binding hoặc FTH CI/Router.
+6. Case A không cần evidence ngoài đời; không nạp sẵn owner FTH ngoài miền, AIS, TECHNICAL hoặc ImageT. Chỉ xét control/pipeline bổ sung nếu runtime tự xác lập nhu cầu material; ghi rõ nguồn, lý do và evidence thực tế. Không import lịch sử thật từ tên cảm hứng.
 7. Với Case C, đầu vào ban đầu vẫn chỉ là envelope + AFM-015; không nạp sẵn owner khác. Nếu cần xác định current ngoài miền, chỉ nêu owner/state thiếu và dừng phần factual phụ thuộc; vẫn có thể phát triển nhánh đề xuất có nhãn.
 8. Lưu nguyên prompt/đầu vào thực tế và output nguyên văn, runtime/model quan sát được, control thực sự được chọn/đọc, nguồn bổ sung và blocker. Phân biệt bằng chứng tool/platform với tự báo cáo của model; không bịa backend reads hoặc lấy việc không nhắc nguồn làm bằng chứng tuyệt đối rằng backend không đọc.
 9. Đánh giá bằng rubric ngoài output. Thiếu dấu vết quyết định về nguồn/owner hoặc thiếu output thì ghi chưa xác minh, không tự PASS. Blocker nạp control không tự chứng minh module lore thiếu closure.
@@ -114,8 +124,9 @@ CURRENT/UNKNOWN/ASSUMPTION/PROPOSAL là nhãn dùng khi cần rõ trạng thái,
 
 - Đặc tả: xem TEST_CASES.md; expected behavior là tiêu chí, không phải quan sát model.
 - `BEHAVIORAL_NOT_RUN`: chưa chạy ba case trong actual Central Hub.
-- `LIVE_NOT_VERIFIED`: chưa xác minh live retrieval, binding hoặc compliance của pilot.
-- `PHASE_2_PREPARED — BEHAVIORAL_NOT_RUN` chỉ xác nhận bộ chuẩn bị sau các kiểm tra cục bộ, không phải behavioral PASS.
+- `PHASE_2_PREPARED — CURRENT HUB BASELINE RECONCILED — AFM-015 BEHAVIORAL CASES NOT RUN`: snapshot và tài liệu chuẩn bị đã được đối chiếu; không phải Case A/B/C behavioral PASS.
+- Integrated runtime smoke có `USER_CONFIRMED_LIVE_PASS` đúng scope ở trên; complete internal retrieval trace và hành vi riêng của pilot vẫn chưa được xác minh. Không coi full C01–C12 live là prerequisite của Case A.
+- Case A sẵn sàng làm test thực trong chat sạch: cung cấp FULL_FILE README/envelope này, FULL_FILE snapshot, và chỉ block `Case A — khám phá nội miền / Prompt để gửi` trong `TEST_CASES.md`. Giữ rubric ngoài runtime prompt; không nạp sẵn owner FTH ngoài miền, không ép leaf và không yêu cầu AIS/TECHNICAL/ImageT nếu không có nhu cầu material do runtime xác lập.
 - Chưa có candidate output từ Hub để semantic-diff. Chưa đủ đầu vào thực hiện Phase 3.
 - Không đổi current FTH/Hub, không stage/commit/push/deploy, không admission, không Phase 3.
 
@@ -131,4 +142,4 @@ Kết quả ngày 2026-10-25; đây là chứng cứ repository/static, không p
 - Từ thư mục FTH: `python -B -X utf8 build_consolidation.py --check` → PASS: 17 current modules, 21 current hashes, archive not accessed, read-only.
 - Từ thư mục Central Hub: `python -B -X utf8 -m unittest discover -s tests -p test_hub_contracts.py -q` → 32 tests, OK. Bộ test hiện có kiểm contract/static và có đối chiếu lịch sử riêng; không dùng archive làm runtime fallback. Không chạy toàn suite hoặc thêm framework.
 - Git: branch/HEAD không đổi; tracked diff và staged diff rỗng; chỉ có ba file untracked trong thư mục pilot này. Không stage/commit/push/deploy hoặc sửa binding.
-- `BEHAVIORAL_NOT_RUN` và `LIVE_NOT_VERIFIED`: chưa có output A/B/C, chưa kiểm actual Hub routing/retrieval/compliance. Các kiểm tra trên không chứng minh hành vi giữ boundary.
+- Tại thời điểm kiểm tra 2026-10-25: `BEHAVIORAL_NOT_RUN` và `LIVE_NOT_VERIFIED`; chưa có output A/B/C hay evidence runtime cho pilot. Kết quả integrated smoke sau đó được ghi riêng ở baseline hiện hành và không chứng minh hành vi giữ boundary của pilot.
