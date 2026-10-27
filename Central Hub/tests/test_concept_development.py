@@ -77,6 +77,48 @@ class ConceptDevelopmentTests(unittest.TestCase):
         original = subprocess.check_output(['git', 'show', BASELINE + ':Central Hub/HUB_CI_v1.1.md'], cwd=ROOT)
         self.assertEqual((ROOT / 'HUB_CI_v1.1.md').read_bytes(), original)
 
+    def test_fth_gate_contract_and_declared_failure_scenarios(self):
+        # SPEC: supplied evidence states, not actual Git retrieval or model execution.
+        router = load(ROOT / 'candidates/HUB_ROUTER_v1.2-candidate.yaml')
+        self.assertEqual((router['router_version'], router['status'], router['active']),
+                         ('1.2-candidate', 'CANDIDATE', False))
+        baseline = load(ROOT / 'HUB_ROUTER_v1.1.yaml')
+        comparable = copy.deepcopy(router)
+        for key in ('router_version', 'status', 'active', 'deployment', 'activation_notice'):
+            comparable[key] = baseline[key]
+        comparable['sequence'].remove('FTH_CHECK_GATE')
+        comparable['stages'].pop('FTH_CHECK_GATE')
+        comparable['evidence'].pop('candidate_scope')
+        self.assertEqual(comparable, baseline)
+        self.assertEqual(router['sequence'][:3],
+                         ['TASK_SCOPE', 'FTH_CHECK_GATE', 'ROOT_PACKAGE_SELECTION'])
+        gate = router['stages']['FTH_CHECK_GATE']
+        for clause in ('explicit FTH delegation', 'full fth_base_commit', 'unambiguous repository identity',
+                       'CURRENT_SOURCE', '00_AETHERFIRE_CONSOLIDATION_INDEX.md',
+                       'identity-consistency evidence only', 'independently calculated hashes',
+                       '90_DESIGN_HISTORY_AND_RECONSIDERATIONS.md', '91_RECONCILIATION_RECORD.md',
+                       '92_OPEN_ISSUES_CURRENT.md', 'FTH_HANDOFF_UNVERIFIED', 'BLOCK_DEPENDENT',
+                       'FTH_HANDOFF_VERIFIED', 'Do not select any Hub package',
+                       'UNKNOWN != FALSE', 'UNKNOWN != PERMISSION TO INVENT'):
+            self.assertIn(clause, gate)
+
+        def spec(evidence):
+            required = ('repository', 'commit', 'path', 'module', 'header_index', 'equality_proven',
+                        'equal', 'index_full', 'history_full', 'reconciliation_full', 'open_full')
+            return 'FTH_HANDOFF_VERIFIED' if all(evidence.get(k) is True for k in required) else 'FTH_HANDOFF_UNVERIFIED'
+
+        good = dict.fromkeys(('repository', 'commit', 'path', 'module', 'header_index', 'equality_proven',
+                              'equal', 'index_full', 'history_full', 'reconciliation_full', 'open_full'), True)
+        self.assertEqual(spec(good), 'FTH_HANDOFF_VERIFIED')
+        for missing in good:
+            with self.subTest(failure=missing):
+                self.assertEqual(spec(dict(good, **{missing: False})), 'FTH_HANDOFF_UNVERIFIED')
+        # A newer head does not affect the declared base; Hub routing remains a separate decision.
+        self.assertEqual(spec(dict(good, current_head_advanced=True)), 'FTH_HANDOFF_VERIFIED')
+        self.assertIn('A newer current commit is not failure', gate)
+        self.assertIn('Continue independent portions where sufficient', gate)
+        self.assertIn('without undoing the verified baseline', gate)
+
     def test_library_headers_ownership_and_exact_leaf_revisions(self):
         for module, version, role in [(CORE, '1.0', 'DOMAIN_CONTROL'),
                                       ('HUB-DOM-CREATIVE', '1.1', 'DOMAIN_CONTROL'),
