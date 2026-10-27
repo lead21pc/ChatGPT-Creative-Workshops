@@ -10,7 +10,7 @@ Responsibility boundary: scoped prompt construction only; Hub CI retains operati
 
 ## Admission and exact activation
 
-Repository-only candidate, outside the active five-package Catalog. This contract may be evaluated only in an explicitly authorized isolated candidate test; it does not install itself or become selectable in normal Hub runtime. Library-style singleton with one direct entrypoint; no local catalog or declared composition/dependency relations. No runtime Library binding is established.
+Repository-only candidate, outside the active root Catalog. This contract may be evaluated only in an explicitly authorized isolated candidate test; it does not install itself or become selectable in normal Hub runtime. Library-style singleton with one direct entrypoint; no local catalog or declared composition/dependency relations. No runtime Library binding is established.
 
 Within an authorized candidate test, activate for this turn only when the first non-empty user-authored line is exactly one of:
 

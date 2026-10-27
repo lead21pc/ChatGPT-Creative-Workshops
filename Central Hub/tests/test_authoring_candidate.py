@@ -85,7 +85,7 @@ class AuthoringCandidateTests(unittest.TestCase):
         gate = text.split('## Admission and exact activation\n', 1)[1].split(
                           '## Scoped transformation\n', 1)[0]
         self.assertEqual(hashlib.sha256(gate.encode('utf-8')).hexdigest(),
-                         '1602ca2431b18a0f674f9f42f4ed78e313c0288170e2b2a11d9821bacb83992e')
+                         'f867fc1de35ac3070b86c4fbe32d83e75ea1314dd7b6c21c8bb38a9361f2341a')
 
     def test_evidence_cases_and_comparison_are_review_only(self):
         text = CASES.read_text(encoding='utf-8')
@@ -102,7 +102,7 @@ class AuthoringCandidateTests(unittest.TestCase):
         self.assertEqual(re.findall(r'^\| (R\d+) \|', text, re.M),
                          [f'R{i:02}' for i in range(1, 9)])
         self.assertIn('R cases are also reviewed text only', text)
-        self.assertIn('Hanfu regression record — USER_REPORTED failure; v0.3 rerun NOT RUN', text)
+        self.assertIn('Hanfu regression record — USER_REPORTED failure; short v0.3 regression PASS', text)
         self.assertNotRegex(MODULE.read_text(encoding='utf-8').lower(),
                             r'hanfu|jiangnan|late-ming|1620|1644')
 

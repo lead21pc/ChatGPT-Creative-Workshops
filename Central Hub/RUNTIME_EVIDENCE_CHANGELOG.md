@@ -23,6 +23,13 @@ NO NEW EVIDENCE != STATUS RESET
 
 ## Current verified runtime status
 
+### HANFU_SHORT_REAL_CONTEXT_REGRESSION_PASS
+
+- Status: `USER_CONFIRMED_LIVE_PASS`; Authoring v0.3 candidate, short Hanfu context, arms B and C only.
+- B: PASS for preserving decision constraints and unresolved/provisional/rejected state. C: PASS for keeping evidence support separate from selection and finalization authority.
+- C used a frozen synthetic AIS evidence packet; no live AIS research or downstream execution. Codex did not independently reproduce the run.
+- Does not establish global Authoring, target-matrix, AIS integration, downstream execution, production readiness or promotion.
+
 ### INTEGRATED_RUNTIME_SMOKE_2026_10_27
 
 - Status: `USER_CONFIRMED_LIVE_PASS`
@@ -36,6 +43,13 @@ NO NEW EVIDENCE != STATUS RESET
 - Related log entry: `2026-10-27 - Integrated concept-development runtime smoke`.
 
 ## Verification log
+
+### 2026-10-28 - Hanfu short Authoring regression
+
+- Evidence status: `USER_CONFIRMED_LIVE_PASS`, B and C for the two reported v0.2 failure mechanisms, in the short v0.3 Hanfu context.
+- B preserved state and decision constraints. C preserved qualified synthetic E1–E7 evidence, unresolved combinations and decision authority; no unsupported selection or acceptance.
+- No live AIS research or downstream target execution. User-provided result; no independent Codex reproduction. Date is recording date; actual run date was not supplied.
+- REGRESSION PASS != GLOBAL AUTHORING VERIFICATION; SYNTHETIC EVIDENCE FIXTURE != LIVE AIS INTEGRATION; PROMPT ARTIFACT PASS != DOWNSTREAM EXECUTION PASS.
 
 ### 2026-10-27 - Integrated concept-development runtime smoke
 
