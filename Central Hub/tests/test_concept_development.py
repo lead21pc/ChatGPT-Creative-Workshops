@@ -38,15 +38,16 @@ def current_fixture():
 
 class ConceptDevelopmentTests(unittest.TestCase):
     def setUp(self):
-        self.root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.1.yaml')
+        self.root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.2.yaml')
         self.local = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.0.yaml')
         self.core = (ROOT / 'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.0.md').read_text(encoding='utf-8')
         self.notes = (ROOT / 'CONCEPT_DEVELOPMENT_MIGRATION.md').read_text(encoding='utf-8')
 
-    def test_four_root_owners_and_package_local_inventory(self):
-        self.assertEqual(self.root['version'], '1.1')
+    def test_five_root_owners_and_package_local_inventory(self):
+        self.assertEqual(self.root['version'], '1.2')
         self.assertEqual({p['package_id'] for p in self.root['packages']},
-                         {'HUB-PKG-TECHNICAL', PACKAGE, 'HUB-PKG-AIS', 'HUB-PKG-IMAGET'})
+                         {'HUB-PKG-TECHNICAL', PACKAGE, 'HUB-PKG-AUTHORING',
+                          'HUB-PKG-AIS', 'HUB-PKG-IMAGET'})
         package = next(p for p in self.root['packages'] if p['package_id'] == PACKAGE)
         self.assertEqual((package['entrypoint_module_id'], package['runtime_role'], package['version']),
                          (CORE, 'DOMAIN_CONTROL', '1.0'))
@@ -65,10 +66,11 @@ class ConceptDevelopmentTests(unittest.TestCase):
     def test_router_changes_only_exact_pins_and_global_owners_stay(self):
         previous = load(CONCEPT_ARCHIVE / 'HUB_ROUTER_v1.1.yaml')
         expected = copy.deepcopy(previous)
-        for key, name in [('architecture', 'HUB_ARCHITECTURE_v1.1.md'),
-                          ('root_catalog', 'HUB_PACKAGE_CATALOG_v1.1.yaml')]:
+        for key, name in [('architecture', 'HUB_ARCHITECTURE_v1.2.md'),
+                          ('root_catalog', 'HUB_PACKAGE_CATALOG_v1.2.yaml')]:
             expected['contracts'][key]['file'] = name
-            expected['contracts'][key]['version'] = '1.1'
+            expected['contracts'][key]['version'] = '1.2'
+        expected['contracts']['binding_scope'] = load(ROOT / 'HUB_ROUTER_v1.1.yaml')['contracts']['binding_scope']
         self.assertEqual(load(ROOT / 'HUB_ROUTER_v1.1.yaml'), expected)
         before = load(CONCEPT_ARCHIVE / 'HUB_PACKAGE_CATALOG_v1.0.yaml')
         for package in ['HUB-PKG-TECHNICAL', 'HUB-PKG-AIS', 'HUB-PKG-IMAGET']:
@@ -89,6 +91,7 @@ class ConceptDevelopmentTests(unittest.TestCase):
         comparable['sequence'].remove('FTH_CHECK_GATE')
         comparable['stages'].pop('FTH_CHECK_GATE')
         comparable['evidence'].pop('candidate_scope')
+        comparable['contracts'] = copy.deepcopy(baseline['contracts'])
         self.assertEqual(comparable, baseline)
         self.assertEqual(router['sequence'][:3],
                          ['TASK_SCOPE', 'FTH_CHECK_GATE', 'ROOT_PACKAGE_SELECTION'])

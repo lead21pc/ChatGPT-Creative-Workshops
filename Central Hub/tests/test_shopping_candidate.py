@@ -117,8 +117,8 @@ class ShoppingCandidateStaticTests(unittest.TestCase):
                 data = historical_source(path).read_bytes()
                 self.assertEqual(hashlib.sha256(data).hexdigest(), expected)
                 self.assertNotIn(b'HUB-PKG-SHOPPING', data)
-        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.1.yaml')
-        self.assertEqual(len(catalog['packages']), 4)
+        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.2.yaml')
+        self.assertEqual(len(catalog['packages']), 5)
         self.assertNotIn('HUB-PKG-SHOPPING', {p['package_id'] for p in catalog['packages']})
 
     def test_negative_escalation_guards_and_existing_owners(self):

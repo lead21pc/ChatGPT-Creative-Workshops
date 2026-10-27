@@ -23,6 +23,14 @@ NO NEW EVIDENCE != STATUS RESET
 
 ## Current verified runtime status
 
+### AUTHORING_0_3_REPOSITORY_PROMOTION
+
+- Status: `REPOSITORY_IMPLEMENTED / STATICALLY_VERIFIED`; not a runtime PASS.
+- Scope: `HUB-CAP-AUTHORING / HUB-PKG-AUTHORING / CAPABILITY / ACTIVE / 0.3`, Architecture/Catalog 1.2 and Router 1.1 exact-pin update.
+- Library installation: `NOT_PERFORMED`; Library binding/FULL_FILE identity: `NOT_VERIFIED / UNRESOLVED`.
+- Project deployment: `NOT_PERFORMED`; promoted live routing and S1-S3: `NOT_RUN`.
+- Prior Hanfu B/C and `/AUTHOR IMAGET` candidate results remain candidate behavioral evidence; they do not become promoted-runtime evidence.
+
 ### HANFU_SHORT_REAL_CONTEXT_REGRESSION_PASS
 
 - Status: `USER_CONFIRMED_LIVE_PASS`; Authoring v0.3 candidate, short Hanfu context, arms B and C only.
@@ -43,6 +51,13 @@ NO NEW EVIDENCE != STATUS RESET
 - Related log entry: `2026-10-27 - Integrated concept-development runtime smoke`.
 
 ## Verification log
+
+### 2026-10-28 - Authoring 0.3 repository promotion
+
+- Evidence status: repository implementation and static verification only.
+- Added the active Authoring singleton artifact and root Catalog admission with the exact six-trigger boundary; revised shared topology and compatible Router pins without changing Hub CI or Router selection algorithm.
+- Prepared manual Library/Project switch, S1-S3 live fixtures and deliberate rollback instructions in `AUTHORING_PROMOTION.md`; none were executed.
+- `REPOSITORY PROMOTION != LIBRARY INSTALLATION != PROJECT DEPLOYMENT != LIVE ROUTING`.
 
 ### 2026-10-28 - Hanfu short Authoring regression
 
