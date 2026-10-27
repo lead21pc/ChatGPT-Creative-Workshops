@@ -57,6 +57,29 @@ Different parts of this workflow have different roles:
 
 A pipeline diagram may describe author actions, model instructions, executable tooling, or feedback between them. It does not mean every step is automated. Running a repository check does not install instructions in ChatGPT, decide canon, or prove that a model will behave correctly.
 
+### Mission-oriented execution
+
+The supporting infrastructure is also evolving toward a unified execution environment for LLM-assisted work. Central Hub is the current expression of that direction: it coordinates capabilities that would otherwise remain fragmented across separate prompts, tools, domains, and ChatGPT features.
+
+A task is treated as a mission rather than as ownership by one subsystem. The Hub keeps the overall objective, selects the domains, capabilities, or tool pipelines that can make a concrete contribution, and gives each of them authority only over its assigned portion of the task. Their results can then be composed without allowing research, technical analysis, brainstorming, image generation, worldbuilding controls, or another specialization to redefine the mission simply because it participated.
+
+```text
+MISSION
+→ scoped contribution selection
+→ specialized execution under local authority
+→ composition back into the mission
+```
+
+The purpose is not to make every task more controlled. Specialized constraints and controls are activated when the task requires them; ordinary work may remain on the baseline. Likewise, adding a capability should not require the Hub core to absorb that capability's internal architecture.
+
+```text
+SPECIALIZATION CONTRIBUTES TO THE MISSION; IT DOES NOT OWN THE MISSION.
+AUTHORITY IS SCOPED TO THE TASK PORTION; IT DOES NOT EXPAND BY PARTICIPATION.
+CONTROL IS ACTIVATED BY NEED; IT IS NOT A PERMANENT GLOBAL MODE.
+```
+
+Central Hub is supporting infrastructure, not a fourth creative project and not a shared ontology for the independent worlds or simulation systems.
+
 ## How to distinguish this workflow from related repositories
 
 Related repositories may combine prompt collections, worldbuilding templates, lore archives, writing tools, and evaluation workflows. The distinctions below explain this repository's scope; they are not a claim that no other project uses similar methods.
@@ -102,6 +125,7 @@ repository/
 │   ├── project-instruction-designs/
 │   │   └── Project CI/
 │   └── worldbuilding-ci-kernel/
+├── Central Hub/
 ├── codex-workflows/
 ├── docs/
 │   ├── instruction-history/
@@ -113,6 +137,7 @@ repository/
 - [worlds/](./worlds/) keeps each project's internal sources, local controls, history, and tools together; the folder name does not classify Fanfiction Engine as a world. Moving a package does not change source status or authority.
 - [authoring/](./authoring/) contains the [Multi-Paracosm Hub model](./authoring/multi_paracosm_hub_model_updated.md): ideas can be abstracted into shared seeds, then evaluated and implemented independently in each world.
 - [llm-controls/](./llm-controls/) contains general instructions, project instruction designs, and reusable worldbuilding controls. Project-local controls also remain inside their world packages.
+- [Central Hub/](./Central%20Hub/) coordinates scoped capabilities and tool pipelines into mission-oriented execution. It is supporting infrastructure, not an additional creative world/system or a shared ontology for the independent projects.
 - [codex-workflows/](./codex-workflows/) contains repository copies of Codex skills; moving them does not install or update the author's locally installed skills.
 - [docs/](./docs/) contains instruction history, design analysis, and explanatory visuals.
 
