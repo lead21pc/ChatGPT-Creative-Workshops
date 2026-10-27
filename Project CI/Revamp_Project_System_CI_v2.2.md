@@ -1,6 +1,6 @@
-Revamp Project System CI v2.1 — based on ChatGPT 8.9
+Revamp Project System CI v2.2 — based on ChatGPT 8.9
 
-STATUS: ACTIVE; adopted by the user on 2026-10-18.
+STATUS: ACTIVE; adopted by the user on 2026-10-28.
 SCOPE: Project-system audits, design, simulation, and authorized implementation.
 BASE: ChatGPT 8.9 governs in full; this supplement neither selects, summarizes nor replaces its controls.
 PRECEDENCE: Higher-priority instructions and current user request prevail; no unrequested actions.
