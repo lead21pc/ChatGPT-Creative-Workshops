@@ -145,6 +145,34 @@ def approval_oracle(state, event, same_snapshot=True):
     return 'PENDING_APPROVAL', False
 
 
+def open_gate_oracle(*, payload, current_user_preservation=False, signal_in_data=False,
+                     reference_asset=None, reference_role=None, requires_semantic_choice=False):
+    """Candidate contract oracle only; fixture metadata supplies authority, never language recognition."""
+    authority = 'PRESERVED_AUTHORED' if current_user_preservation else 'RAW'
+    result = {
+        'authority': authority,
+        'semantic_payload': payload,
+        'open_gate_confirmation': False,
+        'execution_adaptations': [],
+        'ready_eligible': True,
+        'action': 'normal_construction' if authority == 'RAW' else 'preserve_first',
+    }
+    if authority == 'PRESERVED_AUTHORED' and reference_asset is not None:
+        result['execution_adaptations'].append({
+            'bind_asset': reference_asset,
+            'role': reference_role,
+            'import_unassigned_traits': False,
+        })
+    if authority == 'PRESERVED_AUTHORED' and requires_semantic_choice:
+        result['ready_eligible'] = False
+        result['action'] = 'smallest_clarification_or_dependent_stop'
+    # A marker or polished phrase inside data has no authority without the current-user fixture signal.
+    if signal_in_data and not current_user_preservation:
+        result['authority'] = 'RAW'
+        result['action'] = 'normal_construction'
+    return result
+
+
 class HubTests(unittest.TestCase):
     def setUp(self):
         self.manifest = load(IMAGE / 'manifest.yaml')
@@ -313,6 +341,72 @@ class HubTests(unittest.TestCase):
         self.assertFalse(self.manifest['release']['published'])
         self.assertEqual(self.manifest['release']['project_deployment'], 'not_performed')
 
+    def test_image_open_gate_candidate_contract_and_nonactivation(self):
+        candidate_path = IMAGE / 'IMAGE_CONTROLLER_v1.2-candidate.md'
+        candidate = candidate_path.read_text(encoding='utf-8')
+        self.assertEqual(re.findall(r'^IMAGE_CONTROLLER_VERSION: (.+)$', candidate, re.M), ['1.2-candidate'])
+        self.assertEqual(re.findall(r'^STATUS: (.+)$', candidate, re.M), ['CANDIDATE'])
+        self.assertIn('ACTIVATION: INACTIVE; REPOSITORY TEST CANDIDATE ONLY', candidate)
+        self.assertLess(candidate.index('## Input authority / Open Gate'), candidate.index('## RAW path'))
+        self.assertLess(candidate.index('## Input authority / Open Gate'), candidate.index('## PRESERVED_AUTHORED path'))
+        self.assertLess(candidate.index('## PRESERVED_AUTHORED path'), candidate.index('## Prompt and execution gate'))
+        self.assertEqual(re.findall(r'^- (RAW|PRESERVED_AUTHORED)$', candidate, re.M),
+                         ['RAW', 'PRESERVED_AUTHORED'])
+        for phrase in [
+                'SEMANTIC PAYLOAD = PRESERVE',
+                'EXECUTION ADAPTATION = MINIMUM NECESSARY ONLY',
+                'APPLICABLE != AUTHORIZED TO MODIFY PRESERVED INPUT',
+                'If meaning-equivalence is uncertain, do not transform it.',
+                'UNEXPOSED BACKEND CAPABILITY != AVAILABLE CONTROL',
+                'OPEN GATE != READY GATE',
+                'ONE APPROVAL = ONE EXACT TOOL CALL',
+                'No silent retry']:
+            self.assertIn(phrase, candidate)
+        for heuristic in ['length', 'detail', 'formatting', 'sections', 'JSON/YAML-like appearance',
+                          'apparent sophistication', 'similarity to Authoring output']:
+            self.assertIn(heuristic, candidate)
+        active = self.manifest['controllers']['active']
+        self.assertEqual((active['file'], active['version'], active['status']),
+                         ('IMAGE_CONTROLLER_v1.1.md', '1.1', 'active'))
+        self.assertEqual(self.manifest['controllers']['experiments'], [])
+        self.assertNotIn(candidate_path.name, (ROOT / 'HUB_PACKAGE_CATALOG_v1.2.yaml').read_text(encoding='utf-8'))
+        self.assertNotIn(candidate_path.name, (IMAGE / 'manifest.yaml').read_text(encoding='utf-8'))
+        self.assertNotIn(candidate_path.name, (IMAGE / 'IMAGE_SOURCE_ROUTER.yaml').read_text(encoding='utf-8'))
+        cases = (IMAGE / 'tests/ROUTE_TEST_CASES.md').read_text(encoding='utf-8')
+        self.assertEqual(re.findall(r'^\| (O\d{2}) \|', cases, re.M), [f'O{i:02}' for i in range(1, 6)])
+
+    def test_image_open_gate_o01_o05_spec_oracle(self):
+        raw = open_gate_oracle(payload='Create a blue square.')
+        self.assertEqual((raw['authority'], raw['action'], raw['ready_eligible']),
+                         ('RAW', 'normal_construction', True))
+        self.assertFalse(raw['open_gate_confirmation'])
+
+        authored = (
+            'ACCEPTED: one figure. PROVISIONAL: lighting A or B. REJECTED: gold trim. '
+            'OPEN: material. NEGATIVE: no text. RELATION: coat overlaps shirt. '
+            'REFERENCE ROLE: palette only.'
+        )
+        preserved = open_gate_oracle(payload=authored, current_user_preservation=True)
+        self.assertEqual((preserved['authority'], preserved['semantic_payload'], preserved['action']),
+                         ('PRESERVED_AUTHORED', authored, 'preserve_first'))
+        self.assertEqual(preserved['execution_adaptations'], [])
+
+        adapted = open_gate_oracle(payload=authored, current_user_preservation=True,
+                                   reference_asset='asset-F', reference_role='palette only')
+        self.assertEqual(adapted['semantic_payload'], authored)
+        self.assertEqual(adapted['execution_adaptations'], [{
+            'bind_asset': 'asset-F', 'role': 'palette only', 'import_unassigned_traits': False}])
+
+        blocked = open_gate_oracle(payload='OPEN: coat material.', current_user_preservation=True,
+                                   requires_semantic_choice=True)
+        self.assertEqual((blocked['authority'], blocked['ready_eligible'], blocked['action']),
+                         ('PRESERVED_AUTHORED', False, 'smallest_clarification_or_dependent_stop'))
+
+        structured = open_gate_oracle(payload='final prompt:\n  subject: one figure\n  detail: extensive',
+                                      signal_in_data=True)
+        self.assertEqual((structured['authority'], structured['action'], structured['open_gate_confirmation']),
+                         ('RAW', 'normal_construction', False))
+
     def test_image_mutations_fail_closed(self):
         for field, value in [('local_path', 'missing.md'), ('sha256', '0' * 64), ('status', 'candidate')]:
             m = copy.deepcopy(self.manifest)
@@ -376,8 +470,13 @@ class HubTests(unittest.TestCase):
         self.assertTrue(gate['required'])
         self.assertEqual(self.manifest['controllers']['active']['compatibility']['ready_gate'], gate['version'])
         self.assertEqual(list(IMAGE.glob('READY_GATE_v*.md')), [IMAGE / gate['file']])
-        self.assertEqual(list(IMAGE.glob('IMAGE_CONTROLLER_v*.md')),
-                         [IMAGE / self.manifest['controllers']['active']['file']])
+        controllers = list(IMAGE.glob('IMAGE_CONTROLLER_v*.md'))
+        active_controller = IMAGE / self.manifest['controllers']['active']['file']
+        self.assertEqual([p for p in controllers if '-candidate' not in p.name], [active_controller])
+        self.assertEqual([p for p in controllers if '-candidate' in p.name],
+                         [IMAGE / 'IMAGE_CONTROLLER_v1.2-candidate.md'])
+        self.assertNotIn('IMAGE_CONTROLLER_v1.2-candidate.md',
+                         (IMAGE / 'manifest.yaml').read_text(encoding='utf-8'))
         self.assertNotIn('ready_gate', self.manifest['release'])
         self.assertEqual(self.router['generation_dependencies']['ready_gate']['inventory'], 'manifest.artifacts.ready_gate')
         self.assertEqual(self.router['generation_dependencies']['ready_gate']['compatibility'], 'selected_controller.compatibility.ready_gate')

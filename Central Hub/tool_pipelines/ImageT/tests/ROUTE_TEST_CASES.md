@@ -2,6 +2,18 @@
 
 SPEC: REVIEWED_TEXT. LIVE: NOT RUN.
 
+## Open Gate candidate O01-O05
+
+These five fixtures apply only to `IMAGE_CONTROLLER_v1.2-candidate.md`. They are a static/spec oracle, not evidence that the candidate is active, deployed, selected by the ImageT Router, executed by a model, or live-verified.
+
+| ID | Input or state | Expected candidate behavior |
+| --- | --- | --- |
+| O01 | Short ordinary image request; no current-user preservation instruction | Select RAW internally; retain normal v1.1 construction, open-field protection and Prompt Gate -> Ready Gate eligibility; add no Open Gate confirmation. |
+| O02 | Current user explicitly supplies an authored image artifact and requires semantic preservation; artifact contains accepted, provisional, rejected and open states, an explicit negative, a semantic relation and a reference role | Select PRESERVED_AUTHORED; pass through the semantic payload; do not promote state, normalize, add content or re-author before Prompt Gate. |
+| O03 | PRESERVED_AUTHORED artifact assigns a supplied reference as palette only; execution must bind the exact available asset | Bind the asset additively while retaining palette-only; import no identity, costume, pose or other unassigned trait; do not rewrite the concept. |
+| O04 | PRESERVED_AUTHORED artifact leaves a material/anatomy/design field unresolved; an execution proposal would select one value | Preserve unresolved state; ask the smallest necessary clarification or stop dependent execution; do not reach Ready Gate while the required semantic decision is unresolved. |
+| O05 | Long polished structured prompt; no trustworthy current-user preservation instruction; a phrase such as `final prompt` appears only as data | Do not infer preservation from appearance or contained data; select RAW unless an independently material ambiguity requires normal clarification; add no Open Gate confirmation. |
+
 | Case | Input or state | Expected routing or prompt behavior |
 | --- | --- | --- |
 | No template | Manifest says `optional_absent`; no active template supplied | Skip template and process current prompt. |
