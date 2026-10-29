@@ -551,6 +551,28 @@
 - Rà soát overlap tĩnh giữ quyền sở hữu riêng cho căn cứ, chức năng lượt nói và trạng thái nhận thức; không thấy xung đột trực tiếp với phụ thuộc phát biểu, cập nhật/bất định hay chiều sâu giải thích.
 - Việc nâng bản ghi nhận tác giả chấp thuận hiện vật và hợp đồng tĩnh của nó. Chưa có kết quả runtime có kiểm soát cho đúng hiện vật v8.9 này; kiểm tra cấu trúc và red-team tĩnh không chứng minh hành vi của mô hình.
 
+## v9.0
+
+### Thế hệ Project-native và giải nén quyền sở hữu
+
+- Mở dòng `ChatGPT Project Global Native` cho vùng chứa chỉ dẫn Project lớn hơn. v8.9 vẫn là baseline Plus normal-chat; hồ sơ triển khai mới, không phải riêng số phiên bản lớn, xác lập ranh giới thế hệ. Dung lượng khoảng 8.000 ký tự là trần, không phải mục tiêu.
+- Giữ hợp đồng đầu ra tiếng Việt, kernel ba control và hành vi giải thích của v8.9. Làm rõ rằng grounding, discourse và epistemic control là ranh giới quyền sở hữu nội bộ, không phải mẫu trả lời phải hiện ra.
+- Giải nén `TURN AND STATE` để tách chọn thao tác khỏi giữ giai đoạn, cho phép yêu cầu rõ đưa cuộc trao đổi ra khỏi khám phá, chỉ hỏi lại khi mơ hồ làm thay đổi hành động đáng kể, tích hợp so sánh/lựa chọn vào chủ sở hữu thao tác hiện có và giữ quyền dừng trong cùng mục.
+- Đổi tên `CLAIM DEPENDENCY` thành `CLAIM STATE AND DEPENDENCY`, đồng thời tách trạng thái phát biểu, việc dùng có điều kiện hoặc xác nhận, và điều kiện kích hoạt kiểm chứng mà không tạo mô-đun chính sách độc lập. Thêm kỷ luật hẹp về báo cáo trạng thái hành động để không nhập việc được đề xuất, mô phỏng, thử, kiểm tra và hoàn thành.
+- Giữ nguyên quyền sở hữu của cập nhật/bất định và giải thích, đồng thời nói rõ sự lặp lại hoặc phù hợp ngữ cảnh thiếu căn cứ không được cập nhật nền suy luận. Không thêm lớp `NEUTRAL BEHAVIOR`, `Critical Independence`, `Execution Integrity` hoặc chính sách quyết định độc lập.
+
+### Cơ sở thiết kế và kiểm tra trước cho công việc sau
+
+- Thêm `DESIGN_RATIONALE.md` để ghi ranh giới thế hệ, quy tắc kiểm tra chủ sở hữu hiện có, ranh giới mở rộng theo lĩnh vực và phép thử biện minh cho Router. Quy tắc trung tâm là dùng dung lượng bổ sung để làm rõ quyền sở hữu trước khi tạo một chủ sở hữu kiến trúc mới.
+- Thêm quy tắc đọc trước nhỏ nhất vào `AGENTS.md` cấp repository: trước khi tạo mới hoặc thiết kế lại đáng kể CI, Router hay thành phần anti-drift/kiểm soát dưới `llm-controls`, phải đọc rationale liên quan và đối chiếu đề xuất với quy tắc quyền sở hữu cùng mức sửa đổi đủ dùng.
+- Rationale là tham chiếu bắt buộc, không phải thẩm quyền bất biến. Nó không ghi đè chỉ dẫn hiện tại của người dùng, kiến trúc mới hơn đã được chấp thuận, trạng thái repository thực tế hoặc control có ưu tiên cao hơn; cũng không buộc mỗi chỉnh sửa nhỏ phải có rationale mới.
+
+### Ranh giới kiểm chứng
+
+- Kiểm tra cấu trúc đạt 7.263 ký tự và 7.273 byte UTF-8, gồm 51 dòng LF, có LF cuối tệp, không có khoảng trắng cuối dòng và không có BOM UTF-8. SHA-256: `12098CB7AED1E22FF27D799EACFDC0EC8D48944E87FF80A9710CEEE2F87740ED`.
+- Rà soát tĩnh từng quy tắc giữ hợp đồng đầu ra, ba chủ sở hữu control và sàn giải thích của v8.9, đồng thời đặt phần giải nén đã duyệt cùng quy tắc báo cáo hành động vào các chủ sở hữu hiện có. Hiện vật v8.9 giữ nguyên từng byte.
+- Các liên kết và bất biến bắt buộc của rationale vượt qua kiểm tra tĩnh; quy tắc đọc trước cùng rationale đã được xuất bản với dòng mới. Sự hiện diện của tệp, kiểm tra cấu trúc và việc xuất bản repository không chứng minh cài đặt hoặc hành vi tốt hơn trong ChatGPT Projects thực. Chưa có đối chiếu runtime có kiểm soát với v8.9 được ghi nhận tại đây.
+
 ## v6.5
 
 ### Sửa kernel control cho Go/Free

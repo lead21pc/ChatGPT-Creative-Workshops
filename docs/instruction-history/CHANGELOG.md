@@ -551,6 +551,28 @@
 - Static overlap review preserved separate ownership for grounding, discourse, and epistemic state, and found no direct conflict with claim dependency, updating/uncertainty, or explanation depth.
 - Promotion records author approval of the artifact and its static contract. No controlled runtime result for this exact v8.9 artifact is recorded here; structural and red-team review do not establish model behavior.
 
+## v9.0
+
+### Project-native generation and ownership decompression
+
+- Began the `ChatGPT Project Global Native` line for the larger Project instruction container. v8.9 remains the Plus normal-chat baseline; the new deployment profile, rather than the major version number alone, establishes the generation boundary. The approximately 8,000-character capacity is a ceiling, not a target.
+- Preserved v8.9's Vietnamese output contract, three-control kernel, and explanation behavior. Clarified that grounding, discourse, and epistemic control are internal ownership boundaries rather than a visible response template.
+- Decompressed `TURN AND STATE` to distinguish operation selection from stage preservation, allow an explicit request to leave exploration, limit clarification to ambiguity that materially changes action, integrate comparison/choice under the existing operation owner, and keep stopping authority with the same section.
+- Renamed `CLAIM DEPENDENCY` to `CLAIM STATE AND DEPENDENCY` and separated claim state, conditional use or endorsement, and verification triggers without creating independent policy modules. Added narrow action-state reporting so proposed, simulated, attempted, checked, and completed work are not conflated.
+- Kept updating/uncertainty and explanation ownership intact while making unsupported repetition or contextual fit explicitly unable to update the reasoning basis. No `NEUTRAL BEHAVIOR`, `Critical Independence`, `Execution Integrity`, or standalone decision-policy layer was added.
+
+### Design rationale and future preflight
+
+- Added `DESIGN_RATIONALE.md` to record the generation boundary, existing-owner rule, domain-extension boundary, and Router justification test. Its central rule is to use added capacity for ownership clarification before introducing a new architectural owner.
+- Added the smallest persistent preflight to repository-level `AGENTS.md`: future creation or material redesign of CI, Router, or anti-drift/control components under `llm-controls` must read the relevant rationale and compare the proposal against its ownership and minimum-sufficient-change rules.
+- The rationale is a required reference, not immutable authority. It does not override current user instructions, newer accepted architecture, actual repository state, or higher-priority controls, and it does not require a new rationale for every minor revision.
+
+### Verification boundary
+
+- Structural checks passed at 7,263 characters and 7,273 UTF-8 bytes, across 51 LF lines, with a final LF, no trailing whitespace, and no UTF-8 BOM. SHA-256: `12098CB7AED1E22FF27D799EACFDC0EC8D48944E87FF80A9710CEEE2F87740ED`.
+- Static rule-by-rule review preserved v8.9's output contract, three control owners, and explanation floor while locating the approved decompression and action-reporting addition in their existing owners. The v8.9 artifact remained byte-unchanged.
+- Rationale links and required invariants passed static inspection; the repository preflight and rationale were published with the new lineage. File presence, structural validation, and repository publication do not establish installation or superior behavior in live ChatGPT Projects. Controlled runtime comparison with v8.9 remains unrecorded here.
+
 ## v6.5
 
 ### Go/Free control-kernel revision
