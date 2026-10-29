@@ -4,14 +4,15 @@ HANDOFF_ID: REVAMP_SYSTEM
 FILENAME: REVAMP_SYSTEM_CURRENT.md
 STATUS: ACTIVE
 SCOPE: Revamp-system CI and local cross-chat workstream handoff mechanism only.
-UPDATED: 2026-10-28
+UPDATED: 2026-10-29
 
 ## 1. Established current state
 
 - USER-PROVIDED STATE: nhiều chat Revamp dùng chung repository; reasoning/quyết định nằm phân tán trong hội thoại. Đây là nguồn mô tả vấn đề vận hành, chưa phải hành vi được tái hiện trong thử nghiệm nhiều chat.
 - OBSERVED: baseline trước implementation là local `main`, HEAD `07380ce14c0ef6e13310d579929932c2a8eb7ce6`, working tree sạch. Đây là mốc lịch sử tác vụ, không phải khẳng định HEAD hiện tại; kiểm tra Git để biết trạng thái mới nhất.
 - DECIDED: người dùng chấp thuận promote v2.1 thành ACTIVE ngày 2026-10-18, archive predecessor, commit và push lên main. Đó là quyền push của đợt xuất bản cũ, không phải quyền push thường trực; chính sách stage/commit local hiện hành được cập nhật theo quyết định 2026-10-28 dưới đây.
-- IMPLEMENTED: v2.2 ACTIVE là CI hiện hành trong repository; v2.1 được khôi phục byte-exact từ commit `31c4ee9` và lưu trong `Project CI/Source_Archive/` làm predecessor không hoạt động. v2.0 đã nằm trong archive. Chỉ dùng predecessor đã lưu khi người dùng yêu cầu rõ. CI giữ control handoff ở 4A, core ChatGPT 8.9 và output-language override. Trạng thái cài đặt live Project chưa được xác minh.
+- DECIDED / IMPLEMENTED (2026-10-29): người dùng chấp thuận audit `ACCEPT` và promote v2.3 thành ACTIVE với governing base ChatGPT Project Global Native 9.0. Nội dung hành vi §1–§14 được giữ nguyên từ v2.2; chỉ metadata version/status/base thay đổi. v2.2 được lưu byte-exact trong `Project CI/Source_Archive/` làm predecessor không hoạt động; v2.1 và v2.0 vẫn ở archive. Chỉ dùng predecessor đã lưu khi người dùng yêu cầu rõ. Trạng thái cài đặt live Project chưa được xác minh; repository promotion không chứng minh live deployment.
+- STATICALLY VERIFIED (2026-10-29): v2.3 dài 7.992 ký tự gồm newline cuối; đủ 14 section và §4A, phần từ §1 đến cuối khớp v2.2 byte-for-byte, base là ChatGPT Project Global Native 9.0 và không còn governing-base reference tới ChatGPT 8.9. UTF-8, LF, newline cuối, không BOM/trailing whitespace đạt. Bản archive v2.2 có SHA-256 `43e9ac6c17790e11cfe581b29a7a9679aafe543a4743f93b603f0cc87a6b3eba`, trùng bản active trước promotion. Router/CURRENT paths còn hợp lệ; `git diff --check` trong phạm vi đạt. LIVE VERIFIED: NOT RUN.
 - DECIDED / IMPLEMENTED (2026-10-28): implementation local được cho phép có thể stage và commit các thay đổi đúng phạm vi sau kiểm chứng, không cần lệnh thứ hai; branch, tag và push vẫn cần quyền riêng. PUSH cần lệnh người dùng riêng; COMMIT != PUSH. Quyền audit/design/proposal hay chỉ nhận template/cập nhật CURRENT không tự cấp quyền implementation hoặc mở rộng phạm vi.
 - IMPLEMENTED (2026-10-28): §2 thêm `FAILURE DETECTION != DEBUG AUTHORIZATION`: ngừng dùng đường phụ thuộc tiền đề không hợp lệ, giữ đường đó làm bằng chứng, chỉ tiếp tục từ trạng thái hiện hành đủ dùng khi an toàn, nếu không nêu blocker. Đã bỏ câu quyền Git lặp ở §4A; rút wording ẩn dụ ở §14 theo audit. Không thêm recovery framework hoặc control vào Central Hub. LIVE VERIFIED: NOT RUN.
 - STATICALLY VERIFIED (2026-10-28): CI dài 7.985 ký tự gồm newline cuối; hai câu §2 đúng wording được duyệt và xuất hiện một lần, quyền push/branch/tag vẫn tách riêng, §4A giữ ranh giới Central Hub, §5–§6 không đổi. Kiểm tra UTF-8/newline/whitespace và `git diff --check` đạt. Template, history và route test không đổi; quyền chỉ nhận template/cập nhật CURRENT vẫn không tự cho phép implementation hay commit. LIVE VERIFIED: NOT RUN.
@@ -30,7 +31,7 @@ Next: chỉ khi được phép cài thử, dùng các tình huống trong đặc
 ## 3. Outstanding / blocked
 
 - LIVE VERIFIED: NOT RUN. Việc cài CI/Router/CURRENT vào ChatGPT Project và thử chuyển việc giữa chat chưa được xác minh; promotion repository không chứng minh deployment.
-- Không có blocker local được thiết lập. Quyền commit/push từng cấp cho đợt promotion 2026-10-18 là lịch sử; chính sách stage/commit hiện hành theo §2, còn push vẫn cần lệnh riêng. Không có quyền push hoặc deploy trong đợt sửa ngày 2026-10-28.
+- Không có blocker local được thiết lập. Quyền push từng cấp cho các đợt publication cũ là lịch sử; chính sách stage/commit hiện hành theo §2, còn push vẫn cần lệnh riêng. Đợt rebase ngày 2026-10-29 không có quyền push hoặc deploy.
 - Chưa đủ nguồn authoritative để tạo CURRENT cho Central Hub hoặc workstream khác; không tạo file suy đoán.
 
 ## 4. Under consideration
@@ -62,9 +63,11 @@ Thứ tự trong history mục 10–11 đã đồng bộ với Router v1.1: vào
 
 - `SYSTEM_CONTEXT.md`: mục 11–12, phân biệt repository/live runtime và lớp chứng cứ; đã đọc đầy đủ.
 - `AGENTS.md`: repository context gate; đã đọc đầy đủ. Chỉ dẫn AGENTS do người dùng cung cấp trong chat thêm ranh giới shared local working state và proposal review.
-- `Project CI/Source_Archive/Revamp_Project_System_CI_v2.1.md`: predecessor byte-exact từ commit `31c4ee9`, để provenance/rollback khi được yêu cầu; không phải nguồn hiện hành hay fallback mặc định. v2.0 và các bản cũ hơn ở cùng archive.
-- `llm-controls/global-instructions/ChatGPT Plus+ Era/chatgpt v8.9.txt`: governing core đã đọc đầy đủ; không sửa trong tác vụ này.
-- `Project CI/Revamp_Project_System_CI_v2.2.md`: CI ACTIVE trong repository; §2 có policy và failure-recovery mới, 4A CROSS-CHAT HANDOFF.
+- `Project CI/Source_Archive/Revamp_Project_System_CI_v2.2.md`: predecessor byte-exact để provenance/rollback khi được yêu cầu; không phải nguồn hiện hành hay fallback mặc định. v2.1, v2.0 và các bản cũ hơn ở cùng archive.
+- `llm-controls/global-instructions/ChatGPT Plus+ Era/chatgpt v8.9.txt`: governing core cũ của v2.2; đã đọc đầy đủ và không sửa trong tác vụ rebase.
+- `llm-controls/global-instructions/ChatGPT Project Global Native/chatgpt v9.0.txt`: governing core hiện hành của v2.3; đã đọc đầy đủ và không sửa trong tác vụ rebase.
+- `llm-controls/global-instructions/ChatGPT Project Global Native/DESIGN_RATIONALE.md`: rationale bắt buộc đã đọc đầy đủ; tham chiếu thiết kế, không phải bằng chứng live.
+- `Project CI/Revamp_Project_System_CI_v2.3.md`: CI ACTIVE trong repository; giữ nguyên §1–§14 từ v2.2, gồm policy §2, failure-recovery và 4A CROSS-CHAT HANDOFF.
 - `Project CI/Revamp Project System/HANDOFF_ROUTER.yaml`: Router v1.1 ACTIVE; repository preflight trước history; một entry CURRENT `revamp_system`.
 - `Project CI/Revamp Project System/HISTORY_AND_WHAT_NOT_TO_DO.md`: bối cảnh lỗi lịch sử/phòng ngừa; đọc FULL_FILE sau Router, trước CURRENT. HISTORY != CURRENT STATE; PAST FAILURE != PRESENT FAILURE; WARNING != AUTHORIZATION; GENEALOGY != REQUIRED ARCHITECTURE; HISTORICAL PAIN != PERMANENT MAXIMUM CONTROL.
 - `Project CI/Revamp Project System/HANDOFF_TEMPLATE.md`: tạo mới hoặc thay thế toàn bộ CURRENT từ trạng thái có chứng cứ trong chat.
