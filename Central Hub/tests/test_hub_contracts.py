@@ -24,6 +24,8 @@ CONCEPT_PREDECESSORS = frozenset(['HUB_ARCHITECTURE_v1.0.md', 'HUB_PACKAGE_CATAL
     'library_modules/HUB-DOM-CREATIVE_v1.0.md', 'library_modules/HUB-CAP-BRAINSTORM_v1.0.md'])
 
 def historical_source(path):
+    if path in {'tool_pipelines/ImageT/IMAGE_CONTROLLER_v1.1.md', 'tool_pipelines/ImageT/manifest.yaml'}:
+        return ROOT / 'Source_archive/ImageT Open Gate promotion 2026-10-29' / path
     if path in CONCEPT_PREDECESSORS:
         return CONCEPT_ARCHIVE / path  # Historical assertions only, never active resolution.
     if path in AIS_PREDECESSORS:
@@ -307,7 +309,7 @@ class HubTests(unittest.TestCase):
         self.assertNotIn('ci_location', self.router['resolution'])
         self.assertEqual(self.router['resolution']['controller_location'], 'project_sources')
         self.assertEqual(self.router['load_order'][0], 'selected_controller')
-        text = (IMAGE / 'IMAGE_CONTROLLER_v1.1.md').read_text(encoding='utf-8')
+        text = (IMAGE / 'IMAGE_CONTROLLER_v1.2.md').read_text(encoding='utf-8')
         self.assertLess(text.index('## Prompt and execution gate'), text.index('## Ready Gate delegation'))
         self.assertLess(text.index('## Ready Gate delegation'), text.index('## Verify and respond'))
         for state in ['PENDING_APPROVAL', 'APPROVED', 'REVISION_REQUIRED', 'STALE']:
@@ -341,12 +343,12 @@ class HubTests(unittest.TestCase):
         self.assertFalse(self.manifest['release']['published'])
         self.assertEqual(self.manifest['release']['project_deployment'], 'not_performed')
 
-    def test_image_open_gate_candidate_contract_and_nonactivation(self):
-        candidate_path = IMAGE / 'IMAGE_CONTROLLER_v1.2-candidate.md'
+    def test_image_open_gate_active_contract_and_binding(self):
+        candidate_path = IMAGE / 'IMAGE_CONTROLLER_v1.2.md'
         candidate = candidate_path.read_text(encoding='utf-8')
-        self.assertEqual(re.findall(r'^IMAGE_CONTROLLER_VERSION: (.+)$', candidate, re.M), ['1.2-candidate'])
-        self.assertEqual(re.findall(r'^STATUS: (.+)$', candidate, re.M), ['CANDIDATE'])
-        self.assertIn('ACTIVATION: INACTIVE; REPOSITORY TEST CANDIDATE ONLY', candidate)
+        self.assertEqual(re.findall(r'^IMAGE_CONTROLLER_VERSION: (.+)$', candidate, re.M), ['1.2'])
+        self.assertEqual(re.findall(r'^STATUS: (.+)$', candidate, re.M), ['ACTIVE'])
+        self.assertNotIn('CANDIDATE', candidate)
         self.assertLess(candidate.index('## Input authority / Open Gate'), candidate.index('## RAW path'))
         self.assertLess(candidate.index('## Input authority / Open Gate'), candidate.index('## PRESERVED_AUTHORED path'))
         self.assertLess(candidate.index('## PRESERVED_AUTHORED path'), candidate.index('## Prompt and execution gate'))
@@ -367,10 +369,23 @@ class HubTests(unittest.TestCase):
             self.assertIn(heuristic, candidate)
         active = self.manifest['controllers']['active']
         self.assertEqual((active['file'], active['version'], active['status']),
-                         ('IMAGE_CONTROLLER_v1.1.md', '1.1', 'active'))
+                         ('IMAGE_CONTROLLER_v1.2.md', '1.2', 'active'))
         self.assertEqual(self.manifest['controllers']['experiments'], [])
-        self.assertNotIn(candidate_path.name, (ROOT / 'HUB_PACKAGE_CATALOG_v1.2.yaml').read_text(encoding='utf-8'))
-        self.assertNotIn(candidate_path.name, (IMAGE / 'manifest.yaml').read_text(encoding='utf-8'))
+        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.3.yaml')
+        binding = next(p for p in catalog['packages'] if p['package_id'] == 'HUB-PKG-IMAGET')
+        self.assertEqual(binding['version'], active['version'])
+        self.assertEqual(binding['location']['source_name'], active['file'])
+        self.assertEqual(binding['location']['declared_source_path'], 'tool_pipelines/ImageT/' + active['file'])
+        archive = ROOT / 'Source_archive/ImageT Open Gate promotion 2026-10-29'
+        tested = (archive / 'tool_pipelines/ImageT/IMAGE_CONTROLLER_v1.2-candidate.md').read_text(encoding='utf-8')
+        self.assertEqual(tested.split('## Input authority / Open Gate', 1)[1].replace('in this candidate.', 'in this controller.'),
+                         candidate.split('## Input authority / Open Gate', 1)[1])
+        self.assertEqual(digest(archive / 'tool_pipelines/ImageT/IMAGE_CONTROLLER_v1.1.md'),
+                         '6d33c80f4852c1b44c32abf6e898c14e8f001d24796d406aafc49a95ab3a2733')
+        self.assertEqual(digest(archive / 'tool_pipelines/ImageT/IMAGE_CONTROLLER_v1.2-candidate.md'),
+                         'bfe8cc64f23932633c3f2a5a279d96ff39c1a54aaa6014c27cfcb5152876d600')
+        self.assertIn(candidate_path.name, (ROOT / 'HUB_PACKAGE_CATALOG_v1.3.yaml').read_text(encoding='utf-8'))
+        self.assertIn(candidate_path.name, (IMAGE / 'manifest.yaml').read_text(encoding='utf-8'))
         self.assertNotIn(candidate_path.name, (IMAGE / 'IMAGE_SOURCE_ROUTER.yaml').read_text(encoding='utf-8'))
         cases = (IMAGE / 'tests/ROUTE_TEST_CASES.md').read_text(encoding='utf-8')
         self.assertEqual(re.findall(r'^\| (O\d{2}) \|', cases, re.M), [f'O{i:02}' for i in range(1, 6)])
@@ -474,8 +489,8 @@ class HubTests(unittest.TestCase):
         active_controller = IMAGE / self.manifest['controllers']['active']['file']
         self.assertEqual([p for p in controllers if '-candidate' not in p.name], [active_controller])
         self.assertEqual([p for p in controllers if '-candidate' in p.name],
-                         [IMAGE / 'IMAGE_CONTROLLER_v1.2-candidate.md'])
-        self.assertNotIn('IMAGE_CONTROLLER_v1.2-candidate.md',
+                         [])
+        self.assertIn('IMAGE_CONTROLLER_v1.2.md',
                          (IMAGE / 'manifest.yaml').read_text(encoding='utf-8'))
         self.assertNotIn('ready_gate', self.manifest['release'])
         self.assertEqual(self.router['generation_dependencies']['ready_gate']['inventory'], 'manifest.artifacts.ready_gate')
@@ -523,7 +538,7 @@ class HubTests(unittest.TestCase):
                        'ONE APPROVAL = ONE EXACT TOOL CALL', 'CONSUMED',
                        'Approval of an older version makes no call', 'An unobservable backend payload is UNVERIFIABLE']:
             self.assertIn(anchor, gate)
-        controller = (IMAGE / 'IMAGE_CONTROLLER_v1.1.md').read_text(encoding='utf-8')
+        controller = (IMAGE / 'IMAGE_CONTROLLER_v1.2.md').read_text(encoding='utf-8')
         for anchor in ['AIS EVIDENCE SOURCE != IMAGE GENERATOR REFERENCE ASSET',
                        'UNSPECIFIED != FORBIDDEN', 'OMITTED != PROHIBITED', 'OPEN FIELD != NEGATIVE CONSTRAINT',
                        'explicit user prohibition', 'logical requirement of an explicit constraint',
@@ -550,7 +565,7 @@ class HubTests(unittest.TestCase):
     def test_migrated_specialist_semantic_bodies(self):
         brain = (historical_source('capabilities/BRAINSTORM_v1.0.md')).read_text(encoding='utf-8').split('## Branching by premise change', 1)[1]
         self.assertEqual(hashlib.sha256(brain.encode()).hexdigest(), 'd9efaca29971bfdf1716c323a679f81715d5cac7b9d00abe791c5dd044db67fa')
-        controller = (IMAGE / 'IMAGE_CONTROLLER_v1.1.md').read_text(encoding='utf-8')
+        controller = historical_source('tool_pipelines/ImageT/IMAGE_CONTROLLER_v1.1.md').read_text(encoding='utf-8')
         body = controller.split('## Authority and conflict', 1)[1].split('## Ready Gate delegation', 1)[0]
         paragraphs = body.split('\n\n')
         additions = [p for p in paragraphs if p.startswith(('AIS EVIDENCE SOURCE', 'UNSPECIFIED != FORBIDDEN'))]

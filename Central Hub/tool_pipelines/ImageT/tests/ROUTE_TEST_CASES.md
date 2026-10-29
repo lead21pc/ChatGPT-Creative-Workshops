@@ -2,11 +2,11 @@
 
 SPEC: REVIEWED_TEXT. LIVE: NOT RUN.
 
-## Open Gate candidate O01-O05
+## Open Gate active O01-O05
 
-These five fixtures apply only to `IMAGE_CONTROLLER_v1.2-candidate.md`. They are a static/spec oracle, not evidence that the candidate is active, deployed, selected by the ImageT Router, executed by a model, or live-verified.
+These five fixtures apply only to `IMAGE_CONTROLLER_v1.2.md`. They are a static/spec oracle. Repository activation does not prove Project deployment, model execution or integrated live verification.
 
-| ID | Input or state | Expected candidate behavior |
+| ID | Input or state | Expected controller behavior |
 | --- | --- | --- |
 | O01 | Short ordinary image request; no current-user preservation instruction | Select RAW internally; retain normal v1.1 construction, open-field protection and Prompt Gate -> Ready Gate eligibility; add no Open Gate confirmation. |
 | O02 | Current user explicitly supplies an authored image artifact and requires semantic preservation; artifact contains accepted, provisional, rejected and open states, an explicit negative, a semantic relation and a reference role | Select PRESERVED_AUTHORED; pass through the semantic payload; do not promote state, normalize, add content or re-author before Prompt Gate. |
@@ -36,6 +36,6 @@ These five fixtures apply only to `IMAGE_CONTROLLER_v1.2-candidate.md`. They are
 | Result after completed call | A generation submission occurred and a later result is failed or uncertain | Prior approval remains consumed under Ready Gate; post-image verification does not restore it. |
 | Retry after failed/uncertain result | The result is failed or uncertain | No silent retry; another call requires the normal fresh route/snapshot/approval path. |
 
-Additionally: manifest/controller/router mismatch or missing/corrupt module -> block dependent image work, no archive fallback; present/inactive preference -> no activation; ANALYZE inspects only; retries must reread sources and the current lock. Ready Gate v1.0 is an active/required dependency for every generation call, pinned by the manifest and resolved by the router; missing/unreadable/wrong hash/version/compatibility must stop generation, with no embedded fallback. Controller v1.1 delegates only. Check R01–R22 and X01 in READY_GATE_TEST_CASES.md.
+Additionally: manifest/controller/router mismatch or missing/corrupt module -> block dependent image work, no archive fallback; present/inactive preference -> no activation; ANALYZE inspects only; retries must reread sources and the current lock. Ready Gate v1.0 is an active/required dependency for every generation call, pinned by the manifest and resolved by the router; missing/unreadable/wrong hash/version/compatibility must stop generation, with no embedded fallback. Controller v1.2 delegates only. Check R01–R22 and X01 in READY_GATE_TEST_CASES.md.
 
 Check locally with python -B -m unittest discover -s tests -v from the Central Hub root; the oracle simulates inventory only and calls no model/tool. For separate live tests, record input, actually loaded sources, displayed prompt, payload if observable, image and visible constraints.

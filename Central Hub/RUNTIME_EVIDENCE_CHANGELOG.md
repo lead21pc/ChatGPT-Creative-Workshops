@@ -23,6 +23,14 @@ NO NEW EVIDENCE != STATUS RESET
 
 ## Current verified runtime status
 
+### IMAGET_OPEN_GATE_1_2_REPOSITORY_PROMOTION
+
+- Status: `REPOSITORY_ACTIVE / STATICALLY_VERIFIED`; controller 1.2, manifest 2.2.0, Architecture/Catalog 1.3 and Router 1.1 exact pins.
+- Static baseline: `159/159 PASS`; post-promotion static suite: `159/159 PASS`.
+- Candidate bounded smoke: `USER-PROVIDED LIVE CANDIDATE EVIDENCE / USER_CONFIRMED_LIVE_PASS`; controller 1.2-candidate. T01 RAW construction, T02 semantic preservation, T03 no appearance-based preservation inference, T04 exact PALETTE ONLY reference binding: PASS. No observed regression was reported in those paths. Codex did not independently reproduce these runs; original traces were not supplied in this task.
+- Project deployment: `NOT PERFORMED`; active integrated runtime smoke: `NOT RUN`. Candidate evidence does not establish active integrated runtime verification or global ImageT correctness.
+- Predecessor controller SHA-256: `6d33c80f4852c1b44c32abf6e898c14e8f001d24796d406aafc49a95ab3a2733`; retained byte-exact in `Source_archive/ImageT Open Gate promotion 2026-10-29/` with the tested candidate and prior binding snapshots.
+
 ### AUTHORING_0_3_REPOSITORY_PROMOTION
 
 - Status: `REPOSITORY_IMPLEMENTED / STATICALLY_VERIFIED`; not a runtime PASS.
@@ -51,6 +59,12 @@ NO NEW EVIDENCE != STATUS RESET
 - Related log entry: `2026-10-27 - Integrated concept-development runtime smoke`.
 
 ## Verification log
+
+### 2026-10-29 - ImageT Open Gate repository promotion
+
+- Promoted tested controller 1.2-candidate to ACTIVE 1.2 through status/version and runtime source-selection cleanup only; retained Open Gate semantic behavior. Updated manifest and root Catalog binding together, with Architecture/Catalog 1.3 pins in Router 1.1; Hub CI and Router algorithm unchanged.
+- Focused Open Gate/ImageT checks and full static suite passed; full suite before/after: 159/159. Archived predecessor/candidate/binding snapshots byte-exact. T01-T04 PASS is user-provided live candidate evidence only.
+- No Project deployment, Library upload, active integrated live test, stage, commit or push was performed.
 
 ### 2026-10-28 - Authoring 0.3 repository promotion
 

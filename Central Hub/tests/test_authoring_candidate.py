@@ -54,7 +54,7 @@ class AuthoringPromotionTests(unittest.TestCase):
                                  vector['expected'])
 
     def test_exact_root_admission_and_unresolved_library_binding(self):
-        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.2.yaml')
+        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.3.yaml')
         self.assertEqual(len(catalog['packages']), 5)
         entries = [p for p in catalog['packages'] if p['package_id'] == 'HUB-PKG-AUTHORING']
         self.assertEqual(len(entries), 1)
@@ -83,16 +83,16 @@ class AuthoringPromotionTests(unittest.TestCase):
             self.assertEqual(trigger_spec(f'/AUTHOR {target}'), target)
 
     def test_successor_stack_pins_and_router_algorithm_unchanged(self):
-        architecture = (ROOT / 'HUB_ARCHITECTURE_v1.2.md').read_text(encoding='utf-8')
-        self.assertEqual(re.findall(r'^Version: (.+)$', architecture, re.M), ['1.2'])
-        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.2.yaml')
+        architecture = (ROOT / 'HUB_ARCHITECTURE_v1.3.md').read_text(encoding='utf-8')
+        self.assertEqual(re.findall(r'^Version: (.+)$', architecture, re.M), ['1.3'])
+        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.3.yaml')
         self.assertEqual((catalog['module_id'], catalog['status'], catalog['version']),
-                         ('HUB-CORE-PACKAGE-CATALOG', 'ACTIVE', '1.2'))
+                         ('HUB-CORE-PACKAGE-CATALOG', 'ACTIVE', '1.3'))
         prior = load(PROMOTION_ARCHIVE / 'HUB_ROUTER_v1.1.yaml')
         active = load(ROOT / 'HUB_ROUTER_v1.1.yaml')
         expected = copy.deepcopy(prior)
-        expected['contracts']['architecture'].update(file='HUB_ARCHITECTURE_v1.2.md', version='1.2')
-        expected['contracts']['root_catalog'].update(file='HUB_PACKAGE_CATALOG_v1.2.yaml', version='1.2')
+        expected['contracts']['architecture'].update(file='HUB_ARCHITECTURE_v1.3.md', version='1.3')
+        expected['contracts']['root_catalog'].update(file='HUB_PACKAGE_CATALOG_v1.3.yaml', version='1.3')
         expected['contracts']['binding_scope'] = active['contracts']['binding_scope']
         self.assertEqual(active, expected)
         self.assertNotIn('HUB-PKG-AUTHORING', (ROOT / 'HUB_CI_v1.1.md').read_text(encoding='utf-8'))
