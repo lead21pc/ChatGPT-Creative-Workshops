@@ -4,9 +4,11 @@ HANDOFF_ID: REVAMP_SYSTEM
 FILENAME: REVAMP_SYSTEM_CURRENT.md
 STATUS: ACTIVE
 SCOPE: Revamp-system CI and local cross-chat workstream handoff mechanism only.
-UPDATED: 2026-10-29
+UPDATED: 2026-10-30
 
 ## 1. Established current state
+
+- DECIDED / IMPLEMENTED (2026-10-30): người dùng chấp thuận đặt `FAILURE_ENTRY_MODES.md` ở gốc `Revamp Project System/`, giữ nội dung nguồn `D:\FAILURE_ENTRY_MODES.md`. Đây là reference so sánh Case 1/2/1.5; entry mode không xác định nguyên nhân, mức nghiêm trọng hoặc trạng thái chứng cứ. History §8 có liên kết đọc tùy nhu cầu; không thêm mandatory preflight, Router entry hoặc control. CI v2.3 và Router giữ nguyên. Kiểm chứng live: NOT RUN; thêm file trong repository không chứng minh live deployment.
 
 - USER-PROVIDED STATE: nhiều chat Revamp dùng chung repository; reasoning/quyết định nằm phân tán trong hội thoại. Đây là nguồn mô tả vấn đề vận hành, chưa phải hành vi được tái hiện trong thử nghiệm nhiều chat.
 - OBSERVED: baseline trước implementation là local `main`, HEAD `07380ce14c0ef6e13310d579929932c2a8eb7ce6`, working tree sạch. Đây là mốc lịch sử tác vụ, không phải khẳng định HEAD hiện tại; kiểm tra Git để biết trạng thái mới nhất.
@@ -58,6 +60,8 @@ Không có xung đột được thiết lập khi khởi tạo. Khi file/runtime
 Thứ tự trong history mục 10–11 đã đồng bộ với Router v1.1: vào Router, kiểm tra repo hiện hành trước history, rồi CURRENT. Đây là sửa tính tương thích chỉ dẫn, không phải kiểm chứng lại các sự kiện lịch sử được kể trong file.
 
 ## 8. Relevant source anchors
+
+- `Project CI/Revamp Project System/FAILURE_ENTRY_MODES.md`: reference so sánh tình huống lỗi đi vào Revamp, đặc biệt Case 1.5; giải thích CI §2, không thay thế control, CURRENT hoặc phân loại chứng cứ §4.
 
 Đường dẫn tính từ repository root:
 

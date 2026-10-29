@@ -280,6 +280,8 @@ CODEX WITHOUT SCOPE CONTROL
 
 The loop is useful only if both checks remain independent.
 
+For optional comparison of failure-entry situations, see [FAILURE_ENTRY_MODES.md](FAILURE_ENTRY_MODES.md). It is a reference, not required preflight or additional control.
+
 ---
 
 ## 9. What Revamp must not do
