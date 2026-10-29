@@ -25,10 +25,11 @@ def current_fixture():
     fixture['artifacts'][CATALOG] = [dict(copy.deepcopy(catalog), read_kind='FULL_FILE')]
     local = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.0.yaml')
     leaves = []
+    scopes = {'HUB-DOM-CREATIVE': {'CREATIVE'}, 'HUB-CAP-BRAINSTORM': {'BRAINSTORM'}}
     for row in local['entries']:
-        scope = 'CREATIVE' if row['module_id'] == 'HUB-DOM-CREATIVE' else 'BRAINSTORM'
-        leaf = synthetic_module(row['module_id'], row['package_id'], {scope},
+        leaf = synthetic_module(row['module_id'], row['package_id'], scopes.get(row['module_id'], set()),
                                 role=row['runtime_role'], version=row['version'],
+                                status=row['status'], requires=copy.deepcopy(row['requires']),
                                 location=copy.deepcopy(row['location']))
         leaves.append(leaf)
         fixture['artifacts'][leaf['module_id']] = [dict(copy.deepcopy(leaf), read_kind='FULL_FILE')]
@@ -59,7 +60,9 @@ class ConceptDevelopmentTests(unittest.TestCase):
                           self.local['status'], self.local['version']),
                          (CATALOG, PACKAGE, 'PACKAGE_CATALOG', 'ACTIVE', '1.0'))
         self.assertEqual({p['module_id'] for p in self.local['entries']},
-                         {'HUB-DOM-CREATIVE', 'HUB-CAP-BRAINSTORM'})
+                         {'HUB-DOM-CREATIVE', 'HUB-CAP-BRAINSTORM', 'HUB-DOM-ANTI-PRIOR',
+                          'HUB-DOM-MODULAR-CONCEPT-ARCHITECTURE',
+                          'HUB-DOM-WORLDBUILDING-INTERNAL-LOGIC'})
         for leaf_name in ['HUB-DOM-CREATIVE', 'HUB-CAP-BRAINSTORM', 'thử động não', 'brainstorm sâu']:
             self.assertNotIn(leaf_name, str(self.root))  # Root knows only the package interface.
 
@@ -136,9 +139,10 @@ class ConceptDevelopmentTests(unittest.TestCase):
                                ('Status', 'ACTIVE'), ('Version', version)]:
                 self.assertEqual(re.findall(r'^' + key + r': (.+)$', text, re.M), [value])
         for row in self.local['entries']:
-            self.assertEqual(row['version'], '1.1')
             self.assertEqual(row['package_id'], PACKAGE)
-            self.assertEqual(row['requires'], [])
+            if row['module_id'] in {'HUB-DOM-CREATIVE', 'HUB-CAP-BRAINSTORM'}:
+                self.assertEqual(row['version'], '1.1')
+                self.assertEqual(row['requires'], [])
         previous = (CONCEPT_ARCHIVE / 'library_modules/HUB-CAP-BRAINSTORM_v1.0.md').read_bytes()
         current = (ROOT / 'library_modules/HUB-CAP-BRAINSTORM_v1.1.md').read_bytes()
         marker = b'## Branching by premise change'
@@ -202,7 +206,8 @@ class ConceptDevelopmentTests(unittest.TestCase):
         locations = {
             CORE: package['location'],
             CATALOG: package['local_catalog']['location'],
-            **{row['module_id']: row['location'] for row in self.local['entries']},
+            **{row['module_id']: row['location'] for row in self.local['entries']
+               if row['module_id'] in {'HUB-DOM-CREATIVE', 'HUB-CAP-BRAINSTORM'}},
         }
         expected = {
             CORE: ('libfile_25fe61415e408191b974235fa6608edf',
