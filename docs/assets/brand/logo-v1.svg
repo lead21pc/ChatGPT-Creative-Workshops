@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-labelledby="logo-title logo-desc">
+  <title id="logo-title">Creative workshop and scoped Hub connections</title>
+  <desc id="logo-desc">An open workshop frame surrounds a central Hub and four radial connections. The four peripheral nodes are visual shorthand, not a fixed package count or ontology. Logo v1 is an asset revision only.</desc>
+  <rect x="8" y="8" width="240" height="240" rx="30" fill="#F5F1E8" stroke="#263345" stroke-width="2"/>
+  <path d="M176 36H60C47 36 36 47 36 60V196C36 209 47 220 60 220H196C209 220 220 209 220 196V80" fill="none" stroke="#263345" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="128" y1="128" x2="76" y2="78" stroke="#263345" stroke-width="7" stroke-linecap="round"/>
+  <line x1="128" y1="128" x2="182" y2="74" stroke="#263345" stroke-width="7" stroke-linecap="round"/>
+  <line x1="128" y1="128" x2="188" y2="178" stroke="#263345" stroke-width="7" stroke-linecap="round"/>
+  <line x1="128" y1="128" x2="74" y2="184" stroke="#263345" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="76" cy="78" r="12" fill="#263345"/>
+  <circle cx="182" cy="74" r="12" fill="#263345"/>
+  <circle cx="188" cy="178" r="12" fill="#263345"/>
+  <circle cx="74" cy="184" r="12" fill="#263345"/>
+  <circle cx="128" cy="128" r="23" fill="#D89C3D" stroke="#263345" stroke-width="6"/>
+</svg>

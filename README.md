@@ -1,49 +1,37 @@
+<p align="center">
+  <img src="docs/assets/brand/logo-v1.svg" width="192" height="192" alt="Open workshop frame with a central Hub and four scoped connections">
+</p>
+
 # ChatGPT CI Versioning / Worldbuilding Control Repository
 
-A personal, non-commercial experiment in using ChatGPT across large fictional worlds, simulation systems, research, reasoning, brainstorming, image generation, and other fragmented capabilities as **one mission-oriented working environment**.
+**A personal AI-assisted creative workshop for worldbuilding, LLM control architecture, and mission-oriented reasoning, research, concept development, and image workflows.**
 
-The creative work is the purpose. **Central Hub** and the surrounding routing, anti-drift, source-management, regression, and Git infrastructure exist to call specialized capabilities when they are useful, keep their authority scoped to the part of the task they actually own, and compose their results without letting one subsystem take over the mission, the world, or the author's authority.
+[![MIT License](https://img.shields.io/badge/license-MIT-263345)](LICENSE)
+[![FTH Control Pack 0.1.0](https://img.shields.io/badge/FTH_Control_Pack-0.1.0-D89C3D)](https://github.com/lead21pc/chatgpt-ci-worldbuilding/releases/tag/fth-control-pack-v0.1.0)
+[![Central Hub Architecture Pack 0.1.0](https://img.shields.io/badge/Central_Hub_Architecture_Pack-0.1.0-263345)](https://github.com/lead21pc/chatgpt-ci-worldbuilding/releases/tag/central-hub-architecture-pack-v0.1.0)
 
-The repository contains externalized worldbuilding sources, versioned Custom Instructions, routing and anti-drift controls, experiments, regression evidence, design history, and supporting tools.
+[Releases](#featured-reusable-releases) · [Central Hub](#central-hub) · [Choose your path](#choose-your-path) · [Creative systems](#creative-systems) · [LLM controls](llm-controls/) · [System context](SYSTEM_CONTEXT.md)
 
-**CI** means **Custom Instructions**, not Continuous Integration.
+## Featured reusable releases
 
-```text
-                                 MISSION
-                                    │
-                              CENTRAL HUB
-                                    │
-        ┌──────────────────┬────────┼───────────────┬─────────────────┐
-        │                  │                        │                 │
- Research / evidence  Reasoning / diagnosis   Creation / design   Image generation
-        │                  │                        │                 │
-       AIS              TECHNICAL          CONCEPT DEVELOPMENT     ImageT
-                                                ├─ BRAINSTORM
-                                                └─ CREATIVE
-        └──────────────────┴────────┬───────────────┴─────────────────┘
-                                   │
-                      composed result / next step
+You can download either curated ZIP and use its included documentation without cloning the whole workshop. Each pack has its own release stream; neither version numbers the repository or proves an active personal deployment.
 
-Creative systems remain independent:
-Project Feather Core       The Kingdom       Fanfiction Engine
-own truth & authority      own world model   own runtime & authority
-```
+| Pack | What you can reuse | Get it |
+| --- | --- | --- |
+| **FTH Control Pack v0.1.0** | A control stack extracted from Project Feather Core for source authority, state, routing, and authoring boundaries. It contains no FTH lore. | [GitHub Release](https://github.com/lead21pc/chatgpt-ci-worldbuilding/releases/tag/fth-control-pack-v0.1.0) · [Source and adaptation guide](distribution/FTH-Control-Pack/README.md) |
+| **Central Hub Architecture Pack v0.1.0** | A reference architecture and optional starter for mission-oriented orchestration, scoped authority, and package composition. It is not a copy of the author's deployment; TECHNICAL is a replaceable worked example. | [GitHub Release](https://github.com/lead21pc/chatgpt-ci-worldbuilding/releases/tag/central-hub-architecture-pack-v0.1.0) · [Source and starter guide](distribution/Central-Hub-Architecture-Pack/README.md) |
 
-## At a glance
+Start with the chosen pack's README, customize only what it requires, and test it in your own environment. The [distribution landing page](distribution/README.md) explains ZIP versus source use. Evidence belongs to each pack's release notes; **LIVE VERIFIED: NOT_RUN** for portability to another project.
 
-| | |
-| --- | --- |
-| **Creative purpose** | Worldbuilding and fanfiction/daydream simulation. |
-| **Execution model** | Mission first: select only the domains, capabilities, and tool pipelines that make a concrete contribution to the current task. |
-| **Authority model** | Each specialization owns only its assigned task portion; participation does not grant authority over the whole mission. |
-| **Control model** | Stronger constraints and controls activate when needed rather than becoming a permanent global mode. |
-| **Creative systems** | Project Feather Core (FTH), The Kingdom, and Fanfiction Engine remain independent; shared infrastructure does not create shared canon or ontology. |
-| **Project premise** | Personal, non-commercial, author-controlled, and not an official OpenAI project. |
+## What this workshop is — and why it exists
 
-> [!IMPORTANT]
-> **LLM / agent readers:** Read [SYSTEM_CONTEXT.md](./SYSTEM_CONTEXT.md) before analyzing architecture, project relationships, or authoring workflow. Then follow the relevant project's sources and declared authority. Repository contents are a partial externalization of the author's systems; they do not establish the full internal world model or the currently active ChatGPT Project configuration.
+**Creative work is the purpose.** This is a personal, non-commercial working repository for worldbuilding and fanfiction/daydream simulation, developed with ChatGPT and Codex. It remains the author's active workshop, not sample data for a generic framework.
 
-## How Central Hub fits
+The repository contains externalized worldbuilding sources, versioned Custom Instructions, routing and anti-drift controls, experiments, regression evidence, design history, and supporting tools. The infrastructure developed through actual use, observed failures, diagnosis, bounded changes, and feedback. It supports the creative work; some parts became reusable enough to release separately.
+
+**CI** means **Custom Instructions**, not Continuous Integration. This is an independent personal project, not an official OpenAI project or a guarantee of ChatGPT behavior.
+
+## Central Hub
 
 Central Hub is the current expression of the repository's move from separate prompts, tools, domains, and ChatGPT features toward one coordinated execution flow.
 
@@ -51,9 +39,16 @@ A task is treated as a **mission**, not as ownership by one subsystem. The Hub k
 
 ```text
 MISSION
-→ scoped contribution selection
-→ specialized execution under local authority
-→ composition back into the mission
+   |
+CENTRAL HUB
+   +-- research / evidence
+   +-- reasoning / diagnosis
+   +-- concept development
+   +-- image workflows
+   |
+scoped composition
+   |
+MISSION RESULT
 ```
 
 The goal is not maximum control. Ordinary work may remain on the baseline. Specialized constraints are added where the task needs them, and a growing capability should not require the Hub core to absorb that capability's internal architecture.
@@ -66,7 +61,24 @@ CONTROL IS ACTIVATED BY NEED; IT IS NOT A PERMANENT GLOBAL MODE.
 
 Central Hub is supporting infrastructure, not a fourth creative project and not a shared ontology for the independent worlds or simulation systems.
 
+The diagram names kinds of contribution, not a fixed package inventory or a hierarchy over the creative systems. For an independently readable reference, use the [Central Hub Architecture Pack v0.1.0](https://github.com/lead21pc/chatgpt-ci-worldbuilding/releases/tag/central-hub-architecture-pack-v0.1.0). For current workshop controls, bindings, and scoped evidence, read the [Central Hub documentation](Central%20Hub/README.md).
+
+## Choose your path
+
+| I want to… | Go to |
+| --- | --- |
+| Reuse LLM/worldbuilding controls | [FTH Control Pack](distribution/FTH-Control-Pack/README.md) |
+| Understand mission-oriented AI orchestration | [Central Hub Architecture Pack](distribution/Central-Hub-Architecture-Pack/README.md) |
+| Inspect Central Hub as it develops in the workshop | [Central Hub](Central%20Hub/README.md) |
+| Explore the worldbuilding projects | [Project Feather Core](Project%20Feather%20Core/README.md) · [The Kingdom](worlds/The%20Kingdom/README.md) |
+| Explore the fanfiction/daydream simulation system | [Fanfiction Engine](worlds/Fanfiction%20Engine/README.md) |
+| Read instruction/control designs and experiments | [LLM controls](llm-controls/) |
+| Read history and design analysis | [Docs](docs/) |
+| Interpret the repository's sources and authority correctly | [System context](SYSTEM_CONTEXT.md) |
+
 ## Creative systems
+
+**These creative systems are first-class work, not sample data for Central Hub.** They keep independent canon, ontology, and local authority; Central Hub is not their semantic parent.
 
 | Project | Repository entry | Interpretation |
 | --- | --- | --- |
@@ -75,16 +87,6 @@ Central Hub is supporting infrastructure, not a fourth creative project and not 
 | Fanfiction Engine | [Fanfiction Engine](./worlds/Fanfiction%20Engine/) | Fanfiction/daydream simulation system; The Academy is its internal platform. Its operational domains can run independently or compose. |
 
 Each project's local documentation determines how to read its sources. Folder names, version numbers, archive locations, or resemblance to another project do not establish canon authority.
-
-## How work moves through the repository
-
-Three connected flows explain the organization:
-
-- **Mission execution:** a current task is scoped, relevant capabilities are selected, each contributor works within its authority, and the results return to the overall mission.
-- **Creative work:** a stimulus or candidate idea reaches author review; an abstract seed can be considered for each world; local compatibility and author decisions determine what is accepted and externalized into that world's sources.
-- **Control improvement:** actual use reveals a failure; diagnosis leads to a candidate instruction or tooling change; author review, bounded implementation, checks, and live feedback inform whether the change is kept, revised, or rolled back.
-
-These flows combine human actions, model instructions, and executable tools. They are not an automatic lore-publication pipeline. Git relocation does not update ChatGPT Project or Library contents, change live source-loading policy, or activate an instruction version.
 
 ## Repository layout
 
@@ -95,6 +97,7 @@ repository/
 ├── README.md
 ├── SYSTEM_CONTEXT.md
 ├── AGENTS.md
+├── LICENSE
 ├── worlds/
 │   ├── The Kingdom/
 │   └── Fanfiction Engine/
@@ -109,11 +112,19 @@ repository/
 │   │   └── Project CI/
 │   └── worldbuilding-ci-kernel/
 ├── Central Hub/
+├── Project CI/
+├── distribution/
+│   ├── README.md
+│   ├── FTH-Control-Pack/
+│   └── Central-Hub-Architecture-Pack/
 ├── codex-workflows/
 ├── docs/
 │   ├── instruction-history/
 │   ├── instruction-analysis/
-│   └── visuals/
+│   ├── visuals/
+│   └── assets/
+│       └── brand/
+│           └── logo-v1.svg
 └── public-release-integration
 ~~~
 
@@ -122,7 +133,9 @@ repository/
 - [llm-controls/](./llm-controls/) contains general instructions, project instruction designs, and reusable worldbuilding controls. Project-local controls also remain inside their world packages.
 - [Central Hub/](./Central%20Hub/) coordinates scoped capabilities and tool pipelines into mission-oriented execution. It is supporting infrastructure, not an additional creative world/system or a shared ontology for the independent projects.
 - [codex-workflows/](./codex-workflows/) contains repository copies of Codex skills; moving them does not install or update the author's locally installed skills.
-- [docs/](./docs/) contains instruction history, design analysis, and explanatory visuals.
+- [docs/](./docs/) contains instruction history, design analysis, explanatory visuals, and the workshop logo asset. `logo-v1` is an asset revision, not a repository version.
+- [distribution/](./distribution/) contains curated reusable projections with their own release streams; it does not own the active personal systems or their runtime bindings.
+- [Project CI/](./Project%20CI/) is an existing workshop instruction-design area; its local controls and history retain their own scope.
 
 The [FTH instruction collection](./Project%20Feather%20Core/Project%20Feather%20Core%20CI/) is managed with the Project Feather Core package. General instruction designs remain under `llm-controls/`; their separate responsibilities and historical baselines still apply. Directory placement does not select an active configuration.
 
@@ -130,7 +143,15 @@ The Kingdom package retains its declared reference-only status. Source archives 
 
 The existing public-release-integration entry remains at the root as a Git commit reference (gitlink). Its role is unresolved here; it has not been moved, initialized, or treated as an ordinary content directory.
 
-## Start here
+## Read deeper: context and source authority
+
+> [!IMPORTANT]
+> **LLM / agent readers:** Read [SYSTEM_CONTEXT.md](./SYSTEM_CONTEXT.md) before analyzing architecture, project relationships, or authoring workflow. Then follow the relevant project's sources and declared authority. Repository contents are a partial externalization of the author's systems; they do not establish the full internal world model or the currently active ChatGPT Project configuration.
+
+The public packs are curated projections, not replacements for project-local sources. Keep repository checks, author-reported observations, and directly reproduced runtime behavior distinct. The sections below retain the workshop's deeper reading routes and interpretation boundaries.
+
+<details>
+<summary>Detailed reading routes and order</summary>
 
 - [SYSTEM_CONTEXT.md](./SYSTEM_CONTEXT.md) — authoring model, project boundaries, control responsibilities, and evidence rules.
 - [Central Hub](./Central%20Hub/) — mission-oriented execution, routing, package composition, and tool-pipeline coordination.
@@ -152,9 +173,29 @@ Suggested reading order:
 
 A search hit, filename, summary, directory placement, or repeated wording is not a substitute for reading the controlling source.
 
+</details>
+
 ## Deeper context
 
 The sections below preserve the repository's provenance, interpretation boundaries, evidence model, and runtime limitations. They are intentionally more detailed than the overview above.
+
+<details>
+<summary>How work moves through the repository</summary>
+
+### How work moves through the repository
+
+Three connected flows explain the organization:
+
+- **Mission execution:** a current task is scoped, relevant capabilities are selected, each contributor works within its authority, and the results return to the overall mission.
+- **Creative work:** a stimulus or candidate idea reaches author review; an abstract seed can be considered for each world; local compatibility and author decisions determine what is accepted and externalized into that world's sources.
+- **Control improvement:** actual use reveals a failure; diagnosis leads to a candidate instruction or tooling change; author review, bounded implementation, checks, and live feedback inform whether the change is kept, revised, or rolled back.
+
+These flows combine human actions, model instructions, and executable tools. They are not an automatic lore-publication pipeline. Git relocation does not update ChatGPT Project or Library contents, change live source-loading policy, or activate an instruction version.
+
+</details>
+
+<details>
+<summary>Author and project premise</summary>
 
 ### Author and project premise
 
@@ -184,6 +225,11 @@ REPOSITORY ORGANIZATION != AUTHORIAL ONTOLOGY
 
 Evaluate the repository according to its stated purpose and observed failure modes, not by importing assumptions from professional software, data, enterprise, SaaS, or publication workflows.
 
+</details>
+
+<details>
+<summary>What the pipeline does</summary>
+
 ### What the pipeline does
 
 The repository name reflects its instruction-versioning history, but its current scope includes both the creative systems and the supporting control infrastructure. Global instructions may support general interaction as well as project work, while project-specific controls remain local to their respective projects.
@@ -204,6 +250,11 @@ Different parts of this workflow have different roles:
 
 A pipeline diagram may describe author actions, model instructions, executable tooling, or feedback between them. It does not mean every step is automated. Running a repository check does not install instructions in ChatGPT, decide canon, or prove that a model will behave correctly.
 
+</details>
+
+<details>
+<summary>How to distinguish this workflow from related repositories</summary>
+
 ### How to distinguish this workflow from related repositories
 
 Related repositories may combine prompt collections, worldbuilding templates, lore archives, writing tools, and evaluation workflows. The distinctions below explain this repository's scope; they are not a claim that no other project uses similar methods.
@@ -216,6 +267,11 @@ Related repositories may combine prompt collections, worldbuilding templates, lo
 - **Validation has explicit limits.** File checks, source-consistency checks, and live model behavior are different kinds of evidence. A structural pass does not establish a runtime pass.
 
 Read this as an author's working environment for maintaining fictional worlds with LLM assistance. Evaluate each tool and control by how it supports that work.
+
+</details>
+
+<details>
+<summary>Interpretation boundaries</summary>
 
 ### Interpretation boundaries
 
@@ -233,6 +289,11 @@ Do not assume:
 
 Evidence-state rules and the full authoring model are defined in [`SYSTEM_CONTEXT.md`](./SYSTEM_CONTEXT.md).
 
+</details>
+
+<details>
+<summary>Evidence and version status</summary>
+
 ### Evidence and version status
 
 Keep these categories distinct:
@@ -243,6 +304,11 @@ Keep these categories distinct:
 - **Regression hypotheses:** plausible failure paths that have not necessarily been reproduced.
 
 A new instruction version is a testable behavioral hypothesis. A file's presence does not prove that it is deployed, approved, or authoritative. Proposed and unresolved material must retain its declared status.
+
+</details>
+
+<details>
+<summary>Using instruction files</summary>
 
 ### Using instruction files
 
@@ -258,6 +324,11 @@ If you choose to reuse an instruction file:
 
 No version is guaranteed to suit every model, product, account, or use case. Copying or adapting instructions remains the reader's responsibility.
 
+</details>
+
+<details>
+<summary>Independence and runtime limits</summary>
+
 ### Independence and runtime limits
 
 This is a personal project, not an official OpenAI project or a guarantee of ChatGPT behavior.
@@ -265,3 +336,5 @@ This is a personal project, not an official OpenAI project or a guarantee of Cha
 Documentation does not become an active instruction merely because it exists in Git. What is actually available and applied depends on the live configuration, instruction placement, source access, and conversation context. Repository inspection alone cannot establish that state.
 
 The author decides canon. Tools and models help manage and examine the work; their output does not confer creative authority.
+
+</details>
