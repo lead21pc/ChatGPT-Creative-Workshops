@@ -265,5 +265,3 @@ This is a personal project, not an official OpenAI project or a guarantee of Cha
 Documentation does not become an active instruction merely because it exists in Git. What is actually available and applied depends on the live configuration, instruction placement, source access, and conversation context. Repository inspection alone cannot establish that state.
 
 The author decides canon. Tools and models help manage and examine the work; their output does not confer creative authority.
-
-No license is granted. All rights reserved.
