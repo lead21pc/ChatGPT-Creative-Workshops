@@ -1,0 +1,151 @@
+# Adaptation template; behavioral instructions, not executable routing.
+schema_version: 1
+deployment:
+  status: ADAPTATION_TEMPLATE
+  router_version: 0.1.0
+  ci_version: 0.1.0
+  ci: '{{PROJECT_INSTRUCTIONS_PATH}}'
+  pipeline: '{{AUTHORING_PIPELINE_PATH}}'
+  notice: Compatibility references only; never discover or validate CI at runtime. Configure source ownership and
+    bindings before use.
+runtime:
+  entry: PROMPT_ROUTE_ONLY
+  stages:
+  - PROMPT_ROUTE_ONLY
+  - BOOTSTRAP_GATE
+  - MODULE_GATE
+  - SOURCE_LOAD
+  - RECONCILIATION
+  - ANTI_DRIFT_OVERLAY_GATE
+  - PROMPT_EXECUTION
+  - PRE_RESPONSE_CHECK
+bootstrap:
+  discovery: '{{DISCOVERY_BINDING}}'
+  open_state: '{{OPEN_STATE_BINDING}}'
+  reconciliation: '{{RECONCILIATION_BINDING}}'
+  source_ownership: '{{SOURCE_OWNERSHIP}}'
+  same_current_generation: true
+  read_when: Discovery and current unresolved-state roles are required when applicable to a current-state task.
+    Reconciliation is required when conflict, supersession/replacement, provenance, priority or authority could
+    decide the task.
+  binding_contract: Each value names the recipient-owned owner/path/mechanism and how its current controlling content
+    is accessed. Roles may share one source or use existing reviewable mechanisms; no separate file, filename, numbering
+    or record architecture is required. Read applicable controlling content completely; a configured value is not
+    admission or read proof. Missing decisive content blocks dependent work.
+modules:
+  required_header:
+  - Module ID
+  - Runtime role
+  - Domain / Scope
+  conditional_header:
+    Authority boundary: material owner separation
+    Cross-domain owner boundary: known material interface
+  hard_dependency_field: MODULE_REQUIRES
+  node_dependency_field: NODE_REQUIRES
+loading:
+  default: FULL_FILE
+  modes:
+  - FULL_FILE
+  - NODE_OR_FULL
+  read_proofs:
+  - FULL_FILE
+  - VERIFIED_MODULE_CLOSURE
+  closure_components:
+  - mandatory module context
+  - reviewed local index and target node bounds
+  - complete target node
+  - transitive reviewed node dependencies
+  - decisive qualifiers, exceptions and priority
+  - current and open status
+  - controlling owner context
+  full_file_when:
+  - broad audit or canon mutation
+  - mixed status or conflicting owners
+  - unreviewed node contract or unsafe qualifier bounds
+failures:
+  bootstrap_missing_or_inconsistent: SOURCE_LOAD_BLOCKED
+  decisive_source_or_authority_missing: SOURCE_LOAD_BLOCKED
+  hard_module_dependency_missing_unreviewed_or_cycle: SOURCE_LOAD_BLOCKED
+  required_control_missing_or_ambiguous: SOURCE_LOAD_BLOCKED
+  module_identity_or_role_ambiguous: REVIEW_REQUIRED
+  unresolved_controlling_owner: SOURCE_LOAD_BLOCKED
+  node_uncertain_missing_or_cycle: FULL_FILE
+  unknown_load_mode_clear_identity_authority: FULL_FILE
+  unknown_load_mode_unclear_identity_authority: SOURCE_LOAD_BLOCKED
+  demonstrably_nondecisive_secondary_gap: SOURCE_LOAD_PARTIAL
+control_selection:
+  directory: '{{OPTIONAL_CONTROL_DIRECTORY}}'
+  files: direct_children_only
+  version_order: numeric
+  ambiguity: SOURCE_LOAD_BLOCKED
+  excluded_statuses:
+  - CANDIDATE
+  - DRAFT
+  - REJECTED
+  - SUPERSEDED
+  - RETIRED
+  - ARCHIVED
+  load: FULL_FILE
+controls:
+- id: MCA
+  stem: modular-concept-architecture
+  select_when: modular concept architecture, actor agency or mechanism/end-point distinctions matter
+  requires: []
+  conditional_requires: []
+policies:
+  routing: Begin at PROMPT_ROUTE_ONLY. Identify operation, scope, candidate domains/modules, required evidence,
+    controls and canon-change authorization only. No canon premise, resolved open state, simulation, outcome or
+    conclusion before the required gates. Re-route materially expanded scope. CI owns entry into this Router; runtime
+    performs no CI discovery, selection, loading, inference, validation or activation confirmation.
+  discovery: Resolve applicable configured discovery/open-state roles and read their controlling content completely
+    from the same current generation. Existing mechanisms may supply both roles; do not require separate files.
+    The index, where used, and reviewed catalog navigate; neither grants authority, admission or dependencies. Do
+    not presume backend enumeration or all-header access. Without a catalog use indexed current controlling sources
+    FULL_FILE, without inventing Module IDs. A stale catalog permits bounded work only from independently identified,
+    authoritative, sufficient FULL_FILE owners; otherwise block. Supplied uncatalogued inputs remain UNCONFIRMED.
+    No package-completeness claim without established discovery.
+  module_gate: Establish identity, runtime role, admission, scope and authority before use. Missing, duplicate or
+    unknown identity/role requires review. CURRENT_SOURCE declaration, header, catalog presence and Module ID confer
+    no canon rank or admission. Resolve overlapping authority with full controlling owner files; unresolved material
+    ownership blocks dependent conclusions. Headers belong to modules, not the derived catalog. Module IDs remain
+    stable across renames; adding an admitted module/catalog row needs no Router-core edit or numeric lore filename.
+    Shared actors/interfaces do not merge owners; containment in documents is not ontology or in-world authority.
+  dependencies: MODULE_REQUIRES are reviewed task-hard dependencies, expanded transitively; mentions are not edges.
+    Missing, dangling, unreviewed edges or unresolved hard cycles block dependent work. NODE_REQUIRES crosses only
+    admitted modules; an unreviewed possible node edge requires review. Node uncertainty, missing targets or cycles
+    require FULL_FILE of affected owners; this never bypasses a hard module dependency.
+  loading: Absent Load defaults to FULL_FILE. NODE_OR_FULL is allowed only for a reviewed module/task contract with
+    usable index, bounds, dependencies and actual retrieval of every closure component. Only FULL_FILE or VERIFIED_MODULE_CLOSURE
+    proves a read; hits, snippets, headers, summaries, memory and prior answers do not. Expand unsafe closure or
+    read full owners. Unknown Load falls back only with clear identity/authority. Resolve the configured reconciliation
+    owner/path/mechanism and read its controlling content completely before evaluating new sources when conflict,
+    supersession/replacement, provenance, priority or authority is material. No particular record/file structure
+    is required. Open issues expose state, never resolve it or constitute a global dependency graph.
+  authority: Latest explicit user decision controls only its stated scope, then accepted current controlling sources,
+    then older facts explicitly preserved. Recency, metadata and detail alone grant no priority. Classify new input
+    as UNCONFIRMED until a scoped decision assigns its evidence/design/replacement/history/canon-candidate role.
+    Retain UNKNOWN, DEFERRED, CONFLICTED, alternatives and actual supported dependencies; absence is not false or
+    resolved. Withdraw conclusions dependent on changed accepted premises, preserving unrelated canon and inventing
+    no replacement consequences. Questions, design and simulations do not mutate canon. Historical, rejected, archived
+    or superseded material is provenance or explicit comparison only, never fallback or an analogy bridge into current
+    conclusions.
+  access: Normal canon access follows {{SOURCE_STORAGE_BINDING}} and the configured source-ownership policy; specify
+    any accepted ordered sources explicitly, never infer a fallback. Identically named external files/connectors
+    have no automatic current authority. Task-local permission to read is not authority; explicit external authority
+    applies only within the user's scope and still passes source gates. Repository inspection, control design and
+    procedural reads need not masquerade as canon module reads.
+  overlays: After source loading and reconciliation, select applicable controls by semantic scope, resolve each
+    eligible direct-child family numerically, then expand hard and satisfied conditional dependencies transitively.
+    Ambiguous highest version or unavailable required control blocks dependent work. Read every selected control
+    FULL_FILE before execution. Control filenames and dependencies do not authorize canon. Only MCA is included
+    in this extraction. Other specialized overlays are not provided or silently replaced. An explicitly required
+    unavailable specialized control blocks dependent work. More specific overlays control depth/stopping within
+    their scope, never CI, source authority, current canon or open status. No overlay executes during PROMPT_ROUTE_ONLY;
+    none chooses actor actions or outcomes or invents missing world state. Do not silently merge material control
+    conflicts.
+  coverage: Before execution and before response recheck route, controlling premises/owners, actual reads, closure,
+    record/open-state relevance, overlays and unresolved gaps. Block only dependent work; independent work may continue.
+    PARTIAL requires a named secondary gap demonstrably unable to change the explicitly bounded conclusion; relabeling
+    a dependent claim as bounded cannot bypass missing decisive evidence. Report CANON, UNCONFIRMED, HISTORICAL/SUPERSEDED,
+    UNKNOWN, DEFERRED, CONFLICTED, INFERENCE, HYPOTHETICAL or PROPOSAL where material. Task-local sufficiency is
+    not global completeness. No structural/package check proves live ChatGPT retrieval or compliance.

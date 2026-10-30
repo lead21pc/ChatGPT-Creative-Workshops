@@ -1,0 +1,4 @@
+# Preserve verified release bytes across Git checkout and archive creation.
+* -text
+# The copied MIT notices retain the source CRLF; CR is an EOL marker, not trailing space.
+LICENSE whitespace=cr-at-eol

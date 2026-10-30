@@ -1,0 +1,33 @@
+# TECHNICAL is a replaceable worked example, not a universal architecture dependency.
+format_version: '1'
+module_id: HUB-CORE-PACKAGE-CATALOG
+runtime_role: PACKAGE_CATALOG
+scope: Major Central Hub package entrypoints only; no leaf-module inventory.
+status: ADAPTATION_TEMPLATE
+version: 0.1.0
+active: false
+runtime_ready: false
+identity_binding: CONFIGURED_EXTRACTED_0_1_0_STACK
+library_discovery_root: '{{LIBRARY_ROOT}}'
+packages:
+- package_id: HUB-PKG-TECHNICAL
+  entrypoint_module_id: HUB-DOM-TECHNICAL
+  runtime_role: REASONING_PROFILE
+  status: ACTIVE
+  version: '1.0'
+  applicability: Mechanism reasoning, distinguishing causes during diagnosis or bounded technical-change evaluation;
+    not simple technical explanations alone.
+  location:
+    class: LIBRARY
+    root: '{{LIBRARY_ROOT}}'
+    locator: null
+    library_file_id: null
+    library_version_id: null
+    verification: NOT_VERIFIED
+    resolution: UNRESOLVED
+    retrieval_mechanism: Resolve exactly one accepted ACTIVE identity inside the configured Library root; FULL_FILE
+      and header/body verification are required. No repository or Project Source fallback.
+  local_catalog: null
+  requires: []
+  binding_mode: LIBRARY_MODULE
+deployment: NOT_INSTALLED; NOT_LIVE_VERIFIED
