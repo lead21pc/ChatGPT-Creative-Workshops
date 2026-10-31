@@ -4,6 +4,8 @@ Current stack: Hub CI/Router 1.1 → Architecture/Catalog 1.6 → Authoring ACTI
 
 ## M3 stable baseline and runtime evidence
 
+Deployment update 2026-11-01: USER_REPORTED_DEPLOYMENT. The user confirms the current Authoring 0.5 / Architecture-Catalog 1.6 / Hub CI-Router 1.1 deployment. Codex did not install it. Exact Library identity/FULL_FILE binding remains UNRESOLVED / NOT_VERIFIED pending its own evidence; existing scoped live PASS remains valid without an automatic rerun.
+
 AUTHORING 0.5 STATUS ACTIVE; repository ACTIVE; static PASS; M1 current needs CLOSED; M2 bounded live semantics PASS / CLOSED. User confirms actual Central Hub C1 composition and composed round-trip, C2 ambiguity and C3 single-target PASS. Prior M1 execution/rewrite/reauthor PASS stays in its original scope; C3 also reports no fabricated prior findings. See RUNTIME_EVIDENCE_CHANGELOG.md for provenance and exact limits.
 
 Runtime identity is partially established: actual Central Hub use and intended 0.5 stack are user-reported, while repository pins are verified. No installation receipt, bound Library identity or FULL_FILE/header/body trace was supplied for independent verification. Keep exact binding UNRESOLVED / NOT_VERIFIED; do not downgrade behavioral PASS. BRAINSTORM has no dedicated live result and needs no additional smoke for closure. No current observed failure requires more Authoring architecture work.

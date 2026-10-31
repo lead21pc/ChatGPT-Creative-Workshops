@@ -25,6 +25,7 @@ NO NEW EVIDENCE != STATUS RESET
 
 ### AUTHORING_0_5_STABLE_M3
 
+- Deployment: USER_REPORTED_DEPLOYMENT for the current Authoring 0.5 / Architecture-Catalog 1.6 / Hub CI-Router 1.1 stack, confirmed by the user on 2026-11-01. Codex did not perform deployment. This supersedes implementation-time NOT_PERFORMED status for the reported deployment; exact Library object identity, FULL_FILE/header/body verification and binding resolution remain unverified. Existing scoped live PASS is retained without a rerun requirement.
 - STATUS: ACTIVE / CURRENT STABLE BASELINE. Repository: ACTIVE; static verification: PASS. M1 CLOSED and M2 CLOSED for the current bounded needs. No current observed failure requires further Authoring architecture work.
 - User-confirmed actual Central Hub results: C1 explicit AIS + CREATIVE composition PASS; C1 composed prompt-to-execution round-trip PASS; C2 material ambiguity clarification PASS; C3 original /AUTHOR AIS single-target PASS. Classification for each: USER_CONFIRMED_LIVE_PASS. Codex did not run or independently reproduce these cases.
 - C1 preserved the fictional premise, open design state, Creative proposals as proposals and research evidence as evidence, without design acceptance or authority merge. Execution retained the composed specification and stopped at open questions. C2 asked one focused relationship question without guessed priority. C3 used the single-target path without contributor loading, composition clarification or fabricated prior findings.
@@ -92,6 +93,11 @@ NO NEW EVIDENCE != STATUS RESET
 - Related log entry: `2026-10-27 - Integrated concept-development runtime smoke`.
 
 ## Verification log
+
+### 2026-11-01 - User confirms Authoring 0.5 deployment
+
+- User explicitly reports deployment of the current stack and requests publication of the repository records. Classification: USER_REPORTED_DEPLOYMENT; no independent Codex deployment or exact FULL_FILE/Library identity receipt supplied. Recording date is 2026-11-01; exact deployment time was not supplied.
+- C1/C2/C3 and composed round-trip USER_CONFIRMED_LIVE_PASS remain unchanged. No new behavior, live rerun or milestone is implied.
 
 ### 2026-11-01 - Authoring M3 stabilize and close
 
