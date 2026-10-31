@@ -2,9 +2,15 @@
 
 Current stack: Hub CI/Router 1.1 → Architecture/Catalog 1.6 → Authoring ACTIVE/0.5. The user explicitly authorized active promotion during M2. Two-part syntax adds a requested CREATIVE or BRAINSTORM contribution to one of five output targets. Singleton topology and all prior provenance safeguards remain.
 
-## Runtime activation — NOT_PERFORMED
+## M3 stable baseline and runtime evidence
 
-Install/replace exact library_modules/HUB-CAP-AUTHORING_v0.5.md in Central Hub Config, verify FULL_FILE, identity/role/ACTIVE/Version 0.5, body and scoped ambiguity; update the compatible Project Sources to Router 1.1, HUB_ARCHITECTURE_v1.6.md and HUB_PACKAGE_CATALOG_v1.6.yaml. Keep Hub CI 1.1. Contributors must resolve through actual Concept Development core/local Catalog and verified leaf bindings. No repository substitutes or invented contribution reads. Run C1–C3 only as specified in candidates/authoring_v0/AUTHORING_M2_TESTS.md after installation. Live M2 and the corrected provenance regression remain NOT_RUN; older user-confirmed M1 PASS retains its recorded revision/scope.
+AUTHORING 0.5 STATUS ACTIVE; repository ACTIVE; static PASS; M1 current needs CLOSED; M2 bounded live semantics PASS / CLOSED. User confirms actual Central Hub C1 composition and composed round-trip, C2 ambiguity and C3 single-target PASS. Prior M1 execution/rewrite/reauthor PASS stays in its original scope; C3 also reports no fabricated prior findings. See RUNTIME_EVIDENCE_CHANGELOG.md for provenance and exact limits.
+
+Runtime identity is partially established: actual Central Hub use and intended 0.5 stack are user-reported, while repository pins are verified. No installation receipt, bound Library identity or FULL_FILE/header/body trace was supplied for independent verification. Keep exact binding UNRESOLVED / NOT_VERIFIED; do not downgrade behavioral PASS. BRAINSTORM has no dedicated live result and needs no additional smoke for closure. No current observed failure requires more Authoring architecture work.
+
+## Original activation instructions — no Codex deployment
+
+Install/replace exact library_modules/HUB-CAP-AUTHORING_v0.5.md in Central Hub Config, verify FULL_FILE, identity/role/ACTIVE/Version 0.5, body and scoped ambiguity; update the compatible Project Sources to Router 1.1, HUB_ARCHITECTURE_v1.6.md and HUB_PACKAGE_CATALOG_v1.6.yaml. Keep Hub CI 1.1. Contributors must resolve through actual Concept Development core/local Catalog and verified leaf bindings. No repository substitutes or invented contribution reads. Run C1–C3 only as specified in candidates/authoring_v0/AUTHORING_M2_TESTS.md after installation. The old NOT_RUN planning status is superseded by the M3 results above for C1–C3 and the composed smoke; the separate 0.4.1 packet is not claimed rerun. Older M1 PASS retains its recorded revision/scope.
 
 Rollback deliberately restores exact pre-M2 0.4.1 and Architecture/Catalog 1.5 plus Router snapshot from Source_archive/Authoring 0.5 M2 2026-11-01/. Do not run both root authorities or use archive fallback.
 

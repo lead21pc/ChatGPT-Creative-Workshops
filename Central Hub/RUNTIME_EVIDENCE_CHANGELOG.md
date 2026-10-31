@@ -23,7 +23,18 @@ NO NEW EVIDENCE != STATUS RESET
 
 ## Current verified runtime status
 
-### AUTHORING_0_5_M2
+### AUTHORING_0_5_STABLE_M3
+
+- STATUS: ACTIVE / CURRENT STABLE BASELINE. Repository: ACTIVE; static verification: PASS. M1 CLOSED and M2 CLOSED for the current bounded needs. No current observed failure requires further Authoring architecture work.
+- User-confirmed actual Central Hub results: C1 explicit AIS + CREATIVE composition PASS; C1 composed prompt-to-execution round-trip PASS; C2 material ambiguity clarification PASS; C3 original /AUTHOR AIS single-target PASS. Classification for each: USER_CONFIRMED_LIVE_PASS. Codex did not run or independently reproduce these cases.
+- C1 preserved the fictional premise, open design state, Creative proposals as proposals and research evidence as evidence, without design acceptance or authority merge. Execution retained the composed specification and stopped at open questions. C2 asked one focused relationship question without guessed priority. C3 used the single-target path without contributor loading, composition clarification or fabricated prior findings.
+- Runtime identity: repository exact stack VERIFIED (Hub CI/Router 1.1, Architecture/Catalog 1.6, Authoring 0.5). Actual Central Hub environment and intended 0.5 stack are USER_REPORTED. No exact installation receipt, FULL_FILE/header/body retrieval trace, bound Library object identity or raw case outputs were supplied for independent identity verification. Runtime identity remains PARTIALLY ESTABLISHED / EXACT IDENTITY UNRESOLVED; this does not erase the reported LIVE BEHAVIOR PASS. Do not mark Catalog Library IDs/resolution verified from this behavioral report.
+- M1 closure basis: prior user-confirmed 0.4 T1 Execution, T2 Rewrite and T2 Reauthor PASS retained in original scope; provenance correction is implemented and preserved in 0.5, and the reported 0.5 C3 exhibits no fabricated prior findings. This is bounded closure, not a claim that the separate 0.4.1 packet was rerun or every M1 path was retested on 0.5.
+- Known composition scope: one output target plus one supported contributor. Live scope covers AIS + CREATIVE only and one composed round-trip. It does not establish every target/contributor pair, arbitrary N-way composition, all downstream surfaces or general Router correctness.
+- BRAINSTORM: contract/static support exists; dedicated live result NOT_ESTABLISHED; dedicated smoke is not required for M3 closure. Future real use may supply evidence IF NEEDED, with no roadmap commitment.
+- Earlier outside-chat manual injection remains EXPLORATORY only. Prior revision and implementation-time NOT_RUN/NOT_PERFORMED entries below are historical and superseded for the reported 0.5 behaviors, not deleted. No deployment was performed by Codex during M3.
+
+### AUTHORING_0_5_M2 — implementation-time snapshot
 
 - REPOSITORY ACTIVE / IMPLEMENTED / STATICALLY_VERIFIED; explicit active authorization during M2. Authoring 0.5, Architecture/Catalog 1.6, Router 1.1 pins. No Router algorithm, Hub CI or Concept leaf behavior change.
 - Library installation NOT_PERFORMED; identity/FULL_FILE binding UNRESOLVED / NOT_VERIFIED. C1/C2/C3 and composed execution smoke NOT_RUN. Prior M1 PASS stays scoped to 0.4; no new live PASS inferred. Corrective provenance contract retained; its own live regression still NOT_RUN.
@@ -81,6 +92,13 @@ NO NEW EVIDENCE != STATUS RESET
 - Related log entry: `2026-10-27 - Integrated concept-development runtime smoke`.
 
 ## Verification log
+
+### 2026-11-01 - Authoring M3 stabilize and close
+
+- User reports actual Central Hub C1 composition PASS, C1 composed round-trip PASS, C2 ambiguity PASS and C3 single-target/provenance regression PASS. USER_CONFIRMED_LIVE_PASS; result summary supplied by the user, no raw outputs or FULL_FILE identity receipts independently inspected. Date is recording date; exact model/run time were not supplied.
+- Repository stack verified as Authoring 0.5, Architecture/Catalog 1.6, Hub CI/Router 1.1. Runtime identity remains partial/unresolved as documented above; no fabricated installation or retrieval evidence.
+- Current M1/M2 needs CLOSED; AUTHORING 0.5 STABLE BASELINE. Prior PASS scopes and exploratory history retained. No behavior change, new feature, deployment, extra live case or M4.
+
 
 ### 2026-11-01 - Authoring M2 active repository implementation
 
