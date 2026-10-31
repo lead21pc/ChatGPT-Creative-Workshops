@@ -1,9 +1,15 @@
 # Pilot AFM-015: bản làm việc tại Central Hub
 
-Trạng thái: `NON_AUTHORITATIVE_WORKING_COPY`.
-Mục đích: Central Hub brainstorm pilot, Phase 2.
+Trạng thái: `HISTORICAL / WORKFLOW-FEASIBILITY EVIDENCE`; `NON_AUTHORITATIVE_WORKING_COPY`.
+Mục đích ban đầu: Central Hub brainstorm pilot, Phase 2.
 Ngày chuẩn bị: 2026-10-25 (Asia/Bangkok).
 Chỉ là artifact thử nghiệm cục bộ: không active, không runtime source, không fallback source, không canon authority. Không phải module/control Hub, không đăng ký trong Catalog và không sửa Library binding.
+
+Pilot được giữ làm bằng chứng lịch sử về khả năng dùng material FTH có phạm vi để làm việc ngoài FTH, giữ kết quả không có authority và đưa về đối chiếu/review. `AFM-015 != ACTIVE BRIDGE ARCHITECTURE`; `AFM-015 PASS != FORMAL BRIDGE REQUIRED`. Các kết quả đã ghi không xác lập nhu cầu về transport layer hoặc gate FTH riêng trong Hub.
+
+Workflow hiện tại do người dùng xác nhận: người dùng cung cấp context cần thiết cho Hub, Hub dùng capability hiện có theo task, rồi người dùng đưa working output về project để stack thật của project review. Việc chuyển context không chuyển authority; FTH giữ quyền nguồn, anti-drift, reconciliation và admission. Đây là cách người dùng đang làm việc, không phải protocol chuyển giao bắt buộc trong Hub core.
+
+Mọi stack/version, binding, source/open-state snapshot và hướng dẫn chạy bên dưới là `BASELINE AT THE TIME OF THE PILOT`, không khai báo phiên bản active hoặc deployment hiện tại. Giữ cả bảy tệp tại chỗ để bảo toàn provenance, đầu vào, output và kết quả; các hướng dẫn/nhãn chuẩn bị cũ là hồ sơ thử nghiệm, không là yêu cầu tiếp tục bridge.
 
 ## Nguồn và provenance
 
@@ -29,21 +35,21 @@ Chỉ là artifact thử nghiệm cục bộ: không active, không runtime sour
 
 Repository root là `C:/Users/Sheeplark/Desktop/CI Versioning Audit & Changelog`; branch `main`, HEAD như trên. Working tree và staging sạch tại preflight; HEAD so với `origin/main` cục bộ là `0 / 0`. HEAD đã khác mốc Phase 1 `fabaab45029e6dad946889faccb4b174549a3479`; phép `git diff --name-only` giữa hai commit không ghi nhận thay đổi dưới FTH hoặc Central Hub. Truy vấn remote trực tiếp thất bại với `schannel: AcquireCredentialsHandle failed: SEC_E_NO_CREDENTIALS`; chưa xác nhận GitHub hiện tại.
 
-FTH repository hiện dùng CI 3.4, Source Router 5.0, Authoring Pipeline 1.1. Pipeline 1.0 còn là bản rollback; candidate không tự active. Nguồn AFM-015, open state và quyết định tách miền được đọc lại từ working tree hiện tại, không dùng Memory, prior-chat hoặc archive làm fallback.
+Tại preflight pilot, FTH repository dùng CI 3.4, Source Router 5.0, Authoring Pipeline 1.1. Pipeline 1.0 còn là bản rollback; candidate không tự active. Nguồn AFM-015, open state và quyết định tách miền được đọc lại từ working tree tại thời điểm đó, không dùng Memory, prior-chat hoặc archive làm fallback.
 
-Tại preflight 2026-10-25, Central Hub repository dùng CI 1.1, Router 1.1, Architecture 1.0 và root Catalog 1.0, với năm entry CREATIVE, TECHNICAL, BRAINSTORM, AIS, ImageT. Đây là baseline lịch sử, đã được thay bằng trạng thái hiện hành dưới đây. Thư mục `Central Hub/candidates/` đã chứa các thử nghiệm Markdown theo nhóm; pilot dùng lại cách đặt này.
+Tại preflight 2026-10-25, Central Hub repository dùng CI 1.1, Router 1.1, Architecture 1.0 và root Catalog 1.0, với năm entry CREATIVE, TECHNICAL, BRAINSTORM, AIS, ImageT. Đây là baseline lịch sử, đã được thay bằng baseline tại lần reconciliation pilot dưới đây. Thư mục `Central Hub/candidates/` đã chứa các thử nghiệm Markdown theo nhóm; pilot dùng lại cách đặt này.
 
-## Baseline Hub và snapshot hiện hành cho pilot
+## Baseline Hub và snapshot tại lần reconciliation pilot
 
-Preflight reconciliation: branch `main`, HEAD `866a38dfedbe60caba00afa0372412b05f9ff419`; `origin/main` và remote main được quan sát cùng SHA. Snapshot hiện vẫn bằng source AFM-015 trong working tree từng byte: `6022` byte, SHA-256 `8d14eb73c4587db297d46c9804f9d262dc605513a93d13ed3c2b6f0eb58d27d5`. `SNAPSHOT BASELINE STILL CURRENT FOR THIS PILOT`; snapshot không được tạo lại.
+Preflight reconciliation: branch `main`, HEAD `866a38dfedbe60caba00afa0372412b05f9ff419`; `origin/main` và remote main được quan sát cùng SHA. Tại lần kiểm đó, snapshot vẫn bằng source AFM-015 trong working tree từng byte: `6022` byte, SHA-256 `8d14eb73c4587db297d46c9804f9d262dc605513a93d13ed3c2b6f0eb58d27d5`. `SNAPSHOT BASELINE STILL CURRENT FOR THIS PILOT`; snapshot không được tạo lại.
 
-Hub hiện dùng CI 1.1, Router 1.1, Architecture 1.1 và root Catalog 1.1. Root có TECHNICAL, `HUB-PKG-CONCEPT-DEVELOPMENT`, AIS và ImageT. Concept Development sở hữu entrypoint `HUB-DOM-CONCEPT-DEVELOPMENT` 1.0 / `DOMAIN_CONTROL` và package-local catalog `HUB-CATALOG-CONCEPT-DEVELOPMENT` 1.0 / `PACKAGE_CATALOG`; `HUB-CAP-BRAINSTORM` 1.1 / `CAPABILITY` và `HUB-DOM-CREATIVE` 1.1 / `DOMAIN_CONTROL` là hai leaf được chọn độc lập, không phải root package riêng.
+Tại baseline reconciliation pilot, Hub dùng CI 1.1, Router 1.1, Architecture 1.1 và root Catalog 1.1. Root có TECHNICAL, `HUB-PKG-CONCEPT-DEVELOPMENT`, AIS và ImageT. Concept Development sở hữu entrypoint `HUB-DOM-CONCEPT-DEVELOPMENT` 1.0 / `DOMAIN_CONTROL` và package-local catalog `HUB-CATALOG-CONCEPT-DEVELOPMENT` 1.0 / `PACKAGE_CATALOG`; `HUB-CAP-BRAINSTORM` 1.1 / `CAPABILITY` và `HUB-DOM-CREATIVE` 1.1 / `DOMAIN_CONTROL` là hai leaf được chọn độc lập, không phải root package riêng.
 
 Bốn object concept được ChatGPT quan sát/người dùng cung cấp evidence trong `Central Hub Config`: root-scoped listing không thấy duplicate cho bốn identity trong phạm vi kiểm, FULL_FILE identity/content và Library/repository bytes khớp; Catalog ghi binding `RESOLVED`. `locator` và `library_version_id` vẫn `null`; surface ID chỉ là evidence/debug. Không suy direct fetch hay complete Hub runtime retrieval trace từ evidence này.
 
 Một integrated Central Hub runtime smoke ngày 2026-10-27 đã được người dùng xác nhận PASS cho một đường thực thi có AIS, TECHNICAL, Concept Development, BRAINSTORM và CREATIVE, theo đúng revision và giới hạn trong `Central Hub/RUNTIME_EVIDENCE_CHANGELOG.md`. Đây không phải global Hub PASS, không xác minh từng retrieval trace và không chứng minh hành vi pilot AFM-015. Toàn bộ C01–C12 live chưa chạy và không là prerequisite của pilot này trừ khi chính test AFM-015 cho thấy dependency cụ thể.
 
-## Trạng thái hiện hành phải bảo vệ
+## Trạng thái nguồn tại baseline pilot phải bảo vệ
 
 Các dòng dưới là nhắc phạm vi từ snapshot, không thay thế FULL_FILE hoặc có authority độc lập:
 
@@ -58,7 +64,7 @@ Tên cảm hứng không nhập lịch sử thật hoặc cơ chế truyền vă
 
 ## UNKNOWN/open state mang theo
 
-Đoạn đính kèm nguyên nội dung hiện hành từ `Project Feather Core/92_OPEN_ISSUES_CURRENT.md`, mục “Hoa Nguyệt — bảy nguyên tắc nền, các mục mở 2026-10-10”. Đây là bản chụp state/định tuyến, không là quyền giải quyết các mục mở. Dùng nó cùng UNKNOWN tại snapshot; không dùng danh sách này làm bằng chứng rằng không còn UNKNOWN khác.
+Đoạn đính kèm nguyên nội dung từ `Project Feather Core/92_OPEN_ISSUES_CURRENT.md` tại baseline pilot, mục “Hoa Nguyệt — bảy nguyên tắc nền, các mục mở 2026-10-10”. Đây là bản chụp state/định tuyến, không là quyền giải quyết các mục mở. Dùng nó cùng UNKNOWN tại snapshot; không dùng danh sách này làm bằng chứng rằng không còn UNKNOWN khác.
 
 <!-- BEGIN OPEN STATE SNAPSHOT -->
 ## Hoa Nguyệt — bảy nguyên tắc nền, các mục mở 2026-10-10
@@ -92,7 +98,7 @@ Bảng phân công được đối chiếu với index hiện hành, header AFM-
 
 Nếu một ý tưởng cần thay đổi phần của owner khác, ghi rõ scope crossing. Có thể giữ nhánh giả định/đề xuất có điều kiện khi độc lập hợp lệ; không trình bày nó là current. Không cần load toàn FTH chỉ vì gặp một pointer. Không tự thêm `MODULE_REQUIRES` hoặc `NODE_REQUIRES`.
 
-## Cách dùng trong lần chạy Central Hub sau này
+## Hướng dẫn chạy đã dùng cho pilot (lịch sử)
 
 1. Dùng một chat thử nghiệm riêng trong actual Central Hub runtime; mỗi case bắt đầu ở chat sạch để tránh nhiễm kết quả giữa các case. Không tạo chat hoặc upload trong bước chuẩn bị này.
 2. Cung cấp FULL_FILE README này và FULL_FILE snapshot bằng đầu vào người dùng của chat, rồi gửi đúng một block prompt tương ứng trong [TEST_CASES.md](TEST_CASES.md). Không gửi rubric/đáp án mong đợi cho model như một phần của prompt. Nếu nền tảng không đọc được toàn nội dung thì chưa chạy case hợp lệ; lời tự nhận đã đọc không tự chứng minh retrieval.
@@ -106,7 +112,7 @@ Nếu một ý tưởng cần thay đổi phần của owner khác, ghi rõ scop
 
 Nếu source hoặc Hub stack đã đổi trước lần chạy, ghi baseline thực tế và phần lệch; không giả baseline cũ vẫn current. Không tự cập nhật control hoặc snapshot trong lúc chấm để làm case đạt.
 
-## Hợp đồng tối thiểu cho kết quả brainstorm
+## Tiêu chí kết quả brainstorm của pilot (lịch sử)
 
 Khi material, kết quả cần phân biệt bằng prose thông thường:
 
@@ -120,13 +126,13 @@ Khi material, kết quả cần phân biệt bằng prose thông thường:
 
 CURRENT/UNKNOWN/ASSUMPTION/PROPOSAL là nhãn dùng khi cần rõ trạng thái, không là schema hoặc primitive mới. Không cần đủ mọi trường khi không material. Không chọn nhánh cuối hoặc gọi canonization thay tác giả.
 
-## Trạng thái chuẩn bị
+## Kết quả đã ghi nhận
 
 - Đặc tả: xem TEST_CASES.md; expected behavior là tiêu chí, không phải quan sát model.
 - `PHASE_2_BEHAVIORAL_PASS`: người dùng xác nhận cả A/B/C PASS sau ba actual clean-chat Central Hub run; `USER-CONFIRMED_PHASE_2_BEHAVIORAL_PASS`, Codex không tái hiện độc lập. [Output nguyên văn](PHASE_2_RUNTIME_OUTPUTS.md) là evidence, không là runtime control hoặc FTH source.
 - `PHASE_3_SEMANTIC_RECONCILIATION_PASS`: [đối chiếu semantic](PHASE_3_SEMANTIC_RECONCILIATION.md) đã chuẩn bị được theo baseline và owner/state. PASS chỉ xác nhận khả năng đưa material vào workspace kiểm tra, không phải admission hay chấp nhận canon.
 - `PHASE_4_FTH_ROUND_TRIP_DRY_RUN_PASS` / `NO_ADMISSION_PERFORMED`: [patch đề xuất không có authority](PHASE_4_AFM015_PROPOSED.patch) đã được kiểm tra khả năng áp dụng và ranh giới theo [báo cáo dry run](PHASE_4_ADMISSION_DRY_RUN.md); P1/P2 chưa được chấp nhận, C-A được route sang AFM-012 nếu tiếp tục.
-- Integrated runtime smoke có `USER_CONFIRMED_LIVE_PASS` đúng scope ở trên; complete internal retrieval trace và hành vi riêng của pilot vẫn chưa được xác minh. Không coi full C01–C12 live là prerequisite của Case A.
+- Integrated runtime smoke có `USER_CONFIRMED_LIVE_PASS` đúng scope ở trên. Codex không tái hiện độc lập các behavioral PASS đã được người dùng xác nhận; complete internal retrieval traces không được xác minh độc lập. Giới hạn này không hạ trạng thái A/B/C PASS đã ghi. Không coi full C01–C12 live là prerequisite của Case A.
 - A/B/C là kết quả đã được tác giả xác nhận, không suy toàn bộ C01–C12, global Hub hay các module FTH khác đã PASS. Các UNKNOWN và owner crossings tiếp tục được giữ trong hồ sơ Phase 3.
 - Không đổi current FTH/Hub, không stage/commit/push/deploy và không thực hiện admission trong đợt reconciliation này.
 
