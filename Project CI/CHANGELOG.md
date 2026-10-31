@@ -1,15 +1,23 @@
 # Changelog — Revamp Project System CI
 
-Cập nhật ngày 2026-10-29. Phạm vi: dòng Revamp CI và các thay đổi trực tiếp của cơ chế handoff đi kèm.
+Cập nhật ngày 2026-11-01. Phạm vi: dòng Revamp CI và các thay đổi trực tiếp của cơ chế handoff đi kèm.
 
 Ngày commit được quy về UTC+07:00. Ngày nhập hoặc khôi phục file vào Git không chứng minh ngày tạo, ngày chấp thuận hay ngày cài vào ChatGPT Project. Các bản trong `Source_Archive` chỉ được đọc để đối chiếu lịch sử theo yêu cầu làm changelog; chúng không trở thành nguồn điều khiển hiện hành.
 
 ## Trạng thái hiện hành
 
-- CI: [Revamp_Project_System_CI_v2.3.md](Revamp_Project_System_CI_v2.3.md), `ACTIVE` trong repository; governing base là ChatGPT Project Global Native 9.0.
+- CI: [Revamp_Project_System_CI_v2.4.md](Revamp_Project_System_CI_v2.4.md), `ACTIVE` trong repository; governing base là ChatGPT Project Global Native 9.0.
 - Handoff Router: [HANDOFF_ROUTER.yaml](<Revamp Project System/HANDOFF_ROUTER.yaml>), v1.1, `active`.
 - Trạng thái tiếp nối và bằng chứng kiểm chứng được ghi tại [REVAMP_SYSTEM_CURRENT.md](<Revamp Project System/Handoffs/REVAMP_SYSTEM_CURRENT.md>).
 - `LIVE VERIFIED: NOT RUN` theo CURRENT. Promotion, commit và kiểm tra tĩnh không chứng minh cài đặt hoặc hành vi live. Changelog này ghi lịch sử, không cấp quyền hay thay CURRENT.
+
+## 2026-11-01 — CI v2.4: chuyển quyết định sang Codex và promotion trực tiếp
+
+- Người dùng duyệt promotion trực tiếp v2.4 ACTIVE; không tạo candidate stage. Governing base vẫn là ChatGPT Project Global Native 9.0.
+- §2 coi yêu cầu prompt Codex là decision handoff: mang scope/quyết định đã chốt sang prompt, chỉ mở lại phần bị concrete blocker.
+- §6 giữ exploration chưa chốt ở trạng thái provisional và thêm `CANDIDATE != REQUIRED STAGE`; baseline được người dùng duyệt có thể promote trực tiếp.
+- §8 giữ đường known-correct khi thử bản thay thế, không dựng incumbent hoặc đường candidate giả cho kiến trúc mới.
+- Chỉ thay đúng ba đoạn đã duyệt cùng version/ngày adoption; lưu v2.3 byte-exact trong `Source_Archive` và cập nhật CURRENT. v2.4 dài 7.978 ký tự gồm newline cuối; kiểm tra tĩnh A–F và định dạng đạt. LIVE VERIFIED: NOT RUN.
 
 ## 2026-10-29 — CI v2.3: chuyển governing base sang Global Native 9.0
 

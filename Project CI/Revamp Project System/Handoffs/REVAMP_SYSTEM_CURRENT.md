@@ -4,9 +4,12 @@ HANDOFF_ID: REVAMP_SYSTEM
 FILENAME: REVAMP_SYSTEM_CURRENT.md
 STATUS: ACTIVE
 SCOPE: Revamp-system CI and local cross-chat workstream handoff mechanism only.
-UPDATED: 2026-10-31
+UPDATED: 2026-11-01
 
 ## 1. Established current state
+
+- DECIDED / IMPLEMENTED (2026-11-01): theo thay đổi đã được người dùng duyệt, v2.4 được promote trực tiếp ACTIVE, thay v2.3; không tạo candidate stage. §2: yêu cầu prompt Codex là decision handoff cho scope/quyết định đã chốt, chỉ mở lại phần có concrete blocker. §6: `CANDIDATE != REQUIRED STAGE`, baseline được duyệt có thể promote trực tiếp. §8: giữ known-correct path khi thử replacement, không giả định incumbent cho kiến trúc mới. Governing base vẫn là ChatGPT Project Global Native 9.0; các control khác giữ nguyên.
+- STATICALLY VERIFIED (2026-11-01): v2.4 có 7.978 ký tự gồm newline cuối, đủ 14 section và §4A; chỉ ba đoạn được duyệt cùng version/ngày adoption thay đổi. Hai invariant mới xuất hiện đúng một lần; authorization, stage/commit policy, failure recovery và Central Hub boundary giữ nguyên. Rà soát văn bản A–F đạt; đây không phải sáu lần chạy live. UTF-8/LF/newline cuối, không BOM/trailing whitespace và `git diff --check` đạt. v2.3 được archive byte-exact, SHA-256 `a04a6d276fe299c019311518090dd997880f6744279080fa53a947a4a5a856ce`. LIVE VERIFIED: NOT RUN.
 
 - DECIDED / IMPLEMENTED (2026-10-31): theo yêu cầu người dùng, đã đổi tên repository GitHub thành `lead21pc/ChatGPT-Creative-Workshops`; API xác nhận canonical URL `https://github.com/lead21pc/ChatGPT-Creative-Workshops`, giữ repository ID `1361687313`. Đã đổi `origin` local sang HTTPS `.git` tương ứng và Router `repository_preflight.url` sang canonical URL; cập nhật sáu liên kết release hiện hành trong README root và `distribution/README.md`. Router vẫn v1.1, chỉ đổi endpoint; thứ tự nạp, entry và ranh giới Central Hub giữ nguyên. Các mốc lịch sử/provenance vẫn giữ tên cũ khi mô tả trạng thái trước rename. Không có quyền push trong tác vụ này. LIVE VERIFIED: NOT RUN.
 - STATICALLY VERIFIED (2026-10-31): Router parse YAML đạt, so sánh với baseline xác nhận chỉ URL thay đổi; version và ranh giới Central Hub giữ nguyên. `git diff --check` đạt. Lần truy cập URL mới trước thao tác rename trả `Repository not found`; đó là kết quả trước rename, không phải trạng thái truy cập hiện hành. Xác minh GitHub repository không phải kiểm chứng runtime ChatGPT Project.
@@ -73,9 +76,10 @@ Thứ tự trong history mục 10–11 đã đồng bộ với Router v1.1: vào
 - `AGENTS.md`: repository context gate; đã đọc đầy đủ. Chỉ dẫn AGENTS do người dùng cung cấp trong chat thêm ranh giới shared local working state và proposal review.
 - `Project CI/Source_Archive/Revamp_Project_System_CI_v2.2.md`: predecessor byte-exact để provenance/rollback khi được yêu cầu; không phải nguồn hiện hành hay fallback mặc định. v2.1, v2.0 và các bản cũ hơn ở cùng archive.
 - `llm-controls/global-instructions/ChatGPT Plus+ Era/chatgpt v8.9.txt`: governing core cũ của v2.2; đã đọc đầy đủ và không sửa trong tác vụ rebase.
-- `llm-controls/global-instructions/ChatGPT Project Global Native/chatgpt v9.0.txt`: governing core hiện hành của v2.3; đã đọc đầy đủ và không sửa trong tác vụ rebase.
+- `llm-controls/global-instructions/ChatGPT Project Global Native/chatgpt v9.0.txt`: governing core hiện hành của v2.4, kế thừa từ v2.3; không sửa trong đợt promotion này.
 - `llm-controls/global-instructions/ChatGPT Project Global Native/DESIGN_RATIONALE.md`: rationale bắt buộc đã đọc đầy đủ; tham chiếu thiết kế, không phải bằng chứng live.
-- `Project CI/Revamp_Project_System_CI_v2.3.md`: CI ACTIVE trong repository; giữ nguyên §1–§14 từ v2.2, gồm policy §2, failure-recovery và 4A CROSS-CHAT HANDOFF.
+- `Project CI/Source_Archive/Revamp_Project_System_CI_v2.3.md`: predecessor không hoạt động, được lưu byte-exact khi promote v2.4; chỉ dùng cho provenance/rollback khi được yêu cầu.
+- `Project CI/Revamp_Project_System_CI_v2.4.md`: CI ACTIVE trong repository; §2 decision handoff, §6 candidate không bắt buộc, §8 bảo vệ known-correct replacement path; giữ authorization, failure recovery và §4A.
 - `Project CI/Revamp Project System/HANDOFF_ROUTER.yaml`: Router v1.1 ACTIVE; repository preflight trước history; một entry CURRENT `revamp_system`.
 - `Project CI/Revamp Project System/HISTORY_AND_WHAT_NOT_TO_DO.md`: bối cảnh lỗi lịch sử/phòng ngừa; đọc FULL_FILE sau Router, trước CURRENT. HISTORY != CURRENT STATE; PAST FAILURE != PRESENT FAILURE; WARNING != AUTHORIZATION; GENEALOGY != REQUIRED ARCHITECTURE; HISTORICAL PAIN != PERMANENT MAXIMUM CONTROL.
 - `Project CI/Revamp Project System/HANDOFF_TEMPLATE.md`: tạo mới hoặc thay thế toàn bộ CURRENT từ trạng thái có chứng cứ trong chat.
