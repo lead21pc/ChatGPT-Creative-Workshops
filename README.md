@@ -2,110 +2,231 @@
   <img src="docs/assets/brand/logo-v1.svg" width="192" height="192" alt="Open workshop frame with a central Hub and four scoped connections">
 </p>
 
-# Personal Worldbuilding & Fiction Systems Workshop
+# ChatGPT Creative Workshops
 
-**A personal AI-assisted creative workshop for worldbuilding, fiction systems, research, concept development, image workflows, and the LLM controls that support them.**
+**A personal AI-assisted creative workshop for worldbuilding, fiction systems, fanfiction/daydream simulation, research, concept development, prompt authoring, and image workflows.**
 
 [![MIT License](https://img.shields.io/badge/license-MIT-263345)](LICENSE)
 [![FTH Control Pack 0.1.0](https://img.shields.io/badge/FTH_Control_Pack-0.1.0-D89C3D)](https://github.com/lead21pc/chatgpt-ci-worldbuilding/releases/tag/fth-control-pack-v0.1.0)
 [![Central Hub Architecture Pack 0.1.0](https://img.shields.io/badge/Central_Hub_Architecture_Pack-0.1.0-263345)](https://github.com/lead21pc/chatgpt-ci-worldbuilding/releases/tag/central-hub-architecture-pack-v0.1.0)
 
-[Creative workflow](#how-creative-work-moves) · [Creative systems](#creative-systems) · [Central Hub](#central-hub) · [Choose your path](#choose-your-path) · [Reusable releases](#featured-reusable-releases) · [System context](SYSTEM_CONTEXT.md)
+[Creative workflow](#how-creative-work-moves) · [Creative systems](#creative-systems) · [Central Hub](#central-hub) · [Prompt Authoring / AT](#prompt-authoring--at) · [Choose your path](#choose-your-path) · [Releases](#featured-reusable-releases) · [System context](SYSTEM_CONTEXT.md)
 
 ## What this workshop is — and why it exists
 
-**Creative work is the purpose.** This is a personal, non-commercial working repository for worldbuilding and fanfiction/daydream simulation, developed with ChatGPT and Codex. The fiction systems are active creative work; the control infrastructure exists to make that work safer, easier to inspect, and easier to continue across large accumulated state.
+This is the author's personal, non-commercial working environment, developed with ChatGPT and Codex. The fiction projects are the creative work, not sample data for an AI framework.
 
-The repository contains externalized fiction/worldbuilding sources, versioned Custom Instructions, routing and anti-drift controls, experiments, regression evidence, design history, shared AI workflows, and supporting tools. The infrastructure developed through actual use, observed failures, diagnosis, bounded changes, and feedback. Some parts later became reusable enough to release separately.
+The repository began with ChatGPT Custom Instruction versioning. It now contains externalized fictional sources, creative methods, research and image workflows, alongside the LLM controls that support them. Routing, anti-drift controls, regression checks, and design history grew from actual use, observed failures, bounded changes, and feedback.
 
-The repository name reflects its instruction-versioning history, not a claim that instruction engineering is now the primary purpose.
+```text
+CREATIVE WORK = PURPOSE
+CONTROL INFRASTRUCTURE = SUPPORT
+```
 
-**CI** means **Custom Instructions**, not Continuous Integration. This is an independent personal project, not an official OpenAI project or a guarantee of ChatGPT behavior.
+**CI** means **Custom Instructions**, not Continuous Integration. Historical/internal paths and the current GitHub repository name remain in use. This is an independent personal project, not an official OpenAI project or a guarantee of ChatGPT behavior.
 
 ## How creative work moves
 
-Creative work does not have one mandatory entrypoint. An idea may enter a fiction project directly, or relevant material may move into Central Hub when shared capabilities are useful. A fiction project may stay local for as long as its own stack is sufficient.
+A fiction idea can go straight to a fiction project. Central Hub is available when shared reasoning, research, concept, prompt, or image capabilities are useful; it is not a required intake step.
 
 ```text
-                         IDEA
-                          │
-                          ▼
-                  ┌─────────────┐
-                  │ CENTRAL HUB │
-                  │ research    │
-                  │ brainstorm  │
-                  │ development │
-                  │ authoring   │
-                  │ tools       │
-                  └──────┬──────┘
-                         ↕
-          ┌──────────────┼──────────────┐
-          ↕              ↕              ↕
-        FTH        THE KINGDOM    FANFICTION ENGINE
+IDEA ───────────────────────────→ independent fiction projects
+  └→ Central Hub when useful ←──→ FTH / The Kingdom / Fanfiction Engine
 ```
 
-The diagram shows a common shared-workspace route, not a required pipeline. `IDEA → FTH`, `IDEA → The Kingdom`, or `IDEA → Fanfiction Engine` are equally valid. `PROJECT → CENTRAL HUB → SAME PROJECT` is also a normal creative loop.
+Valid flows include `IDEA → FTH`, `IDEA → The Kingdom`, and `IDEA → Fanfiction Engine`, as well as `FTH → Central Hub → FTH`, `The Kingdom → Central Hub → The Kingdom`, and `Fanfiction Engine → Central Hub → Fanfiction Engine`.
 
 When work leaves a project for Central Hub, the Hub works on the supplied material without inheriting that project's canon authority. The result returns as working material. The receiving project's own sources, local logic, controls, and authorial review determine what the result means there and whether any part is accepted.
 
-If a local result suggests something useful beyond its source project, the transferable part can be re-abstracted into a new **fiction idea** and explored independently elsewhere. The local implementation itself is not copied across projects.
+A transferable result may be re-abstracted into a new fiction idea and explored elsewhere. Its local implementation does not transfer automatically: each project evaluates the idea under its own logic and author decisions.
 
 ```text
 SHARED FICTION IDEA != SHARED IMPLEMENTATION
 HUB OUTPUT != PROJECT ACCEPTANCE
 LOCAL FICTION LOGIC > CROSS-FICTION ANALOGY
+CENTRAL HUB != SEMANTIC PARENT OF FICTION PROJECTS
 ```
 
 ## Creative systems
 
-**These creative systems are where the fiction lives.** They are first-class work, not sample data for Central Hub. Each keeps its own canon/state, ontology, local controls, and authority; Central Hub is not their semantic parent.
+These independent creative systems keep their own canon, ontology, source authority, and local controls.
 
 | Project | Repository entry | Interpretation |
 | --- | --- | --- |
-| Project Feather Core (FTH) | [Project Feather Core](./Project%20Feather%20Core/) | Its own sources, controls, and project-specific authority; AetherFire is a country inside it. |
-| The Kingdom | [The Kingdom](./worlds/The%20Kingdom/) | Its own world model and local rules; do not infer its architecture from Project Feather Core or Fanfiction Engine. |
-| Fanfiction Engine | [Fanfiction Engine](./worlds/Fanfiction%20Engine/) | Fanfiction/daydream simulation system; The Academy is its internal platform. Its operational domains can run independently or compose. |
+| Project Feather Core (FTH) | [Project Feather Core](Project%20Feather%20Core/README.md) | Worldbuilding with its own sources and authority; AetherFire is a country inside FTH. |
+| The Kingdom | [The Kingdom](worlds/The%20Kingdom/README.md) | Its own world model and local rules; do not infer its architecture from another project. |
+| Fanfiction Engine | [Fanfiction Engine](worlds/Fanfiction%20Engine/README.md) | Fanfiction/daydream simulation system; The Academy is its internal platform. Its operational domains can run independently or compose. |
 
-Each project's local documentation determines how to read its sources and how returned material is evaluated. Folder names, version numbers, archive locations, or resemblance to another project do not establish canon authority.
+Each project's documentation determines how to read its sources. Folder names, version numbers, archives, or resemblance to another project do not establish canon authority.
 
 ## Central Hub
 
-Central Hub is the shared general-purpose workspace used when a task benefits from capabilities that should not belong to any one fiction project. It does **not** sit inside FTH, above the creative systems, or act as a shared fiction runtime or canon layer.
+Central Hub is the shared general-purpose workspace for capabilities that should not belong to any one fiction project. It does not sit inside FTH, above the creative systems, or act as a shared fiction runtime or canon layer. A project may bring a bounded question or slice of context into Hub and return the result for local review; Hub may also start from a fiction idea before any project has adopted it.
 
-A project can bring a bounded question or slice of context into Hub for research, reasoning, brainstorming, concept development, Authoring, AIS, ImageT, or other shared work, then take the result back to the relevant project for local review. Central Hub can also start from a fiction idea before any project has adopted it.
+Central Hub coordinates a **mission**: the user's current task. It keeps the overall objective while composing contributions with authority limited to their assigned portions. Ordinary chat, support, writing, or lightweight brainstorming may need no specialized package.
 
-Inside Hub, a task is treated as a **mission**, not as ownership by one subsystem. The Hub keeps the overall objective, selects specialized contributors that can help, and gives each contributor authority only over its assigned scope. Research can provide evidence without becoming design authority; technical reasoning can diagnose mechanisms without redefining the creative goal; brainstorming and creative development can expand possibilities without silently turning them into accepted project state.
+### How Central Hub composes work
 
-```text
-TASK / WORKING MATERIAL
-          |
-      CENTRAL HUB
-   +-- research / evidence
-   +-- reasoning / diagnosis
-   +-- concept development
-   +-- authoring / tool pipelines
-          |
-   scoped composition
-          |
-   WORKING RESULT
-          |
-          v
-PROJECT-LOCAL REVIEW WHEN APPLICABLE
-```
-
-The goal is not maximum control. Ordinary work may remain on the baseline. Specialized constraints are added where the task needs them, and a growing capability should not require the Hub core to absorb that capability's internal architecture.
+These are behavioral contracts for model-guided work, not an executable routing program. The topology below shows selection and composition, not a mandatory sequence through every package.
 
 ```text
-SPECIALIZATION CONTRIBUTES TO THE MISSION; IT DOES NOT OWN THE MISSION.
-AUTHORITY IS SCOPED TO THE TASK PORTION; IT DOES NOT EXPAND BY PARTICIPATION.
-CONTROL IS ACTIVATED BY NEED; IT IS NOT A PERMANENT GLOBAL MODE.
-HUB OUTPUT != PROJECT ACCEPTANCE.
-PROJECT -> HUB -> SAME PROJECT IS A NORMAL CREATIVE LOOP.
+USER TASK
+   ↓
+HUB CI — operation/stage · truth/state · action authorization
+   ↓
+HUB ROUTER — scope · selection · dependency/read validation
+   ↓
+ROOT PACKAGE CATALOG
+   ├─ HUB-PKG-TECHNICAL → HUB-DOM-TECHNICAL
+   ├─ HUB-PKG-CONCEPT-DEVELOPMENT → HUB-DOM-CONCEPT-DEVELOPMENT
+   │                                  └─ local catalog
+   │                                      ├─ CREATIVE
+   │                                      └─ BRAINSTORM
+   ├─ HUB-PKG-AUTHORING → HUB-CAP-AUTHORING
+   ├─ HUB-PKG-AIS → AIS pipeline (internal dependencies)
+   └─ HUB-PKG-IMAGET → ImageT pipeline (internal dependencies)
+   ↓
+selected modules / package-local leaves / tool pipelines
+   ↓
+HUB COMPOSITION → WORKING RESULT
 ```
 
-Central Hub is supporting infrastructure, not a fourth creative project and not a shared ontology for the independent fiction systems.
+**Hub CI** owns the requested operation/stage, truth and state discipline, action authorization, general verification need, and overall interaction. **Hub Router** scopes task portions, selects root packages, resolves entrypoints, composes the selected module set, expands hard dependencies, validates reads/bindings, and hands off scoped work. Packages own their internal selection; pipelines own their procedures; the platform performs actual retrieval and tool execution.
 
-For an independently readable reference to its orchestration architecture, use the [Central Hub Architecture Pack v0.1.0](https://github.com/lead21pc/chatgpt-ci-worldbuilding/releases/tag/central-hub-architecture-pack-v0.1.0). For current workshop controls, bindings, and scoped evidence, read the [Central Hub documentation](Central%20Hub/README.md).
+The [active root Catalog](Central%20Hub/HUB_PACKAGE_CATALOG_v1.3.yaml) exposes exactly **five root packages**, not every leaf. Zero, one, or multiple packages may contribute to different portions of one task. Selection is recomputed each turn and when task scope materially changes; it is not a permanent chat mode.
+
+```text
+ROOT CATALOG KNOWS PACKAGE ENTRYPOINTS != ROOT CATALOG KNOWS EVERY LEAF
+PACKAGE MEMBERSHIP != AUTOMATIC LOAD
+PACKAGE SELECTION != ALL MODULES SELECTED
+MODULE SELECTION != TOOL EXECUTION
+PREVIOUS SELECTION != CURRENT SELECTION
+```
+
+### Current packages and modules
+
+The table summarizes the active repository contracts. Deployment and runtime evidence remain scoped separately below.
+
+| Root package | Entrypoint / role | Contribution |
+| --- | --- | --- |
+| TECHNICAL | `HUB-DOM-TECHNICAL` 1.0 / `REASONING_PROFILE` | Mechanism reasoning, diagnosis with competing hypotheses, and bounded technical-change evaluation across subjects. |
+| CONCEPT DEVELOPMENT | `HUB-DOM-CONCEPT-DEVELOPMENT` 1.0 / `DOMAIN_CONTROL` | Concept consistency, causal development, bounded audit/analysis, and local selection of Creative and Brainstorm. |
+| AUTHORING | `HUB-CAP-AUTHORING` 0.3 / `CAPABILITY` | Explicitly triggered, target-adapted prompt construction; produces a prompt and stops. |
+| AIS | `HUB-PIPE-AIS` / `TOOL_PIPELINE`; pipeline 1.1, router 1.2 | External evidence verification, research, and provisional option discovery. |
+| ImageT | `HUB-PIPE-IMAGET` / `TOOL_PIPELINE`; controller 1.2 | Image analysis and generation operations with input authority, prompt, approval, and visible-result checks. |
+
+**TECHNICAL is selected for a reasoning need, not a technical topic alone.** A diagnosis may follow `symptom → competing hypotheses → mechanism chain → distinguishing test → supported cause → minimum sufficient change → behavioral verification`. If evidence cannot distinguish causes, the cause stays unresolved. The module owns no technical subject domain, does not activate AIS, and does not turn a simple explanation into an architecture audit.
+
+```text
+TECHNICAL TOPIC != AUTOMATIC TECHNICAL MODULE SELECTION
+```
+
+**Concept Development is a growing package with its own [local Catalog](Central%20Hub/library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.0.yaml).** The root Router selects the package; the concept entrypoint selects zero leaves, Creative only, Brainstorm only, or both for the scoped need.
+
+| Concept leaf | Role | Premise boundary |
+| --- | --- | --- |
+| [Creative 1.1](Central%20Hub/library_modules/HUB-DOM-CREATIVE_v1.1.md) / `HUB-DOM-CREATIVE` | `DOMAIN_CONTROL` | **Develop inside the selected premise:** imagery, action, rhythm, situations, relationships, and functional fictional detail. Fill gaps only within permitted creative latitude. |
+| [Brainstorm 1.1](Central%20Hub/library_modules/HUB-CAP-BRAINSTORM_v1.1.md) / `HUB-CAP-BRAINSTORM` | `CAPABILITY` | **Alter or branch the premise:** reversal/relaxation, second-order consequences, feedback, and concrete bridges between incomplete premises. Develop alternatives in parallel; select a winner only when requested. |
+
+If Creative needs a material premise change, it keeps that change conditional/proposed and returns the need through the concept package; it does not select Brainstorm or accept the new premise itself.
+
+For illustration, a causal audit of an institution may need only the concept core; realizing daily life within it may add Creative; exploring alternatives to royal authority may add Brainstorm; realizing several premise variants may use both. These illustrate contributions, not literal routing rules.
+
+The current local Catalog also records three experimental anti-drift entries—Anti-Prior, Modular Concept Architecture, and Worldbuilding Internal Logic—all **INACTIVE** in the baseline. They are not active leaves or extra root packages. Their A/B configuration, dependency, and evidence details remain in the [Concept Development sources](Central%20Hub/library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.0.md).
+
+### Prompt Authoring / AT
+
+**AT is a prompt-enhancement capability:** describe what you want in ordinary language, then explicitly choose the downstream target. It constructs a clearer, self-contained, target-adapted prompt from your intent, relevant current Hub context, and materially relevant evidence when available.
+
+It is intended to help even if you know little or nothing about prompt engineering. You need not find a template online, learn prompt terminology, remember every context field, ask someone for “the right prompt,” or write a complicated structure yourself. AT preserves scope, constraints, uncertainty, evidence status, and target authority; it adds only the execution structure the task needs. It is scoped prompt construction, not a universal prompt optimizer.
+
+For example, describe the research you want, then submit a message whose first non-empty user-authored line is:
+
+```text
+/AUTHOR AIS
+```
+
+Put any additional request below that line. AT turns the intent and relevant context into a self-contained AIS prompt. The six supported commands are:
+
+```text
+/AUTHOR AIS
+/AUTHOR IMAGET
+/AUTHOR FTH
+/AUTHOR CODEX
+/AUTHOR WORK
+/AUTHOR GENERIC
+```
+
+The activation line must match exactly: case-sensitive, one ASCII space, no surrounding whitespace or extra text. Leading empty or space/tab-only lines may be skipped. Quoted/attached commands, code-block examples, later-line commands, and prior turns do not activate it. Reassess each turn; a clarification answer must repeat the trigger. Selection still requires the exact Library binding and full-read checks.
+
+```text
+Hub discussion → /AUTHOR AIS → enhanced AIS prompt → user runs AIS separately
+Fiction idea discussion → /AUTHOR FTH → FTH-ready prompt → user brings it to FTH
+AUTHORING != EXECUTION
+```
+
+AT outputs the prompt and stops. It does not call AIS, FTH, ImageT, Codex, or Work. **Authoring 0.3 is active in the repository; its Library installation, binding verification, Project deployment, and promoted live routing remain unperformed/unverified.** See the [module contract](Central%20Hub/library_modules/HUB-CAP-AUTHORING_v0.3.md) before use.
+
+### AIS: external evidence
+
+AIS is a Hub-selected evidence pipeline with three modes:
+
+| Mode | Purpose |
+| --- | --- |
+| `VERIFY` | Check defined claims against external evidence. |
+| `RESEARCH` | Collect, compare, and synthesize evidence within a scoped question. |
+| `EXPLORE` | Discover externally grounded options that remain provisional. |
+
+**AIS EXPLORE != BRAINSTORM:** AIS searches external sources; Brainstorm explores premise possibilities through reasoning. AIS returns evidence to Hub and owns neither the whole mission nor canon, design acceptance, or project authority. Greater research depth does not automatically launch Deep Research or Work. See the [AIS pipeline](Central%20Hub/tool_pipelines/AIS/AIS_PIPELINE_v1.1.md).
+
+### ImageT: image operations
+
+ImageT handles image analysis, creation, editing, variation, correction, and retries—not just prompt writing. It controls prompt/source/reference authority and verifies the visible result. Selection alone generates nothing.
+
+For generation operations, its high-level path is:
+
+```text
+Hub selects ImageT → resolve current image controls → Open Gate
+→ prompt construction / preservation → Prompt Gate → Ready Gate
+→ user approves exact snapshot → one exact generation call
+→ visible-result verification
+```
+
+**Open Gate** determines how much ImageT may transform the input: `RAW` permits scoped construction; `PRESERVED_AUTHORED` requires current explicit user authority to preserve the supplied semantic payload, with only minimal execution adaptation. Polished formatting or an AT-produced prompt alone does not establish preservation authority.
+
+**Ready Gate** determines whether one exact generation snapshot is authorized to execute. Analysis alone generates nothing and bypasses Ready Gate. Changed inputs/sources invalidate the applicable approval; retries require a new snapshot and approval.
+
+```text
+OPEN GATE != READY GATE
+ONE APPROVAL = ONE EXACT TOOL CALL
+```
+
+See the [ImageT controller](Central%20Hub/tool_pipelines/ImageT/IMAGE_CONTROLLER_v1.2.md) and [Ready Gate](Central%20Hub/tool_pipelines/ImageT/READY_GATE_v1.0.md) for exact contracts and verification limits.
+
+### Composition and runtime boundaries
+
+`REFINES` specializes a matched responsibility while preserving uncovered duties. `COMPLEMENTS` lets independently applicable contributions coexist. `REQUIRES` is a hard technical dependency; only it automatically expands dependency closure.
+
+```text
+REFINES != REQUIRES
+COMPLEMENTS != REQUIRES
+MENTION != DEPENDENCY
+PACKAGE MEMBERSHIP != DEPENDENCY
+```
+
+Technical, Concept Development, and Authoring currently use Library-module bindings in the target architecture. AIS and ImageT retain Project-Source pipeline bindings. Storage/binding establishes neither semantic hierarchy nor authority. Exact identities, full-read verification, deployment status, and scoped runtime records belong in the [Central Hub documentation](Central%20Hub/README.md), [Architecture](Central%20Hub/HUB_ARCHITECTURE_v1.3.md), and [Catalog](Central%20Hub/HUB_PACKAGE_CATALOG_v1.3.yaml).
+
+> **User-reported build/test baseline:** The current workshop controls and Central Hub architecture were developed and behaviorally tested primarily with **GPT-5.6 Sol on ChatGPT Plus**. This is the user's reported runtime qualification, not a compatibility result reproduced by repository checks. Other models have not yet been systematically tested; other plans/runtime conditions may work, but equivalent behavior and stability are not guaranteed. This does not establish incompatibility.
+
+```text
+GPT-5.6 SOL + CHATGPT PLUS = CURRENT BUILD / TEST BASELINE (USER-REPORTED)
+OTHER MODELS = NOT YET SYSTEMATICALLY TESTED
+OTHER PLANS / DIFFERENT RUNTIME CONDITIONS = NOT GUARANTEED TO BEHAVIORALLY EQUIVALENT
+REPOSITORY ACTIVE != PROJECT DEPLOYED
+STRUCTURAL PASS != LIVE BEHAVIOR PASS
+```
+
+The model/plan baseline does not upgrade individual module or pipeline evidence. The active sources retain their specific deployment, retrieval, and live-test limits.
 
 ## Choose your path
 
