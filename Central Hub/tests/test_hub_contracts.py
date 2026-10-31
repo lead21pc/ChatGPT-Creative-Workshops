@@ -371,7 +371,7 @@ class HubTests(unittest.TestCase):
         self.assertEqual((active['file'], active['version'], active['status']),
                          ('IMAGE_CONTROLLER_v1.2.md', '1.2', 'active'))
         self.assertEqual(self.manifest['controllers']['experiments'], [])
-        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.4.yaml')
+        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.5.yaml')
         binding = next(p for p in catalog['packages'] if p['package_id'] == 'HUB-PKG-IMAGET')
         self.assertEqual(binding['version'], active['version'])
         self.assertEqual(binding['location']['source_name'], active['file'])
@@ -384,7 +384,7 @@ class HubTests(unittest.TestCase):
                          '6d33c80f4852c1b44c32abf6e898c14e8f001d24796d406aafc49a95ab3a2733')
         self.assertEqual(digest(archive / 'tool_pipelines/ImageT/IMAGE_CONTROLLER_v1.2-candidate.md'),
                          'bfe8cc64f23932633c3f2a5a279d96ff39c1a54aaa6014c27cfcb5152876d600')
-        self.assertIn(candidate_path.name, (ROOT / 'HUB_PACKAGE_CATALOG_v1.4.yaml').read_text(encoding='utf-8'))
+        self.assertIn(candidate_path.name, (ROOT / 'HUB_PACKAGE_CATALOG_v1.5.yaml').read_text(encoding='utf-8'))
         self.assertIn(candidate_path.name, (IMAGE / 'manifest.yaml').read_text(encoding='utf-8'))
         self.assertNotIn(candidate_path.name, (IMAGE / 'IMAGE_SOURCE_ROUTER.yaml').read_text(encoding='utf-8'))
         cases = (IMAGE / 'tests/ROUTE_TEST_CASES.md').read_text(encoding='utf-8')

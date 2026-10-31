@@ -23,6 +23,14 @@ NO NEW EVIDENCE != STATUS RESET
 
 ## Current verified runtime status
 
+### AUTHORING_0_4_1_CONTEXT_PROVENANCE_CORRECTION
+
+- Repository: ACTIVE / IMPLEMENTED / STATICALLY VERIFIED; Authoring 0.4.1, Architecture/Catalog 1.5, Router 1.1 pins.
+- New revision installation: NOT_PERFORMED by Codex; identity/FULL_FILE binding: UNRESOLVED / NOT_VERIFIED. Corrected Author live regression: NOT_RUN.
+- Prior actual Central Hub 0.4 evidence (user-confirmed, not independently reproduced): T1 Author OBSERVED LIVE CENTRAL HUB FAILURE, narrow context-provenance contamination; T1 Execution USER_CONFIRMED_LIVE_PASS; T2 Rewrite USER_CONFIRMED_LIVE_PASS; T2 Reauthor USER_CONFIRMED_LIVE_PASS. No complete source/input/output/retrieval trace supplied.
+- Those reported 0.4 stages supersede the earlier NOT_RUN record below; PASS applies only to its stated path/revision, not globally or automatically to 0.4.1. M2 NOT STARTED.
+
+
 ### AUTHORING_0_4_REPOSITORY_PROMOTION
 
 - Status: REPOSITORY ACTIVE / IMPLEMENTED / STATICALLY VERIFIED; Authoring 0.4 with Architecture/Catalog 1.4 and Router 1.1 pins.
@@ -67,6 +75,13 @@ NO NEW EVIDENCE != STATUS RESET
 - Related log entry: `2026-10-27 - Integrated concept-development runtime smoke`.
 
 ## Verification log
+
+### 2026-11-01 - Actual Central Hub M1 results and provenance correction
+
+- User confirms live Central Hub 0.4: T1 Author narrow FAIL; T1 Execution PASS; T2 Rewrite PASS; T2 Reauthor PASS. Date is recording date; exact run time/model were not supplied. Distinct from earlier outside-chat exploratory tests.
+- T1 context named Obsidian/Logseq, local-first constraints, rejected Notion, open plugin ecosystem and closure condition. Authoring retained these but invented prior-round findings about product/storage/development state. Calling unsupplied claims hypotheses did not establish provenance.
+- Corrective 0.4.1 separates supplied context, Hub state, grounded evidence, generated structure and model knowledge; neutral questions are allowed, invented source history is not. Prior PASS stages are not reopened. New live regression remains NOT_RUN.
+
 
 ### 2026-11-01 - Authoring 0.4 repository promotion
 

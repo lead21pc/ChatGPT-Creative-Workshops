@@ -1,3 +1,21 @@
+# Authoring 0.4.1 — context-provenance correction
+
+Date: 2026-11-01. Current repository stack: Hub CI 1.1 → Router 1.1 → Architecture/Catalog 1.5 → HUB-CAP-AUTHORING ACTIVE/0.4.1. Singleton/five targets and other behavior are unchanged.
+
+## POST-PROMOTION RUNTIME ACTIVATION
+
+Install/replace exact library_modules/HUB-CAP-AUTHORING_v0.4.1.md in Central Hub Config. Verify Module ID, Package ID, CAPABILITY, ACTIVE, Version 0.4.1, FULL_FILE/material body and sufficiently scoped duplicate coverage; no repository fallback or guessed Library IDs. Use exact Router 1.1 pins to HUB_ARCHITECTURE_v1.5.md and HUB_PACKAGE_CATALOG_v1.5.yaml in Project Sources; Hub CI remains 1.1. Do not retain simultaneous root authorities or active Authoring revisions.
+
+User-confirmed actual Central Hub 0.4 results: T1 Author narrow FAIL (invented prior findings), T1 Execution PASS, T2 Rewrite PASS, T2 Reauthor PASS. These replace the earlier NOT_RUN status for the reported 0.4 stages. Codex did not reproduce them and received no full retrieval trace or bound Library object identity. New 0.4.1 installation is NOT_PERFORMED by this task; binding UNRESOLVED / NOT_VERIFIED and live regression NOT_RUN. After installation run only candidates/authoring_v0/AUTHORING_0_4_1_REGRESSION.md. Keep the passed behaviors closed.
+
+## Deliberate correction rollback
+
+Restore the compatible pre-correction Router snapshot, Architecture/Catalog 1.4 and exact Authoring 0.4 from Source_archive/Authoring 0.4.1 correction 2026-11-01/, reverify identities and replace the active authority set deliberately. No automatic fallback. The old module hash is 2b86c680156b78062c2e4e412b1fe30e10002307c0bbd4342850db4a9aa9a317; archive bytes must match. M2 NOT STARTED.
+
+## Historical 0.4 promotion instructions
+
+The following records the preceding promotion, not the current installation target or current live status. Its older NOT_RUN statements are superseded for the user-confirmed 0.4 stages above.
+
 # Prompt Authoring 0.4 — repository promotion and later deployment
 
 Date: 2026-11-01 (Asia/Bangkok). Scope: local repository implementation only.
