@@ -99,7 +99,7 @@ class AISResearchStaticTests(unittest.TestCase):
         self.assertEqual(re.findall(r'`(AIS_ROUTER_[^`]+\.yaml)`', pipeline), ['AIS_ROUTER_v1.2.yaml'])
         self.assertIn('Status: ACTIVE', pipeline)
         self.assertIn('without reassessing the whole turn', pipeline)
-        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.5.yaml')
+        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.6.yaml')
         ais = next(p for p in catalog['packages'] if p['package_id'] == 'HUB-PKG-AIS')
         self.assertEqual(ais['version'], '1.1')
         self.assertEqual(ais['binding_mode'], 'LEGACY_PROJECT_SOURCE')

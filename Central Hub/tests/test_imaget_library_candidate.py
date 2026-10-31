@@ -155,7 +155,7 @@ class ImageTLibraryCandidateTests(unittest.TestCase):
                 if name in {'HUB_ROUTER_v1.1.yaml', 'HUB_ARCHITECTURE_v1.3.md', 'HUB_PACKAGE_CATALOG_v1.3.yaml', 'library_modules/HUB-CAP-AUTHORING_v0.3.md'}:
                     path = ROOT / 'Source_archive/Authoring 0.4 promotion 2026-11-01' / name
                 self.assertEqual(path.read_bytes(), original)
-        root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.5.yaml')
+        root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.6.yaml')
         binding = next(p for p in root['packages'] if p['package_id'] == PACKAGE)
         self.assertEqual(binding['binding_mode'], 'LEGACY_PROJECT_SOURCE')
         self.assertEqual(binding['version'], '1.2')

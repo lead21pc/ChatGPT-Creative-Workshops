@@ -9,7 +9,7 @@ from test_hub_contracts import ROOT, load
 
 
 CANDIDATE = ROOT / 'candidates/authoring_v0'
-MODULE = ROOT / 'library_modules/HUB-CAP-AUTHORING_v0.4.1.md'
+MODULE = ROOT / 'library_modules/HUB-CAP-AUTHORING_v0.5.md'
 CASES = CANDIDATE / 'AUTHORING_TEST_CASES.md'
 V03_CANDIDATE = ROOT / 'Source_archive/Authoring promotion 2026-10-28/candidates/authoring_v0/HUB-CAP-AUTHORING_v0.3-candidate.md'
 PROMOTION_ARCHIVE = ROOT / 'Source_archive/Authoring promotion 2026-10-28'
@@ -32,12 +32,12 @@ def trigger_spec(text, *, user_instruction=True):
 class AuthoringPromotionTests(unittest.TestCase):
     def test_active_header_and_candidate_evidence_document(self):
         self.assertEqual({p.name for p in CANDIDATE.iterdir()},
-                         {CASES.name, 'AUTHORING_0_4_M1_TESTS.md', 'AUTHORING_0_4_1_REGRESSION.md'})
+                         {CASES.name, 'AUTHORING_0_4_M1_TESTS.md', 'AUTHORING_0_4_1_REGRESSION.md', 'AUTHORING_M2_TESTS.md'})
         text = MODULE.read_text(encoding='utf-8')
         for key, value in [('Module ID', 'HUB-CAP-AUTHORING'),
                            ('Package ID', 'HUB-PKG-AUTHORING'),
                            ('Runtime role', 'CAPABILITY'), ('Status', 'ACTIVE'),
-                           ('Version', '0.4.1')]:
+                           ('Version', '0.5')]:
             self.assertEqual(re.findall(rf'^{key}: (.+)$', text, re.M), [value])
         for key in ('Scope', 'Responsibility boundary'):
             self.assertEqual(len(re.findall(rf'^{key}: .+$', text, re.M)), 1)
@@ -55,13 +55,13 @@ class AuthoringPromotionTests(unittest.TestCase):
                                  None if vector['expected'] == 'FTH' else vector['expected'])
 
     def test_exact_root_admission_and_unresolved_library_binding(self):
-        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.5.yaml')
+        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.6.yaml')
         self.assertEqual(len(catalog['packages']), 5)
         entries = [p for p in catalog['packages'] if p['package_id'] == 'HUB-PKG-AUTHORING']
         self.assertEqual(len(entries), 1)
         entry = entries[0]
         self.assertEqual((entry['entrypoint_module_id'], entry['runtime_role'], entry['status'], entry['version']),
-                         ('HUB-CAP-AUTHORING', 'CAPABILITY', 'ACTIVE', '0.4.1'))
+                         ('HUB-CAP-AUTHORING', 'CAPABILITY', 'ACTIVE', '0.5'))
         self.assertIsNone(entry['local_catalog'])
         self.assertEqual(entry['requires'], [])
         self.assertEqual(entry['binding_mode'], 'LIBRARY_MODULE')
@@ -84,16 +84,16 @@ class AuthoringPromotionTests(unittest.TestCase):
             self.assertEqual(trigger_spec(f'/AUTHOR {target}'), target)
 
     def test_successor_stack_pins_and_router_algorithm_unchanged(self):
-        architecture = (ROOT / 'HUB_ARCHITECTURE_v1.5.md').read_text(encoding='utf-8')
-        self.assertEqual(re.findall(r'^Version: (.+)$', architecture, re.M), ['1.5'])
-        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.5.yaml')
+        architecture = (ROOT / 'HUB_ARCHITECTURE_v1.6.md').read_text(encoding='utf-8')
+        self.assertEqual(re.findall(r'^Version: (.+)$', architecture, re.M), ['1.6'])
+        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.6.yaml')
         self.assertEqual((catalog['module_id'], catalog['status'], catalog['version']),
-                         ('HUB-CORE-PACKAGE-CATALOG', 'ACTIVE', '1.5'))
+                         ('HUB-CORE-PACKAGE-CATALOG', 'ACTIVE', '1.6'))
         prior = load(PROMOTION_ARCHIVE / 'HUB_ROUTER_v1.1.yaml')
         active = load(ROOT / 'HUB_ROUTER_v1.1.yaml')
         expected = copy.deepcopy(prior)
-        expected['contracts']['architecture'].update(file='HUB_ARCHITECTURE_v1.5.md', version='1.5')
-        expected['contracts']['root_catalog'].update(file='HUB_PACKAGE_CATALOG_v1.5.yaml', version='1.5')
+        expected['contracts']['architecture'].update(file='HUB_ARCHITECTURE_v1.6.md', version='1.6')
+        expected['contracts']['root_catalog'].update(file='HUB_PACKAGE_CATALOG_v1.6.yaml', version='1.6')
         expected['contracts']['binding_scope'] = active['contracts']['binding_scope']
         self.assertEqual(active, expected)
         self.assertNotIn('HUB-PKG-AUTHORING', (ROOT / 'HUB_CI_v1.1.md').read_text(encoding='utf-8'))

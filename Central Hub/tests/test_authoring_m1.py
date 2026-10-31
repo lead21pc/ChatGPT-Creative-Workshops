@@ -10,7 +10,7 @@ from test_authoring_candidate import CASES, trigger_spec
 
 class AuthoringM1Tests(unittest.TestCase):
     def test_context_provenance_correction_and_predecessor_preservation(self):
-        active = (ROOT / 'library_modules/HUB-CAP-AUTHORING_v0.4.1.md').read_text(encoding='utf-8')
+        active = (ROOT / 'library_modules/HUB-CAP-AUTHORING_v0.5.md').read_text(encoding='utf-8')
         old = ROOT / 'Source_archive/Authoring 0.4.1 correction 2026-11-01/library_modules/HUB-CAP-AUTHORING_v0.4.md'
         self.assertEqual(hashlib.sha256(old.read_bytes()).hexdigest(),
                          '2b86c680156b78062c2e4e412b1fe30e10002307c0bbd4342850db4a9aa9a317')
@@ -22,20 +22,21 @@ class AuthoringM1Tests(unittest.TestCase):
                      'AUTHORING MAY CREATE QUESTIONS != AUTHORING MAY CREATE SOURCE HISTORY'):
             self.assertIn(term, corrected)
         normalized = re.sub(r'## Context provenance\n.*?(?=## Scoped transformation)', '', active, flags=re.S)
-        normalized = normalized.replace('v0.4.1', 'v0.4').replace('Version: 0.4.1', 'Version: 0.4')
+        normalized = re.sub(r'## Bounded composition\n.*?(?=## Context sources, rewrite and reauthor)', '', normalized, flags=re.S)
+        normalized = normalized.replace('v0.5', 'v0.4').replace('Version: 0.5', 'Version: 0.4')
         self.assertEqual(normalized, old.read_text(encoding='utf-8'))
 
     def test_candidate_identity_gate_and_active_preservation(self):
-        candidate = (ROOT / 'library_modules/HUB-CAP-AUTHORING_v0.4.1.md').read_text(encoding='utf-8')
+        candidate = (ROOT / 'library_modules/HUB-CAP-AUTHORING_v0.5.md').read_text(encoding='utf-8')
         targets = ['AIS', 'IMAGET', 'CODEX', 'WORK', 'GENERIC']
         for key, value in [('Module ID', 'HUB-CAP-AUTHORING'), ('Package ID', 'HUB-PKG-AUTHORING'),
-                           ('Runtime role', 'CAPABILITY'), ('Status', 'ACTIVE'), ('Version', '0.4.1')]:
+                           ('Runtime role', 'CAPABILITY'), ('Status', 'ACTIVE'), ('Version', '0.5')]:
             self.assertEqual(re.findall(rf'^{key}: (.+)$', candidate, re.M), [value])
         self.assertEqual(re.findall(r'^/AUTHOR (.+)$', candidate, re.M), targets)
         self.assertNotRegex(candidate, r'(?m)^(Requires|Refines|Complements):')
         self.assertIn('Active root singleton', candidate)
         self.assertEqual(list((ROOT / 'library_modules').glob('HUB-CAP-AUTHORING_v*.md')),
-                         [ROOT / 'library_modules/HUB-CAP-AUTHORING_v0.4.1.md'])
+                         [ROOT / 'library_modules/HUB-CAP-AUTHORING_v0.5.md'])
         self.assertIsNone(trigger_spec('/AUTHOR FTH'))
         vectors = json.loads(re.search(r'```json\n(.*?)\n```', CASES.read_text(encoding='utf-8'), re.S)[1])
         for vector in vectors:
@@ -54,6 +55,7 @@ class AuthoringM1Tests(unittest.TestCase):
         self.assertEqual(hashlib.sha256(source.read_bytes()).hexdigest(),
                          'd523f1275a2d2d5447224f251c4d032c7ac948c23ab5da435597c167922ed598')
         promoted_body = candidate.split('For the current turn only,', 1)[1]
+        promoted_body = re.sub(r'## Bounded composition\n.*?(?=## Context sources, rewrite and reauthor)', '', promoted_body, flags=re.S)
         promoted_body = re.sub(r'## Context provenance\n.*?(?=## Scoped transformation)', '', promoted_body, flags=re.S)
         prior_body = source.read_text(encoding='utf-8').split('For the current turn only,', 1)[1]
         prior_body = prior_body.replace('in this candidate', 'in this revision').replace(
@@ -68,7 +70,7 @@ class AuthoringM1Tests(unittest.TestCase):
             self.assertIn(row, candidate)
 
     def test_m1_source_contract_and_honest_live_packet(self):
-        text = (ROOT / 'library_modules/HUB-CAP-AUTHORING_v0.4.1.md').read_text(encoding='utf-8')
+        text = (ROOT / 'library_modules/HUB-CAP-AUTHORING_v0.5.md').read_text(encoding='utf-8')
         for invariant in ('CONTEXT ORIGIN != OUTPUT TARGET',
                           'EXPLICITLY REFERENCED CONTEXT != OPTIONAL BACKGROUND',
                           'ALL MATERIAL CONTEXT != ALL CONTEXT TEXT',

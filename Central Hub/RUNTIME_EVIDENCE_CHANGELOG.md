@@ -23,6 +23,12 @@ NO NEW EVIDENCE != STATUS RESET
 
 ## Current verified runtime status
 
+### AUTHORING_0_5_M2
+
+- REPOSITORY ACTIVE / IMPLEMENTED / STATICALLY_VERIFIED; explicit active authorization during M2. Authoring 0.5, Architecture/Catalog 1.6, Router 1.1 pins. No Router algorithm, Hub CI or Concept leaf behavior change.
+- Library installation NOT_PERFORMED; identity/FULL_FILE binding UNRESOLVED / NOT_VERIFIED. C1/C2/C3 and composed execution smoke NOT_RUN. Prior M1 PASS stays scoped to 0.4; no new live PASS inferred. Corrective provenance contract retained; its own live regression still NOT_RUN.
+
+
 ### AUTHORING_0_4_1_CONTEXT_PROVENANCE_CORRECTION
 
 - Repository: ACTIVE / IMPLEMENTED / STATICALLY VERIFIED; Authoring 0.4.1, Architecture/Catalog 1.5, Router 1.1 pins.
@@ -75,6 +81,12 @@ NO NEW EVIDENCE != STATUS RESET
 - Related log entry: `2026-10-27 - Integrated concept-development runtime smoke`.
 
 ## Verification log
+
+### 2026-11-01 - Authoring M2 active repository implementation
+
+- User changed M2 authorization from candidate to ACTIVE 0.5. Bounded two-part target/contributor syntax and scoped supplied-contribution composition added; active Catalog admission and Router pins reconciled.
+- Preserved 0.4.1 and compatible prior stack byte-exact. Prepared only C1–C3 plus C1 round-trip smoke. No Library/Project deployment or live tests executed by Codex.
+
 
 ### 2026-11-01 - Actual Central Hub M1 results and provenance correction
 
