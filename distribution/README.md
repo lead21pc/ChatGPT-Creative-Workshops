@@ -11,7 +11,7 @@ RELEASE PACK != ACTIVE PERSONAL RUNTIME
 
 A reusable control stack for operation/stage preservation, source authority, unresolved state, routing, and authoring stop points, extracted from Project Feather Core. It contains no FTH lore or world-state. Configure the recipient project's own source ownership and discovery/open-state/reconciliation mechanisms.
 
-- [Published Release and curated ZIP](https://github.com/lead21pc/chatgpt-ci-worldbuilding/releases/tag/fth-control-pack-v0.1.0)
+- [Published Release and curated ZIP](https://github.com/lead21pc/ChatGPT-Creative-Workshops/releases/tag/fth-control-pack-v0.1.0)
 - [Source folder](FTH-Control-Pack/) · [README and adaptation guide](FTH-Control-Pack/README.md)
 - [Release notes and evidence](FTH-Control-Pack/RELEASE_NOTES.md)
 
@@ -19,7 +19,7 @@ A reusable control stack for operation/stage preservation, source authority, unr
 
 A reference architecture and optional starter for mission-oriented routing, scoped authority, and package/module composition. It is not the author's personal deployment. The included TECHNICAL singleton is a replaceable worked example, not a universal architecture dependency.
 
-- [Published Release and curated ZIP](https://github.com/lead21pc/chatgpt-ci-worldbuilding/releases/tag/central-hub-architecture-pack-v0.1.0)
+- [Published Release and curated ZIP](https://github.com/lead21pc/ChatGPT-Creative-Workshops/releases/tag/central-hub-architecture-pack-v0.1.0)
 - [Source folder](Central-Hub-Architecture-Pack/) · [README and starter guide](Central-Hub-Architecture-Pack/README.md)
 - [Release notes and evidence](Central-Hub-Architecture-Pack/RELEASE_NOTES.md)
 

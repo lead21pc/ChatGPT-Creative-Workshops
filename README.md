@@ -7,8 +7,8 @@
 **A personal AI-assisted creative workshop for worldbuilding, fiction systems, fanfiction/daydream simulation, research, concept development, prompt authoring, and image workflows.**
 
 [![MIT License](https://img.shields.io/badge/license-MIT-263345)](LICENSE)
-[![FTH Control Pack 0.1.0](https://img.shields.io/badge/FTH_Control_Pack-0.1.0-D89C3D)](https://github.com/lead21pc/chatgpt-ci-worldbuilding/releases/tag/fth-control-pack-v0.1.0)
-[![Central Hub Architecture Pack 0.1.0](https://img.shields.io/badge/Central_Hub_Architecture_Pack-0.1.0-263345)](https://github.com/lead21pc/chatgpt-ci-worldbuilding/releases/tag/central-hub-architecture-pack-v0.1.0)
+[![FTH Control Pack 0.1.0](https://img.shields.io/badge/FTH_Control_Pack-0.1.0-D89C3D)](https://github.com/lead21pc/ChatGPT-Creative-Workshops/releases/tag/fth-control-pack-v0.1.0)
+[![Central Hub Architecture Pack 0.1.0](https://img.shields.io/badge/Central_Hub_Architecture_Pack-0.1.0-263345)](https://github.com/lead21pc/ChatGPT-Creative-Workshops/releases/tag/central-hub-architecture-pack-v0.1.0)
 
 [Creative workflow](#how-creative-work-moves) · [Creative systems](#creative-systems) · [Central Hub](#central-hub) · [Prompt Authoring / AT](#prompt-authoring--at) · [Choose your path](#choose-your-path) · [Releases](#featured-reusable-releases) · [System context](SYSTEM_CONTEXT.md)
 
@@ -248,8 +248,8 @@ You can download either curated ZIP and use its included documentation without c
 
 | Pack | What you can reuse | Get it |
 | --- | --- | --- |
-| **FTH Control Pack v0.1.0** | A control stack extracted from Project Feather Core for source authority, state, routing, and authoring boundaries. It contains no FTH lore. | [GitHub Release](https://github.com/lead21pc/chatgpt-ci-worldbuilding/releases/tag/fth-control-pack-v0.1.0) · [Source and adaptation guide](distribution/FTH-Control-Pack/README.md) |
-| **Central Hub Architecture Pack v0.1.0** | A reference architecture and optional starter for mission-oriented orchestration, scoped authority, and package composition. It is not a copy of the author's deployment; TECHNICAL is a replaceable worked example. | [GitHub Release](https://github.com/lead21pc/chatgpt-ci-worldbuilding/releases/tag/central-hub-architecture-pack-v0.1.0) · [Source and starter guide](distribution/Central-Hub-Architecture-Pack/README.md) |
+| **FTH Control Pack v0.1.0** | A control stack extracted from Project Feather Core for source authority, state, routing, and authoring boundaries. It contains no FTH lore. | [GitHub Release](https://github.com/lead21pc/ChatGPT-Creative-Workshops/releases/tag/fth-control-pack-v0.1.0) · [Source and adaptation guide](distribution/FTH-Control-Pack/README.md) |
+| **Central Hub Architecture Pack v0.1.0** | A reference architecture and optional starter for mission-oriented orchestration, scoped authority, and package composition. It is not a copy of the author's deployment; TECHNICAL is a replaceable worked example. | [GitHub Release](https://github.com/lead21pc/ChatGPT-Creative-Workshops/releases/tag/central-hub-architecture-pack-v0.1.0) · [Source and starter guide](distribution/Central-Hub-Architecture-Pack/README.md) |
 
 Start with the chosen pack's README, customize only what it requires, and test it in your own environment. The [distribution landing page](distribution/README.md) explains ZIP versus source use. Evidence belongs to each pack's release notes; **LIVE VERIFIED: NOT_RUN** for portability to another project.
 

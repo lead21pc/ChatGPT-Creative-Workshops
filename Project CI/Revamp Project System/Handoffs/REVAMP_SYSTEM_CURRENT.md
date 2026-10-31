@@ -4,9 +4,12 @@ HANDOFF_ID: REVAMP_SYSTEM
 FILENAME: REVAMP_SYSTEM_CURRENT.md
 STATUS: ACTIVE
 SCOPE: Revamp-system CI and local cross-chat workstream handoff mechanism only.
-UPDATED: 2026-10-30
+UPDATED: 2026-10-31
 
 ## 1. Established current state
+
+- DECIDED / IMPLEMENTED (2026-10-31): theo yêu cầu người dùng, đã đổi tên repository GitHub thành `lead21pc/ChatGPT-Creative-Workshops`; API xác nhận canonical URL `https://github.com/lead21pc/ChatGPT-Creative-Workshops`, giữ repository ID `1361687313`. Đã đổi `origin` local sang HTTPS `.git` tương ứng và Router `repository_preflight.url` sang canonical URL; cập nhật sáu liên kết release hiện hành trong README root và `distribution/README.md`. Router vẫn v1.1, chỉ đổi endpoint; thứ tự nạp, entry và ranh giới Central Hub giữ nguyên. Các mốc lịch sử/provenance vẫn giữ tên cũ khi mô tả trạng thái trước rename. Không có quyền push trong tác vụ này. LIVE VERIFIED: NOT RUN.
+- STATICALLY VERIFIED (2026-10-31): Router parse YAML đạt, so sánh với baseline xác nhận chỉ URL thay đổi; version và ranh giới Central Hub giữ nguyên. `git diff --check` đạt. Lần truy cập URL mới trước thao tác rename trả `Repository not found`; đó là kết quả trước rename, không phải trạng thái truy cập hiện hành. Xác minh GitHub repository không phải kiểm chứng runtime ChatGPT Project.
 
 - DECIDED / IMPLEMENTED (2026-10-30): người dùng chấp thuận đặt `FAILURE_ENTRY_MODES.md` ở gốc `Revamp Project System/`, giữ nội dung nguồn `D:\FAILURE_ENTRY_MODES.md`. Đây là reference so sánh Case 1/2/1.5; entry mode không xác định nguyên nhân, mức nghiêm trọng hoặc trạng thái chứng cứ. History §8 có liên kết đọc tùy nhu cầu; không thêm mandatory preflight, Router entry hoặc control. CI v2.3 và Router giữ nguyên. Kiểm chứng live: NOT RUN; thêm file trong repository không chứng minh live deployment.
 
@@ -31,6 +34,7 @@ Current state: cơ chế local đã được viết; chưa chứng minh nó gi�
 Next: chỉ khi được phép cài thử, dùng các tình huống trong đặc tả route để kiểm chứng hành vi thật.
 
 ## 3. Outstanding / blocked
+
 
 - LIVE VERIFIED: NOT RUN. Việc cài CI/Router/CURRENT vào ChatGPT Project và thử chuyển việc giữa chat chưa được xác minh; promotion repository không chứng minh deployment.
 - Không có blocker local được thiết lập. Quyền push từng cấp cho các đợt publication cũ là lịch sử; chính sách stage/commit hiện hành theo §2, còn push vẫn cần lệnh riêng. Đợt rebase ngày 2026-10-29 không có quyền push hoặc deploy.

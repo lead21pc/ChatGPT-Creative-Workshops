@@ -5,7 +5,7 @@ responsibility: "Current task or task portion -> materially relevant existing CU
 path_base: "Directory containing this Router"
 read_mode: "FULL_FILE"
 repository_preflight:
-  url: "https://github.com/lead21pc/chatgpt-ci-worldbuilding"
+  url: "https://github.com/lead21pc/ChatGPT-Creative-Workshops"
   ref: "main unless the user specifies another target"
   applies_to: "Substantive Revamp work; mere mention or analogy does not activate this procedure."
   timing: "After reading this Router and before history, CURRENT recovery or presenting dependent proposals."
