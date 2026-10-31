@@ -2,15 +2,124 @@
   <img src="docs/assets/brand/logo-v1.svg" width="192" height="192" alt="Open workshop frame with a central Hub and four scoped connections">
 </p>
 
-# ChatGPT CI Versioning / Worldbuilding Control Repository
+# Personal Worldbuilding & Fiction Systems Workshop
 
-**A personal AI-assisted creative workshop for worldbuilding, LLM control architecture, and mission-oriented reasoning, research, concept development, and image workflows.**
+**A personal AI-assisted creative workshop for worldbuilding, fiction systems, research, concept development, image workflows, and the LLM controls that support them.**
 
 [![MIT License](https://img.shields.io/badge/license-MIT-263345)](LICENSE)
 [![FTH Control Pack 0.1.0](https://img.shields.io/badge/FTH_Control_Pack-0.1.0-D89C3D)](https://github.com/lead21pc/chatgpt-ci-worldbuilding/releases/tag/fth-control-pack-v0.1.0)
 [![Central Hub Architecture Pack 0.1.0](https://img.shields.io/badge/Central_Hub_Architecture_Pack-0.1.0-263345)](https://github.com/lead21pc/chatgpt-ci-worldbuilding/releases/tag/central-hub-architecture-pack-v0.1.0)
 
-[Releases](#featured-reusable-releases) · [Central Hub](#central-hub) · [Choose your path](#choose-your-path) · [Creative systems](#creative-systems) · [LLM controls](llm-controls/) · [System context](SYSTEM_CONTEXT.md)
+[Creative workflow](#how-creative-work-moves) · [Creative systems](#creative-systems) · [Central Hub](#central-hub) · [Choose your path](#choose-your-path) · [Reusable releases](#featured-reusable-releases) · [System context](SYSTEM_CONTEXT.md)
+
+## What this workshop is — and why it exists
+
+**Creative work is the purpose.** This is a personal, non-commercial working repository for worldbuilding and fanfiction/daydream simulation, developed with ChatGPT and Codex. The fiction systems are active creative work; the control infrastructure exists to make that work safer, easier to inspect, and easier to continue across large accumulated state.
+
+The repository contains externalized fiction/worldbuilding sources, versioned Custom Instructions, routing and anti-drift controls, experiments, regression evidence, design history, shared AI workflows, and supporting tools. The infrastructure developed through actual use, observed failures, diagnosis, bounded changes, and feedback. Some parts later became reusable enough to release separately.
+
+The repository name reflects its instruction-versioning history, not a claim that instruction engineering is now the primary purpose.
+
+**CI** means **Custom Instructions**, not Continuous Integration. This is an independent personal project, not an official OpenAI project or a guarantee of ChatGPT behavior.
+
+## How creative work moves
+
+Creative work does not have one mandatory entrypoint. An idea may enter a fiction project directly, or relevant material may move into Central Hub when shared capabilities are useful. A fiction project may stay local for as long as its own stack is sufficient.
+
+```text
+                         IDEA
+                          │
+                          ▼
+                  ┌─────────────┐
+                  │ CENTRAL HUB │
+                  │ research    │
+                  │ brainstorm  │
+                  │ development │
+                  │ authoring   │
+                  │ tools       │
+                  └──────┬──────┘
+                         ↕
+          ┌──────────────┼──────────────┐
+          ↕              ↕              ↕
+        FTH        THE KINGDOM    FANFICTION ENGINE
+```
+
+The diagram shows a common shared-workspace route, not a required pipeline. `IDEA → FTH`, `IDEA → The Kingdom`, or `IDEA → Fanfiction Engine` are equally valid. `PROJECT → CENTRAL HUB → SAME PROJECT` is also a normal creative loop.
+
+When work leaves a project for Central Hub, the Hub works on the supplied material without inheriting that project's canon authority. The result returns as working material. The receiving project's own sources, local logic, controls, and authorial review determine what the result means there and whether any part is accepted.
+
+If a local result suggests something useful beyond its source project, the transferable part can be re-abstracted into a new **fiction idea** and explored independently elsewhere. The local implementation itself is not copied across projects.
+
+```text
+SHARED FICTION IDEA != SHARED IMPLEMENTATION
+HUB OUTPUT != PROJECT ACCEPTANCE
+LOCAL FICTION LOGIC > CROSS-FICTION ANALOGY
+```
+
+## Creative systems
+
+**These creative systems are where the fiction lives.** They are first-class work, not sample data for Central Hub. Each keeps its own canon/state, ontology, local controls, and authority; Central Hub is not their semantic parent.
+
+| Project | Repository entry | Interpretation |
+| --- | --- | --- |
+| Project Feather Core (FTH) | [Project Feather Core](./Project%20Feather%20Core/) | Its own sources, controls, and project-specific authority; AetherFire is a country inside it. |
+| The Kingdom | [The Kingdom](./worlds/The%20Kingdom/) | Its own world model and local rules; do not infer its architecture from Project Feather Core or Fanfiction Engine. |
+| Fanfiction Engine | [Fanfiction Engine](./worlds/Fanfiction%20Engine/) | Fanfiction/daydream simulation system; The Academy is its internal platform. Its operational domains can run independently or compose. |
+
+Each project's local documentation determines how to read its sources and how returned material is evaluated. Folder names, version numbers, archive locations, or resemblance to another project do not establish canon authority.
+
+## Central Hub
+
+Central Hub is the shared general-purpose workspace used when a task benefits from capabilities that should not belong to any one fiction project. It does **not** sit inside FTH, above the creative systems, or act as a shared fiction runtime or canon layer.
+
+A project can bring a bounded question or slice of context into Hub for research, reasoning, brainstorming, concept development, Authoring, AIS, ImageT, or other shared work, then take the result back to the relevant project for local review. Central Hub can also start from a fiction idea before any project has adopted it.
+
+Inside Hub, a task is treated as a **mission**, not as ownership by one subsystem. The Hub keeps the overall objective, selects specialized contributors that can help, and gives each contributor authority only over its assigned scope. Research can provide evidence without becoming design authority; technical reasoning can diagnose mechanisms without redefining the creative goal; brainstorming and creative development can expand possibilities without silently turning them into accepted project state.
+
+```text
+TASK / WORKING MATERIAL
+          |
+      CENTRAL HUB
+   +-- research / evidence
+   +-- reasoning / diagnosis
+   +-- concept development
+   +-- authoring / tool pipelines
+          |
+   scoped composition
+          |
+   WORKING RESULT
+          |
+          v
+PROJECT-LOCAL REVIEW WHEN APPLICABLE
+```
+
+The goal is not maximum control. Ordinary work may remain on the baseline. Specialized constraints are added where the task needs them, and a growing capability should not require the Hub core to absorb that capability's internal architecture.
+
+```text
+SPECIALIZATION CONTRIBUTES TO THE MISSION; IT DOES NOT OWN THE MISSION.
+AUTHORITY IS SCOPED TO THE TASK PORTION; IT DOES NOT EXPAND BY PARTICIPATION.
+CONTROL IS ACTIVATED BY NEED; IT IS NOT A PERMANENT GLOBAL MODE.
+HUB OUTPUT != PROJECT ACCEPTANCE.
+PROJECT -> HUB -> SAME PROJECT IS A NORMAL CREATIVE LOOP.
+```
+
+Central Hub is supporting infrastructure, not a fourth creative project and not a shared ontology for the independent fiction systems.
+
+For an independently readable reference to its orchestration architecture, use the [Central Hub Architecture Pack v0.1.0](https://github.com/lead21pc/chatgpt-ci-worldbuilding/releases/tag/central-hub-architecture-pack-v0.1.0). For current workshop controls, bindings, and scoped evidence, read the [Central Hub documentation](Central%20Hub/README.md).
+
+## Choose your path
+
+| I want to… | Go to |
+| --- | --- |
+| Continue or inspect one fiction project | [Project Feather Core](Project%20Feather%20Core/README.md) · [The Kingdom](worlds/The%20Kingdom/README.md) · [Fanfiction Engine](worlds/Fanfiction%20Engine/README.md) |
+| Take a local question into shared research, development, authoring, or tool workflows | [Central Hub](Central%20Hub/README.md) |
+| Return Hub output to a fiction project | Use that project's own sources, controls, and review/admission rules |
+| Explore a transferable fiction idea across independent projects | [Fiction authoring model](authoring/multi_paracosm_hub_model_updated.md) |
+| Reuse LLM/worldbuilding controls | [FTH Control Pack](distribution/FTH-Control-Pack/README.md) |
+| Understand mission-oriented AI orchestration | [Central Hub Architecture Pack](distribution/Central-Hub-Architecture-Pack/README.md) |
+| Read instruction/control designs and experiments | [LLM controls](llm-controls/) |
+| Read history and design analysis | [Docs](docs/) |
+| Interpret the repository's sources and authority correctly | [System context](SYSTEM_CONTEXT.md) |
 
 ## Featured reusable releases
 
@@ -22,71 +131,6 @@ You can download either curated ZIP and use its included documentation without c
 | **Central Hub Architecture Pack v0.1.0** | A reference architecture and optional starter for mission-oriented orchestration, scoped authority, and package composition. It is not a copy of the author's deployment; TECHNICAL is a replaceable worked example. | [GitHub Release](https://github.com/lead21pc/chatgpt-ci-worldbuilding/releases/tag/central-hub-architecture-pack-v0.1.0) · [Source and starter guide](distribution/Central-Hub-Architecture-Pack/README.md) |
 
 Start with the chosen pack's README, customize only what it requires, and test it in your own environment. The [distribution landing page](distribution/README.md) explains ZIP versus source use. Evidence belongs to each pack's release notes; **LIVE VERIFIED: NOT_RUN** for portability to another project.
-
-## What this workshop is — and why it exists
-
-**Creative work is the purpose.** This is a personal, non-commercial working repository for worldbuilding and fanfiction/daydream simulation, developed with ChatGPT and Codex. It remains the author's active workshop, not sample data for a generic framework.
-
-The repository contains externalized worldbuilding sources, versioned Custom Instructions, routing and anti-drift controls, experiments, regression evidence, design history, and supporting tools. The infrastructure developed through actual use, observed failures, diagnosis, bounded changes, and feedback. It supports the creative work; some parts became reusable enough to release separately.
-
-**CI** means **Custom Instructions**, not Continuous Integration. This is an independent personal project, not an official OpenAI project or a guarantee of ChatGPT behavior.
-
-## Central Hub
-
-Central Hub is the current expression of the repository's move from separate prompts, tools, domains, and ChatGPT features toward one coordinated execution flow.
-
-A task is treated as a **mission**, not as ownership by one subsystem. The Hub keeps the overall objective, selects the specialized contributors that can help, and gives each contributor authority only over its assigned scope. Research can provide evidence without becoming design authority; technical reasoning can diagnose mechanisms without redefining the creative goal; brainstorming and creative development can expand possibilities without silently turning them into accepted state.
-
-```text
-MISSION
-   |
-CENTRAL HUB
-   +-- research / evidence
-   +-- reasoning / diagnosis
-   +-- concept development
-   +-- image workflows
-   |
-scoped composition
-   |
-MISSION RESULT
-```
-
-The goal is not maximum control. Ordinary work may remain on the baseline. Specialized constraints are added where the task needs them, and a growing capability should not require the Hub core to absorb that capability's internal architecture.
-
-```text
-SPECIALIZATION CONTRIBUTES TO THE MISSION; IT DOES NOT OWN THE MISSION.
-AUTHORITY IS SCOPED TO THE TASK PORTION; IT DOES NOT EXPAND BY PARTICIPATION.
-CONTROL IS ACTIVATED BY NEED; IT IS NOT A PERMANENT GLOBAL MODE.
-```
-
-Central Hub is supporting infrastructure, not a fourth creative project and not a shared ontology for the independent worlds or simulation systems.
-
-The diagram names kinds of contribution, not a fixed package inventory or a hierarchy over the creative systems. For an independently readable reference, use the [Central Hub Architecture Pack v0.1.0](https://github.com/lead21pc/chatgpt-ci-worldbuilding/releases/tag/central-hub-architecture-pack-v0.1.0). For current workshop controls, bindings, and scoped evidence, read the [Central Hub documentation](Central%20Hub/README.md).
-
-## Choose your path
-
-| I want to… | Go to |
-| --- | --- |
-| Reuse LLM/worldbuilding controls | [FTH Control Pack](distribution/FTH-Control-Pack/README.md) |
-| Understand mission-oriented AI orchestration | [Central Hub Architecture Pack](distribution/Central-Hub-Architecture-Pack/README.md) |
-| Inspect Central Hub as it develops in the workshop | [Central Hub](Central%20Hub/README.md) |
-| Explore the worldbuilding projects | [Project Feather Core](Project%20Feather%20Core/README.md) · [The Kingdom](worlds/The%20Kingdom/README.md) |
-| Explore the fanfiction/daydream simulation system | [Fanfiction Engine](worlds/Fanfiction%20Engine/README.md) |
-| Read instruction/control designs and experiments | [LLM controls](llm-controls/) |
-| Read history and design analysis | [Docs](docs/) |
-| Interpret the repository's sources and authority correctly | [System context](SYSTEM_CONTEXT.md) |
-
-## Creative systems
-
-**These creative systems are first-class work, not sample data for Central Hub.** They keep independent canon, ontology, and local authority; Central Hub is not their semantic parent.
-
-| Project | Repository entry | Interpretation |
-| --- | --- | --- |
-| Project Feather Core (FTH) | [Project Feather Core](./Project%20Feather%20Core/) | Its own sources, controls, and project-specific authority; AetherFire is a country inside it. |
-| The Kingdom | [The Kingdom](./worlds/The%20Kingdom/) | Its own world model and local rules; do not infer its architecture from Project Feather Core or Fanfiction Engine. |
-| Fanfiction Engine | [Fanfiction Engine](./worlds/Fanfiction%20Engine/) | Fanfiction/daydream simulation system; The Academy is its internal platform. Its operational domains can run independently or compose. |
-
-Each project's local documentation determines how to read its sources. Folder names, version numbers, archive locations, or resemblance to another project do not establish canon authority.
 
 ## Repository layout
 
@@ -129,9 +173,9 @@ repository/
 ~~~
 
 - [worlds/](./worlds/) keeps each project's internal sources, local controls, history, and tools together; the folder name does not classify Fanfiction Engine as a world. Moving a package does not change source status or authority.
-- [authoring/](./authoring/) contains the [Multi-Paracosm Hub model](./authoring/multi_paracosm_hub_model_updated.md): ideas can be abstracted into shared seeds, then evaluated and implemented independently in each world.
+- [authoring/](./authoring/) contains the [fiction authoring model](./authoring/multi_paracosm_hub_model_updated.md): working material can move between independent fiction projects and Central Hub, and transferable results can be re-abstracted into fiction ideas before being explored elsewhere.
 - [llm-controls/](./llm-controls/) contains general instructions, project instruction designs, and reusable worldbuilding controls. Project-local controls also remain inside their world packages.
-- [Central Hub/](./Central%20Hub/) coordinates scoped capabilities and tool pipelines into mission-oriented execution. It is supporting infrastructure, not an additional creative world/system or a shared ontology for the independent projects.
+- [Central Hub/](./Central%20Hub/) is the shared workspace for scoped capabilities and tool pipelines. Fiction projects may move work into and out of it without transferring local canon authority; it is not an additional creative system or a shared ontology.
 - [codex-workflows/](./codex-workflows/) contains repository copies of Codex skills; moving them does not install or update the author's locally installed skills.
 - [docs/](./docs/) contains instruction history, design analysis, explanatory visuals, and the workshop logo asset. `logo-v1` is an asset revision, not a repository version.
 - [distribution/](./distribution/) contains curated reusable projections with their own release streams; it does not own the active personal systems or their runtime bindings.
@@ -187,7 +231,7 @@ The sections below preserve the repository's provenance, interpretation boundari
 Three connected flows explain the organization:
 
 - **Mission execution:** a current task is scoped, relevant capabilities are selected, each contributor works within its authority, and the results return to the overall mission.
-- **Creative work:** a stimulus or candidate idea reaches author review; an abstract seed can be considered for each world; local compatibility and author decisions determine what is accepted and externalized into that world's sources.
+- **Creative work:** an idea or project-local question may develop inside one fiction project, move into Central Hub for shared capabilities, and return as working material for project-local interpretation and author review. A transferable local result may be re-abstracted into a new fiction idea and explored independently in another project; local implementation does not transfer with it.
 - **Control improvement:** actual use reveals a failure; diagnosis leads to a candidate instruction or tooling change; author review, bounded implementation, checks, and live feedback inform whether the change is kept, revised, or rolled back.
 
 These flows combine human actions, model instructions, and executable tools. They are not an automatic lore-publication pipeline. Git relocation does not update ChatGPT Project or Library contents, change live source-loading policy, or activate an instruction version.
@@ -201,7 +245,7 @@ These flows combine human actions, model instructions, and executable tools. The
 
 The author is **not a professional software developer, data engineer, researcher, or member of a development team**, and does not claim formal training in those fields.
 
-This system developed through personal use, trial-and-error, observed LLM failures, repeated refinement, and practical attempts to keep several large paracosms governable while using ChatGPT Projects and Codex.
+This system developed through personal use, trial-and-error, observed LLM failures, repeated refinement, and practical attempts to keep several large fiction projects governable while using ChatGPT Projects and Codex.
 
 Do not infer professional background, formal training, team structure, commercial intent, deadlines, external users, publication goals, or a formal engineering methodology from:
 
@@ -228,13 +272,13 @@ Evaluate the repository according to its stated purpose and observed failure mod
 </details>
 
 <details>
-<summary>What the pipeline does</summary>
+<summary>What the workflow does</summary>
 
-### What the pipeline does
+### What the workflow does
 
-The repository name reflects its instruction-versioning history, but its current scope includes both the creative systems and the supporting control infrastructure. Global instructions may support general interaction as well as project work, while project-specific controls remain local to their respective projects.
+The repository name reflects its instruction-versioning history, but its current scope includes the creative systems, Central Hub, and the supporting control infrastructure. Global instructions may support general interaction as well as project work, while project-specific controls remain local to their respective projects.
 
-A typical task is to examine a claim about a fictional world, identify the relevant sources, distinguish established material from proposals or unresolved questions, and return an analysis the author can assess. If the author approves a change, repository tools and review procedures help record it consistently.
+A working session may continue fiction or simulation inside one project; take a local question into Central Hub for research, brainstorming, concept development, Authoring, AIS, ImageT, or other shared work; return that material to the fiction project for local review; externalize an accepted development into project sources; or diagnose a control failure exposed during real creative work. These are different uses of one personal workshop, not stages of one mandatory automated pipeline.
 
 Different parts of this workflow have different roles:
 
@@ -278,7 +322,7 @@ Read this as an author's working environment for maintaining fictional worlds wi
 Do not assume:
 
 - repository completeness;
-- shared ontology across paracosms;
+- shared ontology across fiction projects;
 - newer file = automatic authority;
 - file placement = semantic ownership;
 - basic lore examples = full canon;
