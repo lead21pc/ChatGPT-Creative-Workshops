@@ -31,7 +31,8 @@ def trigger_spec(text, *, user_instruction=True):
 
 class AuthoringPromotionTests(unittest.TestCase):
     def test_active_header_and_candidate_evidence_document(self):
-        self.assertEqual({p.name for p in CANDIDATE.iterdir()}, {CASES.name})
+        self.assertEqual({p.name for p in CANDIDATE.iterdir()},
+                         {CASES.name, 'HUB-CAP-AUTHORING_v0.4-candidate.md', 'AUTHORING_0_4_M1_TESTS.md'})
         text = MODULE.read_text(encoding='utf-8')
         for key, value in [('Module ID', 'HUB-CAP-AUTHORING'),
                            ('Package ID', 'HUB-PKG-AUTHORING'),
