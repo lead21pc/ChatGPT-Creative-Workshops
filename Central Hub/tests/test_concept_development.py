@@ -39,13 +39,13 @@ def current_fixture():
 
 class ConceptDevelopmentTests(unittest.TestCase):
     def setUp(self):
-        self.root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.3.yaml')
+        self.root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.4.yaml')
         self.local = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.0.yaml')
         self.core = (ROOT / 'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.0.md').read_text(encoding='utf-8')
         self.notes = (ROOT / 'CONCEPT_DEVELOPMENT_MIGRATION.md').read_text(encoding='utf-8')
 
     def test_five_root_owners_and_package_local_inventory(self):
-        self.assertEqual(self.root['version'], '1.3')
+        self.assertEqual(self.root['version'], '1.4')
         self.assertEqual({p['package_id'] for p in self.root['packages']},
                          {'HUB-PKG-TECHNICAL', PACKAGE, 'HUB-PKG-AUTHORING',
                           'HUB-PKG-AIS', 'HUB-PKG-IMAGET'})
@@ -69,10 +69,10 @@ class ConceptDevelopmentTests(unittest.TestCase):
     def test_router_changes_only_exact_pins_and_global_owners_stay(self):
         previous = load(CONCEPT_ARCHIVE / 'HUB_ROUTER_v1.1.yaml')
         expected = copy.deepcopy(previous)
-        for key, name in [('architecture', 'HUB_ARCHITECTURE_v1.3.md'),
-                          ('root_catalog', 'HUB_PACKAGE_CATALOG_v1.3.yaml')]:
+        for key, name in [('architecture', 'HUB_ARCHITECTURE_v1.4.md'),
+                          ('root_catalog', 'HUB_PACKAGE_CATALOG_v1.4.yaml')]:
             expected['contracts'][key]['file'] = name
-            expected['contracts'][key]['version'] = '1.3'
+            expected['contracts'][key]['version'] = '1.4'
         expected['contracts']['binding_scope'] = load(ROOT / 'HUB_ROUTER_v1.1.yaml')['contracts']['binding_scope']
         self.assertEqual(load(ROOT / 'HUB_ROUTER_v1.1.yaml'), expected)
         before = load(CONCEPT_ARCHIVE / 'HUB_PACKAGE_CATALOG_v1.0.yaml')

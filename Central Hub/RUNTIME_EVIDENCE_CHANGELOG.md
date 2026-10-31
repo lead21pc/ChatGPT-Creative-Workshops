@@ -23,6 +23,14 @@ NO NEW EVIDENCE != STATUS RESET
 
 ## Current verified runtime status
 
+### AUTHORING_0_4_REPOSITORY_PROMOTION
+
+- Status: REPOSITORY ACTIVE / IMPLEMENTED / STATICALLY VERIFIED; Authoring 0.4 with Architecture/Catalog 1.4 and Router 1.1 pins.
+- Library installation: NOT_PERFORMED; identity/FULL_FILE binding: UNRESOLVED / NOT_VERIFIED; Project deployment: NOT_PERFORMED; Central Hub live T1/T2 and round-trip verification: NOT_RUN.
+- User reports outside-chat manual candidate T1/T2 testing. Classification: EXPLORATORY MANUAL-CANDIDATE EVIDENCE; no per-stage results/traces supplied here. NOT CENTRAL HUB RUNTIME EVIDENCE. It establishes neither active acceptance nor demonstrated active failure.
+- Prior 0.3 evidence remains historical in its recorded scope. M2 NOT STARTED.
+
+
 ### IMAGET_OPEN_GATE_1_2_REPOSITORY_PROMOTION
 
 - Status: `REPOSITORY_ACTIVE / STATICALLY_VERIFIED`; controller 1.2, manifest 2.2.0, Architecture/Catalog 1.3 and Router 1.1 exact pins.
@@ -59,6 +67,13 @@ NO NEW EVIDENCE != STATUS RESET
 - Related log entry: `2026-10-27 - Integrated concept-development runtime smoke`.
 
 ## Verification log
+
+### 2026-11-01 - Authoring 0.4 repository promotion
+
+- Promoted M1 candidate through status/admission wording only; five targets, explicit context, rewrite and reauthor retained. Archived active 0.3, candidate and compatible prior stack byte-exact.
+- Router exact pins updated; no Hub CI or unrelated package behavior change. Runtime installation and actual Central Hub tests remain pending; see AUTHORING_PROMOTION.md.
+- MANUAL CANDIDATE INJECTION != CENTRAL HUB RUNTIME VERIFICATION.
+
 
 ### 2026-10-29 - ImageT Open Gate repository promotion
 

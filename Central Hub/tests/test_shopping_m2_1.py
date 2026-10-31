@@ -17,7 +17,7 @@ class ShoppingM21Tests(unittest.TestCase):
     def test_candidate_unchanged_and_still_excluded_from_active_catalog(self):
         self.assertEqual(hashlib.sha256(MODULE.read_bytes()).hexdigest(),
                          '10c176a41904aeae6238d943a3ac0b3edcef4da941e4ea876dbca8d1569a5431')
-        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.3.yaml')
+        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.4.yaml')
         self.assertNotIn('HUB-PKG-SHOPPING', {p['package_id'] for p in catalog['packages']})
 
     def test_reviewed_contract_already_has_scope_support_and_time_boundaries(self):

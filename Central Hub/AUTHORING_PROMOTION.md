@@ -1,20 +1,20 @@
-# Prompt Authoring 0.3 — repository promotion and later deployment
+# Prompt Authoring 0.4 — repository promotion and later deployment
 
-Date: 2026-10-28 (Asia/Bangkok). Scope: local repository implementation only.
+Date: 2026-11-01 (Asia/Bangkok). Scope: local repository implementation only.
 
 ## Implemented repository topology
 
 ```text
 Hub CI 1.1 (unchanged)
 -> Hub Router 1.1 (algorithm unchanged; exact pins only)
--> Architecture 1.2 / root Catalog 1.2
+-> Architecture 1.4 / root Catalog 1.4
    -> HUB-PKG-AUTHORING
-      -> HUB-CAP-AUTHORING / CAPABILITY / ACTIVE / 0.3
+      -> HUB-CAP-AUTHORING / CAPABILITY / ACTIVE / 0.4
 ```
 
-The active repository artifact is `library_modules/HUB-CAP-AUTHORING_v0.3.md`. It is a root singleton intended for `ChatGPT Library / Central Hub Config`, with `local_catalog: null`, no hard `requires` and no declared `REFINES` or `COMPLEMENTS`. Target adaptation creates no target dependency.
+The active repository artifact is `library_modules/HUB-CAP-AUTHORING_v0.4.md`. It is a root singleton intended for `ChatGPT Library / Central Hub Config`, with `local_catalog: null`, no hard `requires` and no declared `REFINES` or `COMPLEMENTS`. Target adaptation creates no target dependency.
 
-The root Catalog permits selection only when the first non-empty user-authored line exactly equals one of the six case-sensitive `/AUTHOR <TARGET>` forms with one ASCII space and no surrounding whitespace or extra text. This is Catalog admission metadata, not a second module body or a new Router algorithm.
+The root Catalog permits selection only when the first non-empty user-authored line exactly equals one of the five case-sensitive `/AUTHOR <TARGET>` forms with one ASCII space and no surrounding whitespace or extra text. This is Catalog admission metadata, not a second module body or a new Router algorithm.
 
 Repository status after this implementation:
 
@@ -26,15 +26,19 @@ PROJECT DEPLOYMENT NOT PERFORMED
 LIVE ROUTING NOT RUN
 ```
 
-Prior Hanfu B/C and `/AUTHOR IMAGET` results remain candidate behavioral evidence only. They are not promoted-runtime evidence.
+Prior Hanfu B/C and `/AUTHOR IMAGET` 0.3 results retain their original candidate scope. The user reports T1/T2 were manually injected into a chat outside Central Hub: EXPLORATORY MANUAL-CANDIDATE EVIDENCE only, with no supplied per-stage outputs or results recorded here. MANUAL CANDIDATE INJECTION != CENTRAL HUB RUNTIME VERIFICATION. Neither active acceptance nor demonstrated active runtime failure is established.
+
+## POST-PROMOTION RUNTIME ACTIVATION — not performed
+
+No Authoring Library object is currently established by repository evidence. Inspect the actual Central Hub Config root first: if an exact 0.3 object exists, deliberately replace/retire it; otherwise install 0.4. Do not create two ACTIVE identities. Repository location is not runtime retrieval. The next valid T1/T2 must run in the actual Central Hub under CI 1.1, Router 1.1, Architecture/Catalog 1.4 and verified Authoring 0.4; do not manually inject candidate text into another chat. Use the frozen inputs in candidates/authoring_v0/AUTHORING_0_4_M1_TESTS.md after the checks below, recording new Central Hub results separately.
 
 ## Manual deployment sequence — not executed here
 
-1. In `ChatGPT Library / Central Hub Config`, ensure no existing object can create an ambiguous `HUB-CAP-AUTHORING / HUB-PKG-AUTHORING / CAPABILITY / ACTIVE / 0.3` identity. Do not select by filename or apparent newest revision.
-2. Install the exact full content of `library_modules/HUB-CAP-AUTHORING_v0.3.md` in that Library root. Do not place it in Project Sources.
+1. In `ChatGPT Library / Central Hub Config`, ensure no existing object can create an ambiguous `HUB-CAP-AUTHORING / HUB-PKG-AUTHORING / CAPABILITY / ACTIVE / 0.4` identity. Do not select by filename or apparent newest revision.
+2. Install the exact full content of `library_modules/HUB-CAP-AUTHORING_v0.4.md` in that Library root. Do not place it in Project Sources.
 3. Open the installed object and read `FULL_FILE`. Verify Module ID, Package ID, Runtime role, Status, Version and material body against the repository artifact. Complete sufficiently scoped listing/search coverage for plausible matches; multiple valid ACTIVE identities or incomplete coverage leaves the binding `UNRESOLVED`. Hidden internal IDs may remain null when the platform does not expose or require them. Do not fabricate `library_file_id`, `library_version_id` or a durable locator.
-4. Preserve the currently working Project stack until step 3 succeeds. Then switch Project Sources as one compatible set to `HUB_ROUTER_v1.1.yaml`, `HUB_ARCHITECTURE_v1.2.md` and `HUB_PACKAGE_CATALOG_v1.2.yaml`. Keep `HUB_CI_v1.1.md` unchanged in Project Instructions. Replace the prior Architecture/Catalog authority; do not run both root Catalog revisions simultaneously.
-5. Confirm Router pins resolve exactly Architecture 1.2 and Catalog 1.2. Confirm AIS, ImageT, TECHNICAL and Concept Development bindings remain unchanged.
+4. Preserve the currently working Project stack until step 3 succeeds. Then switch Project Sources as one compatible set to `HUB_ROUTER_v1.1.yaml`, `HUB_ARCHITECTURE_v1.4.md` and `HUB_PACKAGE_CATALOG_v1.4.yaml`. Keep `HUB_CI_v1.1.md` unchanged in Project Instructions. Replace the prior Architecture/Catalog authority; do not run both root Catalog revisions simultaneously.
+5. Confirm Router pins resolve exactly Architecture 1.4 and Catalog 1.4. Confirm AIS, ImageT, TECHNICAL and Concept Development bindings remain unchanged.
 6. Run only S1–S3 below in fresh controlled Central Hub turns. Record exact revisions, model/surface/date, actual Library read evidence, selection, output and blockers. A model claim that it read the module is not retrieval proof.
 7. Only after the controlled switch and smoke results are acceptable should the prior deployed stack be retired from active authority. Keep recoverable rollback material, but never as automatic fallback.
 
@@ -77,14 +81,14 @@ Expected: `HUB-PKG-AUTHORING` is not selected merely from prompt-writing intent;
 If the new active stack fails after manual deployment:
 
 1. Stop Authoring-dependent execution and preserve the failure evidence.
-2. Explicitly restore the prior compatible Router snapshot, Architecture 1.1 and root Catalog 1.1 from `Source_archive/Authoring promotion 2026-10-28/` into Project Sources as one authority set; keep Hub CI 1.1 unchanged.
-3. Remove or disable the promoted Authoring Library binding from the active deployment, or move it outside the active discovery root using a recoverable platform-supported action.
+2. Explicitly restore the prior compatible Router snapshot, Architecture 1.3 and root Catalog 1.3 from `Source_archive/Authoring 0.4 promotion 2026-11-01/` into Project Sources as one authority set; keep Hub CI 1.1 unchanged.
+3. Restore exact Authoring 0.3 from the archived library_modules artifact only as a deliberate rollback and reverify its identity; remove or disable the promoted 0.4 Library binding from the active deployment, or move it outside the active discovery root using a recoverable platform-supported action.
 4. Reverify the restored exact stack and its prior bindings before dependent use.
 
-Do not keep Catalog 1.1 and 1.2 as simultaneous authorities. Library resolution failure never triggers an automatic repository/Project Source/archive substitute.
+Do not keep Catalog 1.3 and 1.4 as simultaneous authorities. Library resolution failure never triggers an automatic repository/Project Source/archive substitute.
 
 `ROLLBACK != FALLBACK`
 
 ## Provenance
 
-The predecessor Architecture 1.1, Catalog 1.1, pre-pin Router 1.1 snapshot and v0.3 candidate are preserved byte-exact under `Source_archive/Authoring promotion 2026-10-28/` after successor verification. Archived sources are historical/rollback evidence only, never runtime discovery or fallback.
+The predecessor Architecture 1.3, Catalog 1.3, pre-pin Router 1.1 snapshot, prior promotion instructions, active 0.3 and 0.4 candidate are preserved byte-exact under `Source_archive/Authoring 0.4 promotion 2026-11-01/` after successor verification. Archived sources are historical/rollback evidence only, never runtime discovery or fallback.

@@ -875,8 +875,8 @@ class PriorSingletonMigration(unittest.TestCase):
             self.assertIn(invariant, architecture)
         self.assertIn('Runtime control language: English only', architecture)
         readme = (ROOT / 'README.md').read_text(encoding='utf-8')
-        for name in ['HUB_CI_v1.1.md', 'HUB_ROUTER_v1.1.yaml', 'HUB_ARCHITECTURE_v1.3.md',
-                     'HUB_PACKAGE_CATALOG_v1.3.yaml', 'REPOSITORY ACTIVE != PROJECT DEPLOYED']:
+        for name in ['HUB_CI_v1.1.md', 'HUB_ROUTER_v1.1.yaml', 'HUB_ARCHITECTURE_v1.4.md',
+                     'HUB_PACKAGE_CATALOG_v1.4.yaml', 'REPOSITORY ACTIVE != PROJECT DEPLOYED']:
             self.assertIn(name, readme)
         self.assertNotIn('Router active vẫn v1.0', readme)
 
@@ -990,7 +990,7 @@ class PriorSingletonMigration(unittest.TestCase):
         self.assertEqual(router['verification']['read'], 'FULL_FILE')
         self.assertEqual(router['verification']['headers'],
                          ['Module ID', 'Package ID', 'Runtime role', 'Status', 'Version'])
-        architecture = (ROOT / 'HUB_ARCHITECTURE_v1.3.md').read_text(encoding='utf-8')
+        architecture = (ROOT / 'HUB_ARCHITECTURE_v1.4.md').read_text(encoding='utf-8')
         for phrase in ['Two identity paths serve one LIBRARY_MODULE binding',
                        'Hidden internal IDs may remain null', 'NAME MATCH != IDENTITY',
                        'SEARCH RESULT != MODULE READ', 'NOT FOUND != FALSE']:
@@ -1146,7 +1146,7 @@ class PriorSingletonMigration(unittest.TestCase):
                        'Direct tool availability does not bypass package selection']:
             self.assertIn(phrase, rule)
         self.assertNotIn('AIS', rule)  # Applicability remains catalog-owned and package-independent.
-        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.3.yaml')
+        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.4.yaml')
         ais = next(p for p in catalog['packages'] if p['package_id'] == 'HUB-PKG-AIS')
         self.assertEqual(ais['entrypoint_module_id'], 'HUB-PIPE-AIS')
         self.assertIn('explicit search requests', ais['applicability'])

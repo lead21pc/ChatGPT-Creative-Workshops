@@ -9,13 +9,13 @@ from test_hub_contracts import ROOT, load
 
 
 CANDIDATE = ROOT / 'candidates/authoring_v0'
-MODULE = ROOT / 'library_modules/HUB-CAP-AUTHORING_v0.3.md'
+MODULE = ROOT / 'library_modules/HUB-CAP-AUTHORING_v0.4.md'
 CASES = CANDIDATE / 'AUTHORING_TEST_CASES.md'
 V03_CANDIDATE = ROOT / 'Source_archive/Authoring promotion 2026-10-28/candidates/authoring_v0/HUB-CAP-AUTHORING_v0.3-candidate.md'
 PROMOTION_ARCHIVE = ROOT / 'Source_archive/Authoring promotion 2026-10-28'
 PREDECESSOR = ROOT / 'Source_archive/Prompt Authoring v0.1 2026-10-21/HUB-CAP-AUTHORING_v0.1-candidate.md'
 V02_PREDECESSOR = ROOT / 'Source_archive/Prompt Authoring v0.2 2026-10-21/HUB-CAP-AUTHORING_v0.2-candidate.md'
-TARGETS = ('AIS', 'IMAGET', 'FTH', 'CODEX', 'WORK', 'GENERIC')
+TARGETS = ('AIS', 'IMAGET', 'CODEX', 'WORK', 'GENERIC')
 
 
 def trigger_spec(text, *, user_instruction=True):
@@ -32,12 +32,12 @@ def trigger_spec(text, *, user_instruction=True):
 class AuthoringPromotionTests(unittest.TestCase):
     def test_active_header_and_candidate_evidence_document(self):
         self.assertEqual({p.name for p in CANDIDATE.iterdir()},
-                         {CASES.name, 'HUB-CAP-AUTHORING_v0.4-candidate.md', 'AUTHORING_0_4_M1_TESTS.md'})
+                         {CASES.name, 'AUTHORING_0_4_M1_TESTS.md'})
         text = MODULE.read_text(encoding='utf-8')
         for key, value in [('Module ID', 'HUB-CAP-AUTHORING'),
                            ('Package ID', 'HUB-PKG-AUTHORING'),
                            ('Runtime role', 'CAPABILITY'), ('Status', 'ACTIVE'),
-                           ('Version', '0.3')]:
+                           ('Version', '0.4')]:
             self.assertEqual(re.findall(rf'^{key}: (.+)$', text, re.M), [value])
         for key in ('Scope', 'Responsibility boundary'):
             self.assertEqual(len(re.findall(rf'^{key}: .+$', text, re.M)), 1)
@@ -52,16 +52,16 @@ class AuthoringPromotionTests(unittest.TestCase):
             with self.subTest(case=vector['id']):
                 self.assertEqual(trigger_spec(vector['text'],
                                  user_instruction=vector.get('user_instruction', True)),
-                                 vector['expected'])
+                                 None if vector['expected'] == 'FTH' else vector['expected'])
 
     def test_exact_root_admission_and_unresolved_library_binding(self):
-        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.3.yaml')
+        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.4.yaml')
         self.assertEqual(len(catalog['packages']), 5)
         entries = [p for p in catalog['packages'] if p['package_id'] == 'HUB-PKG-AUTHORING']
         self.assertEqual(len(entries), 1)
         entry = entries[0]
         self.assertEqual((entry['entrypoint_module_id'], entry['runtime_role'], entry['status'], entry['version']),
-                         ('HUB-CAP-AUTHORING', 'CAPABILITY', 'ACTIVE', '0.3'))
+                         ('HUB-CAP-AUTHORING', 'CAPABILITY', 'ACTIVE', '0.4'))
         self.assertIsNone(entry['local_catalog'])
         self.assertEqual(entry['requires'], [])
         self.assertEqual(entry['binding_mode'], 'LIBRARY_MODULE')
@@ -84,16 +84,16 @@ class AuthoringPromotionTests(unittest.TestCase):
             self.assertEqual(trigger_spec(f'/AUTHOR {target}'), target)
 
     def test_successor_stack_pins_and_router_algorithm_unchanged(self):
-        architecture = (ROOT / 'HUB_ARCHITECTURE_v1.3.md').read_text(encoding='utf-8')
-        self.assertEqual(re.findall(r'^Version: (.+)$', architecture, re.M), ['1.3'])
-        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.3.yaml')
+        architecture = (ROOT / 'HUB_ARCHITECTURE_v1.4.md').read_text(encoding='utf-8')
+        self.assertEqual(re.findall(r'^Version: (.+)$', architecture, re.M), ['1.4'])
+        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.4.yaml')
         self.assertEqual((catalog['module_id'], catalog['status'], catalog['version']),
-                         ('HUB-CORE-PACKAGE-CATALOG', 'ACTIVE', '1.3'))
+                         ('HUB-CORE-PACKAGE-CATALOG', 'ACTIVE', '1.4'))
         prior = load(PROMOTION_ARCHIVE / 'HUB_ROUTER_v1.1.yaml')
         active = load(ROOT / 'HUB_ROUTER_v1.1.yaml')
         expected = copy.deepcopy(prior)
-        expected['contracts']['architecture'].update(file='HUB_ARCHITECTURE_v1.3.md', version='1.3')
-        expected['contracts']['root_catalog'].update(file='HUB_PACKAGE_CATALOG_v1.3.yaml', version='1.3')
+        expected['contracts']['architecture'].update(file='HUB_ARCHITECTURE_v1.4.md', version='1.4')
+        expected['contracts']['root_catalog'].update(file='HUB_PACKAGE_CATALOG_v1.4.yaml', version='1.4')
         expected['contracts']['binding_scope'] = active['contracts']['binding_scope']
         self.assertEqual(active, expected)
         self.assertNotIn('HUB-PKG-AUTHORING', (ROOT / 'HUB_CI_v1.1.md').read_text(encoding='utf-8'))
@@ -123,7 +123,7 @@ class AuthoringPromotionTests(unittest.TestCase):
                          '2306871633178fa0b0ae6fe77323b6c3ad34a233b8d2ccdd27430175b72fd28c')
         self.assertFalse((CANDIDATE / V03_CANDIDATE.name).exists())
         active = MODULE.read_text(encoding='utf-8')
-        candidate = V03_CANDIDATE.read_text(encoding='utf-8')
+        candidate = (ROOT / 'Source_archive/Authoring 0.4 promotion 2026-11-01/candidates/authoring_v0/HUB-CAP-AUTHORING_v0.4-candidate.md').read_text(encoding='utf-8')
         self.assertEqual(active.split('## Scoped transformation\n', 1)[1],
                          candidate.split('## Scoped transformation\n', 1)[1])
         self.assertEqual(re.findall(r'^/AUTHOR (.+)$', active, re.M), list(TARGETS))

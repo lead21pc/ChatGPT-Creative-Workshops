@@ -1,3 +1,7 @@
+# Current execution context after promotion
+
+Authoring 0.4 is now repository ACTIVE at library_modules/HUB-CAP-AUTHORING_v0.4.md with Architecture/Catalog 1.4. For new verification, run T1/T2 only in actual Central Hub after Library FULL_FILE/identity binding and compatible Project installation. The isolated manual-injection procedure below is historical M1 preparation only. The user reports those outside-Hub tests occurred: EXPLORATORY MANUAL-CANDIDATE EVIDENCE, not Central Hub runtime evidence; individual results were not supplied here. The NOT RUN labels below now describe the still-unperformed actual Central Hub stages. M2 NOT STARTED.
+
 # Authoring 0.4 — M1 CORE
 
 Baseline: main @ b949cd95814a57c2a4205e7f5114d5b6fbf31626; clean working tree/index. Hub CI/Router 1.1, Architecture/Catalog 1.3, active Authoring 0.3. Candidate identity uses Status CANDIDATE / Version 0.4 as explicitly requested. Active 0.3 remains in place; no replacement/archive operation occurs. Existing v0.3 history and G/B/E/R evidence remain in AUTHORING_TEST_CASES.md.
