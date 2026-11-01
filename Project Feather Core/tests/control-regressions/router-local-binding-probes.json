@@ -1,0 +1,51 @@
+{
+  "status": "DRAFT",
+  "model_executed": false,
+  "structural_check_only": true,
+  "baseline": "Anti-Drift Source/FTH_Anti_Drift_Source_Router_v5.0.yaml",
+  "trial": "Anti-Drift Source/candidates/FTH_Anti_Drift_Source_Router_local_binding_trial.yaml",
+  "method": "Explicit session reference override only; compare separate baseline/trial sessions with the same source generation and controls. Local tests verify retrieval inputs, protected contracts and already-judged control expansion; they do not judge semantic routing. Record actual reads, gates, owners and model outcomes only in an authorized live smoke. No automatic lifecycle promotion.",
+  "probes": [
+    {
+      "id": "single-owner",
+      "runtime_result": "NOT_RUN",
+      "module_ids": ["AFM-015"],
+      "input": "Nguồn hiện hành quy định gì về việc người dân Hoa Nguyệt mặc trang phục truyền thống vùng khác? Chỉ trả lời phạm vi đã chốt.",
+      "expected": "Qua 00/92, đọc trọn AFM-015; giữ giới hạn đối với phục sức chức vụ/phẩm cấp/nghi lễ. Không tự mở rộng quyền mặc hoặc luật mới."
+    },
+    {
+      "id": "cross-domain",
+      "runtime_result": "NOT_RUN",
+      "module_ids": ["AFM-015", "AFM-003"],
+      "input": "Bổ sung vùng văn hóa Việt ở Hoa Nguyệt có tự đổi thiết kế Undi hiện tại không?",
+      "expected": "Đọc các owner cần thiết; giữ AFM-015 và AFM-003 độc lập. Quan hệ giao diện không chuyển quyền quản lý Undi sang owner văn hóa Hoa Nguyệt."
+    },
+    {
+      "id": "reconciliation",
+      "runtime_result": "NOT_RUN",
+      "module_ids": ["AFM-012", "AFM-015"],
+      "record_required": true,
+      "record_marker": "Tách họ Hoa Nguyệt 20–23",
+      "input": "Đối chiếu owner hiện hành của nguồn gốc ba tiền thân và ngôn ngữ Hoa Nguyệt sau tách miền 20–23; cần provenance của việc chuyển nguồn.",
+      "expected": "Đọc FULL_FILE 91 bằng đủ ranges trước kết luận provenance; nguồn gốc ở AFM-012, ngôn ngữ ở AFM-015. Không suy thay đổi canon từ việc di chuyển tài liệu."
+    },
+    {
+      "id": "open-state",
+      "runtime_result": "NOT_RUN",
+      "module_ids": ["AFM-015"],
+      "open_markers": ["AF-HN-OPEN-006", "AF-HN-OPEN-009"],
+      "input": "Tên chính thức của ba vùng văn hóa Hoa Nguyệt và cơ chế sáp nhập đã chốt chưa?",
+      "expected": "Giữ UNKNOWN theo 92 và owner; không tự đặt tên, cơ chế hoặc coi không tìm thấy là phủ định canon."
+    },
+    {
+      "id": "anti-drift-dependency",
+      "runtime_result": "NOT_RUN",
+      "module_ids": ["AFM-003"],
+      "selected_controls": ["UNDIE"],
+      "true_conditions": ["actor_reception_material"],
+      "expected_controls": ["ACTOR_RECEPTION", "MCA", "UNDIE"],
+      "input": "Dựa trên Undie hiện hành, phân tích việc một người hành nghề nhận một tín hiệu kỳ thị giả định; không có cơ chế kinh tế, thể chế hoặc xung đột tác chiến quyết định trong ca này.",
+      "expected": "Sau nguồn và reconciliation cần thiết, đánh giá applicability rồi đọc FULL_FILE UNDIE + MCA + ACTOR_RECEPTION. Control vẫn dùng binding đã có; không tự kích hoạt TW hoặc biến tín hiệu thành phản ứng tất yếu. Local expansion test chỉ nhận các điều kiện đã được phán định, không thay model phán định applicability."
+    }
+  ]
+}

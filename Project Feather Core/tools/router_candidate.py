@@ -270,3 +270,55 @@ def validate_fthx_candidate(data, root):
 
 def check_fthx_candidate(root):
     return validate_fthx_candidate(load(root / FTHX_CANDIDATE), root)
+
+
+LOCAL_BINDING_TRIAL = 'Anti-Drift Source/candidates/FTH_Anti_Drift_Source_Router_local_binding_trial.yaml'
+LOCAL_BINDING_POLICIES = {'access', 'discovery'}
+
+
+def validate_local_binding_trial(data, root):
+    """Validate only the opt-in storage trial; no retrieval or semantic execution."""
+    resolved = check(root)
+    baseline = load(root / ROUTER)
+    fields(data, baseline.keys(), 'Local binding trial')
+    expected = dict(baseline['deployment'], status='CANDIDATE',
+                    router_version='5.0-local-binding-trial', baseline_router=ROUTER,
+                    baseline_ci=baseline['deployment']['ci'])
+    require(data['deployment'] == expected, 'Local binding trial deployment mismatch')
+    for key in baseline.keys() - {'deployment', 'policies'}:
+        require(data[key] == baseline[key], f'Local binding trial changed protected section: {key}')
+    fields(data['policies'], POLICIES, 'Local binding trial policies')
+    for name in POLICIES - LOCAL_BINDING_POLICIES:
+        require(data['policies'][name] == baseline['policies'][name],
+                f'Local binding trial changed protected policy: {name}')
+    discovery = data['policies']['discovery']
+    require(isinstance(discovery, str)
+            and discovery.startswith(baseline['policies']['discovery'] + ' '),
+            'Local binding trial must preserve existing discovery')
+    anchors = {
+        'access': ['Explicit opt-in only', 'LOCAL_CURRENT_SOURCE',
+                   'bootstrap 00/92, reconciliation 91 when required, and admitted AFM current lore',
+                   'Deployment supplies the exact package root and explicit scoped selection as current',
+                   'TOOL ACCESS != SOURCE AUTHORITY', 'HEADER MATCH != ADMISSION',
+                   'PATH != MODULE IDENTITY', 'Apply the existing failure contract',
+                   'no automatic Library or Project Sources fallback',
+                   'no repository/GitHub scan, near-match search or guessed replacement',
+                   'Controls, Router/Pipeline and RP retain their existing bindings',
+                   'Successful calls alone are not FULL_FILE',
+                   'complete ordered ranges through the actual end of file',
+                   'Manifest/hash checks establish consistency, never current authority'],
+        'discovery': ['Read bootstrap from LOCAL_CURRENT_SOURCE',
+                      'only after reading 00 FULL_FILE',
+                      'relative to that same configured root',
+                      'Reject paths escaping the root',
+                      'requested Module ID against the retrieved header'],
+    }
+    for name, terms in anchors.items():
+        value = data['policies'][name]
+        require(isinstance(value, str) and all(term in value for term in terms),
+                f'Local binding trial missing binding safeguards: {name}')
+    return resolved
+
+
+def check_local_binding_trial(root):
+    return validate_local_binding_trial(load(root / LOCAL_BINDING_TRIAL), root)
