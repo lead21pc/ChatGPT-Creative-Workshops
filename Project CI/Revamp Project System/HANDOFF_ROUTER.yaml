@@ -1,7 +1,7 @@
 version: "1.1"
 status: "active"
 scope: "Revamp Project System only; never inherited by Central Hub"
-responsibility: "Current task or task portion -> materially relevant existing CURRENT handoffs -> FULL_FILE read; ignore unrelated handoffs"
+responsibility: "Current task -> inspect current relevant repository/local state -> determine remaining continuity need -> FULL_FILE-read only needed CURRENT handoffs"
 path_base: "Directory containing this Router"
 read_mode: "FULL_FILE"
 repository_preflight:
@@ -28,12 +28,16 @@ historical_preflight:
   limits: "Does not create handoff matches or authorize implementation, commit, push, deployment or architectural expansion. Never inherited by Central Hub."
   failure_behavior: "If missing/unreadable, name the history file and report incomplete preflight; do not substitute CURRENT or invent history. Defer dependent recovery, continuing only independent work."
 selection:
-  - "Match actual workstream responsibility and needed prior state, not keywords alone."
+  - "After repository_preflight and required history, establish the current task baseline; load a handoff only if prior workstream continuity still materially affects the task and current evidence does not sufficiently provide it."
+  - "REPOSITORY SUFFICIENCY != HANDOFF REQUIREMENT; WORKSTREAM RELEVANCE != HANDOFF NECESSITY; WORKSTREAM MATCH != HANDOFF LOAD; HANDOFF PRESENCE != HANDOFF NECESSITY."
+  - "Repository/runtime evidence may suffice: no CURRENT load is required merely to check active versions, architecture, implementation, file contents or branch/HEAD. Skipping unnecessary handoffs is complete preflight."
+  - "Continuity may be needed for unresolved reasoning, decision rationale/conditions, blockers, accepted-but-unimplemented work, proposal status, verification attribution or conflicts not sufficiently recorded in current primary sources, or explicit continuation requests. Match the needed prior state, not keywords alone."
   - "HANDOFF PRESENCE != ACTIVATION; MENTION != MATCH; ANALOGY != MATCH."
   - "CO-OCCURRENCE != RELEVANCE; SHARED REPOSITORY != SHARED TASK STATE."
-  - "Select every material match for separate task portions; keep their states scoped."
+  - "Select every needed continuity match for separate task portions; keep their states scoped."
   - "Leave unrelated handoffs unloaded; no persistent activation between tasks."
   - "No match is normal: continue the normal Revamp workflow."
+  - "If continuity remains necessary but no valid entry/source supplies it, report UNKNOWN / the continuity gap; do not invent a prior decision. NOT FOUND != FALSE."
   - "Route only to explicit entries below. Add an entry only for an actual justified CURRENT file; no speculative inventory."
   - "Use stable CURRENT targets, never version or timestamp discovery. CURRENT FILE = ACTIVE HANDOFF; GIT HISTORY = HANDOFF HISTORY."
 failure_behavior:
@@ -41,6 +45,8 @@ failure_behavior:
   - "If a selected handoff is missing/unreadable, name its exact path; do not invent state or substitute another handoff. Continue only independent task portions."
 boundaries:
   - "CI owns evidence precedence, status preservation and authorized handoff updates; this Router only selects sources."
+  - "For current implementation/artifact claims, current repository/runtime evidence takes precedence over older handoff records. Reconcile loaded continuity against that baseline; mark only affected claims STALE / CONFLICTED. Preserve valid rationale, prior decisions, unresolved questions and verification attribution. CURRENT IMPLEMENTATION != COMPLETE PRIOR DECISION HISTORY."
+  - "CURRENT HANDOFF = BOUNDED WORKSTREAM CONTINUITY; HANDOFF != GLOBAL REPOSITORY SNAPSHOT. Shared version pins describe the recorded workstream point, not permanent current shared-stack authority. STALE SHARED VERSION PIN != STALE ENTIRE HANDOFF. Unrelated shared-stack changes do not require rewriting every handoff."
   - "Revamp may track work on Central Hub; no repository/history preflight, Router, handoff CI rules, CURRENT files or loading behavior may be installed/inherited inside Central Hub."
 handoffs:
   revamp_system:
@@ -49,6 +55,7 @@ handoffs:
     applies_to:
       - "Revamp CI, cross-chat handoff routing, template, work-state continuity or route tests: prior Revamp-system state materially affects the task."
     ignore_when:
+      - "Current repository/runtime evidence suffices and no prior workstream continuity is needed, even when Revamp-system work is relevant."
       - "Revamp is merely mentioned or used as an analogy."
       - "The task concerns another workstream without a material Revamp-system dependency."
       - "Unrelated repository cleanup, FTH design or Central Hub migration."
