@@ -31,9 +31,9 @@ class AuthoringM2Tests(unittest.TestCase):
                        'Missing, mismatched, unavailable or unresolved requested contribution blocks'):
             self.assertIn(phrase, text)
         old = load(ARCHIVE / 'HUB_PACKAGE_CATALOG_v1.5.yaml')
-        new = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.7.yaml')
-        self.assertEqual([p for p in old['packages'] if p['package_id'] != 'HUB-PKG-AUTHORING'],
-                         [p for p in new['packages'] if p['package_id'] != 'HUB-PKG-AUTHORING'])
+        new = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.8.yaml')
+        self.assertEqual([p for p in old['packages'] if p['package_id'] not in {'HUB-PKG-AUTHORING', 'HUB-PKG-CONCEPT-DEVELOPMENT'}],
+                         [p for p in new['packages'] if p['package_id'] not in {'HUB-PKG-AUTHORING', 'HUB-PKG-CONCEPT-DEVELOPMENT'}])
         entry = next(p for p in new['packages'] if p['package_id'] == 'HUB-PKG-AUTHORING')
         self.assertEqual(entry['version'], '0.6')
         self.assertIsNone(entry['local_catalog'])
@@ -71,7 +71,7 @@ class AuthoringM2Tests(unittest.TestCase):
         prior = load(ARCHIVE / 'HUB_ROUTER_v1.1.yaml')
         for key in ('architecture', 'root_catalog'):
             self.assertTrue((ROOT / router['contracts'][key]['file']).is_file())
-            self.assertEqual(router['contracts'][key]['version'], '1.7')
+            self.assertEqual(router['contracts'][key]['version'], '1.8')
         router.pop('contracts')
         prior.pop('contracts')
         self.assertEqual(router, prior)

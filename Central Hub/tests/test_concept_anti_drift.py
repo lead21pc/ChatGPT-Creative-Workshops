@@ -22,7 +22,7 @@ BASELINE = '6770d9e632951ac767371b6f42567e4b9299c140'
 
 
 def configured(active=()):
-    local = copy.deepcopy(load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.0.yaml'))
+    local = copy.deepcopy(load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.1.yaml'))
     for row in local['entries']:
         if row['module_id'] in IDS:
             row['status'] = 'ACTIVE' if row['module_id'] in active else 'INACTIVE'
@@ -218,15 +218,20 @@ class AntiDriftStaticTests(unittest.TestCase):
         def original(relative):
             return subprocess.check_output(['git', 'show', BASELINE + ':Central Hub/' + relative], cwd=ROOT)
         old_catalog = yaml.safe_load(original('library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.0.yaml'))
-        current = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.0.yaml')
+        archive = ROOT / 'Source_archive/Concept explicit leaf controls 2026-11-02'
+        current = load(archive / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.0.yaml')
         for row in old_catalog['entries']:
             self.assertEqual(row, next(r for r in current['entries'] if r['module_id'] == row['module_id']))
         self.assertEqual({k: v for k, v in current.items() if k not in {'entries', 'anti_drift_configuration'}},
                          {k: v for k, v in old_catalog.items() if k != 'entries'})
-        core = (ROOT / 'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.0.md').read_text(encoding='utf-8')
+        core = (archive / 'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.0.md').read_text(encoding='utf-8')
         before, added = core.split('### Optional anti-drift experiment\n\n', 1)
         tail = added[added.index('This package and its leaves select no other package'):]
         self.assertEqual(before + tail, original('library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.0.md').decode('utf-8'))
+        successor = (ROOT / 'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.1.md').read_text(encoding='utf-8')
+        expected = core.split('### Optional anti-drift experiment', 1)[1].replace(
+            'their existing zero/one/both selection remains independent', 'their explicit span selection remains independent')
+        self.assertEqual(successor.split('### Optional anti-drift experiment', 1)[1], expected)
         for relative in ('HUB_CI_v1.1.md', 'HUB_ROUTER_v1.1.yaml', 'HUB_ARCHITECTURE_v1.3.md',
                          'HUB_PACKAGE_CATALOG_v1.3.yaml', 'library_modules/HUB-DOM-CREATIVE_v1.1.md',
                          'library_modules/HUB-CAP-BRAINSTORM_v1.1.md'):
@@ -277,7 +282,7 @@ class AntiDriftStaticTests(unittest.TestCase):
                        'explicitly permitted blank-slate invention', 'requested conventional trope',
                        'no mandatory checklist', 'never a persistent anti-drift mode'):
             self.assertIn(phrase, ap)
-        core = (ROOT / 'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.0.md').read_text(encoding='utf-8')
+        core = (ROOT / 'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.1.md').read_text(encoding='utf-8')
         for phrase in ('CONTROL AVAILABLE != CONTROL SELECTED FOR CURRENT TASK',
                        'PREVIOUS SELECTION != CURRENT SELECTION', 'never execute MCA alone',
                        'WIL is never an independent selection', 'select no winner/fallback'):

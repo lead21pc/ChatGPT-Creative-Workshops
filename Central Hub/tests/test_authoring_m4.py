@@ -123,7 +123,7 @@ class AuthoringM4Tests(unittest.TestCase):
         router = load(ROOT / 'HUB_ROUTER_v1.1.yaml')
         for key in ('architecture', 'root_catalog'):
             pin = router['contracts'][key]
-            self.assertEqual((pin['version'], pin['status']), ('1.7', 'ACTIVE'))
+            self.assertEqual((pin['version'], pin['status']), ('1.8', 'ACTIVE'))
             self.assertTrue((ROOT / pin['file']).is_file())
         self.assertEqual(list((ROOT / 'library_modules').glob('HUB-CAP-AUTHORING_v*.md')),
                          [ROOT / 'library_modules/HUB-CAP-AUTHORING_v0.6.md'])
@@ -199,9 +199,9 @@ class Authoring06PromotionTests(unittest.TestCase):
                            ('Runtime role', 'CAPABILITY'), ('Status', 'ACTIVE'), ('Version', '0.6')]:
             self.assertEqual(re.findall(rf'^{key}: (.+)$', active, re.M), [value])
         self.assertEqual(list((ROOT / 'library_modules').glob('HUB-CAP-AUTHORING_v*.md')), [active_path])
-        self.assertEqual(list(ROOT.glob('HUB_PACKAGE_CATALOG_v*.yaml')), [ROOT / 'HUB_PACKAGE_CATALOG_v1.7.yaml'])
-        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.7.yaml')
-        self.assertEqual((catalog['version'], catalog['status'], catalog['active']), ('1.7', 'ACTIVE', True))
+        self.assertEqual(list(ROOT.glob('HUB_PACKAGE_CATALOG_v*.yaml')), [ROOT / 'HUB_PACKAGE_CATALOG_v1.8.yaml'])
+        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.8.yaml')
+        self.assertEqual((catalog['version'], catalog['status'], catalog['active']), ('1.8', 'ACTIVE', True))
         entry = next(p for p in catalog['packages'] if p['package_id'] == 'HUB-PKG-AUTHORING')
         prior = next(p for p in load(CATALOG)['packages'] if p['package_id'] == 'HUB-PKG-AUTHORING')
         self.assertEqual((entry['version'], entry['status']), ('0.6', 'ACTIVE'))
@@ -212,7 +212,9 @@ class Authoring06PromotionTests(unittest.TestCase):
         for field in ('locator', 'library_file_id', 'library_version_id'):
             self.assertIsNone(entry['location'][field])
         other = lambda c: [p for p in c['packages'] if p['package_id'] != 'HUB-PKG-AUTHORING']
-        self.assertEqual(other(catalog), other(load(CATALOG)))
+        promoted = load(ROOT / 'Source_archive/Concept explicit leaf controls 2026-11-02/HUB_PACKAGE_CATALOG_v1.7.yaml')
+        self.assertEqual(other(promoted), other(load(CATALOG)))
+        self.assertEqual(entry, next(p for p in promoted['packages'] if p['package_id'] == 'HUB-PKG-AUTHORING'))
         # Existing and preset lexical oracles remain specifications, never runtime parsers.
         for target in TARGETS:
             self.assertEqual(trigger_spec(f'/AUTHOR {target}'), target)
@@ -233,15 +235,15 @@ class Authoring06PromotionTests(unittest.TestCase):
                          'd237ade0c234781d00c277ab708fa215782d4d2096c36bace1118d7e60b15181')
         old_router = (ARCHIVE / 'HUB_ROUTER_v1.1.yaml').read_text(encoding='utf-8')
         router = (ROOT / 'HUB_ROUTER_v1.1.yaml').read_text(encoding='utf-8')
-        self.assertEqual(router, old_router.replace('1.6', '1.7'))
+        self.assertEqual(router, old_router.replace('1.6', '1.8'))
         old_arch = (ARCHIVE / 'HUB_ARCHITECTURE_v1.6.md').read_text(encoding='utf-8')
         expected = old_arch.replace('1.6', '1.7').replace('0.5', '0.6').replace(
             'This revision binds Authoring 0.6 bounded two-part composition; target and contributor roles remain distinct.',
             'This revision binds Authoring 0.6 optional single-target P1/P2/P3 strategies alongside unchanged bounded two-part composition; preset, target and contributor roles remain distinct.')
-        self.assertEqual((ROOT / 'HUB_ARCHITECTURE_v1.7.md').read_text(encoding='utf-8'), expected)
+        self.assertEqual((ROOT / 'Source_archive/Concept explicit leaf controls 2026-11-02/HUB_ARCHITECTURE_v1.7.md').read_text(encoding='utf-8'), expected)
         for key in ('architecture', 'root_catalog'):
             pin = load(ROOT / 'HUB_ROUTER_v1.1.yaml')['contracts'][key]
-            self.assertEqual((pin['version'], pin['status']), ('1.7', 'ACTIVE'))
+            self.assertEqual((pin['version'], pin['status']), ('1.8', 'ACTIVE'))
             self.assertTrue((ROOT / pin['file']).is_file())
 
     def test_candidate_smoke_provenance_is_not_active_runtime_evidence(self):

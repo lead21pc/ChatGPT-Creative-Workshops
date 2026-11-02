@@ -45,7 +45,24 @@ H36 execution order: research need recognized → registered owner resolved → 
 
 H36 authoring boundary: PROMPT ENHANCEMENT != ROUTING AUTHORITY. Trigger presence may strengthen intent signals; trigger absence must not count against routing. An enhanced prompt is not required for correct Hub routing. The authoring layer describes the task; Hub decides its route. No authoring vocabulary, registry or integration is introduced here.
 
-## BRAINSTORM explicit intent regression
+## Explicit leaf controls 1.1 — current SPEC, LIVE NOT_RUN
+
+Core/Catalog Concept Development 1.1 chỉ chọn leaf bằng span chỉ thị người dùng hợp lệ: `/CREATIVE ... #`, `/DEBATE ... #`, `/BRAINSTORM ... #`. Không có span vẫn được làm phần core đủ căn cứ. Oracle trong `test_concept_development.py` kiểm cặp token, thứ tự, phạm vi, lỗi cấu trúc và closure/read bằng dữ liệu giả lập. Vai trò directive/source/quote/code được fixture cấp; chưa kiểm khả năng runtime thật nhận đúng provenance hoặc thực hiện hành vi.
+
+Các ca Debate sau là đầu vào/tiêu chí cho kiểm hành vi, chưa phải kết quả model. Trong lượt đáp tiếp nối phải có span mới; phản biện trước là context, không giữ mode. Không cho model rubric như chỉ thị sản xuất câu trả lời.
+
+| Ca | Đầu vào chỉ thị thử | Điều cần quan sát, chưa xác minh live |
+| --- | --- | --- |
+| D01 | `/DEBATE Tôi muốn giảm việc nhập lại dữ liệu. Đề xuất là dùng bảng chung thay vì ứng dụng mới; phản biện điểm yếu quan trọng nhất. #` | Giữ mục tiêu giảm nhập lại, không đổi thành mục tiêu phải xây ứng dụng; chọn một objection có hệ quả, nêu đường thất bại và cách kiểm. |
+| D02 | `/DEBATE Objection trước là thiếu quyền truy cập. Giả định kiểm thử: mọi người liên quan đã có quyền hợp lệ và truy cập thành công. Chỉ xét tiếp proposal trong điều kiện này. #` | Cập nhật objection truy cập thành RESOLVED trong giả định; không lặp lại bằng từ mới hoặc coi giả định là bằng chứng thực tế. |
+| D03 | `/DEBATE Giả định quyền đọc đã đủ; quyền ghi cho cộng tác viên ngoài nhóm vẫn chưa rõ. Cập nhật objection truy cập. #` | NARROWED chỉ còn quyền ghi của nhóm ngoài; không tiếp tục phản đối toàn bộ quyền đọc. |
+| D04 | `/DEBATE Quyền truy cập đã được giải quyết trong nhánh. Nay xét nguy cơ xung đột khi hai người sửa cùng dòng. #` | Đây là objection mới; không dùng nó làm bằng chứng objection truy cập trước đã đúng. |
+| D05 | `/DEBATE Trong mô hình giả định này chỉ có một người ghi, mọi người đã có quyền, không cần đồng bộ ngoài. Mục tiêu chỉ là tránh nhập lại cùng một dữ liệu. Nếu không còn objection có hệ quả trong phạm vi này, hãy kết luận. #` | Có thể nói proposal sống sót trong phạm vi giả định và dừng; không bịa thêm yêu cầu để tiếp tục đối đầu. |
+| D06 | `/DEBATE So sánh bảng chung với form ghi vào cùng bảng cho mục tiêu giảm nhập lại. Chỉ nêu alternative nếu nó là đối thủ thực sự. #` | Cùng tiêu chí và gánh nặng; phân biệt độ phức tạp thêm/chuyển chỗ/không tránh được. Alternative không tự chọn Brainstorm, AIS hay implementation. |
+
+## BRAINSTORM explicit intent regression — HISTORICAL / SUPERSEDED
+
+Các ca BS01–BS12 dưới đây giữ hợp đồng lịch sử của singleton Catalog 1.0; không là activation hiện tại. Với interface Concept Development 1.1, cả semantic fit lẫn các cụm từ cũ không bật leaf. Chỉ span `/BRAINSTORM ... #` hợp lệ mới chọn leaf. Các ca scoped-control hiện tại nằm trong `test_concept_development.py`; SPEC không chứng minh provenance detection hoặc model execution thật.
 
 SPEC_FIXTURE_ONLY; LIVE NOT_RUN. These fixtures declare semantic intent for review and the existing test oracle; no substring matcher or natural-language classifier executes them. The concept package-local Catalog applicability owns the BRAINSTORM phrase convention; the generic Router selects the package and validates its returned leaf selection. Explicit requests are strong selection signals, not retrieval or execution evidence.
 

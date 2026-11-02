@@ -24,6 +24,8 @@ CONCEPT_PREDECESSORS = frozenset(['HUB_ARCHITECTURE_v1.0.md', 'HUB_PACKAGE_CATAL
     'library_modules/HUB-DOM-CREATIVE_v1.0.md', 'library_modules/HUB-CAP-BRAINSTORM_v1.0.md'])
 
 def historical_source(path):
+    if path == 'tests/HUB_ROUTE_TEST_CASES.md':
+        return ROOT / 'Source_archive/Concept explicit leaf controls 2026-11-02' / path
     if path in {'tool_pipelines/ImageT/IMAGE_CONTROLLER_v1.1.md', 'tool_pipelines/ImageT/manifest.yaml'}:
         return ROOT / 'Source_archive/ImageT Open Gate promotion 2026-10-29' / path
     if path in CONCEPT_PREDECESSORS:
@@ -371,7 +373,7 @@ class HubTests(unittest.TestCase):
         self.assertEqual((active['file'], active['version'], active['status']),
                          ('IMAGE_CONTROLLER_v1.2.md', '1.2', 'active'))
         self.assertEqual(self.manifest['controllers']['experiments'], [])
-        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.7.yaml')
+        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.8.yaml')
         binding = next(p for p in catalog['packages'] if p['package_id'] == 'HUB-PKG-IMAGET')
         self.assertEqual(binding['version'], active['version'])
         self.assertEqual(binding['location']['source_name'], active['file'])
@@ -384,7 +386,7 @@ class HubTests(unittest.TestCase):
                          '6d33c80f4852c1b44c32abf6e898c14e8f001d24796d406aafc49a95ab3a2733')
         self.assertEqual(digest(archive / 'tool_pipelines/ImageT/IMAGE_CONTROLLER_v1.2-candidate.md'),
                          'bfe8cc64f23932633c3f2a5a279d96ff39c1a54aaa6014c27cfcb5152876d600')
-        self.assertIn(candidate_path.name, (ROOT / 'HUB_PACKAGE_CATALOG_v1.7.yaml').read_text(encoding='utf-8'))
+        self.assertIn(candidate_path.name, (ROOT / 'HUB_PACKAGE_CATALOG_v1.8.yaml').read_text(encoding='utf-8'))
         self.assertIn(candidate_path.name, (IMAGE / 'manifest.yaml').read_text(encoding='utf-8'))
         self.assertNotIn(candidate_path.name, (IMAGE / 'IMAGE_SOURCE_ROUTER.yaml').read_text(encoding='utf-8'))
         cases = (IMAGE / 'tests/ROUTE_TEST_CASES.md').read_text(encoding='utf-8')
