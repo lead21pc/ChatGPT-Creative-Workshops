@@ -23,6 +23,11 @@ NO NEW EVIDENCE != STATUS RESET
 
 ## Current verified runtime status
 
+### AUTHORING_0_6_M4_PRESET_CANDIDATE
+
+- Repository-only CANDIDATE / 0.6-candidate, with test-only Root Catalog 1.7-candidate. Production remains ACTIVE 0.5 / Architecture-Catalog 1.6 / Hub CI-Router 1.1. M4 is explicitly reopened for optional P1/CLEAN, P2/CONTRACT and P3/REBUILD; M1/M2/M3 closure and scoped 0.5 PASS/deployment evidence remain unchanged.
+- Static/spec checks and T0–T3 fixed reference transformations are not live model compliance. Candidate L1/L2: NOT_RUN; candidate installation/deployment/promotion: NOT_PERFORMED. No new Library identity or FULL_FILE evidence. See candidates/authoring_m4/AUTHORING_M4_TESTS.md for exact later supplied-control smoke inputs and evidence limits.
+
 ### AUTHORING_0_5_STABLE_M3
 
 - Deployment: USER_REPORTED_DEPLOYMENT for the current Authoring 0.5 / Architecture-Catalog 1.6 / Hub CI-Router 1.1 stack, confirmed by the user on 2026-11-01. Codex did not perform deployment. This supersedes implementation-time NOT_PERFORMED status for the reported deployment; exact Library object identity, FULL_FILE/header/body verification and binding resolution remain unverified. Existing scoped live PASS is retained without a rerun requirement.
@@ -93,6 +98,10 @@ NO NEW EVIDENCE != STATUS RESET
 - Related log entry: `2026-10-27 - Integrated concept-development runtime smoke`.
 
 ## Verification log
+
+### 2026-11-02 - Authoring M4 preset candidate prepared
+
+- Added an isolated inline-preset candidate and test-only root admission metadata, preserving the complete production stack byte-exact. T0–T3 use LOCAL SPEC SIMULATION / REVIEWED_TEXT plus fixed-artifact checks; they do not establish live behavior. L1/L2 remain NOT_RUN. No promotion, Project/Library mutation, deployment or push; existing user-confirmed 0.5 evidence retains its scope.
 
 ### 2026-11-01 - User confirms Authoring 0.5 deployment
 
