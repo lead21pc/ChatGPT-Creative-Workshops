@@ -1,5 +1,17 @@
 # Authoring M4 — preset strategy candidate
 
+## Current closure — 2026-11-02
+
+M4 COMPLETE. AUTHORING 0.6 REPOSITORY BASELINE STABLE. Current production artifacts: library_modules/HUB-CAP-AUTHORING_v0.6.md, HUB_PACKAGE_CATALOG_v1.7.yaml and HUB_ARCHITECTURE_v1.7.md, with Router 1.1 exact pins only updated and CI 1.1 unchanged. Preset policies are unchanged from the tested candidate. No-preset and bounded composition remain intact; no additional preset mechanism or M5.
+
+The candidate was originally ca70b28 on the FTH branch and published independently as equivalent f363546. With explicit approval main was fast-forwarded to f363546; FTH's private branch was not rewritten or merged. Architecture 1.6 sections 6/8 and Router contracts require exact 1.6 Catalog/stack bindings; the user approved the minimum 1.7 successor/pin changes after this concrete constraint was reported. This is not version symmetry or an algorithm redesign.
+
+L1 and L2 now have USER_CONFIRMED_LIVE_PASS / SUPPLIED-CANDIDATE LIVE BEHAVIOR with user-reported exact candidate identities and FULL_FILE receipts. L1 used a Devil's Advocate operating contract and passed P2 relational preservation; L2 passed without a preset. See AUTHORING_M4_TESTS.md and ../../RUNTIME_EVIDENCE_CHANGELOG.md for scope/provenance. The original campaign fixture was not claimed run. Active 0.6 Hub routing NOT_RUN; production Library identity/deployment NOT_VERIFIED. REPOSITORY BASELINE STABLE != ACTIVE CENTRAL HUB RUNTIME VERIFIED.
+
+The verified controls and 0.5 predecessor/compatible stack are archived byte-exact under ../../Source_archive/Authoring 0.6 promotion 2026-11-02/. The original candidate implementation snapshot below retains its old status statements as history. Post-promotion static verification is recorded after execution in AUTHORING_PROMOTION.md and the runtime evidence log. No push, deployment, tag or CURRENT handoff edit.
+
+## Original candidate implementation snapshot
+
 Status: M4 CANDIDATE READY FOR LIVE SMOKE. Date: 2026-11-02 (Asia/Bangkok). This is an explicitly reopened workstream after M1 CLOSED / M2 CLOSED / M3 COMPLETE, not unfinished baseline work.
 
 ## Verified baseline and gap
@@ -10,8 +22,8 @@ Production baseline remains Hub CI 1.1 / Router 1.1 / Architecture 1.6 / Root Ca
 
 ## Candidate implementation and admission ownership
 
-- [Authoring 0.6 candidate](HUB-CAP-AUTHORING_v0.6-candidate.md): same singleton identity/role, CANDIDATE / 0.6-candidate. Adds only the inline optional preset-strategy section, plus candidate header/admission wrapper. All existing behavior after the admission wrapper is inherited exactly when that new section is removed.
-- [Root Catalog 1.7 candidate](HUB_PACKAGE_CATALOG_v1.7-candidate.yaml): full test-only copy of the current root metadata, with CANDIDATE/non-ready wrapper and only Authoring's applicability/version/status/retrieval notice changed. Other package entries and their historical evidence are inherited unchanged; they are not fresh verification results.
+- [Authoring 0.6 candidate](<../../Source_archive/Authoring 0.6 promotion 2026-11-02/candidates/authoring_m4/HUB-CAP-AUTHORING_v0.6-candidate.md>): same singleton identity/role, CANDIDATE / 0.6-candidate. Adds only the inline optional preset-strategy section, plus candidate header/admission wrapper. All existing behavior after the admission wrapper is inherited exactly when that new section is removed.
+- [Root Catalog 1.7 candidate](<../../Source_archive/Authoring 0.6 promotion 2026-11-02/candidates/authoring_m4/HUB_PACKAGE_CATALOG_v1.7-candidate.yaml>): full test-only copy of the current root metadata, with CANDIDATE/non-ready wrapper and only Authoring's applicability/version/status/retrieval notice changed. Other package entries and their historical evidence are inherited unchanged; they are not fresh verification results.
 - [T0–T3 and exact L1/L2 packet](AUTHORING_M4_TESTS.md): local reference transformations, relational counterexample and later live instructions.
 - [Focused static/spec tests](../../tests/test_authoring_m4.py): eight tests, no runtime parser or model invocation.
 

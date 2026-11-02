@@ -1,5 +1,13 @@
 # Authoring M4 — candidate tests and live packet
 
+## Later supplied-candidate results and repository promotion — 2026-11-02
+
+L1: USER_CONFIRMED_LIVE_PASS for binding, P2 CONTRACT behavior and relational preservation. L2: USER_CONFIRMED_LIVE_PASS for binding and no-preset regression. The user reports exact Catalog 1.7-candidate/CANDIDATE and Authoring 0.6-candidate/CANDIDATE, both FULL_FILE reads YES, in fresh supplied-control chats; L1 selected GENERIC/P2, L2 GENERIC/NO PRESET. L1 used a long-running Devil's Advocate operating contract without a preservation checklist, not the synthetic campaign fixture below. It retained objection -> response -> resolved/narrowed/open lifecycle, retirement/reopening, goal vs means, proposal vs decision, hypothetical vs established limits, cross-turn state, knowledge/authority boundaries, pacing and stopping conditions. Original raw inputs/outputs, model/run time and independent read traces were not supplied to Codex.
+
+SUPPLIED-CANDIDATE LIVE BEHAVIOR != ACTIVE HUB ROUTING. Those scoped smokes authorize no Library/deployment/identity claim. The later repository promotion is Authoring ACTIVE/0.6 with Architecture/Catalog 1.7 and Router 1.1 pin-only changes; active Hub routing NOT_RUN, production identity/deployment NOT_VERIFIED. Tested candidate controls are preserved byte-exact under Source_archive/Authoring 0.6 promotion 2026-11-02/candidates/authoring_m4/. T0–T3 remain local fixed-fixture simulations. Original fixture text/expectations and implementation-time NOT_RUN annotations below are historical, not current smoke status.
+
+## Original candidate packet — implementation-time snapshot
+
 Candidate: HUB-CAP-AUTHORING / HUB-PKG-AUTHORING / CAPABILITY / CANDIDATE / 0.6-candidate. The companion Root Catalog 1.7-candidate is a test-only metadata view, not a production authority. No candidate is admitted by the active Router. STATIC PASS != LIVE PASS.
 
 ## Evidence basis
@@ -108,7 +116,7 @@ Check: rebuild removes redundant ordering and unnecessary registry architecture 
 
 All five target rows, provenance, evidence transfer and decision-state contracts are inherited verbatim from 0.5. In particular CODEX P1 cannot authorize edits/commit/push, AIS P2 cannot perform research or accept a design, and IMAGET P3 cannot pass Ready Gate or generate an image. P2 preserves only relationships supported by the actual source/current intent; its fictional example is not a universal campaign template.
 
-## L1/L2 — exact minimal live smoke, NOT_RUN
+## L1/L2 — original planned synthetic-fixture smoke, NOT_RUN
 
 Use a fresh isolated candidate test conversation, separate from the deployed Central Hub. Supply the full 0.6-candidate module and companion 1.7-candidate Catalog as explicitly authorized test controls; retain Hub CI authority boundaries. Ask the test operator to read both in full and check Module/Package IDs, CAPABILITY, CANDIDATE status and exact versions before evaluating admission. These are deliberate test-only supplied controls, not production Library retrieval or a repository fallback. Do not install them into Central Hub Config, replace active Project Sources, change ACTIVE headers or claim promotion. If the surface cannot distinguish test controls from source material, record candidate-admission BLOCKED rather than treating active 0.5 rejection as a preset failure.
 

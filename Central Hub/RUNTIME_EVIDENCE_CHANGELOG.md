@@ -23,13 +23,23 @@ NO NEW EVIDENCE != STATUS RESET
 
 ## Current verified runtime status
 
+### AUTHORING_0_6_REPOSITORY_PROMOTION
+
+- M4 COMPLETE; AUTHORING 0.6 REPOSITORY BASELINE STABLE. Repository promotion IMPLEMENTED: Authoring ACTIVE/0.6, Architecture/Catalog ACTIVE/1.7, CI/Router 1.1. Router contracts pins only changed after explicit authorization; CI and routing algorithm unchanged. Post-promotion static results are recorded in the verification log after execution.
+- L1: USER_CONFIRMED_LIVE_PASS / SUPPLIED-CANDIDATE LIVE BEHAVIOR. User reports exact Catalog 1.7-candidate/CANDIDATE and Authoring 0.6-candidate/CANDIDATE, CATALOG_FULL_FILE_READ YES, AUTHORING_FULL_FILE_READ YES, GENERIC/P2. Candidate binding, CONTRACT behavior and relational preservation PASS on a long-running Devil's Advocate operating contract with no preservation checklist. Preserved authority ownership, cross-turn state, goal/means, objection lifecycle and retirement/reopening conditions, proposal/decision, factual-state boundaries, hypothetical/established limitations, complexity distinctions, pacing and stop conditions. Objection -> user response -> resolved/narrowed/open state remained linked; resolved objections stayed retired and new objections remained new issues.
+- L2: USER_CONFIRMED_LIVE_PASS / SUPPLIED-CANDIDATE LIVE BEHAVIOR. Same reported candidate identities and FULL_FILE receipts in a fresh supplied-control chat, GENERIC/NO PRESET; candidate binding and no-preset regression PASS. No preset was required, inferred or demanded. PRESET SUPPORT != PRESET REQUIREMENT.
+- Recording date: 2026-11-02; exact run dates/model and raw source/output/read traces were not supplied. Codex did not independently reproduce these smokes. Actual smoke source differs from the planned synthetic campaign fixture; no claim that that fixture was run. Candidate static T0–T3 remain LOCAL SPEC SIMULATION / REVIEWED_TEXT.
+- SUPPLIED-CANDIDATE LIVE BEHAVIOR != ACTIVE HUB ROUTING. Active 0.6 routing NOT_RUN; production Library identity/FULL_FILE binding NOT_VERIFIED / UNRESOLVED; 0.6 installation/Project deployment NOT_PERFORMED by this task. No active Library object IDs inferred. REPOSITORY BASELINE STABLE != ACTIVE CENTRAL HUB RUNTIME VERIFIED. Existing scoped 0.5 PASS/deployment evidence remains historical in its original scope; M1/M2/M3 are not reopened.
+
 ### AUTHORING_0_6_M4_PRESET_CANDIDATE
 
+- Historical candidate implementation snapshot: the NOT_RUN and production-0.5 statements below describe the implementation point. Supplied-candidate L1/L2 and later repository promotion are recorded above; the original synthetic fixture is not claimed executed.
 - Repository-only CANDIDATE / 0.6-candidate, with test-only Root Catalog 1.7-candidate. Production remains ACTIVE 0.5 / Architecture-Catalog 1.6 / Hub CI-Router 1.1. M4 is explicitly reopened for optional P1/CLEAN, P2/CONTRACT and P3/REBUILD; M1/M2/M3 closure and scoped 0.5 PASS/deployment evidence remain unchanged.
 - Static/spec checks and T0–T3 fixed reference transformations are not live model compliance. Candidate L1/L2: NOT_RUN; candidate installation/deployment/promotion: NOT_PERFORMED. No new Library identity or FULL_FILE evidence. See candidates/authoring_m4/AUTHORING_M4_TESTS.md for exact later supplied-control smoke inputs and evidence limits.
 
 ### AUTHORING_0_5_STABLE_M3
 
+- Historical 0.5 baseline after 0.6 repository promotion; all reported 0.5 results and deployment attribution below retain their original scope.
 - Deployment: USER_REPORTED_DEPLOYMENT for the current Authoring 0.5 / Architecture-Catalog 1.6 / Hub CI-Router 1.1 stack, confirmed by the user on 2026-11-01. Codex did not perform deployment. This supersedes implementation-time NOT_PERFORMED status for the reported deployment; exact Library object identity, FULL_FILE/header/body verification and binding resolution remain unverified. Existing scoped live PASS is retained without a rerun requirement.
 - STATUS: ACTIVE / CURRENT STABLE BASELINE. Repository: ACTIVE; static verification: PASS. M1 CLOSED and M2 CLOSED for the current bounded needs. No current observed failure requires further Authoring architecture work.
 - User-confirmed actual Central Hub results: C1 explicit AIS + CREATIVE composition PASS; C1 composed prompt-to-execution round-trip PASS; C2 material ambiguity clarification PASS; C3 original /AUTHOR AIS single-target PASS. Classification for each: USER_CONFIRMED_LIVE_PASS. Codex did not run or independently reproduce these cases.
@@ -98,6 +108,12 @@ NO NEW EVIDENCE != STATUS RESET
 - Related log entry: `2026-10-27 - Integrated concept-development runtime smoke`.
 
 ## Verification log
+
+### 2026-11-02 - Authoring 0.6 promotion and supplied-candidate smoke receipts
+
+- Post-promotion static verification: focused Authoring 25/25 PASS; full Hub 194/194 PASS. Three new promotion tests account for the increase from 22/191: promoted identity and exact candidate-body preservation, archive/minimum binding delta, and scoped evidence separation. Preset syntax, T0–T3 fixed fixtures, no-preset and existing composition checks pass. YAML/pins/unique active revisions and predecessor hashes pass. These are repository/static checks, not active runtime reproduction.
+- User explicitly approved promotion and later main switch/fast-forward and minimum Architecture/Router pin updates. The main baseline is f363546, equivalent to ca70b28; no FTH-private commit is included. Recorded L1/L2 as USER_CONFIRMED_LIVE_PASS with supplied-candidate scope and user-reported FULL_FILE receipts, not independently reproduced production reads.
+- Promoted the unchanged preset contract to ACTIVE/0.6 and Catalog 1.7, minimally advanced Architecture and Router pins, and preserved all predecessors/tested controls byte-exact under Source_archive/Authoring 0.6 promotion 2026-11-02/. No push, tag, Library/Project deployment or CURRENT update. Active Hub routing remains NOT_RUN and production identity NOT_VERIFIED.
 
 ### 2026-11-02 - Authoring M4 preset candidate prepared
 

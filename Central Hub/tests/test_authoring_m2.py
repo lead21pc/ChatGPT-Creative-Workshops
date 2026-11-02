@@ -7,7 +7,7 @@ from test_hub_contracts import ROOT, load
 from test_authoring_candidate import trigger_spec
 
 ARCHIVE = ROOT / 'Source_archive/Authoring 0.5 M2 2026-11-01'
-MODULE = ROOT / 'library_modules/HUB-CAP-AUTHORING_v0.5.md'
+MODULE = ROOT / 'library_modules/HUB-CAP-AUTHORING_v0.6.md'
 
 
 def composite_spec(message, *, user_instruction=True):
@@ -31,15 +31,15 @@ class AuthoringM2Tests(unittest.TestCase):
                        'Missing, mismatched, unavailable or unresolved requested contribution blocks'):
             self.assertIn(phrase, text)
         old = load(ARCHIVE / 'HUB_PACKAGE_CATALOG_v1.5.yaml')
-        new = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.6.yaml')
+        new = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.7.yaml')
         self.assertEqual([p for p in old['packages'] if p['package_id'] != 'HUB-PKG-AUTHORING'],
                          [p for p in new['packages'] if p['package_id'] != 'HUB-PKG-AUTHORING'])
         entry = next(p for p in new['packages'] if p['package_id'] == 'HUB-PKG-AUTHORING')
-        self.assertEqual(entry['version'], '0.5')
+        self.assertEqual(entry['version'], '0.6')
         self.assertIsNone(entry['local_catalog'])
         self.assertEqual(entry['requires'], [])
         self.assertIn('CREATIVE or BRAINSTORM only', entry['applicability'])
-        self.assertIn('Version: 0.5', text)
+        self.assertIn('Version: 0.6', text)
         self.assertIn('Status: ACTIVE', text)
 
     def test_C2_material_ambiguity_and_strict_lexical_boundary(self):
@@ -64,14 +64,14 @@ class AuthoringM2Tests(unittest.TestCase):
         text = MODULE.read_text(encoding='utf-8')
         normalized = re.sub(r'## Bounded composition\n.*?(?=## Context sources, rewrite and reauthor)',
                             '', text, flags=re.S)
-        normalized = normalized.replace('v0.5', 'v0.4.1').replace('Version: 0.5', 'Version: 0.4.1')
+        normalized = normalized.replace('v0.6', 'v0.4.1').replace('Version: 0.6', 'Version: 0.4.1')
         self.assertEqual(normalized, old.read_text(encoding='utf-8'))
         self.assertEqual(list((ROOT / 'library_modules').glob('HUB-CAP-AUTHORING_v*.md')), [MODULE])
         router = load(ROOT / 'HUB_ROUTER_v1.1.yaml')
         prior = load(ARCHIVE / 'HUB_ROUTER_v1.1.yaml')
         for key in ('architecture', 'root_catalog'):
             self.assertTrue((ROOT / router['contracts'][key]['file']).is_file())
-            self.assertEqual(router['contracts'][key]['version'], '1.6')
+            self.assertEqual(router['contracts'][key]['version'], '1.7')
         router.pop('contracts')
         prior.pop('contracts')
         self.assertEqual(router, prior)

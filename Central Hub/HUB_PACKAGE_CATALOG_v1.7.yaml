@@ -2,11 +2,11 @@ format_version: '1'
 module_id: HUB-CORE-PACKAGE-CATALOG
 runtime_role: PACKAGE_CATALOG
 scope: Major Central Hub package entrypoints only; no leaf-module inventory.
-status: CANDIDATE
-version: '1.7-candidate'
-active: false
-runtime_ready: false
-identity_binding: M4_TEST_ONLY_METADATA_VIEW_NOT_INSTALLED
+status: ACTIVE
+version: '1.7'
+active: true
+runtime_ready: true
+identity_binding: EXACT_INSTALLED_V1_1_CI_ROUTER_WITH_V1_7_ARCHITECTURE_CATALOG_CONTRACT
 library_discovery_root: Central Hub Config
 live_library_retrieval: TECHNICAL_ACTIVE_1_0_USER_REPORTED; CONCEPT_PACKAGE_CHATGPT_OBSERVED_LIBRARY_INSPECTION_VERIFIED;
   CONCEPT_PACKAGE_HUB_RUNTIME_RETRIEVAL_NOT_VERIFIED
@@ -83,8 +83,8 @@ packages:
 - package_id: HUB-PKG-AUTHORING
   entrypoint_module_id: HUB-CAP-AUTHORING
   runtime_role: CAPABILITY
-  status: CANDIDATE
-  version: '0.6-candidate'
+  status: ACTIVE
+  version: '0.6'
   applicability: Only when the first non-empty user-authored line exactly equals `/AUTHOR AIS`, `/AUTHOR IMAGET`,
     `/AUTHOR CODEX`, `/AUTHOR WORK` or `/AUTHOR GENERIC`; match case-sensitively with exactly one ASCII
     space and no surrounding whitespace or extra text. Leading empty or space/tab-only lines may be skipped. Quotes,
@@ -105,9 +105,9 @@ packages:
     library_version_id: null
     verification: NOT_PERFORMED
     resolution: UNRESOLVED
-    retrieval_mechanism: Test-only candidate identity and full body must match the explicitly supplied M4
-      candidate view. Not a production Library binding, fallback or evidence of installation. Active Router
-      excludes this CANDIDATE; production use requires separate promotion and compatible exact stack pins.
+    retrieval_mechanism: Repository artifact prepared only. Before use, resolve exactly one ACTIVE 0.6 object inside
+      Central Hub Config, read FULL_FILE and verify identity, headers, material body and scoped duplicate coverage.
+      No repository, Project Source, archive or other fallback.
   local_catalog: null
   requires: []
   binding_mode: LIBRARY_MODULE
@@ -174,4 +174,4 @@ active_revision_evidence:
   fallback: NONE_REPORTED
   ambiguity: NONE_REPORTED
   integration: USER_REPORTED_SUCCESS_PATHS_PASS; I08_UNVERIFIABLE
-deployment: CANDIDATE_TEST_ONLY; NOT_DEPLOYED
+deployment: REPOSITORY_ACTIVE; PROJECT_DEPLOYMENT_NOT_VERIFIED

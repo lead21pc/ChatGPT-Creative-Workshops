@@ -1,3 +1,41 @@
+# Authoring 0.6 — M4 preset strategies promoted
+
+Date: 2026-11-02 (Asia/Bangkok). M4 COMPLETE. AUTHORING 0.6 REPOSITORY BASELINE STABLE. REPOSITORY BASELINE STABLE != ACTIVE CENTRAL HUB RUNTIME VERIFIED.
+
+Current repository stack: Hub CI 1.1 unchanged; Hub Router 1.1 with exact pins only updated; Architecture 1.7; Root Catalog 1.7; library_modules/HUB-CAP-AUTHORING_v0.6.md / HUB-CAP-AUTHORING / HUB-PKG-AUTHORING / CAPABILITY / ACTIVE / 0.6. Exactly one current Authoring production revision and one current root Catalog. P1/CLEAN, P2/CONTRACT and P3/REBUILD are unchanged from the verified candidate; no-preset adaptive behavior and bounded contributor composition remain intact.
+
+## Promotion basis and minimal binding delta
+
+The public-safe candidate is f363546, patch-equivalent to original ca70b28. After explicit branch authorization, main was fast-forwarded to f363546 with a clean worktree/index. The separate fth/router-6.0-lock branch remains at ca70b28 and its private FTH commit is not included in main. No rebase, reset or rewrite occurred.
+
+Architecture 1.6 section 6 declares Catalog ACTIVE/1.6 and section 8 requires exact Architecture/Catalog 1.6 pins. Router 1.1 contracts pins Architecture/Catalog files and versions to 1.6. The user separately approved the minimum successor/pin changes after these concrete constraints were reported. Architecture 1.7 updates current Authoring/Catalog/stack revision assertions and the preset description only; it introduces no new technical responsibility. Router changes only contracts, not its algorithm or version. CI is byte-identical. This successor is required by exact binding, not version symmetry.
+
+## Evidence and runtime limits
+
+Candidate static: 8/8 M4, 22/22 focused Authoring, 191/191 Hub PASS at candidate implementation. T0–T3 are fixed-fixture local simulations/reviewed text, not live compliance.
+
+L1 and L2: USER_CONFIRMED_LIVE_PASS / SUPPLIED-CANDIDATE LIVE BEHAVIOR. The user reports fresh chats supplied the exact 1.7-candidate Catalog and 0.6-candidate module with both FULL_FILE reads confirmed. L1 selected GENERIC/P2 and passed binding, CONTRACT behavior and relational preservation on a long-running Devil's Advocate operating contract without a preservation checklist. L2 selected GENERIC/NO PRESET and passed binding and no-preset regression. These were not a reproduction of the synthetic campaign fixture. Full original inputs/outputs, model/run time and independent read traces were not supplied to Codex. Supplied-control receipts do not establish active Library identities or active Hub routing.
+
+Repository promotion: IMPLEMENTED. Post-promotion static results are recorded after execution in the verification log. Authoring 0.6 active Hub routing: NOT_RUN. Library installation/deployment: NOT_PERFORMED by Codex; exact Library identity/FULL_FILE production binding: NOT_VERIFIED / UNRESOLVED. Project deployment: NOT_PERFORMED by this task. Previous user-reported 0.5 deployment and scoped live PASS remain historical evidence for 0.5; they are not relabeled as 0.6 active results. M1/M2/M3 remain closed in their recorded scopes.
+
+Post-promotion verification: 25/25 focused Authoring and 194/194 full Hub static tests PASS. The three additional promotion tests cover active identity/candidate-body equality, byte-exact predecessor receipts and minimum Architecture/Router changes, and candidate-vs-active evidence limits. Existing preset syntax, T0–T3 fixed fixtures, no-preset and contributor composition regressions pass against the promoted artifacts. YAML/pins and one active module/Catalog pass; UTF-8/LF/no BOM, whitespace and scoped diff checks are verified before commit. Test consumers outside Authoring change only their exact active Catalog/Architecture paths/version expectations; unrelated runtime behavior is unchanged.
+
+## Manual installation and deliberate rollback — not performed
+
+For a separately authorized runtime switch, replace the Authoring binding in Central Hub Config with the exact ACTIVE/0.6 artifact, verify FULL_FILE, all headers/material body and scoped ambiguity, then replace Project Sources with the compatible Router 1.1, Architecture 1.7 and Root Catalog 1.7 set. Keep CI 1.1 and all other package bindings. Do not keep two active Catalogs or Authoring identities. Candidate-bound smokes do not substitute for production binding/routing evidence. No guessed Library ID or repository fallback.
+
+Byte-exact predecessors, tested candidate controls, pre-pin Router and prior instructions are preserved under Source_archive/Authoring 0.6 promotion 2026-11-02/ with ARCHIVE_RECEIPT.json. Deliberate rollback restores the complete 0.5 / Architecture-Catalog 1.6 / pre-pin Router 1.1 set and re-verifies identity. ROLLBACK MATERIAL != AUTOMATIC RUNTIME FALLBACK.
+
+Archive encoding detail: the candidate Catalog had CRLF in the inspected working tree after checkout, while its committed Git blob used LF. Its archive preserves those actual source bytes and recorded SHA-256; archive-local attributes prevent Git normalization. Other archived snapshots are LF and byte-identical to their pre-promotion blobs. All new/modified non-archive artifacts use UTF-8/LF/no BOM. No archived source is normalized to satisfy an encoding check.
+
+## Revamp CURRENT handoff — proposed only
+
+CENTRAL_HUB_AUTHORING_CURRENT.md needs to record: M4 preset gap established; 0.6 candidate implemented in ca70b28, publicly published as equivalent f363546; candidate static PASS; supplied-candidate L1 and L2 USER_CONFIRMED_LIVE_PASS; 0.6 repository promotion and post-promotion static result; Architecture/Catalog 1.7 with Router 1.1 pin-only change; active routing NOT_RUN and production Library/deployment identity NOT_VERIFIED. No CURRENT file or Revamp routing is changed by this task.
+
+## Historical 0.5 and earlier promotion records
+
+The following is retained history; old current/ACTIVE/deployment statements apply to their original revisions and do not supersede the 0.6 status above.
+
 # Authoring 0.5 — active M2 bounded composition
 
 Current stack: Hub CI/Router 1.1 → Architecture/Catalog 1.6 → Authoring ACTIVE/0.5. The user explicitly authorized active promotion during M2. Two-part syntax adds a requested CREATIVE or BRAINSTORM contribution to one of five output targets. Singleton topology and all prior provenance safeguards remain.
