@@ -25,6 +25,7 @@ NO NEW EVIDENCE != STATUS RESET
 
 ### AUTHORING_0_6_REPOSITORY_PROMOTION
 
+- Deployment update 2026-11-02: USER_REPORTED_DEPLOYMENT. The user explicitly confirms Authoring 0.6 deployment. This supersedes pre-deployment planning status for that reported deployment, not production identity or routing evidence. Codex did not perform or independently inspect deployment; exact Library identity/FULL_FILE binding remains NOT_VERIFIED / UNRESOLVED and active 0.6 routing remains NOT_RUN pending a separate result. Supplied-candidate L1/L2 USER_CONFIRMED_LIVE_PASS is unchanged.
 - M4 COMPLETE; AUTHORING 0.6 REPOSITORY BASELINE STABLE. Repository promotion IMPLEMENTED: Authoring ACTIVE/0.6, Architecture/Catalog ACTIVE/1.7, CI/Router 1.1. Router contracts pins only changed after explicit authorization; CI and routing algorithm unchanged. Post-promotion static results are recorded in the verification log after execution.
 - L1: USER_CONFIRMED_LIVE_PASS / SUPPLIED-CANDIDATE LIVE BEHAVIOR. User reports exact Catalog 1.7-candidate/CANDIDATE and Authoring 0.6-candidate/CANDIDATE, CATALOG_FULL_FILE_READ YES, AUTHORING_FULL_FILE_READ YES, GENERIC/P2. Candidate binding, CONTRACT behavior and relational preservation PASS on a long-running Devil's Advocate operating contract with no preservation checklist. Preserved authority ownership, cross-turn state, goal/means, objection lifecycle and retirement/reopening conditions, proposal/decision, factual-state boundaries, hypothetical/established limitations, complexity distinctions, pacing and stop conditions. Objection -> user response -> resolved/narrowed/open state remained linked; resolved objections stayed retired and new objections remained new issues.
 - L2: USER_CONFIRMED_LIVE_PASS / SUPPLIED-CANDIDATE LIVE BEHAVIOR. Same reported candidate identities and FULL_FILE receipts in a fresh supplied-control chat, GENERIC/NO PRESET; candidate binding and no-preset regression PASS. No preset was required, inferred or demanded. PRESET SUPPORT != PRESET REQUIREMENT.
@@ -108,6 +109,10 @@ NO NEW EVIDENCE != STATUS RESET
 - Related log entry: `2026-10-27 - Integrated concept-development runtime smoke`.
 
 ## Verification log
+
+### 2026-11-02 - User confirms Authoring 0.6 deployment
+
+- User clarifies that Authoring 0.6 is already deployed and requests recording it. Classification: USER_REPORTED_DEPLOYMENT; recording date is 2026-11-02, exact deployment time/read receipts were not supplied. Codex did not deploy or reproduce active routing. Production identity/FULL_FILE stays NOT_VERIFIED / UNRESOLVED; active routing stays NOT_RUN; candidate L1/L2 PASS is retained in its original scope.
 
 ### 2026-11-02 - Authoring 0.6 promotion and supplied-candidate smoke receipts
 

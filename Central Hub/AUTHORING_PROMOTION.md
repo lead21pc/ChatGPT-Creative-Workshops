@@ -2,6 +2,8 @@
 
 Date: 2026-11-02 (Asia/Bangkok). M4 COMPLETE. AUTHORING 0.6 REPOSITORY BASELINE STABLE. REPOSITORY BASELINE STABLE != ACTIVE CENTRAL HUB RUNTIME VERIFIED.
 
+Deployment update 2026-11-02: USER_REPORTED_DEPLOYMENT. The user confirms Authoring 0.6 has been deployed. This supersedes the pre-deployment planning status for the reported 0.6 deployment; Codex did not perform or independently inspect the switch. Exact production Library identity/FULL_FILE binding remains NOT_VERIFIED / UNRESOLVED, and active 0.6 Hub routing remains NOT_RUN without a separate runtime result. Existing supplied-candidate L1/L2 PASS retains its original scope.
+
 Current repository stack: Hub CI 1.1 unchanged; Hub Router 1.1 with exact pins only updated; Architecture 1.7; Root Catalog 1.7; library_modules/HUB-CAP-AUTHORING_v0.6.md / HUB-CAP-AUTHORING / HUB-PKG-AUTHORING / CAPABILITY / ACTIVE / 0.6. Exactly one current Authoring production revision and one current root Catalog. P1/CLEAN, P2/CONTRACT and P3/REBUILD are unchanged from the verified candidate; no-preset adaptive behavior and bounded contributor composition remain intact.
 
 ## Promotion basis and minimal binding delta
