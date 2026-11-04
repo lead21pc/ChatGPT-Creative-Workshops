@@ -9,7 +9,7 @@ Ngày commit được quy về UTC+07:00. Ngày nhập hoặc khôi phục file 
 - CI: [Revamp_Project_System_CI_v2.5.md](Revamp_Project_System_CI_v2.5.md), `ACTIVE` trong repository; governing base là ChatGPT Project Global Native 9.0.
 - Task Router: [TASK_ROUTER.yaml](<Revamp Project System/TASK_ROUTER.yaml>), v2.0, `active`; ID1 `REVAMP_CORE`, ID2 `AUTHORING` qua [AT_R.md](<Revamp Project System/AT_R.md>).
 - Trạng thái tiếp nối và bằng chứng kiểm chứng được ghi tại [REVAMP_SYSTEM_CURRENT.md](<Revamp Project System/Handoffs/REVAMP_SYSTEM_CURRENT.md>).
-- `LIVE VERIFIED: NOT RUN` theo CURRENT. Promotion, commit và kiểm tra tĩnh không chứng minh cài đặt hoặc hành vi live. Changelog này ghi lịch sử, không cấp quyền hay thay CURRENT.
+- `LIVE VERIFIED: ACTIVE` theo báo cáo người dùng ngày 2026-11-05 trong CURRENT; Codex chưa tái hiện độc lập, runtime/probe coverage chưa được cung cấp. Promotion, commit và kiểm tra tĩnh không tự chứng minh cài đặt hoặc hành vi live. Changelog này ghi lịch sử, không cấp quyền hay thay CURRENT.
 
 ## 2026-11-05 — CI v2.5: Task Router và hai Task ID
 

@@ -8,6 +8,8 @@ UPDATED: 2026-11-05
 
 ## 1. Established current state
 
+- USER-REPORTED LIVE VERIFICATION (2026-11-05): người dùng xác nhận nguyên văn `live verified: active` sau workstream handoff receipt. Ghi nhận LIVE VERIFIED: ACTIVE theo báo cáo người dùng cho baseline Revamp v2.5/receipt đang trao đổi; Codex chưa tái hiện độc lập, chưa có chi tiết runtime, probe hoặc phạm vi regression. Các ghi chú NOT RUN bên dưới là mốc trước xác nhận này, không phủ định báo cáo mới. Người dùng yêu cầu push trong cùng lượt; quyền này dành cho publication hiện tại, không là quyền push/deploy thường trực.
+
 - DECIDED / IMPLEMENTED (2026-11-05, receipt workstream): AT_R giữ toàn bộ wording control bằng tiếng Anh và tiêu chí context selection của correction local `60e68e7`. Bổ sung completeness cho task artifact so với state/premise handoff: giữ mọi material distinction cần để continuation không drift, không tối thiểu hóa fact count. Receipt tùy nhu cầu ghi state chuyển/distinctions giữ/context cố ý bỏ, gap khi material; không thay body, không là proof/validator/authority. OPEN/PROVISIONAL/UNKNOWN và provenance phải giữ khi material; mechanisms không nhập/rút gọn đổi nghĩa; REJECTED chỉ giữ khi omission tạo nguy cơ drift thực tế. Không receipt bắt buộc cho prompt đơn giản.
 - STATICALLY VERIFIED (2026-11-05, receipt workstream): 8/8 test cấu trúc/contract Revamp đạt; review tĩnh H01 bounded Codex task, H02 premise continuation, H03 no receipt needed đạt theo contract. So sánh với HEAD xác nhận toàn văn AT_R ngoài section receipt mới giữ nguyên và template chỉ thêm đoạn vị trí tùy nhu cầu; 10 mục cũ còn nguyên. UTF-8/LF/không BOM/trailing whitespace, English control trong AT_R, diff scope/check đạt. CI/Router không sửa. LIVE VERIFIED: NOT RUN.
 - IMPLEMENTED (2026-11-05): HANDOFF_TEMPLATE cho phép receipt không đánh số sau 10 mục hiện có, không bắt buộc field hay làm CURRENT cũ mất hợp lệ. AT_R sở hữu authoring/compression; template sở hữu vị trí trong persisted CURRENT. CI v2.5, Router v2.0, hai-ID model, điều kiện nạp/ghi CURRENT và Central Hub boundary giữ nguyên. Không có parser, registry, schema, validator, lifecycle hoặc subsystem mới. Case H01–H03 thêm vào đặc tả; không phải live model runs. Quyền tác vụ chỉ local implementation/verified commit; không push/deploy.
@@ -44,15 +46,15 @@ UPDATED: 2026-11-05
 ## 2. Active problems
 
 ID: REVAMP-HANDOFF-01
-STATUS: USER-PROVIDED STATE; LOCAL IMPLEMENTATION COMPLETED; LIVE VERIFICATION NOT RUN
+STATUS: USER-PROVIDED STATE; LOCAL IMPLEMENTATION COMPLETED; LIVE VERIFIED: ACTIVE (USER-REPORTED); INDEPENDENT VERIFICATION NOT RUN
 Problem: trạng thái công việc phân mảnh giữa nhiều chat có thể khiến chat sau tìm lại vấn đề cũ, bỏ sót việc chưa xong hoặc nhầm quyết định với triển khai.
-Current state: cơ chế local đã được viết; chưa chứng minh nó giảm lỗi trong live chat.
-Next: chỉ khi được phép cài thử, dùng các tình huống trong đặc tả route để kiểm chứng hành vi thật.
+Current state: cơ chế local đã được viết; người dùng báo live verified: active ngày 2026-11-05. Chưa có chi tiết để đánh giá độc lập mức giảm lỗi hoặc độ bao phủ.
+Next: chỉ khi cần và có quyền, ghi thêm runtime/probe evidence hoặc thử các tình huống đặc tả; không suy đã chạy toàn bộ suite từ báo cáo active.
 
 ## 3. Outstanding / blocked
 
 
-- LIVE VERIFIED: NOT RUN. Việc cài CI/Router/CURRENT vào ChatGPT Project và thử chuyển việc giữa chat chưa được xác minh; promotion repository không chứng minh deployment.
+- LIVE VERIFIED: ACTIVE theo báo cáo người dùng ngày 2026-11-05. Codex chưa tái hiện độc lập; chi tiết cài đặt runtime, probe và độ bền qua nhiều context còn UNKNOWN. Promotion/push repository không tự chứng minh deployment.
 - Không có blocker local được thiết lập. Quyền push từng cấp cho các đợt publication cũ là lịch sử; chính sách stage/commit hiện hành theo §2, còn push vẫn cần lệnh riêng. Đợt rebase ngày 2026-10-29 không có quyền push hoặc deploy.
 - Chưa đủ nguồn authoritative để tạo CURRENT cho Central Hub hoặc workstream khác; không tạo file suy đoán.
 
@@ -62,7 +64,7 @@ None currently established. Không có phương án mới nào được ghi thà
 
 ## 5. Decided but not completed
 
-Không có quyết định thiết kế còn thiếu triển khai được thiết lập. Baseline v2.5 local và promotion ACTIVE đã IMPLEMENTED. Tác vụ v2.5 cho phép commit local sau kiểm chứng; không cho push. Các quyền publication cũ không là quyền mới; kết quả commit/push phải kiểm tra trong Git, không suy từ handoff. Kiểm chứng live chưa chạy, nằm ở mục 3; không biến nó thành quyết định deploy mới. RECORDED DECISION != NEW AUTHORIZATION.
+Không có quyết định thiết kế còn thiếu triển khai được thiết lập. Baseline v2.5 local và promotion ACTIVE đã IMPLEMENTED. Tác vụ v2.5 cho phép commit local sau kiểm chứng; không cho push. Các quyền publication cũ không là quyền mới; kết quả commit/push phải kiểm tra trong Git, không suy từ handoff. Trạng thái live theo báo cáo người dùng và giới hạn kiểm chứng nằm ở mục 3; không biến nó thành quyết định deploy mới. RECORDED DECISION != NEW AUTHORIZATION.
 
 ## 6. Resolved / closed
 
@@ -117,6 +119,6 @@ Chỉ khi state đổi đáng kể và cross-chat continuity materially useful, 
 ## Handoff Receipt
 
 - Đã chuyển: baseline hai-ID Revamp, contract receipt tối thiểu, owner AT_R/template và giới hạn kiểm chứng/authorization của workstream.
-- Đã giữ: DECIDED khác IMPLEMENTED khác STATICALLY VERIFIED/LIVE VERIFIED; context omission khác quên state; receipt khác body/proof/authority; known gaps live trong mục 3 vẫn mở.
+- Đã giữ: DECIDED khác IMPLEMENTED khác STATICALLY VERIFIED/LIVE VERIFIED; context omission khác quên state; receipt khác body/proof/authority; user-reported live ACTIVE khác kiểm chứng độc lập, chi tiết coverage trong mục 3 còn mở.
 - Cố ý không chuyển: toàn văn predecessor archive, state chi tiết của project khác và transcript hội thoại; các phần này không cần để tiếp tục workstream receipt.
-- Gap còn biết: chưa thử receipt trên model hoặc premise thật; không suy hiệu quả live từ contract/spec tĩnh.
+- Gap còn biết: người dùng đã báo live ACTIVE; Codex chưa có log/probe để tái hiện hoặc đánh giá receipt trên premise thật. Không suy coverage từ báo cáo active hoặc contract/spec tĩnh.
