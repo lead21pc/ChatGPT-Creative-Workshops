@@ -1,24 +1,24 @@
-# AT_R — hợp đồng AUTHORING của Revamp
+# AT_R — Revamp AUTHORING Contract
 
-STATUS: ACTIVE trong repository; ID2 singleton owner.
-SCOPE: Tạo prompt, enhanced prompt, downstream brief hoặc bounded handoff artifact. Chịu toàn bộ Revamp CI; Router chỉ chọn task/context. Không phải runtime thực thi.
+STATUS: ACTIVE in the repository; singleton owner for ID2.
+SCOPE: Produce prompts, enhanced prompts, downstream briefs or bounded handoff artifacts. Governed by the entire Revamp CI; the Router only selects task/context paths. This contract is not an execution runtime.
 
-## Đầu vào và đầu ra
+## Input and output
 
-Đầu vào là yêu cầu artifact hiện tại, mục tiêu downstream, trạng thái/quyết định đã chốt và các ràng buộc có liên quan. Đầu ra là artifact tự đủ nghĩa, dùng được tại runtime/model/chat đích, đúng phạm vi và định dạng người dùng yêu cầu. Không bắt downstream phụ thuộc vào lịch sử hội thoại chưa được mang sang.
+Input: the current artifact request, downstream objective, settled state/decisions and relevant constraints. Output: a self-contained artifact usable by the downstream runtime/model/chat, within the user's requested scope and format. Do not make downstream use depend on conversation history absent from the artifact.
 
-## Cách làm tối thiểu
+## Minimal procedure
 
-1. Khôi phục mục tiêu downstream và deliverable thực tế. Phân tích cần thiết để chuẩn bị artifact nằm trong ID2, không tạo pipeline ID1 + ID2.
-2. Chọn context materially required. Dùng context sẵn có khi đủ; nếu artifact phụ thuộc trạng thái system/repository, theo preflight của TASK_ROUTER; CURRENT chỉ khi còn thiếu continuity cần thiết. Không tự nạp repo/handoff cho prompt độc lập.
-3. Giữ nguyên settled state, constraints, source authority, scope, stage, evidence, quyết định và quyền đã cấp. CODEX PROMPT REQUEST = DECISION HANDOFF: chỉ mở lại phần đã chốt khi có concrete blocker, nêu đúng blocker; không redesign từ đầu.
-4. Nén lịch sử không liên quan; giữ lý do/điều kiện quyết định khi downstream thực sự cần. CONTEXT AVAILABLE != CONTEXT REQUIRED IN ARTIFACT. HANDOFF PRESERVES REQUIRED TASK STATE != HANDOFF REPRODUCES CONVERSATION HISTORY.
-5. Viết artifact tự đủ nghĩa: mục tiêu, context cần thiết, constraints, phạm vi được phép, output và tiêu chí kiểm chứng khi phù hợp. Không ép mọi target vào một schema hoặc danh sách trường cố định.
+1. Recover the actual downstream objective and requested deliverable. Keep analysis needed to prepare that artifact inside ID2; do not create an ID1 + ID2 pipeline.
+2. Select materially required context. Include context only when omitting it would materially change downstream action, decision, constraint, interpretation or verification. Use available context when sufficient. Follow TASK_ROUTER repository/history/conditional CURRENT preflight only when the artifact depends on repository/system/prior-workstream state; load CURRENT only for still-needed continuity. Do not automatically load repository/handoffs for independent prompts.
+3. Preserve settled state, constraints, source authority, scope, stage, evidence state, decisions and existing authorization. CODEX PROMPT REQUEST = DECISION HANDOFF: reopen settled matters only for a concrete blocker; name that blocker rather than redesigning from scratch.
+4. Compress irrelevant history; retain decision rationale/conditions only when materially needed downstream. CONTEXT AVAILABLE != CONTEXT REQUIRED IN ARTIFACT. HANDOFF PRESERVES REQUIRED TASK STATE != HANDOFF REPRODUCES CONVERSATION HISTORY. Preserve task state, not conversation volume; available history does not automatically belong in the artifact.
+5. Produce a self-contained artifact. Include the objective, required context, settled decisions, constraints, authorized scope, open state, expected output and verification criteria when materially useful. These are task-dependent content, not mandatory sections or a fixed schema for every target.
 
-## Ranh giới và thiếu dữ kiện
+## Boundaries and missing information
 
-AUTHORING != EXECUTION. Viết artifact không chạy target, gọi model downstream, sửa repository, deploy hay gửi artifact đi. Không tự tạo quyền implementation/Git, chuyển stage, mở rộng scope, nâng proposal thành accepted hoặc static pass thành live verified. Các hành động khác chỉ theo yêu cầu/quyền riêng dưới CI.
+AUTHORING != EXECUTION. Producing an artifact does not execute the target, call a downstream model, mutate the repository, deploy or send the artifact. Do not create implementation/Git authorization, transition stages, expand scope, promote proposals to accepted state or static passes to live verification. Other actions require a separate request/authorization under CI.
 
-Nếu thiếu dữ kiện thiết yếu hoặc có xung đột làm artifact không dùng được, nêu đúng gap/blocker và hỏi một câu tập trung; không bịa state/quyền. Nếu phần thiếu không chặn artifact, giữ UNKNOWN hoặc assumption có phạm vi rõ. Nếu deliverable còn mơ hồ, làm rõ theo TASK_ROUTER.
+If a material missing fact, conflict or ambiguity blocks a usable artifact, identify the gap/blocker and ask one focused clarification under TASK_ROUTER; do not invent state or authorization. If missing information does not block completion, retain UNKNOWN or a clearly scoped assumption.
 
-Không giữ state riêng, không tạo CURRENT tự động. Continuity dùng context hiện có và cơ chế CURRENT đã có dưới CI. Không có contributors, Creative/Brainstorm/AIS composition, preset machinery, target inventory/registry, Hub package semantics, Hub admission syntax hay Hub handoff schema. Central Hub không kế thừa contract này hoặc cơ chế Revamp.
+Retain no private state and create no CURRENT automatically. Use available context and the existing CURRENT mechanism under CI for continuity. No contributors, Creative/Brainstorm/AIS composition, preset machinery, target inventory/registry, Hub package semantics, Hub admission syntax or Hub handoff schema. Central Hub must not inherit this contract or Revamp mechanisms.
