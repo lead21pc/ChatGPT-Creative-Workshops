@@ -27,7 +27,7 @@ NO NEW EVIDENCE != STATUS RESET
 
 - Ngày 2026-11-05: REPOSITORY ACTIVE / IMPLEMENTED. Authoring 0.7, Architecture/Catalog 1.9, CI/Router 1.1. Router chỉ đổi pins; CI, package khác và quyền target giữ nguyên. Catalog exact identity binding đã sửa sang 1.9.
 - Bằng chứng chuyển giao: [I1/I3 candidate và active local API request](https://github.com/lead21pc/Central-Hub-Local/tree/b2246460dba2c74c00eaff9022497abef5784f3b/m2_evidence/authoring_0_7), [phạm vi verification](https://github.com/lead21pc/Central-Hub-Local/blob/b2246460dba2c74c00eaff9022497abef5784f3b/VERIFICATION.md). Candidate I1/I3 PASS (hai calls), active local request PASS (ba calls). RECORDED API/LOCAL LIVE EVIDENCE != ACTIVE CHATGPT ROUTING. Không chạy API live trong promotion này.
-- ChatGPT v0.7: Library installation/FULL_FILE/identity NOT_PERFORMED / NOT_VERIFIED / UNRESOLVED; Project deployment NOT_PERFORMED; active routing LIVE NOT ESTABLISHED. User-reported deployment và scoped candidate PASS của v0.6 bên dưới giữ nguyên revision/phạm vi, không đổi nhãn thành v0.7.
+- Live update 2026-11-05: **USER_CONFIRMED_LIVE_PASS**. Người dùng xác nhận Authoring 0.7 trên Central Hub vừa promotion đã chạy live thành công. Xác nhận áp dụng đường Authoring 0.7 / Architecture-Catalog 1.9 / CI-Router 1.1 và supersede live NOT ESTABLISHED trong scope đó. Không có per-case results, raw input/output, model/run time hoặc production Library receipts được cung cấp; Codex không trực tiếp tái hiện. Không suy mọi target/preset/ISOLATED case PASS. Exact Library identity/FULL_FILE vẫn NOT_VERIFIED / UNRESOLVED; việc cài/switch không do Codex thực hiện. Bằng chứng API/local và lịch sử v0.6 giữ nguyên phạm vi.
 - Predecessor byte-exact, kiểm chứng repository và quy trình cài/rollback: [AUTHORING_PROMOTION.md](AUTHORING_PROMOTION.md). Không mở lại M3/M4 của Central-Hub-Local.
 
 
@@ -119,6 +119,13 @@ NO NEW EVIDENCE != STATUS RESET
 - Related log entry: `2026-10-27 - Integrated concept-development runtime smoke`.
 
 ## Verification log
+
+### 2026-11-05 — User confirms Authoring 0.7 live success
+
+- Người dùng xác nhận “đã chạy live được” sau promotion `cf189e6728f70390dd30f8fe40a29c8dc1761c97` và yêu cầu push. Classification: USER_CONFIRMED_LIVE_PASS cho đường Authoring 0.7 trên Central Hub vừa promotion; recording date 2026-11-05, exact run time và test cases không được cung cấp.
+- Xác nhận này thay trạng thái live chưa xác lập của đúng đường trên; không phải Codex reproduction, không chứng minh mọi nhánh activation hoặc exact Library binding/FULL_FILE. Không chạy thêm API hoặc sửa runtime controls để ghi nhận kết quả.
+- README và AUTHORING_PROMOTION được reconcile với current status. Lịch sử static/API-local và các revision trước giữ nguyên; không reopen M3/M4 của host local.
+
 
 ### 2026-11-05 — Authoring 0.7 native repository promotion
 

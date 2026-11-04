@@ -14,7 +14,9 @@ Nguồn chuyển giao là các control trong `upstream/Central Hub/` của [Cent
 
 [Bằng chứng M2 đầy đủ](https://github.com/lead21pc/Central-Hub-Local/tree/b2246460dba2c74c00eaff9022497abef5784f3b/m2_evidence/authoring_0_7) và [verification của host local](https://github.com/lead21pc/Central-Hub-Local/blob/b2246460dba2c74c00eaff9022497abef5784f3b/VERIFICATION.md): candidate I1/I3 PASS, một API call mỗi ca; một active local request PASS với ba API calls, `isolated=true`, blocker rỗng, không tool/target execution. Đây là RECORDED CANDIDATE / LOCAL API LIVE EVIDENCE, không phải lần tái hiện trong tác vụ promotion này hoặc bằng chứng ChatGPT Library/Project.
 
-Trạng thái Authoring 0.7 trên ChatGPT: Library installation/identity/FULL_FILE binding NOT_PERFORMED / NOT_VERIFIED / UNRESOLVED; Project switch NOT_PERFORMED; active ChatGPT routing LIVE NOT ESTABLISHED. Không chuyển các PASS API/local hay deployment v0.6 thành PASS production v0.7. Toàn bộ lịch sử v0.6 giữ nguyên trong changelog và snapshot promotion đã archive.
+Ngày 2026-11-05, người dùng xác nhận Authoring 0.7 trong Central Hub vừa promotion đã chạy live thành công. Phân loại: **USER_CONFIRMED_LIVE_PASS** cho đường Authoring 0.7 / Architecture-Catalog 1.9 / CI-Router 1.1 trong phạm vi xác nhận này. Codex không trực tiếp chạy lại hoặc quan sát phiên live; không có danh sách ca, raw input/output, model/run time hay receipt Library object/FULL_FILE được cung cấp. Không suy PASS cho mọi target/preset/ISOLATED case hoặc exact production identity từ xác nhận tổng quát này.
+
+Xác nhận mới supersede trạng thái live NOT ESTABLISHED của đường Authoring 0.7 đã báo trước đó; không đổi nhãn bằng chứng API/local hoặc lịch sử v0.6. Việc cài/switch Project không do Codex thực hiện; exact Library identity/FULL_FILE binding vẫn NOT_VERIFIED / UNRESOLVED.
 
 ## Kiểm chứng và lưu predecessor
 
