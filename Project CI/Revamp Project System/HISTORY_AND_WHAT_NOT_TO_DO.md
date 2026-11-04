@@ -425,9 +425,9 @@ Do not replace a viable simple mechanism merely because a more systematic archit
 
 ## 10. Required preflight posture
 
-Before substantial Revamp audit/design work:
+For substantial repository/system-dependent Revamp work in either Task ID (independent tasks need no repository/history/CURRENT preflight):
 
-1. Read `HANDOFF_ROUTER.yaml` as the Revamp entrypoint.
+1. Read `TASK_ROUTER.yaml` to select the task path and required context.
 2. Inspect current relevant repository sources as directed by the Router, then FULL_FILE-read this file as historical failure context before any CURRENT handoff recovery.
 3. Determine whether prior workstream continuity remains necessary after repository/history inspection; FULL_FILE-read only the CURRENT handoffs needed for that continuity. Repository evidence may suffice without a handoff.
 4. Inspect the actual system relevant to the task.
@@ -454,7 +454,7 @@ It should be read before Revamp handoff recovery because it explains the failure
 Order:
 
 ```text
-HANDOFF_ROUTER
+TASK_ROUTER (ID1 / ID2; system-dependent context only)
 → current relevant repository sources / accepted decisions / implementation
 → REVAMP HISTORY / WHAT NOT TO DO (FULL_FILE)
 → assess remaining continuity need; FULL_FILE-read needed CURRENT handoff(s) only

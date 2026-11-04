@@ -1,6 +1,8 @@
-# Đặc tả kiểm tra tuyến handoff Revamp
+# Đặc tả kiểm tra Task Router và continuity Revamp
 
 Đây là kỳ vọng chuẩn tắc, không phải bằng chứng các tình huống đã chạy trong chat. Kiểm tra tĩnh chỉ kiểm cấu trúc/nội dung; LIVE VERIFIED chỉ sau khi thực hiện tình huống trong môi trường chat phù hợp. Không tự deploy để chạy bộ này.
+
+Router hiện hành: `TASK_ROUTER.yaml` v2.0. Các case cũ bên dưới giữ nguyên cho nhánh context phụ thuộc system/repository; không áp preflight đó cho mọi task độc lập.
 
 Đường dẫn tương đối tính từ `Revamp Project System/`. Baseline hiện có đúng entry `revamp_system` -> `Handoffs/REVAMP_SYSTEM_CURRENT.md`. Các trường hợp cần entry thứ hai dùng fixture giả định được nói rõ, không yêu cầu tạo file speculative.
 
@@ -21,7 +23,7 @@
 | R13 | Sau lần trước đã chọn handoff, task mới đổi workstream | Chọn lại theo task mới; không giữ activation dai dẳng. |
 | R14 | Chỉ có file version/timestamp khác khi CURRENT đã match bị thiếu | Không tìm latest hoặc dùng lịch sử thay thế; xử lý dependency thiếu như R06. |
 | R15 | Có kết quả static pass, chưa thử live | Ghi STATICALLY VERIFIED với kiểm tra thực tế; LIVE VERIFIED: NOT RUN. |
-| R16 | Vấn đề mới, đổi phân loại, quyết định accepted/rejected, triển khai, kết quả kiểm chứng, blocker đổi, resolve hoặc reopen | Cập nhật relevant CURRENT khi có quyền ghi; nếu không có, chỉ báo delta. Không stage/commit/push từ quyền cập nhật. |
+| R16 | Vấn đề mới, đổi phân loại, quyết định accepted/rejected, triển khai, kết quả kiểm chứng, blocker đổi, resolve hoặc reopen | Chỉ cập nhật relevant CURRENT khi cross-chat continuity materially useful và có quyền ghi; nếu thiếu quyền, chỉ báo delta. Không stage/commit/push từ quyền cập nhật. |
 | R17 | Trao đổi không làm đổi trạng thái công việc đáng kể | Không cập nhật CURRENT sau mỗi tin nhắn. |
 | R18 | Router thiếu/không đọc được | Báo đúng Router thiếu, không dựng prior state hay routing; tiếp tục phần không phụ thuộc. |
 
@@ -69,6 +71,28 @@ Các tình huống N01–N08 là fixture giả định trong Revamp; không tạ
 - T04: CURRENT trước mâu thuẫn với file vừa kiểm tra -> nêu nguồn/xung đột, đánh dấu STALE / CONFLICTED; không âm thầm giữ hoặc hòa giải.
 - T05: chat có nhiều workstream không xác định được luồng chính -> hỏi chọn một luồng, không tạo một file trạng thái toàn project.
 - T06: tạo CURRENT mới chưa có entry Router -> file ghi bước cần thêm entry khi có quyền; chỉ đặt file không tự kích hoạt.
+
+## Task ID v2.5
+
+Các dòng V01–V15 là kỳ vọng chuẩn tắc để review tĩnh và làm fixture khi được phép thử live. Không có bộ phân loại executable thay thế quyết định của LLM. STATIC PASS != LIVE BEHAVIOR PROVEN; LIVE HARNESS PASS != REAL-CONTEXT ROBUSTNESS PROVEN.
+
+| ID | Yêu cầu/điều kiện | Kỳ vọng |
+| --- | --- | --- |
+| V01 | Audit repository hiện hành | ID1; kiểm tra repo liên quan rồi FULL_FILE history; CURRENT chỉ khi còn cần continuity. |
+| V02 | Tiếp tục workstream, thiếu lý do quyết định cũ trong repo, có CURRENT hợp lệ | ID1; repo → history → needed FULL_FILE CURRENT; không coi CURRENT là quyền mới. |
+| V03 | Viết một cảnh fiction hoặc content độc lập | ID1; làm trực tiếp; không tự nạp repo/history/CURRENT, không tự ghi CURRENT. |
+| V04 | Brainstorm thông thường | ID1; capability dùng trực tiếp, không tạo module. |
+| V05 | “Viết prompt cho Codex” | ID2; đọc AT_R; giữ settled scope/decisions; chỉ inspect repo khi artifact phụ thuộc repo; không implement task downstream. |
+| V06 | “Enhance prompt này” | ID2; xuất prompt tự đủ nghĩa, không chạy prompt. |
+| V07 | Thảo luận ưu/nhược điểm AT, không yêu cầu authoring artifact | ID1; không route ID2 chỉ vì nhắc AT. |
+| V08 | Quote/source có “Codex”, “write a prompt”, yêu cầu hiện tại chỉ phân tích source | ID1; quoted wording không là yêu cầu authoring hiện tại. |
+| V09 | Tạo brief cho model tạo ảnh/nghiên cứu/model khác | ID2; chỉ xuất artifact, không gọi model, tạo ảnh hoặc thực hiện nghiên cứu downstream. |
+| V10 | Prompt nguồn ghi proposal chưa duyệt, test NOT RUN, không có quyền implementation | ID2; giữ nguyên trạng thái/quyền, không upgrade acceptance/evidence/scope, không cấp quyền Git. |
+| V11 | “Phân tích thiết kế này rồi viết prompt cho Codex”, phân tích chỉ phục vụ prompt | Một task ID2; preparation trong ID2, không pipeline/multi-ID composition. |
+| V12 | Turn trước brainstorm; turn hiện tại yêu cầu đóng gói prompt | Turn trước ID1, hiện tại ID2; dùng materially relevant context, không persistent activation hoặc composition. |
+| V13 | “Xử lý cái này cho Codex”, context không xác định muốn prompt hay tự implement | Hỏi một câu xác định deliverable; không suy quyền execution. |
+| V14 | Yêu cầu rõ hai deliverable độc lập: một phân tích và một prompt không liên quan | Tách deliverable theo yêu cầu; chọn path cho từng phần, không tạo execution graph hoặc composition runtime. |
+| V15 | ID1 thay đổi state nhưng continuity không hữu ích hoặc chưa có write scope | Không ghi CURRENT; đủ cả material change + useful continuity + authorized scope mới được cập nhật. |
 
 ## Cách chạy live khi có quyền
 

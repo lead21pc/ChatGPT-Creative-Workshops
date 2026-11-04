@@ -1,15 +1,23 @@
 # Changelog — Revamp Project System CI
 
-Cập nhật ngày 2026-11-01. Phạm vi: dòng Revamp CI và các thay đổi trực tiếp của cơ chế handoff đi kèm.
+Cập nhật ngày 2026-11-05. Phạm vi: dòng Revamp CI và các thay đổi trực tiếp của cơ chế handoff đi kèm.
 
 Ngày commit được quy về UTC+07:00. Ngày nhập hoặc khôi phục file vào Git không chứng minh ngày tạo, ngày chấp thuận hay ngày cài vào ChatGPT Project. Các bản trong `Source_Archive` chỉ được đọc để đối chiếu lịch sử theo yêu cầu làm changelog; chúng không trở thành nguồn điều khiển hiện hành.
 
 ## Trạng thái hiện hành
 
-- CI: [Revamp_Project_System_CI_v2.4.md](Revamp_Project_System_CI_v2.4.md), `ACTIVE` trong repository; governing base là ChatGPT Project Global Native 9.0.
-- Handoff Router: [HANDOFF_ROUTER.yaml](<Revamp Project System/HANDOFF_ROUTER.yaml>), v1.1, `active`.
+- CI: [Revamp_Project_System_CI_v2.5.md](Revamp_Project_System_CI_v2.5.md), `ACTIVE` trong repository; governing base là ChatGPT Project Global Native 9.0.
+- Task Router: [TASK_ROUTER.yaml](<Revamp Project System/TASK_ROUTER.yaml>), v2.0, `active`; ID1 `REVAMP_CORE`, ID2 `AUTHORING` qua [AT_R.md](<Revamp Project System/AT_R.md>).
 - Trạng thái tiếp nối và bằng chứng kiểm chứng được ghi tại [REVAMP_SYSTEM_CURRENT.md](<Revamp Project System/Handoffs/REVAMP_SYSTEM_CURRENT.md>).
 - `LIVE VERIFIED: NOT RUN` theo CURRENT. Promotion, commit và kiểm tra tĩnh không chứng minh cài đặt hoặc hành vi live. Changelog này ghi lịch sử, không cấp quyền hay thay CURRENT.
+
+## 2026-11-05 — CI v2.5: Task Router và hai Task ID
+
+- Triển khai decision handoff được người dùng chốt: CI là authority duy nhất; Router chỉ chọn task/context. ID không tạo permission, acceptance hay chuyển stage.
+- CI v2.5 thay v2.4, delta ở metadata/scope và §4A; §1–§4, §5–§14 giữ nguyên, kể cả Codex decision handoff và quyền commit local sau kiểm chứng. CI có 7.984 ký tự gồm newline cuối.
+- TASK_ROUTER v2.0 thay HANDOFF_ROUTER v1.1; ID1 mặc định cho công việc Revamp trực tiếp, ID2 khi output chính là prompt/brief/handoff. Preflight repo/history và conditional CURRENT cũ giữ cho context phụ thuộc system/repository trong cả hai ID; task độc lập không bị buộc nạp repo/handoff.
+- AT_R là contract tối thiểu, giữ mục tiêu/context cần thiết/settled constraints, tạo artifact tự đủ nghĩa; authoring không thực thi downstream. Không thêm composition, registry, schema, target inventory hoặc control vào Central Hub.
+- CI v2.4 và Router v1.1 được lưu byte-exact trong Source_Archive chung. Đồng bộ current anchors/history, giữ 43 case đặc tả cũ, thêm 15 case task selection và 8 kiểm tra tự động cấu trúc/contract. Kết quả thực tế ghi trong CURRENT; không có kiểm chứng live hoặc deployment.
 
 ## 2026-11-01 — CI v2.4: chuyển quyết định sang Codex và promotion trực tiếp
 
