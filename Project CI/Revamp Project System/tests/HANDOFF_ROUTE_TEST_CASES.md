@@ -94,6 +94,16 @@ Các dòng V01–V15 là kỳ vọng chuẩn tắc để review tĩnh và làm f
 | V14 | Yêu cầu rõ hai deliverable độc lập: một phân tích và một prompt không liên quan | Tách deliverable theo yêu cầu; chọn path cho từng phần, không tạo execution graph hoặc composition runtime. |
 | V15 | ID1 thay đổi state nhưng continuity không hữu ích hoặc chưa có write scope | Không ghi CURRENT; đủ cả material change + useful continuity + authorized scope mới được cập nhật. |
 
+## Handoff receipt — review đặc tả tĩnh
+
+Ba fixture dưới đây kiểm tra contract bằng review nội dung, không phải log chạy model. Không tạo parser, validator hay receipt schema; receipt tùy ích lợi thực tế và không tạo quyền/chứng cứ. CURRENT cũ không có receipt vẫn hợp lệ.
+
+| ID | Fixture | Kỳ vọng |
+| --- | --- | --- |
+| H01 | A — prompt Codex sửa đúng một file với scope/quyết định đã chốt; lịch sử project khác không ảnh hưởng task | Body đủ mục tiêu/scope/quyền/constraints/verification; không dump state project. Receipt có thể bỏ; nếu hữu ích thì ngắn và tương xứng, không tạo section/field bắt buộc. |
+| H02 | B — premise: LOCKED cổng dịch chuyển chỉ nối địa điểm; OPEN danh tính người giữ cổng dù task kế tiếp chưa dùng; PROVISIONAL giả thuyết nguồn năng lượng; UNKNOWN người xây cổng; lời chứng nhân vật khác với quyết định tác giả; hai cơ chế riêng cổng dịch chuyển và truyền ký ức; alternative nhập hai cơ chế đã REJECTED nhưng dễ bị receiver phục hồi; chuyện phiếm không ảnh hưởng continuation | Body giữ các trạng thái và provenance/authority riêng, không chốt OPEN/UNKNOWN, không nâng PROVISIONAL thành fact, không nhập hai cơ chế hoặc rút gọn đổi premise. Giữ rejection cùng lý do/điều kiện đủ ngăn hồi sinh alternative; không kéo mọi rejected idea khác vào. Receipt ngắn nêu state chuyển, distinctions giữ, chuyện phiếm cố ý bỏ; known gaps chỉ khi material. State không chỉ nằm trong receipt. Nếu alternative khác đã rejected nhưng bỏ nó không gây drift thực tế thì bỏ. |
+| H03 | C — prompt độc lập đơn giản, không có state distinction hoặc omission cần làm rõ | ID2 không tự bắt receipt, repo/handoff load, CURRENT write hoặc downstream execution. Không thêm machinery. Receipt nếu có không chứng minh completeness/truth; repo/runtime hiện hành vẫn thắng stale implementation claim. |
+
 ## Cách chạy live khi có quyền
 
 Trong môi trường Revamp thử nghiệm được người dùng cho phép, cung cấp CI/Router và nguồn đúng cho từng tình huống; yêu cầu thực hiện tác vụ ngắn tương ứng, quan sát nguồn được chọn, trạng thái báo cáo và hành động ghi thực tế. Với R05 dùng đúng hai nguồn fixture tạm do người kiểm tra cung cấp; với R06/R18 chủ động không cung cấp dependency. Đối chiếu kỳ vọng từng dòng; ghi PASS/FAIL/NOT RUN cùng chứng cứ thật vào CURRENT khi có quyền. Kiểm thử riêng trong Central Hub cho R11 mà không cài cơ chế Revamp vào đó. Xóa fixture khỏi môi trường thử theo quyền của người kiểm tra, không biến chúng thành entry production.

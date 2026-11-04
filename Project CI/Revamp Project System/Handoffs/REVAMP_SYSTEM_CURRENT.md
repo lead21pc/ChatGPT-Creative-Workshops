@@ -8,6 +8,10 @@ UPDATED: 2026-11-05
 
 ## 1. Established current state
 
+- DECIDED / IMPLEMENTED (2026-11-05, receipt workstream): AT_R giữ toàn bộ wording control bằng tiếng Anh và tiêu chí context selection của correction local `60e68e7`. Bổ sung completeness cho task artifact so với state/premise handoff: giữ mọi material distinction cần để continuation không drift, không tối thiểu hóa fact count. Receipt tùy nhu cầu ghi state chuyển/distinctions giữ/context cố ý bỏ, gap khi material; không thay body, không là proof/validator/authority. OPEN/PROVISIONAL/UNKNOWN và provenance phải giữ khi material; mechanisms không nhập/rút gọn đổi nghĩa; REJECTED chỉ giữ khi omission tạo nguy cơ drift thực tế. Không receipt bắt buộc cho prompt đơn giản.
+- STATICALLY VERIFIED (2026-11-05, receipt workstream): 8/8 test cấu trúc/contract Revamp đạt; review tĩnh H01 bounded Codex task, H02 premise continuation, H03 no receipt needed đạt theo contract. So sánh với HEAD xác nhận toàn văn AT_R ngoài section receipt mới giữ nguyên và template chỉ thêm đoạn vị trí tùy nhu cầu; 10 mục cũ còn nguyên. UTF-8/LF/không BOM/trailing whitespace, English control trong AT_R, diff scope/check đạt. CI/Router không sửa. LIVE VERIFIED: NOT RUN.
+- IMPLEMENTED (2026-11-05): HANDOFF_TEMPLATE cho phép receipt không đánh số sau 10 mục hiện có, không bắt buộc field hay làm CURRENT cũ mất hợp lệ. AT_R sở hữu authoring/compression; template sở hữu vị trí trong persisted CURRENT. CI v2.5, Router v2.0, hai-ID model, điều kiện nạp/ghi CURRENT và Central Hub boundary giữ nguyên. Không có parser, registry, schema, validator, lifecycle hoặc subsystem mới. Case H01–H03 thêm vào đặc tả; không phải live model runs. Quyền tác vụ chỉ local implementation/verified commit; không push/deploy.
+
 - DECIDED / IMPLEMENTED (2026-11-05): CI v2.5 ACTIVE, TASK_ROUTER v2.0 ACTIVE thay HANDOFF_ROUTER v1.1. CI là authority duy nhất; Router chỉ chọn task/context/source. ID1 REVAMP_CORE mặc định cho direct work, gồm analysis/creative/worldbuilding/brainstorm và implementation có quyền; ID2 AUTHORING qua singleton AT_R.md khi output chính là prompt/enhanced prompt/downstream brief/bounded handoff artifact. Preparation cho một prompt nằm trong ID2; context từ turn trước không tạo composition. Task mơ hồ thì hỏi deliverable, không suy execution/quyền. Không thêm registry, composition hoặc kiến trúc Central Hub.
 - IMPLEMENTED (2026-11-05): task độc lập làm trực tiếp; task phụ thuộc repository/system đi repo → FULL_FILE history → chỉ needed FULL_FILE CURRENT khi còn thiếu continuity. Áp điều kiện này cho cả hai ID. Giữ selection, failure handling, repo/runtime precedence, scoped stale claims và Central Hub isolation cũ. CURRENT chỉ cập nhật khi material change + materially useful cross-chat continuity + authorized write scope, theo HANDOFF_TEMPLATE. AUTHORING != EXECUTION; giữ Codex decision handoff, không nâng state/authorization. Các mốc v2.4/v1.1 bên dưới là lịch sử workstream, không là active pins mới.
 
@@ -94,7 +98,7 @@ Thứ tự trong history mục 10–11 đã đồng bộ với Router v1.1: vào
 - `Project CI/Revamp Project System/TASK_ROUTER.yaml`: Router v2.0 ACTIVE; ID1/ID2, conditional repository/history/CURRENT context; một CURRENT entry `revamp_system`.
 - `Project CI/Revamp Project System/HISTORY_AND_WHAT_NOT_TO_DO.md`: bối cảnh lỗi lịch sử/phòng ngừa; đọc FULL_FILE sau Router, trước CURRENT. HISTORY != CURRENT STATE; PAST FAILURE != PRESENT FAILURE; WARNING != AUTHORIZATION; GENEALOGY != REQUIRED ARCHITECTURE; HISTORICAL PAIN != PERMANENT MAXIMUM CONTROL.
 - `Project CI/Revamp Project System/HANDOFF_TEMPLATE.md`: tạo mới hoặc thay thế toàn bộ CURRENT từ trạng thái có chứng cứ trong chat.
-- `Project CI/Revamp Project System/tests/HANDOFF_ROUTE_TEST_CASES.md`: 58 case đặc tả chuẩn tắc; không phải log thử nghiệm live.
+- `Project CI/Revamp Project System/tests/HANDOFF_ROUTE_TEST_CASES.md`: 61 case đặc tả chuẩn tắc (58 baseline + H01–H03); không phải log thử nghiệm live.
 - `Project CI/Revamp Project System/tests/test_task_router.py`: 8 kiểm tra cấu trúc/contract, không phải live harness hay classifier runtime.
 
 ## 9. Next-entry guidance
@@ -109,3 +113,10 @@ Chỉ khi state đổi đáng kể và cross-chat continuity materially useful, 
 - Không phải global memory, transcript archive, trạng thái toàn repository hoặc snapshot từng chat. WORKSTREAM != CHAT; HANDOFF != CHAT SUMMARY.
 - Không manifest/registry/schema/state engine, bộ chọn latest-version, router chọn router, lớp quản lý cập nhật, multi-ID execution graph hoặc composition runtime. Không bắt đầu tối ưu sâu AT_R trong v2.5.
 - Handoff không tự cấp quyền implementation. Khi implementation local được cho phép, stage/commit thay đổi đã kiểm chứng trong phạm vi theo §2; branch/tag/push vẫn cần quyền riêng. Không deploy, tạo worktree hoặc sửa kiến trúc Project khác chỉ từ việc tiếp nhận handoff.
+
+## Handoff Receipt
+
+- Đã chuyển: baseline hai-ID Revamp, contract receipt tối thiểu, owner AT_R/template và giới hạn kiểm chứng/authorization của workstream.
+- Đã giữ: DECIDED khác IMPLEMENTED khác STATICALLY VERIFIED/LIVE VERIFIED; context omission khác quên state; receipt khác body/proof/authority; known gaps live trong mục 3 vẫn mở.
+- Cố ý không chuyển: toàn văn predecessor archive, state chi tiết của project khác và transcript hội thoại; các phần này không cần để tiếp tục workstream receipt.
+- Gap còn biết: chưa thử receipt trên model hoặc premise thật; không suy hiệu quả live từ contract/spec tĩnh.

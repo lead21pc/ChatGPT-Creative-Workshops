@@ -62,3 +62,5 @@ UPDATED: <known current date or UNKNOWN>
 ```
 
 Chỉ dùng ID cho mục cụ thể khi giúp nối tiếp công việc. Khi hữu ích, ghi ngắn: ID, STATUS, SCOPE, Problem, Current state, Evidence / source anchors, Next. STATUS: ACTIVE của tài liệu chỉ cho biết đây là handoff hiện hành; không chứng minh CI đã được cài, quyết định đã triển khai hoặc nội dung đã LIVE VERIFIED.
+
+Khi giúp kiểm tra phần state được chuyển giao và phần cố ý lược bỏ, có thể thêm một mục không đánh số `## Handoff Receipt` sau 10 mục trên; không bắt buộc cho mọi CURRENT và không làm mất tính hợp lệ của CURRENT cũ. Ghi thật ngắn state đã chuyển, distinction quan trọng được giữ, context cố ý không chuyển và gap material nếu có; không ép tên field hoặc cấu trúc con cố định. Body vẫn chứa state cần để tiếp tục; receipt không thay body, không lặp toàn bộ body và không chứng minh state đúng hoặc đầy đủ, cũng không cấp quyền. Behavior authoring/compression thuộc `AT_R.md`; template chỉ cung cấp vị trí receipt trong CURRENT, không đổi điều kiện ghi/nạp CURRENT hay thẩm quyền CI.

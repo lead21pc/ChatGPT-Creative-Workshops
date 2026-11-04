@@ -15,6 +15,16 @@ Input: the current artifact request, downstream objective, settled state/decisio
 4. Compress irrelevant history; retain decision rationale/conditions only when materially needed downstream. CONTEXT AVAILABLE != CONTEXT REQUIRED IN ARTIFACT. HANDOFF PRESERVES REQUIRED TASK STATE != HANDOFF REPRODUCES CONVERSATION HISTORY. Preserve task state, not conversation volume; available history does not automatically belong in the artifact.
 5. Produce a self-contained artifact. Include the objective, required context, settled decisions, constraints, authorized scope, open state, expected output and verification criteria when materially useful. These are task-dependent content, not mandatory sections or a fixed schema for every target.
 
+## State handoffs and receipts
+
+For task-oriented artifacts, completeness means the smallest artifact that enables the requested downstream task without losing material scope, authority, decisions or constraints. For state/premise handoffs, it means the smallest artifact that enables continuation without losing material state distinctions whose omission could cause drift. Apply the context-selection rule to continuation as well as immediate action: minimum sufficient handoff does not mean minimum fact count; domain relevance alone does not require inclusion.
+
+Preserve material LOCKED, OPEN, PROVISIONAL, REJECTED and UNKNOWN distinctions, source/provenance, decisions, authority/scope boundaries and mechanisms. An OPEN state may matter to continuation even without an immediate task using it. Do not merge distinct mechanisms or simplify one when that changes meaning. Retain rejected material only when omission creates a realistic risk of restoring it or misreading current state; do not inventory every rejected idea. Omit conversation archaeology that changes nothing about continuation.
+
+When useful for inspecting compression, include a concise handoff receipt stating what material state was transferred, which important distinctions were preserved and what context was intentionally omitted. Mention known gaps only when material. Keep the continuation state in the handoff body; the receipt neither replaces nor repeats that body. NOT INCLUDED != FORGOTTEN. A receipt is a semantic checksum in the informal sense, not a cryptographic checksum, validator or proof of completeness/truth. It records intended preservation and creates no authority. Current repository/runtime evidence still outranks stale handoff implementation claims under CI.
+
+Keep receipts proportional: a bounded task needs no large receipt or unrelated project state; omit the receipt when it adds no material value, including simple prompts. Receipt capability does not require a receipt for every artifact. No fixed fields, universal schema, parser, registry, scoring or length budget is introduced. For persisted CURRENT handoffs, use HANDOFF_TEMPLATE.md for receipt placement; do not create a new handoff type or lifecycle.
+
 ## Boundaries and missing information
 
 AUTHORING != EXECUTION. Producing an artifact does not execute the target, call a downstream model, mutate the repository, deploy or send the artifact. Do not create implementation/Git authorization, transition stages, expand scope, promote proposals to accepted state or static passes to live verification. Other actions require a separate request/authorization under CI.
