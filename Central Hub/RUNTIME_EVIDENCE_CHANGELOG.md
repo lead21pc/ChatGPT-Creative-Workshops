@@ -23,7 +23,17 @@ NO NEW EVIDENCE != STATUS RESET
 
 ## Current verified runtime status
 
+### AUTHORING_0_7_REPOSITORY_PROMOTION
+
+- Ngày 2026-11-05: REPOSITORY ACTIVE / IMPLEMENTED. Authoring 0.7, Architecture/Catalog 1.9, CI/Router 1.1. Router chỉ đổi pins; CI, package khác và quyền target giữ nguyên. Catalog exact identity binding đã sửa sang 1.9.
+- Bằng chứng chuyển giao: [I1/I3 candidate và active local API request](https://github.com/lead21pc/Central-Hub-Local/tree/b2246460dba2c74c00eaff9022497abef5784f3b/m2_evidence/authoring_0_7), [phạm vi verification](https://github.com/lead21pc/Central-Hub-Local/blob/b2246460dba2c74c00eaff9022497abef5784f3b/VERIFICATION.md). Candidate I1/I3 PASS (hai calls), active local request PASS (ba calls). RECORDED API/LOCAL LIVE EVIDENCE != ACTIVE CHATGPT ROUTING. Không chạy API live trong promotion này.
+- ChatGPT v0.7: Library installation/FULL_FILE/identity NOT_PERFORMED / NOT_VERIFIED / UNRESOLVED; Project deployment NOT_PERFORMED; active routing LIVE NOT ESTABLISHED. User-reported deployment và scoped candidate PASS của v0.6 bên dưới giữ nguyên revision/phạm vi, không đổi nhãn thành v0.7.
+- Predecessor byte-exact, kiểm chứng repository và quy trình cài/rollback: [AUTHORING_PROMOTION.md](AUTHORING_PROMOTION.md). Không mở lại M3/M4 của Central-Hub-Local.
+
+
 ### AUTHORING_0_6_REPOSITORY_PROMOTION
+
+- Historical after repository promotion 0.7; all deployment and behavioral evidence below remains scoped to revision 0.6.
 
 - Deployment update 2026-11-02: USER_REPORTED_DEPLOYMENT. The user explicitly confirms Authoring 0.6 deployment. This supersedes pre-deployment planning status for that reported deployment, not production identity or routing evidence. Codex did not perform or independently inspect deployment; exact Library identity/FULL_FILE binding remains NOT_VERIFIED / UNRESOLVED and active 0.6 routing remains NOT_RUN pending a separate result. Supplied-candidate L1/L2 USER_CONFIRMED_LIVE_PASS is unchanged.
 - M4 COMPLETE; AUTHORING 0.6 REPOSITORY BASELINE STABLE. Repository promotion IMPLEMENTED: Authoring ACTIVE/0.6, Architecture/Catalog ACTIVE/1.7, CI/Router 1.1. Router contracts pins only changed after explicit authorization; CI and routing algorithm unchanged. Post-promotion static results are recorded in the verification log after execution.
@@ -109,6 +119,13 @@ NO NEW EVIDENCE != STATUS RESET
 - Related log entry: `2026-10-27 - Integrated concept-development runtime smoke`.
 
 ## Verification log
+
+### 2026-11-05 — Authoring 0.7 native repository promotion
+
+- Người dùng duyệt promotion sau audit; source baseline `b3f470a46c87c4bfad68d74bf031f78d7abc87b4`. Authoring 0.7 / Architecture-Catalog 1.9 / CI-Router 1.1; sửa exact Catalog identity binding 1.9, Router chỉ đổi pins. CI và package khác giữ nguyên.
+- STATIC PASS: 232/232 full Hub tests, gồm 5/5 active 0.7 tests; socket bị chặn; compileall 19 Python files; diff check, archive receipt và kiểm tra bảo toàn phạm vi PASS. Các lỗi pin 1.8 và phép so sánh historical 0.6 trong lần chạy đầu đã được sửa đúng revision, không đổi package behavior.
+- RECORDED CANDIDATE / API LOCAL LIVE PASS được dẫn bằng permalink revision cố định trong AUTHORING_PROMOTION.md. Không chạy API live, upload/cài Library, switch Project hoặc xác nhận active ChatGPT v0.7 routing trong tác vụ này. Lịch sử deployment/PASS v0.6 giữ nguyên scope; chưa có production v0.7 live PASS.
+
 
 ### 2026-11-02 - User confirms Authoring 0.6 deployment
 
