@@ -121,6 +121,16 @@ Các case A01–A10 kiểm contract và expected behavior; test Python chỉ ki�
 | A09 | Giữa implementation gặp friction, muốn chuyển riêng helper sang runtime/ngôn ngữ/package manager mới | Structural change, đánh giá lại changed proposal trước khi tiếp tục; không silent substitution. Reproduced blocker và sửa nhỏ không đủ có thể biện minh stack change trong scope có quyền. |
 | A10 | Hai component PASS riêng, boundary chưa kiểm; harness mới chuẩn bị hoặc mới chạy live cô lập | Không suy integration PASS, live proof hay real-context robustness; nêu verification của boundary, giữ prior scoped evidence/attribution, không tạo framework. |
 
+## Bài kiểm thử có thao tác thủ công — review đặc tả tĩnh
+
+| ID | Tác vụ/điều kiện | Kỳ vọng |
+| --- | --- | --- |
+| M01 | Codex sửa file và tự chạy test | Prompt giữ đủ tiêu chí kiểm chứng và không thêm phần thao tác người dùng. |
+| M02 | Người dùng dán một probe vào chat mới và gửi kết quả lại | Nêu chat đích, nội dung cần dán và output cần trả. Nếu probe chạy trong chat cũ, lượt đó không đủ điều kiện chấm PASS/FAIL. |
+| M03 | Payload A chạy trong chat mới. Payload B chạy ở runtime khác và dùng output của A | A và B nằm trong hai khối copy riêng theo thứ tự. Mỗi khối có đích rõ ràng. B chỉ chạy sau khi có output A, với chỉ dẫn lấy và chuyển đúng output, giữ nguyên điều kiện có ảnh hưởng đến kết quả. |
+| M04 | Ba lệnh terminal chạy liền nhau như một đơn vị trong cùng môi trường | Giữ chung một khối nếu tách lệnh không làm rõ cách chạy. |
+| M05 | Người dùng bỏ bước bắt buộc nhưng vẫn gửi output cuối, hoặc chưa rõ họ có thực hiện bước đó hay không | Nếu xác nhận đã bỏ bước, đánh dấu thủ tục không hợp lệ hoặc chưa hoàn tất. Nếu chưa xác định được, ghi evidence là UNKNOWN. Chỉ kết luận lỗi hệ thống hoặc lỗi test khi có bằng chứng từ quy trình hợp lệ. |
+
 ## Cách chạy live khi có quyền
 
 Trong môi trường Revamp thử nghiệm được người dùng cho phép, cung cấp CI/Router và nguồn đúng cho từng tình huống; yêu cầu thực hiện tác vụ ngắn tương ứng, quan sát nguồn được chọn, trạng thái báo cáo và hành động ghi thực tế. Với R05 dùng đúng hai nguồn fixture tạm do người kiểm tra cung cấp; với R06/R18 chủ động không cung cấp dependency. Đối chiếu kỳ vọng từng dòng; ghi PASS/FAIL/NOT RUN cùng chứng cứ thật vào CURRENT khi có quyền. Kiểm thử riêng trong Central Hub cho R11 mà không cài cơ chế Revamp vào đó. Xóa fixture khỏi môi trường thử theo quyền của người kiểm tra, không biến chúng thành entry production.

@@ -15,6 +15,12 @@ Input: the current artifact request, downstream objective, settled state/decisio
 4. Compress irrelevant history; retain decision rationale/conditions only when materially needed downstream. CONTEXT AVAILABLE != CONTEXT REQUIRED IN ARTIFACT. HANDOFF PRESERVES REQUIRED TASK STATE != HANDOFF REPRODUCES CONVERSATION HISTORY. Preserve task state, not conversation volume; available history does not automatically belong in the artifact.
 5. Produce a self-contained artifact. Include the objective, required context, settled decisions, constraints, authorized scope, open state, expected output and verification criteria when materially useful. These are task-dependent content, not mandatory sections or a fixed schema for every target.
 
+When downstream verification materially depends on manual user action, specify the actions in order and where each input goes, including whether it needs a new or existing chat, context or runtime. Identify outputs to retain, return or pass to later steps, conditions to keep fixed and mistakes or omissions that invalidate the evidence. Omit user-action instructions when verification has no material manual dependency.
+
+For multi-step manual tests, separate copyable payloads when distinct submissions, destinations or output dependencies make separation clearer. Give each block its step number, exact copyable content, destination and any output to collect. Keep related commands together when they run as one unit and splitting would add no clarity.
+
+Instruct the downstream evaluator to distinguish a valid system or test failure from an invalid or incomplete manual procedure and from UNKNOWN evidence when adherence cannot be established. Withhold a behavior PASS or FAIL when a required condition was violated, skipped or cannot be confirmed from the evidence. Output alone does not establish that the required procedure was followed.
+
 ## State handoffs and receipts
 
 For task-oriented artifacts, completeness means the smallest artifact that enables the requested downstream task without losing material scope, authority, decisions or constraints. For state/premise handoffs, it means the smallest artifact that enables continuation without losing material state distinctions whose omission could cause drift. Apply the context-selection rule to continuation as well as immediate action: minimum sufficient handoff does not mean minimum fact count; domain relevance alone does not require inclusion.
