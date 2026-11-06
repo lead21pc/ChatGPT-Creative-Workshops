@@ -122,6 +122,7 @@ class TaskRouterContractTests(unittest.TestCase):
     def test_active_references_and_encoding(self):
         paths = [ROOT / "Revamp_Project_System_CI_v2.5.md", ROOT / "CHANGELOG.md",
                  SYSTEM / "TASK_ROUTER.yaml", SYSTEM / "AT_R.md",
+                 SYSTEM / "ARCHITECTURE_PREFLIGHT.md",
                  SYSTEM / "HISTORY_AND_WHAT_NOT_TO_DO.md",
                  SYSTEM / "Handoffs/REVAMP_SYSTEM_CURRENT.md",
                  SYSTEM / "tests/HANDOFF_ROUTE_TEST_CASES.md", Path(__file__)]
@@ -137,6 +138,38 @@ class TaskRouterContractTests(unittest.TestCase):
         self.assertIn("TASK_ROUTER.yaml", self.ci)
         self.assertFalse((SYSTEM / "HANDOFF_ROUTER.yaml").exists())
         self.assertFalse((ROOT / "Revamp_Project_System_CI_v2.4.md").exists())
+
+    def test_architecture_preflight_is_conditional_under_existing_id(self):
+        preflight = self.router["architecture_preflight"]
+        self.assertEqual(set(self.router["task_paths"]), {"ID1", "ID2"})
+        self.assertEqual(preflight["file"], "ARCHITECTURE_PREFLIGHT.md")
+        self.assertEqual(preflight["read_mode"], "FULL_FILE")
+        self.assertIn("no independent authority", preflight["owner"])
+        self.assertIn("either selected ID", preflight["applies_to"])
+        self.assertIn("downstream proposal", preflight["applies_to"])
+        for exclusion in ("mere mention", "explanation", "examples/hypotheticals",
+                          "without a structural proposal"):
+            self.assertIn(exclusion, preflight["excludes"])
+        self.assertIn("no persistent activation", preflight["timing"])
+        for boundary in ("ID1 stays ID1", "ID2 stays AUTHORING under AT_R.md",
+                         "no multi-ID composition", "grants no scope/Git authority"):
+            self.assertIn(boundary, preflight["limits"])
+        self.assertIn("defer only dependent", preflight["failure_behavior"])
+
+    def test_aggregate_review_and_stack_substitution_contract(self):
+        reference = (SYSTEM / self.router["architecture_preflight"]["file"]).read_text(encoding="utf-8")
+        for rule in ("LOCAL MINIMUM != SYSTEM MINIMUM", "review the whole proposal once",
+                     "permanent operating surface", "new failure modes", "additional verification",
+                     "current execution stack", "combined operating burden",
+                     "impose no language quota", "then STOP", "CONTROL COMPLEXITY IS STILL COMPLEXITY",
+                     "LOCAL IMPLEMENTATION FRICTION != PERMISSION TO INTRODUCE A NEW EXECUTION STACK",
+                     "Before continuing that substitution", "unsuccessful smaller corrections",
+                     "COMPONENT A PASS + COMPONENT B PASS != A↔B BOUNDARY PASS",
+                     "STATIC PASS != LIVE BEHAVIOR PROVEN",
+                     "LIVE HARNESS PASS != REAL-CONTEXT ROBUSTNESS PROVEN"):
+            self.assertIn(rule, reference)
+        self.assertEqual(re.findall(r"^\| (A\d\d) \|", self.cases, re.M),
+                         [f"A{i:02}" for i in range(1, 11)])
 
 
 if __name__ == "__main__":

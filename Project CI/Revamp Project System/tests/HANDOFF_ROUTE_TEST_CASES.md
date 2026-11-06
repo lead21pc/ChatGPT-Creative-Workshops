@@ -104,6 +104,23 @@ Ba fixture dưới đây kiểm tra contract bằng review nội dung, không ph
 | H02 | B — premise: LOCKED cổng dịch chuyển chỉ nối địa điểm; OPEN danh tính người giữ cổng dù task kế tiếp chưa dùng; PROVISIONAL giả thuyết nguồn năng lượng; UNKNOWN người xây cổng; lời chứng nhân vật khác với quyết định tác giả; hai cơ chế riêng cổng dịch chuyển và truyền ký ức; alternative nhập hai cơ chế đã REJECTED nhưng dễ bị receiver phục hồi; chuyện phiếm không ảnh hưởng continuation | Body giữ các trạng thái và provenance/authority riêng, không chốt OPEN/UNKNOWN, không nâng PROVISIONAL thành fact, không nhập hai cơ chế hoặc rút gọn đổi premise. Giữ rejection cùng lý do/điều kiện đủ ngăn hồi sinh alternative; không kéo mọi rejected idea khác vào. Receipt ngắn nêu state chuyển, distinctions giữ, chuyện phiếm cố ý bỏ; known gaps chỉ khi material. State không chỉ nằm trong receipt. Nếu alternative khác đã rejected nhưng bỏ nó không gây drift thực tế thì bỏ. |
 | H03 | C — prompt độc lập đơn giản, không có state distinction hoặc omission cần làm rõ | ID2 không tự bắt receipt, repo/handoff load, CURRENT write hoặc downstream execution. Không thêm machinery. Receipt nếu có không chứng minh completeness/truth; repo/runtime hiện hành vẫn thắng stale implementation claim. |
 
+## Conditional architecture preflight — review đặc tả tĩnh
+
+Các case A01–A10 kiểm contract và expected behavior; test Python chỉ kiểm cấu trúc/wording, không thực thi lựa chọn của model.
+
+| ID | Tác vụ/điều kiện | Kỳ vọng |
+| --- | --- | --- |
+| A01 | Kiểm tra Router sau correction | Vẫn chỉ ID1 REVAMP_CORE và ID2 AUTHORING; không ID3 hoặc multi-ID composition. |
+| A02 | Trực tiếp audit/design proposal có structural boundary đáng kể | ID1, conditional architecture preflight sau nguồn cần thiết; CI vẫn sở hữu authority. |
+| A03 | Viết prompt/brief thiết kế kiến trúc có boundary đáng kể | ID2 qua AT_R; cùng conditional preflight phục vụ downstream proposal, không thực thi target hoặc chuyển sang ID3. |
+| A04 | Proposal thêm language/runtime/package manager/process hoặc đổi state/authority/topology đáng kể | Nạp FULL_FILE reference dưới ID đã chọn; một aggregate pass trên tổng proposal trước khi trình bày/tiếp tục structural change, không activation dai dẳng. |
+| A05 | Chỉ giải thích kiến trúc hiện hữu, nhắc từ architecture, ví dụ không đổi proposal hoặc task độc lập không structural proposal | Không architecture preflight; các điều kiện repo/history/CURRENT vẫn riêng theo dependency thật. |
+| A06 | Analysis để chuẩn bị một architecture prompt | Vẫn một ID2; preflight không tạo ID1+ID2 graph, không thay AT_R hoặc preflight/authority hiện có. |
+| A07 | Python core + TypeScript UI + Node helper + PowerShell glue đều có lợi cục bộ | Đánh giá tổng permanent surfaces/boundaries một lần; từng boundary phải có nhu cầu/failure, operating surface, failure modes, verification và so sánh sửa nhỏ trong stack hiện tại. Không quota một ngôn ngữ; heterogeneity có lý do vẫn hợp lệ. |
+| A08 | Aggregate review phát hiện một component không cần thiết hoặc một vấn đề OPEN | Local correction/remove component/OPEN/concrete blocker rồi dừng; finding không tự cấp quyền registry/schema/validator/governance hay meta-governance. |
+| A09 | Giữa implementation gặp friction, muốn chuyển riêng helper sang runtime/ngôn ngữ/package manager mới | Structural change, đánh giá lại changed proposal trước khi tiếp tục; không silent substitution. Reproduced blocker và sửa nhỏ không đủ có thể biện minh stack change trong scope có quyền. |
+| A10 | Hai component PASS riêng, boundary chưa kiểm; harness mới chuẩn bị hoặc mới chạy live cô lập | Không suy integration PASS, live proof hay real-context robustness; nêu verification của boundary, giữ prior scoped evidence/attribution, không tạo framework. |
+
 ## Cách chạy live khi có quyền
 
 Trong môi trường Revamp thử nghiệm được người dùng cho phép, cung cấp CI/Router và nguồn đúng cho từng tình huống; yêu cầu thực hiện tác vụ ngắn tương ứng, quan sát nguồn được chọn, trạng thái báo cáo và hành động ghi thực tế. Với R05 dùng đúng hai nguồn fixture tạm do người kiểm tra cung cấp; với R06/R18 chủ động không cung cấp dependency. Đối chiếu kỳ vọng từng dòng; ghi PASS/FAIL/NOT RUN cùng chứng cứ thật vào CURRENT khi có quyền. Kiểm thử riêng trong Central Hub cho R11 mà không cài cơ chế Revamp vào đó. Xóa fixture khỏi môi trường thử theo quyền của người kiểm tra, không biến chúng thành entry production.

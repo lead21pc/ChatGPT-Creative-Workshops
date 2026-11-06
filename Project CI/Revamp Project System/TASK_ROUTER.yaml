@@ -27,6 +27,15 @@ context_loading:
   applies_to: "Both IDs only when repository/system state or prior workstream continuity materially affects the task/artifact; independent fiction, content, brainstorm or generic prompt work needs no repository/history/CURRENT load."
   order: "Task selection -> required relevant repository/runtime sources -> FULL_FILE history for substantive repository/system work -> assess remaining continuity need -> only needed FULL_FILE CURRENT sources."
   authority: "CI alone owns evidence precedence, acceptance status, implementation/Git authorization, stage transitions, decision promotion and scope authority; Router only selects task/context/source paths."
+architecture_preflight:
+  file: "ARCHITECTURE_PREFLIGHT.md"
+  read_mode: "FULL_FILE"
+  owner: "Specialization of CI sections 5, 6, 11, 12, 13 and 14; no independent authority."
+  applies_to: "Under either selected ID, only when the actual current/downstream proposal materially adds or changes structural execution surfaces or boundaries; includes language/runtime/package-manager substitutions during implementation."
+  excludes: "No activation from keywords, mere mention, explanation of existing architecture, non-changing examples/hypotheticals or independent tasks without a structural proposal."
+  timing: "After task selection and materially required repository/history/continuity inspection, before presenting the structural proposal or continuing a structural stack change. Reassess per task/proposal change; no persistent activation."
+  limits: "One aggregate pass over the current proposal, not per-component recursive control creation. ID1 stays ID1; ID2 stays AUTHORING under AT_R.md. Replaces no CI, authoring, repository/history or CURRENT responsibility; grants no scope/Git authority and creates no multi-ID composition."
+  failure_behavior: "If triggered but the reference or material evidence is unavailable, report the exact gap and defer only dependent structural conclusions/changes; continue independent work without inventing a pass."
 repository_preflight:
   url: "https://github.com/lead21pc/ChatGPT-Creative-Workshops"
   ref: "main unless the user specifies another target"

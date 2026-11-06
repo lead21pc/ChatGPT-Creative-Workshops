@@ -8,6 +8,10 @@ UPDATED: 2026-11-05
 
 ## 1. Established current state
 
+- USER-REPORTED DESIGN-PROCESS FAILURE (2026-11-05): người dùng phải tự chỉ ra rằng nhiều local minima có thể cộng thành execution fragmentation trước khi Revamp đánh giá tổng proposal. Đây là failure quan sát theo báo cáo người dùng ở quy trình thiết kế; fragmentation trong implementation là SUPPORTED RISK, chưa là reproduced/observed implementation failure.
+- IMPLEMENTED (local, 2026-11-05, aggregate architecture correction): TASK_ROUTER v2.0 thêm conditional `architecture_preflight` dưới ID đã chọn, trỏ `ARCHITECTURE_PREFLIGHT.md` (REFERENCE / CONDITIONAL PREFLIGHT), chuyên biệt hóa CI §5/§6/§11–§14, không authority mới. Chỉ kích hoạt cho structural execution surfaces/boundaries thực sự thay đổi trong current/downstream proposal hoặc mid-implementation stack substitution. Một aggregate pass trên tổng proposal, đánh giá riêng nhu cầu boundary, permanent surface, failure mode, verification và correction nhỏ hơn trong stack hiện tại; local correction/OPEN/blocker rồi dừng. Không quota ngôn ngữ, ID3, composition hoặc recursive governance. CI v2.5 và AT_R giữ nguyên.
+- STATICALLY VERIFIED (2026-11-05, aggregate architecture correction): 10/10 kiểm tra cấu trúc/contract đạt (8 baseline + 2 mở rộng); review tĩnh A01–A10 đạt, 61 case trước giữ nguyên. YAML/đường dẫn/UTF-8/LF/không BOM/whitespace và `git diff --check` đạt. Correction mới chưa chạy live; LIVE VERIFIED: NOT RUN cho delta này, không reset USER-REPORTED LIVE ACTIVE của baseline/receipt dưới đây. Tác vụ chỉ sửa working tree, không stage/commit/push/deploy.
+
 - USER-REPORTED LIVE VERIFICATION (2026-11-05): người dùng xác nhận nguyên văn `live verified: active` sau workstream handoff receipt. Ghi nhận LIVE VERIFIED: ACTIVE theo báo cáo người dùng cho baseline Revamp v2.5/receipt đang trao đổi; Codex chưa tái hiện độc lập, chưa có chi tiết runtime, probe hoặc phạm vi regression. Các ghi chú NOT RUN bên dưới là mốc trước xác nhận này, không phủ định báo cáo mới. Người dùng yêu cầu push trong cùng lượt; quyền này dành cho publication hiện tại, không là quyền push/deploy thường trực.
 
 - DECIDED / IMPLEMENTED (2026-11-05, receipt workstream): AT_R giữ toàn bộ wording control bằng tiếng Anh và tiêu chí context selection của correction local `60e68e7`. Bổ sung completeness cho task artifact so với state/premise handoff: giữ mọi material distinction cần để continuation không drift, không tối thiểu hóa fact count. Receipt tùy nhu cầu ghi state chuyển/distinctions giữ/context cố ý bỏ, gap khi material; không thay body, không là proof/validator/authority. OPEN/PROVISIONAL/UNKNOWN và provenance phải giữ khi material; mechanisms không nhập/rút gọn đổi nghĩa; REJECTED chỉ giữ khi omission tạo nguy cơ drift thực tế. Không receipt bắt buộc cho prompt đơn giản.
@@ -100,8 +104,9 @@ Thứ tự trong history mục 10–11 đã đồng bộ với Router v1.1: vào
 - `Project CI/Revamp Project System/TASK_ROUTER.yaml`: Router v2.0 ACTIVE; ID1/ID2, conditional repository/history/CURRENT context; một CURRENT entry `revamp_system`.
 - `Project CI/Revamp Project System/HISTORY_AND_WHAT_NOT_TO_DO.md`: bối cảnh lỗi lịch sử/phòng ngừa; đọc FULL_FILE sau Router, trước CURRENT. HISTORY != CURRENT STATE; PAST FAILURE != PRESENT FAILURE; WARNING != AUTHORIZATION; GENEALOGY != REQUIRED ARCHITECTURE; HISTORICAL PAIN != PERMANENT MAXIMUM CONTROL.
 - `Project CI/Revamp Project System/HANDOFF_TEMPLATE.md`: tạo mới hoặc thay thế toàn bộ CURRENT từ trạng thái có chứng cứ trong chat.
-- `Project CI/Revamp Project System/tests/HANDOFF_ROUTE_TEST_CASES.md`: 61 case đặc tả chuẩn tắc (58 baseline + H01–H03); không phải log thử nghiệm live.
-- `Project CI/Revamp Project System/tests/test_task_router.py`: 8 kiểm tra cấu trúc/contract, không phải live harness hay classifier runtime.
+- `Project CI/Revamp Project System/ARCHITECTURE_PREFLIGHT.md`: conditional reference cho aggregate structural self-check; Router chọn nạp, CI giữ authority, AT_R giữ ID2 authoring.
+- `Project CI/Revamp Project System/tests/HANDOFF_ROUTE_TEST_CASES.md`: 71 case đặc tả chuẩn tắc (61 trước + A01–A10); không phải log thử nghiệm live.
+- `Project CI/Revamp Project System/tests/test_task_router.py`: 10 kiểm tra cấu trúc/contract, không phải live harness hay classifier runtime.
 
 ## 9. Next-entry guidance
 
