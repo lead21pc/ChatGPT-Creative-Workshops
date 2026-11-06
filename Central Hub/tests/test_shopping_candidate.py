@@ -10,7 +10,7 @@ import re
 import unittest
 from decimal import Decimal
 
-from test_hub_contracts import ROOT, load, historical_source
+from test_hub_contracts import ROOT, SHOPPING_PREDECESSOR, load, historical_source
 
 
 CANDIDATE = ROOT / 'candidates/shopping_v0'
@@ -117,7 +117,7 @@ class ShoppingCandidateStaticTests(unittest.TestCase):
                 data = historical_source(path).read_bytes()
                 self.assertEqual(hashlib.sha256(data).hexdigest(), expected)
                 self.assertNotIn(b'HUB-PKG-SHOPPING', data)
-        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.9.yaml')
+        catalog = load(SHOPPING_PREDECESSOR / 'HUB_PACKAGE_CATALOG_v1.9.yaml')
         self.assertEqual(len(catalog['packages']), 5)
         self.assertNotIn('HUB-PKG-SHOPPING', {p['package_id'] for p in catalog['packages']})
 

@@ -23,6 +23,11 @@ NO NEW EVIDENCE != STATUS RESET
 
 ## Current verified runtime status
 
+### SHOPPING_1_0_REPOSITORY_PROMOTION
+
+- Ngày 2026-11-06, Shopping 1.0 là `ACTIVE` trong repository với Architecture/Catalog 1.10 và CI/Router 1.1. Library installation và Project deployment là `NOT_PERFORMED`. Live Hub routing, Shopping Library retrieval và AIS composition trên bộ này là `NOT RUN`.
+- **USER-PROVIDED LIVE BEHAVIOR EVIDENCE** thuộc Shopping v1 candidate, gồm suy luận từ Offer cố định, tìm kiếm thực tế, độ phủ storefront và tìm mới khi 500 g thành HARD. Phạm vi và các artifact xem tại [hồ sơ promotion](SHOPPING_PROMOTION.md).
+
 ### AUTHORING_0_7_REPOSITORY_PROMOTION
 
 - Ngày 2026-11-05: REPOSITORY ACTIVE / IMPLEMENTED. Authoring 0.7, Architecture/Catalog 1.9, CI/Router 1.1. Router chỉ đổi pins; CI, package khác và quyền target giữ nguyên. Catalog exact identity binding đã sửa sang 1.9.
@@ -119,6 +124,10 @@ NO NEW EVIDENCE != STATUS RESET
 - Related log entry: `2026-10-27 - Integrated concept-development runtime smoke`.
 
 ## Verification log
+
+### 2026-11-06 — Shopping 1.0 repository promotion
+
+- Kiểm tra tĩnh và fixture đạt 242/242. Ghi nhận bằng chứng hành vi candidate do người dùng cung cấp. Trạng thái Library, Project và live của bộ 1.10 được theo dõi riêng trong mục Shopping phía trên.
 
 ### 2026-11-05 — User confirms Authoring 0.7 live success
 

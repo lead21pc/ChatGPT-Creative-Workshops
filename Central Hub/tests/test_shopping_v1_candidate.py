@@ -10,7 +10,7 @@ import copy
 import re
 import unittest
 
-from test_hub_contracts import ROOT, load
+from test_hub_contracts import ROOT, SHOPPING_PREDECESSOR, load
 from test_shopping_candidate import candidate_spec
 from test_ais_research_core import completion_oracle, execution_oracle
 
@@ -72,9 +72,9 @@ class ShoppingV1CandidateTests(unittest.TestCase):
             self.assertEqual(self.catalog[key], value)
         for entry in (root_entry_fixture(), self.catalog, self.catalog['entries'][0]):
             self.assertNotEqual(entry['status'], 'ACTIVE')
-        active = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.9.yaml')
-        self.assertEqual(len(active['packages']), 5)
-        self.assertNotIn(PACKAGE, {p['package_id'] for p in active['packages']})
+        previous = load(SHOPPING_PREDECESSOR / 'HUB_PACKAGE_CATALOG_v1.9.yaml')
+        self.assertEqual(len(previous['packages']), 5)
+        self.assertNotIn(PACKAGE, {p['package_id'] for p in previous['packages']})
 
     def test_V1_02_root_view_is_only_package_interface(self):
         entry = root_entry_fixture()

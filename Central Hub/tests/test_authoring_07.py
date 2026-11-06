@@ -5,7 +5,7 @@ import json
 import re
 import unittest
 
-from test_hub_contracts import ROOT, load
+from test_hub_contracts import ROOT, SHOPPING_PREDECESSOR, load
 from test_authoring_isolation import isolated_spec, CASES
 
 OLD = ROOT / 'Source_archive/Authoring 0.7 M2 2026-11-05'
@@ -25,7 +25,7 @@ class Authoring07PromotionTests(unittest.TestCase):
         self.assertEqual(inherited.split('For the current turn only,', 1)[1], previous.split('For the current turn only,', 1)[1])
 
     def test_catalog_exact_binding_and_unchanged_other_packages(self):
-        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.9.yaml')
+        catalog = load(SHOPPING_PREDECESSOR / 'HUB_PACKAGE_CATALOG_v1.9.yaml')
         old = load(OLD / 'HUB_PACKAGE_CATALOG_v1.8.yaml')
         self.assertEqual((catalog['version'], catalog['status'], catalog['active']), ('1.9', 'ACTIVE', True))
         self.assertEqual(catalog['identity_binding'], 'EXACT_INSTALLED_V1_1_CI_ROUTER_WITH_V1_9_ARCHITECTURE_CATALOG_CONTRACT')
@@ -41,15 +41,15 @@ class Authoring07PromotionTests(unittest.TestCase):
         self.assertIn('contributor + ISOLATED', author['applicability'])
 
     def test_exact_stack_pins_without_router_algorithm_change(self):
-        router = load(ROOT / 'HUB_ROUTER_v1.1.yaml')
+        router = load(SHOPPING_PREDECESSOR / 'HUB_ROUTER_v1.1.yaml')
         previous = load(OLD / 'HUB_ROUTER_v1.1.yaml')
         expected = copy.deepcopy(previous)
         for key, filename in [('architecture', 'HUB_ARCHITECTURE_v1.9.md'), ('root_catalog', 'HUB_PACKAGE_CATALOG_v1.9.yaml')]:
             expected['contracts'][key].update(file=filename, version='1.9')
-            self.assertTrue((ROOT / filename).is_file())
+            self.assertTrue((SHOPPING_PREDECESSOR / filename).is_file())
         expected['contracts']['binding_scope'] = expected['contracts']['binding_scope'].replace('1.8', '1.9')
         self.assertEqual(router, expected)
-        architecture = (ROOT / 'HUB_ARCHITECTURE_v1.9.md').read_text(encoding='utf-8')
+        architecture = (SHOPPING_PREDECESSOR / 'HUB_ARCHITECTURE_v1.9.md').read_text(encoding='utf-8')
         self.assertIn('Version: 1.9', architecture)
         self.assertIn('CAPABILITY/0.7', architecture)
         self.assertIn('exact installed Architecture/Catalog 1.9 pins', architecture)

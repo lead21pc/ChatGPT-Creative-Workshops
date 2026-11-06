@@ -39,16 +39,16 @@ def current_fixture():
 
 class ConceptDevelopmentTests(unittest.TestCase):
     def setUp(self):
-        self.root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.9.yaml')
+        self.root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.10.yaml')
         self.local = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.1.yaml')
         self.core = (ROOT / 'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.1.md').read_text(encoding='utf-8')
         self.notes = (ROOT / 'CONCEPT_DEVELOPMENT_MIGRATION.md').read_text(encoding='utf-8')
 
-    def test_five_root_owners_and_package_local_inventory(self):
-        self.assertEqual(self.root['version'], '1.9')
+    def test_six_root_owners_and_package_local_inventory(self):
+        self.assertEqual(self.root['version'], '1.10')
         self.assertEqual({p['package_id'] for p in self.root['packages']},
                          {'HUB-PKG-TECHNICAL', PACKAGE, 'HUB-PKG-AUTHORING',
-                          'HUB-PKG-AIS', 'HUB-PKG-IMAGET'})
+                          'HUB-PKG-AIS', 'HUB-PKG-IMAGET', 'HUB-PKG-SHOPPING'})
         package = next(p for p in self.root['packages'] if p['package_id'] == PACKAGE)
         self.assertEqual((package['entrypoint_module_id'], package['runtime_role'], package['version']),
                          (CORE, 'DOMAIN_CONTROL', '1.1'))
@@ -69,10 +69,10 @@ class ConceptDevelopmentTests(unittest.TestCase):
     def test_router_changes_only_exact_pins_and_global_owners_stay(self):
         previous = load(CONCEPT_ARCHIVE / 'HUB_ROUTER_v1.1.yaml')
         expected = copy.deepcopy(previous)
-        for key, name in [('architecture', 'HUB_ARCHITECTURE_v1.9.md'),
-                          ('root_catalog', 'HUB_PACKAGE_CATALOG_v1.9.yaml')]:
+        for key, name in [('architecture', 'HUB_ARCHITECTURE_v1.10.md'),
+                          ('root_catalog', 'HUB_PACKAGE_CATALOG_v1.10.yaml')]:
             expected['contracts'][key]['file'] = name
-            expected['contracts'][key]['version'] = '1.9'
+            expected['contracts'][key]['version'] = '1.10'
         expected['contracts']['binding_scope'] = load(ROOT / 'HUB_ROUTER_v1.1.yaml')['contracts']['binding_scope']
         self.assertEqual(load(ROOT / 'HUB_ROUTER_v1.1.yaml'), expected)
         before = load(CONCEPT_ARCHIVE / 'HUB_PACKAGE_CATALOG_v1.0.yaml')
@@ -390,12 +390,12 @@ class ExplicitLeafControlTests(unittest.TestCase):
         for row in selected.values():
             self.assertEqual(row['requires'], [])
             self.assertIn('SELECT ONLY FOR A VALID EXPLICIT CONTROL SPAN', row['applicability'])
-        root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.9.yaml')
+        root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.10.yaml')
         for token in selected:
             self.assertNotIn(token, str(root))
             self.assertNotIn(token, (ROOT / 'HUB_ROUTER_v1.1.yaml').read_text(encoding='utf-8'))
         previous = subprocess.check_output(['git', 'show', '573c8fe:Central Hub/HUB_ROUTER_v1.1.yaml'], cwd=ROOT)
-        self.assertEqual((ROOT / 'HUB_ROUTER_v1.1.yaml').read_bytes(), previous.replace(b'1.7', b'1.9'))
+        self.assertEqual((ROOT / 'HUB_ROUTER_v1.1.yaml').read_bytes(), previous.replace(b'1.7', b'1.10'))
 
     def test_core_contract_guards_and_scope_dependency_distinction(self):
         text = (ROOT / 'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.1.md').read_text(encoding='utf-8')
