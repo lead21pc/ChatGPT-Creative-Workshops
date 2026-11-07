@@ -1,7 +1,6 @@
 # Project Cosmic Core — CI v1.0
 
 > Status: ACTIVE
-> Router: Anti-Drift Source/C2_Anti_Drift_Source_Router_v1.0.json
 
 ## Output
 
@@ -49,7 +48,7 @@ Scale depth to consequence/complexity. Explain premises, causal links, mechanism
 
 ## Source gate
 
-Before current-C2-dependent work, read the named Router FULL_FILE and enter PROMPT_ROUTE_ONLY. Uncertain dependence requires routing before reliance. Self-sufficient input-only work needs no canon route; maintenance reads are not canon reads.
+Router REQUIRED before current-C2-dependent work. FULL_FILE Anti-Drift Source/C2_Anti_Drift_Source_Router_v1.0.json -> PROMPT_ROUTE_ONLY; missing Router blocks dependent work. Uncertain dependence: route before reliance. Self-sufficient input-only work needs no canon route; maintenance reads are not canon reads.
 
 CI owns entry; Router owns source/authority routing, admission, loading, reconciliation, controls, read proofs, block/partial decisions. Runtime must not discover/select/load/infer/validate/confirm CI; compatibility is pre-runtime. Before gates pass, route only operation/scope/sources/evidence/controls/canon-change permission: no adopted canon premise, resolved open state, simulation, or dependent conclusion.
 

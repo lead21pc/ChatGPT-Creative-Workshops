@@ -47,3 +47,9 @@ Kiểm chứng correction: builder đạt 12 module/16 hash; Router structural c
 Tác giả sửa cách hiểu “base”: phải đưa cơ chế thực sự của Global v9.0 vào CI, không chỉ ghi nhãn hoặc giả định được kế thừa. Quyết định này thay phần diễn giải kế thừa tại C2-CORRECTION-002; các correction về slot, tiếng Anh và kiến trúc khác giữ nguyên.
 
 CI hiện có quy tắc vận hành trực tiếp cho CONTROL GROUNDING, DISCOURSE FIDELITY, EPISTEMIC NON-ESCALATION cùng thứ tự áp dụng; xác định thao tác/giai đoạn; kiểm căn cứ mệnh đề; cập nhật và rút kết luận phụ thuộc; xử lý bất định; điều chỉnh giải thích/người đọc; hợp đồng tiếng Việt. Không còn Base header hoặc giả định cần file Global ngầm để có các cơ chế đó. Giữ source gate và boundary C2, rút phần lặp để còn 7985 ký tự, tính cả newline cuối, dưới 8.000. Test không còn dùng nhãn Base làm tiêu chí đúng. Không đổi Router/Anti-Drift, admission hoặc lore; không push. Live verification chưa chạy.
+
+## C2-CORRECTION-004 — 2026-11-08 — Gọi Router trong source gate như FTH CI 3.4
+
+Đối chiếu trực tiếp FTH CI 3.4: locator nằm ngay trong chỉ thị FULL_FILE → PROMPT_ROUTE_ONLY, kèm Router REQUIRED và thiếu Router chặn phần phụ thuộc. C2 trước đó chỉ đặt locator trong header rồi gọi “the named Router”; checker cũng kiểm metadata thay vì lời gọi tại source gate.
+
+Theo yêu cầu tác giả, bỏ Router metadata header, ghi đường dẫn chính xác trong chỉ thị FULL_FILE tại source gate và nêu rõ missing Router blocks dependent work. Checker kiểm lời gọi trong đúng section, test từ chối trường hợp chỉ có header. Giữ nguyên Router, stages, family, các cơ chế CI khác và lore. CI cuối 7990 ký tự, gồm newline cuối, dưới 8.000. Không push; bằng chứng kiểm tra chỉ là tĩnh.

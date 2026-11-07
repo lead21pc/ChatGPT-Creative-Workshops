@@ -133,8 +133,11 @@ def check(root):
         'ci': CI, 'live_verified': 'NOT_RUN'}, 'Invalid CI/Router relation or evidence state')
     ci = local_file(root, CI).read_text(encoding='utf-8-sig')
     require(ci.startswith('# Project Cosmic Core — CI v1.0\n')
-            and '> Status: ACTIVE\n' in ci and f'> Router: {ROUTER}\n' in ci,
-            'CI identity/status/Router mismatch')
+            and '> Status: ACTIVE\n' in ci, 'CI identity/status mismatch')
+    source_gate = ci.partition('## Source gate\n\n')[2].partition('\n## ')[0]
+    require('Router REQUIRED before current-C2-dependent work.' in source_gate
+            and f'FULL_FILE {ROUTER} -> PROMPT_ROUTE_ONLY; missing Router blocks dependent work.'
+            in source_gate, 'CI must invoke the active Router in its source gate')
     require(config['runtime'] == {'entry': STAGES[0], 'stages': STAGES}, 'Invalid stages')
     bootstrap = config['bootstrap']
     require(isinstance(bootstrap, dict) and set(bootstrap) == {

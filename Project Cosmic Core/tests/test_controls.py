@@ -67,6 +67,17 @@ class ControlTests(unittest.TestCase):
         with self.assertRaises(ControlError):
             check(self.root)
 
+    def test_metadata_only_router_reference_is_not_a_source_gate(self):
+        path = self.root / CI
+        text = path.read_text(encoding='utf-8')
+        invocation = f'FULL_FILE {ROUTER} -> PROMPT_ROUTE_ONLY; missing Router blocks dependent work.'
+        self.assertIn(invocation, text)
+        text = text.replace(invocation, 'Read the named Router.')
+        text = text.replace('> Status: ACTIVE', f'> Status: ACTIVE\n> Router: {ROUTER}')
+        path.write_text(text, encoding='utf-8')
+        with self.assertRaises(ControlError):
+            check(self.root)
+
     def test_exactly_four_families(self):
         config = load(self.root)
         config['controls'].pop()
