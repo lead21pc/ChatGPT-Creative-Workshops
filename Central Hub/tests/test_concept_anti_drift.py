@@ -1,4 +1,4 @@
-"""STATIC/SPEC only: declared semantic matches and synthetic Library reads, no model execution."""
+"""HISTORICAL A/B EXPERIMENT ONLY (retired, archived): STATIC/SPEC only: declared semantic matches and synthetic Library reads, no model execution."""
 import copy
 import re
 import subprocess
@@ -18,11 +18,12 @@ FILES = dict(zip(IDS, ('CH_Anti_Drift_Anti_Prior_01.md',
                        'CH_Anti_Drift_Modular_Concept_Architecture_02.md',
                        'CH_Anti_Drift_Worldbuilding_Internal_Logic_03.md')))
 SCOPES = {AP: {'ANTI_PRIOR'}, MCA: {'SYSTEMIC'}, WIL: set()}
+HISTORY = ROOT / 'Source_archive/Concept production anti-drift 2026-11-07'
 BASELINE = '6770d9e632951ac767371b6f42567e4b9299c140'
 
 
 def configured(active=()):
-    local = copy.deepcopy(load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.1.yaml'))
+    local = copy.deepcopy(load(HISTORY / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.1.yaml'))
     for row in local['entries']:
         if row['module_id'] in IDS:
             row['status'] = 'ACTIVE' if row['module_id'] in active else 'INACTIVE'
@@ -199,7 +200,7 @@ class AntiDriftStaticTests(unittest.TestCase):
         local = configured()
         for identity in IDS:
             row = next(r for r in local['entries'] if r['module_id'] == identity)
-            text = (ROOT / 'library_modules' / FILES[identity]).read_text(encoding='utf-8')
+            text = (HISTORY / 'library_modules' / FILES[identity]).read_text(encoding='utf-8')
             for key, value in (('Module ID', identity), ('Package ID', PACKAGE),
                                ('Runtime role', 'DOMAIN_CONTROL'), ('Status', 'ACTIVE'), ('Version', '1.0')):
                 self.assertEqual(re.findall('^' + key + r': (.+)$', text, re.M), [value])
@@ -228,7 +229,7 @@ class AntiDriftStaticTests(unittest.TestCase):
         before, added = core.split('### Optional anti-drift experiment\n\n', 1)
         tail = added[added.index('This package and its leaves select no other package'):]
         self.assertEqual(before + tail, original('library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.0.md').decode('utf-8'))
-        successor = (ROOT / 'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.1.md').read_text(encoding='utf-8')
+        successor = (HISTORY / 'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.1.md').read_text(encoding='utf-8')
         expected = core.split('### Optional anti-drift experiment', 1)[1].replace(
             'their existing zero/one/both selection remains independent', 'their explicit span selection remains independent')
         self.assertEqual(successor.split('### Optional anti-drift experiment', 1)[1], expected)
@@ -246,7 +247,7 @@ class AntiDriftStaticTests(unittest.TestCase):
                  (WIL, 'Worldbuilding_Internal_Logic', {2, 15, 20, 21}))
         for identity, name, changed in cases:
             source = (source_root / f'FTH_Anti_Drift_{name}_v1.2.md').read_text(encoding='utf-8')
-            port = (ROOT / 'library_modules' / FILES[identity]).read_text(encoding='utf-8')
+            port = (HISTORY / 'library_modules' / FILES[identity]).read_text(encoding='utf-8')
             source_sections = re.split(r'(?m)^# (\d+)\. ', source)[1:]
             port_sections = re.split(r'(?m)^# (\d+)\. ', port)[1:]
             old = dict(zip(map(int, source_sections[::2]), source_sections[1::2]))
@@ -263,14 +264,14 @@ class AntiDriftStaticTests(unittest.TestCase):
             self.assertIn('Stop Rule', port)
         # Lifecycle substantive text is preserved except the two required authority/owner adaptations.
         old_lifecycle = (source_root / 'FTH_Anti_Drift_Modular_Concept_Architecture_v1.2.md').read_text(encoding='utf-8').split('## Conditional Response Lifecycle\n')[1].split('\n---')[0]
-        new_lifecycle = (ROOT / 'library_modules' / FILES[MCA]).read_text(encoding='utf-8').split('## Conditional Response Lifecycle\n')[1].split('\n---')[0]
+        new_lifecycle = (HISTORY / 'library_modules' / FILES[MCA]).read_text(encoding='utf-8').split('## Conditional Response Lifecycle\n')[1].split('\n---')[0]
         old_lifecycle = old_lifecycle.replace('under the CI/Router.', 'under Hub CI and the task-declared source/admission process.')
         old_lifecycle = re.sub(r'This subsection owns branch distinctions only\..*?\n\n', '', old_lifecycle, flags=re.S)
         new_lifecycle = re.sub(r'This subsection owns branch distinctions only\..*?\n\n', '', new_lifecycle, flags=re.S)
         self.assertEqual(new_lifecycle, old_lifecycle)
 
     def test_reviewed_failure_guards_not_model_behavior_proof(self):
-        ap = (ROOT / 'library_modules' / FILES[AP]).read_text(encoding='utf-8')
+        ap = (HISTORY / 'library_modules' / FILES[AP]).read_text(encoding='utf-8')
         for distinction in ('SURFACE / LABEL / AESTHETIC / ANALOGY != SYSTEM PREMISE',
                             'CREATIVE GAP != MATERIAL / PROTECTED UNKNOWN',
                             'SEES != UNDERSTANDS != BELIEVES != VALUES != HAS AUTHORITY != HAS CAPABILITY != ACTS',
@@ -282,7 +283,7 @@ class AntiDriftStaticTests(unittest.TestCase):
                        'explicitly permitted blank-slate invention', 'requested conventional trope',
                        'no mandatory checklist', 'never a persistent anti-drift mode'):
             self.assertIn(phrase, ap)
-        core = (ROOT / 'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.1.md').read_text(encoding='utf-8')
+        core = (HISTORY / 'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.1.md').read_text(encoding='utf-8')
         for phrase in ('CONTROL AVAILABLE != CONTROL SELECTED FOR CURRENT TASK',
                        'PREVIOUS SELECTION != CURRENT SELECTION', 'never execute MCA alone',
                        'WIL is never an independent selection', 'select no winner/fallback'):
@@ -290,7 +291,7 @@ class AntiDriftStaticTests(unittest.TestCase):
 
     def test_utf8_no_bom_lf_and_exact_library_hints(self):
         for identity, filename in FILES.items():
-            data = (ROOT / 'library_modules' / filename).read_bytes()
+            data = (HISTORY / 'library_modules' / filename).read_bytes()
             self.assertFalse(data.startswith(b'\xef\xbb\xbf'))
             text = data.decode('utf-8', errors='strict')
             self.assertNotIn('\r', text)

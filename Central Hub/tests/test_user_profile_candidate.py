@@ -18,7 +18,7 @@ DESIGN = 'USER_PROFILE_DESIGN.md'
 SHOPPING = 'HUB-PKG-SHOPPING'
 HEALTH = 'HUB-PKG-HEALTH'
 BASELINE = 'c5f81196ca4a8354908d7161f530e23073120e22'
-CATALOG = 'HUB_PACKAGE_CATALOG_v1.10.yaml'
+CATALOG = 'HUB_PACKAGE_CATALOG_v1.11.yaml'
 
 
 def read_plan(schema, *, selected_package, section, purpose, material_need):
@@ -157,15 +157,12 @@ class UserProfileCandidateTests(unittest.TestCase):
         self.assertEqual(set(self.schema['access']), {SHOPPING})
         self.assertNotIn(HEALTH, str(self.root))
 
-    def test_U16_candidate_leaves_active_stack_unchanged(self):
-        protected = [
-            'HUB_CI_v1.1.md', 'HUB_ROUTER_v1.1.yaml', 'HUB_ARCHITECTURE_v1.10.md', CATALOG,
-            'library_modules', 'tool_pipelines/AIS', 'tool_pipelines/ImageT',
-        ]
+    def test_U16_candidate_leaves_its_publication_stack_unchanged(self):
+        # Historical candidate publication; subsequent authorized stack changes are independent.
+        protected = ['HUB_CI_v1.1.md', 'HUB_ROUTER_v1.1.yaml', 'HUB_ARCHITECTURE_v1.10.md',
+                     'HUB_PACKAGE_CATALOG_v1.10.yaml', 'library_modules',
+                     'tool_pipelines/AIS', 'tool_pipelines/ImageT']
         changed = subprocess.check_output(
-            ['git', '-c', 'core.longpaths=true', 'diff', '--name-only', BASELINE, '--', *protected], cwd=ROOT,
-        )
-        untracked = subprocess.check_output(
-            ['git', 'ls-files', '--others', '--exclude-standard', '--', *protected], cwd=ROOT,
-        )
-        self.assertEqual(changed + untracked, b'')
+            ['git', '-c', 'core.longpaths=true', 'diff', '--name-only', BASELINE,
+             'e310b4510ad078981ee6ea82373808c469144ddb', '--', *protected], cwd=ROOT)
+        self.assertEqual(changed, b'')

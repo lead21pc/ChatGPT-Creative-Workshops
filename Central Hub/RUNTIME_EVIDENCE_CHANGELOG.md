@@ -23,6 +23,11 @@ NO NEW EVIDENCE != STATUS RESET
 
 ## Current verified runtime status
 
+### CONCEPT_1_2_PRODUCTION_ANTI_DRIFT_REPOSITORY
+
+- Ngày 2026-11-07: Core/local Catalog 1.2; Anti-Prior/MCA/WIL 1.1; Actor Reception/Narrative Resolution 1.0 là ACTIVE eligibility trong repository, cùng Architecture/Catalog 1.11 và CI/Router 1.1 (chỉ đổi exact pins). A/B được retire khỏi cấu hình hiện hành theo quyết định tác giả, không phải kết quả so sánh chất lượng live.
+- Library installation, exact identity/FULL_FILE và live behavior của các revision mới: NOT_PERFORMED / NOT_VERIFIED. Static/spec fixtures không kiểm chứng nhận diện provenance thực hoặc hành vi model. Bằng chứng Concept revision cũ và Authoring/Shopping giữ nguyên phạm vi; không được chuyển sang revision này.
+
 ### SHOPPING_1_0_REPOSITORY_PROMOTION
 
 - Ngày 2026-11-06, Shopping 1.0 là `ACTIVE` trong repository với Architecture/Catalog 1.10 và CI/Router 1.1. Library installation và Project deployment là `NOT_PERFORMED`. Live Hub routing, Shopping Library retrieval và AIS composition trên bộ này là `NOT RUN`.
@@ -222,3 +227,7 @@ NO NEW EVIDENCE != STATUS RESET
 ## Superseded / invalidated evidence
 
 None recorded. When a later result supersedes or invalidates current applicability, retain the original log entry, update the current-status entry for the affected scope and append the newer evidence here or in the verification log with its exact scope and provenance.
+
+### 2026-11-07 — Concept production anti-drift local implementation
+
+REPOSITORY-ONLY CHANGE RECORD: năm control production selectable; AUTO và `/AD` chung gate; MCA/WIL độc lập; Actor Reception Requires MCA. Không có Library installation, Project deployment, live run hay canon mutation trong tác vụ này. Lịch sử A/B và predecessor giữ byte-exact tại Source_archive/Concept production anti-drift 2026-11-07. Đây không phải live PASS.

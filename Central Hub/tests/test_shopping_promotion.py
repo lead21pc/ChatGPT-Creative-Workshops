@@ -17,7 +17,7 @@ class ShoppingPromotionTests(unittest.TestCase):
         cls.core = (modules / f'{CORE_ID}_v1.0.md').read_text(encoding='utf-8')
         cls.search = (modules / f'{SEARCH_ID}_v1.0.md').read_text(encoding='utf-8')
         cls.local = load(modules / f'{CAT_ID}_v1.0.yaml')
-        cls.catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.10.yaml')
+        cls.catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.11.yaml')
         cls.router = load(ROOT / 'HUB_ROUTER_v1.1.yaml')
         cls.entry = next(row for row in cls.catalog['packages'] if row['package_id'] == PACKAGE)
 
@@ -92,10 +92,10 @@ class ShoppingPromotionTests(unittest.TestCase):
 
     def test_shared_stack_regression(self):
         previous = load(SHOPPING_PREDECESSOR / 'HUB_PACKAGE_CATALOG_v1.9.yaml')
-        self.assertEqual([row for row in self.catalog['packages'] if row['package_id'] != PACKAGE],
-                         previous['packages'])
+        self.assertEqual([row for row in self.catalog['packages'] if row['package_id'] not in {PACKAGE, 'HUB-PKG-CONCEPT-DEVELOPMENT'}],
+                         [row for row in previous['packages'] if row['package_id'] != 'HUB-PKG-CONCEPT-DEVELOPMENT'])
         self.assertEqual(self.catalog['identity_binding'],
-                         'EXACT_INSTALLED_V1_1_CI_ROUTER_WITH_V1_10_ARCHITECTURE_CATALOG_CONTRACT')
+                         'EXACT_INSTALLED_V1_1_CI_ROUTER_WITH_V1_11_ARCHITECTURE_CATALOG_CONTRACT')
 
     def test_history_integrity(self):
         receipt = json.loads((SHOPPING_PREDECESSOR / 'ARCHIVE_RECEIPT.json').read_text(encoding='utf-8'))
@@ -108,10 +108,10 @@ class ShoppingPromotionTests(unittest.TestCase):
 
     def test_router_only_changes_exact_pins(self):
         old = (SHOPPING_PREDECESSOR / 'HUB_ROUTER_v1.1.yaml').read_bytes()
-        self.assertEqual((ROOT / 'HUB_ROUTER_v1.1.yaml').read_bytes(), old.replace(b'1.9', b'1.10'))
+        self.assertEqual((ROOT / 'HUB_ROUTER_v1.1.yaml').read_bytes(), old.replace(b'1.9', b'1.11'))
         self.assertEqual(self.router['router_version'], '1.1')
-        for key, path in [('architecture', 'HUB_ARCHITECTURE_v1.10.md'),
-                          ('root_catalog', 'HUB_PACKAGE_CATALOG_v1.10.yaml')]:
+        for key, path in [('architecture', 'HUB_ARCHITECTURE_v1.11.md'),
+                          ('root_catalog', 'HUB_PACKAGE_CATALOG_v1.11.yaml')]:
             self.assertEqual(self.router['contracts'][key]['file'], path)
-            self.assertEqual(self.router['contracts'][key]['version'], '1.10')
+            self.assertEqual(self.router['contracts'][key]['version'], '1.11')
             self.assertTrue((ROOT / path).is_file())
