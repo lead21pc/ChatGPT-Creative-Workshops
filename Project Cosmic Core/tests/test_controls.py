@@ -41,10 +41,9 @@ class ControlTests(unittest.TestCase):
         self.assertEqual(resolve(config, ['ACTOR_RECEPTION'], ['institutional_interface_material']),
                          {'ACTOR_RECEPTION', 'MCA', 'WIL'})
 
-    def test_ci_base_size_and_english_active_control_text(self):
+    def test_ci_size_and_english_active_control_text(self):
         import re
         ci = (self.root / CI).read_text(encoding='utf-8')
-        self.assertIn('> Base: ChatGPT Global Native v9.0\n', ci)
         self.assertLess(len(ci), 8000)
         # Diacritic screening is a regression aid, not proof of language or semantics.
         # Supplied fiction names remain literal and are not translated.

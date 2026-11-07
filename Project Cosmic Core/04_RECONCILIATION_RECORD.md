@@ -41,3 +41,9 @@ Global giữ grounding/discourse/epistemic control, turn/state, claim/dependency
 Đây là sửa tại chỗ; lịch sử tiền nhiệm nằm trong Git. Static verification không chứng minh live GPT Project; LIVE VERIFIED: NOT RUN.
 
 Kiểm chứng correction: builder đạt 12 module/16 hash; Router structural check đạt bốn family; 26 unit/contract tests đạt. CI cuối dài 6.664 ký tự, tính cả newline cuối, dưới 8.000. Đã đối chiếu các ID còn lại và cấu trúc Router với baseline: không renumber, không đổi stages/paths/dependencies. Chỉ file trong C2 thay đổi; không sửa FTH và không push. Đây là bằng chứng tĩnh, không là live GPT Project verification.
+
+## C2-CORRECTION-003 — 2026-11-08 — Trích cơ chế Global vào CI tự chứa
+
+Tác giả sửa cách hiểu “base”: phải đưa cơ chế thực sự của Global v9.0 vào CI, không chỉ ghi nhãn hoặc giả định được kế thừa. Quyết định này thay phần diễn giải kế thừa tại C2-CORRECTION-002; các correction về slot, tiếng Anh và kiến trúc khác giữ nguyên.
+
+CI hiện có quy tắc vận hành trực tiếp cho CONTROL GROUNDING, DISCOURSE FIDELITY, EPISTEMIC NON-ESCALATION cùng thứ tự áp dụng; xác định thao tác/giai đoạn; kiểm căn cứ mệnh đề; cập nhật và rút kết luận phụ thuộc; xử lý bất định; điều chỉnh giải thích/người đọc; hợp đồng tiếng Việt. Không còn Base header hoặc giả định cần file Global ngầm để có các cơ chế đó. Giữ source gate và boundary C2, rút phần lặp để còn 7985 ký tự, tính cả newline cuối, dưới 8.000. Test không còn dùng nhãn Base làm tiêu chí đúng. Không đổi Router/Anti-Drift, admission hoặc lore; không push. Live verification chưa chạy.
