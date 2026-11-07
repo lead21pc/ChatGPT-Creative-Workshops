@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "deployment": {
+    "status": "ACTIVE_LOCAL",
+    "router_version": "1.0",
+    "ci_version": "1.0",
+    "ci": "Project Cosmic Core CI/C2_CI_v1.0.md",
+    "live_verified": "NOT_RUN"
+  },
+  "runtime": {
+    "entry": "PROMPT_ROUTE_ONLY",
+    "stages": [
+      "PROMPT_ROUTE_ONLY",
+      "BOOTSTRAP_GATE",
+      "MODULE_GATE",
+      "SOURCE_LOAD",
+      "RECONCILIATION",
+      "ANTI_DRIFT_OVERLAY_GATE",
+      "PROMPT_EXECUTION",
+      "PRE_RESPONSE_CHECK"
+    ]
+  },
+  "bootstrap": {
+    "full_file": [
+      "00_C2_CONSOLIDATION_INDEX.md",
+      "05_OPEN_ISSUES_CURRENT.md"
+    ],
+    "same_current_generation": true,
+    "reconciliation_record": "04_RECONCILIATION_RECORD.md",
+    "record_read_when": "Conflict, supersession, provenance, priority hoặc owner transition có thể quyết định tác vụ."
+  },
+  "modules": {
+    "required_header": [
+      "Module ID",
+      "Runtime role",
+      "Domain / Scope",
+      "Authority boundary",
+      "Cross-domain owner boundary",
+      "Load mode"
+    ],
+    "runtime_role": "CURRENT_SOURCE"
+  },
+  "loading": {
+    "default": "FULL_FILE",
+    "modes": [
+      "FULL_FILE"
+    ],
+    "read_proofs": [
+      "FULL_FILE"
+    ]
+  },
+  "control_selection": {
+    "directory": "Anti-Drift Source",
+    "files": "direct_children_only",
+    "versions": "explicit_active_paths",
+    "load": "FULL_FILE",
+    "ambiguity": "SOURCE_LOAD_BLOCKED"
+  },
+  "controls": [
+    {
+      "id": "MCA",
+      "path": "Anti-Drift Source/C2_Anti_Drift_Modular_Concept_Architecture_v1.0.md",
+      "select_when": "Quan hệ, autonomy, thông tin/quyền actor, cơ chế/kết quả hoặc chuyển trạng thái material.",
+      "requires": [],
+      "conditional_requires": []
+    },
+    {
+      "id": "WIL",
+      "path": "Anti-Drift Source/C2_Anti_Drift_Worldbuilding_Internal_Logic_v1.0.md",
+      "select_when": "Coherence, thiết chế, giao diện hệ/world, feedback hoặc thay đổi theo thời gian material.",
+      "requires": [],
+      "conditional_requires": []
+    },
+    {
+      "id": "ACTOR_RECEPTION",
+      "path": "Anti-Drift Source/C2_Anti_Drift_Actor_Reception_v1.0.md",
+      "select_when": "Nhận/hiểu/tin/đánh giá/cập nhật signal, order, briefing hoặc information material.",
+      "requires": [
+        "MCA"
+      ],
+      "conditional_requires": [
+        {
+          "when": "institutional_interface_material",
+          "target": "WIL"
+        },
+        {
+          "when": "operational_interface_material",
+          "target": "OPERATIONAL_MISSION"
+        }
+      ]
+    },
+    {
+      "id": "OPERATIONAL_MISSION",
+      "path": "Anti-Drift Source/C2_Anti_Drift_Operational_Mission_v1.0.md",
+      "select_when": "Feasibility nhiệm vụ, route/access, thực thi, capture/escape/pursuit/competition hoặc loss material.",
+      "requires": [
+        "MCA"
+      ],
+      "conditional_requires": []
+    }
+  ],
+  "failures": {
+    "bootstrap_missing_or_inconsistent": "SOURCE_LOAD_BLOCKED",
+    "decisive_source_or_authority_missing": "SOURCE_LOAD_BLOCKED",
+    "required_control_missing_or_ambiguous": "SOURCE_LOAD_BLOCKED",
+    "module_identity_or_role_ambiguous": "REVIEW_REQUIRED",
+    "unresolved_controlling_owner": "SOURCE_LOAD_BLOCKED",
+    "demonstrably_nondecisive_secondary_gap": "SOURCE_LOAD_PARTIAL"
+  },
+  "policies": {
+    "routing": "CI yêu cầu vào Router trước tác vụ phụ thuộc C2 current state. Trước cổng chỉ xác định thao tác/scope, nguồn/control cần và quyền đổi canon; chưa kết luận từ premise chưa nạp. Runtime không discover/select/load/validate/xác nhận active CI. Bảo trì CI/Router là trước runtime. Đổi scope material thì route lại.",
+    "discovery": "Đọc đầy đủ 00/05 cùng thế hệ current; catalog chỉ điều hướng, không cấp canon/authority/admission/dependency. Không mặc định backend liệt kê mọi nguồn. Catalog stale: chỉ làm phần bounded từ owner được xác định độc lập và đọc FULL_FILE đủ; nếu không thì chặn. Không báo package completeness khi chưa discovery đủ. Input mới vẫn UNCONFIRMED.",
+    "module_gate": "Xác lập identity, role, admission, scope và authority trước khi dùng. CURRENT_SOURCE/header/catalog/Module ID không tự chấp nhận assertion. Ownership overlap cần đọc owner đầy đủ và reconciliation; unresolved material owner chặn kết luận phụ thuộc. Module ID ổn định qua rename/renumber; không suy ID từ số filename. Tài liệu khác ontology.",
+    "loading": "Baseline chỉ FULL_FILE cho controlling sources liên quan, 00/05 và 04 khi material. Snippet/search/header/summary/Memory không là bằng chứng đọc đầy đủ. Không tự nạp mọi source hoặc mọi actor cùng team. Không có NODE_OR_FULL, MODULE_REQUIRES, NODE_REQUIRES trong current source contract; cross-reference không là dependency.",
+    "authority": "Quyết định tác giả mới nhất kiểm soát đúng scope, sau đó accepted current owners rồi dữ kiện cũ được giữ rõ. Recency/metadata/repetition không cấp ưu tiên. Giữ UNKNOWN/OPEN/DEFERRED/CONFLICTED và alternatives; thiếu không là false/resolved. Question/proposal/simulation không đổi canon. History/rejected/superseded/archive chỉ provenance hoặc explicit comparison, không fallback. Không suy hệ quả mới từ premise đã rút.",
+    "provenance": "07 quản xuất xứ/độ chắc chắn, 06 premise hiện hành, 04 quyết định. Remembered/later/uncertain không tự thành CURRENT; hai trục kết hợp theo căn cứ. Không gán provenance cho từng assertion khi tác giả chưa nêu.",
+    "access": "Current C2 trong Project Sources/Library phải có identity và scope xác nhận; tên giống nhau bên ngoài không tự có authority. Quyền đọc repository để bảo trì khác quyền dùng lore và không chứng minh live installation. Không báo truy xuất nguồn chưa quan sát.",
+    "overlays": "Sau nạp nguồn/reconciliation, chọn family theo semantic materiality và path active tường minh. Đọc FULL_FILE các control được chọn và closure của requires/conditional_requires thực sự đúng. Điều kiện chưa xác định mà decisive thì review/chặn, không coi mặc định false. Không nạp mọi family. Paths chỉ pin control local, không chứng minh live deployment; thiếu/ambiguous required control thì chặn phần phụ thuộc. Không chạy overlay trong PROMPT_ROUTE_ONLY. Overlay không đổi source authority, truth status hoặc tự chọn actor outcome. Không âm thầm gộp material control conflict.",
+    "carryover": "World source giữ persistent world truth/state; briefcase giữ mission information/belief được Rongo cấp; scenario khi có giữ event/branch state. Chỉ consequence tác giả chấp nhận cập nhật mỗi actual owner bị ảnh hưởng đúng scope/mốc, ghi 04 và giữ 05. Không reset world/character/loss hoặc tự đồng bộ knowledge; holder/user khác definition owner.",
+    "coverage": "Trước execution và response kiểm lại route, owner/premise, actual reads, open/reconciliation state, control applicability và gaps. Block only dependent conclusions; PARTIAL cần nêu gap phụ không thể đổi kết luận bounded. Không đổi tên phạm vi để né nguồn decisive. Static checks không chứng minh semantic compliance hoặc live GPT Project. Dừng ở task-local closure, không mở toàn graph."
+  }
+}
