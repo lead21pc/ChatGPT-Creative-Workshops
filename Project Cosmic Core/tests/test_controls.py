@@ -63,20 +63,36 @@ class ControlTests(unittest.TestCase):
 
     def test_ci_backreference_must_match(self):
         path = self.root / CI
-        path.write_text(path.read_text(encoding='utf-8').replace(ROUTER, 'wrong.json'), encoding='utf-8')
+        path.write_text(path.read_text(encoding='utf-8').replace(Path(ROUTER).name, 'wrong.json'), encoding='utf-8')
         with self.assertRaises(ControlError):
             check(self.root)
 
     def test_metadata_only_router_reference_is_not_a_source_gate(self):
         path = self.root / CI
         text = path.read_text(encoding='utf-8')
-        invocation = f'FULL_FILE {ROUTER} -> PROMPT_ROUTE_ONLY; missing Router blocks dependent work.'
-        self.assertIn(invocation, text)
-        text = text.replace(invocation, 'Read the named Router.')
+        gate = text.partition('## Source gate\n\n')[2].partition('\n\n')[0]
+        text = text.replace(gate, 'Read the named Router.')
         text = text.replace('> Status: ACTIVE', f'> Status: ACTIVE\n> Router: {ROUTER}')
         path.write_text(text, encoding='utf-8')
         with self.assertRaises(ControlError):
             check(self.root)
+
+    def test_local_path_only_or_incomplete_web_gate_fails(self):
+        path = self.root / CI
+        text = path.read_text(encoding='utf-8')
+        gate = text.partition('## Source gate\n\n')[2].partition('\n\n')[0]
+        variants = [
+            text.replace(gate, f'Router REQUIRED before current-C2-dependent work. '
+                         f'FULL_FILE {ROUTER} -> PROMPT_ROUTE_ONLY; missing Router blocks dependent work.'),
+            text.replace('read FULL_FILE -> PROMPT_ROUTE_ONLY', 'read a summary -> PROMPT_ROUTE_ONLY'),
+            text.replace('Missing/ambiguous/partial Router: block dependent work;',
+                         'If the Router is missing, continue anyway;'),
+        ]
+        for variant in variants:
+            with self.subTest(gate=variant):
+                path.write_text(variant, encoding='utf-8')
+                with self.assertRaises(ControlError):
+                    check(self.root)
 
     def test_exactly_four_families(self):
         config = load(self.root)

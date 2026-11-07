@@ -53,3 +53,11 @@ CI hiện có quy tắc vận hành trực tiếp cho CONTROL GROUNDING, DISCOUR
 Đối chiếu trực tiếp FTH CI 3.4: locator nằm ngay trong chỉ thị FULL_FILE → PROMPT_ROUTE_ONLY, kèm Router REQUIRED và thiếu Router chặn phần phụ thuộc. C2 trước đó chỉ đặt locator trong header rồi gọi “the named Router”; checker cũng kiểm metadata thay vì lời gọi tại source gate.
 
 Theo yêu cầu tác giả, bỏ Router metadata header, ghi đường dẫn chính xác trong chỉ thị FULL_FILE tại source gate và nêu rõ missing Router blocks dependent work. Checker kiểm lời gọi trong đúng section, test từ chối trường hợp chỉ có header. Giữ nguyên Router, stages, family, các cơ chế CI khác và lore. CI cuối 7990 ký tự, gồm newline cuối, dưới 8.000. Không push; bằng chứng kiểm tra chỉ là tĩnh.
+
+## C2-CORRECTION-005 — 2026-11-08 — CI dùng nguồn của ChatGPT web
+
+Tác giả làm rõ CI được dán vào phần chỉ dẫn trên ChatGPT web. C2-CORRECTION-004 trước đó chép cách ghi path repository nhưng chưa chỉ ra đường truy xuất tài liệu trên web; static checker còn coi đúng chuỗi local path là đủ. Quyết định này thay cách gọi đó, không thay các cổng kiến trúc.
+
+CI yêu cầu truy xuất `C2_Anti_Drift_Source_Router_v1.0.json` từ nguồn thực sự có của Project (Project Sources hoặc file Library được gắn vào chat), xác minh identity/version, đọc FULL_FILE rồi vào PROMPT_ROUTE_ONLY. Thiếu/trùng/một phần Router phải chặn phần phụ thuộc và yêu cầu file, không bịa nội dung. Router áp cùng contract cho source/control tiếp theo; local path, directory/direct-child chỉ là metadata bảo trì, không là web filesystem hoặc tự truy cập GitHub. Không có registry/locator schema mới.
+
+Checker vẫn kiểm file local để bảo trì, nhưng CI gate dùng tên tài liệu và web-source contract; test từ chối metadata-only, local-path-only, summary thay full read và bỏ điều kiện chặn. README ghi rõ việc cung cấp Router/control/source trên web là bước riêng, không tự xảy ra sau commit/push. Tham chiếu sản phẩm đã đọc: https://learn.chatgpt.com/docs/projects . CI 7991 ký tự gồm newline cuối, dưới 8.000. LIVE VERIFIED: NOT RUN; không upload/cài Project hoặc push trong correction này.

@@ -42,3 +42,9 @@ Manifest băm 16 numbered current files; không băm chính nó/control/tooling.
 Local repository khác live GPT Project deployment. Chỉnh file/commit không tự đồng bộ Project Sources/Library hoặc cài CI. `LIVE VERIFIED: NOT RUN`.
 
 Lore chi tiết, family Anti-Drift bổ sung, scenario, Authoring Pipeline và live deployment/verification giữ ngoài milestone này.
+
+## Dùng CI trên ChatGPT web
+
+Dán nội dung CI vào phần chỉ dẫn Project không tự tải Router hoặc các source từ máy/GitHub. Cung cấp Router `C2_Anti_Drift_Source_Router_v1.0.json`, bốn control và các current source cần dùng qua Project Sources hoặc file Library được gắn vào chat. Đây là bước cài đặt nguồn, tách khỏi commit/push.
+
+CI yêu cầu tìm Router theo tên tài liệu, xác minh identity/version và đọc đầy đủ; Router chọn nguồn/control tiếp theo qua nguồn thực sự có sẵn. Path tương đối và quy tắc thư mục trong JSON chỉ phục vụ bảo trì local. Tên trùng không đủ xác lập authority; thiếu, mơ hồ hoặc chỉ lấy được một phần tài liệu thì chặn phần phụ thuộc và yêu cầu file. `FULL_FILE` là yêu cầu đọc, không phải bảo đảm backend luôn cung cấp đủ nội dung. Chưa có lần kiểm chứng live nào được thực hiện.
