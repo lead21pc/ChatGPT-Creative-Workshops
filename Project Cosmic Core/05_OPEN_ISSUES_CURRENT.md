@@ -9,7 +9,7 @@
 | C2-OPEN-003 | UNKNOWN | Full topology và cơ chế/giới hạn xuyên world của tàu; 11. |
 | C2-OPEN-004 | UNKNOWN | Full Cosmic Mage profile và đường Rongo biết thêm; 21. |
 | C2-OPEN-005 | UNKNOWN | Full Battle Shaman / Battle Priest profile và Rongo knowledge; 22. |
-| C2-OPEN-006 | UNKNOWN | Hồ sơ ngoài identity/slot của 25_3–25_5; 23–25. |
+| C2-OPEN-006 | UNKNOWN | Hồ sơ ngoài identity/slot của 25_3–25_5; owner slot hiện là [20](20_TEAM_25_TAIYI_ZHENREN_CURRENT.md#slot-mo), chưa có source nhân vật riêng. |
 | C2-OPEN-007 | OPEN | Lore chi tiết World 1 chưa được nhập; 110. |
 | C2-OPEN-008 | UNKNOWN | Mục tiêu, tình báo, constraints, team tham gia và kỳ vọng campaign; 111. |
 

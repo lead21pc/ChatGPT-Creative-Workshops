@@ -19,7 +19,7 @@ Với tác vụ phụ thuộc C2 current state: CI gọi Router; đọc đầy �
 | 03 / 04 / 05 | History / quyết định-reconciliation / open state; không là current lore fallback. |
 | 06 / 07 | Premise tối thiểu / nguồn gốc-độ chắc chắn; chấp nhận là trục riêng. |
 | 10 / 11 | Rongo / cấu trúc tàu; tổ chức khác cấu trúc vật lý. |
-| 20 / 21–25 | Team composition / từng character identity-state. Team 25 khác toa 25. |
+| 20 / 21 / 22 | Team composition, slot mở 25_3–25_5 / hai hồ sơ nhân vật riêng. Team 25 khác toa 25. |
 | 100 | World catalog: World ID → world owner; không chứa world detail. |
 | 110 / 111 | Persistent world truth / campaign briefing-mission knowledge. Scenario chưa tạo. |
 
@@ -36,9 +36,9 @@ World owner giữ world truth/state bền; briefing giữ thông tin/lệnh/kỳ
 <!-- BEGIN GENERATED MODULE CATALOG -->
 ## Runtime Module Catalog
 
-> Chỉ là chỉ mục định tuyến dẫn xuất. Một hàng không tạo canon, authority,
-> admission tự động hoặc dependency. Kiểm header nguồn và trạng thái package
-> trước khi dùng module. Bảng không thay thứ tự đọc đã khai báo phía trên.
+> Derived routing index only. A row grants no canon authority, automatic
+> admission, or dependency. Check the source header and package state before
+> using a module. This table does not change the reading order above.
 
 | Module ID | Current source path (relative to Project Cosmic Core/) |
 | --- | --- |
@@ -51,9 +51,6 @@ World owner giữ world truth/state bền; briefing giữ thông tin/lệnh/kỳ
 | `C2M-020` | `20_TEAM_25_TAIYI_ZHENREN_CURRENT.md` |
 | `C2M-021` | `21_CHARACTER_25_1_CURRENT.md` |
 | `C2M-022` | `22_CHARACTER_25_2_CURRENT.md` |
-| `C2M-023` | `23_CHARACTER_25_3_CURRENT.md` |
-| `C2M-024` | `24_CHARACTER_25_4_CURRENT.md` |
-| `C2M-025` | `25_CHARACTER_25_5_CURRENT.md` |
 | `C2M-100` | `100_WORLD_CATALOG_CURRENT.md` |
 | `C2M-110` | `110_WORLD_001_CURRENT.md` |
 | `C2M-111` | `111_WORLD_001_CAMPAIGN_01_BRIEFCASE_CURRENT.md` |

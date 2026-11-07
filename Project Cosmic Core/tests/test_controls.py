@@ -41,6 +41,20 @@ class ControlTests(unittest.TestCase):
         self.assertEqual(resolve(config, ['ACTOR_RECEPTION'], ['institutional_interface_material']),
                          {'ACTOR_RECEPTION', 'MCA', 'WIL'})
 
+    def test_ci_base_size_and_english_active_control_text(self):
+        import re
+        ci = (self.root / CI).read_text(encoding='utf-8')
+        self.assertIn('> Base: ChatGPT Global Native v9.0\n', ci)
+        self.assertLess(len(ci), 8000)
+        # Diacritic screening is a regression aid, not proof of language or semantics.
+        # Supplied fiction names remain literal and are not translated.
+        vietnamese_letters = re.compile('[\u0102\u0103\u0110\u0111\u01a0\u01a1\u01af\u01b0\u1ea0-\u1ef9]')
+        for name in (CI, ROUTER, *FAMILIES.values()):
+            text = (self.root / name).read_text(encoding='utf-8')
+            for proper_name in ('Rongo', '太乙真人', 'Tàiyǐ Zhēnrén'):
+                text = text.replace(proper_name, '')
+            self.assertIsNone(vietnamese_letters.search(text), name)
+
     def test_active_ci_router_relation(self):
         config = load(self.root)
         config['deployment']['ci_version'] = '9.0'

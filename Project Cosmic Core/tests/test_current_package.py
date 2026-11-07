@@ -50,8 +50,27 @@ class PackageTests(unittest.TestCase):
             result = self.cli(*args)
             self.assertEqual(result.returncode, 0, result.stderr)
             self.assertEqual(before, self.snapshot())
-        self.assertEqual(len(tool.ACCEPTED), 15)
-        self.assertEqual(len(tool.CURRENT_FILES), 19)
+        self.assertEqual(len(tool.ACCEPTED), 12)
+        self.assertEqual(len(tool.CURRENT_FILES), 16)
+
+    def test_open_slots_resolve_to_team_without_dedicated_modules(self):
+        team = (self.root / tool.ACCEPTED['C2M-020']).read_text(encoding='utf-8')
+        catalog = (self.root / tool.ACCEPTED['C2M-001']).read_text(encoding='utf-8')
+        for number in (3, 4, 5):
+            key = f'C2M-02{number}'
+            name = f'2{number}_CHARACTER_25_{number}_CURRENT.md'
+            self.assertNotIn(key, tool.ACCEPTED)
+            self.assertNotIn(name, tool.CURRENT_FILES)
+            self.assertFalse((self.root / name).exists())
+            self.assertIn(f'`25_{number}`', team)
+            row = next(line for line in catalog.splitlines()
+                       if line.startswith(f'| `25_{number}` |'))
+            self.assertIn('20_TEAM_25_TAIYI_ZHENREN_CURRENT.md#slot-mo', row)
+        # A formerly admitted header cannot silently re-enter the managed root.
+        data = (self.root / tool.ACCEPTED['C2M-021']).read_bytes()
+        (self.root / '23_CHARACTER_25_3_CURRENT.md').write_bytes(
+            data.replace(b'> Module ID: `C2M-021`', b'> Module ID: `C2M-023`', 1))
+        self.rejected()
 
     def test_duplicate_module_id_fails(self):
         self.replace(tool.ACCEPTED['C2M-002'], b'`C2M-002`', b'`C2M-001`')
@@ -105,7 +124,7 @@ class PackageTests(unittest.TestCase):
     def test_stale_hash_fails_then_write_preserves_human_source(self):
         name = tool.ACCEPTED['C2M-110']
         path = self.root / name
-        path.write_bytes(path.read_bytes() + '\nGhi chú thử trên bản sao.\n'.encode())
+        path.write_bytes(path.read_bytes() + b'\nDisposable human edit\n')
         before = self.snapshot()
         self.assertEqual(self.cli('--check').returncode, 2)
         self.assertEqual(before, self.snapshot())

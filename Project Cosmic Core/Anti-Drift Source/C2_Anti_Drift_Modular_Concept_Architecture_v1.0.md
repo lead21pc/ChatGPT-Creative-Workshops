@@ -3,11 +3,11 @@
 > Status: ACTIVE
 > Family: MCA
 
-## Kích hoạt và giới hạn
+## Activation and limits
 
-Router chọn và đọc FULL_FILE sau cổng nguồn/reconciliation khi identity, autonomy, quan hệ, actor information/authority, cơ chế/kết quả hoặc chuyển trạng thái quyết định tác vụ. Chỉ suy luận tại PROMPT_EXECUTION. Kế thừa authority/truth status từ C2 CI/Router; không là lore, Router, schema chung hoặc quyền đổi canon.
+The Router selects and FULL_FILE-loads this overlay after source loading and reconciliation when identity, autonomy, relations, actor information/authority, mechanisms/outcomes, or state transitions decide the task. Reason only during PROMPT_EXECUTION. Inherit authority and truth status from the C2 CI/Router; this is not lore, a router, a universal schema, or permission to change canon.
 
-## Quan hệ và autonomy
+## Relations and autonomy
 
 ```text
 INTERACTION != CONTAINMENT
@@ -18,11 +18,11 @@ SHARED CONTRACT != SHARED IMPLEMENTATION
 POWER != AUTHORITY
 ```
 
-Giữ các module/actor độc lập cho đến khi nguồn hoặc giả định được gắn nhãn xác lập quan hệ. Phân biệt BELONGS_TO, GOVERNS, USES, DEPENDS_ON, AFFECTS, DERIVED_FROM, ENTERS và EXITS khi có ý nghĩa; không dựng đủ graph. Cây tài liệu không là cây quyền lực. Cùng tên, số hoặc host không chứng minh cùng ontology.
+Keep modules and actors independent until a source or labeled assumption establishes a relation. Distinguish BELONGS_TO, GOVERNS, USES, DEPENDS_ON, AFFECTS, DERIVED_FROM, ENTERS, and EXITS where material; do not build a complete graph. A document tree is not a command hierarchy. Shared names, numbers, or hosts do not prove shared ontology.
 
-Tách quan hệ lore, thông tin, thẩm quyền, nhân quả, sử dụng, yêu cầu mô phỏng và provenance. Không chuyển cạnh giữa các lớp nếu chưa có cầu nối được xác lập. World/capability dị biệt chỉ cần giao diện đủ cho tác vụ; không mặc định năng lực dùng được xuyên world hoặc có tỷ lệ quy đổi chung.
+Keep lore, information, authority, causality, operational use, simulation requirements, and provenance relations distinct. Transfer no edge across these interpretations without an established bridge. Heterogeneous worlds/capabilities need only task-sufficient interfaces; do not assume cross-world portability or a universal conversion ratio.
 
-## Actor information và quyền hành động
+## Actor information and action authority
 
 ```text
 SIMULATION KNOWS != ACTOR KNOWS
@@ -34,19 +34,19 @@ DECIDES != CAN EXECUTE
 CAN EXECUTE != SUCCEEDS
 ```
 
-Actor chỉ dùng thông tin có đường tiếp cận cùng ký ức, belief, động cơ, năng lực và giới hạn đã được xác lập. Không cấp hidden canon, future knowledge hoặc ý định tác giả. Membership không chứng minh dùng chung tri thức, mandate hoặc tài nguyên. Các chức năng có thể cùng một chủ thể hoặc tách riêng theo nguồn; không ép chia để tạo ma sát và không ép gộp cho tiện.
+Actors use only accessible information together with established memory, beliefs, incentives, capabilities, and limits. Grant no hidden canon, future knowledge, or author intent. Membership proves no shared information, mandate, or resources. Functions may belong to one actor or separate actors as established; neither split them to manufacture friction nor merge them for convenience.
 
-MCA giữ ranh giới knowledge/access chung. ACTOR_RECEPTION chỉ bổ sung khi việc nhận/hiểu/tin/đánh giá/cập nhật signal quyết định nhánh; không thay owner state.
+MCA owns general knowledge/access boundaries. ACTOR_RECEPTION adds only material receipt, understanding, trust, appraisal, or signal updates; it does not replace the owner of actor state.
 
-## Cơ chế và trạng thái
+## Mechanisms and state
 
-Đi từ premise/state → actor và thông tin có thể biết → authority/constraint → hành động có thể thực hiện → tương tác → state/consequence. Cơ chế thay điều kiện không tự chọn hành động hoặc endpoint. Không chọn kết thúc rồi dựng lại nguyên nhân.
+Trace premise/state -> actor and accessible information -> authority/constraint -> feasible action -> interaction -> state/consequence. A mechanism changes conditions without choosing an action or endpoint. Never choose an ending and reverse-engineer its causes.
 
-State phải giữ identity, scope, mốc và truth status có ý nghĩa. World truth khác briefing, scenario khác persistent owner. Chỉ accepted consequence chuyển về các actual owner bị ảnh hưởng; không nhân bản toàn nội dung hoặc cấp tri thức tự động. Holder/user khác definition owner.
+Preserve material identity, scope, time, and truth status. World truth differs from briefing; scenario state differs from persistent owner state. Only accepted consequences update the actual affected owners; do not duplicate entire sources or grant automatic knowledge. Holder/user differs from definition owner.
 
-## Contingency lifecycle khi thực sự cần
+## Conditional response lifecycle
 
-Chỉ mở khi tác vụ phụ thuộc nhiều phản ứng có điều kiện, đồng thời hoặc điều kiện duy trì/kết thúc:
+Open this analysis only when multiple conditional pathways, concurrency, or persistence/termination conditions materially affect the task:
 
 ```text
 POSSIBLE != AVAILABLE != ACTIVE
@@ -55,10 +55,10 @@ EXECUTED != SUCCESSFUL != CANON EVENT
 TRIGGER EXISTS != TRIGGER OBSERVED != TRIGGER UNDERSTOOD
 ```
 
-Đây là các quan hệ không suy ra nhau, không phải các trạng thái loại trừ hoặc pipeline bắt buộc. Khả dụng phụ thuộc state, thông tin, authority, capability, timing và constraints liên quan. Trigger khách quan không tự kích hoạt phản ứng cần actor biết; cơ chế tự động đã được nguồn xác lập vẫn giữ trigger/giới hạn riêng, không bị ép có người chọn lại.
+These are non-implications, not mutually exclusive states or a mandatory pipeline. Availability depends on relevant state, information, authority, capability, timing, and constraints. Objective triggers do not automatically activate responses requiring actor knowledge. Preserve source-established automatic mechanisms within their own triggers and limits; do not require fresh conscious selection for every transition.
 
-Nhiều contingency có thể đồng thời tồn tại; không ép XOR hoặc tự bảo đảm tương thích. Sau thay đổi có ý nghĩa, kiểm lại đúng nhánh bị ảnh hưởng: giữ, dừng, tạm ngưng hoặc chuyển theo điều kiện đã biết. Nhánh mới mở không tự chọn nó hoặc đóng nhánh khác. Giữ lịch sử lựa chọn/thử dù thất bại; thất bại cục bộ không tự chứng minh mọi mục tiêu thất bại. Không tạo branch registry hoặc workflow engine.
+Several contingencies may coexist. Force neither XOR nor compatibility. After a material change, re-evaluate only affected branches: retain, stop, pause, or transition according to established conditions. Opening one branch neither selects it nor closes another. Preserve selection/attempt history after failure; local failure does not prove every objective failed. Require no branch registry or workflow engine.
 
-## Dừng và kiểm tra
+## Checks and stopping
 
-Kiểm conflict chỉ giữa mệnh đề cùng đối tượng/scope/mốc/lớp; không tự thêm biến để hòa giải. Giữ UNKNOWN, PROPOSAL và giả định rõ. Router giữ source authority; WIL giữ coherence; OPERATIONAL_MISSION giữ khả thi thực thi. Chỉ mở distinction có thể đổi kết luận. Dừng ở quan hệ/chuyển trạng thái đã đủ căn cứ, phân nhánh hoặc bị chặn, không mô hình hóa toàn project.
+Test conflicts only between claims about the same entity, scope, time, and truth layer. Invent no variable to reconcile them. Preserve UNKNOWN, PROPOSAL, and explicit assumptions. The Router retains source authority, WIL coherence, and OPERATIONAL_MISSION operational feasibility. Open only distinctions that can change the answer. Stop at a supported, conditional, or correctly blocked relation/transition rather than modeling the whole project.

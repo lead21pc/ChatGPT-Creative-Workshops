@@ -27,7 +27,7 @@
     ],
     "same_current_generation": true,
     "reconciliation_record": "04_RECONCILIATION_RECORD.md",
-    "record_read_when": "Conflict, supersession, provenance, priority hoặc owner transition có thể quyết định tác vụ."
+    "record_read_when": "Conflict, supersession, provenance, priority, or an owner transition could decide the task."
   },
   "modules": {
     "required_header": [
@@ -60,21 +60,21 @@
     {
       "id": "MCA",
       "path": "Anti-Drift Source/C2_Anti_Drift_Modular_Concept_Architecture_v1.0.md",
-      "select_when": "Quan hệ, autonomy, thông tin/quyền actor, cơ chế/kết quả hoặc chuyển trạng thái material.",
+      "select_when": "Module/actor identity, autonomy, typed relations, actor information/authority, mechanism/outcome distinctions, or state transitions materially affect the task.",
       "requires": [],
       "conditional_requires": []
     },
     {
       "id": "WIL",
       "path": "Anti-Drift Source/C2_Anti_Drift_Worldbuilding_Internal_Logic_v1.0.md",
-      "select_when": "Coherence, thiết chế, giao diện hệ/world, feedback hoặc thay đổi theo thời gian material.",
+      "select_when": "Coherence, institutions, world/system interfaces, feedback, or temporal change materially affect the task; not a sufficiently sourced lookup alone.",
       "requires": [],
       "conditional_requires": []
     },
     {
       "id": "ACTOR_RECEPTION",
       "path": "Anti-Drift Source/C2_Anti_Drift_Actor_Reception_v1.0.md",
-      "select_when": "Nhận/hiểu/tin/đánh giá/cập nhật signal, order, briefing hoặc information material.",
+      "select_when": "Actor receipt, understanding, trust, appraisal, or updates from signals, orders, briefings, or information materially affect the answer.",
       "requires": [
         "MCA"
       ],
@@ -92,7 +92,7 @@
     {
       "id": "OPERATIONAL_MISSION",
       "path": "Anti-Drift Source/C2_Anti_Drift_Operational_Mission_v1.0.md",
-      "select_when": "Feasibility nhiệm vụ, route/access, thực thi, capture/escape/pursuit/competition hoặc loss material.",
+      "select_when": "Mission feasibility, routes/access, execution, capture/escape/pursuit/competition, or persistent loss materially affect the answer.",
       "requires": [
         "MCA"
       ],
@@ -108,15 +108,15 @@
     "demonstrably_nondecisive_secondary_gap": "SOURCE_LOAD_PARTIAL"
   },
   "policies": {
-    "routing": "CI yêu cầu vào Router trước tác vụ phụ thuộc C2 current state. Trước cổng chỉ xác định thao tác/scope, nguồn/control cần và quyền đổi canon; chưa kết luận từ premise chưa nạp. Runtime không discover/select/load/validate/xác nhận active CI. Bảo trì CI/Router là trước runtime. Đổi scope material thì route lại.",
-    "discovery": "Đọc đầy đủ 00/05 cùng thế hệ current; catalog chỉ điều hướng, không cấp canon/authority/admission/dependency. Không mặc định backend liệt kê mọi nguồn. Catalog stale: chỉ làm phần bounded từ owner được xác định độc lập và đọc FULL_FILE đủ; nếu không thì chặn. Không báo package completeness khi chưa discovery đủ. Input mới vẫn UNCONFIRMED.",
-    "module_gate": "Xác lập identity, role, admission, scope và authority trước khi dùng. CURRENT_SOURCE/header/catalog/Module ID không tự chấp nhận assertion. Ownership overlap cần đọc owner đầy đủ và reconciliation; unresolved material owner chặn kết luận phụ thuộc. Module ID ổn định qua rename/renumber; không suy ID từ số filename. Tài liệu khác ontology.",
-    "loading": "Baseline chỉ FULL_FILE cho controlling sources liên quan, 00/05 và 04 khi material. Snippet/search/header/summary/Memory không là bằng chứng đọc đầy đủ. Không tự nạp mọi source hoặc mọi actor cùng team. Không có NODE_OR_FULL, MODULE_REQUIRES, NODE_REQUIRES trong current source contract; cross-reference không là dependency.",
-    "authority": "Quyết định tác giả mới nhất kiểm soát đúng scope, sau đó accepted current owners rồi dữ kiện cũ được giữ rõ. Recency/metadata/repetition không cấp ưu tiên. Giữ UNKNOWN/OPEN/DEFERRED/CONFLICTED và alternatives; thiếu không là false/resolved. Question/proposal/simulation không đổi canon. History/rejected/superseded/archive chỉ provenance hoặc explicit comparison, không fallback. Không suy hệ quả mới từ premise đã rút.",
-    "provenance": "07 quản xuất xứ/độ chắc chắn, 06 premise hiện hành, 04 quyết định. Remembered/later/uncertain không tự thành CURRENT; hai trục kết hợp theo căn cứ. Không gán provenance cho từng assertion khi tác giả chưa nêu.",
-    "access": "Current C2 trong Project Sources/Library phải có identity và scope xác nhận; tên giống nhau bên ngoài không tự có authority. Quyền đọc repository để bảo trì khác quyền dùng lore và không chứng minh live installation. Không báo truy xuất nguồn chưa quan sát.",
-    "overlays": "Sau nạp nguồn/reconciliation, chọn family theo semantic materiality và path active tường minh. Đọc FULL_FILE các control được chọn và closure của requires/conditional_requires thực sự đúng. Điều kiện chưa xác định mà decisive thì review/chặn, không coi mặc định false. Không nạp mọi family. Paths chỉ pin control local, không chứng minh live deployment; thiếu/ambiguous required control thì chặn phần phụ thuộc. Không chạy overlay trong PROMPT_ROUTE_ONLY. Overlay không đổi source authority, truth status hoặc tự chọn actor outcome. Không âm thầm gộp material control conflict.",
-    "carryover": "World source giữ persistent world truth/state; briefcase giữ mission information/belief được Rongo cấp; scenario khi có giữ event/branch state. Chỉ consequence tác giả chấp nhận cập nhật mỗi actual owner bị ảnh hưởng đúng scope/mốc, ghi 04 và giữ 05. Không reset world/character/loss hoặc tự đồng bộ knowledge; holder/user khác definition owner.",
-    "coverage": "Trước execution và response kiểm lại route, owner/premise, actual reads, open/reconciliation state, control applicability và gaps. Block only dependent conclusions; PARTIAL cần nêu gap phụ không thể đổi kết luận bounded. Không đổi tên phạm vi để né nguồn decisive. Static checks không chứng minh semantic compliance hoặc live GPT Project. Dừng ở task-local closure, không mở toàn graph."
+    "routing": "CI requires Router entry before work dependent on current C2 state. Before the gates, identify only operation/scope, needed sources/controls, evidence, and canon-change permission; do not adopt unread canon premises or derive dependent conclusions. Runtime does not discover, select, load, validate, or confirm the active CI. CI/Router compatibility is pre-runtime maintenance. Re-route materially expanded scope.",
+    "discovery": "Read 00/05 FULL_FILE from the same current generation. Catalogs navigate; they grant no canon authority, admission, or dependency. Do not presume complete backend enumeration. With a stale catalog, bounded work requires independently identified authoritative owners read FULL_FILE and sufficient for that task; otherwise block. No package-completeness claim without sufficient discovery. New inputs remain UNCONFIRMED.",
+    "module_gate": "Establish identity, role, admission, scope, and authority before use. CURRENT_SOURCE, headers, catalogs, and Module IDs do not accept assertions. Resolve material overlapping authority through full owner reads and reconciliation; unresolved ownership blocks dependent conclusions. Module IDs remain stable across rename/renumber and are not derived from filenames. Documents are not ontology.",
+    "loading": "The baseline admits FULL_FILE only for relevant controlling sources, 00/05, and 04 when material. Snippets, search hits, headers, summaries, and Memory do not prove a full read. Do not load all sources or every actor in a team. NODE_OR_FULL, MODULE_REQUIRES, and NODE_REQUIRES are outside the current source contract. Cross-references are not dependencies.",
+    "authority": "The latest explicit author decision controls only its stated scope, then accepted current owners, then older facts explicitly preserved. Recency, metadata, and repetition grant no priority. Retain UNKNOWN/OPEN/DEFERRED/CONFLICTED and viable alternatives; absence is neither false nor resolved. Questions, proposals, and simulations do not mutate canon. History, rejected/superseded material, and archives are provenance or explicitly requested comparison only, never fallback. Do not use withdrawn premises to invent replacement consequences.",
+    "provenance": "07 owns origin/certainty, 06 current premise, and 04 acceptance/reconciliation decisions. Remembered, later-added, and uncertain-memory labels do not automatically confer CURRENT status; combine origin/certainty and acceptance labels only with support. Do not assign assertion-level provenance not supplied by the author.",
+    "access": "Current C2 sources in Project Sources/Library require confirmed identity and scope. Identically named external material gains no automatic authority. Repository maintenance access is distinct from permission to use lore and proves no live installation. Never claim an unobserved retrieval.",
+    "overlays": "After source loading and reconciliation, select families by semantic materiality and explicitly active paths. Read selected controls FULL_FILE and transitively expand required and actually satisfied conditional dependencies. A decisive unresolved applicability condition requires review/blocking, not an assumed false value. Do not load all families. Active local paths do not prove live deployment. Missing/ambiguous required controls block only dependent work. No overlay executes during PROMPT_ROUTE_ONLY or changes source authority/truth status or chooses actor outcomes. Expose material control conflicts rather than silently merging them.",
+    "carryover": "World sources own persistent objective truth/state; briefcases own mission information/beliefs supplied by Rongo; scenarios, when created, own event/branch state. Only author-accepted consequences update each actual affected owner within scope/time, with decisions in 04 and open state in 05. Do not reset worlds, characters, or losses, or automatically synchronize knowledge. Holder/user is not definition owner.",
+    "coverage": "Before execution and response, recheck route, owners/premises, actual reads, reconciliation/open state, applicable controls, and material gaps. Block only dependent conclusions. PARTIAL requires a named secondary gap demonstrably unable to change the bounded result; relabeling scope cannot bypass decisive missing evidence. Static checks prove neither semantic compliance nor live GPT Project behavior. Stop at task-local closure, not a complete graph."
   }
 }

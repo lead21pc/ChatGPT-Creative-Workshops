@@ -3,15 +3,15 @@
 > Status: ACTIVE
 > Family: OPERATIONAL_MISSION
 
-## Kích hoạt và boundary
+## Activation and boundary
 
-Router chọn FULL_FILE sau source/reconciliation gate khi route, access, thực thi nhiệm vụ, capture/escape/pursuit/competition hoặc loss/consequence quyết định kết luận. MCA giữ agency/authority/knowledge chung; ACTOR_RECEPTION chỉ thêm khi appraisal của signal material, WIL khi institutional coherence material. Không tự tạo dependency ngược; Router chọn các family theo scope.
+The Router FULL_FILE-loads this overlay after source loading and reconciliation when routes, access, mission execution, capture/escape/pursuit/competition, or persistent loss/consequences decide the answer. MCA supplies general agency/authority/knowledge boundaries. ACTOR_RECEPTION contributes when signal appraisal matters, WIL when institutional coherence matters. Create no reverse dependency; the Router selects material families.
 
-Kế thừa C2 CI/Router, không là doctrine, lực lượng, hệ mô phỏng, generator outcome hoặc quyền nhập lore. Phạm vi từ yêu cầu: actor/team, địa điểm/world, mục tiêu, mốc, giao diện. Nhiệm vụ nhỏ vẫn giữ causal rigor; không mặc định total war hoặc escalation.
+Inherit the C2 CI/Router. This is not doctrine, a force table, simulation engine, outcome generator, or permission to add lore. Derive the boundary from the request: actors/teams, place/world, objective, time, and interface. Smaller missions retain causal rigor; neither total war nor escalation is assumed.
 
-## Từ mục tiêu đến hành động
+## From objective to action
 
-Chỉ mở yếu tố cần: mục tiêu được giao khác mục tiêu actor; thông tin/độ tin cậy/độ trễ; authority/permission; capability có thể dùng lúc này; route/access; resources/sustainment; timing; constraints; failure/fallback và điều kiện kết thúc.
+Open only needed distinctions: assigned versus actor objectives; information/reliability/delay; authority/permission; currently usable capability; routes/access; resources/sustainment; timing; constraints; failure/fallback; and termination conditions.
 
 ```text
 ORDER != EXECUTION
@@ -20,24 +20,24 @@ CAN DO != ALLOWED TO DO != WILL CHOOSE TO DO
 ATTEMPT != SUCCESS
 ```
 
-Lệnh cần đường truyền/nhận và thực hiện đủ cho transition. Không tự cấp thông tin, quyền, năng lượng, đồng minh, cứu viện hoặc return route để giữ nhiệm vụ chạy. Đường tồn tại không chứng minh capacity, timing, secrecy, permission hoặc khả năng quay về. Qua world không mặc định khả năng/thiết bị hoạt động tương thích.
+Orders need transmission, receipt, and execution sufficient for the transition. Invent no information, authority, energy, ally, rescue asset, or return route to keep a mission running. A route's existence does not prove capacity, timing, secrecy, permission, or return access. Crossing worlds does not establish capability/equipment compatibility.
 
-Nguồn lực đã mất/tiêu hao phải ảnh hưởng state liên quan; không tự hồi đầy. Fallback cần receiver, interface, timing, authority và capacity có căn cứ; không là safety net vô hạn. Dữ liệu định lượng chỉ dùng khi được yêu cầu và có anchor/giả định rõ; không giải thắng thua bằng power score.
+Spent or lost resources affect relevant later state; do not refill them automatically. Fallback requires a supported receiver, interface, timing, authority, and capacity, not an unlimited safety net. Quantitative claims need a request and usable anchors or explicit assumptions. Resolve no outcome by power score alone.
 
-## Thông tin, capture và cạnh tranh
+## Information, capture, and competition
 
-World event khác actor biết, hiểu, tin hoặc đủ khả năng tận dụng. Tổ chức không tự chia sẻ một information picture. Briefing không thay world owner; knowledge cập nhật theo đường tiếp cận được chấp nhận.
+World events differ from what actors know, understand, believe, or can exploit. Organizations do not automatically share one information picture. Briefing does not replace the world owner; knowledge updates require established access paths.
 
-Capture/escape/pursuit cần ý định, thông tin, khả năng, route, access, timing và constraint liên quan; mong muốn bắt sống không bảo đảm bắt sống, muốn trốn không tạo đường thoát. Đối thủ thích nghi theo state có căn cứ, không tự giảm competence để ưu ái nhân vật. Giá trị nhân vật, quan hệ hoặc unfinished arc không bảo đảm sống; thiếu thông tin bảo vệ cũng không chứng minh không có bảo vệ hoặc bắt buộc chết. Nếu transition sinh tử còn underdetermined thì phân nhánh/chặn, không chọn outcome để chứng minh độ khắc nghiệt.
+Capture/escape/pursuit requires relevant intent, information, capability, routes, access, timing, and constraints. Preferring capture does not ensure capture; wanting escape creates no exit. Opponents adapt according to supported state; never lower their competence to favor a character. Character value, relationships, or unfinished arcs guarantee no survival. Unread/unknown protection also proves neither absent protection nor necessary death. Branch or block underdetermined lethal transitions; do not choose an outcome to demonstrate harshness.
 
-Competition không tự thành chiến đấu hoặc escalation. Không cho actor ngoài boundary can thiệp chỉ vì họ mạnh; cần giao diện nhân quả có căn cứ. Mục tiêu không đồng nhất giữa mọi actor.
+Competition does not automatically mean combat or escalation. Outside actors need a supported causal interface to intervene, not merely power. Do not assume all actors share an objective.
 
-## Loss và carryover
+## Loss and carryover
 
-Tổn thất, thương tích, tiêu hao, thông tin lộ và thay đổi access tồn tại qua scene/world nếu chưa có transition phục hồi được xác lập. Recovery là thay đổi có điều kiện, không reset. Không tự tạo hậu quả không có căn cứ để tăng kịch tính.
+Loss, injury, depletion, exposed information, and changed access persist across scenes/worlds unless an established recovery transition changes them. Recovery is conditional change, not a reset. Invent no unsupported consequences for drama.
 
-Scenario tương lai giữ event/branch; world giữ persistent truth; character/relic owner giữ state theo scope. Chỉ consequence tác giả chấp nhận cập nhật actual owners và hồ sơ 04/05. Kết quả mô phỏng chưa là canon; không có automatic carryover engine.
+Future scenarios hold event/branch state; worlds hold persistent truth; character/relic owners hold state within scope. Only author-accepted consequences update actual owners and 04/05 records. Simulated results remain non-canon; no automatic carryover engine exists.
 
-## UNKNOWN và dừng
+## UNKNOWN and stopping
 
-Thiếu chi tiết không đổi kết luận thì giữ black box; thiếu tạo các nhánh thì ghi giả định; thiếu quyết định feasibility/authority/route/information thì chặn riêng transition phụ thuộc. Không chặn mọi phần độc lập hoặc tự điền bridge. Chỉ mở đến mức có thể giải, phân nhánh hoặc chặn nhiệm vụ đúng; không đòi đầy đủ logistics, chiến tranh hoặc economy model.
+Keep a nondecisive missing detail as a black box. Use explicit assumptions for conditional branches. Block only the dependent transition when missing authority, feasibility, route, or information is decisive. Do not freeze independent work or invent bridges. Stop when the mission can validly resolve, branch, or block; require no complete logistics, war, or economy model.

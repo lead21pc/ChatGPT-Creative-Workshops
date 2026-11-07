@@ -1,16 +1,16 @@
 # C2 — Package Manifest
 
-Không là canon hoặc quyền tự admit source. Hash set gồm 19 numbered current files; không gồm chính manifest, control hoặc tooling.
+This manifest is not canon and cannot admit sources. The hash set covers 16 numbered current files; it excludes the manifest itself, controls, and tooling.
 
 <!-- BEGIN GENERATED PACKAGE METADATA -->
 ## Current package maintenance
 
-- Các file hiện hành tại root được duy trì trực tiếp theo đúng vai trò và phạm vi nguồn.
-- `Source_Archive/` chỉ giữ lịch sử/provenance; không là đầu vào build, nguồn dự phòng hoặc thẩm quyền tái dựng current.
-- `build_consolidation.py` kiểm header, ánh xạ catalog, mã tham chiếu owner và hash current files; không suy dependency, xác nhận ownership ngữ nghĩa hoặc tái dựng lore.
-- Mặc định / `--check` chỉ đọc. `--write` chỉ cập nhật vùng generated catalog trong `00` và vùng generated metadata/hash của manifest.
-- Manifest không cấp quyền canon hoặc tự nhận source. Control/tooling được kiểm riêng, ngoài tập hash numbered current files.
-- Dùng lịch sử Git để truy nguyên hoặc khôi phục theo quyền được cấp.
+- Current root files are maintained directly within their declared source roles and scopes.
+- `Source_Archive/` is historical/provenance material only, never a current build input, fallback source, or reconstruction authority.
+- `build_consolidation.py` checks headers, catalog mappings, owner-reference IDs, and current-file hashes; it does not infer dependencies, validate semantic ownership, or reconstruct lore.
+- Default / `--check` is read-only. `--write` updates only the generated catalog in `00` and generated metadata/hash regions in this manifest.
+- The manifest grants no canon authority or automatic admission. Controls/tooling are checked separately, outside the numbered current-file hash set.
+- Use Git history for provenance or explicitly authorized recovery.
 
 <!-- END GENERATED PACKAGE METADATA -->
 
@@ -19,24 +19,21 @@ Không là canon hoặc quyền tự admit source. Hash set gồm 19 numbered cu
 
 | File | SHA-256 |
 | --- | --- |
-| `00_C2_CONSOLIDATION_INDEX.md` | `16797F0A77E96D9A2715038492E273DDA55951D3F72AC1269BD04D4210D9155A` |
-| `01_C2_ACTOR_ORGANIZATION_CATALOG_CURRENT.md` | `C18139C1C4E7DF7000A4939E8DE8F0E5CF568DF959999312B0434377A2379FB3` |
+| `00_C2_CONSOLIDATION_INDEX.md` | `2669C03C30600BBC6D270D31197D2E366B5C5FCA9F59899F99BA0DAE4223F603` |
+| `01_C2_ACTOR_ORGANIZATION_CATALOG_CURRENT.md` | `B014E5CBB708AF0D3056DDAD15A0FF9F00C06B71C28B81FD55E1868EE513FFF8` |
 | `02_C2_CAPABILITY_RELIC_CATALOG_CURRENT.md` | `9687E0D06AC9774B0075C6295E184290238393C9E9218E6D3D64263AA5F0D07F` |
 | `06_C2_PREMISE_CORE_CURRENT.md` | `9E9F619C3A3A1AD233D9419E353242D19B6C429BCB6C5438D4390B87028C22A7` |
 | `07_C2_PREMISE_PROVENANCE_CURRENT.md` | `148892839E0D7EE8C9F6ECA1EDB606EC3EAC6923E28CBA99DF220CC308F2699C` |
 | `10_RONGO_CURRENT.md` | `57C235358FEE283C2F55EB2B8B410F82A543B5846A90527E8EF51B613473097C` |
 | `11_TRAIN_STRUCTURE_CURRENT.md` | `ADC6A1550A0595B8ADD608C63F46418B9F56F5B1DAB0F4855A29D473AD02DBC4` |
-| `20_TEAM_25_TAIYI_ZHENREN_CURRENT.md` | `264B5ED69E4F701ED6E69C8C907F03755034C9EB807C3FB3F0833A2D4D91314E` |
+| `20_TEAM_25_TAIYI_ZHENREN_CURRENT.md` | `2EC856EE03B2840282FFC2FE2D9E9D8F76BE3645EDA19FF5689F6020A5EB2D54` |
 | `21_CHARACTER_25_1_CURRENT.md` | `87639BA35C22258FA82B5AE14912E6AC87A79AB2D13CA2CF8592A06EDF3DC2BE` |
 | `22_CHARACTER_25_2_CURRENT.md` | `AC932C9FF0CB58E8E176A773B8A99EAD744CAEB1712F6AC0DD52246FABCC9016` |
-| `23_CHARACTER_25_3_CURRENT.md` | `C43CC9530A14991C07F83611413966FD2D20F15DF3EF61A30C4652E2FC25A51D` |
-| `24_CHARACTER_25_4_CURRENT.md` | `9CB8DA7514D05A29B05D9EAE47F05907B9FD944D776AA726079308CB4A323728` |
-| `25_CHARACTER_25_5_CURRENT.md` | `A753172C827EA96691DFD5039F7D25A45113D827313C0AE2552295FBFB3DD74B` |
 | `100_WORLD_CATALOG_CURRENT.md` | `32CC9C417A77103543E4AE18EBCFDC04F6A66EAACF87F79438806EA1B2D3A576` |
 | `110_WORLD_001_CURRENT.md` | `4FBA680072B66795998DAE1AC9BB12A84EA71CE02A179FD770D93BD15626031B` |
 | `111_WORLD_001_CAMPAIGN_01_BRIEFCASE_CURRENT.md` | `56CB68B124C9A2C6CC595E5AE5F5C652D21E8837480CED4238FC186D5D40A909` |
 | `03_DESIGN_HISTORY_AND_RECONSIDERATIONS.md` | `2D633FECF68900645DD47C2855F91822EF3C14F35327FCFA78EC7EB8F57804AD` |
-| `04_RECONCILIATION_RECORD.md` | `FE05983580E8620DF2A4EDD0115B2FE2BA07648EDF0C10474EFDCAFD2659B011` |
-| `05_OPEN_ISSUES_CURRENT.md` | `86F3E1D5E7AB21E4A9A7E4DA108448A9922F9C1FB9777A1A25B60CB52AAB9EDE` |
+| `04_RECONCILIATION_RECORD.md` | `3926CF1348A06F43362C919B348D0BC26812B8A7250025A7B7CC632397EF8293` |
+| `05_OPEN_ISSUES_CURRENT.md` | `47FC98C746B86AA560B3AAE9B48E790872E387ACBBD4DD5FD5EA55AA0FCE677B` |
 
 <!-- END GENERATED CURRENT HASHES -->

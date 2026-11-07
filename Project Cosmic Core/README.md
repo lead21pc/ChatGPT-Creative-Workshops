@@ -13,7 +13,7 @@ Project fiction cá nhân về đoàn tàu xuyên các world. Repository này l�
 | 03 / 04 / 05 | History / quyết định-reconciliation / open issues |
 | 06 / 07 | Premise core / provenance-độ chắc chắn; trạng thái chấp nhận là trục riêng |
 | 10 / 11 | Rongo / cấu trúc tàu |
-| 20 / 21–25 | Team 25 / năm identity nhân vật |
+| 20 / 21 / 22 | Team 25 và ba slot mở / hai hồ sơ nhân vật riêng |
 | 110 / 111 | World 1 persistent truth / campaign briefing knowledge |
 
 `FILE NUMBER != MODULE ID != FICTION ENTITY ID`. Mapping module tường minh trong builder, không suy từ thứ tự filename. Dải chục không là quota; không có source lấp số hoặc scenario chưa được nhập.
@@ -24,7 +24,7 @@ Project fiction cá nhân về đoàn tàu xuyên các world. Repository này l�
 
 Control ở `Project Cosmic Core CI/` và `Anti-Drift Source/`; checker ở `tools/`, test ở `tests/`. Chúng cùng manifest/builder/archive nằm ngoài namespace đánh số. `Source_Archive/` giữ lịch sử/provenance khi có, không là current fallback hoặc đầu vào tái dựng lore.
 
-Chạy từ root repository:
+Chạy từ thư mục package `Project Cosmic Core/`:
 
 ```powershell
 python -B build_consolidation.py --check
@@ -35,7 +35,7 @@ git diff --check
 
 Sau thay đổi current sources được phép, dùng `python -B build_consolidation.py --write`, rồi `--check`. Chỉ vùng generated module catalog trong 00 và metadata/hash trong MANIFEST được ghi; builder không là lore generator, không infer dependency/ownership hoặc giải OPEN/canon. Catalog admission nằm tường minh trong builder; khi nhận source mới phải cập nhật mapping cùng inventory generated đúng tập được duyệt, không tự nhận từ glob. `--write` từ chối inventory sai/tùy tiện thay vì tự cấp admission.
 
-Manifest băm 19 numbered current files; không băm chính nó/control/tooling. `--check-router` kiểm cấu trúc control, không chứng minh ý nghĩa đúng hoặc mô hình tuân thủ. Test dùng bản sao tạm, không sửa nguồn baseline.
+Manifest băm 16 numbered current files; không băm chính nó/control/tooling. `--check-router` kiểm cấu trúc control, không chứng minh ý nghĩa đúng hoặc mô hình tuân thủ. Test dùng bản sao tạm, không sửa nguồn baseline.
 
 ## Trạng thái bằng chứng
 
