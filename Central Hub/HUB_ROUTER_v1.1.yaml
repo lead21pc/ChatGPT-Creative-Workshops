@@ -4,22 +4,22 @@ runtime_role: CORE_ROUTER
 router_version: '1.1'
 status: ACTIVE
 active: true
-deployment: REPOSITORY_ACTIVE; PROJECT_DEPLOYMENT_NOT_VERIFIED
+deployment: USER_CONFIRMED_BASELINE_INSTALLED_AND_LIVE; CORRECTION_DELTA_STATIC_ONLY
 activation_notice: Normal runtime contract after manual installation with exact HUB_CI_v1.1.md delegation. File
   presence is not deployment or selection; ordinary user-action authorization remains with Hub CI.
 kind: Behavioral contract, not executable routing or Library storage implementation.
 contracts:
   architecture:
-    file: HUB_ARCHITECTURE_v1.11.md
+    file: HUB_ARCHITECTURE_v1.12.md
     module_id: HUB-CORE-ARCH
-    version: '1.11'
+    version: '1.12'
     status: ACTIVE
   root_catalog:
-    file: HUB_PACKAGE_CATALOG_v1.11.yaml
+    file: HUB_PACKAGE_CATALOG_v1.12.yaml
     module_id: HUB-CORE-PACKAGE-CATALOG
-    version: '1.11'
+    version: '1.12'
     status: ACTIVE
-  binding_scope: Exact manually installed Hub CI/Router v1.1 with Architecture/Catalog v1.11 Project Sources. Never
+  binding_scope: Exact manually installed Hub CI/Router v1.1 with Architecture/Catalog v1.12 Project Sources. Never
     discover earlier design or trial controls as substitutes.
   role_boundary: CORE_ROUTER identifies the existing scoped selector/composer responsibility; no new behavior owner.
 ownership:
@@ -275,7 +275,7 @@ evidence:
   live_library_retrieval: USER_REPORTED_SUCCESS_PATHS_VERIFIED; FULL_FILE 19/19 has_more=false
   single_module_trial: USER_REPORTED ACTIVE/1.0 FULL_FILE 19/19 has_more=false, V01/V02 PASS, no fallback or identity
     ambiguity; not independently reproduced here.
-  live_routing: LIVE INTEGRATION PARTIAL; I01-I07/I09-I10 PASS; I08 UNVERIFIABLE; USER_REPORTED
+  live_routing: USER_CONFIRMED_BASELINE_LIVE_PASS; CORRECTION_DELTA_LIVE_NOT_RUN; historical trial I01-I07/I09-I10 PASS, I08 UNVERIFIABLE; USER_REPORTED
   invariant: STATIC / SPEC PASS != LIVE ROUTING VERIFIED.
   live_failure_path: UNVERIFIABLE; no safe actual bound-artifact failure injection; no fallback observed on successful
     paths only.

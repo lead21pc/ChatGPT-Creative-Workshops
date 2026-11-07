@@ -23,7 +23,7 @@ AR = 'HUB-DOM-ACTOR-RECEPTION'
 NR = 'HUB-DOM-NARRATIVE-RESOLUTION'
 IDS = (AP, MCA, WIL, AR, NR)
 EXPOSURES = dict(zip(IDS, ('SURFACE', 'RELATION', 'SYSTEM', 'RECEPTION', 'CLOSURE')))
-VERSIONS = dict(zip(IDS, ('1.1', '1.1', '1.1', '1.0', '1.0')))
+VERSIONS = dict(zip(IDS, ('1.1', '1.2', '1.1', '1.0', '1.0')))
 HISTORY = ROOT / 'Source_archive/Concept production anti-drift 2026-11-07'
 BASELINE = 'e310b4510ad078981ee6ea82373808c469144ddb'
 
@@ -104,7 +104,7 @@ def verified(result):
 
 class ProductionAntiDriftTests(unittest.TestCase):
     def test_all_active_exact_bindings_and_real_requires(self):
-        local = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.2.yaml')
+        local = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.3.yaml')
         rows = {row['module_id']: row for row in local['entries']}
         self.assertEqual(set(rows), set(IDS) | {'HUB-DOM-CREATIVE','HUB-CAP-DEBATE','HUB-CAP-BRAINSTORM'})
         for identity in IDS:
@@ -118,8 +118,8 @@ class ProductionAntiDriftTests(unittest.TestCase):
                 self.assertEqual(row['requires'],deps)
                 self.assertEqual(re.findall(r'^Requires: (.+)$',text,re.M),[MCA] if identity == AR else [])
                 self.assertEqual(row['location']['root'],'Central Hub Config')
-                self.assertEqual(row['location']['resolution'],'UNRESOLVED')
-                self.assertEqual(row['location']['verification'],'NOT_VERIFIED')
+                self.assertEqual(row['location']['resolution'],'USER_CONFIRMED_BASELINE_LIVE')
+                self.assertEqual(row['location']['verification'],'USER_CONFIRMED_BASELINE_LIVE; EXACT_READ_RECEIPTS_NOT_RECORDED')
                 for key in ('locator','library_file_id','library_version_id'):
                     self.assertIsNone(row['location'][key])
         live = str(local)
@@ -202,7 +202,7 @@ class ProductionAntiDriftTests(unittest.TestCase):
                 self.assertFalse(any('archive' in str(x).lower() or 'FTH_' in str(x) for x in result['artifact_requests']))
 
     def test_selected_material_body_and_full_read_under_exact_library_contract(self):
-        local=load(ROOT/'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.2.yaml')
+        local=load(ROOT/'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.3.yaml')
         for row in local['entries'][3:]:
             entry=dict(row,entrypoint_module_id=row['module_id'],binding_mode='LIBRARY_MODULE')
             record=dict(module_id=row['module_id'],package_id=PACKAGE,runtime_role=row['runtime_role'],
@@ -248,7 +248,7 @@ class ProductionAntiDriftTests(unittest.TestCase):
         for identity,clauses in guards.items():
             text=(ROOT/f'library_modules/{identity}_v{VERSIONS[identity]}.md').read_text(encoding='utf-8')
             for clause in clauses: self.assertIn(clause.lower(),text.lower(),(identity,clause))
-        core=(ROOT/'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.2.md').read_text(encoding='utf-8')
+        core=(ROOT/'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.3.md').read_text(encoding='utf-8')
         for clause in ['UNKNOWN explicitly assigned to Creative may be developed','Brainstorm may mutate delegated assumptions','Debate may formulate hypotheses/objections without canon mutation','Fix an overreaching control rather than weakening an operation leaf']:
             self.assertIn(clause,core)
         # No material exposure in pure imagery, an explicit trope, authorized blank-slate invention,
@@ -257,7 +257,7 @@ class ProductionAntiDriftTests(unittest.TestCase):
             self.assertEqual(verified(production_spec(())),set(),task)
 
     def test_root_single_cue_and_operation_leaves_unchanged(self):
-        root=load(ROOT/'HUB_PACKAGE_CATALOG_v1.11.yaml')
+        root=load((ROOT / 'Source_archive/Production corrections 2026-11-08')/'HUB_PACKAGE_CATALOG_v1.11.yaml')
         package=next(p for p in root['packages'] if p['package_id']==PACKAGE)
         self.assertIn('/AD',package['applicability']); self.assertIn('NONE',package['applicability'])
         for identity in IDS:
@@ -265,14 +265,14 @@ class ProductionAntiDriftTests(unittest.TestCase):
         before=load(HISTORY/'HUB_PACKAGE_CATALOG_v1.10.yaml')
         self.assertEqual([p for p in root['packages'] if p['package_id']!=PACKAGE],
                          [p for p in before['packages'] if p['package_id']!=PACKAGE])
-        local=load(ROOT/'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.2.yaml')
+        local=load((ROOT / 'Source_archive/Production corrections 2026-11-08')/'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.2.yaml')
         old=load(HISTORY/'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.1.yaml')
         self.assertEqual(local['entries'][:3],old['entries'][:3])
         for identity,version in [('HUB-DOM-CREATIVE','1.1'),('HUB-CAP-BRAINSTORM','1.1'),('HUB-CAP-DEBATE','1.0')]:
             rel=f'library_modules/{identity}_v{version}.md'
             previous=subprocess.check_output(['git','show',BASELINE+':Central Hub/'+rel],cwd=ROOT)
             self.assertEqual((ROOT/rel).read_bytes(),previous)
-        router=(ROOT/'HUB_ROUTER_v1.1.yaml').read_bytes()
+        router=((ROOT / 'Source_archive/Production corrections 2026-11-08')/'HUB_ROUTER_v1.1.yaml').read_bytes()
         self.assertEqual(router,(HISTORY/'HUB_ROUTER_v1.1.yaml').read_bytes().replace(b'1.10',b'1.11'))
 
     def test_predecessor_receipts_and_successors(self):

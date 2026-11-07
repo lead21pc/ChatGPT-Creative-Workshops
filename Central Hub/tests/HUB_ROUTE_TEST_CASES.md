@@ -92,3 +92,18 @@ Static check: `python -B -m unittest discover -s tests -v` from the Hub root. Th
 Run live tests only when separately requested: install exact Hub CI and sources; do not upload archives/tests as controls. Record model/surface/date, input, actually loaded sources, tool calls/reads, observable prompt/payload and output. Assign PASS/FAIL/UNVERIFIABLE by the criteria; do not require private reasoning. Use multi-turn tests for H18/H25/H27/H28; keep unobservable portions unknown.
 
 H31–H35: observe reports and every mutation/write call during test/audit; defect discovery must leave files unchanged. After explicit correction authorization, mutate only within authorized scope. Record trace and before/after diff; static checks do not prove live model compliance with this boundary.
+
+## Production correction 2026-11-08 — current STATIC/SPEC cases
+
+Baseline production USER_CONFIRMED_INSTALLED_AND_LIVE; cases below are new-delta specifications, LIVE NOT_RUN.
+
+| Case | Input / sequence | Expected |
+| --- | --- | --- |
+| PC01 | Each /AUTHOR target + CREATIVE or + BRAINSTORM | Non-activating; no suffix stripping or plain-call downgrade |
+| PC02 | Exact plain, P1/P2/P3, ISOLATED, preset + ISOLATED calls | Activate only current turn, preserve existing provenance/source rules |
+| PC03 | Authoring clarification -> bare answer -> new exact call | Question states exact repeat form; bare answer does not activate; fresh call can continue. ISOLATED re-supplies/identifies needed material |
+| PC04 | Creative/Brainstorm/Debate clarification -> bare answer -> new exact span | Question says invocation ends this turn and shows new span; only new valid span reactivates |
+| PC05 | Creative exact operation -> /AUTHOR CODEX referencing its result | Two independent explicit operations; result is ordinary admitted source, not implicit composition |
+| PC06 | MCA-only / Actor Reception-only scope | No WIL requirement; Actor Reception closure includes MCA |
+
+Observe actual outputs/reads when a live run is separately requested. These lexical/contract cases do not prove model compliance.

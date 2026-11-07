@@ -114,7 +114,8 @@ class ShoppingCandidateStaticTests(unittest.TestCase):
     def test_preserved_baseline_and_shopping_not_admitted(self):
         for path, expected in BASELINE.items():
             with self.subTest(path=path):
-                data = historical_source(path).read_bytes()
+                baseline_path = ROOT / 'Source_archive/Production corrections 2026-11-08' / path
+                data = (baseline_path if path.startswith('tool_pipelines/AIS/') else historical_source(path)).read_bytes()
                 self.assertEqual(hashlib.sha256(data).hexdigest(), expected)
                 self.assertNotIn(b'HUB-PKG-SHOPPING', data)
         catalog = load(SHOPPING_PREDECESSOR / 'HUB_PACKAGE_CATALOG_v1.9.yaml')

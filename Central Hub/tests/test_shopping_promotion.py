@@ -17,7 +17,7 @@ class ShoppingPromotionTests(unittest.TestCase):
         cls.core = (modules / f'{CORE_ID}_v1.0.md').read_text(encoding='utf-8')
         cls.search = (modules / f'{SEARCH_ID}_v1.0.md').read_text(encoding='utf-8')
         cls.local = load(modules / f'{CAT_ID}_v1.0.yaml')
-        cls.catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.11.yaml')
+        cls.catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.12.yaml')
         cls.router = load(ROOT / 'HUB_ROUTER_v1.1.yaml')
         cls.entry = next(row for row in cls.catalog['packages'] if row['package_id'] == PACKAGE)
 
@@ -46,11 +46,11 @@ class ShoppingPromotionTests(unittest.TestCase):
             self.assertNotIn(forbidden, str(self.entry))
         self.assertIn('A product mention alone does not establish Shopping scope', self.entry['applicability'])
 
-    def test_library_binding_remains_unresolved(self):
+    def test_user_confirmed_live_does_not_invent_internal_identity(self):
         for row in (self.entry, self.entry['local_catalog'], self.local['entries'][0]):
             location = row['location']
             self.assertEqual((location['class'], location['root']), ('LIBRARY', 'Central Hub Config'))
-            self.assertEqual((location['resolution'], location['verification']), ('UNRESOLVED', 'NOT_PERFORMED'))
+            self.assertEqual((location['resolution'], location['verification']), ('USER_CONFIRMED_BASELINE_LIVE', 'USER_CONFIRMED_BASELINE_LIVE; EXACT_READ_RECEIPTS_NOT_RECORDED'))
             for field in ('locator', 'library_file_id', 'library_version_id'):
                 self.assertIsNone(location[field])
             self.assertIn('FULL_FILE', location['retrieval_mechanism'])
@@ -92,10 +92,10 @@ class ShoppingPromotionTests(unittest.TestCase):
 
     def test_shared_stack_regression(self):
         previous = load(SHOPPING_PREDECESSOR / 'HUB_PACKAGE_CATALOG_v1.9.yaml')
-        self.assertEqual([row for row in self.catalog['packages'] if row['package_id'] not in {PACKAGE, 'HUB-PKG-CONCEPT-DEVELOPMENT'}],
+        self.assertEqual([row for row in load((ROOT / 'Source_archive/Production corrections 2026-11-08') / 'HUB_PACKAGE_CATALOG_v1.11.yaml')['packages'] if row['package_id'] not in {PACKAGE, 'HUB-PKG-CONCEPT-DEVELOPMENT'}],
                          [row for row in previous['packages'] if row['package_id'] != 'HUB-PKG-CONCEPT-DEVELOPMENT'])
         self.assertEqual(self.catalog['identity_binding'],
-                         'EXACT_INSTALLED_V1_1_CI_ROUTER_WITH_V1_11_ARCHITECTURE_CATALOG_CONTRACT')
+                         'EXACT_INSTALLED_V1_1_CI_ROUTER_WITH_V1_12_ARCHITECTURE_CATALOG_CONTRACT')
 
     def test_history_integrity(self):
         receipt = json.loads((SHOPPING_PREDECESSOR / 'ARCHIVE_RECEIPT.json').read_text(encoding='utf-8'))
@@ -108,10 +108,10 @@ class ShoppingPromotionTests(unittest.TestCase):
 
     def test_router_only_changes_exact_pins(self):
         old = (SHOPPING_PREDECESSOR / 'HUB_ROUTER_v1.1.yaml').read_bytes()
-        self.assertEqual((ROOT / 'HUB_ROUTER_v1.1.yaml').read_bytes(), old.replace(b'1.9', b'1.11'))
+        self.assertEqual((ROOT / 'HUB_ROUTER_v1.1.yaml').read_bytes(), old.replace(b'1.9', b'1.12').replace(b'REPOSITORY_ACTIVE; PROJECT_DEPLOYMENT_NOT_VERIFIED', b'USER_CONFIRMED_BASELINE_INSTALLED_AND_LIVE; CORRECTION_DELTA_STATIC_ONLY').replace(b'LIVE INTEGRATION PARTIAL; I01-I07/I09-I10 PASS; I08 UNVERIFIABLE; USER_REPORTED', b'USER_CONFIRMED_BASELINE_LIVE_PASS; CORRECTION_DELTA_LIVE_NOT_RUN; historical trial I01-I07/I09-I10 PASS, I08 UNVERIFIABLE; USER_REPORTED'))
         self.assertEqual(self.router['router_version'], '1.1')
-        for key, path in [('architecture', 'HUB_ARCHITECTURE_v1.11.md'),
-                          ('root_catalog', 'HUB_PACKAGE_CATALOG_v1.11.yaml')]:
+        for key, path in [('architecture', 'HUB_ARCHITECTURE_v1.12.md'),
+                          ('root_catalog', 'HUB_PACKAGE_CATALOG_v1.12.yaml')]:
             self.assertEqual(self.router['contracts'][key]['file'], path)
-            self.assertEqual(self.router['contracts'][key]['version'], '1.11')
+            self.assertEqual(self.router['contracts'][key]['version'], '1.12')
             self.assertTrue((ROOT / path).is_file())

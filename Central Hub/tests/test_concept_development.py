@@ -18,12 +18,12 @@ BASELINE = 'ee104645e89939341cd45deba465b5d71da64521'
 
 def current_fixture():
     """Project interfaces into the SPEC oracle; specialized scopes declare already-valid explicit invocations, not semantic auto-selection."""
-    core = synthetic_module(CORE, PACKAGE, {'CORE', 'CREATIVE', 'DEBATE', 'BRAINSTORM'}, version='1.2')
+    core = synthetic_module(CORE, PACKAGE, {'CORE', 'CREATIVE', 'DEBATE', 'BRAINSTORM'}, version='1.3')
     fixture = synthetic_fixture(core)
-    catalog = synthetic_module(CATALOG, PACKAGE, set(), role='PACKAGE_CATALOG', version='1.2')
+    catalog = synthetic_module(CATALOG, PACKAGE, set(), role='PACKAGE_CATALOG', version='1.3')
     fixture['packages'][0]['local_catalog'] = catalog
     fixture['artifacts'][CATALOG] = [dict(copy.deepcopy(catalog), read_kind='FULL_FILE')]
-    local = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.2.yaml')
+    local = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.3.yaml')
     leaves = []
     scopes = {'HUB-DOM-CREATIVE': {'CREATIVE'}, 'HUB-CAP-BRAINSTORM': {'BRAINSTORM'}, 'HUB-CAP-DEBATE': {'DEBATE'}}
     for row in local['entries']:
@@ -39,26 +39,26 @@ def current_fixture():
 
 class ConceptDevelopmentTests(unittest.TestCase):
     def setUp(self):
-        self.root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.11.yaml')
-        self.local = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.2.yaml')
-        self.core = (ROOT / 'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.2.md').read_text(encoding='utf-8')
+        self.root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.12.yaml')
+        self.local = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.3.yaml')
+        self.core = (ROOT / 'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.3.md').read_text(encoding='utf-8')
         self.notes = (ROOT / 'CONCEPT_DEVELOPMENT_MIGRATION.md').read_text(encoding='utf-8')
 
     def test_six_root_owners_and_package_local_inventory(self):
-        self.assertEqual(self.root['version'], '1.11')
+        self.assertEqual(self.root['version'], '1.12')
         self.assertEqual({p['package_id'] for p in self.root['packages']},
                          {'HUB-PKG-TECHNICAL', PACKAGE, 'HUB-PKG-AUTHORING',
                           'HUB-PKG-AIS', 'HUB-PKG-IMAGET', 'HUB-PKG-SHOPPING'})
         package = next(p for p in self.root['packages'] if p['package_id'] == PACKAGE)
         self.assertEqual((package['entrypoint_module_id'], package['runtime_role'], package['version']),
-                         (CORE, 'DOMAIN_CONTROL', '1.2'))
+                         (CORE, 'DOMAIN_CONTROL', '1.3'))
         self.assertEqual(package['binding_mode'], 'LIBRARY_MODULE')
         self.assertEqual(package['requires'], [])
         self.assertEqual(package['local_catalog']['module_id'], CATALOG)
         self.assertEqual(package['local_catalog']['package_id'], PACKAGE)
         self.assertEqual((self.local['module_id'], self.local['package_id'], self.local['runtime_role'],
                           self.local['status'], self.local['version']),
-                         (CATALOG, PACKAGE, 'PACKAGE_CATALOG', 'ACTIVE', '1.2'))
+                         (CATALOG, PACKAGE, 'PACKAGE_CATALOG', 'ACTIVE', '1.3'))
         self.assertEqual({p['module_id'] for p in self.local['entries']},
                          {'HUB-DOM-CREATIVE', 'HUB-CAP-DEBATE', 'HUB-CAP-BRAINSTORM', 'HUB-DOM-ANTI-PRIOR',
                           'HUB-DOM-MODULAR-CONCEPT-ARCHITECTURE',
@@ -70,26 +70,28 @@ class ConceptDevelopmentTests(unittest.TestCase):
     def test_router_changes_only_exact_pins_and_global_owners_stay(self):
         previous = load(CONCEPT_ARCHIVE / 'HUB_ROUTER_v1.1.yaml')
         expected = copy.deepcopy(previous)
-        for key, name in [('architecture', 'HUB_ARCHITECTURE_v1.11.md'),
-                          ('root_catalog', 'HUB_PACKAGE_CATALOG_v1.11.yaml')]:
+        for key, name in [('architecture', 'HUB_ARCHITECTURE_v1.12.md'),
+                          ('root_catalog', 'HUB_PACKAGE_CATALOG_v1.12.yaml')]:
             expected['contracts'][key]['file'] = name
-            expected['contracts'][key]['version'] = '1.11'
+            expected['contracts'][key]['version'] = '1.12'
+        expected['deployment'] = 'USER_CONFIRMED_BASELINE_INSTALLED_AND_LIVE; CORRECTION_DELTA_STATIC_ONLY'
+        expected['evidence']['live_routing'] = 'USER_CONFIRMED_BASELINE_LIVE_PASS; CORRECTION_DELTA_LIVE_NOT_RUN; historical trial I01-I07/I09-I10 PASS, I08 UNVERIFIABLE; USER_REPORTED'
         expected['contracts']['binding_scope'] = load(ROOT / 'HUB_ROUTER_v1.1.yaml')['contracts']['binding_scope']
         self.assertEqual(load(ROOT / 'HUB_ROUTER_v1.1.yaml'), expected)
         before = load(CONCEPT_ARCHIVE / 'HUB_PACKAGE_CATALOG_v1.0.yaml')
         for package in ['HUB-PKG-TECHNICAL', 'HUB-PKG-AIS']:
             self.assertEqual(next(p for p in before['packages'] if p['package_id'] == package),
-                             next(p for p in self.root['packages'] if p['package_id'] == package))
+                             next(p for p in load((ROOT / 'Source_archive/Production corrections 2026-11-08') / 'HUB_PACKAGE_CATALOG_v1.11.yaml')['packages'] if p['package_id'] == package))
         image = copy.deepcopy(next(p for p in before['packages'] if p['package_id'] == 'HUB-PKG-IMAGET'))
         image['version'] = '1.2'
         image['location']['declared_source_path'] = 'tool_pipelines/ImageT/IMAGE_CONTROLLER_v1.2.md'
         image['location']['source_name'] = 'IMAGE_CONTROLLER_v1.2.md'
-        self.assertEqual(image, next(p for p in self.root['packages'] if p['package_id'] == 'HUB-PKG-IMAGET'))
+        self.assertEqual(image, next(p for p in load((ROOT / 'Source_archive/Production corrections 2026-11-08') / 'HUB_PACKAGE_CATALOG_v1.11.yaml')['packages'] if p['package_id'] == 'HUB-PKG-IMAGET'))
         original = subprocess.check_output(['git', 'show', BASELINE + ':Central Hub/HUB_CI_v1.1.md'], cwd=ROOT)
         self.assertEqual((ROOT / 'HUB_CI_v1.1.md').read_bytes(), original)
 
     def test_library_headers_ownership_and_exact_leaf_revisions(self):
-        for module, version, role in [(CORE, '1.2', 'DOMAIN_CONTROL'),
+        for module, version, role in [(CORE, '1.3', 'DOMAIN_CONTROL'),
                                       ('HUB-CAP-DEBATE', '1.0', 'CAPABILITY'),
                                       ('HUB-DOM-CREATIVE', '1.1', 'DOMAIN_CONTROL'),
                                       ('HUB-CAP-BRAINSTORM', '1.1', 'CAPABILITY')]:
@@ -185,8 +187,8 @@ class ConceptDevelopmentTests(unittest.TestCase):
         }
         for module, location in locations.items():
             if module in {CORE, CATALOG}:
-                self.assertEqual(location['resolution'], 'UNRESOLVED')
-                self.assertEqual(location['verification'], 'NOT_PERFORMED')
+                self.assertEqual(location['resolution'], 'USER_CONFIRMED_BASELINE_LIVE')
+                self.assertEqual(location['verification'], 'USER_CONFIRMED_BASELINE_LIVE; EXACT_READ_RECEIPTS_NOT_RECORDED')
                 self.assertIsNone(location['library_file_id'])
                 self.assertIsNone(location['library_version_id'])
                 continue
@@ -205,7 +207,7 @@ class ConceptDevelopmentTests(unittest.TestCase):
                          'CHATGPT_OBSERVED / USER_PROVIDED; not independently reproduced by Codex')
         self.assertEqual(evidence['runtime_evidence_basis'],
                          'USER_CONFIRMED_LIVE_PASS; not independently reproduced by Codex')
-        self.assertEqual(evidence['hub_runtime_retrieval'], 'NOT_VERIFIED')
+        self.assertEqual(evidence['hub_runtime_retrieval'], 'USER_CONFIRMED_BASELINE_LIVE; EXACT_READ_RECEIPTS_NOT_RECORDED')
         self.assertEqual(evidence['central_hub_project_switch'],
                          'USER_CONFIRMED_FOR_INTEGRATED_RUNTIME_SMOKE')
         self.assertEqual(evidence['live_routing'],
@@ -273,7 +275,7 @@ def leaf_span_spec(parts):
     """
     text = ''.join(body for role, body in parts)
     directive = [role == 'USER_DIRECTIVE' for role, body in parts for _ in body]
-    local = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.2.yaml')
+    local = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.3.yaml')
     openers = {row['activation']: row['module_id'] for row in local['entries'] if 'activation' in row}
     tokens = re.compile(r'(?<![\w/])/(?:CREATIVE|DEBATE|BRAINSTORM)(?=\s|$)|(?<!\S)#(?=\s|$)')
     invocations, blocked, occupied = [], [], []
@@ -385,21 +387,21 @@ class ExplicitLeafControlTests(unittest.TestCase):
         self.assertEqual(result['unscoped'][-1], ' outside')
 
     def test_local_ownership_and_no_root_router_parser(self):
-        local = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.2.yaml')
+        local = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.3.yaml')
         selected = {row['activation']: row for row in local['entries'] if 'activation' in row}
         self.assertEqual(set(selected), {'/CREATIVE', '/DEBATE', '/BRAINSTORM'})
         for row in selected.values():
             self.assertEqual(row['requires'], [])
             self.assertIn('SELECT ONLY FOR A VALID EXPLICIT CONTROL SPAN', row['applicability'])
-        root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.11.yaml')
+        root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.12.yaml')
         for token in selected:
             self.assertNotIn(token, str(root))
             self.assertNotIn(token, (ROOT / 'HUB_ROUTER_v1.1.yaml').read_text(encoding='utf-8'))
         previous = subprocess.check_output(['git', 'show', '573c8fe:Central Hub/HUB_ROUTER_v1.1.yaml'], cwd=ROOT)
-        self.assertEqual((ROOT / 'HUB_ROUTER_v1.1.yaml').read_bytes(), previous.replace(b'1.7', b'1.11'))
+        self.assertEqual((ROOT / 'HUB_ROUTER_v1.1.yaml').read_bytes(), previous.replace(b'1.7', b'1.12').replace(b'REPOSITORY_ACTIVE; PROJECT_DEPLOYMENT_NOT_VERIFIED', b'USER_CONFIRMED_BASELINE_INSTALLED_AND_LIVE; CORRECTION_DELTA_STATIC_ONLY').replace(b'LIVE INTEGRATION PARTIAL; I01-I07/I09-I10 PASS; I08 UNVERIFIABLE; USER_REPORTED', b'USER_CONFIRMED_BASELINE_LIVE_PASS; CORRECTION_DELTA_LIVE_NOT_RUN; historical trial I01-I07/I09-I10 PASS, I08 UNVERIFIABLE; USER_REPORTED'))
 
     def test_core_contract_guards_and_scope_dependency_distinction(self):
-        text = (ROOT / 'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.2.md').read_text(encoding='utf-8')
+        text = (ROOT / 'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.3.md').read_text(encoding='utf-8')
         for clause in ('SEMANTIC FIT != LEAF ACTIVATION', 'No nesting or overlap',
                        'TEXTUAL ORDER != AUTOMATIC DEPENDENCY', 'LEAF SCOPE != CONTEXT VISIBILITY',
                        'PREVIOUS SPAN != CURRENT ACTIVATION', 'PREVIOUS TURN != CURRENT ACTIVATION',

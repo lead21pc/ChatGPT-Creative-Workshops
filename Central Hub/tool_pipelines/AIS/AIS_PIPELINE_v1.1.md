@@ -2,8 +2,9 @@
 
 Status: ACTIVE
 Active: true
-Project deployment: NOT_PERFORMED
-Independent live verification: NOT_RUN
+Project deployment: USER_CONFIRMED_INSTALLED_AND_LIVE
+Production live status: USER_CONFIRMED_LIVE_PASS
+Codex independent reproduction: NOT_PERFORMED
 
 Official repository AIS revision. REPOSITORY ACTIVE != PROJECT DEPLOYED. Use only this exact pipeline v1.1/router v1.2 pair after actual manual installation and Hub selection; older revisions and candidates are history only, never automatic fallback. ROLLBACK != FALLBACK.
 

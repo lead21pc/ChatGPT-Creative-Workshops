@@ -23,6 +23,21 @@ NO NEW EVIDENCE != STATUS RESET
 
 ## Current verified runtime status
 
+### PRODUCTION_BASELINE_USER_CONFIRMATION_2026_11_08
+
+- **USER_CONFIRMED_INSTALLED_AND_LIVE / USER_CONFIRMED_LIVE_PASS**. Người dùng xác nhận active production Central Hub đã thực sự cài/test live; các trạng thái preparation-time chưa được cập nhật không còn mô tả live state hiện hành.
+- Phạm vi baseline: Hub CI/Router 1.1; Architecture/Catalog 1.11; Concept core/catalog 1.2; Authoring 0.7; Anti-Prior/MCA/WIL 1.1; Actor Reception/Narrative Resolution 1.0; Creative/Brainstorm 1.1, Debate 1.0; TECHNICAL 1.0; Shopping 1.0; AIS pipeline 1.1/router 1.2; ImageT controller 1.2 và production dependencies. Candidate, preference inactive, archive và test/spec không được promote.
+- Attribution: xác nhận người dùng trong yêu cầu implementation; 2026-11-08 là ngày ghi nhận, không suy ngày chạy. Codex không independently reproduce; không có raw input/output, per-case coverage, exact Library revision IDs, locator hoặc FULL_FILE/duplicate receipts mới được cung cấp. Technical identity details chưa biết không đồng nghĩa chưa cài/chưa live. Các current-use exact verification/failure rules giữ nguyên.
+
+### PRODUCTION_CORRECTION_DELTA_2026_11_08
+
+- **IMPLEMENTED / STATICALLY VERIFIED; LIVE VERIFICATION OF NEW DELTA: NOT RUN**. Authoring 0.8 loại bỏ contributor, giữ exact plain/preset/ISOLATED calls và ordinary referenced context; clarification hướng dẫn call mới. Concept core/catalog 1.3 hướng dẫn exact span mới sau clarification. MCA 1.2 bỏ nghĩa vụ “both B controls”; MCA/WIL độc lập và Actor Reception Requires MCA giữ nguyên.
+- Architecture/Catalog 1.12 pin bộ correction; CI/Router vẫn 1.1, Router chỉ pins/status metadata. Baseline USER_CONFIRMED_LIVE_PASS ở trên không bị reset; không claim revision mới đã deploy/live, không chạy API hoặc đổi Project/Library trong tác vụ này.
+
+## Historical revision records
+
+Các record dưới giữ trạng thái tại thời điểm ghi. Những claim chưa cài/chưa live đã được xác nhận mới supersede trong phạm vi baseline phía trên; thiếu exact receipts vẫn không được diễn giải thành thiếu live state. Contributor/composition là hành vi lịch sử đã retire ở 0.8, không là feature hiện hành.
+
 ### CONCEPT_1_2_PRODUCTION_ANTI_DRIFT_REPOSITORY
 
 - Ngày 2026-11-07: Core/local Catalog 1.2; Anti-Prior/MCA/WIL 1.1; Actor Reception/Narrative Resolution 1.0 là ACTIVE eligibility trong repository, cùng Architecture/Catalog 1.11 và CI/Router 1.1 (chỉ đổi exact pins). A/B được retire khỏi cấu hình hiện hành theo quyết định tác giả, không phải kết quả so sánh chất lượng live.
@@ -129,6 +144,13 @@ NO NEW EVIDENCE != STATUS RESET
 - Related log entry: `2026-10-27 - Integrated concept-development runtime smoke`.
 
 ## Verification log
+
+### 2026-11-08 — Production baseline confirmation and bounded corrections
+
+- Ghi nhận USER_CONFIRMED_INSTALLED_AND_LIVE / USER_CONFIRMED_LIVE_PASS theo yêu cầu người dùng; supersede negative deployment claims của baseline đã xác nhận, giữ provenance và không bịa identity receipts.
+- Toàn bộ Central Hub suite: **280/280 PASS**, gồm 9 test regression mới; kiểm YAML/contract, exact-call, non-persistence, dependency closure và archive hashes. Đây là STATIC/SPEC, không phải model/runtime test.
+- Correction mới chỉ static verification; không deploy/live. Archive byte-exact tại Source_archive/Production corrections 2026-11-08; contributor lịch sử không bị rewrite.
+
 
 ### 2026-11-06 — Shopping 1.0 repository promotion
 

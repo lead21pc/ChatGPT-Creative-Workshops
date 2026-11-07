@@ -1,5 +1,11 @@
 # AIS — promotion local và chỉnh sửa lõi nghiên cứu chính thức
 
+## Trạng thái hiện hành — 2026-11-08
+
+AIS pipeline 1.1/router 1.2: USER_CONFIRMED_INSTALLED_AND_LIVE / USER_CONFIRMED_LIVE_PASS theo xác nhận production baseline của người dùng. Codex không tái hiện độc lập; không suy per-case receipts, raw trace hoặc ngày chạy. Correction này chỉ cập nhật metadata, không đổi thủ tục AIS.
+
+## Hồ sơ lịch sử ngày 2026-10-21
+
 Trạng thái hiện hành ngày 2026-10-21: AIS_PIPELINE_v1.1.md / AIS_ROUTER_v1.2.yaml là revision OFFICIAL/ACTIVE trong repository, đã đơn giản hóa tại chỗ sau promotion. PROJECT DEPLOYMENT: NOT_PERFORMED. Không có promotion mới, version song song, stage/commit/push, upload Project hay sửa Library trong đợt chỉnh sửa này.
 
 ## Baseline thực tế và lịch sử

@@ -24,8 +24,8 @@ entries:
     locator: null
     library_file_id: null
     library_version_id: null
-    resolution: UNRESOLVED
-    verification: NOT_PERFORMED
+    resolution: USER_CONFIRMED_BASELINE_LIVE
+    verification: USER_CONFIRMED_BASELINE_LIVE; EXACT_READ_RECEIPTS_NOT_RECORDED
     retrieval_mechanism: >-
       Resolve the exact ACTIVE/1.0 object in Central Hub Config under Hub Router. Verify FULL_FILE,
       identity, body and scoped duplicate coverage before use. No repository, Project Source, archive,

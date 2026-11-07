@@ -4,7 +4,7 @@ release:
   id: central-hub-imaget-1.2
   working_state: local_implementation
   published: false
-  project_deployment: not_performed
+  project_deployment: USER_CONFIRMED_INSTALLED_AND_LIVE
 integrity:
   algorithm: sha256
   scope: exact_local_bytes
@@ -74,7 +74,7 @@ controllers:
     version: '1.2'
     status: active
     required: true
-    sha256: e9cbd796c29f2795748c89fe8e10413780817f894fafd9a67b2e7c168e58e675
+    sha256: cf327b4008c5952c898875ebdd9142fd604ff56190c4400bbde37a5b6cc02355
     compatibility:
       router: 3.1.0
       prior_guard: 1.1.0

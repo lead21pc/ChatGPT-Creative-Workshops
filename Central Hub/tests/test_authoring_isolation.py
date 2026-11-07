@@ -1,4 +1,4 @@
-"""Authoring 0.7 static/spec checks; fixed fixtures, no model or runtime parser."""
+"""HISTORICAL Authoring 0.7 static/spec checks (superseded by 0.8); fixed fixtures, no model or runtime parser."""
 import hashlib
 import json
 import re

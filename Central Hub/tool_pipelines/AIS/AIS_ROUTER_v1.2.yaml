@@ -138,7 +138,7 @@ handoff: Return supported findings, actual source reads, applicability condition
   UNKNOWN rather than invented executed/not-executed. Hub retains general claim state.
 status: ACTIVE
 active: true
-live_verification: NOT_RUN
+live_verification: USER_CONFIRMED_LIVE_PASS
 kind: Behavioral research/evidence contract for a Hub-delegated question; not a product launcher or executor-selection
   engine.
 research_policy:
@@ -230,4 +230,4 @@ return_contract:
 - tool/access limits materially changing coverage
 - per-action execution status and evidence basis
 - actions actually performed
-deployment: REPOSITORY_ACTIVE; PROJECT_DEPLOYMENT_NOT_PERFORMED
+deployment: USER_CONFIRMED_INSTALLED_AND_LIVE

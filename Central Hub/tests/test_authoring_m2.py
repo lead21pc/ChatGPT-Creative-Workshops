@@ -1,4 +1,4 @@
-"""Three M2 static/spec checks; no model routing or generated-prompt evaluation."""
+"""HISTORICAL contributor contract (retired in 0.8); three M2 static/spec checks; no model routing or generated-prompt evaluation."""
 import hashlib
 import re
 import unittest

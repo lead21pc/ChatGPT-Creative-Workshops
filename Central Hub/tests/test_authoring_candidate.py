@@ -1,4 +1,4 @@
-"""Authoring promotion STATIC checks and lexical SPEC oracle; no model or target execution."""
+"""HISTORICAL Authoring <=0.7 promotion STATIC checks and lexical SPEC oracle; no model or target execution."""
 import json
 import hashlib
 import copy

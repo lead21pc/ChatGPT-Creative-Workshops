@@ -1,5 +1,19 @@
 # Authoring 0.7 — promotion vào Central Hub nguồn
 
+## Cập nhật hiện hành — 2026-11-08
+
+Production baseline CI/Router 1.1, Architecture/Catalog 1.11, Concept core/catalog 1.2, Authoring 0.7, năm control production, Shopping 1.0 và AIS/ImageT: **USER_CONFIRMED_INSTALLED_AND_LIVE / USER_CONFIRMED_LIVE_PASS** theo xác nhận người dùng trong tác vụ này. Không phải Codex tái hiện độc lập; không suy ngày chạy, kết quả từng ca, FULL_FILE/duplicate receipts hoặc Library IDs/locator chưa được cung cấp.
+
+Correction hiện hành: Architecture/Catalog 1.12, Authoring 0.8, Concept core/catalog 1.3, MCA 1.2; CI/Router giữ 1.1. **IMPLEMENTED / STATICALLY VERIFIED; LIVE VERIFICATION OF NEW DELTA: NOT RUN**. Baseline PASS không bị reset. Tác vụ này không deploy.
+
+Contributor Authoring đã retire: mọi `+ CREATIVE` / `+ BRAINSTORM` không activation và không được bỏ suffix để chạy plain Authoring. Creative/Brainstorm vẫn là exact Concept operations độc lập. Kết quả được cung cấp hoặc referenced rõ là ordinary source/context theo Authoring, không phải contributor. Clarification phải hướng dẫn exact call/span mới; không giữ mode, target, preset hay isolation ngầm.
+
+Xem [runtime evidence](RUNTIME_EVIDENCE_CHANGELOG.md). Các phần dưới là lịch sử đúng thời điểm, không là trạng thái production hiện hành hoặc hướng dẫn cài bộ cũ.
+
+Kiểm chứng correction: **280/280 Central Hub tests PASS** (9 regression mới); exact call, source/context tail, dependency và predecessor hashes được kiểm tĩnh. AIS/ImageT chỉ sửa status metadata/hash tương ứng; không đổi thủ tục. Không có live run cho delta mới.
+
+## Hồ sơ lịch sử trước correction
+
 Ngày 2026-11-05 (Asia/Bangkok). Người dùng duyệt promotion sau audit `ACCEPT WITH LOCAL CORRECTION`. Baseline repo nguồn: branch `main`, HEAD `b3f470a46c87c4bfad68d74bf031f78d7abc87b4`, working tree/index sạch.
 
 ## Bộ active trong repository

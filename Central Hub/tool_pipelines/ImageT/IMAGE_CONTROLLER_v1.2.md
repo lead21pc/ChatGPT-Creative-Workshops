@@ -7,7 +7,7 @@ READY_GATE_DEPENDENCY: manifest.artifacts.ready_gate
 
 Hub CI retains general conversation stage, truth status, verification need and action reporting. Hub Router selects ImageT. This controller owns only the delegated image operation, input transformation authority, source/field resolution, prompt and visible image checks. It never selects or replaces Project instructions. Ready Gate authorization is delegated to the required independently versioned control selected by the ImageT manifest.
 
-Repository active controller; Project deployment has not been performed. Repository promotion does not prove live integrated runtime behavior.
+Production active controller: USER_CONFIRMED_INSTALLED_AND_LIVE / USER_CONFIRMED_LIVE_PASS. Codex has not independently reproduced that runtime; no exact per-case read or tool payload receipts are inferred. Repository promotion alone is not live evidence.
 
 ## Purpose
 

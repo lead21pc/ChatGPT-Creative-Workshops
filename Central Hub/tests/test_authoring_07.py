@@ -1,4 +1,4 @@
-"""Native Hub active 0.7 contracts; static checks only, no local API host."""
+"""Historical Hub 0.7 promotion contracts (retired by 0.8); static checks only, no local API host."""
 import copy
 import hashlib
 import json
@@ -9,7 +9,7 @@ from test_hub_contracts import ROOT, SHOPPING_PREDECESSOR, load
 from test_authoring_isolation import isolated_spec, CASES
 
 OLD = ROOT / 'Source_archive/Authoring 0.7 M2 2026-11-05'
-ACTIVE = ROOT / 'library_modules/HUB-CAP-AUTHORING_v0.7.md'
+ACTIVE = ROOT / 'Source_archive/Production corrections 2026-11-08/library_modules/HUB-CAP-AUTHORING_v0.7.md'
 CANDIDATE = ROOT / 'candidates/authoring_v0_7/HUB-CAP-AUTHORING_v0.7-candidate.md'
 
 
@@ -17,7 +17,7 @@ class Authoring07PromotionTests(unittest.TestCase):
     def test_active_identity_live_candidate_and_no_suffix_preservation(self):
         text = ACTIVE.read_text(encoding='utf-8')
         self.assertIn('Status: ACTIVE\nVersion: 0.7', text)
-        self.assertEqual(list((ROOT / 'library_modules').glob('HUB-CAP-AUTHORING_v*.md')), [ACTIVE])
+        self.assertEqual(list(ACTIVE.parent.glob('HUB-CAP-AUTHORING_v*.md')), [ACTIVE])
         body = text.split('For the current turn only,', 1)[1]
         self.assertEqual(body, CANDIDATE.read_text(encoding='utf-8').split('For the current turn only,', 1)[1])
         inherited = re.sub(r'## Optional explicit source isolation\n.*?(?=## Context sources, rewrite and reauthor)', '', text, flags=re.S)
