@@ -834,8 +834,9 @@ class PromotionContracts(unittest.TestCase):
 class PriorSingletonMigration(unittest.TestCase):
     def test_repository_activation_preserves_accepted_router_algorithm(self):
         promotion = ROOT / 'candidates/promotion_v1.1'
-        self.assertEqual((ROOT / 'HUB_CI_v1.1.md').read_bytes(),
-                         (promotion / 'HUB_CI_v1.1.md').read_bytes())
+        # Historical promotion identity; the authorized active CI delta has its own contract checks.
+        self.assertEqual(digest(promotion / 'HUB_CI_v1.1.md'),
+                         '7bb946874663627060d28e47674decb07ba99f51acbffb6550db98d65746157b')
         before = load(promotion / 'HUB_ROUTER_v1.1.yaml')
         after = load(historical_source('HUB_ROUTER_v1.1.yaml'))
         expected = copy.deepcopy(before)

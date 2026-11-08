@@ -10,7 +10,7 @@ import re
 import subprocess
 import unittest
 
-from test_hub_contracts import ROOT, load
+from test_hub_contracts import ROOT, load, historical_source
 from test_concept_development import leaf_span_spec
 from test_concept_production_anti_drift import production_spec, MCA, WIL, AR
 
@@ -161,7 +161,7 @@ class ProductionCorrectionsTests(unittest.TestCase):
         self.assertFalse(router['persistence']['persistent_modes'])
         self.assertIn('repository',router['library']['forbidden_fallbacks'])
         old_ci=subprocess.check_output(['git','show',BASELINE+':Central Hub/HUB_CI_v1.1.md'],cwd=ROOT)
-        self.assertEqual((ROOT/'HUB_CI_v1.1.md').read_bytes(),old_ci)
+        self.assertEqual(historical_source('HUB_CI_v1.1.md').read_bytes(),old_ci)
 
     def test_pipeline_changes_only_status_and_corresponding_manifest_hash(self):
         path='tool_pipelines/AIS/AIS_PIPELINE_v1.1.md'

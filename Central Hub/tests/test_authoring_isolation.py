@@ -4,7 +4,7 @@ import json
 import re
 import unittest
 
-from test_hub_contracts import ROOT, load
+from test_hub_contracts import ROOT, load, historical_source
 
 # Historical 0.6/1.8 baseline; active 0.7 is checked in test_authoring_07.py.
 PREDECESSOR = ROOT / 'Source_archive/Authoring 0.7 M2 2026-11-05'
@@ -163,7 +163,7 @@ class AuthoringIsolationTests(unittest.TestCase):
         }
         for path, digest in expected.items():
             # Canonical LF avoids tying a repository check to Git checkout conversion.
-            canonical = ((ROOT if path == 'HUB_CI_v1.1.md' else PREDECESSOR) / path).read_bytes().replace(b'\r\n', b'\n')
+            canonical = (historical_source(path) if path == 'HUB_CI_v1.1.md' else PREDECESSOR / path).read_bytes().replace(b'\r\n', b'\n')
             self.assertEqual(hashlib.sha256(canonical).hexdigest(), digest, path)
         self.assertEqual(list((PREDECESSOR / 'library_modules').glob('HUB-CAP-AUTHORING_v*.md')),
                          [PREDECESSOR / 'library_modules/HUB-CAP-AUTHORING_v0.6.md'])

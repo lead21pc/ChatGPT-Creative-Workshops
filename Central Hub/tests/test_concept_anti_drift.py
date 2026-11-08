@@ -5,7 +5,7 @@ import subprocess
 import unittest
 import yaml
 
-from test_hub_contracts import ROOT, load
+from test_hub_contracts import ROOT, load, historical_source
 from test_concept_development import current_fixture, PACKAGE
 from test_hub_router_candidate import simulate
 
@@ -236,7 +236,7 @@ class AntiDriftStaticTests(unittest.TestCase):
         for relative in ('HUB_CI_v1.1.md', 'HUB_ROUTER_v1.1.yaml', 'HUB_ARCHITECTURE_v1.3.md',
                          'HUB_PACKAGE_CATALOG_v1.3.yaml', 'library_modules/HUB-DOM-CREATIVE_v1.1.md',
                          'library_modules/HUB-CAP-BRAINSTORM_v1.1.md'):
-            path = ROOT / relative
+            path = historical_source(relative) if relative == 'HUB_CI_v1.1.md' else ROOT / relative
             if relative in {'HUB_ROUTER_v1.1.yaml', 'HUB_ARCHITECTURE_v1.3.md', 'HUB_PACKAGE_CATALOG_v1.3.yaml'}:
                 path = ROOT / 'Source_archive/Authoring 0.4 promotion 2026-11-01' / relative
             self.assertEqual(path.read_bytes(), original(relative))

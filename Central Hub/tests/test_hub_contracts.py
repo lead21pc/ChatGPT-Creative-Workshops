@@ -27,6 +27,9 @@ SHOPPING_PREDECESSOR = ROOT / 'Source_archive/Shopping 1.0 promotion 2026-11-06'
 
 
 def historical_source(path):
+    if path == 'HUB_CI_v1.1.md':
+        # Pre-correction CI retained in the accepted promotion snapshot; tests/provenance only.
+        return ROOT / 'candidates/promotion_v1.1/HUB_CI_v1.1.md'
     if path == 'tests/HUB_ROUTE_TEST_CASES.md':
         return ROOT / 'Source_archive/Concept explicit leaf controls 2026-11-02' / path
     if path in {'tool_pipelines/ImageT/IMAGE_CONTROLLER_v1.1.md', 'tool_pipelines/ImageT/manifest.yaml'}:
@@ -272,8 +275,7 @@ class HubTests(unittest.TestCase):
                   'TURN AND STATE', 'CLAIM STATE AND DEPENDENCY', 'UPDATING AND UNCERTAINTY', 'EXPLANATION']
         indices = [text.index(s) for s in owners]
         self.assertEqual(indices, sorted(indices))
-        for s in ['ACKNOWLEDGING FEELINGS != CONFIRMING EVENT INTERPRETATIONS', 'EMPATHY != DIAGNOSIS',
-                  'LISTENING != INFERRING MOTIVES', 'HUB_ROUTER_v1.1.yaml', 'Clear fiction needs no repeated disclaimer']:
+        for s in ['HUB_ROUTER_v1.1.yaml', 'Clear fiction needs no repeated disclaimer']:
             self.assertIn(s, text)
 
     def test_task_stage_boundary_contract_and_regression_spec(self):
@@ -294,6 +296,46 @@ class HubTests(unittest.TestCase):
                        'người dùng yêu cầu correction rõ ràng', 'lỗi lân cận ngoài scope',
                        'người dùng chỉ hỏi cách fix', 'Record trace and before/after diff']:
             self.assertIn(phrase, spec)
+
+    def test_ci_correction_contract_and_reviewed_regressions(self):
+        """Contract/source coverage only; never a language-model response oracle."""
+        historical = historical_source('HUB_CI_v1.1.md').read_text(encoding='utf-8')
+        active = (ROOT / 'HUB_CI_v1.1.md').read_text(encoding='utf-8')
+        old_discourse = next(p for p in historical.split('\n\n') if p.startswith('DISCOURSE FIDELITY:'))
+        discourse = next(p for p in active.split('\n\n') if p.startswith('DISCOURSE FIDELITY:'))
+        residue = next(p for p in historical.split('\n\n') if p.startswith('Respond warmly'))
+        # Every other byte of the existing control owners remains unchanged.
+        self.assertEqual(active.replace(discourse, '', 1),
+                         historical.replace(old_discourse, '', 1).replace(residue + '\n\n', '', 1))
+        self.assertTrue(discourse.startswith(old_discourse))
+        for removed in ['Respond warmly to feelings', 'ACKNOWLEDGING FEELINGS != CONFIRMING EVENT INTERPRETATIONS',
+                        'EMPATHY != DIAGNOSIS', 'LISTENING != INFERRING MOTIVES',
+                        'Distress plus a writing request']:
+            self.assertIn(removed, historical)
+            self.assertNotIn(removed, active)
+        for clause in ['Compatible clarification or rephrasing', 'does not establish prior error',
+                       'neither does a challenge alone', 'Once claim controls establish a correction',
+                       'affected content and dependent state directly',
+                       'apology, gratitude, validation, reassurance or interpersonal repair',
+                       'only when the current turn needs it']:
+            self.assertIn(clause, discourse)
+        self.assertNotIn('NEVER APOLOGIZE', active)
+        for preserved in ['Acknowledgment/conditional use establishes no fact',
+                          'Update basis only from supported facts/corrections',
+                          'Infer no user qualities/status', 'Creation grants no canon/acceptance',
+                          'AUDIT != IMPLEMENTATION']:
+            self.assertIn(preserved, active)
+        spec = (ROOT / 'tests/HUB_ROUTE_TEST_CASES.md').read_text(encoding='utf-8')
+        rows = re.findall(r'^\| (CF\d{2}) —.*$', spec, re.M)
+        self.assertEqual(rows, [f'CF{i:02}' for i in range(1, 9)])
+        for condition in ['CHALLENGE != ERROR CONFIRMED', 'COMPATIBLE CLARIFICATION != RETROACTIVE ERROR',
+                          '36 seats', 'shortage of 4', 'preserve unrelated state',
+                          'explicit interpersonal request', 'creative realization',
+                          'live outcomes remain NOT_RUN']:
+            self.assertIn(condition.lower(), spec.lower())
+        h02 = next(line for line in spec.splitlines() if line.startswith('| H02 |'))
+        self.assertNotIn('acknowledge feelings', h02)
+        self.assertIn('does not establish hatred', h02)
 
     def test_ais_three_modes_lock_and_gate_order(self):
         ais = load(ROOT / 'tool_pipelines/AIS/AIS_ROUTER_v1.2.yaml')

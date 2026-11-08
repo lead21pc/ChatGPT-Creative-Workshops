@@ -5,7 +5,7 @@ import re
 import subprocess
 import unittest
 
-from test_hub_contracts import ROOT, CONCEPT_ARCHIVE, load
+from test_hub_contracts import ROOT, CONCEPT_ARCHIVE, load, historical_source
 from test_hub_router_candidate import synthetic_module, synthetic_fixture, simulate, integration_read_spec
 from test_hub_contracts import Closed
 
@@ -88,7 +88,7 @@ class ConceptDevelopmentTests(unittest.TestCase):
         image['location']['source_name'] = 'IMAGE_CONTROLLER_v1.2.md'
         self.assertEqual(image, next(p for p in load((ROOT / 'Source_archive/Production corrections 2026-11-08') / 'HUB_PACKAGE_CATALOG_v1.11.yaml')['packages'] if p['package_id'] == 'HUB-PKG-IMAGET'))
         original = subprocess.check_output(['git', 'show', BASELINE + ':Central Hub/HUB_CI_v1.1.md'], cwd=ROOT)
-        self.assertEqual((ROOT / 'HUB_CI_v1.1.md').read_bytes(), original)
+        self.assertEqual(historical_source('HUB_CI_v1.1.md').read_bytes(), original)
 
     def test_library_headers_ownership_and_exact_leaf_revisions(self):
         for module, version, role in [(CORE, '1.3', 'DOMAIN_CONTROL'),
@@ -441,7 +441,8 @@ class ExplicitLeafControlTests(unittest.TestCase):
             previous = subprocess.check_output(['git', 'show', '573c8fe:Central Hub/' + name], cwd=ROOT)
             # This assertion belongs to the historical Concept 1.1 promotion.
             base = ROOT / 'Source_archive/Authoring 0.7 M2 2026-11-05' if name.endswith('HUB-CAP-AUTHORING_v0.6.md') else ROOT
-            self.assertEqual((base / name).read_bytes(), previous)
+            source = historical_source(name) if name == 'HUB_CI_v1.1.md' else base / name
+            self.assertEqual(source.read_bytes(), previous)
         prior = load(archive / 'HUB_PACKAGE_CATALOG_v1.7.yaml')
         current = load(ROOT / 'Source_archive/Authoring 0.7 M2 2026-11-05/HUB_PACKAGE_CATALOG_v1.8.yaml')
         independent = lambda c: [row for row in c['packages'] if row['package_id'] != PACKAGE]

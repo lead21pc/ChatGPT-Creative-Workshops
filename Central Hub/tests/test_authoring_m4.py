@@ -4,7 +4,7 @@ import json
 import re
 import unittest
 
-from test_hub_contracts import ROOT, load
+from test_hub_contracts import ROOT, load, historical_source
 from test_authoring_candidate import TARGETS, trigger_spec
 from test_authoring_m2 import composite_spec
 
@@ -177,7 +177,7 @@ class AuthoringM4Tests(unittest.TestCase):
             'library_modules/HUB-CAP-AUTHORING_v0.5.md': 'ee9799fa8fd76d7de7eedbbd723ab130aa6ca42882d3279f1bd94c6f9637208f',
         }
         for path, digest in expected.items():
-            source = ROOT / path if path == 'HUB_CI_v1.1.md' else ARCHIVE / path
+            source = historical_source(path) if path == 'HUB_CI_v1.1.md' else ARCHIVE / path
             self.assertEqual(hashlib.sha256(source.read_bytes()).hexdigest(), digest, path)
         packet = PACKET.read_text(encoding='utf-8')
         live = packet.split('## L1/L2')[1]

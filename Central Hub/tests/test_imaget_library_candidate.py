@@ -6,7 +6,7 @@ import re
 import subprocess
 import unittest
 
-from test_hub_contracts import ROOT, load, Closed
+from test_hub_contracts import ROOT, load, Closed, historical_source
 
 PACKAGE = 'HUB-PKG-IMAGET'
 CANDIDATE = ROOT / 'candidates/imaget_library_v0'
@@ -151,7 +151,7 @@ class ImageTLibraryCandidateTests(unittest.TestCase):
         for name in PROTECTED:
             with self.subTest(active=name):
                 original = subprocess.check_output(['git', 'show', BASELINE + ':Central Hub/' + name], cwd=ROOT)
-                path = ROOT / name
+                path = historical_source(name) if name == 'HUB_CI_v1.1.md' else ROOT / name
                 if name in {'HUB_ROUTER_v1.1.yaml', 'HUB_ARCHITECTURE_v1.3.md', 'HUB_PACKAGE_CATALOG_v1.3.yaml', 'library_modules/HUB-CAP-AUTHORING_v0.3.md'}:
                     path = ROOT / 'Source_archive/Authoring 0.4 promotion 2026-11-01' / name
                 baseline_path = (ROOT / 'Source_archive/Production corrections 2026-11-08') / path.relative_to(ROOT)
