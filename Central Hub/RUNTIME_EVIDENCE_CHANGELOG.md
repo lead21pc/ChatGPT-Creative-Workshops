@@ -23,6 +23,13 @@ NO NEW EVIDENCE != STATUS RESET
 
 ## Current verified runtime status
 
+### NAMING_REPOSITORY_ADDITION_2026_11_09
+
+- Naming 1.0 / DOMAIN_PROCEDURE trong Concept, core/local Catalog 1.4 và Architecture/root Catalog 1.13 được triển khai trong repository. CI 1.2 giữ nguyên; Router 1.1 chỉ đổi exact pins. Preset và span thuộc package, không là root parser; Anti-Prior/AIS không có hard dependency mới.
+- Kiểm chứng local: `python -B -m pytest -p no:cacheprovider tests -q` — **295 passed** (baseline trước sửa: 281 passed). Bao gồm kiểm tra tĩnh hợp đồng và fixture có provenance/applicability khai báo trước; không là model/live routing verification. Exact bindings, Router chỉ đổi pins, hash byte-exact của bốn predecessor, UTF-8/whitespace và liên kết tài liệu đã kiểm tra.
+- **PROJECT/LIBRARY DEPLOYMENT: NOT_PERFORMED; LIVE VERIFICATION: NOT_RUN; REAL-CONTEXT STRESS: NOT RUN.** Kiểm tra tĩnh/fixture được báo riêng, không xác nhận hành vi model hoặc Library retrieval. Test plan: tests/NAMING_REAL_CONTEXT_STRESS.md.
+- Baseline USER_CONFIRMED_LIVE_PASS và correction evidence dưới đây giữ nguyên revision/scope; không chuyển PASS sang Naming hoặc Concept 1.4. Không suy Library identity/locator từ repository.
+
 ### HUB_CI_1_2_REPOSITORY_PROMOTION_2026_11_09
 
 - Hub CI 1.2 là ACTIVE trong repository, byte-identical với nội dung CI đã correction tại commit `4ff4b34`; Router giữ version 1.1 và chỉ cập nhật tham chiếu CI. Architecture/Catalog giữ 1.12; các package/pipeline không đổi.
@@ -150,6 +157,14 @@ Các record dưới giữ trạng thái tại thời điểm ghi. Những claim 
 - Related log entry: `2026-10-27 - Integrated concept-development runtime smoke`.
 
 ## Verification log
+
+### 2026-11-09 — Naming repository implementation
+
+- Naming 1.0 / DOMAIN_PROCEDURE trong Concept, core/local Catalog 1.4 và Architecture/root Catalog 1.13 được triển khai trong repository. CI 1.2 giữ nguyên; Router 1.1 chỉ đổi exact pins. Preset và span thuộc package, không là root parser; Anti-Prior/AIS không có hard dependency mới.
+- Kiểm chứng local: `python -B -m pytest -p no:cacheprovider tests -q` — **295 passed** (baseline trước sửa: 281 passed). Bao gồm kiểm tra tĩnh hợp đồng và fixture có provenance/applicability khai báo trước; không là model/live routing verification. Exact bindings, Router chỉ đổi pins, hash byte-exact của bốn predecessor, UTF-8/whitespace và liên kết tài liệu đã kiểm tra.
+- **PROJECT/LIBRARY DEPLOYMENT: NOT_PERFORMED; LIVE VERIFICATION: NOT_RUN; REAL-CONTEXT STRESS: NOT RUN.** Kiểm tra tĩnh/fixture được báo riêng, không xác nhận hành vi model hoặc Library retrieval. Test plan: tests/NAMING_REAL_CONTEXT_STRESS.md.
+- Baseline USER_CONFIRMED_LIVE_PASS và correction evidence dưới đây giữ nguyên revision/scope; không chuyển PASS sang Naming hoặc Concept 1.4. Không suy Library identity/locator từ repository.
+
 
 ### 2026-11-09 — Hub CI 1.2 repository promotion
 

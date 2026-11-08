@@ -1,0 +1,234 @@
+format_version: '1'
+module_id: HUB-CATALOG-CONCEPT-DEVELOPMENT
+package_id: HUB-PKG-CONCEPT-DEVELOPMENT
+runtime_role: PACKAGE_CATALOG
+scope: Scoped selection metadata for the concept-development package; no global package routing or execution.
+status: ACTIVE
+version: '1.4'
+anti_drift_configuration: 'Production composable selection: five ACTIVE entries are eligible, never autoloaded.
+  AUTO and exact current-user /AD use the same task-local applicability gate in the entrypoint. Zero or multiple
+  matches are valid. Reassess per material turn/scope change, form the scoped union and actual Requires closure,
+  then use Hub Router Library verification/composition. No A/B runtime switch or promotion test. Missing selected
+  content blocks only dependent portions; independent work continues without substitutes. Production baseline is USER_CONFIRMED_INSTALLED_AND_LIVE; correction delta live verification is not claimed.'
+entries:
+- module_id: HUB-DOM-CREATIVE
+  package_id: HUB-PKG-CONCEPT-DEVELOPMENT
+  runtime_role: DOMAIN_CONTROL
+  status: ACTIVE
+  version: '1.1'
+  activation: /CREATIVE
+  applicability: 'SELECT ONLY FOR A VALID EXPLICIT CONTROL SPAN: /CREATIVE <content> # under the entrypoint''s
+    current-user directive, literal-text, token, closure and malformed-span rules. Realization/deepening inside
+    the supplied selected premise; semantic usefulness alone never selects this leaf.'
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    locator: null
+    library_file_id: libfile_9a5f1f01a39c8191b3b299cbe8c03b8b
+    library_version_id: null
+    observed_path: Central Hub Config/HUB-DOM-CREATIVE_v1.1.md
+    observed_surface_file_id: file_000000005f1482079a499865628b7576
+    surface_id_usage: Evidence/debug only; not assumed portable canonical locator.
+    verification: CHATGPT_OBSERVED_FULL_FILE_BYTE_EXACT_VERIFIED
+    resolution: RESOLVED
+    read_evidence: FULL_FILE 15/15; has_more=false; 1633 bytes; repository/Library SHA-256 0430934D81B57743854543C52D9B78100D6209D8415A59C890E89F19296B4052
+      matched.
+    duplicate_check: NO_DUPLICATE_OBSERVED_IN_INSPECTED_CENTRAL_HUB_CONFIG_SCOPE
+    retrieval_mechanism: Root-scoped Library listing/read/materialization verified for this binding. Runtime
+      use still requires the exact bound identity, FULL_FILE and headers/body checks; no repository or Project
+      Source fallback.
+  refines: []
+  complements: []
+  requires: []
+- module_id: HUB-CAP-BRAINSTORM
+  package_id: HUB-PKG-CONCEPT-DEVELOPMENT
+  runtime_role: CAPABILITY
+  status: ACTIVE
+  version: '1.1'
+  activation: /BRAINSTORM
+  applicability: 'SELECT ONLY FOR A VALID EXPLICIT CONTROL SPAN: /BRAINSTORM <content> # under the entrypoint''s
+    current-user directive, literal-text, token, closure and malformed-span rules. Premise variation, reversal/relaxation,
+    second-order consequences, feedback and incomplete-premise links; no semantic or natural-language phrase
+    activation. Selection proves no retrieval or execution.'
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    locator: null
+    library_file_id: libfile_9573068db03081918819492a2f297377
+    library_version_id: null
+    observed_path: Central Hub Config/HUB-CAP-BRAINSTORM_v1.1.md
+    observed_surface_file_id: file_000000008a6c8211b0b9236c790d343f
+    surface_id_usage: Evidence/debug only; not assumed portable canonical locator.
+    verification: CHATGPT_OBSERVED_FULL_FILE_BYTE_EXACT_VERIFIED
+    resolution: RESOLVED
+    read_evidence: FULL_FILE 50/50; has_more=false; 3167 bytes; repository/Library SHA-256 3758BF748AB11886656F0EA2A73472323301D14E7BF93BCA5767079FEA824843
+      matched.
+    duplicate_check: NO_DUPLICATE_OBSERVED_IN_INSPECTED_CENTRAL_HUB_CONFIG_SCOPE
+    retrieval_mechanism: Root-scoped Library listing/read/materialization verified for this binding. Runtime
+      use still requires the exact bound identity, FULL_FILE and headers/body checks; no repository or Project
+      Source fallback.
+  refines: []
+  complements: []
+  requires: []
+- module_id: HUB-CAP-DEBATE
+  package_id: HUB-PKG-CONCEPT-DEVELOPMENT
+  runtime_role: CAPABILITY
+  status: ACTIVE
+  version: '1.0'
+  activation: /DEBATE
+  applicability: 'SELECT ONLY FOR A VALID EXPLICIT CONTROL SPAN: /DEBATE <content> # under the entrypoint''s
+    current-user directive, literal-text, token, closure and malformed-span rules. Adversarial testing of a
+    supplied proposal against consequential objections; ordinary critique or audit never activates it.'
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    locator: null
+    library_file_id: null
+    library_version_id: null
+    resolution: USER_CONFIRMED_BASELINE_LIVE
+    verification: USER_CONFIRMED_BASELINE_LIVE; EXACT_READ_RECEIPTS_NOT_RECORDED
+    retrieval_mechanism: Exact ACTIVE/1.0 identity, FULL_FILE and body checks under Hub Router before use;
+      baseline installation/live state is USER_CONFIRMED; exact current-use verification remains required. No non-Library fallback.
+  refines: []
+  complements: []
+  requires: []
+- module_id: HUB-DOM-ANTI-PRIOR
+  package_id: HUB-PKG-CONCEPT-DEVELOPMENT
+  runtime_role: DOMAIN_CONTROL
+  status: ACTIVE
+  version: '1.1'
+  applicability: Select when a familiar prior, label, aesthetic, prestige or observable signal risks supplying
+    an unsupported material premise, mechanism, capability, authority or value in the current portion. Includes
+    surface substitution even when other premises are complete. Do not select for surface description alone,
+    explicit user/ontology-defined mappings, authorized blank-slate invention or a requested conventional trope
+    absent a different undeclared material link. Non-implication is not prohibition or inverted prior.
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    locator: null
+    library_file_id: null
+    library_version_id: null
+    resolution: USER_CONFIRMED_BASELINE_LIVE
+    verification: USER_CONFIRMED_BASELINE_LIVE; EXACT_READ_RECEIPTS_NOT_RECORDED
+    retrieval_mechanism: Exact bound ACTIVE/1.1 identity and FULL_FILE in Central Hub Config under Hub Router;
+      root-scoped resolution when usable verified IDs are absent. Filename is a hint only; no non-Library fallback.
+  refines: []
+  complements: []
+  requires: []
+- module_id: HUB-DOM-MODULAR-CONCEPT-ARCHITECTURE
+  package_id: HUB-PKG-CONCEPT-DEVELOPMENT
+  runtime_role: DOMAIN_CONTROL
+  status: ACTIVE
+  version: '1.2'
+  applicability: Select for a material typed relation, ownership, actor agency/information/authority, capability
+    execution or state transition, module autonomy/interface, conditional branch or continuity distinction.
+    Protect existing kit and material goals without optimal-play or subplot mandates. Named entities and fiction
+    topic alone are insufficient. Independently selectable; no hard WIL dependency. Compose WIL only for material
+    institution/resource/system interfaces.
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    locator: null
+    library_file_id: null
+    library_version_id: null
+    resolution: USER_CONFIRMED_BASELINE_LIVE
+    verification: USER_CONFIRMED_BASELINE_LIVE; EXACT_READ_RECEIPTS_NOT_RECORDED
+    retrieval_mechanism: Exact bound ACTIVE/1.2 identity and FULL_FILE in Central Hub Config under Hub Router;
+      root-scoped resolution when usable verified IDs are absent. Filename is a hint only; no non-Library fallback.
+  refines: []
+  complements: []
+  requires: []
+- module_id: HUB-DOM-WORLDBUILDING-INTERNAL-LOGIC
+  package_id: HUB-PKG-CONCEPT-DEVELOPMENT
+  runtime_role: DOMAIN_CONTROL
+  status: ACTIVE
+  version: '1.1'
+  applicability: Independently select for material bounded institution/resource flow, authority implementation,
+    systemic interface/propagation, feedback, temporal viability or political consequence. Resource source/liquidity
+    and agreement/implementation require only enough detail to close the assigned causal interface. No MCA
+    dependency, mandatory complete-world expansion, Earth realism or bureaucracy. A passing mention of institutions
+    is insufficient.
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    locator: null
+    library_file_id: null
+    library_version_id: null
+    resolution: USER_CONFIRMED_BASELINE_LIVE
+    verification: USER_CONFIRMED_BASELINE_LIVE; EXACT_READ_RECEIPTS_NOT_RECORDED
+    retrieval_mechanism: Exact bound ACTIVE/1.1 identity and FULL_FILE in Central Hub Config under Hub Router;
+      root-scoped resolution when usable verified IDs are absent. Filename is a hint only; no non-Library fallback.
+  refines: []
+  complements: []
+  requires: []
+- module_id: HUB-DOM-ACTOR-RECEPTION
+  package_id: HUB-PKG-CONCEPT-DEVELOPMENT
+  runtime_role: DOMAIN_CONTROL
+  status: ACTIVE
+  version: '1.0'
+  applicability: Select when signal receipt, interpretation/appraisal, uncertainty/suspicion, evidence accumulation
+    or belief continuity materially determines the current task. Repeated anomalies require represented reassessment,
+    not forced belief reversal. Uses MCA actor information/agency framework through Requires; no automatic
+    WIL load for institution mentions. Does not select action or outcome.
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    locator: null
+    library_file_id: null
+    library_version_id: null
+    resolution: USER_CONFIRMED_BASELINE_LIVE
+    verification: USER_CONFIRMED_BASELINE_LIVE; EXACT_READ_RECEIPTS_NOT_RECORDED
+    retrieval_mechanism: Exact bound ACTIVE/1.0 identity and FULL_FILE in Central Hub Config under Hub Router;
+      root-scoped resolution when usable verified IDs are absent. Filename is a hint only; no non-Library fallback.
+  refines: []
+  complements: []
+  requires:
+  - module_id: HUB-DOM-MODULAR-CONCEPT-ARCHITECTURE
+- module_id: HUB-DOM-NARRATIVE-RESOLUTION
+  package_id: HUB-PKG-CONCEPT-DEVELOPMENT
+  runtime_role: DOMAIN_CONTROL
+  status: ACTIVE
+  version: '1.0'
+  applicability: Select only when a material narrative question, conflict, promise, setup/payoff, closure/reveal,
+    accumulated pressure or resolution claim is being developed or assessed. Track supported obligations without
+    a state engine. Not a universal Concept requirement; intentional open endings, valid cliffhangers and easy
+    causally earned victories remain valid. Compose mechanical owners only when their distinct mechanics matter.
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    locator: null
+    library_file_id: null
+    library_version_id: null
+    resolution: USER_CONFIRMED_BASELINE_LIVE
+    verification: USER_CONFIRMED_BASELINE_LIVE; EXACT_READ_RECEIPTS_NOT_RECORDED
+    retrieval_mechanism: Exact bound ACTIVE/1.0 identity and FULL_FILE in Central Hub Config under Hub Router;
+      root-scoped resolution when usable verified IDs are absent. Filename is a hint only; no non-Library fallback.
+  refines: []
+  complements: []
+  requires: []
+- module_id: HUB-DOM-NAMING
+  package_id: HUB-PKG-CONCEPT-DEVELOPMENT
+  runtime_role: DOMAIN_PROCEDURE
+  status: ACTIVE
+  version: '1.0'
+  activation: /NAME
+  applicability: 'SELECT ONLY FOR A VALID EXPLICIT CONTROL SPAN: /NAME <instruction> # under the entrypoint''s
+    current-user directive, literal-text, token, closure and malformed-span rules. Scoped name generation,
+    analysis, comparison and evaluation; semantic fit alone never activates. Optional first directive token
+    P1/P2/P3 modifies strategy only, with non-empty remaining instruction; malformed preset-like tokens,
+    preset-only and repeated preset modifiers invalidate that invocation without repair or plain fallback.
+    Preset details and naming behavior belong to the verified leaf, not this Catalog.'
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    locator: null
+    library_file_id: null
+    library_version_id: null
+    resolution: UNRESOLVED
+    verification: NOT_VERIFIED
+    retrieval_mechanism: Repository-only addition; installation and live behavior NOT_RUN. Before runtime use,
+      resolve exactly one ACTIVE/1.0 identity in Central Hub Config, FULL_FILE and material body under Hub Router.
+      No repository or Project Source fallback; missing/unverified content blocks only dependent work.
+  refines: []
+  complements: []
+  requires: []

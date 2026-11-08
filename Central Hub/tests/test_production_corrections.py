@@ -34,9 +34,9 @@ class ProductionCorrectionsTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.author = (ROOT/'library_modules/HUB-CAP-AUTHORING_v0.8.md').read_text(encoding='utf-8')
-        cls.core = (ROOT/'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.3.md').read_text(encoding='utf-8')
-        cls.catalog = load(ROOT/'HUB_PACKAGE_CATALOG_v1.12.yaml')
-        cls.local = load(ROOT/'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.3.yaml')
+        cls.core = (ROOT/'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.4.md').read_text(encoding='utf-8')
+        cls.catalog = load(ROOT/'HUB_PACKAGE_CATALOG_v1.13.yaml')
+        cls.local = load(ROOT/'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.4.yaml')
 
     def test_all_removed_forms_never_downgrade_and_valid_forms_survive(self):
         for target in TARGETS:
@@ -127,13 +127,14 @@ class ProductionCorrectionsTests(unittest.TestCase):
                 if row is None: continue
                 location=row['location']
                 if package['package_id']=='HUB-PKG-TECHNICAL': continue
-                self.assertEqual(location['resolution'],'USER_CONFIRMED_BASELINE_LIVE')
+                is_concept = package['package_id']=='HUB-PKG-CONCEPT-DEVELOPMENT'
+                self.assertEqual(location['resolution'],'UNRESOLVED' if is_concept else 'USER_CONFIRMED_BASELINE_LIVE')
                 self.assertIsNone(location['locator'])
                 self.assertIsNone(location['library_file_id'])
                 self.assertIsNone(location['library_version_id'])
-                self.assertIn('EXACT_READ_RECEIPTS_NOT_RECORDED',location['verification'])
+                self.assertIn('NOT_VERIFIED' if is_concept else 'EXACT_READ_RECEIPTS_NOT_RECORDED',location['verification'])
         for row in self.local['entries'][2:]:
-            self.assertEqual(row['location']['resolution'],'USER_CONFIRMED_BASELINE_LIVE')
+            self.assertEqual(row['location']['resolution'],'UNRESOLVED' if row['module_id']=='HUB-DOM-NAMING' else 'USER_CONFIRMED_BASELINE_LIVE')
             self.assertIsNone(row['location']['library_file_id'])
         changelog=(ROOT/'RUNTIME_EVIDENCE_CHANGELOG.md').read_text(encoding='utf-8')
         self.assertIn('PRODUCTION_BASELINE_USER_CONFIRMATION_2026_11_08',changelog)
@@ -147,17 +148,17 @@ class ProductionCorrectionsTests(unittest.TestCase):
         expected['deployment']='USER_CONFIRMED_BASELINE_INSTALLED_AND_LIVE; CORRECTION_DELTA_STATIC_ONLY'
         expected['evidence']['live_routing']='USER_CONFIRMED_BASELINE_LIVE_PASS; CORRECTION_DELTA_LIVE_NOT_RUN; historical trial I01-I07/I09-I10 PASS, I08 UNVERIFIABLE; USER_REPORTED'
         for key,suffix in (('architecture','md'),('root_catalog','yaml')):
-            expected['contracts'][key]['file']=expected['contracts'][key]['file'].replace('1.11','1.12')
-            expected['contracts'][key]['version']='1.12'
-        expected['contracts']['binding_scope']=expected['contracts']['binding_scope'].replace('1.11','1.12').replace('Hub CI/Router v1.1 with','Hub CI v1.2 / Router v1.1 with')
+            expected['contracts'][key]['file']=expected['contracts'][key]['file'].replace('1.11','1.13')
+            expected['contracts'][key]['version']='1.13'
+        expected['contracts']['binding_scope']=expected['contracts']['binding_scope'].replace('1.11','1.13').replace('Hub CI/Router v1.1 with','Hub CI v1.2 / Router v1.1 with')
         expected['activation_notice']=expected['activation_notice'].replace('HUB_CI_v1.1.md','HUB_CI_v1.2.md')
         self.assertEqual(router,expected)
         self.assertEqual(len(self.catalog['packages']),6)
         bindings={p['package_id']:p for p in self.catalog['packages']}
         self.assertEqual(bindings['HUB-PKG-AUTHORING']['version'],'0.8')
-        self.assertEqual(bindings['HUB-PKG-CONCEPT-DEVELOPMENT']['version'],'1.3')
-        self.assertEqual(bindings['HUB-PKG-CONCEPT-DEVELOPMENT']['local_catalog']['version'],'1.3')
-        self.assertEqual(self.local['version'],'1.3')
+        self.assertEqual(bindings['HUB-PKG-CONCEPT-DEVELOPMENT']['version'],'1.4')
+        self.assertEqual(bindings['HUB-PKG-CONCEPT-DEVELOPMENT']['local_catalog']['version'],'1.4')
+        self.assertEqual(self.local['version'],'1.4')
         self.assertEqual(next(x for x in self.local['entries'] if x['module_id']==MCA)['version'],'1.2')
         self.assertFalse(router['persistence']['persistent_modes'])
         self.assertIn('repository',router['library']['forbidden_fallbacks'])
