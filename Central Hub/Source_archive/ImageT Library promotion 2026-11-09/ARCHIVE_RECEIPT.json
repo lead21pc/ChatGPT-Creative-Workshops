@@ -1,0 +1,15 @@
+{
+  "candidates/imaget_library_v0/HUB-CATALOG-IMAGET_v0.1-candidate.yaml": "ec293eca0a54161fd7e86015f0f90d42b126fbf2a0a68d34504b7b1ac8823b5b",
+  "candidates/imaget_library_v0/HUB-IMAGET-ANTI-DRIFT_v2.1.0-candidate.md": "cba43206eae6988c17dd75ab7b268f3fd1e276817f8b69402ba7e8306efb861f",
+  "candidates/imaget_library_v0/HUB-IMAGET-ANTI-PRIOR_v1.2.0-candidate.md": "9e626a7ade8ded95bc5b38beb9725277717ce2f8a08f6b25cbba8ea718c1766a",
+  "candidates/imaget_library_v0/HUB-IMAGET-CONTROLLER_v1.3-candidate.md": "4ec5af114077cfed92b30c7b5c1e5a232f733321141c1729f243c4aaaefbf119",
+  "candidates/imaget_library_v0/HUB-IMAGET-HUMANOID-CONSTRUCTION_v0.1-candidate.md": "fc2bd689296a394a6708a38bd6d176d4d10a3ba0fd78c424f93b66ca92e9a4c6",
+  "candidates/imaget_library_v0/HUB-IMAGET-HUMANOID-DESIGN-PREFERENCE_v0.2-candidate.md": "a268fadd1c80941ec9324048cfe1df2500d4cb81389d673ef8efb785c77be023",
+  "candidates/imaget_library_v0/HUB-IMAGET-MANIFEST_v2.3.0-candidate.yaml": "7e2bd9386611d75f932c8dabe178c1cd322e450c74cf62f1c587eb03effe8ad0",
+  "candidates/imaget_library_v0/HUB-IMAGET-READY-GATE_v1.1-candidate.md": "a52e5f5c8a50fa5341d13ab525196dcc4cb7264e6066b200c4d84a8b67a24214",
+  "candidates/imaget_library_v0/HUB-IMAGET-ROUTER_v3.2.0-candidate.yaml": "1533ff539a96c9ec6b4950e99f7d231b8eb5f7353fa2802ad59ebc11440f51bb",
+  "candidates/imaget_library_v0/HUB-PIPE-IMAGET_v1.3-candidate.md": "c423a6bc33156b292a297aa83e37e73efd7f14c299a1bb52b30375b12498c624",
+  "HUB_ARCHITECTURE_v1.13.md": "5febda50693e3e9f3310b959528dc9137675fa47d2f5ae059b3a79ce07e2b2a7",
+  "HUB_PACKAGE_CATALOG_v1.13.yaml": "3c38f75d8cbb8e014ff2cc7388d5b4441bed3eacb5ee9a956ac9c41bd5ed5050",
+  "HUB_ROUTER_v1.1.yaml": "22b6d4daa201307d29991c7c2385a7add9d859891213bbfa1c97ed70fcbc0c44"
+}

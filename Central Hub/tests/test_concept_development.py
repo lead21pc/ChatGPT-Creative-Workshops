@@ -39,13 +39,13 @@ def current_fixture():
 
 class ConceptDevelopmentTests(unittest.TestCase):
     def setUp(self):
-        self.root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.13.yaml')
+        self.root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.14.yaml')
         self.local = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.4.yaml')
         self.core = (ROOT / 'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.4.md').read_text(encoding='utf-8')
         self.notes = (ROOT / 'CONCEPT_DEVELOPMENT_MIGRATION.md').read_text(encoding='utf-8')
 
     def test_six_root_owners_and_package_local_inventory(self):
-        self.assertEqual(self.root['version'], '1.13')
+        self.assertEqual(self.root['version'], '1.14')
         self.assertEqual({p['package_id'] for p in self.root['packages']},
                          {'HUB-PKG-TECHNICAL', PACKAGE, 'HUB-PKG-AUTHORING',
                           'HUB-PKG-AIS', 'HUB-PKG-IMAGET', 'HUB-PKG-SHOPPING'})
@@ -70,10 +70,10 @@ class ConceptDevelopmentTests(unittest.TestCase):
     def test_router_changes_only_exact_pins_and_global_owners_stay(self):
         previous = load(CONCEPT_ARCHIVE / 'HUB_ROUTER_v1.1.yaml')
         expected = copy.deepcopy(previous)
-        for key, name in [('architecture', 'HUB_ARCHITECTURE_v1.13.md'),
-                          ('root_catalog', 'HUB_PACKAGE_CATALOG_v1.13.yaml')]:
+        for key, name in [('architecture', 'HUB_ARCHITECTURE_v1.14.md'),
+                          ('root_catalog', 'HUB_PACKAGE_CATALOG_v1.14.yaml')]:
             expected['contracts'][key]['file'] = name
-            expected['contracts'][key]['version'] = '1.13'
+            expected['contracts'][key]['version'] = '1.14'
         expected['deployment'] = 'USER_CONFIRMED_BASELINE_INSTALLED_AND_LIVE; CORRECTION_DELTA_STATIC_ONLY'
         expected['evidence']['live_routing'] = 'USER_CONFIRMED_BASELINE_LIVE_PASS; CORRECTION_DELTA_LIVE_NOT_RUN; historical trial I01-I07/I09-I10 PASS, I08 UNVERIFIABLE; USER_REPORTED'
         expected['contracts']['binding_scope'] = load(ROOT / 'HUB_ROUTER_v1.1.yaml')['contracts']['binding_scope']
@@ -414,12 +414,12 @@ class ExplicitLeafControlTests(unittest.TestCase):
         for row in selected.values():
             self.assertEqual(row['requires'], [])
             self.assertIn('SELECT ONLY FOR A VALID EXPLICIT CONTROL SPAN', row['applicability'])
-        root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.13.yaml')
+        root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.14.yaml')
         for token in selected:
             self.assertNotIn(token, str(root))
             self.assertNotIn(token, (ROOT / 'HUB_ROUTER_v1.1.yaml').read_text(encoding='utf-8'))
         previous = subprocess.check_output(['git', 'show', '573c8fe:Central Hub/HUB_ROUTER_v1.1.yaml'], cwd=ROOT)
-        self.assertEqual((ROOT / 'HUB_ROUTER_v1.1.yaml').read_bytes(), previous.replace(b'HUB_CI_v1.1.md', b'HUB_CI_v1.2.md').replace(b'Hub CI/Router v1.1 with', b'Hub CI v1.2 / Router v1.1 with').replace(b'1.7', b'1.13').replace(b'REPOSITORY_ACTIVE; PROJECT_DEPLOYMENT_NOT_VERIFIED', b'USER_CONFIRMED_BASELINE_INSTALLED_AND_LIVE; CORRECTION_DELTA_STATIC_ONLY').replace(b'LIVE INTEGRATION PARTIAL; I01-I07/I09-I10 PASS; I08 UNVERIFIABLE; USER_REPORTED', b'USER_CONFIRMED_BASELINE_LIVE_PASS; CORRECTION_DELTA_LIVE_NOT_RUN; historical trial I01-I07/I09-I10 PASS, I08 UNVERIFIABLE; USER_REPORTED'))
+        self.assertEqual((ROOT / 'HUB_ROUTER_v1.1.yaml').read_bytes(), previous.replace(b'HUB_CI_v1.1.md', b'HUB_CI_v1.2.md').replace(b'Hub CI/Router v1.1 with', b'Hub CI v1.2 / Router v1.1 with').replace(b'1.7', b'1.14').replace(b'REPOSITORY_ACTIVE; PROJECT_DEPLOYMENT_NOT_VERIFIED', b'USER_CONFIRMED_BASELINE_INSTALLED_AND_LIVE; CORRECTION_DELTA_STATIC_ONLY').replace(b'LIVE INTEGRATION PARTIAL; I01-I07/I09-I10 PASS; I08 UNVERIFIABLE; USER_REPORTED', b'USER_CONFIRMED_BASELINE_LIVE_PASS; CORRECTION_DELTA_LIVE_NOT_RUN; historical trial I01-I07/I09-I10 PASS, I08 UNVERIFIABLE; USER_REPORTED'))
 
     def test_core_contract_guards_and_scope_dependency_distinction(self):
         text = (ROOT / 'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.4.md').read_text(encoding='utf-8')

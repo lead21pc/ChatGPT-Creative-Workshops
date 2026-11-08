@@ -9,7 +9,7 @@ import unittest
 from test_hub_contracts import ROOT, load, Closed, historical_source
 
 PACKAGE = 'HUB-PKG-IMAGET'
-CANDIDATE = ROOT / 'candidates/imaget_library_v0'
+CANDIDATE = ROOT / 'Source_archive/ImageT Library promotion 2026-11-09/candidates/imaget_library_v0'
 BASELINE = 'f69304225f267b116878ed36eacd2b3cc6424935'
 # Concept core/catalog now have an authorized local anti-drift extension; their prior
 # behavior is protected by test_concept_anti_drift, not frozen to this ImageT snapshot.
@@ -75,7 +75,7 @@ def verify_core(manifest):
 
 
 def selection_spec(catalog, *, humanoid, authority, fields=(), delegated=(),
-                   preference_fields=(), need=False, payload=''):
+                   preference_fields=(), need=False, payload='', expected_status='CANDIDATE'):
     """Fixture-supplied intent/authority; does not recognize language or run leaf prose."""
     if authority not in {'RAW', 'PRESERVED_AUTHORED'}:
         raise Closed('unknown authority')
@@ -85,7 +85,7 @@ def selection_spec(catalog, *, humanoid, authority, fields=(), delegated=(),
     selected = {}
     for row in catalog['entries']:
         # Explicit test admission only. Inactive candidates are not normal runtime eligible.
-        if row['status'] != 'CANDIDATE' or row['package_id'] != PACKAGE:
+        if row['status'] != expected_status or row['package_id'] != PACKAGE:
             raise Closed('candidate metadata mismatch')
         if not humanoid:
             continue
@@ -156,10 +156,10 @@ class ImageTLibraryCandidateTests(unittest.TestCase):
                     path = ROOT / 'Source_archive/Authoring 0.4 promotion 2026-11-01' / name
                 baseline_path = (ROOT / 'Source_archive/Production corrections 2026-11-08') / path.relative_to(ROOT)
                 self.assertEqual((baseline_path if baseline_path.is_file() else path).read_bytes(), original)
-        root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.13.yaml')
+        root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.14.yaml')
         binding = next(p for p in root['packages'] if p['package_id'] == PACKAGE)
-        self.assertEqual(binding['binding_mode'], 'LEGACY_PROJECT_SOURCE')
-        self.assertEqual(binding['version'], '1.2')
+        self.assertEqual(binding['binding_mode'], 'LIBRARY_MODULE')
+        self.assertEqual(binding['version'], '1.3')
         for identity, source, marker in [
                 ('HUB-IMAGET-ANTI-PRIOR', 'IMAGE_ANTI_PRIOR.md', '## Function'),
                 ('HUB-IMAGET-ANTI-DRIFT', 'config.md', '## Authority and scope')]:

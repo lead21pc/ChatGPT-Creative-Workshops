@@ -35,7 +35,7 @@ class ProductionCorrectionsTests(unittest.TestCase):
     def setUpClass(cls):
         cls.author = (ROOT/'library_modules/HUB-CAP-AUTHORING_v0.8.md').read_text(encoding='utf-8')
         cls.core = (ROOT/'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.4.md').read_text(encoding='utf-8')
-        cls.catalog = load(ROOT/'HUB_PACKAGE_CATALOG_v1.13.yaml')
+        cls.catalog = load(ROOT/'HUB_PACKAGE_CATALOG_v1.14.yaml')
         cls.local = load(ROOT/'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.4.yaml')
 
     def test_all_removed_forms_never_downgrade_and_valid_forms_survive(self):
@@ -127,7 +127,7 @@ class ProductionCorrectionsTests(unittest.TestCase):
                 if row is None: continue
                 location=row['location']
                 if package['package_id']=='HUB-PKG-TECHNICAL': continue
-                is_concept = package['package_id']=='HUB-PKG-CONCEPT-DEVELOPMENT'
+                is_concept = package['package_id'] in {'HUB-PKG-CONCEPT-DEVELOPMENT', 'HUB-PKG-IMAGET'}
                 self.assertEqual(location['resolution'],'UNRESOLVED' if is_concept else 'USER_CONFIRMED_BASELINE_LIVE')
                 self.assertIsNone(location['locator'])
                 self.assertIsNone(location['library_file_id'])
@@ -148,9 +148,9 @@ class ProductionCorrectionsTests(unittest.TestCase):
         expected['deployment']='USER_CONFIRMED_BASELINE_INSTALLED_AND_LIVE; CORRECTION_DELTA_STATIC_ONLY'
         expected['evidence']['live_routing']='USER_CONFIRMED_BASELINE_LIVE_PASS; CORRECTION_DELTA_LIVE_NOT_RUN; historical trial I01-I07/I09-I10 PASS, I08 UNVERIFIABLE; USER_REPORTED'
         for key,suffix in (('architecture','md'),('root_catalog','yaml')):
-            expected['contracts'][key]['file']=expected['contracts'][key]['file'].replace('1.11','1.13')
-            expected['contracts'][key]['version']='1.13'
-        expected['contracts']['binding_scope']=expected['contracts']['binding_scope'].replace('1.11','1.13').replace('Hub CI/Router v1.1 with','Hub CI v1.2 / Router v1.1 with')
+            expected['contracts'][key]['file']=expected['contracts'][key]['file'].replace('1.11','1.14')
+            expected['contracts'][key]['version']='1.14'
+        expected['contracts']['binding_scope']=expected['contracts']['binding_scope'].replace('1.11','1.14').replace('Hub CI/Router v1.1 with','Hub CI v1.2 / Router v1.1 with')
         expected['activation_notice']=expected['activation_notice'].replace('HUB_CI_v1.1.md','HUB_CI_v1.2.md')
         self.assertEqual(router,expected)
         self.assertEqual(len(self.catalog['packages']),6)
@@ -191,7 +191,9 @@ class ProductionCorrectionsTests(unittest.TestCase):
             data=(HISTORY/rel).read_bytes()
             self.assertEqual(hashlib.sha256(data).hexdigest(),digest,rel)
             self.assertEqual(data,subprocess.check_output(['git','show',BASELINE+':Central Hub/'+rel],cwd=ROOT),rel)
-        self.assertEqual(subprocess.check_output(['git','diff',BASELINE,'--','candidates'],cwd=ROOT),b'')
+        # ImageT candidates were explicitly promoted and archived by the Library milestone.
+        self.assertEqual(subprocess.check_output(['git','diff',BASELINE,'--','candidates',
+            ':(exclude)candidates/imaget_library_v0'],cwd=ROOT),b'')
         for name in ('HUB-CAP-AUTHORING_v0.7.md','HUB-DOM-CONCEPT-DEVELOPMENT_v1.2.md',
                      'HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.2.yaml',
                      'HUB-DOM-MODULAR-CONCEPT-ARCHITECTURE_v1.1.md'):

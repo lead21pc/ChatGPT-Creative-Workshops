@@ -23,6 +23,15 @@ NO NEW EVIDENCE != STATUS RESET
 
 ## Current verified runtime status
 
+### IMAGET_LIBRARY_REPOSITORY_PROMOTION_2026_11_09
+
+- `HUB-PKG-IMAGET` được promotion trong repository từ legacy controller 1.2 sang `LIBRARY_MODULE / HUB-PIPE-IMAGET 1.3`, required core và local Catalog 0.1; đủ 10 ACTIVE artifacts. Preference 0.2 chỉ eligible theo explicit current-operation authority, không auto-active. Architecture/Catalog 1.14; Router 1.1 chỉ đổi exact pins, CI 1.2 và unrelated packages không đổi.
+- Controller giữ Open Gate, thêm hai nhóm visible verification: assigned visual objective và requirement/preserved-state fidelity. High/uniform density hoặc flat hierarchy có chủ ý không tự FAIL. Finding chỉ tạo bounded correction proposal; field khóa cần quyết định riêng, không cấp execution authority; retry cần NEW snapshot/approval cho ONE call. Ready Gate giữ approval protocol, làm rõ equality thuộc ImageT-controlled artifact, không claim platform-internal prompt byte equality.
+- Static baseline **295 passed**; focused **55 passed**; full suite **308 passed**. Kiểm exact identity/core closure/hash, manifest/catalog ownership, leaf authority, V01–V06, archive receipt và legacy v1.2 byte-exact. Fixture khai báo evidence/authority trước; không là pixel perception, model execution hoặc Library retrieval.
+- Format 26 file mới/sửa ngoài archive: UTF-8/LF, EOF newline, không BOM/trailing whitespace; `git diff --check` PASS. README/promotion local links resolve; Hub CI và unrelated Library bodies byte-unchanged so với preflight.
+- **LIBRARY / PROJECT DEPLOYMENT: NOT PERFORMED — runtime access unavailable. ACTIVE PROJECT RUNTIME của Library revision: NOT VERIFIED. L01–L06: NOT RUN.** Không có live PASS mới; Library IDs/locator/revision chưa quan sát giữ null/UNRESOLVED/NOT_VERIFIED. Không push. Artifact/deployment/smoke/rollback steps: [IMAGET_LIBRARY_PROMOTION.md](IMAGET_LIBRARY_PROMOTION.md).
+- Legacy production ImageT 1.2 USER_CONFIRMED_LIVE_PASS của baseline 2026-11-08 giữ đúng scope, không chuyển sang Library revision. Stack legacy còn nguyên tại `tool_pipelines/ImageT/`; candidate và predecessor binding snapshots giữ byte-exact trong `Source_archive/ImageT Library promotion 2026-11-09/`. Không dual active root binding, không automatic fallback.
+
 ### NAMING_REPOSITORY_ADDITION_2026_11_09
 
 - Naming 1.0 / DOMAIN_PROCEDURE trong Concept, core/local Catalog 1.4 và Architecture/root Catalog 1.13 được triển khai trong repository. CI 1.2 giữ nguyên; Router 1.1 chỉ đổi exact pins. Preset và span thuộc package, không là root parser; Anti-Prior/AIS không có hard dependency mới.
@@ -157,6 +166,11 @@ Các record dưới giữ trạng thái tại thời điểm ghi. Những claim 
 - Related log entry: `2026-10-27 - Integrated concept-development runtime smoke`.
 
 ## Verification log
+
+### 2026-11-09 — ImageT Library repository promotion
+
+- Repository binding được chuyển một lần sang Library entrypoint 1.3/local Catalog 0.1; 10 artifacts ACTIVE, bounded visible-verification correction nằm trong controller. Ready approval protocol được giữ; observable-artifact wording được giới hạn đúng authority.
+- Focused 55 passed / full 308 passed; static/declared SPEC only. Legacy source và 13 predecessor snapshots kiểm byte-exact. Không cài Library/Project hoặc chạy L01–L06; không claim live pipeline PASS. Quy trình manual deployment/rollback ở hồ sơ promotion.
 
 ### 2026-11-09 — Naming repository implementation
 

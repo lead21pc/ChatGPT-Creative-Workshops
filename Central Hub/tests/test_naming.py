@@ -27,7 +27,7 @@ class NamingTests(unittest.TestCase):
     def setUpClass(cls):
         cls.body = (ROOT / f'library_modules/{NAMING}_v1.0.md').read_text(encoding='utf-8')
         cls.local = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.4.yaml')
-        cls.root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.13.yaml')
+        cls.root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.14.yaml')
         cls.row = next(row for row in cls.local['entries'] if row['module_id'] == NAMING)
 
     def spans(self, text):
@@ -182,10 +182,10 @@ class NamingTests(unittest.TestCase):
     def test_unchanged_owners_and_router_algorithm(self):
         before = subprocess.check_output(['git', 'show', BASELINE+':Central Hub/HUB_ROUTER_v1.1.yaml'], cwd=ROOT)
         self.assertEqual((ROOT/'HUB_ROUTER_v1.1.yaml').read_bytes(),
-                         before.replace(b'1.12', b'1.13'))
+                         before.replace(b'1.12', b'1.14'))
         old = load(ARCHIVE/'HUB_PACKAGE_CATALOG_v1.12.yaml')
-        self.assertEqual([p for p in old['packages'] if p['package_id'] != PACKAGE],
-                         [p for p in self.root['packages'] if p['package_id'] != PACKAGE])
+        self.assertEqual([p for p in old['packages'] if p['package_id'] not in {PACKAGE, 'HUB-PKG-IMAGET'}],
+                         [p for p in self.root['packages'] if p['package_id'] not in {PACKAGE, 'HUB-PKG-IMAGET'}])
         old_local = load(ARCHIVE/'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.3.yaml')
         self.assertEqual(self.local['entries'][:-1], old_local['entries'])
         for rel in ('HUB_CI_v1.2.md', 'library_modules/HUB-DOM-ANTI-PRIOR_v1.1.md',
