@@ -108,7 +108,7 @@ class ShoppingPromotionTests(unittest.TestCase):
 
     def test_router_only_changes_exact_pins(self):
         old = (SHOPPING_PREDECESSOR / 'HUB_ROUTER_v1.1.yaml').read_bytes()
-        self.assertEqual((ROOT / 'HUB_ROUTER_v1.1.yaml').read_bytes(), old.replace(b'1.9', b'1.12').replace(b'REPOSITORY_ACTIVE; PROJECT_DEPLOYMENT_NOT_VERIFIED', b'USER_CONFIRMED_BASELINE_INSTALLED_AND_LIVE; CORRECTION_DELTA_STATIC_ONLY').replace(b'LIVE INTEGRATION PARTIAL; I01-I07/I09-I10 PASS; I08 UNVERIFIABLE; USER_REPORTED', b'USER_CONFIRMED_BASELINE_LIVE_PASS; CORRECTION_DELTA_LIVE_NOT_RUN; historical trial I01-I07/I09-I10 PASS, I08 UNVERIFIABLE; USER_REPORTED'))
+        self.assertEqual((ROOT / 'HUB_ROUTER_v1.1.yaml').read_bytes(), old.replace(b'HUB_CI_v1.1.md', b'HUB_CI_v1.2.md').replace(b'Hub CI/Router v1.1 with', b'Hub CI v1.2 / Router v1.1 with').replace(b'1.9', b'1.12').replace(b'REPOSITORY_ACTIVE; PROJECT_DEPLOYMENT_NOT_VERIFIED', b'USER_CONFIRMED_BASELINE_INSTALLED_AND_LIVE; CORRECTION_DELTA_STATIC_ONLY').replace(b'LIVE INTEGRATION PARTIAL; I01-I07/I09-I10 PASS; I08 UNVERIFIABLE; USER_REPORTED', b'USER_CONFIRMED_BASELINE_LIVE_PASS; CORRECTION_DELTA_LIVE_NOT_RUN; historical trial I01-I07/I09-I10 PASS, I08 UNVERIFIABLE; USER_REPORTED'))
         self.assertEqual(self.router['router_version'], '1.1')
         for key, path in [('architecture', 'HUB_ARCHITECTURE_v1.12.md'),
                           ('root_catalog', 'HUB_PACKAGE_CATALOG_v1.12.yaml')]:

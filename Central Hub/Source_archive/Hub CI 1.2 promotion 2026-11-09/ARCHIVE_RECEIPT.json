@@ -1,0 +1,10 @@
+{
+  "source_commit": "4ff4b34501621572d9215a81c9fcf233c3d1696d",
+  "predecessor": "HUB_CI_v1.1.md",
+  "archive": "Source_archive/Hub CI 1.2 promotion 2026-11-09/HUB_CI_v1.1.md",
+  "successor": "HUB_CI_v1.2.md",
+  "sha256": "a4fc3019d91f493af7f16fd931cd35446de52ad6a3b979febca6c22b921f8478",
+  "content": "BYTE_IDENTICAL; version identity is the filename; no CI behavior change in this promotion",
+  "runtime_verification": "NOT_RUN",
+  "deployment": "NOT_PERFORMED"
+}

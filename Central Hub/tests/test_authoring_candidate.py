@@ -99,7 +99,7 @@ class AuthoringPromotionTests(unittest.TestCase):
         expected['contracts']['root_catalog'].update(file='HUB_PACKAGE_CATALOG_v1.8.yaml', version='1.8')
         expected['contracts']['binding_scope'] = active['contracts']['binding_scope']
         self.assertEqual(active, expected)
-        self.assertNotIn('HUB-PKG-AUTHORING', (ROOT / 'HUB_CI_v1.1.md').read_text(encoding='utf-8'))
+        self.assertNotIn('HUB-PKG-AUTHORING', (ROOT / 'HUB_CI_v1.2.md').read_text(encoding='utf-8'))
 
     def test_required_behavior_review_and_evidence_labels(self):
         text = CASES.read_text(encoding='utf-8')

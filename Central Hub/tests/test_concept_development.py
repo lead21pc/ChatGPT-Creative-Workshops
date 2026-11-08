@@ -77,6 +77,7 @@ class ConceptDevelopmentTests(unittest.TestCase):
         expected['deployment'] = 'USER_CONFIRMED_BASELINE_INSTALLED_AND_LIVE; CORRECTION_DELTA_STATIC_ONLY'
         expected['evidence']['live_routing'] = 'USER_CONFIRMED_BASELINE_LIVE_PASS; CORRECTION_DELTA_LIVE_NOT_RUN; historical trial I01-I07/I09-I10 PASS, I08 UNVERIFIABLE; USER_REPORTED'
         expected['contracts']['binding_scope'] = load(ROOT / 'HUB_ROUTER_v1.1.yaml')['contracts']['binding_scope']
+        expected['activation_notice'] = expected['activation_notice'].replace('HUB_CI_v1.1.md', 'HUB_CI_v1.2.md')
         self.assertEqual(load(ROOT / 'HUB_ROUTER_v1.1.yaml'), expected)
         before = load(CONCEPT_ARCHIVE / 'HUB_PACKAGE_CATALOG_v1.0.yaml')
         for package in ['HUB-PKG-TECHNICAL', 'HUB-PKG-AIS']:
@@ -398,7 +399,7 @@ class ExplicitLeafControlTests(unittest.TestCase):
             self.assertNotIn(token, str(root))
             self.assertNotIn(token, (ROOT / 'HUB_ROUTER_v1.1.yaml').read_text(encoding='utf-8'))
         previous = subprocess.check_output(['git', 'show', '573c8fe:Central Hub/HUB_ROUTER_v1.1.yaml'], cwd=ROOT)
-        self.assertEqual((ROOT / 'HUB_ROUTER_v1.1.yaml').read_bytes(), previous.replace(b'1.7', b'1.12').replace(b'REPOSITORY_ACTIVE; PROJECT_DEPLOYMENT_NOT_VERIFIED', b'USER_CONFIRMED_BASELINE_INSTALLED_AND_LIVE; CORRECTION_DELTA_STATIC_ONLY').replace(b'LIVE INTEGRATION PARTIAL; I01-I07/I09-I10 PASS; I08 UNVERIFIABLE; USER_REPORTED', b'USER_CONFIRMED_BASELINE_LIVE_PASS; CORRECTION_DELTA_LIVE_NOT_RUN; historical trial I01-I07/I09-I10 PASS, I08 UNVERIFIABLE; USER_REPORTED'))
+        self.assertEqual((ROOT / 'HUB_ROUTER_v1.1.yaml').read_bytes(), previous.replace(b'HUB_CI_v1.1.md', b'HUB_CI_v1.2.md').replace(b'Hub CI/Router v1.1 with', b'Hub CI v1.2 / Router v1.1 with').replace(b'1.7', b'1.12').replace(b'REPOSITORY_ACTIVE; PROJECT_DEPLOYMENT_NOT_VERIFIED', b'USER_CONFIRMED_BASELINE_INSTALLED_AND_LIVE; CORRECTION_DELTA_STATIC_ONLY').replace(b'LIVE INTEGRATION PARTIAL; I01-I07/I09-I10 PASS; I08 UNVERIFIABLE; USER_REPORTED', b'USER_CONFIRMED_BASELINE_LIVE_PASS; CORRECTION_DELTA_LIVE_NOT_RUN; historical trial I01-I07/I09-I10 PASS, I08 UNVERIFIABLE; USER_REPORTED'))
 
     def test_core_contract_guards_and_scope_dependency_distinction(self):
         text = (ROOT / 'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.3.md').read_text(encoding='utf-8')

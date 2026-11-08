@@ -1,6 +1,12 @@
 # Central Hub
 
-## Cập nhật hiện hành — 2026-11-08
+## Cập nhật hiện hành — 2026-11-09
+
+[Hub CI v1.2](HUB_CI_v1.2.md) ACTIVE trong repository; nội dung giữ nguyên byte từ correction local ở commit `4ff4b34` (bỏ emotional-support default, làm correction trực tiếp theo current turn). Router vẫn 1.1, Architecture/Catalog vẫn 1.12, các package/pipeline không đổi. CI v1.2 chưa deploy hoặc live-test; baseline PASS trước correction giữ nguyên phạm vi. Xem [runtime evidence](RUNTIME_EVIDENCE_CHANGELOG.md) và CF01–CF08 trong [regression spec](tests/HUB_ROUTE_TEST_CASES.md).
+
+Bản v1.1 đã correction được lưu byte-exact tại `Source_archive/Hub CI 1.2 promotion 2026-11-09/`; snapshot v1.1 trước correction vẫn giữ nguyên cho provenance. Archive không là fallback runtime.
+
+## Bản ghi — 2026-11-08
 
 Production baseline CI/Router 1.1, Architecture/Catalog 1.11, Concept core/catalog 1.2, Authoring 0.7, năm control production, Shopping 1.0 và AIS/ImageT: **USER_CONFIRMED_INSTALLED_AND_LIVE / USER_CONFIRMED_LIVE_PASS** theo xác nhận người dùng trong tác vụ này. Không phải Codex tái hiện độc lập; không suy ngày chạy, kết quả từng ca, FULL_FILE/duplicate receipts hoặc Library IDs/locator chưa được cung cấp.
 
@@ -11,13 +17,15 @@ Contributor Authoring đã retire: mọi `+ CREATIVE` / `+ BRAINSTORM` không ac
 Xem [runtime evidence](RUNTIME_EVIDENCE_CHANGELOG.md). Các đoạn có ngày/revision cũ dưới đây giữ provenance lịch sử; status hiện hành nằm ở mục này.
 
 
-Trạng thái repository: **Central Hub CI/Router v1.1 với Architecture/Catalog v1.12, Authoring 0.8 và Shopping 1.0 ACTIVE**. ImageT controller 1.2 đã được promotion với Open Gate nội bộ. REPOSITORY ACTIVE != PROJECT DEPLOYED. Việc stage/commit/push repository không upload module, sửa Project hoặc xác nhận deployment.
+## Bộ runtime hiện hành
 
-[Hub CI v1.1](HUB_CI_v1.1.md) kế thừa ngữ nghĩa ChatGPT v9.0; [Hub Router v1.1](HUB_ROUTER_v1.1.yaml), [shared architecture v1.12](HUB_ARCHITECTURE_v1.12.md) và [root package Catalog v1.12](HUB_PACKAGE_CATALOG_v1.12.yaml) là bộ active trong repository. Router chọn package set có phạm vi; chat/support/viết thông thường có thể dùng baseline NONE. Module không tự kích hoạt nhau hoặc công cụ.
+Trạng thái repository: **Central Hub CI v1.2 / Router v1.1 với Architecture/Catalog v1.12, Authoring 0.8 và Shopping 1.0 ACTIVE**. ImageT controller 1.2 đã được promotion với Open Gate nội bộ. REPOSITORY ACTIVE != PROJECT DEPLOYED. Việc stage/commit/push repository không upload module, sửa Project hoặc xác nhận deployment.
+
+[Hub CI v1.2](HUB_CI_v1.2.md) kế thừa ngữ nghĩa ChatGPT v9.0 cùng correction đã được chấp thuận; [Hub Router v1.1](HUB_ROUTER_v1.1.yaml), [shared architecture v1.12](HUB_ARCHITECTURE_v1.12.md) và [root package Catalog v1.12](HUB_PACKAGE_CATALOG_v1.12.yaml) là bộ active trong repository. Router chọn package set có phạm vi; chat/support/viết thông thường có thể dùng baseline NONE. Module không tự kích hoạt nhau hoặc công cụ.
 
 AIS chính thức trong repository dùng [pipeline v1.1](tool_pipelines/AIS/AIS_PIPELINE_v1.1.md) và [router v1.2](tool_pipelines/AIS/AIS_ROUTER_v1.2.yaml), production **USER_CONFIRMED_INSTALLED_AND_LIVE**. AIS dùng vòng tìm/đọc nguồn trong Chat để trả chứng cứ cho phần việc Hub đã giao; THOROUGH/EXTENSIVE tăng yêu cầu chứng cứ, không tự gọi Deep Research hoặc Work. Không có bộ chọn executor, quota hay chuyển Chat sang Work trong AIS. Xem [báo cáo promotion và chỉnh sửa](tool_pipelines/AIS/AIS_PROMOTION_REPORT.md) và [ca hồi quy](tool_pipelines/AIS/tests/RESEARCH_CORE_TEST_CASES.md). [ImageT controller v1.2](tool_pipelines/ImageT/IMAGE_CONTROLLER_v1.2.md) xây dựng thao tác/prompt và xác minh ảnh; [Ready Gate v1.0](tool_pipelines/ImageT/READY_GATE_v1.0.md) là control active bắt buộc, có version/hash riêng trong manifest ImageT, duyệt đúng snapshot cho một call. ImageT cùng dependency nội bộ giữ nguyên; AIS đã được nâng revision trong repository. Preference humanoid vẫn thử nghiệm, inactive, chỉ nhận full text trực tiếp khi được chọn riêng cho một operation.
 
-Trong topology hiện hành, chỉ Hub CI 1.1 ở Project Instructions; Router 1.1 pin Architecture/Catalog 1.12 và AIS/ImageT core ở Project Sources. Shopping là package thứ sáu. [Authoring 0.8](library_modules/HUB-CAP-AUTHORING_v0.8.md) là singleton CAPABILITY trong Library / `Central Hub Config`, giữ exact single-target và P1/P2/P3; mọi plus-suffix form đã bị loại bỏ; thêm suffix `ISOLATED` hoặc `P<n> ISOLATED` theo từng lượt để giới hạn task material được nhận. Đường single-target không suffix giữ cách dùng context trước đây; contributor đã loại bỏ. Người dùng xác nhận v0.7 trên bộ Architecture/Catalog 1.9 đã chạy live thành công ngày 2026-11-05: **USER_CONFIRMED_LIVE_PASS** trong phạm vi được báo; Codex chưa trực tiếp tái hiện và exact Library identity/FULL_FILE receipts chưa được cung cấp; điều đó không phủ định baseline production live. Candidate/API-local live evidence giữ phạm vi riêng. Xem [promotion, bằng chứng và rollback](AUTHORING_PROMOTION.md).
+Trong topology hiện hành, chỉ Hub CI 1.2 ở Project Instructions; Router 1.1 pin Architecture/Catalog 1.12 và AIS/ImageT core ở Project Sources. Shopping là package thứ sáu. [Authoring 0.8](library_modules/HUB-CAP-AUTHORING_v0.8.md) là singleton CAPABILITY trong Library / `Central Hub Config`, giữ exact single-target và P1/P2/P3; mọi plus-suffix form đã bị loại bỏ; thêm suffix `ISOLATED` hoặc `P<n> ISOLATED` theo từng lượt để giới hạn task material được nhận. Đường single-target không suffix giữ cách dùng context trước đây; contributor đã loại bỏ. Người dùng xác nhận v0.7 trên bộ Architecture/Catalog 1.9 đã chạy live thành công ngày 2026-11-05: **USER_CONFIRMED_LIVE_PASS** trong phạm vi được báo; Codex chưa trực tiếp tái hiện và exact Library identity/FULL_FILE receipts chưa được cung cấp; điều đó không phủ định baseline production live. Candidate/API-local live evidence giữ phạm vi riêng. Xem [promotion, bằng chứng và rollback](AUTHORING_PROMOTION.md).
 
 [Shopping 1.0](SHOPPING_PROMOTION.md) dùng core, Catalog cục bộ và thủ tục Search trong Library / `Central Hub Config`. Hub chọn AIS độc lập khi cần chứng cứ bên ngoài. Shopping production: **USER_CONFIRMED_INSTALLED_AND_LIVE / USER_CONFIRMED_LIVE_PASS**; Codex chưa tái hiện độc lập.
 

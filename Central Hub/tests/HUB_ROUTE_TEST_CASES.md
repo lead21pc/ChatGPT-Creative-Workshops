@@ -108,7 +108,7 @@ Baseline production USER_CONFIRMED_INSTALLED_AND_LIVE; cases below are new-delta
 
 Observe actual outputs/reads when a live run is separately requested. These lexical/contract cases do not prove model compliance.
 
-## CI correction — clarification, correction and interpersonal scope
+## CI 1.2 correction — clarification, correction and interpersonal scope
 
 SPEC: REVIEWED_TEXT. LIVE VERIFICATION OF THIS CI DELTA: NOT RUN. Prior production PASS retains its original scope; it does not verify this correction. Emotional-support behavior is no longer a global Hub requirement. Its removal does not establish it as the cause of the user-observed social-repair failure or prove that failure is resolved.
 

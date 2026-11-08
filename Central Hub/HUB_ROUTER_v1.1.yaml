@@ -5,7 +5,7 @@ router_version: '1.1'
 status: ACTIVE
 active: true
 deployment: USER_CONFIRMED_BASELINE_INSTALLED_AND_LIVE; CORRECTION_DELTA_STATIC_ONLY
-activation_notice: Normal runtime contract after manual installation with exact HUB_CI_v1.1.md delegation. File
+activation_notice: Normal runtime contract after manual installation with exact HUB_CI_v1.2.md delegation. File
   presence is not deployment or selection; ordinary user-action authorization remains with Hub CI.
 kind: Behavioral contract, not executable routing or Library storage implementation.
 contracts:
@@ -19,7 +19,7 @@ contracts:
     module_id: HUB-CORE-PACKAGE-CATALOG
     version: '1.12'
     status: ACTIVE
-  binding_scope: Exact manually installed Hub CI/Router v1.1 with Architecture/Catalog v1.12 Project Sources. Never
+  binding_scope: Exact manually installed Hub CI v1.2 / Router v1.1 with Architecture/Catalog v1.12 Project Sources. Never
     discover earlier design or trial controls as substitutes.
   role_boundary: CORE_ROUTER identifies the existing scoped selector/composer responsibility; no new behavior owner.
 ownership:

@@ -209,7 +209,7 @@ class HubTests(unittest.TestCase):
         self.assertFalse(router['persistence']['listing_activates'])
         self.assertFalse(router['persistence']['applicability_activates'])
         self.assertFalse((ROOT / 'manifest.yaml').exists())
-        self.assertEqual({p.name for p in ROOT.glob('*CI*.md')}, {'HUB_CI_v1.1.md'})
+        self.assertEqual({p.name for p in ROOT.glob('*CI*.md')}, {'HUB_CI_v1.2.md'})
         self.assertFalse(any(p.name.startswith('DEFAULT') for p in ROOT.rglob('*')))
 
     def test_normalized_runtime_instruction_language(self):
@@ -269,7 +269,7 @@ class HubTests(unittest.TestCase):
         self.assertIn('VIETNAMESE throughout', ci)
 
     def test_ci_budget_and_owner_order(self):
-        text = (ROOT / 'HUB_CI_v1.1.md').read_text(encoding='utf-8')
+        text = (ROOT / 'HUB_CI_v1.2.md').read_text(encoding='utf-8')
         self.assertLess(len(text) + text.count('\n'), 8000)
         owners = ['OUTPUT CONTRACT', 'CONTROL GROUNDING', 'DISCOURSE FIDELITY', 'EPISTEMIC NON-ESCALATION',
                   'TURN AND STATE', 'CLAIM STATE AND DEPENDENCY', 'UPDATING AND UNCERTAINTY', 'EXPLANATION']
@@ -279,7 +279,7 @@ class HubTests(unittest.TestCase):
             self.assertIn(s, text)
 
     def test_task_stage_boundary_contract_and_regression_spec(self):
-        ci = (ROOT / 'HUB_CI_v1.1.md').read_text(encoding='utf-8')
+        ci = (ROOT / 'HUB_CI_v1.2.md').read_text(encoding='utf-8')
         owner = ci.split('\nTURN AND STATE\n', 1)[1].split('\nCLAIM STATE AND DEPENDENCY\n', 1)[0]
         for phrase in ['explicit audit, simulation, live test, regression test or verification',
                        'defects authorize reporting, not remediation',
@@ -300,7 +300,13 @@ class HubTests(unittest.TestCase):
     def test_ci_correction_contract_and_reviewed_regressions(self):
         """Contract/source coverage only; never a language-model response oracle."""
         historical = historical_source('HUB_CI_v1.1.md').read_text(encoding='utf-8')
-        active = (ROOT / 'HUB_CI_v1.1.md').read_text(encoding='utf-8')
+        active = (ROOT / 'HUB_CI_v1.2.md').read_text(encoding='utf-8')
+        archive = ROOT / 'Source_archive/Hub CI 1.2 promotion 2026-11-09'
+        receipt = json.loads((archive / 'ARCHIVE_RECEIPT.json').read_text(encoding='utf-8'))
+        self.assertEqual((ROOT / 'HUB_CI_v1.2.md').read_bytes(), (archive / 'HUB_CI_v1.1.md').read_bytes())
+        self.assertEqual(digest(ROOT / 'HUB_CI_v1.2.md'), receipt['sha256'])
+        self.assertEqual(receipt['runtime_verification'], 'NOT_RUN')
+        self.assertFalse((ROOT / 'HUB_CI_v1.1.md').exists())
         old_discourse = next(p for p in historical.split('\n\n') if p.startswith('DISCOURSE FIDELITY:'))
         discourse = next(p for p in active.split('\n\n') if p.startswith('DISCOURSE FIDELITY:'))
         residue = next(p for p in historical.split('\n\n') if p.startswith('Respond warmly'))

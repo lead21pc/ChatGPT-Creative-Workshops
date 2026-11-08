@@ -23,6 +23,12 @@ NO NEW EVIDENCE != STATUS RESET
 
 ## Current verified runtime status
 
+### HUB_CI_1_2_REPOSITORY_PROMOTION_2026_11_09
+
+- Hub CI 1.2 là ACTIVE trong repository, byte-identical với nội dung CI đã correction tại commit `4ff4b34`; Router giữ version 1.1 và chỉ cập nhật tham chiếu CI. Architecture/Catalog giữ 1.12; các package/pipeline không đổi.
+- Correction bỏ emotional-support default, giữ claim/epistemic/updating owners và làm rõ presentation khi correction được xác lập. CF01–CF08 là manual regression spec; **LIVE VERIFICATION OF CI 1.2: NOT_RUN; PROJECT DEPLOYMENT: NOT_PERFORMED** trong tác vụ này.
+- Baseline production PASS của CI 1.1 trước correction giữ nguyên đúng scope dưới đây; không chuyển PASS sang CI 1.2. Bản v1.1 đã correction lưu tại `Source_archive/Hub CI 1.2 promotion 2026-11-09/`, khác snapshot promotion v1.1 trước correction.
+
 ### PRODUCTION_BASELINE_USER_CONFIRMATION_2026_11_08
 
 - **USER_CONFIRMED_INSTALLED_AND_LIVE / USER_CONFIRMED_LIVE_PASS**. Người dùng xác nhận active production Central Hub đã thực sự cài/test live; các trạng thái preparation-time chưa được cập nhật không còn mô tả live state hiện hành.
@@ -144,6 +150,10 @@ Các record dưới giữ trạng thái tại thời điểm ghi. Những claim 
 - Related log entry: `2026-10-27 - Integrated concept-development runtime smoke`.
 
 ## Verification log
+
+### 2026-11-09 — Hub CI 1.2 repository promotion
+
+REPOSITORY-ONLY CHANGE RECORD: nâng danh tính CI vừa correction từ 1.1 lên 1.2, giữ nguyên nội dung. Cập nhật exact CI references và test active-consumer; archive giữ byte-exact, không đổi historical expected hashes. Static verification ghi trong kết quả tác vụ; không có live run, Project/Library deployment hoặc push. Baseline live PASS không bị reset và không xác minh delta mới.
 
 ### 2026-11-08 — Production baseline confirmation and bounded corrections
 

@@ -114,7 +114,7 @@ class ShoppingM21Tests(unittest.TestCase):
         self.assertEqual(result['identity'], 'CANDIDATE')
         # Neither field is chosen as true. Whole-turn referent interpretation is
         # Hub-owned; this only covers an explicitly delegated attribute mismatch.
-        hub = (ROOT / 'HUB_CI_v1.1.md').read_text(encoding='utf-8')
+        hub = (ROOT / 'HUB_CI_v1.2.md').read_text(encoding='utf-8')
         self.assertIn('If plausible readings materially change what should be done', hub)
         self.assertIn('ask one focused question or branch', hub)
 

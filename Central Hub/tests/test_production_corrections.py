@@ -149,7 +149,8 @@ class ProductionCorrectionsTests(unittest.TestCase):
         for key,suffix in (('architecture','md'),('root_catalog','yaml')):
             expected['contracts'][key]['file']=expected['contracts'][key]['file'].replace('1.11','1.12')
             expected['contracts'][key]['version']='1.12'
-        expected['contracts']['binding_scope']=expected['contracts']['binding_scope'].replace('1.11','1.12')
+        expected['contracts']['binding_scope']=expected['contracts']['binding_scope'].replace('1.11','1.12').replace('Hub CI/Router v1.1 with','Hub CI v1.2 / Router v1.1 with')
+        expected['activation_notice']=expected['activation_notice'].replace('HUB_CI_v1.1.md','HUB_CI_v1.2.md')
         self.assertEqual(router,expected)
         self.assertEqual(len(self.catalog['packages']),6)
         bindings={p['package_id']:p for p in self.catalog['packages']}
