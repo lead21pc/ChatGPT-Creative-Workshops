@@ -324,7 +324,7 @@ The public packs are curated projections, not replacements for project-local sou
 - [The Kingdom](./worlds/The%20Kingdom/) — its own world model and local rules.
 - [Fanfiction Engine](./worlds/Fanfiction%20Engine/) — fanfiction/daydream simulation system; The Academy is its internal platform.
 - [ChatGPT Plus+ Era](./llm-controls/global-instructions/ChatGPT%20Plus+%20Era/) and [ChatGPT Go-Free Era](./llm-controls/global-instructions/ChatGPT%20Go-Free%20Era/) — Global Custom Instruction history for different character-budget eras.
-- [ChatGPT Project Global Native v9.1](<./llm-controls/global-instructions/ChatGPT Project Global Native/chatgpt v9.1.txt>) — ACTIVE global baseline in the repository; [design rationale and revision status](<./llm-controls/global-instructions/ChatGPT Project Global Native/DESIGN_RATIONALE.md>). Project-specific version pins remain explicit; repository promotion does not deploy live instructions.
+- [ChatGPT Project Global Native v9.1.1](<./llm-controls/global-instructions/ChatGPT Project Global Native/chatgpt v9.1.1.txt>) — ACTIVE global baseline in the repository; [design rationale and revision status](<./llm-controls/global-instructions/ChatGPT Project Global Native/DESIGN_RATIONALE.md>). Project-specific version pins remain explicit; repository promotion does not deploy live instructions.
 - [Project CI](./llm-controls/project-instruction-designs/Project%20CI/) and [worldbuilding-ci-kernel](./llm-controls/worldbuilding-ci-kernel/) — project-specific and reusable control designs.
 - [Instruction history](./docs/instruction-history/) and [instruction analysis](./docs/instruction-analysis/) — design evolution, regressions, failure modes, and deployment notes.
 

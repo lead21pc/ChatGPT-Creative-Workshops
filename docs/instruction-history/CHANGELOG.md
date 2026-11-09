@@ -581,6 +581,14 @@
 - No Hub social-repair restriction or duplicate correction propagation rule was imported. v9.0 remains a global predecessor and an unchanged source for the intentional Revamp CI v2.5 pin; active dependencies prevent archival at this time. Hub inheritance and historical provenance remain version-specific.
 - Static verification checks the exact one-sentence delta, encoding, length and scoped diff. Live behavior: **NOT RUN BY CODEX — USER WILL TEST DIRECTLY**. Repository promotion does not establish deployment or behavioral validation.
 
+## v9.1.1
+
+### Unnecessary invented negative alternatives
+
+- Promoted `chatgpt v9.1.1.txt` to ACTIVE through the existing README/rationale. Added exactly `Do not invent a negative alternative merely to deny it when the contrast adds no needed meaning to the turn.` after the padding/repetition sentence in `EXPLANATION`; all other text, including v9.1 clarification/challenge handling, remains unchanged.
+- Archived v9.1 byte-exact under the lineage's `source_archive`; historical records retain their original revision. No project-specific binding changed. Legitimate contrast, negation, correction, competing explanations, requested reassurance and creative contrast remain permitted when they serve the turn.
+- Static verification compares the exact delta, formatting, archive hash and active links. **LIVE BEHAVIOR: NOT RUN BY CODEX — USER WILL TEST DIRECTLY**. Repository promotion does not deploy instructions or establish runtime effectiveness.
+
 ## v6.5
 
 ### Go/Free control-kernel revision

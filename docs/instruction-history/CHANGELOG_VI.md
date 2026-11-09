@@ -581,6 +581,14 @@
 - Không nhập restriction social repair của Hub hoặc lặp quy tắc lan truyền correction. v9.0 là predecessor global, đồng thời giữ nguyên làm nguồn cho pin có chủ đích của Revamp CI v2.5; chưa archive khi còn phụ thuộc hoạt động. Kế thừa Hub và provenance lịch sử vẫn chỉ đúng phiên bản đã xác định.
 - Kiểm tra tĩnh đối chiếu đúng delta một câu, encoding, độ dài và diff trong phạm vi. Hành vi live: **NOT RUN BY CODEX — USER WILL TEST DIRECTLY**. Promotion repository không chứng minh deployment hoặc hiệu lực hành vi.
 
+## v9.1.1
+
+### Phương án phủ định tự dựng không cần thiết
+
+- Promote `chatgpt v9.1.1.txt` thành ACTIVE qua README/rationale hiện có. Chỉ thêm `Do not invent a negative alternative merely to deny it when the contrast adds no needed meaning to the turn.` ngay sau câu tránh padding/repetition trong `EXPLANATION`; toàn bộ nội dung khác, gồm correction clarification/challenge của v9.1, giữ nguyên.
+- Lưu v9.1 byte-exact vào `source_archive` của dòng này; bản ghi lịch sử giữ đúng revision gốc. Không đổi binding dự án. Contrast hợp lệ, phủ định, sửa sai, giải thích cạnh tranh, reassurance được yêu cầu và contrast sáng tác vẫn được phép khi phục vụ lượt hiện tại.
+- Kiểm tra tĩnh đối chiếu exact delta, định dạng, hash archive và liên kết ACTIVE. **LIVE BEHAVIOR: NOT RUN BY CODEX — USER WILL TEST DIRECTLY**. Promotion repository không deploy chỉ dẫn hoặc chứng minh hiệu quả runtime.
+
 ## v6.5
 
 ### Sửa kernel control cho Go/Free

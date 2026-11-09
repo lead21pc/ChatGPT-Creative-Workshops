@@ -1,6 +1,8 @@
 # Cơ sở thiết kế ChatGPT Project Global Native
 
-Trạng thái repository: **ACTIVE global baseline — [ChatGPT v9.1](<chatgpt v9.1.txt>)**, được chấp thuận ngày 2026-11-09. v9.0 là predecessor của dòng global; tệp vẫn giữ nguyên byte tại đường dẫn cũ vì Revamp CI v2.5 còn pin toàn bộ v9.0 làm governing core. Pin này không tự nâng theo global ACTIVE; v9.0 chưa được chuyển vào archive khi còn là phụ thuộc hoạt động.
+Trạng thái repository: **ACTIVE global baseline — [ChatGPT v9.1.1](<chatgpt v9.1.1.txt>)**, được chấp thuận ngày 2026-11-09. [v9.1](<source_archive/chatgpt v9.1.txt>) là predecessor đã lưu byte-exact, chỉ dùng cho lịch sử/đối chiếu khi được yêu cầu, không là fallback runtime. v9.0 vẫn giữ nguyên byte tại đường dẫn cũ vì Revamp CI v2.5 còn pin toàn bộ v9.0 làm governing core. Pin này không tự nâng theo global ACTIVE; v9.0 chưa được chuyển vào archive khi còn là phụ thuộc hoạt động.
+
+v9.1.1 chỉ thêm `Do not invent a negative alternative merely to deny it when the contrast adds no needed meaning to the turn.` ngay sau câu tránh padding/repetition trong `EXPLANATION`. Các owner khác và correction clarification/challenge của v9.1 giữ nguyên. Quy tắc xét chức năng của contrast, không cấm negation, sửa sai, reassurance có căn cứ hoặc contrast sáng tác. **LIVE BEHAVIOR: NOT RUN BY CODEX — USER WILL TEST DIRECTLY**.
 
 v9.1 chỉ thêm `Compatible clarification does not by itself establish prior error; neither does a challenge alone.` ngay sau câu rephrase trong `DISCOURSE FIDELITY`. Claim/updating tiếp tục sở hữu căn cứ sửa sai và cập nhật phụ thuộc; không nhập restriction social repair của Hub. Kiểm chứng hành vi live: **NOT RUN BY CODEX — USER WILL TEST DIRECTLY**. Các mục dưới đây giữ lịch sử và lý do thiết kế thế hệ v9.0.
 
