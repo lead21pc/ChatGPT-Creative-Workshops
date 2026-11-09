@@ -1,0 +1,247 @@
+format_version: '1'
+module_id: HUB-CORE-PACKAGE-CATALOG
+runtime_role: PACKAGE_CATALOG
+scope: Major Central Hub package entrypoints only; no leaf-module inventory.
+status: ACTIVE
+version: '1.16'
+active: true
+runtime_ready: true
+identity_binding: EXACT_INSTALLED_V1_1_CI_ROUTER_WITH_V1_16_ARCHITECTURE_CATALOG_CONTRACT
+library_discovery_root: Central Hub Config
+live_library_retrieval: TECHNICAL_ACTIVE_1_0_USER_REPORTED; PRIOR_CONCEPT_INTERFACE_1_0_CHATGPT_OBSERVED_LIBRARY_INSPECTION_VERIFIED;
+  BASELINE_PRODUCTION_USER_CONFIRMED_LIVE; EXACT_READ_RECEIPTS_NOT_RECORDED
+packages:
+- package_id: HUB-PKG-TECHNICAL
+  entrypoint_module_id: HUB-DOM-TECHNICAL
+  runtime_role: REASONING_PROFILE
+  status: ACTIVE
+  version: '1.0'
+  applicability: Mechanism reasoning, distinguishing causes during diagnosis or bounded technical-change evaluation;
+    not simple technical explanations alone.
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    library_file_id: libfile_bab7d55cd85c819198291acf135099fd
+    library_version_id: '1'
+    observed_path: Central Hub Config/HUB-DOM-TECHNICAL_v1.0.md
+    observed_surface_file_id: file_000000006da88211aa3412146f6c016c
+    surface_id_usage: Evidence/debug only; not assumed portable canonical locator.
+    verification: USER_REPORTED_ACTIVE_REVISION_VERIFIED
+    retrieval_mechanism: CAPABILITY_DEPENDENT_DIRECT_ADDRESS_OR_ROOT_SCOPED_SEARCH; NOT_INDEPENDENTLY_VERIFIED
+  local_catalog: null
+  requires: []
+  binding_mode: LIBRARY_MODULE
+- package_id: HUB-PKG-CONCEPT-DEVELOPMENT
+  entrypoint_module_id: HUB-DOM-CONCEPT-DEVELOPMENT
+  runtime_role: DOMAIN_CONTROL
+  status: ACTIVE
+  version: '1.5'
+  applicability: Concept-specific consistency/causal analysis, bounded concept audit, fictional realization/deepening
+    or specialized premise exploration, including explicit requests for specialized idea expansion. Explicit requests
+    for specialized naming generation, analysis, comparison or evaluation admit this package even when brief and
+    otherwise baseline-sized. Admission is not operation activation; only the package-local interface validates
+    control syntax and strategy. Ordinary topic mentions and lightweight brainstorming alone need no package. Local
+    applicability and leaf selection belong to this package interface. Also admit the exact case-sensitive standalone
+    token /AD anywhere in the current user-authored directive turn, including when ordinary routing would choose
+    NONE, solely to evaluate Concept anti-drift applicability. Require whitespace or input boundaries; no aliases,
+    lowercase or longer tokens. Exclude quotes, inline/fenced code, sources, attachments, documentation, analyzed
+    prompts, tool/assistant text and prior turns. No span, terminator or persistence. This cue selects no local
+    control or operation; all local applicability, dependencies and execution remain package-owned.
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    locator: null
+    library_file_id: null
+    library_version_id: null
+    resolution: UNRESOLVED
+    verification: NOT_VERIFIED
+    retrieval_mechanism: Resolve exact ACTIVE/1.5 identity and FULL_FILE in Central Hub Config under Hub Router
+      before use; no non-Library fallback. This 1.5 interface is repository-only; installation/live verification
+      NOT_RUN.
+  local_catalog:
+    module_id: HUB-CATALOG-CONCEPT-DEVELOPMENT
+    package_id: HUB-PKG-CONCEPT-DEVELOPMENT
+    runtime_role: PACKAGE_CATALOG
+    status: ACTIVE
+    version: '1.5'
+    location:
+      class: LIBRARY
+      root: Central Hub Config
+      locator: null
+      library_file_id: null
+      library_version_id: null
+      resolution: UNRESOLVED
+      verification: NOT_VERIFIED
+      retrieval_mechanism: Resolve exact ACTIVE/1.5 identity and FULL_FILE in Central Hub Config under Hub Router
+        before use; no non-Library fallback. This 1.5 interface is repository-only; installation/live verification
+        NOT_RUN.
+  requires: []
+  binding_mode: LIBRARY_MODULE
+- package_id: HUB-PKG-AUTHORING
+  entrypoint_module_id: HUB-CAP-AUTHORING
+  runtime_role: CAPABILITY
+  status: ACTIVE
+  version: '0.8'
+  applicability: Only when the first non-empty user-authored line exactly equals `/AUTHOR AIS`, `/AUTHOR IMAGET`,
+    `/AUTHOR CODEX`, `/AUTHOR WORK` or `/AUTHOR GENERIC`; match case-sensitively with exactly one ASCII space and
+    no surrounding whitespace or extra text. Leading empty or space/tab-only lines may be skipped. Quotes, attachments,
+    retrieved content, tool output, prior turns and later-line commands never match. Reassess every turn. Also admit
+    exactly `/AUTHOR <OUTPUT_TARGET> P<n>` for those five targets and P1, P2 or P3 only, with the same exact case,
+    spacing, first-nonempty-user-authored-line and provenance rules. No preset is inferred when omitted. Reject
+    unknown/lowercase/name tokens, extra text and every plus-suffix combination. Preset strategy is not a target
+    or activation of another module. Also admit exactly `/AUTHOR <OUTPUT_TARGET> ISOLATED` or `/AUTHOR <OUTPUT_TARGET>
+    P<n> ISOLATED` for the same targets and P1/P2/P3, with exactly one ASCII space per token and ISOLATED last.
+    Apply the same exact case, first-line provenance and per-turn rules. No inferred isolation, reversed ordering,
+    extra tokens, DEFAULT token or plus-suffix form. Every + CREATIVE or + BRAINSTORM form is unsupported and non-activating;
+    never strip its suffix, normalize or downgrade to a plain call. Separate exact Concept operations and ordinary
+    explicitly supplied/referenced sources create no implicit contribution. Source-admission policy belongs to Authoring,
+    not a new Router axis or package.
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    locator: null
+    library_file_id: null
+    library_version_id: null
+    verification: USER_CONFIRMED_BASELINE_LIVE; EXACT_READ_RECEIPTS_NOT_RECORDED
+    resolution: USER_CONFIRMED_BASELINE_LIVE
+    retrieval_mechanism: Production baseline USER_CONFIRMED_INSTALLED_AND_LIVE. For current use, resolve exactly
+      one ACTIVE 0.8 object inside Central Hub Config, read FULL_FILE and verify identity, headers, material body
+      and scoped duplicate coverage. No repository, Project Source, archive or other fallback.
+  local_catalog: null
+  requires: []
+  binding_mode: LIBRARY_MODULE
+- package_id: HUB-PKG-AIS
+  entrypoint_module_id: HUB-PIPE-AIS
+  runtime_role: TOOL_PIPELINE
+  status: LEGACY_EXISTING
+  version: '1.2'
+  applicability: Hub-assigned external evidence verification, collection, comparison, synthesis or option discovery,
+    including explicit search requests. Also admit an exact case-sensitive standalone /SEARCH cue (whitespace/input boundaries) in the current
+    user-authored directive, excluding quotes, code, sources, attachments, documentation, assistant/tool text and
+    prior turns. Admission reaches AIS for scoped validation only; AIS owns grammar and execution. AUTO evidence-need
+    selection remains available without this cue.
+  location:
+    class: PROJECT_SOURCES
+    declared_source_path: tool_pipelines/AIS/AIS_PIPELINE_v1.2.md
+    source_name: AIS_PIPELINE_v1.2.md
+    identity_basis: Root Catalog plus exact declared source; catalog Module ID is routing alias, not an existing
+      header.
+    verification: NEW_REVISION_LIVE_NOT_VERIFIED; FULL_EXACT_SOURCE_REQUIRED
+  local_catalog: null
+  requires: []
+  binding_mode: LEGACY_PROJECT_SOURCE
+  repository_revision: OFFICIAL_ACTIVE
+  project_deployment: NOT_PERFORMED
+- package_id: HUB-PKG-IMAGET
+  entrypoint_module_id: HUB-PIPE-IMAGET
+  runtime_role: TOOL_PIPELINE
+  status: ACTIVE
+  version: '1.3'
+  applicability: Actual image analysis, creation, editing, variation or correction; not image discussion or descriptive
+    prose alone.
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    locator: null
+    library_file_id: null
+    library_version_id: null
+    resolution: UNRESOLVED
+    verification: NOT_VERIFIED
+    retrieval_mechanism: Exact ACTIVE identity/version, FULL_FILE and material body plus sufficient scoped duplicate
+      checks in Central Hub Config; no non-Library fallback.
+  local_catalog:
+    module_id: HUB-CATALOG-IMAGET
+    package_id: HUB-PKG-IMAGET
+    runtime_role: PACKAGE_CATALOG
+    status: ACTIVE
+    version: '0.1'
+    location:
+      class: LIBRARY
+      root: Central Hub Config
+      locator: null
+      library_file_id: null
+      library_version_id: null
+      resolution: UNRESOLVED
+      verification: NOT_VERIFIED
+      retrieval_mechanism: Exact ACTIVE identity/version, FULL_FILE and material body plus sufficient scoped duplicate
+        checks in Central Hub Config; no non-Library fallback.
+  requires: []
+  binding_mode: LIBRARY_MODULE
+  repository_revision: PROMOTED
+  project_deployment: NOT_PERFORMED
+- package_id: HUB-PKG-SHOPPING
+  entrypoint_module_id: HUB-DOM-SHOPPING
+  runtime_role: DOMAIN_CONTROL
+  status: ACTIVE
+  version: '1.0'
+  applicability: Purchase-context product identification or discovery, purchase constraints and preferences, Offer
+    or storefront/channel comparison, price or stock interpretation, or commerce-specific research preparation or
+    interpretation. A product mention alone does not establish Shopping scope.
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    locator: null
+    library_file_id: null
+    library_version_id: null
+    resolution: USER_CONFIRMED_BASELINE_LIVE
+    verification: USER_CONFIRMED_BASELINE_LIVE; EXACT_READ_RECEIPTS_NOT_RECORDED
+    retrieval_mechanism: Resolve exact ACTIVE/1.0 identity and FULL_FILE in Central Hub Config under Hub Router
+      before use; verify body and scoped duplicate coverage. No non-Library fallback.
+  local_catalog:
+    module_id: HUB-CATALOG-SHOPPING
+    package_id: HUB-PKG-SHOPPING
+    runtime_role: PACKAGE_CATALOG
+    status: ACTIVE
+    version: '1.0'
+    location:
+      class: LIBRARY
+      root: Central Hub Config
+      locator: null
+      library_file_id: null
+      library_version_id: null
+      resolution: USER_CONFIRMED_BASELINE_LIVE
+      verification: USER_CONFIRMED_BASELINE_LIVE; EXACT_READ_RECEIPTS_NOT_RECORDED
+      retrieval_mechanism: Resolve exact ACTIVE/1.0 identity and FULL_FILE in Central Hub Config under Hub Router
+        before use; verify body and scoped duplicate coverage. No non-Library fallback.
+  requires: []
+  binding_mode: LIBRARY_MODULE
+live_integration: PRIOR_CONCEPT_INTERFACE_1_0_EVIDENCE_ONLY; TECHNICAL_PRIOR_EVIDENCE_RETAINED; CONCEPT_PACKAGE_FOUR_OBJECT_LIBRARY_INSTALLATION_AND_FULL_FILE_IDENTITY_CONTENT_BYTE_MATCH_CHATGPT_OBSERVED;
+  NO_DUPLICATE_OBSERVED_IN_INSPECTED_CENTRAL_HUB_CONFIG_SCOPE; BASELINE_USER_CONFIRMED_LIVE; EXACT_READ_RECEIPTS_NOT_RECORDED;
+  INTEGRATED_RUNTIME_SMOKE_USER_CONFIRMED_PASS_2026_10_27
+concept_development_evidence:
+  revision_scope: Historical interface 1.0 observations and exact revisions of the recorded 2026-10-27 smoke; not
+    interface 1.2, production anti-drift or Debate verification.
+  library_evidence_basis: CHATGPT_OBSERVED / USER_PROVIDED; not independently reproduced by Codex
+  runtime_evidence_basis: USER_CONFIRMED_LIVE_PASS; not independently reproduced by Codex
+  root: Central Hub Config
+  root_scoped_listing_objects_observed: 5
+  concept_objects_verified: 4
+  duplicate_check: NO_DUPLICATE_OBSERVED_IN_INSPECTED_CENTRAL_HUB_CONFIG_SCOPE
+  identity_content: FULL_FILE headers/body matched
+  repository_byte_match: VERIFIED
+  hub_runtime_retrieval: USER_CONFIRMED_BASELINE_LIVE; EXACT_READ_RECEIPTS_NOT_RECORDED
+  central_hub_project_switch: USER_CONFIRMED_FOR_INTEGRATED_RUNTIME_SMOKE
+  live_routing: USER_CONFIRMED_PASS_FOR_INTEGRATED_RUNTIME_SMOKE_2026_10_27
+  c01_c12_live: NOT_RUN
+active_revision_evidence:
+  basis: USER_REPORTED; not independently reproduced
+  artifact_version: '1.0'
+  library_version_id: '1'
+  full_file: 19/19
+  has_more: false
+  V01: PASS
+  V02: PASS
+  fallback: NONE_REPORTED
+  ambiguity: NONE_REPORTED
+  integration: USER_REPORTED_SUCCESS_PATHS_PASS; I08_UNVERIFIABLE
+deployment: USER_CONFIRMED_BASELINE_INSTALLED_AND_LIVE; CORRECTION_DELTA_STATIC_ONLY
+production_evidence:
+  baseline: USER_CONFIRMED_INSTALLED_AND_LIVE; USER_CONFIRMED_LIVE_PASS
+  baseline_revisions: CI/Router 1.1; Architecture/Catalog 1.11; Concept core/catalog 1.2; Authoring 0.7; MCA 1.1;
+    other production packages/controls unchanged
+  attribution: User confirmation recorded 2026-11-08; exact run dates, per-case receipts and internal identities
+    not supplied
+  codex_independent_reproduction: NOT_PERFORMED
+  correction_delta: Authoring 0.8; Concept core/catalog 1.3; MCA 1.2; Architecture/Catalog 1.12; IMPLEMENTED / STATICALLY
+    VERIFIED
+  correction_delta_live: NOT_RUN

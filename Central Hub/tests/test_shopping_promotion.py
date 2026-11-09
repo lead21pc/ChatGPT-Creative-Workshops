@@ -21,7 +21,7 @@ class ShoppingPromotionTests(unittest.TestCase):
         cls.core = (modules / f'{CORE_ID}_v1.0.md').read_text(encoding='utf-8')
         cls.search = (modules / f'{SEARCH_ID}_v1.0.md').read_text(encoding='utf-8')
         cls.local = load(modules / f'{CAT_ID}_v1.0.yaml')
-        cls.catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.15.yaml')
+        cls.catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.16.yaml')
         cls.router = load(ROOT / 'HUB_ROUTER_v1.1.yaml')
         cls.entry = next(row for row in cls.catalog['packages'] if row['package_id'] == PACKAGE)
 
@@ -99,7 +99,7 @@ class ShoppingPromotionTests(unittest.TestCase):
         self.assertEqual([row for row in load((ROOT / 'Source_archive/Production corrections 2026-11-08') / 'HUB_PACKAGE_CATALOG_v1.11.yaml')['packages'] if row['package_id'] not in {PACKAGE, 'HUB-PKG-CONCEPT-DEVELOPMENT'}],
                          [row for row in previous['packages'] if row['package_id'] != 'HUB-PKG-CONCEPT-DEVELOPMENT'])
         self.assertEqual(self.catalog['identity_binding'],
-                         'EXACT_INSTALLED_V1_1_CI_ROUTER_WITH_V1_15_ARCHITECTURE_CATALOG_CONTRACT')
+                         'EXACT_INSTALLED_V1_1_CI_ROUTER_WITH_V1_16_ARCHITECTURE_CATALOG_CONTRACT')
 
     def test_history_integrity(self):
         receipt = json.loads((SHOPPING_PREDECESSOR / 'ARCHIVE_RECEIPT.json').read_text(encoding='utf-8'))

@@ -32,7 +32,7 @@ class SearchPromotionTests(unittest.TestCase):
     def setUpClass(cls):
         cls.pipeline = PIPELINE.read_text(encoding='utf-8')
         cls.router = load(ROUTER)
-        cls.catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.15.yaml')
+        cls.catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.16.yaml')
         cls.hub = load(ROOT / 'HUB_ROUTER_v1.1.yaml')
         cls.ais = next(p for p in cls.catalog['packages'] if p['package_id'] == 'HUB-PKG-AIS')
 
@@ -145,7 +145,7 @@ class SearchPromotionTests(unittest.TestCase):
     def test_active_pins_archive_integrity_and_verification_limits(self):
         for key, ext in [('architecture', 'md'), ('root_catalog', 'yaml')]:
             contract = self.hub['contracts'][key]
-            self.assertEqual(contract['version'], '1.15')
+            self.assertEqual(contract['version'], '1.16')
             self.assertTrue((ROOT / contract['file']).is_file())
         self.assertEqual(self.ais['version'], '1.2')
         self.assertEqual(self.ais['project_deployment'], 'NOT_PERFORMED')

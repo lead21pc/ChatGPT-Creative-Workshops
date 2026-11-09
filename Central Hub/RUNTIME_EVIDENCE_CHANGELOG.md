@@ -23,6 +23,12 @@ NO NEW EVIDENCE != STATUS RESET
 
 ## Current verified runtime status
 
+### CONTEXT_SNAPSHOT_CONTRACT_2026_11_10
+
+- Architecture/Catalog 1.16 là **ACTIVE PRODUCTION CONTRACT trong repository**. Context Snapshot là dữ liệu dùng chung có scope hữu hạn, kind/status độc lập, basis theo mệnh đề, một ID cho một payload cố định, lineage nhẹ và tham chiếu đúng artifact. Tạo bằng yêu cầu tự nhiên tường minh; không thêm package/capability, Router logic, storage service hoặc cú pháp `/PACKAGE`.
+- CI 1.2 và toàn bộ Library modules/pipeline bytes giữ nguyên. Router 1.1 chỉ đổi exact pins; Catalog chỉ đổi version/identity binding, sáu package giữ nguyên. Architecture sửa version Catalog 1.14 còn sót trong thân thành binding 1.16. Predecessor Architecture/Catalog 1.15 và Router trước đổi pin được lưu byte-exact với SHA-256 tại `Source_archive/Context Snapshot contract 2026-11-10/ARCHIVE_RECEIPT.json`; archive không là runtime fallback.
+- **PROJECT / LIBRARY DEPLOYMENT: NOT_PERFORMED. LIVE VERIFICATION: NOT_RUN. REAL-CONTEXT STRESS: NOT_RUN.** Bằng chứng baseline live trước đây giữ scope/revision cũ, không chuyển PASS sang snapshot contract. Việc xuất payload không chứng minh lưu bền hoặc cách ly hội thoại; ID không là storage locator. Kế hoạch A–J/N1–N8: `tests/CONTEXT_SNAPSHOT_TEST_CASES.md`.
+
 ### IMAGET_LIBRARY_REPOSITORY_PROMOTION_2026_11_09
 
 - `HUB-PKG-IMAGET` được promotion trong repository từ legacy controller 1.2 sang `LIBRARY_MODULE / HUB-PIPE-IMAGET 1.3`, required core và local Catalog 0.1; đủ 10 ACTIVE artifacts. Preference 0.2 chỉ eligible theo explicit current-operation authority, không auto-active. Architecture/Catalog 1.14; Router 1.1 chỉ đổi exact pins, CI 1.2 và unrelated packages không đổi.
@@ -296,3 +302,8 @@ REPOSITORY-ONLY CHANGE RECORD: năm control production selectable; AUTO và `/AD
 ### SEARCH repository promotion 2026-11-09
 
 AIS pipeline 1.2/router 1.3, Concept core/catalog 1.5 và Architecture/Catalog 1.15: repository ACTIVE; IMPLEMENTED / STATICALLY VERIFIED. Suite: 319 PASS (308 kiểm tra nền và 11 kiểm tra promotion, bao phủ T1–T15). Đây là kiểm tra hợp đồng và fixture khai báo, không thực thi model/công cụ thật. Deployment: NOT_PERFORMED; LIVE VERIFICATION OF NEW DELTA: NOT_RUN; REAL-CONTEXT STRESS: NOT_RUN. Bằng chứng live baseline giữ nguyên phạm vi, không chuyển sang delta mới. Không sử dụng kết quả pilot cũ.
+
+
+### 2026-11-10 — Context Snapshot shared artifact contract
+
+Triển khai local Architecture/Catalog 1.16 ACTIVE; không deploy, gọi model/API, thay Library, push hoặc chạy A/B. Baseline hồi quy: 319 passed. Các kiểm tra mới chỉ kiểm hợp đồng/binding, tính nguyên byte owner/archive và fixture có nguồn/nhãn khai báo sẵn; không mô phỏng nhận diện ngữ nghĩa hội thoại. Kiểm chứng cuối: `python -B -m pytest -p no:cacheprovider tests -q` — **326 passed**; focused `tests/test_context_snapshot.py` — **7 passed**. Kiểm UTF-8/LF/EOF/whitespace cho 15 file mới/sửa ngoài archive, local links README/cách dùng, SHA-256 và archive layout đều PASS. Live/stress: NOT_RUN.
