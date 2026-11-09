@@ -573,6 +573,14 @@
 - Rà soát tĩnh từng quy tắc giữ hợp đồng đầu ra, ba chủ sở hữu control và sàn giải thích của v8.9, đồng thời đặt phần giải nén đã duyệt cùng quy tắc báo cáo hành động vào các chủ sở hữu hiện có. Hiện vật v8.9 giữ nguyên từng byte.
 - Các liên kết và bất biến bắt buộc của rationale vượt qua kiểm tra tĩnh; quy tắc đọc trước cùng rationale đã được xuất bản với dòng mới. Sự hiện diện của tệp, kiểm tra cấu trúc và việc xuất bản repository không chứng minh cài đặt hoặc hành vi tốt hơn trong ChatGPT Projects thực. Chưa có đối chiếu runtime có kiểm soát với v8.9 được ghi nhận tại đây.
 
+## v9.1
+
+### Làm rõ tương thích và chất vấn
+
+- Promote `chatgpt v9.1.txt` thành ACTIVE global baseline qua README/rationale hiện có. Giữ nguyên toàn bộ v9.0 và chỉ thêm `Compatible clarification does not by itself establish prior error; neither does a challenge alone.` ngay sau câu rephrase hiện có trong `DISCOURSE FIDELITY`.
+- Không nhập restriction social repair của Hub hoặc lặp quy tắc lan truyền correction. v9.0 là predecessor global, đồng thời giữ nguyên làm nguồn cho pin có chủ đích của Revamp CI v2.5; chưa archive khi còn phụ thuộc hoạt động. Kế thừa Hub và provenance lịch sử vẫn chỉ đúng phiên bản đã xác định.
+- Kiểm tra tĩnh đối chiếu đúng delta một câu, encoding, độ dài và diff trong phạm vi. Hành vi live: **NOT RUN BY CODEX — USER WILL TEST DIRECTLY**. Promotion repository không chứng minh deployment hoặc hiệu lực hành vi.
+
 ## v6.5
 
 ### Sửa kernel control cho Go/Free

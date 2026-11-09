@@ -573,6 +573,14 @@
 - Static rule-by-rule review preserved v8.9's output contract, three control owners, and explanation floor while locating the approved decompression and action-reporting addition in their existing owners. The v8.9 artifact remained byte-unchanged.
 - Rationale links and required invariants passed static inspection; the repository preflight and rationale were published with the new lineage. File presence, structural validation, and repository publication do not establish installation or superior behavior in live ChatGPT Projects. Controlled runtime comparison with v8.9 remains unrecorded here.
 
+## v9.1
+
+### Compatible clarification and challenge
+
+- Promoted `chatgpt v9.1.txt` to ACTIVE global baseline in the existing README/rationale documentation. Preserved v9.0 verbatim and added exactly `Compatible clarification does not by itself establish prior error; neither does a challenge alone.` immediately after the existing rephrase sentence in `DISCOURSE FIDELITY`.
+- No Hub social-repair restriction or duplicate correction propagation rule was imported. v9.0 remains a global predecessor and an unchanged source for the intentional Revamp CI v2.5 pin; active dependencies prevent archival at this time. Hub inheritance and historical provenance remain version-specific.
+- Static verification checks the exact one-sentence delta, encoding, length and scoped diff. Live behavior: **NOT RUN BY CODEX — USER WILL TEST DIRECTLY**. Repository promotion does not establish deployment or behavioral validation.
+
 ## v6.5
 
 ### Go/Free control-kernel revision
