@@ -156,7 +156,7 @@ class ImageTLibraryCandidateTests(unittest.TestCase):
                     path = ROOT / 'Source_archive/Authoring 0.4 promotion 2026-11-01' / name
                 baseline_path = (ROOT / 'Source_archive/Production corrections 2026-11-08') / path.relative_to(ROOT)
                 self.assertEqual((baseline_path if baseline_path.is_file() else path).read_bytes(), original)
-        root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.14.yaml')
+        root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.15.yaml')
         binding = next(p for p in root['packages'] if p['package_id'] == PACKAGE)
         self.assertEqual(binding['binding_mode'], 'LIBRARY_MODULE')
         self.assertEqual(binding['version'], '1.3')

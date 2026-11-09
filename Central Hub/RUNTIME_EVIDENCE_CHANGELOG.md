@@ -292,3 +292,7 @@ None recorded. When a later result supersedes or invalidates current applicabili
 ### 2026-11-07 — Concept production anti-drift local implementation
 
 REPOSITORY-ONLY CHANGE RECORD: năm control production selectable; AUTO và `/AD` chung gate; MCA/WIL độc lập; Actor Reception Requires MCA. Không có Library installation, Project deployment, live run hay canon mutation trong tác vụ này. Lịch sử A/B và predecessor giữ byte-exact tại Source_archive/Concept production anti-drift 2026-11-07. Đây không phải live PASS.
+
+### SEARCH repository promotion 2026-11-09
+
+AIS pipeline 1.2/router 1.3, Concept core/catalog 1.5 và Architecture/Catalog 1.15: repository ACTIVE; IMPLEMENTED / STATICALLY VERIFIED. Suite: 319 PASS (308 kiểm tra nền và 11 kiểm tra promotion, bao phủ T1–T15). Đây là kiểm tra hợp đồng và fixture khai báo, không thực thi model/công cụ thật. Deployment: NOT_PERFORMED; LIVE VERIFICATION OF NEW DELTA: NOT_RUN; REAL-CONTEXT STRESS: NOT_RUN. Bằng chứng live baseline giữ nguyên phạm vi, không chuyển sang delta mới. Không sử dụng kết quả pilot cũ.

@@ -4,22 +4,22 @@ runtime_role: CORE_ROUTER
 router_version: '1.1'
 status: ACTIVE
 active: true
-deployment: USER_CONFIRMED_BASELINE_INSTALLED_AND_LIVE; CORRECTION_DELTA_STATIC_ONLY
+deployment: USER_CONFIRMED_BASELINE_INSTALLED_AND_LIVE; CORRECTION_DELTA_STATIC_ONLY; SEARCH_DELTA_NOT_DEPLOYED
 activation_notice: Normal runtime contract after manual installation with exact HUB_CI_v1.2.md delegation. File
   presence is not deployment or selection; ordinary user-action authorization remains with Hub CI.
 kind: Behavioral contract, not executable routing or Library storage implementation.
 contracts:
   architecture:
-    file: HUB_ARCHITECTURE_v1.14.md
+    file: HUB_ARCHITECTURE_v1.15.md
     module_id: HUB-CORE-ARCH
-    version: '1.14'
+    version: '1.15'
     status: ACTIVE
   root_catalog:
-    file: HUB_PACKAGE_CATALOG_v1.14.yaml
+    file: HUB_PACKAGE_CATALOG_v1.15.yaml
     module_id: HUB-CORE-PACKAGE-CATALOG
-    version: '1.14'
+    version: '1.15'
     status: ACTIVE
-  binding_scope: Exact manually installed Hub CI v1.2 / Router v1.1 with Architecture/Catalog v1.14 Project Sources. Never
+  binding_scope: Exact manually installed Hub CI v1.2 / Router v1.1 with Architecture/Catalog v1.15 Project Sources. Never
     discover earlier design or trial controls as substitutes.
   role_boundary: CORE_ROUTER identifies the existing scoped selector/composer responsibility; no new behavior owner.
 ownership:
@@ -92,7 +92,12 @@ stages:
     FULL_FILE, identity/header/version and material body checks. Legacy: exact declared source, full content and
     existing source/version contract; no new-header claim or Library discovery. Missing/mismatch blocks dependent
     work, never switches binding.'
-  COMPOSITION_VALIDATION: Check scoped contributions and protected constraints across the verified set. A narrower
+  COMPOSITION_VALIDATION: Check scoped contributions and protected constraints across the verified set. Before
+    execution, reject overlapping current-user operation spans across admitted owners. An exact standalone
+    /SEARCH inside an open Concept operation, or a Concept operation inside an open /SEARCH, invalidates the
+    group through its terminator. Do not swallow the second opener, execute either operation or infer a
+    boundary; continue independently valid closed spans. This bounded scope check creates no global leaf
+    inventory, parser service, + or > semantics. A narrower
     module refines only its matched responsibility; preserve uncovered applicable base duties. Incompatible same-scope
     instructions require exposed conflict, separation where possible or blocking; no implicit specificity dominance.
   SCOPED_HANDOFF: Return only scoped selections, permitted inputs/roles, protected state and completion criteria.

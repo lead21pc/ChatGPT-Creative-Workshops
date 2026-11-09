@@ -228,12 +228,12 @@ class HubTests(unittest.TestCase):
             elif isinstance(value, str) and ' ' in value:
                 yield value
 
-        for name in ['HUB_ROUTER_v1.0.yaml', 'tool_pipelines/AIS/AIS_ROUTER_v1.2.yaml',
+        for name in ['HUB_ROUTER_v1.0.yaml', 'tool_pipelines/AIS/AIS_ROUTER_v1.3.yaml',
                      'tool_pipelines/ImageT/IMAGE_SOURCE_ROUTER.yaml']:
             for prose in instruction_values(load(historical_source(name))):
                 self.assertNotRegex(prose, vietnamese, name)
         for name in ['domains/creative/CREATIVE_v1.0.md', 'domains/technical/TECHNICAL_v1.0.md',
-                     'tool_pipelines/AIS/AIS_PIPELINE_v1.1.md']:
+                     'tool_pipelines/AIS/AIS_PIPELINE_v1.2.md']:
             text = (historical_source(name)).read_text(encoding='utf-8')
             prose = re.sub(r'`[^`]*`|"[^"]*"', '', text)
             self.assertNotRegex(prose, vietnamese, name)
@@ -344,7 +344,7 @@ class HubTests(unittest.TestCase):
         self.assertIn('does not establish hatred', h02)
 
     def test_ais_three_modes_lock_and_gate_order(self):
-        ais = load(ROOT / 'tool_pipelines/AIS/AIS_ROUTER_v1.2.yaml')
+        ais = load(ROOT / 'tool_pipelines/AIS/AIS_ROUTER_v1.3.yaml')
         self.assertEqual(set(ais['modes']), {'VERIFY', 'RESEARCH', 'EXPLORE'})
         self.assertEqual(set(ais['search_contract']) - {'lifetime'},
                          {'operation', 'mode', 'question', 'known', 'unknowns', 'source_authority', 'update_scope', 'stop_condition', 'research_strategy'})
@@ -424,7 +424,7 @@ class HubTests(unittest.TestCase):
         self.assertEqual((active['file'], active['version'], active['status']),
                          ('IMAGE_CONTROLLER_v1.2.md', '1.2', 'active'))
         self.assertEqual(self.manifest['controllers']['experiments'], [])
-        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.14.yaml')
+        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.15.yaml')
         binding = next(p for p in catalog['packages'] if p['package_id'] == 'HUB-PKG-IMAGET')
         self.assertEqual(binding['binding_mode'], 'LIBRARY_MODULE')
         self.assertEqual(binding['version'], '1.3')
@@ -438,7 +438,7 @@ class HubTests(unittest.TestCase):
                          '6d33c80f4852c1b44c32abf6e898c14e8f001d24796d406aafc49a95ab3a2733')
         self.assertEqual(digest(archive / 'tool_pipelines/ImageT/IMAGE_CONTROLLER_v1.2-candidate.md'),
                          'bfe8cc64f23932633c3f2a5a279d96ff39c1a54aaa6014c27cfcb5152876d600')
-        self.assertNotIn(candidate_path.name, (ROOT / 'HUB_PACKAGE_CATALOG_v1.14.yaml').read_text(encoding='utf-8'))
+        self.assertNotIn(candidate_path.name, (ROOT / 'HUB_PACKAGE_CATALOG_v1.15.yaml').read_text(encoding='utf-8'))
         self.assertIn(candidate_path.name, (IMAGE / 'manifest.yaml').read_text(encoding='utf-8'))
         self.assertNotIn(candidate_path.name, (IMAGE / 'IMAGE_SOURCE_ROUTER.yaml').read_text(encoding='utf-8'))
         cases = (IMAGE / 'tests/ROUTE_TEST_CASES.md').read_text(encoding='utf-8')
@@ -598,7 +598,7 @@ class HubTests(unittest.TestCase):
                        'explicit user prohibition', 'logical requirement of an explicit constraint',
                        'authorized active source', 'Remove unauthorized negatives or keep the field open']:
             self.assertIn(anchor, controller)
-        ais = load(ROOT / 'tool_pipelines/AIS/AIS_ROUTER_v1.2.yaml')
+        ais = load(ROOT / 'tool_pipelines/AIS/AIS_ROUTER_v1.3.yaml')
         self.assertIn('SUPPORTED COMPONENTS DO NOT AUTOMATICALLY SUPPORT THEIR COMBINATION', ais['stages']['EVIDENCE_MERGE'])
         self.assertIn('unless the relation between A and B is itself supported', ais['stages']['EVIDENCE_MERGE'])
         spec = (IMAGE / 'tests/READY_GATE_TEST_CASES.md').read_text(encoding='utf-8')
@@ -626,7 +626,7 @@ class HubTests(unittest.TestCase):
         self.assertEqual(len(additions), 2)
         body = '\n\n'.join(p for p in paragraphs if p not in additions)
         self.assertEqual(hashlib.sha256(body.encode()).hexdigest(), 'abc1639ca566420f0e127539b57a43881bce1eca01a0da640fa62770133d7ca9')
-        ais = load(ROOT / 'tool_pipelines/AIS/AIS_ROUTER_v1.2.yaml')
+        ais = load(ROOT / 'tool_pipelines/AIS/AIS_ROUTER_v1.3.yaml')
         policy = json.dumps(ais['source_policy'], sort_keys=True)
         self.assertEqual(hashlib.sha256(policy.encode()).hexdigest(), '3f22b8abf89e2cb7bfffed3c9255da3e034ad672d64a5394641e4a1f0f0975e7')
 

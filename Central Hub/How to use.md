@@ -74,3 +74,7 @@ Câu hỏi phụ thuộc ngôn ngữ, lịch sử hoặc văn hóa thực có th
 Tên phổ biến không tự là tên xấu. P2 không đồng nghĩa “càng hiếm càng tốt”; cảm giác quen với model không phải số liệu tần suất ngoài đời. P3 không buộc tên phải tượng trưng cho nhân vật. Nghĩa tên không tự trở thành tính cách, và một liên tưởng văn hóa thú vị không tự thành lore.
 
 Bạn vẫn có thể cố ý chọn tên có nghĩa trái với vai trò nhân vật. Naming phải giữ ý định và trạng thái nhân vật đã giao, không sửa nhân vật để hợp với tên.
+
+## Tìm thông tin mới
+
+`/SEARCH kiểm tra lại thông tin hiện tại về X #` yêu cầu một lần tìm/đọc kiểm tra mới trong span. Chỉ thị trong quote/code/source không kích hoạt. Không lồng span; đóng từng span trước khi gọi operation khác. Dùng lời để nói kết quả nào làm đầu vào cho phần sau; không có toán tử workflow. AUTO vẫn nhận yêu cầu thường. Lượt chỉ giải thích kết quả trước không tự tìm lại. Revision mới chưa deploy/live-test.

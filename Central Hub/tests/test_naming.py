@@ -3,6 +3,7 @@
 Provenance and semantic applicability are fixture-declared. Reuse the existing
 Concept lexical and generic composition oracles; no production parser is added.
 """
+from pathlib import Path
 import hashlib
 import json
 import re
@@ -18,6 +19,9 @@ from test_concept_production_anti_drift import production_spec, AP
 
 
 NAMING = 'HUB-DOM-NAMING'
+# Exact predecessor release assertions; active SEARCH has separate promotion coverage.
+SEARCH_PREDECESSOR = Path(__file__).resolve().parents[1] / 'Source_archive/AIS SEARCH promotion 2026-11-09'
+
 BASELINE = 'e804cfa03a54d6caba67b0ed877890e9a5711128'
 ARCHIVE = ROOT / 'Source_archive/Naming 1.0 integration 2026-11-09'
 
@@ -26,8 +30,8 @@ class NamingTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.body = (ROOT / f'library_modules/{NAMING}_v1.0.md').read_text(encoding='utf-8')
-        cls.local = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.4.yaml')
-        cls.root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.14.yaml')
+        cls.local = load(SEARCH_PREDECESSOR / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.4.yaml')
+        cls.root = load(SEARCH_PREDECESSOR / 'HUB_PACKAGE_CATALOG_v1.14.yaml')
         cls.row = next(row for row in cls.local['entries'] if row['module_id'] == NAMING)
 
     def spans(self, text):
@@ -181,7 +185,7 @@ class NamingTests(unittest.TestCase):
 
     def test_unchanged_owners_and_router_algorithm(self):
         before = subprocess.check_output(['git', 'show', BASELINE+':Central Hub/HUB_ROUTER_v1.1.yaml'], cwd=ROOT)
-        self.assertEqual((ROOT/'HUB_ROUTER_v1.1.yaml').read_bytes(),
+        self.assertEqual((SEARCH_PREDECESSOR/'HUB_ROUTER_v1.1.yaml').read_bytes(),
                          before.replace(b'1.12', b'1.14'))
         old = load(ARCHIVE/'HUB_PACKAGE_CATALOG_v1.12.yaml')
         self.assertEqual([p for p in old['packages'] if p['package_id'] not in {PACKAGE, 'HUB-PKG-IMAGET'}],
@@ -193,7 +197,7 @@ class NamingTests(unittest.TestCase):
                     'library_modules/HUB-CAP-BRAINSTORM_v1.1.md', 'library_modules/HUB-CAP-DEBATE_v1.0.md',
                     'tool_pipelines/AIS/AIS_PIPELINE_v1.1.md', 'tool_pipelines/AIS/AIS_ROUTER_v1.2.yaml',
                     'tool_pipelines/ImageT/IMAGE_CONTROLLER_v1.2.md'):
-            self.assertEqual((ROOT/rel).read_bytes(), subprocess.check_output(
+            self.assertEqual(((SEARCH_PREDECESSOR if rel.startswith('tool_pipelines/AIS/') else ROOT)/rel).read_bytes(), subprocess.check_output(
                 ['git', 'show', BASELINE+':Central Hub/'+rel], cwd=ROOT), rel)
 
     def test_archive_byte_exact_and_predecessors_not_active(self):

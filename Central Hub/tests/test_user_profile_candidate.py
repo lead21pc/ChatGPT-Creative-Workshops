@@ -18,7 +18,7 @@ DESIGN = 'USER_PROFILE_DESIGN.md'
 SHOPPING = 'HUB-PKG-SHOPPING'
 HEALTH = 'HUB-PKG-HEALTH'
 BASELINE = 'c5f81196ca4a8354908d7161f530e23073120e22'
-CATALOG = 'HUB_PACKAGE_CATALOG_v1.14.yaml'
+CATALOG = 'HUB_PACKAGE_CATALOG_v1.15.yaml'
 
 
 def read_plan(schema, *, selected_package, section, purpose, material_need):

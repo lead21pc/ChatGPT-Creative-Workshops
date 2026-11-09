@@ -13,8 +13,9 @@ from test_hub_contracts import load, historical_source
 import json
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = ROOT / 'tool_pipelines/AIS'
-POLICY = load(BASE / 'AIS_ROUTER_v1.2.yaml')
+SEARCH_PREDECESSOR = ROOT / 'Source_archive/AIS SEARCH promotion 2026-11-09'
+BASE = SEARCH_PREDECESSOR / 'tool_pipelines/AIS'
+POLICY = load(ROOT / 'tool_pipelines/AIS/AIS_ROUTER_v1.3.yaml')
 
 # Captured before this task's edits, from the clean local 603bd01 working tree.
 BASELINE = {
@@ -74,7 +75,8 @@ def fallback_oracle(branches):
 
 
 class AISResearchStaticTests(unittest.TestCase):
-    def test_official_pair_stage_order_and_unchanged_owners(self):
+    def test_historical_official_pair_stage_order_and_unchanged_owners(self):
+        POLICY = load(BASE / 'AIS_ROUTER_v1.2.yaml')
         old = load(historical_source('tool_pipelines/AIS/AIS_ROUTER_v1.1.yaml'))
         self.assertEqual(POLICY['status'], 'ACTIVE')
         self.assertTrue(POLICY['active'])
@@ -99,7 +101,7 @@ class AISResearchStaticTests(unittest.TestCase):
         self.assertEqual(re.findall(r'`(AIS_ROUTER_[^`]+\.yaml)`', pipeline), ['AIS_ROUTER_v1.2.yaml'])
         self.assertIn('Status: ACTIVE', pipeline)
         self.assertIn('without reassessing the whole turn', pipeline)
-        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.14.yaml')
+        catalog = load(SEARCH_PREDECESSOR / 'HUB_PACKAGE_CATALOG_v1.14.yaml')
         ais = next(p for p in catalog['packages'] if p['package_id'] == 'HUB-PKG-AIS')
         self.assertEqual(ais['version'], '1.1')
         self.assertEqual(ais['binding_mode'], 'LEGACY_PROJECT_SOURCE')
@@ -118,10 +120,10 @@ class AISResearchStaticTests(unittest.TestCase):
                 continue  # Only AIS-22's exact current router filename changes below.
             with self.subTest(path=name):
                 self.assertEqual(hashlib.sha256(historical_source(name).read_bytes()).hexdigest(), sha)
-        original = (BASE / 'tests/ROUTE_TEST_CASES.md').read_text(encoding='utf-8')
+        original = (ROOT / 'tool_pipelines/AIS/tests/ROUTE_TEST_CASES.md').read_text(encoding='utf-8')
         self.assertEqual(re.findall(r'^\| (AIS-\d+) \|', original, re.M),
                          [f'AIS-{n:02}' for n in range(1, 29)])
-        old_name = original.replace('AIS_ROUTER_v1.2.yaml', 'AIS_ROUTER_v1.1.yaml')
+        old_name = original.replace('AIS_ROUTER_v1.3.yaml', 'AIS_ROUTER_v1.1.yaml')
         self.assertEqual(hashlib.sha256(old_name.encode()).hexdigest(),
                          BASELINE['tool_pipelines/AIS/tests/ROUTE_TEST_CASES.md'])
         receipt = json.loads((ROOT / 'Source_archive/AIS_PROMOTION_ARCHIVE_RECEIPT_2026-10-21.json').read_text(encoding='utf-8'))
@@ -163,10 +165,10 @@ class AISResearchStaticTests(unittest.TestCase):
         self.assertIn('tool_failure', POLICY['failures'])
 
     def test_case_inventory_utf8_and_official_whitespace(self):
-        spec = (BASE / 'tests/RESEARCH_CORE_TEST_CASES.md').read_text(encoding='utf-8')
+        spec = (ROOT / 'tool_pipelines/AIS/tests/RESEARCH_CORE_TEST_CASES.md').read_text(encoding='utf-8')
         self.assertEqual(re.findall(r'^\| (RC\d+) \|', spec, re.M), [f'RC{n:02}' for n in range(1, 27)])
-        self.assertTrue((BASE / 'tests/ROUTE_TEST_CASES.md').is_file())
-        for path in [*BASE.glob('AIS_*.*'), BASE / 'tests/RESEARCH_CORE_TEST_CASES.md', Path(__file__)]:
+        self.assertTrue((ROOT / 'tool_pipelines/AIS/tests/ROUTE_TEST_CASES.md').is_file())
+        for path in [*BASE.glob('AIS_*.*'), ROOT / 'tool_pipelines/AIS/tests/RESEARCH_CORE_TEST_CASES.md', Path(__file__)]:
             if not path.is_file():
                 continue
             raw = path.read_bytes()

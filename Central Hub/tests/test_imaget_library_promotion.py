@@ -9,6 +9,9 @@ import unittest
 from test_hub_contracts import ROOT, Closed, load, approval_oracle
 from test_imaget_library_candidate import EXPECTED, selection_spec
 
+# Exact predecessor release assertions; active SEARCH has separate promotion coverage.
+SEARCH_PREDECESSOR = Path(__file__).resolve().parents[1] / 'Source_archive/AIS SEARCH promotion 2026-11-09'
+
 BASELINE = '2898d2358f6b3eebd4de65e78d5033af7c27dd12'
 PACKAGE = 'HUB-PKG-IMAGET'
 LIBRARY = ROOT / 'library_modules'
@@ -79,7 +82,7 @@ class ImageTLibraryPromotionTests(unittest.TestCase):
         cls.controller = (LIBRARY / 'HUB-IMAGET-CONTROLLER_v1.3.md').read_text(encoding='utf-8')
 
     def test_P01_exactly_one_library_binding_and_unrelated_owners_unchanged(self):
-        root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.14.yaml')
+        root = load(SEARCH_PREDECESSOR / 'HUB_PACKAGE_CATALOG_v1.14.yaml')
         entries = [p for p in root['packages'] if p['package_id'] == PACKAGE]
         self.assertEqual(len(entries), 1)
         entry = entries[0]
@@ -93,7 +96,7 @@ class ImageTLibraryPromotionTests(unittest.TestCase):
         self.assertEqual([p for p in root['packages'] if p['package_id'] != PACKAGE],
                          [p for p in before['packages'] if p['package_id'] != PACKAGE])
         old_router = (ARCHIVE / 'HUB_ROUTER_v1.1.yaml').read_bytes()
-        self.assertEqual((ROOT / 'HUB_ROUTER_v1.1.yaml').read_bytes(), old_router.replace(b'1.13', b'1.14'))
+        self.assertEqual((SEARCH_PREDECESSOR / 'HUB_ROUTER_v1.1.yaml').read_bytes(), old_router.replace(b'1.13', b'1.14'))
 
     def test_P02_P04_active_objects_integrity_and_fail_closed(self):
         for identity, version, role, ext in EXPECTED:
@@ -128,7 +131,7 @@ class ImageTLibraryPromotionTests(unittest.TestCase):
             self.assertIsNone(row['location']['library_file_id'])
         preference = self.catalog['entries'][1]
         self.assertEqual(preference['activation'], 'explicit_current_operation_only')
-        root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.14.yaml')
+        root = load(SEARCH_PREDECESSOR / 'HUB_PACKAGE_CATALOG_v1.14.yaml')
         for leaf in self.catalog['entries']:
             self.assertNotIn(leaf['module_id'], str(root))
 

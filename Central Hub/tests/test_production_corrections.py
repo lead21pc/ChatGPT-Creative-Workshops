@@ -3,6 +3,7 @@
 Lexical admission is an acceptance oracle, not a production parser. Source roles
 are fixture-supplied. Output instructions still require actual model verification.
 """
+from pathlib import Path
 import copy
 import hashlib
 import json
@@ -15,6 +16,9 @@ from test_concept_development import leaf_span_spec
 from test_concept_production_anti_drift import production_spec, MCA, WIL, AR
 
 HISTORY = ROOT / 'Source_archive/Production corrections 2026-11-08'
+# Exact predecessor release assertions; active SEARCH has separate promotion coverage.
+SEARCH_PREDECESSOR = Path(__file__).resolve().parents[1] / 'Source_archive/AIS SEARCH promotion 2026-11-09'
+
 BASELINE = '73a0a0b28c29e832dfdd4886923703ed84592e41'
 TARGETS = ('AIS', 'IMAGET', 'CODEX', 'WORK', 'GENERIC')
 
@@ -34,9 +38,9 @@ class ProductionCorrectionsTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.author = (ROOT/'library_modules/HUB-CAP-AUTHORING_v0.8.md').read_text(encoding='utf-8')
-        cls.core = (ROOT/'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.4.md').read_text(encoding='utf-8')
-        cls.catalog = load(ROOT/'HUB_PACKAGE_CATALOG_v1.14.yaml')
-        cls.local = load(ROOT/'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.4.yaml')
+        cls.core = (SEARCH_PREDECESSOR/'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.4.md').read_text(encoding='utf-8')
+        cls.catalog = load(SEARCH_PREDECESSOR/'HUB_PACKAGE_CATALOG_v1.14.yaml')
+        cls.local = load(SEARCH_PREDECESSOR/'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.4.yaml')
 
     def test_all_removed_forms_never_downgrade_and_valid_forms_survive(self):
         for target in TARGETS:
@@ -142,7 +146,7 @@ class ProductionCorrectionsTests(unittest.TestCase):
         self.assertIn('Baseline USER_CONFIRMED_LIVE_PASS',changelog)
 
     def test_exact_stack_and_router_algorithm_preserved(self):
-        router=load(ROOT/'HUB_ROUTER_v1.1.yaml')
+        router=load(SEARCH_PREDECESSOR/'HUB_ROUTER_v1.1.yaml')
         old=load(HISTORY/'HUB_ROUTER_v1.1.yaml')
         expected=copy.deepcopy(old)
         expected['deployment']='USER_CONFIRMED_BASELINE_INSTALLED_AND_LIVE; CORRECTION_DELTA_STATIC_ONLY'
@@ -169,11 +173,11 @@ class ProductionCorrectionsTests(unittest.TestCase):
         path='tool_pipelines/AIS/AIS_PIPELINE_v1.1.md'
         old=(HISTORY/path).read_text(encoding='utf-8')
         expected=old.replace('Project deployment: NOT_PERFORMED','Project deployment: USER_CONFIRMED_INSTALLED_AND_LIVE').replace('Independent live verification: NOT_RUN','Production live status: USER_CONFIRMED_LIVE_PASS\nCodex independent reproduction: NOT_PERFORMED')
-        self.assertEqual((ROOT/path).read_text(encoding='utf-8'),expected)
+        self.assertEqual((SEARCH_PREDECESSOR/path).read_text(encoding='utf-8'),expected)
         path='tool_pipelines/AIS/AIS_ROUTER_v1.2.yaml'
         old=load(HISTORY/path);expected=copy.deepcopy(old)
         expected.update(live_verification='USER_CONFIRMED_LIVE_PASS',deployment='USER_CONFIRMED_INSTALLED_AND_LIVE')
-        self.assertEqual(load(ROOT/path),expected)
+        self.assertEqual(load(SEARCH_PREDECESSOR/path),expected)
         path='tool_pipelines/ImageT/IMAGE_CONTROLLER_v1.2.md'
         before=(HISTORY/path).read_text(encoding='utf-8')
         after=(ROOT/path).read_text(encoding='utf-8')

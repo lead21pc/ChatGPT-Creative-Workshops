@@ -3,6 +3,7 @@
 Counts below are simulated records, not recovered historical execution.
 No production reporter or new shared metric schema is implemented.
 """
+from pathlib import Path
 import unittest
 
 from test_hub_contracts import ROOT, load
@@ -30,7 +31,7 @@ class AISCoverageAccountingTests(unittest.TestCase):
         self.assertIn(('results inspected', 96), coverage['unresolved'])
 
     def test_R4_current_AIS_contract_separates_coverage_and_execution(self):
-        router = load(ROOT / 'tool_pipelines/AIS/AIS_ROUTER_v1.2.yaml')
+        router = load(ROOT / 'tool_pipelines/AIS/AIS_ROUTER_v1.3.yaml')
         self.assertIn('achieved coverage against locked needs', router['return_contract'])
         self.assertIn('per-action execution status and evidence basis', router['return_contract'])
         self.assertIn('time/version/conditions', router['search_contract']['question'])

@@ -10,6 +10,9 @@ from test_hub_router_candidate import synthetic_module, synthetic_fixture, simul
 from test_hub_contracts import Closed
 
 
+# Exact predecessor release assertions; active SEARCH has separate promotion coverage.
+SEARCH_PREDECESSOR = Path(__file__).resolve().parents[1] / 'Source_archive/AIS SEARCH promotion 2026-11-09'
+
 PACKAGE = 'HUB-PKG-CONCEPT-DEVELOPMENT'
 CORE = 'HUB-DOM-CONCEPT-DEVELOPMENT'
 CATALOG = 'HUB-CATALOG-CONCEPT-DEVELOPMENT'
@@ -18,12 +21,12 @@ BASELINE = 'ee104645e89939341cd45deba465b5d71da64521'
 
 def current_fixture():
     """Project interfaces into the SPEC oracle; specialized scopes declare already-valid explicit invocations, not semantic auto-selection."""
-    core = synthetic_module(CORE, PACKAGE, {'CORE', 'CREATIVE', 'DEBATE', 'BRAINSTORM', 'NAME'}, version='1.4')
+    core = synthetic_module(CORE, PACKAGE, {'CORE', 'CREATIVE', 'DEBATE', 'BRAINSTORM', 'NAME'}, version='1.5')
     fixture = synthetic_fixture(core)
-    catalog = synthetic_module(CATALOG, PACKAGE, set(), role='PACKAGE_CATALOG', version='1.4')
+    catalog = synthetic_module(CATALOG, PACKAGE, set(), role='PACKAGE_CATALOG', version='1.5')
     fixture['packages'][0]['local_catalog'] = catalog
     fixture['artifacts'][CATALOG] = [dict(copy.deepcopy(catalog), read_kind='FULL_FILE')]
-    local = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.4.yaml')
+    local = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.5.yaml')
     leaves = []
     scopes = {'HUB-DOM-CREATIVE': {'CREATIVE'}, 'HUB-CAP-BRAINSTORM': {'BRAINSTORM'}, 'HUB-CAP-DEBATE': {'DEBATE'}, 'HUB-DOM-NAMING': {'NAME'}}
     for row in local['entries']:
@@ -37,11 +40,11 @@ def current_fixture():
     return fixture
 
 
-class ConceptDevelopmentTests(unittest.TestCase):
+class HistoricalConceptDevelopmentTests(unittest.TestCase):
     def setUp(self):
-        self.root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.14.yaml')
-        self.local = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.4.yaml')
-        self.core = (ROOT / 'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.4.md').read_text(encoding='utf-8')
+        self.root = load(SEARCH_PREDECESSOR / 'HUB_PACKAGE_CATALOG_v1.14.yaml')
+        self.local = load(SEARCH_PREDECESSOR / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.4.yaml')
+        self.core = (SEARCH_PREDECESSOR / 'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.4.md').read_text(encoding='utf-8')
         self.notes = (ROOT / 'CONCEPT_DEVELOPMENT_MIGRATION.md').read_text(encoding='utf-8')
 
     def test_six_root_owners_and_package_local_inventory(self):
@@ -76,9 +79,9 @@ class ConceptDevelopmentTests(unittest.TestCase):
             expected['contracts'][key]['version'] = '1.14'
         expected['deployment'] = 'USER_CONFIRMED_BASELINE_INSTALLED_AND_LIVE; CORRECTION_DELTA_STATIC_ONLY'
         expected['evidence']['live_routing'] = 'USER_CONFIRMED_BASELINE_LIVE_PASS; CORRECTION_DELTA_LIVE_NOT_RUN; historical trial I01-I07/I09-I10 PASS, I08 UNVERIFIABLE; USER_REPORTED'
-        expected['contracts']['binding_scope'] = load(ROOT / 'HUB_ROUTER_v1.1.yaml')['contracts']['binding_scope']
+        expected['contracts']['binding_scope'] = load(SEARCH_PREDECESSOR / 'HUB_ROUTER_v1.1.yaml')['contracts']['binding_scope']
         expected['activation_notice'] = expected['activation_notice'].replace('HUB_CI_v1.1.md', 'HUB_CI_v1.2.md')
-        self.assertEqual(load(ROOT / 'HUB_ROUTER_v1.1.yaml'), expected)
+        self.assertEqual(load(SEARCH_PREDECESSOR / 'HUB_ROUTER_v1.1.yaml'), expected)
         before = load(CONCEPT_ARCHIVE / 'HUB_PACKAGE_CATALOG_v1.0.yaml')
         for package in ['HUB-PKG-TECHNICAL', 'HUB-PKG-AIS']:
             self.assertEqual(next(p for p in before['packages'] if p['package_id'] == package),
@@ -96,7 +99,7 @@ class ConceptDevelopmentTests(unittest.TestCase):
                                       ('HUB-CAP-DEBATE', '1.0', 'CAPABILITY'),
                                       ('HUB-DOM-CREATIVE', '1.1', 'DOMAIN_CONTROL'),
                                       ('HUB-CAP-BRAINSTORM', '1.1', 'CAPABILITY')]:
-            text = (ROOT / f'library_modules/{module}_v{version}.md').read_text(encoding='utf-8')
+            text = ((SEARCH_PREDECESSOR if module == 'HUB-DOM-CONCEPT-DEVELOPMENT' else ROOT) / f'library_modules/{module}_v{version}.md').read_text(encoding='utf-8')
             for key, value in [('Module ID', module), ('Package ID', PACKAGE), ('Runtime role', role),
                                ('Status', 'ACTIVE'), ('Version', version)]:
                 self.assertEqual(re.findall(r'^' + key + r': (.+)$', text, re.M), [value])
@@ -294,9 +297,11 @@ def leaf_span_spec(parts):
     """
     text = ''.join(body for role, body in parts)
     directive = [role == 'USER_DIRECTIVE' for role, body in parts for _ in body]
-    local = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.4.yaml')
+    local = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.5.yaml')
     openers = {row['activation']: row['module_id'] for row in local['entries'] if 'activation' in row}
-    tokens = re.compile(r'(?<![\w/])/(?:CREATIVE|DEBATE|BRAINSTORM|NAME)(?=\s|$)|(?<!\S)#(?=\s|$)')
+    # Foreign owner cue only: SEARCH remains AIS-owned, never a Concept catalog leaf.
+    openers['/SEARCH'] = 'HUB-PKG-AIS'
+    tokens = re.compile(r'(?<![\w/])/(?:CREATIVE|DEBATE|BRAINSTORM|NAME)(?=\s|$)|(?<!\S)/SEARCH(?=\s|$)|(?<!\S)#(?=\s|$)')
     invocations, blocked, occupied = [], [], []
     opened = None
     invalid = False
@@ -408,21 +413,21 @@ class ExplicitLeafControlTests(unittest.TestCase):
         self.assertEqual(result['unscoped'][-1], ' outside')
 
     def test_local_ownership_and_no_root_router_parser(self):
-        local = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.4.yaml')
+        local = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.5.yaml')
         selected = {row['activation']: row for row in local['entries'] if 'activation' in row}
         self.assertEqual(set(selected), {'/CREATIVE', '/DEBATE', '/BRAINSTORM', '/NAME'})
         for row in selected.values():
             self.assertEqual(row['requires'], [])
             self.assertIn('SELECT ONLY FOR A VALID EXPLICIT CONTROL SPAN', row['applicability'])
-        root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.14.yaml')
+        root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.15.yaml')
         for token in selected:
             self.assertNotIn(token, str(root))
             self.assertNotIn(token, (ROOT / 'HUB_ROUTER_v1.1.yaml').read_text(encoding='utf-8'))
         previous = subprocess.check_output(['git', 'show', '573c8fe:Central Hub/HUB_ROUTER_v1.1.yaml'], cwd=ROOT)
-        self.assertEqual((ROOT / 'HUB_ROUTER_v1.1.yaml').read_bytes(), previous.replace(b'HUB_CI_v1.1.md', b'HUB_CI_v1.2.md').replace(b'Hub CI/Router v1.1 with', b'Hub CI v1.2 / Router v1.1 with').replace(b'1.7', b'1.14').replace(b'REPOSITORY_ACTIVE; PROJECT_DEPLOYMENT_NOT_VERIFIED', b'USER_CONFIRMED_BASELINE_INSTALLED_AND_LIVE; CORRECTION_DELTA_STATIC_ONLY').replace(b'LIVE INTEGRATION PARTIAL; I01-I07/I09-I10 PASS; I08 UNVERIFIABLE; USER_REPORTED', b'USER_CONFIRMED_BASELINE_LIVE_PASS; CORRECTION_DELTA_LIVE_NOT_RUN; historical trial I01-I07/I09-I10 PASS, I08 UNVERIFIABLE; USER_REPORTED'))
+        self.assertEqual((SEARCH_PREDECESSOR / 'HUB_ROUTER_v1.1.yaml').read_bytes(), previous.replace(b'HUB_CI_v1.1.md', b'HUB_CI_v1.2.md').replace(b'Hub CI/Router v1.1 with', b'Hub CI v1.2 / Router v1.1 with').replace(b'1.7', b'1.14').replace(b'REPOSITORY_ACTIVE; PROJECT_DEPLOYMENT_NOT_VERIFIED', b'USER_CONFIRMED_BASELINE_INSTALLED_AND_LIVE; CORRECTION_DELTA_STATIC_ONLY').replace(b'LIVE INTEGRATION PARTIAL; I01-I07/I09-I10 PASS; I08 UNVERIFIABLE; USER_REPORTED', b'USER_CONFIRMED_BASELINE_LIVE_PASS; CORRECTION_DELTA_LIVE_NOT_RUN; historical trial I01-I07/I09-I10 PASS, I08 UNVERIFIABLE; USER_REPORTED'))
 
     def test_core_contract_guards_and_scope_dependency_distinction(self):
-        text = (ROOT / 'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.4.md').read_text(encoding='utf-8')
+        text = (ROOT / 'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.5.md').read_text(encoding='utf-8')
         for clause in ('SEMANTIC FIT != LEAF ACTIVATION', 'No nesting or overlap',
                        'TEXTUAL ORDER != AUTOMATIC DEPENDENCY', 'LEAF SCOPE != CONTEXT VISIBILITY',
                        'PREVIOUS SPAN != CURRENT ACTIVATION', 'PREVIOUS TURN != CURRENT ACTIVATION',

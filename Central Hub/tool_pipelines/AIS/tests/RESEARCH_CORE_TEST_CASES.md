@@ -1,7 +1,7 @@
 # AIS research core — guided research regression cases
 
 STATUS: OFFICIAL_REGRESSION_SPEC / NON_RUNTIME
-TARGET: AIS_PIPELINE_v1.1.md + AIS_ROUTER_v1.2.yaml, corrected in place after local promotion.
+TARGET: AIS_PIPELINE_v1.2.md + AIS_ROUTER_v1.3.yaml, corrected in place after local promotion.
 STATIC CONTRACT TEST: `python -B -m unittest discover -s tests -p test_ais_research_core.py -v` from Hub root.
 SPEC SIMULATION: declared depth/coverage/trace fixtures only; no natural-language model interpretation, product launches or external calls.
 INDEPENDENT LIVE: NOT_RUN. USER-REPORTED LIVE EVIDENCE: multi-round and broad Chat research, source comparison/counterexamples, workflow-heavy Chat without observed Work handoff, and execution audit distinguishing activity from retrospectively visible source support. These observations are not independent Codex reproduction or proof of deployment of this exact revision.

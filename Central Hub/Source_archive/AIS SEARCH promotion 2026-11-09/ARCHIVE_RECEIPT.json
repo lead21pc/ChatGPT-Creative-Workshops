@@ -1,0 +1,37 @@
+[
+  {
+    "old": "tool_pipelines/AIS/AIS_PIPELINE_v1.1.md",
+    "archive": "Source_archive/AIS SEARCH promotion 2026-11-09/tool_pipelines/AIS/AIS_PIPELINE_v1.1.md",
+    "sha256": "37e5d517aaa115730bd67130fe088c726ea0180efe81b60f7ddb99c770f2d38d"
+  },
+  {
+    "old": "tool_pipelines/AIS/AIS_ROUTER_v1.2.yaml",
+    "archive": "Source_archive/AIS SEARCH promotion 2026-11-09/tool_pipelines/AIS/AIS_ROUTER_v1.2.yaml",
+    "sha256": "9dd6ae35072db0d9ddc0797fb0bb889292f13867e55403282c9223d595c290ab"
+  },
+  {
+    "old": "HUB_ARCHITECTURE_v1.14.md",
+    "archive": "Source_archive/AIS SEARCH promotion 2026-11-09/HUB_ARCHITECTURE_v1.14.md",
+    "sha256": "2a5396661c786fd49e82840f8dc8f3951b0f1a6a1f8ce6b8c51586c35afd3ed5"
+  },
+  {
+    "old": "HUB_PACKAGE_CATALOG_v1.14.yaml",
+    "archive": "Source_archive/AIS SEARCH promotion 2026-11-09/HUB_PACKAGE_CATALOG_v1.14.yaml",
+    "sha256": "f57af3cf4ef7cf58613868b2fa61d33576401571f79b8bf84f11a23e7443764b"
+  },
+  {
+    "old": "library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.4.md",
+    "archive": "Source_archive/AIS SEARCH promotion 2026-11-09/library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.4.md",
+    "sha256": "f0d9de5cf5567425ee356ab39d6de0583984a42a86e55e3d4aec22e6a7884812"
+  },
+  {
+    "old": "library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.4.yaml",
+    "archive": "Source_archive/AIS SEARCH promotion 2026-11-09/library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.4.yaml",
+    "sha256": "23c8818cea00196d0ebe59f1214825374eea4acfed1496765c736639a9338c1a"
+  },
+  {
+    "old": "HUB_ROUTER_v1.1.yaml",
+    "archive": "Source_archive/AIS SEARCH promotion 2026-11-09/HUB_ROUTER_v1.1.yaml",
+    "sha256": "03a8502593735c465b27cea724a5e58df4e7af0882fd50f0655145c97665c5d3"
+  }
+]

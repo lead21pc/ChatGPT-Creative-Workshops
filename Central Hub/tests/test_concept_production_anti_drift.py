@@ -3,6 +3,7 @@
 No LLM classifier, deployment, actual Library read or runtime provenance recognition.
 The existing generic Router oracle checks composition and synthetic read failures.
 """
+from pathlib import Path
 import copy
 import hashlib
 import itertools
@@ -25,6 +26,9 @@ IDS = (AP, MCA, WIL, AR, NR)
 EXPOSURES = dict(zip(IDS, ('SURFACE', 'RELATION', 'SYSTEM', 'RECEPTION', 'CLOSURE')))
 VERSIONS = dict(zip(IDS, ('1.1', '1.2', '1.1', '1.0', '1.0')))
 HISTORY = ROOT / 'Source_archive/Concept production anti-drift 2026-11-07'
+# Exact predecessor release assertions; active SEARCH has separate promotion coverage.
+SEARCH_PREDECESSOR = Path(__file__).resolve().parents[1] / 'Source_archive/AIS SEARCH promotion 2026-11-09'
+
 BASELINE = 'e310b4510ad078981ee6ea82373808c469144ddb'
 
 # Accepted author corpus, NOT 34 observed Hub failures. Features are fixture premises.
@@ -104,7 +108,7 @@ def verified(result):
 
 class ProductionAntiDriftTests(unittest.TestCase):
     def test_all_active_exact_bindings_and_real_requires(self):
-        local = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.4.yaml')
+        local = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.5.yaml')
         rows = {row['module_id']: row for row in local['entries']}
         self.assertEqual(set(rows), set(IDS) | {'HUB-DOM-CREATIVE','HUB-CAP-DEBATE','HUB-CAP-BRAINSTORM','HUB-DOM-NAMING'})
         for identity in IDS:
@@ -202,7 +206,7 @@ class ProductionAntiDriftTests(unittest.TestCase):
                 self.assertFalse(any('archive' in str(x).lower() or 'FTH_' in str(x) for x in result['artifact_requests']))
 
     def test_selected_material_body_and_full_read_under_exact_library_contract(self):
-        local=load(ROOT/'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.4.yaml')
+        local=load(ROOT/'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.5.yaml')
         for row in local['entries'][3:]:
             entry=dict(row,entrypoint_module_id=row['module_id'],binding_mode='LIBRARY_MODULE')
             record=dict(module_id=row['module_id'],package_id=PACKAGE,runtime_role=row['runtime_role'],
@@ -248,7 +252,7 @@ class ProductionAntiDriftTests(unittest.TestCase):
         for identity,clauses in guards.items():
             text=(ROOT/f'library_modules/{identity}_v{VERSIONS[identity]}.md').read_text(encoding='utf-8')
             for clause in clauses: self.assertIn(clause.lower(),text.lower(),(identity,clause))
-        core=(ROOT/'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.4.md').read_text(encoding='utf-8')
+        core=(SEARCH_PREDECESSOR/'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.4.md').read_text(encoding='utf-8')
         for clause in ['UNKNOWN explicitly assigned to Creative may be developed','Brainstorm may mutate delegated assumptions','Debate may formulate hypotheses/objections without canon mutation','Fix an overreaching control rather than weakening an operation leaf']:
             self.assertIn(clause,core)
         # No material exposure in pure imagery, an explicit trope, authorized blank-slate invention,
