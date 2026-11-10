@@ -1,6 +1,6 @@
 ---
 name: project-git-workflow
-description: Điều phối Git theo một shared local working state cho mỗi repository. Dùng working tree hiện tại làm nguồn thật, giới hạn thao tác bằng READ/WRITE scope, tự stage và commit local đúng file thuộc task sau khi kiểm chứng; branch/worktree chỉ là fallback khi có nhu cầu cô lập cụ thể. Push luôn cần yêu cầu riêng.
+description: Điều phối Git theo một shared local working state cho mỗi repository. Dùng working tree hiện tại làm nguồn thật, giới hạn thao tác bằng READ/WRITE scope, tự stage và commit local đúng file thuộc task sau khi kiểm chứng; branch/worktree chỉ là fallback khi có nhu cầu cô lập cụ thể. Push cần quyền xuất bản rõ đích và phạm vi commit; không suy quyền từ trạng thái Git.
 ---
 
 # Project Git Workflow
@@ -94,7 +94,24 @@ Lệnh `isolate` không được gọi như bước chuẩn bị mặc định. 
 
 ## Push
 
-Không push, tag, release, sửa remote metadata hoặc mở PR nếu người dùng chưa yêu cầu rõ. Khi được yêu cầu push, xác nhận remote, destination branch và commit payload trước khi chạy.
+`PUSH REQUIRES EXPLICIT ACTION-SCOPED AUTHORIZATION.`
+`REPOSITORY STATE RESOLUTION != USER AUTHORIZATION`; `COMMIT != PUSH`; `PUSH != GENERIC PERMISSION TO REMOTE EGRESS`.
+
+Skill này sở hữu quy trình kiểm quyền push chung; helper hiện chỉ làm việc local, không thực thi push. Quyền sửa/stage/commit local không tự cấp quyền xuất bản.
+
+Trước mỗi push:
+
+1. Kiểm tra working tree/HEAD và trạng thái remote liên quan. Xác định remote cùng URL push thực tế, source/local ref và tip, destination remote ref, cùng toàn bộ commit sẽ được xuất bản so với trạng thái đích. Tính cả commit tổ tiên chưa có ở đích, không chỉ tip hoặc file của task. Chưa đủ dữ kiện để xác định đích/payload thì chưa push.
+2. Đối chiếu hành động đã xác định với quyền người dùng hiện hành: đúng repository/remote đích, source ref, destination ref, tập commit hoặc phạm vi task được cho phép, và loại thao tác. Git state đã biết không phải quyền của người dùng; không diễn giải riêng chữ `push` thành quyền `main → origin/main` cho payload tự suy ra.
+3. Nếu quyền chưa bao phủ rõ đích và payload, **không phát lệnh push**, kể cả dry-run. Đưa một câu xin quyền cụ thể rồi chờ xác nhận, ví dụ: “Bạn cho phép push các commit `A`, `B` hiện có trên local `main` lên `origin/main` (`<URL đã kiểm tra>`) chứ?” Dùng SHA thực đã kiểm tra, không placeholder. Nếu payload được nêu theo tập “toàn bộ commit local hiện tại”, giữ rõ mốc/tip và tập commit tại thời điểm xin quyền. Không hỏi lại remote/branch như dữ kiện chưa biết; câu hỏi xin quyền phải nêu chính hành động đã xác định, không chỉ “confirm push”.
+4. Khi quyền đã đủ rõ, dùng ngay trong đúng phạm vi, **không xin xác nhận lần hai**. Ví dụ “push các commit local hiện tại trên main lên origin/main” bao phủ tập hiện có lúc cấp quyền. “Sửa task này, commit rồi push thay đổi của task này từ main lên origin/main” có thể bao phủ commit của task tạo sau đó; không hỏi lại chỉ vì SHA chưa tồn tại lúc cấp quyền. Vẫn đối chiếu payload cuối: commit ngoài task hoặc tổ tiên chưa được cho phép không tự được bao phủ.
+5. Ngay trước khi thực hiện, kiểm lại source tip, destination và payload với quyền đã nhận. Nếu đích/phạm vi thay đổi, chỉ phần vượt quyền cần xin lại; không tự thêm commit phát sinh sau một quyền đã chốt tập hiện tại. Phát lệnh push trực tiếp thể hiện đúng remote và ref/payload đã được cho phép; không để source ref dịch chuyển làm publish thêm commit. Kiểm kết quả và SHA remote sau push; attempt không phải success.
+
+Quyền cho commit A không bao phủ B mới phát sinh, ref/remote khác, force-push, tag, release, PR hay sửa remote metadata. Wording cấp phạm vi task tương lai rõ ràng là ngoại lệ có chủ đích cho commit của đúng task, không là quyền thường trực. Quyền của task cũ không truyền sang task mới; xác nhận “có” chỉ có nghĩa trong phạm vi hành động cụ thể đang được hỏi.
+
+Tôn trọng auto-review: nếu bị từ chối, báo hành động/lý do và xin phần quyền còn thiếu. Không dùng wrapper, alias, Python/subprocess, mã hóa lệnh hoặc đổi transport để né kiểm duyệt. Helper không thay được user authorization; không thêm permission registry hoặc persistent approval system.
+
+Các ca regression và cách đánh giá nằm ở [references/push-authorization-cases.md](references/push-authorization-cases.md). Chúng là đặc tả hành vi, không phải bằng chứng đã chạy model/auto-review.
 
 ## Legacy state
 
