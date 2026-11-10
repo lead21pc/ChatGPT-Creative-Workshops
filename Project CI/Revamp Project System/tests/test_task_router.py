@@ -16,7 +16,7 @@ class TaskRouterContractTests(unittest.TestCase):
     def setUpClass(cls):
         cls.raw = (SYSTEM / "TASK_ROUTER.yaml").read_text(encoding="utf-8")
         cls.router = yaml.safe_load(cls.raw)
-        cls.ci = (ROOT / "Revamp_Project_System_CI_v2.5.md").read_text(encoding="utf-8")
+        cls.ci = (ROOT / "Revamp_Project_System_CI_v2.6.md").read_text(encoding="utf-8")
         cls.authoring = (SYSTEM / "AT_R.md").read_text(encoding="utf-8")
         cls.cases = (SYSTEM / "tests/HANDOFF_ROUTE_TEST_CASES.md").read_text(encoding="utf-8")
 
@@ -120,7 +120,7 @@ class TaskRouterContractTests(unittest.TestCase):
         self.assertIn("LIVE HARNESS PASS != REAL-CONTEXT ROBUSTNESS PROVEN", self.cases)
 
     def test_active_references_and_encoding(self):
-        paths = [ROOT / "Revamp_Project_System_CI_v2.5.md", ROOT / "CHANGELOG.md",
+        paths = [ROOT / "Revamp_Project_System_CI_v2.6.md", ROOT / "CHANGELOG.md",
                  SYSTEM / "TASK_ROUTER.yaml", SYSTEM / "AT_R.md",
                  SYSTEM / "ARCHITECTURE_PREFLIGHT.md",
                  SYSTEM / "HISTORY_AND_WHAT_NOT_TO_DO.md",

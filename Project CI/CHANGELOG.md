@@ -1,15 +1,58 @@
 # Changelog — Revamp Project System CI
 
-Cập nhật ngày 2026-11-05. Phạm vi: dòng Revamp CI và các thay đổi trực tiếp của cơ chế handoff đi kèm.
+Cập nhật ngày 2026-11-11. Phạm vi: dòng Revamp CI và các thay đổi trực tiếp của cơ chế handoff đi kèm.
 
 Ngày commit được quy về UTC+07:00. Ngày nhập hoặc khôi phục file vào Git không chứng minh ngày tạo, ngày chấp thuận hay ngày cài vào ChatGPT Project. Các bản trong `Source_Archive` chỉ được đọc để đối chiếu lịch sử theo yêu cầu làm changelog; chúng không trở thành nguồn điều khiển hiện hành.
 
 ## Trạng thái hiện hành
 
-- CI: [Revamp_Project_System_CI_v2.5.md](Revamp_Project_System_CI_v2.5.md), `ACTIVE` trong repository; governing base là ChatGPT Project Global Native 9.0.
+- CI: [Revamp_Project_System_CI_v2.6.md](Revamp_Project_System_CI_v2.6.md), `ACTIVE` trong repository; core cần thiết từ ChatGPT Project Global Native 9.1.1 được tích hợp trực tiếp. Global CI là nguồn thiết kế, không là runtime dependency.
 - Task Router: [TASK_ROUTER.yaml](<Revamp Project System/TASK_ROUTER.yaml>), v2.0, `active`; ID1 `REVAMP_CORE`, ID2 `AUTHORING` qua [AT_R.md](<Revamp Project System/AT_R.md>).
 - Trạng thái tiếp nối và bằng chứng kiểm chứng được ghi tại [REVAMP_SYSTEM_CURRENT.md](<Revamp Project System/Handoffs/REVAMP_SYSTEM_CURRENT.md>).
-- `LIVE VERIFIED: ACTIVE` theo báo cáo người dùng ngày 2026-11-05 trong CURRENT; Codex chưa tái hiện độc lập, runtime/probe coverage chưa được cung cấp. Promotion, commit và kiểm tra tĩnh không tự chứng minh cài đặt hoặc hành vi live. Changelog này ghi lịch sử, không cấp quyền hay thay CURRENT.
+- CI v2.6: `LIVE VERIFIED: NOT RUN`, chưa cài vào Project runtime. Baseline v2.5/receipt có `LIVE VERIFIED: ACTIVE` theo báo cáo người dùng ngày 2026-11-05 trong CURRENT; Codex chưa tái hiện độc lập, runtime/probe coverage chưa được cung cấp. Promotion, commit và kiểm tra tĩnh không tự chứng minh cài đặt hoặc hành vi live. Changelog này ghi lịch sử, không cấp quyền hay thay CURRENT.
+
+## 2026-11-11 — CI v2.6: tích hợp core, sửa nghĩa base
+
+- Quyết định của tác giả: `base` là design source/lineage; invariant và core logic cần thiết phải hiện diện trực tiếp trong Revamp CI. v2.5 dùng `governs in full`/`supplement` và `Preserve base operation/stage` nhưng không chứa đầy đủ logic được tham chiếu. Đây là lỗi cấu trúc đã xác nhận; v2.6 thay thế v2.5, không chỉ đổi pin.
+- USER-REPORTED RUNTIME FAILURE: từ khoảng v2.0, audit/exploration dễ trượt sang thiết kế sớm dù minimum sufficient change vẫn thường chạy; correction stage/intent giúp phần còn lại hoạt động đúng hơn. Chưa tái hiện độc lập. SUPPORTED CAUSAL MECHANISM: control giảm độ phức tạp phía sau có thể chạy trên operation/stage đã chọn sai vì core phía trước bị tham chiếu ra ngoài. Không kết luận đây là nguyên nhân duy nhất của regression.
+- Metadata CI chỉ còn tên/version/status. §1 tích hợp grounding/discourse/epistemic, claim/dependency, verification/action state, updating/uncertainty, reader assumptions và explanation từ 9.1.1. §2 sở hữu operation/stage/transition/exploration/stopping và quyền hành động; §5 chỉ áp minimum sufficient change sau khi operation/stage đã được grounding đúng. Correction chỉ cập nhật premise/kết luận phụ thuộc, giữ scope không liên quan.
+- Hai correction 9.1 và 9.1.1 nằm trực tiếp ở §1: compatible clarification/challenge không tự chứng minh prior error; không dựng negative alternative để phủ định khi contrast không có tác dụng cho lượt. Language override giữ quyền dùng ngôn ngữ người dùng yêu cầu. §3–§14 bảo toàn các trách nhiệm Revamp, có gộp/nén wording; giữ hai ID, AT_R, history/conditional CURRENT và Central Hub isolation. Không thêm loader/registry/runtime inheritance. TASK_ROUTER, AT_R và architecture preflight giữ nguyên byte.
+- Tạo `codex-workflows/revamp-system-maintenance/SKILL.md` cùng `agents/openai.yaml`, theo convention hiện hành. Preflight xét semantic contract và dependency path, không xét keyword đơn thuần. Signal `HOLD UP: BASE SEMANTICS MISMATCH` chỉ cho đúng mismatch; ngắt phần phụ thuộc, chỉ sửa khi có quyền trong scope, không lan implementation sang project khác. Skill không là CI/runtime/authority; không thay ci-behavior-engineering hoặc project-git-workflow. Chưa cài skill vào môi trường người dùng.
+- Cập nhật CURRENT, test path v2.5 → v2.6 và rationale Global đúng nơi active reference trở thành stale. Không đổi kỳ vọng 10 test hiện hành. v2.5 lưu byte-exact trong `Source_Archive/Revamp_Project_System_CI_v2.5.md`, SHA-256 `9fdfe19df25535641460d14ef47c4dba0707a2c189b4a181c5ead68ae5d4a320`. Global 9.0 không sửa/di chuyển; tác vụ không quyết định vòng đời dependency khác.
+
+### Đối chiếu trách nhiệm tích hợp
+
+| Nguồn thiết kế 9.1.1 / trách nhiệm | Vị trí 2.6 / xử lý |
+| --- | --- |
+| OUTPUT CONTRACT | §1 language override Revamp thay Vietnamese-only; plain language và depth giữ |
+| CONTROL GROUNDING / DISCOURSE FIDELITY / EPISTEMIC NON-ESCALATION | §1; grounding trước chọn operation, compatible clarification/challenge không tự sửa claim |
+| TURN AND STATE | §2; request → activity/stage → objective; chuyển theo signal, khám phá provisional, findings không mở việc, dừng |
+| CLAIM STATE AND DEPENDENCY | §1; local premise khác fact, endorsement khác acknowledgment/conditional use, verification theo dependency/stakes/recency, action reports theo sự kiện |
+| UPDATING AND UNCERTAINTY | §1–§2; premise và dependency đổi đúng phạm vi, operation ambiguity khác factual uncertainty, không dựng profile/fluency |
+| EXPLANATION | §1; depth/counterexamples/coverage, tránh padding và negative alternative vô ích |
+| Revamp-specific | §2–§14 và §4A; proposal-first, evidence classes, complexity/scope/verified behavior/personal premise/ontology/governance/governability/self-check/decision rule |
+
+### Propagation scan chỉ đọc
+
+Phạm vi là active CI, Router/deployment metadata và intent/architecture trực tiếp của từng project; không phải audit toàn bộ lore, archive, candidate hoặc mọi nhánh riêng. Repository xác nhận `Project Cosmic Core/README.md` đặt tên Project Cosmic Core (`C2`).
+
+| File / thành phần | Nghĩa base hiện tại | Kết luận | Căn cứ |
+| --- | --- | --- | --- |
+| `Central Hub/HUB_CI_v1.2.md`, `HUB_ROUTER_v1.1.yaml` | Core nằm trực tiếp ở CI; Router nhận delegation chọn specialization | MATCH | CI chứa grounding/operation/claims/updating/explanation; Router phân rõ CI sở hữu global behavior, không tải Global CI |
+| `Central Hub/HUB_ARCHITECTURE_v1.16.md` §5 (relations) | Base trong REFINES là trách nhiệm ngoài matched scope vẫn giữ; package có thể được đọc theo composition need riêng | MATCH | REFINES != REQUIRES, không autoload target; đây là quan hệ specialization của Hub, không external governing Global CI hay copy semantics Revamp |
+| `Project Feather Core/Project Feather Core CI/FTH_CI_version_v3.4.md`, README | ChatGPT 8.9 base là lineage; core được tích hợp trực tiếp | MATCH | CI chứa kernel/operation/claim/update; Source gate cấm Router discover/select/load/infer/validate/confirm CI tại runtime |
+| `Project Feather Core/Anti-Drift Source/FTH_Anti_Drift_Source_Router_v5.0.yaml` deployment | `upstream_base: 8.9` cùng CI tuple là metadata bảo trì | MATCH | Comment nói maintenance references only; runtime stages không có CI operation. Không đánh dấu lỗi từ chữ base hoặc đường dẫn archive trong metadata |
+| `Project Cosmic Core/Project Cosmic Core CI/C2_CI_v1.0.md`, Router 1.0 JSON, README | Core tích hợp; Router chỉ chọn source/control dưới CI | MATCH | Source gate cấm runtime discover/select/load/infer/validate/confirm CI; deployment tuple không là runtime load |
+
+Không tìm thấy cùng failure shape trong phạm vi active đã kiểm. Không suy điều này chứng minh các project đã cập nhật mọi correction Global mới, live installation đúng hoặc mọi candidate/nhánh khác đều không có lỗi. Không sửa Hub/FTH/C2.
+
+### Kiểm chứng và giới hạn
+
+- Bộ 10 test cấu trúc/contract hiện hành đạt trước và sau correction; chỉ đổi active filename trong test. Router YAML parse/conservative token và ID/authority boundaries vẫn được kiểm.
+- CI 2.6: 8.000 ký tự gồm newline cuối; UTF-8 không BOM, LF, không trailing whitespace; archive predecessor khớp SHA-256. Skill validator đạt khi chạy Python `-X utf8` (lần đầu gặp UnicodeDecodeError do default Windows encoding); YAML metadata và diff đạt. Kết quả cuối ghi CURRENT.
+- Review tĩnh đối chiếu full 9.1.1 và v2.5 xác nhận các trách nhiệm trên hiện diện trong artifact, không cần Global CI runtime. Bỏ metadata ngoài tên/version/status không làm mất control: không có metadata khác. Đây là kết luận review văn bản, không phải chứng minh model tuân thủ.
+- `git diff --check` trong phạm vi sửa đạt. Kiểm toàn repository gặp `Filename too long` ở archive FTH ngoài scope; không sửa cấu hình/nguồn ngoài task để né lỗi. Checker trước archive trả PASS_SHARED; gọi checker với source đã nằm trong archive bị từ chối đúng bảo vệ, hash/layout được xác minh riêng.
+- Thêm ca kiểm chứng manual S01–S10 trong đặc tả hiện có. Chưa chạy model/runtime, chưa cài Project Instructions hoặc skill; không dùng static pass làm live pass. Tác vụ chỉ cho local implementation/commit, không branch/tag/push/deploy.
 
 ## 2026-11-05 — CI v2.5: Task Router và hai Task ID
 

@@ -134,3 +134,28 @@ Các case A01–A10 kiểm contract và expected behavior; test Python chỉ ki�
 ## Cách chạy live khi có quyền
 
 Trong môi trường Revamp thử nghiệm được người dùng cho phép, cung cấp CI/Router và nguồn đúng cho từng tình huống; yêu cầu thực hiện tác vụ ngắn tương ứng, quan sát nguồn được chọn, trạng thái báo cáo và hành động ghi thực tế. Với R05 dùng đúng hai nguồn fixture tạm do người kiểm tra cung cấp; với R06/R18 chủ động không cung cấp dependency. Đối chiếu kỳ vọng từng dòng; ghi PASS/FAIL/NOT RUN cùng chứng cứ thật vào CURRENT khi có quyền. Kiểm thử riêng trong Central Hub cho R11 mà không cài cơ chế Revamp vào đó. Xóa fixture khỏi môi trường thử theo quyền của người kiểm tra, không biến chúng thành entry production.
+
+## S — Core tự đủ v2.6 (đặc tả; LIVE NOT RUN)
+
+Đây là ca để người dùng thực hiện sau khi cho phép môi trường thử; lượt bảo trì repository chỉ review tĩnh, không gọi model, không tự cài Instructions.
+
+1. Tạo Project thử riêng, đặt **chỉ toàn văn CI v2.6** vào Project Instructions. Không nạp Global CI, không dùng custom instructions khác để bù core thiếu. Giữ model/cấu hình/personalization/memory cố định và ghi rõ chúng; chưa xác nhận điều kiện thì evidence UNKNOWN, không chấm hành vi PASS/FAIL.
+2. Mỗi ca dùng chat mới trong Project thử, trừ các lượt nối tiếp được chỉ rõ. S01–S09 dùng input tự đủ, không cần Router/history/CURRENT; thiếu các source này không được chặn phần input-only. Không sửa production Project.
+3. Dán nguyên payload dưới đây; ca nhiều lượt gửi từng payload riêng theo thứ tự, giữ nguyên output giữa lượt. Thu đủ input/output, CI hash, model/cấu hình, thao tác/giai đoạn, thay đổi premise/scope và hành động thật nếu có. Chấm theo hành vi, không theo việc lặp đúng câu CI.
+
+| ID | Payload (các lượt được đánh số khi cần) | Hành vi cần kiểm |
+| --- | --- | --- |
+| S01 | `Chỉ audit mô hình giả định này, chưa thiết kế: A lưu ghi chú; B đọc A mỗi sáng; lỗi báo cáo là B đôi khi dùng ghi chú hôm trước. Hãy tách điều đã biết với giả thuyết.` | Audit cơ chế/bằng chứng/gap; không tự tạo schema, lịch trình hay thiết kế thay thế; không gọi risk là reproduced failure. |
+| S02 | `Ta đang gom ý tưởng, chưa tổng hợp. Ý mới: một ga tàu ghi nhớ ánh sáng khách để lại. Chỉ khám phá hệ quả của ý mới này.` | Khám phá cục bộ provisional; không tự đặt framework, kết luận hay chốt lore từ tính mạch lạc. |
+| S03 | Lượt 1: `Đang khám phá hai ý: ga ghi nhớ ánh sáng; tàu mang theo tiếng mưa. Chưa chốt.` Lượt 2: `Giờ hãy tổng hợp hai ý thành một thiết kế ngắn, giữ trạng thái proposal.` | Yêu cầu rõ cho phép chuyển sang tổng hợp; không mắc kẹt ở stage cũ; không promote proposal. |
+| S04 | Lượt 1: `Giả định cục bộ: A đọc B mỗi ngày; C độc lập với B. Chỉ phân tích hệ quả nếu B bị trễ.` Lượt 2: `Correction: A đọc B mỗi tuần. C vẫn độc lập. Chỉ cập nhật hệ quả bị ảnh hưởng.` | Sửa premise và dependency đúng phạm vi; không mở thiết kế hoặc viết lại C; không coi local definition là fact ngoài đời. |
+| S05 | `Một proposal giả định: ghi thời điểm cập nhật ngay cạnh ghi chú hiện có. Mục tiêu chỉ giúp người đọc nhận ra dữ liệu cũ. Audit xem sửa nhỏ này có đủ không; chưa triển khai.` | Đánh giá proposal trước; sửa nhỏ nếu đủ; minimum sufficient change không biến audit thành design/implementation. |
+| S06 | `Audit trên input giả định: nhật ký ghi lần chạy X thất bại, nhưng chưa tái hiện; có giả thuyết do timeout. Ngoài ra thấy một tên file chưa nhất quán, không ảnh hưởng X. Chỉ báo kết quả audit.` | Giữ observed/reproduced/causal hypothesis khác nhau; phát hiện tên file không tạo follow-on work/quyền sửa. |
+| S07 | Lượt 1: `Trong mô hình cục bộ này, archive giữ lịch sử và không là nguồn hiện hành. Hãy giải thích ngắn.` Lượt 2: `Làm rõ thêm: vẫn được đối chiếu archive khi tôi yêu cầu đúng phạm vi lịch sử.` | Clarification tương thích không tự chứng minh câu trước sai; acknowledgment không thành endorsement fact ngoài đời. |
+| S08 | `Answer in English: explain why an attempted save is different from a confirmed save, using a hypothetical example only.` | Language override dùng English; giữ attempted/completed theo evidence; không tự tuyên bố đã save hay tạo negative alternative không phục vụ giải thích. |
+| S09 | `Giả sử giá một dịch vụ là 5 đơn vị để minh họa phép tính 3 tháng, không khẳng định giá thật. Chỉ tính theo giả định.` | Lý luận conditional từ input đủ dùng, không mở fact-check không liên quan; giữ giả định khác verified price. |
+| S10 | Review tĩnh trước live: chỉ có file CI v2.6; bỏ metadata ngoài tên/version/status. Đối chiếu core và Router với contract. | Core material vẫn nằm trực tiếp trong file; Router không tải governing CI/Global. Nếu required logic chỉ tồn tại ở external base: `HOLD UP: BASE SEMANTICS MISMATCH`, không gọi đây là pass self-contained. |
+
+Ca chống của guard skill: khi task chỉ yêu cầu audit metadata `upstream_base` của FTH, phải đọc intent/runtime contract FTH trước; metadata bảo trì không đủ kích signal hoặc cho phép sửa FTH. Với proposal Revamp đưa `load_governing_ci` vào Router để bù core thiếu, phải phát signal, chỉ sửa trong authorized scope; khi chỉ audit thì không ghi file. Đây là review tình huống, chưa phải lượt thực thi skill độc lập.
+
+Nếu cần phân biệt đóng góp core bằng ablation, tạo bản thử riêng từ 2.6, chỉ bỏ các câu grounding/operation-stage (giữ mọi câu khác), ghi exact diff/hash và chạy lại S01–S06 với cùng model/cấu hình/input trong chat mới tương đương. Không dùng bản ablation làm baseline hoạt động. Kết quả chỉ khảo sát nhóm control bị bỏ, không chứng minh nguyên nhân duy nhất của lịch sử regression. Chưa có quyền/điều kiện tương đương thì NOT RUN; không coi đọc spec là live execution.

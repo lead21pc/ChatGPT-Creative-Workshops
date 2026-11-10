@@ -4,9 +4,15 @@ HANDOFF_ID: REVAMP_SYSTEM
 FILENAME: REVAMP_SYSTEM_CURRENT.md
 STATUS: ACTIVE
 SCOPE: Revamp-system CI, two task paths and bounded authoring/continuity contracts only.
-UPDATED: 2026-11-05
+UPDATED: 2026-11-11
 
 ## 1. Established current state
+
+- DECIDED / IMPLEMENTED (2026-11-10): Revamp CI v2.6 là active repository successor tự đủ, tích hợp trực tiếp core cần thiết từ Global Native 9.1.1. `base` là design source/lineage, không external runtime dependency/autoload; sửa wording governing supplement sai của v2.5. Metadata CI chỉ tên/version/status. §1 core/claims/updating/explanation; §2 operation/stage/authorization/stopping; §5 minimum sufficient change chỉ sau grounding operation/stage đúng. Router v2.0, AT_R và các boundary giữ nguyên; không thêm loader/registry/schema/control layer.
+- USER-REPORTED RUNTIME FAILURE (2026-11-10): từ khoảng v2.0 dễ trượt audit/exploration sang design sớm dù minimum sufficient change còn chạy; correction stage/intent giúp phần sau. Chưa reproduced. SUPPORTED CAUSAL MECHANISM: core bị external-reference khiến downstream complexity controls có thể chạy trên operation/stage sai. Không khẳng định nguyên nhân duy nhất.
+- IMPLEMENTED (2026-11-10): `codex-workflows/revamp-system-maintenance/` gồm SKILL.md và agents/openai.yaml; semantic preflight xét contract/dependency, phát `HOLD UP: BASE SEMANTICS MISMATCH` đúng trường hợp và chỉ sửa authorized scope. Skill không là runtime CI/authority, không thay behavior-engineering/Git workflow; chưa cài skill. Changelog ghi mapping trách nhiệm và targeted propagation scan Hub/FTH/C2: MATCH trong phạm vi active đã đọc; không sửa các project này, không kết luận cho toàn repo/nhánh/candidate/live.
+- ARCHIVED byte-exact (2026-11-10): v2.5 tại `Project CI/Source_Archive/Revamp_Project_System_CI_v2.5.md`, SHA-256 `9fdfe19df25535641460d14ef47c4dba0707a2c189b4a181c5ead68ae5d4a320`. Global 9.0 giữ nguyên; lifecycle dependency ngoài Revamp chưa quyết định trong task.
+- STATICALLY VERIFIED (2026-11-11): CI v2.6 8.000 ký tự, chỉ tên/version/status ngoài body; core cần thiết nằm trực tiếp trong CI. Bộ 10 test cũ đạt trước/sau, chỉ đổi active path; Router/AT_R/preflight không sửa. Skill validator đạt với `python -X utf8` sau lỗi default Windows encoding; YAML/UTF-8/không BOM/LF/trailing whitespace/archive/diff đạt; Diff trong scope đạt; diff toàn repository gặp Filename too long ở archive FTH ngoài scope. S01–S10 là đặc tả, không phải log model chạy. LIVE VERIFIED v2.6: NOT RUN; chưa cài Project Instructions, không push/deploy. Báo cáo user live ACTIVE v2.5 dưới đây vẫn giữ đúng scope cũ, không chuyển sang 2.6. Commit tra Git thực tế; quyền task không là quyền push thường trực.
 
 - USER-REPORTED DESIGN-PROCESS FAILURE (2026-11-05): người dùng phải tự chỉ ra rằng nhiều local minima có thể cộng thành execution fragmentation trước khi Revamp đánh giá tổng proposal. Đây là failure quan sát theo báo cáo người dùng ở quy trình thiết kế; fragmentation trong implementation là SUPPORTED RISK, chưa là reproduced/observed implementation failure.
 - IMPLEMENTED (local, 2026-11-05, aggregate architecture correction): TASK_ROUTER v2.0 thêm conditional `architecture_preflight` dưới ID đã chọn, trỏ `ARCHITECTURE_PREFLIGHT.md` (REFERENCE / CONDITIONAL PREFLIGHT), chuyên biệt hóa CI §5/§6/§11–§14, không authority mới. Chỉ kích hoạt cho structural execution surfaces/boundaries thực sự thay đổi trong current/downstream proposal hoặc mid-implementation stack substitution. Một aggregate pass trên tổng proposal, đánh giá riêng nhu cầu boundary, permanent surface, failure mode, verification và correction nhỏ hơn trong stack hiện tại; local correction/OPEN/blocker rồi dừng. Không quota ngôn ngữ, ID3, composition hoặc recursive governance. CI v2.5 và AT_R giữ nguyên.
@@ -57,6 +63,7 @@ Next: chỉ khi cần và có quyền, ghi thêm runtime/probe evidence hoặc t
 
 ## 3. Outstanding / blocked
 
+- CI v2.6: live installation và hành vi model NOT RUN / UNKNOWN; chưa có live evidence cho correction self-contained hoặc guard skill. Baseline user-reported ACTIVE 2026-11-05 chỉ là v2.5/receipt. Skill mới chưa được cài.
 
 - LIVE VERIFIED: ACTIVE theo báo cáo người dùng ngày 2026-11-05. Codex chưa tái hiện độc lập; chi tiết cài đặt runtime, probe và độ bền qua nhiều context còn UNKNOWN. Promotion/push repository không tự chứng minh deployment.
 - Không có blocker local được thiết lập. Quyền push từng cấp cho các đợt publication cũ là lịch sử; chính sách stage/commit hiện hành theo §2, còn push vẫn cần lệnh riêng. Đợt rebase ngày 2026-10-29 không có quyền push hoặc deploy.
@@ -68,7 +75,7 @@ None currently established. Không có phương án mới nào được ghi thà
 
 ## 5. Decided but not completed
 
-Không có quyết định thiết kế còn thiếu triển khai được thiết lập. Baseline v2.5 local và promotion ACTIVE đã IMPLEMENTED. Tác vụ v2.5 cho phép commit local sau kiểm chứng; không cho push. Các quyền publication cũ không là quyền mới; kết quả commit/push phải kiểm tra trong Git, không suy từ handoff. Trạng thái live theo báo cáo người dùng và giới hạn kiểm chứng nằm ở mục 3; không biến nó thành quyết định deploy mới. RECORDED DECISION != NEW AUTHORIZATION.
+Không có quyết định thiết kế còn thiếu triển khai được thiết lập. Baseline v2.6 self-contained và skill repository đã IMPLEMENTED. Tác vụ hiện hành cho phép commit local sau kiểm chứng; không cho push. Các quyền publication cũ không là quyền mới; kết quả commit/push phải kiểm tra trong Git, không suy từ handoff. Trạng thái live theo báo cáo người dùng và giới hạn kiểm chứng nằm ở mục 3; không biến nó thành quyết định deploy mới. RECORDED DECISION != NEW AUTHORIZATION.
 
 ## 6. Resolved / closed
 
@@ -80,6 +87,8 @@ Evidence: các file trong mục 8; kiểm tra cấu trúc và review nội dung 
 Reopen only if: chứng cứ mới mâu thuẫn, nội dung triển khai lệch yêu cầu hoặc người dùng yêu cầu xét lại.
 
 ## 7. Conflicts / stale state
+
+Wording v2.5/global rationale từng gọi Global 9.0 là governing runtime base đã được sửa trong current references ngày 2026-11-10. Các entry có ngày cũ giữ nguyên làm lịch sử quyết định/kiểm chứng, không là current semantic authority.
 
 Không có xung đột được thiết lập khi khởi tạo. Khi file/runtime đã kiểm tra mâu thuẫn với handoff, báo rõ và đánh dấu phần ảnh hưởng STALE / CONFLICTED; file/runtime quyết định trạng thái triển khai quan sát được. Ngày UPDATED không tự chứng minh độ mới của từng mục.
 
@@ -95,10 +104,10 @@ Thứ tự trong history mục 10–11 đã đồng bộ với Router v1.1: vào
 - `AGENTS.md`: repository context gate; đã đọc đầy đủ. Chỉ dẫn AGENTS do người dùng cung cấp trong chat thêm ranh giới shared local working state và proposal review.
 - `Project CI/Source_Archive/Revamp_Project_System_CI_v2.2.md`: predecessor byte-exact để provenance/rollback khi được yêu cầu; không phải nguồn hiện hành hay fallback mặc định. v2.1, v2.0 và các bản cũ hơn ở cùng archive.
 - `llm-controls/global-instructions/ChatGPT Plus+ Era/chatgpt v8.9.txt`: governing core cũ của v2.2; đã đọc đầy đủ và không sửa trong tác vụ rebase.
-- `llm-controls/global-instructions/ChatGPT Project Global Native/chatgpt v9.0.txt`: governing core hiện hành của v2.5, kế thừa từ v2.3/v2.4; không sửa trong đợt promotion này.
+- `llm-controls/global-instructions/ChatGPT Project Global Native/chatgpt v9.1.1.txt`: nguồn thiết kế đã đọc đầy đủ, core cần thiết tích hợp trực tiếp vào v2.6. `chatgpt v9.0.txt` giữ nguyên; không là runtime dependency của v2.6.
 - `llm-controls/global-instructions/ChatGPT Project Global Native/DESIGN_RATIONALE.md`: rationale bắt buộc đã đọc đầy đủ; tham chiếu thiết kế, không phải bằng chứng live.
 - `Project CI/Source_Archive/Revamp_Project_System_CI_v2.3.md`: predecessor không hoạt động, được lưu byte-exact khi promote v2.4; chỉ dùng cho provenance/rollback khi được yêu cầu.
-- `Project CI/Revamp_Project_System_CI_v2.5.md`: CI ACTIVE; §4A task routing/continuity, giữ §2 Codex decision handoff/authorization/failure recovery và các section khác.
+- `Project CI/Revamp_Project_System_CI_v2.6.md`: CI ACTIVE tự đủ; §1 integrated core, §2 operation/stage/authorization, §4A routing, §5 operation-first/minimum sufficient change. v2.5 ở Source_Archive, không là active source/fallback.
 - `Project CI/Source_Archive/Revamp_Project_System_CI_v2.4.md` và `Project CI/Source_Archive/HANDOFF_ROUTER_v1.1.yaml`: predecessor không hoạt động, byte-exact; không dùng làm nguồn mặc định.
 - `Project CI/Revamp Project System/AT_R.md`: singleton ID2, minimum authoring contract, không thực thi downstream.
 - `Project CI/Revamp Project System/TASK_ROUTER.yaml`: Router v2.0 ACTIVE; ID1/ID2, conditional repository/history/CURRENT context; một CURRENT entry `revamp_system`.
@@ -123,7 +132,7 @@ Chỉ khi state đổi đáng kể và cross-chat continuity materially useful, 
 
 ## Handoff Receipt
 
-- Đã chuyển: baseline hai-ID Revamp, contract receipt tối thiểu, owner AT_R/template và giới hạn kiểm chứng/authorization của workstream.
+- Đã chuyển: correction self-contained v2.6, base semantics, skill maintenance mới và kết quả targeted scan; giữ baseline hai-ID/receipt và owner AT_R/template.
 - Đã giữ: DECIDED khác IMPLEMENTED khác STATICALLY VERIFIED/LIVE VERIFIED; context omission khác quên state; receipt khác body/proof/authority; user-reported live ACTIVE khác kiểm chứng độc lập, chi tiết coverage trong mục 3 còn mở.
 - Cố ý không chuyển: toàn văn predecessor archive, state chi tiết của project khác và transcript hội thoại; các phần này không cần để tiếp tục workstream receipt.
-- Gap còn biết: người dùng đã báo live ACTIVE; Codex chưa có log/probe để tái hiện hoặc đánh giá receipt trên premise thật. Không suy coverage từ báo cáo active hoặc contract/spec tĩnh.
+- Gap còn biết: v2.6 và guard skill chưa kiểm live/chưa cài; người dùng đã báo live ACTIVE cho v2.5; Codex chưa có log/probe để tái hiện hoặc đánh giá receipt trên premise thật. Không suy coverage từ báo cáo active hoặc contract/spec tĩnh.

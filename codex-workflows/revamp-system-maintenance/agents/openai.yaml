@@ -1,0 +1,5 @@
+interface:
+  display_name: "Bảo trì Revamp System"
+  short_description: "Audit và bảo trì CI, Router, continuity của Revamp"
+policy:
+  allow_implicit_invocation: true
