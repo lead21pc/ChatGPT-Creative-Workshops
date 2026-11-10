@@ -284,6 +284,86 @@ For optional comparison of failure-entry situations, see [FAILURE_ENTRY_MODES.md
 
 ---
 
+## 8A. The base-semantics propagation failure
+
+USER-PROVIDED / USER-REPORTED HISTORY:
+
+For Revamp, the author's original intent for a project-specific CI's `base` was design source / lineage:
+
+```text
+GLOBAL CI
+→ design source / lineage
+→ select and integrate necessary invariants and core logic
+→ write them directly into the project CI
+→ add project-specific controls
+```
+
+The resulting project CI was intended to be self-contained for the behavior it claimed to govern.
+
+During Revamp development, this relation was instead represented as:
+
+```text
+GLOBAL CI
+= external governing runtime dependency
+
+PROJECT CI
+= supplement that assumes the external base is already active
+```
+
+The incorrect interpretation appeared in wording such as:
+
+```text
+BASE: ... governs in full
+this supplement neither selects, summarizes nor replaces its controls
+```
+
+Responsibilities such as `base operation/stage` were referenced without their required logic being fully present in the Revamp artifact. Naming an external governing base did not integrate its controls or establish that they were loaded.
+
+The gap was difficult to recognize because downstream controls remained visible: MINIMUM SUFFICIENT CHANGE, PROGRESSIVE COMPLEXITY, CONTAIN SCOPE, AUDIT != REDESIGN and preservation of working behavior. The model could still appear to be following Revamp while upstream grounding, operation selection or stage preservation was incomplete relative to the intended architecture.
+
+SUPPORTED CAUSAL MECHANISM:
+
+```text
+UPSTREAM OPERATION / STAGE CONTROL INCOMPLETE
+→ WRONG OPERATION MAY BE SELECTED
+→ DOWNSTREAM MINIMUM-CHANGE CONTROL STILL RUNS
+→ SMALL SOLUTION TO THE WRONG TASK
+```
+
+USER-REPORTED RUNTIME SYMPTOMS:
+
+- Revamp still often applied minimum sufficient change.
+- Audit/exploration could nevertheless drift into design too early.
+- After the user corrected stage/intent, subsequent behavior often returned closer to the intended task.
+
+These are user-reported observations, not an independently reproduced runtime root cause. The structural mechanism supports a possible explanation; it does not establish the sole cause of every overdesign regression.
+
+OBSERVED REPOSITORY CORRECTION:
+
+[Revamp CI v2.6](<../Revamp_Project_System_CI_v2.6.md>) corrected the dependency model by using ChatGPT 9.1.1 as design source / lineage and integrating the necessary core directly into the Revamp CI artifact. Grounding, operation/stage control, claim state, updating and stopping no longer depend on an external Global CI reference to supply missing behavior. TASK_ROUTER remains a governed task/context/source selector, not a loader for its governor. This is a repository correction, not proof of live installation or runtime success.
+
+```text
+DESIGN BASE != RUNTIME DEPENDENCY
+BASED ON != AUTOLOAD
+PROVENANCE != EXECUTION
+FILE REFERENCE != ACTIVE CONTROL
+```
+
+USER-REPORTED PROPAGATION:
+
+The user reported that the same misunderstanding had appeared or was suspected to have spread to Central Hub, FTH and C2 / Project Cosmic Core, with some cases corrected separately. This records the author's history, not a reproduced finding that every project had the same defect or needed the same implementation. Current corrected files do not by themselves establish the full historical propagation path.
+
+The transferable lesson is:
+
+```text
+A DESIGN-LINEAGE RELATION MUST NOT SILENTLY BECOME
+A RUNTIME-DEPENDENCY RELATION.
+```
+
+When interpreting `base`, `based on`, `governs`, `inherits` or `refines`, establish the actual relation from project intent and sources: design source, integrated core, runtime dependency, reference only or provenance only. Wording alone must not decide the architecture. This history creates no new authority, mandatory loading step or universal requirement to embed every base.
+
+---
+
 ## 9. What Revamp must not do
 
 ### 9.1 Do not turn every recurring inconvenience into a primitive
@@ -420,6 +500,20 @@ First ask:
 If yes, correct locally.
 
 Do not replace a viable simple mechanism merely because a more systematic architecture can be imagined.
+
+---
+
+### 9.11 Do not turn design lineage into runtime dependency
+
+```text
+DESIGN SOURCE != RUNTIME DEPENDENCY
+PROVENANCE != AUTOLOAD
+REFERENCE != ACTIVE CONTROL
+```
+
+Establish the intended relation before interpreting inheritance or base wording. If the intended behavior is self-contained, integrate the required logic directly; an assumption that an external base is active cannot replace missing controls.
+
+Do not infer that every base must be embedded. A project may intentionally use real runtime composition. The failure to avoid is silently changing one relation into another, not runtime composition itself. Inspect that project's intent and sources rather than imposing Revamp's architecture.
 
 ---
 
