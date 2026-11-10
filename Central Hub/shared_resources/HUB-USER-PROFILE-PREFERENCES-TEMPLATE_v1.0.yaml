@@ -1,0 +1,10 @@
+resource_id: HUB-USER-PROFILE
+object_id: PREFERENCES
+schema_version: '1.0'
+data:
+  preferred_brands: null
+  disliked_brands: null
+  budget_tendencies: null
+  food_preferences: null
+  taste_preferences: null
+  preferred_forms_sizes: null

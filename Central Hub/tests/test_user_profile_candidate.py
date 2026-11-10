@@ -46,7 +46,7 @@ class UserProfileCandidateTests(unittest.TestCase):
         cls.schema = load(CANDIDATE / SCHEMA)
         cls.template = load(CANDIDATE / TEMPLATE)
         cls.design = (CANDIDATE / DESIGN).read_text(encoding='utf-8')
-        cls.root = load(ROOT / CATALOG)
+        cls.root = load(ROOT / 'Source_archive' / CATALOG)
 
     def test_U01_candidate_identity_and_no_registration(self):
         self.assertEqual({path.name for path in CANDIDATE.iterdir()}, {SCHEMA, TEMPLATE, DESIGN})

@@ -11,6 +11,8 @@ from test_hub_contracts import ROOT, load
 
 
 BASELINE = 'a4e9981c736e18518bc9150b8a8f0da238d4dfb1'
+RELEASE = ROOT / 'Source_archive'
+
 ARCHIVE = ROOT / 'Source_archive/Context Snapshot contract 2026-11-10'
 
 
@@ -19,25 +21,26 @@ def baseline(path):
 
 
 class ContextSnapshotTests(unittest.TestCase):
+    # Exact 1.16 promotion snapshot; active 1.17 regression is tested in test_user_profile.py.
     @classmethod
     def setUpClass(cls):
-        cls.arch = (ROOT / 'HUB_ARCHITECTURE_v1.16.md').read_text(encoding='utf-8')
+        cls.arch = (RELEASE / 'HUB_ARCHITECTURE_v1.16.md').read_text(encoding='utf-8')
         cls.contract = cls.arch.split('## 13. Shared immutable Context Snapshot artifact', 1)[1]
         cls.spec = (ROOT / 'tests/CONTEXT_SNAPSHOT_TEST_CASES.md').read_text(encoding='utf-8')
 
     def test_active_binding_and_no_new_package_or_router_logic(self):
-        router = load(ROOT / 'HUB_ROUTER_v1.1.yaml')
-        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.16.yaml')
+        router = load(RELEASE / 'HUB_ROUTER_v1.1_before_profile_2026-11-11.yaml')
+        catalog = load(RELEASE / 'HUB_PACKAGE_CATALOG_v1.16.yaml')
         old = yaml.safe_load(baseline('HUB_PACKAGE_CATALOG_v1.15.yaml'))
         expected = dict(old, version='1.16', identity_binding=
                         'EXACT_INSTALLED_V1_1_CI_ROUTER_WITH_V1_16_ARCHITECTURE_CATALOG_CONTRACT')
         self.assertEqual(catalog, expected)
         self.assertEqual(len(catalog['packages']), 6)
-        self.assertEqual((ROOT / 'HUB_ROUTER_v1.1.yaml').read_bytes(),
+        self.assertEqual((RELEASE / 'HUB_ROUTER_v1.1_before_profile_2026-11-11.yaml').read_bytes(),
                          baseline('HUB_ROUTER_v1.1.yaml').replace(b'1.15', b'1.16'))
         for owner, ext in [('architecture', 'md'), ('root_catalog', 'yaml')]:
             self.assertEqual(router['contracts'][owner]['version'], '1.16')
-            self.assertTrue((ROOT / router['contracts'][owner]['file']).is_file())
+            self.assertTrue((RELEASE / router['contracts'][owner]['file']).is_file())
         self.assertIn('Status: ACTIVE\nVersion: 1.16', self.arch)
         self.assertIn('ACTIVE PRODUCTION CONTRACT', self.contract)
         self.assertIn('exact installed Architecture/Catalog 1.16 pins', self.arch)
@@ -63,7 +66,7 @@ class ContextSnapshotTests(unittest.TestCase):
             # ls-tree prints repository-relative paths even when run from Central Hub.
             rel = path.removeprefix('Central Hub/')
             with self.subTest(path=rel):
-                self.assertEqual((ROOT / rel).read_bytes(), baseline(rel))
+                self.assertEqual(subprocess.check_output(['git', 'show', f'f06dea5:Central Hub/{rel}'], cwd=ROOT), baseline(rel))
 
     def test_F1_F10_contract_boundaries(self):
         requirements = {

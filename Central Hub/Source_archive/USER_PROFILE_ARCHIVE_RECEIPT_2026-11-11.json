@@ -1,0 +1,14 @@
+{
+  "HUB_ARCHITECTURE_v1.16.md": {
+    "archive": "Source_archive/HUB_ARCHITECTURE_v1.16.md",
+    "sha256": "96791d9e4e778f5ff404e3f476532d7428b898276e24b17d4e0592cc3fd2e1ca"
+  },
+  "HUB_PACKAGE_CATALOG_v1.16.yaml": {
+    "archive": "Source_archive/HUB_PACKAGE_CATALOG_v1.16.yaml",
+    "sha256": "abb49379f41f80d569b02e1bc70aa6d3ffe7e422b937e91d9732e685ea07679e"
+  },
+  "HUB_ROUTER_v1.1.yaml": {
+    "archive": "Source_archive/HUB_ROUTER_v1.1_before_profile_2026-11-11.yaml",
+    "sha256": "83e602ddfdb9eb4667f2b63e16ea7c36f01f6b7333b2bbfca4da372c555e8863"
+  }
+}

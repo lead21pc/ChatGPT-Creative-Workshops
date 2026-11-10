@@ -1,5 +1,7 @@
 # Cách dùng Naming
 
+Tài nguyên User Profile dùng chung: xem [hướng dẫn và bốn object mẫu trống](shared_resources/USER_PROFILE.md). Người dùng tự tạo/chỉnh riêng trong Library `Central Hub Config`; model chỉ được đọc object đã khai báo quyền và thực sự cần cho tác vụ. Bản Profile 1.0 hiện mới được triển khai trong repository, chưa cài hoặc kiểm thử live.
+
 Naming giúp tạo tên, phân tích tên có sẵn, so sánh lựa chọn, điều chỉnh mức quen thuộc và xử lý nghĩa khi cần. Bạn chỉ cần mô tả việc muốn làm, hệ tên và những điều cần giữ nếu chúng quan trọng.
 
 Đây là hướng dẫn sử dụng bản Naming 1.0 trong repository; chưa xác nhận cài đặt hoặc kiểm thử live bản mới.

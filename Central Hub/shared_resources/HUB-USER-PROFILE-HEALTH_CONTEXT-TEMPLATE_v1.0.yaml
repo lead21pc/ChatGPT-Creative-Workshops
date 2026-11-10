@@ -1,0 +1,8 @@
+resource_id: HUB-USER-PROFILE
+object_id: HEALTH_CONTEXT
+schema_version: '1.0'
+data:
+  conditions: null
+  medications: null
+  health_goals: null
+  clinically_relevant_constraints: null

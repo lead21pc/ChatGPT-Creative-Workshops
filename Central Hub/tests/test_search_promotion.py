@@ -32,7 +32,7 @@ class SearchPromotionTests(unittest.TestCase):
     def setUpClass(cls):
         cls.pipeline = PIPELINE.read_text(encoding='utf-8')
         cls.router = load(ROUTER)
-        cls.catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.16.yaml')
+        cls.catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.17.yaml')
         cls.hub = load(ROOT / 'HUB_ROUTER_v1.1.yaml')
         cls.ais = next(p for p in cls.catalog['packages'] if p['package_id'] == 'HUB-PKG-AIS')
 
@@ -132,7 +132,11 @@ class SearchPromotionTests(unittest.TestCase):
         for rel in ['library_modules/HUB-DOM-SHOPPING_v1.0.md',
                     'library_modules/HUB-CATALOG-SHOPPING_v1.0.yaml',
                     'library_modules/HUB-CAP-AUTHORING_v0.8.md', 'HUB_CI_v1.2.md']:
-            self.assertEqual((ROOT / rel).read_bytes(), subprocess.check_output(
+            actual = (ROOT / rel).read_bytes()
+            if 'HUB-DOM-SHOPPING' in rel:
+                before, after = actual.split(b'## Optional shared User Profile input', 1)
+                actual = before + b'## PREPARE' + after.split(b'## PREPARE', 1)[1]
+            self.assertEqual(actual, subprocess.check_output(
                 ['git', 'show', '0cba55d:Central Hub/' + rel], cwd=ROOT))
         glossary = (ROOT / 'CONTROL_VOCABULARY_GLOSSARY.md').read_text(encoding='utf-8')
         for term in ['MAINTENANCE / INTERPRETATION REFERENCE', 'không có thẩm quyền runtime',
@@ -145,7 +149,7 @@ class SearchPromotionTests(unittest.TestCase):
     def test_active_pins_archive_integrity_and_verification_limits(self):
         for key, ext in [('architecture', 'md'), ('root_catalog', 'yaml')]:
             contract = self.hub['contracts'][key]
-            self.assertEqual(contract['version'], '1.16')
+            self.assertEqual(contract['version'], '1.17')
             self.assertTrue((ROOT / contract['file']).is_file())
         self.assertEqual(self.ais['version'], '1.2')
         self.assertEqual(self.ais['project_deployment'], 'NOT_PERFORMED')

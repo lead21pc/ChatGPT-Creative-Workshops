@@ -23,6 +23,12 @@ NO NEW EVIDENCE != STATUS RESET
 
 ## Current verified runtime status
 
+### USER_PROFILE_SHARED_RESOURCE_2026_11_11
+
+- HUB-USER-PROFILE schema 1.0 là ACTIVE shared non-module resource trong repository. Bốn private object tách biệt; user manual ownership, model mutation NEVER, default deny và need-before-read. Shopping là consumer duy nhất; Food chưa có trong working tree; Health FUTURE / NOT REGISTERED. Không tạo dữ liệu cá nhân thật.
+- Architecture/Catalog 1.16 -> 1.17; Router 1.1 chỉ exact pins, không đổi thuật toán. CI 1.2 và mọi owner khác giữ nguyên byte; Shopping 1.0 thêm giao diện Profile tùy nhu cầu, giữ nguyên phần diễn giải/so sánh hiện có. Context Snapshot section giữ nguyên. Predecessor byte-exact trong Source_archive với USER_PROFILE_ARCHIVE_RECEIPT_2026-11-11.json.
+- **PROJECT / LIBRARY DEPLOYMENT: NOT_PERFORMED. LIVE PROFILE RETRIEVAL: NOT_RUN. LIVE SHOPPING PROFILE USE: NOT_RUN. LIVE FOOD PROFILE USE: NOT_RUN (package absent). LIVE HEALTH PROFILE USE: NOT_APPLICABLE.** Không suy Library identity/read receipts, platform privacy enforcement hoặc live PASS từ static/spec fixture. Baseline PASS cũ giữ đúng scope/revision; giao diện Shopping bổ sung chưa có live evidence riêng.
+
 ### CONTEXT_SNAPSHOT_CONTRACT_2026_11_10
 
 - Architecture/Catalog 1.16 là **ACTIVE PRODUCTION CONTRACT trong repository**. Context Snapshot là dữ liệu dùng chung có scope hữu hạn, kind/status độc lập, basis theo mệnh đề, một ID cho một payload cố định, lineage nhẹ và tham chiếu đúng artifact. Tạo bằng yêu cầu tự nhiên tường minh; không thêm package/capability, Router logic, storage service hoặc cú pháp `/PACKAGE`.
@@ -172,6 +178,14 @@ Các record dưới giữ trạng thái tại thời điểm ghi. Những claim 
 - Related log entry: `2026-10-27 - Integrated concept-development runtime smoke`.
 
 ## Verification log
+
+### 2026-11-11 — Active shared User Profile
+
+- Baseline: main, f06dea5be568cec9fb476a9040c723be8629507c, working tree/index sạch, local trước origin/main 2 commit. Remote main được đối chiếu chỉ đọc bằng ls-remote qua OpenSSL: 0d7e8d76ee9a1ff4eca09c10881355aaf066bb8f, khớp remote-tracking ref; không fetch/push hoặc đổi cấu hình Git.
+- Baseline suite 326 passed. Sau triển khai: Profile 20, Shopping 48, Hub contract/router 80, Context Snapshot 7, AIS 33; full Central Hub suite 346 passed. Các nhóm có thể chồng lấn với full suite; không cộng tổng nhóm thành số test độc lập. Food không tồn tại nên không chạy test Food. Đây là STATIC / SPEC PASS, không là hành vi model hoặc Library retrieval.
+- Kiểm hồi quy byte-exact cho CI và toàn bộ Library/pipeline owners, riêng Shopping loại đúng phần giao diện đọc tùy chọn mới để đối chiếu phần cũ. Router chỉ đổi pins; Catalog package entries giữ nguyên sáu mục; Context Snapshot section không đổi. Các assertion promotion lịch sử giữ đúng snapshot 1.16; test Profile kiểm stack active 1.17 và archive SHA-256 riêng.
+- Kiểm định dạng: 22 tệp văn bản active UTF-8/LF, không BOM/trailing whitespace; parse 9 YAML kể cả snapshot archive; 50 liên kết local resolve; 3 archive hashes khớp; git diff --check PASS. Bốn object mẫu chỉ có null. Rà phạm vi nội dung công khai và pattern bí mật/email không phát hiện giá trị thật được thêm; kiểm tra giới hạn này không là bộ phát hiện PII tổng quát. Tổng phạm vi 28 đường dẫn, gồm nguồn cũ chuyển archive.
+- Không tạo dữ liệu người dùng thật, không cài Project/Library, không chạy live/API. Hướng dẫn và bốn payload trống: shared_resources/USER_PROFILE.md. Không chuyển PASS của baseline production sang delta mới.
 
 ### 2026-11-09 — ImageT Library repository promotion
 

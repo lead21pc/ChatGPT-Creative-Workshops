@@ -419,7 +419,7 @@ class ExplicitLeafControlTests(unittest.TestCase):
         for row in selected.values():
             self.assertEqual(row['requires'], [])
             self.assertIn('SELECT ONLY FOR A VALID EXPLICIT CONTROL SPAN', row['applicability'])
-        root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.16.yaml')
+        root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.17.yaml')
         for token in selected:
             self.assertNotIn(token, str(root))
             self.assertNotIn(token, (ROOT / 'HUB_ROUTER_v1.1.yaml').read_text(encoding='utf-8'))
