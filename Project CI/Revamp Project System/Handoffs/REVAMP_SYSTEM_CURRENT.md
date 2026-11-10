@@ -8,6 +8,7 @@ UPDATED: 2026-11-11
 
 ## 1. Established current state
 
+- INSTALLED (2026-11-11): theo yêu cầu riêng của người dùng, đã cài `revamp-system-maintenance` vào `C:/Users/Sheeplark/.codex/skills/revamp-system-maintenance/`. Hai file SKILL.md và agents/openai.yaml khớp byte với bản repository ở commit `f111c83`; validator đạt bằng Python `-X utf8`. Skill có thể được chọn từ lượt tiếp theo. Đây là kiểm chứng cài file, không phải kiểm chứng hành vi guard; Revamp CI v2.6 vẫn chưa được cài vào Project Instructions hoặc kiểm live. Người dùng cho phép push trong lượt này; không tạo quyền push thường trực.
 - DECIDED / IMPLEMENTED (2026-11-10): Revamp CI v2.6 là active repository successor tự đủ, tích hợp trực tiếp core cần thiết từ Global Native 9.1.1. `base` là design source/lineage, không external runtime dependency/autoload; sửa wording governing supplement sai của v2.5. Metadata CI chỉ tên/version/status. §1 core/claims/updating/explanation; §2 operation/stage/authorization/stopping; §5 minimum sufficient change chỉ sau grounding operation/stage đúng. Router v2.0, AT_R và các boundary giữ nguyên; không thêm loader/registry/schema/control layer.
 - USER-REPORTED RUNTIME FAILURE (2026-11-10): từ khoảng v2.0 dễ trượt audit/exploration sang design sớm dù minimum sufficient change còn chạy; correction stage/intent giúp phần sau. Chưa reproduced. SUPPORTED CAUSAL MECHANISM: core bị external-reference khiến downstream complexity controls có thể chạy trên operation/stage sai. Không khẳng định nguyên nhân duy nhất.
 - IMPLEMENTED (2026-11-10): `codex-workflows/revamp-system-maintenance/` gồm SKILL.md và agents/openai.yaml; semantic preflight xét contract/dependency, phát `HOLD UP: BASE SEMANTICS MISMATCH` đúng trường hợp và chỉ sửa authorized scope. Skill không là runtime CI/authority, không thay behavior-engineering/Git workflow; chưa cài skill. Changelog ghi mapping trách nhiệm và targeted propagation scan Hub/FTH/C2: MATCH trong phạm vi active đã đọc; không sửa các project này, không kết luận cho toàn repo/nhánh/candidate/live.
@@ -63,7 +64,7 @@ Next: chỉ khi cần và có quyền, ghi thêm runtime/probe evidence hoặc t
 
 ## 3. Outstanding / blocked
 
-- CI v2.6: live installation và hành vi model NOT RUN / UNKNOWN; chưa có live evidence cho correction self-contained hoặc guard skill. Baseline user-reported ACTIVE 2026-11-05 chỉ là v2.5/receipt. Skill mới chưa được cài.
+- CI v2.6: live installation và hành vi model NOT RUN / UNKNOWN; chưa có live evidence cho correction self-contained hoặc guard skill. Baseline user-reported ACTIVE 2026-11-05 chỉ là v2.5/receipt. Skill đã cài ngày 2026-11-11, chưa kiểm hành vi guard độc lập.
 
 - LIVE VERIFIED: ACTIVE theo báo cáo người dùng ngày 2026-11-05. Codex chưa tái hiện độc lập; chi tiết cài đặt runtime, probe và độ bền qua nhiều context còn UNKNOWN. Promotion/push repository không tự chứng minh deployment.
 - Không có blocker local được thiết lập. Quyền push từng cấp cho các đợt publication cũ là lịch sử; chính sách stage/commit hiện hành theo §2, còn push vẫn cần lệnh riêng. Đợt rebase ngày 2026-10-29 không có quyền push hoặc deploy.
@@ -135,4 +136,4 @@ Chỉ khi state đổi đáng kể và cross-chat continuity materially useful, 
 - Đã chuyển: correction self-contained v2.6, base semantics, skill maintenance mới và kết quả targeted scan; giữ baseline hai-ID/receipt và owner AT_R/template.
 - Đã giữ: DECIDED khác IMPLEMENTED khác STATICALLY VERIFIED/LIVE VERIFIED; context omission khác quên state; receipt khác body/proof/authority; user-reported live ACTIVE khác kiểm chứng độc lập, chi tiết coverage trong mục 3 còn mở.
 - Cố ý không chuyển: toàn văn predecessor archive, state chi tiết của project khác và transcript hội thoại; các phần này không cần để tiếp tục workstream receipt.
-- Gap còn biết: v2.6 và guard skill chưa kiểm live/chưa cài; người dùng đã báo live ACTIVE cho v2.5; Codex chưa có log/probe để tái hiện hoặc đánh giá receipt trên premise thật. Không suy coverage từ báo cáo active hoặc contract/spec tĩnh.
+- Gap còn biết: CI v2.6 chưa cài/chưa kiểm live; skill đã cài nhưng guard chưa kiểm hành vi; người dùng đã báo live ACTIVE cho v2.5; Codex chưa có log/probe để tái hiện hoặc đánh giá receipt trên premise thật. Không suy coverage từ báo cáo active hoặc contract/spec tĩnh.

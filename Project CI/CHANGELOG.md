@@ -11,6 +11,11 @@ Ngày commit được quy về UTC+07:00. Ngày nhập hoặc khôi phục file 
 - Trạng thái tiếp nối và bằng chứng kiểm chứng được ghi tại [REVAMP_SYSTEM_CURRENT.md](<Revamp Project System/Handoffs/REVAMP_SYSTEM_CURRENT.md>).
 - CI v2.6: `LIVE VERIFIED: NOT RUN`, chưa cài vào Project runtime. Baseline v2.5/receipt có `LIVE VERIFIED: ACTIVE` theo báo cáo người dùng ngày 2026-11-05 trong CURRENT; Codex chưa tái hiện độc lập, runtime/probe coverage chưa được cung cấp. Promotion, commit và kiểm tra tĩnh không tự chứng minh cài đặt hoặc hành vi live. Changelog này ghi lịch sử, không cấp quyền hay thay CURRENT.
 
+## 2026-11-11 — Cài skill Revamp vào Codex
+
+- Theo yêu cầu riêng của người dùng, cài hai file của `codex-workflows/revamp-system-maintenance/` từ bản local đã commit `f111c83` vào `C:/Users/Sheeplark/.codex/skills/revamp-system-maintenance/`; bản cài khớp byte và validator đạt với `python -X utf8`.
+- Skill có thể được chọn từ lượt tiếp theo. Việc cài file không chứng minh hành vi guard; CI v2.6 chưa được cài vào Project Instructions/chưa kiểm live. Các dòng “chưa cài skill” trong mục implementation trước là trạng thái tại thời điểm đó, đã được cập nhật bởi mốc này.
+
 ## 2026-11-11 — CI v2.6: tích hợp core, sửa nghĩa base
 
 - Quyết định của tác giả: `base` là design source/lineage; invariant và core logic cần thiết phải hiện diện trực tiếp trong Revamp CI. v2.5 dùng `governs in full`/`supplement` và `Preserve base operation/stage` nhưng không chứa đầy đủ logic được tham chiếu. Đây là lỗi cấu trúc đã xác nhận; v2.6 thay thế v2.5, không chỉ đổi pin.
