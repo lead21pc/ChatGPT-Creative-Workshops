@@ -1,0 +1,61 @@
+format_version: '1'
+module_id: HUB-IMAGET-CATALOG
+package_id: HUB-PKG-IMAGET
+runtime_role: PACKAGE_CATALOG
+scope: Optional specialized ImageT leaf inventory; no execution or field authority.
+status: ACTIVE
+version: '0.2'
+active: true
+authority: Current request/accepted source authority -> controller Open Gate and field authority -> Router
+  selection.
+admission: Exact ACTIVE Library identity/read verification before scoped use; presence does not activate leaves.
+entries:
+- module_id: HUB-IMAGET-HUM-CONSTRUCTION
+  package_id: HUB-PKG-IMAGET
+  runtime_role: DOMAIN_PROCEDURE
+  status: ACTIVE
+  version: '0.2'
+  active: true
+  scope: Conditional expression of already-authorized humanoid structure.
+  applicability: Actual humanoid structure-expression need within fields already authorized for construction;
+    subject alone is insufficient.
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    observed_path: null
+    locator: null
+    library_file_id: null
+    library_version_id: null
+    artifact: ImageT/Humanoid/HUB-IMAGET-HUM-CONSTRUCTION_v0.2.md
+    resolution: UNRESOLVED
+    verification: NAMESPACE_SUCCESSOR_NOT_VERIFIED
+    retrieval_mechanism: Resolve exactly one accepted successor identity in Central Hub Config, FULL_FILE and
+      headers/body plus sufficient root-scoped duplicate coverage across any subfolders. Repository artifact
+      path is an installation hint only; no runtime fallback.
+  requires: []
+- module_id: HUB-IMAGET-HUM-DESIGN-PREFERENCE
+  package_id: HUB-PKG-IMAGET
+  runtime_role: PREFERENCE
+  status: ACTIVE
+  version: '0.3'
+  active: true
+  scope: Soft humanoid aesthetic relationships under separate explicit authority.
+  activation: explicit_current_operation_only
+  eligibility: Separate explicit current-operation preference authority; preserved input requires exact preference-authorized
+    fields.
+  applicability: Soft aesthetic relationships for authorized existing humanoid components; no design authority
+    from selection.
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    observed_path: null
+    locator: null
+    library_file_id: null
+    library_version_id: null
+    artifact: ImageT/Humanoid/HUB-IMAGET-HUM-DESIGN-PREFERENCE_v0.3.md
+    resolution: UNRESOLVED
+    verification: NAMESPACE_SUCCESSOR_NOT_VERIFIED
+    retrieval_mechanism: Resolve exactly one accepted successor identity in Central Hub Config, FULL_FILE and
+      headers/body plus sufficient root-scoped duplicate coverage across any subfolders. Repository artifact
+      path is an installation hint only; no runtime fallback.
+  requires: []

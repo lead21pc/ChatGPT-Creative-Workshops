@@ -10,6 +10,9 @@ from test_shopping_v1_candidate import (
     CATALOG, CORE, SEARCH, CAT_ID, CORE_ID, PACKAGE, PROFILES, SEARCH_ID, selection_fixture,
 )
 
+# Exact pre-namespace release assertions; successor contracts are covered in test_canonical_namespace.py.
+NAMESPACE_PREDECESSOR = Path(__file__).resolve().parents[1] / 'Source_archive/Canonical namespace migration 2026-11-11'
+
 
 # Exact predecessor release assertions; active SEARCH has separate promotion coverage.
 SEARCH_PREDECESSOR = Path(__file__).resolve().parents[1] / 'Source_archive/AIS SEARCH promotion 2026-11-09'
@@ -17,12 +20,12 @@ SEARCH_PREDECESSOR = Path(__file__).resolve().parents[1] / 'Source_archive/AIS S
 class ShoppingPromotionTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        modules = ROOT / 'library_modules'
+        modules = NAMESPACE_PREDECESSOR / 'library_modules'
         cls.core = (modules / f'{CORE_ID}_v1.0.md').read_text(encoding='utf-8')
         cls.search = (modules / f'{SEARCH_ID}_v1.0.md').read_text(encoding='utf-8')
         cls.local = load(modules / f'{CAT_ID}_v1.0.yaml')
-        cls.catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.17.yaml')
-        cls.router = load(ROOT / 'HUB_ROUTER_v1.1.yaml')
+        cls.catalog = load(NAMESPACE_PREDECESSOR / 'HUB_PACKAGE_CATALOG_v1.17.yaml')
+        cls.router = load(NAMESPACE_PREDECESSOR / 'HUB_ROUTER_v1.1.yaml')
         cls.entry = next(row for row in cls.catalog['packages'] if row['package_id'] == PACKAGE)
 
     def test_active_identities(self):

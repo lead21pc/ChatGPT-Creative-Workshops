@@ -1,0 +1,292 @@
+[
+  {
+    "old": "candidates/promotion/HUB-DOM-TECHNICAL_v1.0.md",
+    "archive": "Source_archive/Canonical namespace migration 2026-11-11/candidates/promotion/HUB-DOM-TECHNICAL_v1.0.md",
+    "sha256": "fb42257b74597d5b680e5334cf1a132f04f17eb708a507444da0f3fe4a9f73d4",
+    "old_id": "HUB-DOM-TECHNICAL",
+    "new_id": "HUB-TECH-ENTRY",
+    "old_version": "1.0",
+    "new_version": "1.1",
+    "new": "library_modules/Technical/HUB-TECH-ENTRY_v1.1.md"
+  },
+  {
+    "old": "library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.5.md",
+    "archive": "Source_archive/Canonical namespace migration 2026-11-11/library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.5.md",
+    "sha256": "96a9f68e752f9732c5f1d38e072a5b8c5d1cedb2e540243d288752b576bb3e82",
+    "old_id": "HUB-DOM-CONCEPT-DEVELOPMENT",
+    "new_id": "HUB-CON-ENTRY",
+    "old_version": "1.5",
+    "new_version": "1.6",
+    "new": "library_modules/Concept Development/HUB-CON-ENTRY_v1.6.md"
+  },
+  {
+    "old": "library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.5.yaml",
+    "archive": "Source_archive/Canonical namespace migration 2026-11-11/library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.5.yaml",
+    "sha256": "5db3dc12100c9357c3b604c56fad67b2acce66cf9e9dc9dbe8a3320445eb0c74",
+    "old_id": "HUB-CATALOG-CONCEPT-DEVELOPMENT",
+    "new_id": "HUB-CON-CATALOG",
+    "old_version": "1.5",
+    "new_version": "1.6",
+    "new": "library_modules/Concept Development/HUB-CON-CATALOG_v1.6.yaml"
+  },
+  {
+    "old": "library_modules/HUB-DOM-CREATIVE_v1.1.md",
+    "archive": "Source_archive/Canonical namespace migration 2026-11-11/library_modules/HUB-DOM-CREATIVE_v1.1.md",
+    "sha256": "0430934d81b57743854543c52d9b78100d6209d8415a59c890e89f19296b4052",
+    "old_id": "HUB-DOM-CREATIVE",
+    "new_id": "HUB-CON-GEN-CREATIVE",
+    "old_version": "1.1",
+    "new_version": "1.2",
+    "new": "library_modules/Concept Development/General/HUB-CON-GEN-CREATIVE_v1.2.md"
+  },
+  {
+    "old": "library_modules/HUB-CAP-BRAINSTORM_v1.1.md",
+    "archive": "Source_archive/Canonical namespace migration 2026-11-11/library_modules/HUB-CAP-BRAINSTORM_v1.1.md",
+    "sha256": "3758bf748ab11886656f0ea2a73472323301d14e7bf93bca5767079fea824843",
+    "old_id": "HUB-CAP-BRAINSTORM",
+    "new_id": "HUB-CON-GEN-BRAINSTORM",
+    "old_version": "1.1",
+    "new_version": "1.2",
+    "new": "library_modules/Concept Development/General/HUB-CON-GEN-BRAINSTORM_v1.2.md"
+  },
+  {
+    "old": "library_modules/HUB-CAP-DEBATE_v1.0.md",
+    "archive": "Source_archive/Canonical namespace migration 2026-11-11/library_modules/HUB-CAP-DEBATE_v1.0.md",
+    "sha256": "430d1c01892c510e3d0c605654626b69202065a113e1fe4bf4c60da332ab0ddc",
+    "old_id": "HUB-CAP-DEBATE",
+    "new_id": "HUB-CON-GEN-DEBATE",
+    "old_version": "1.0",
+    "new_version": "1.1",
+    "new": "library_modules/Concept Development/General/HUB-CON-GEN-DEBATE_v1.1.md"
+  },
+  {
+    "old": "library_modules/HUB-DOM-NAMING_v1.0.md",
+    "archive": "Source_archive/Canonical namespace migration 2026-11-11/library_modules/HUB-DOM-NAMING_v1.0.md",
+    "sha256": "ded1d02336a701e2ef368a2782096f99e6116367b204d485fc5f9e9801470ea8",
+    "old_id": "HUB-DOM-NAMING",
+    "new_id": "HUB-CON-GEN-NAMING",
+    "old_version": "1.0",
+    "new_version": "1.1",
+    "new": "library_modules/Concept Development/General/HUB-CON-GEN-NAMING_v1.1.md"
+  },
+  {
+    "old": "library_modules/HUB-DOM-ANTI-PRIOR_v1.1.md",
+    "archive": "Source_archive/Canonical namespace migration 2026-11-11/library_modules/HUB-DOM-ANTI-PRIOR_v1.1.md",
+    "sha256": "bcdc55e3ca578471527f8d6669a8785e4788d2b8bc9bebe62ce2ebc7797aef9c",
+    "old_id": "HUB-DOM-ANTI-PRIOR",
+    "new_id": "HUB-CON-AD-ANTI-PRIOR",
+    "old_version": "1.1",
+    "new_version": "1.2",
+    "new": "library_modules/Concept Development/Anti Drift/HUB-CON-AD-ANTI-PRIOR_v1.2.md"
+  },
+  {
+    "old": "library_modules/HUB-DOM-MODULAR-CONCEPT-ARCHITECTURE_v1.2.md",
+    "archive": "Source_archive/Canonical namespace migration 2026-11-11/library_modules/HUB-DOM-MODULAR-CONCEPT-ARCHITECTURE_v1.2.md",
+    "sha256": "458372516d0033dd2ea50692f7b85dbc9f0b4954612c35cce30235a336f89ddc",
+    "old_id": "HUB-DOM-MODULAR-CONCEPT-ARCHITECTURE",
+    "new_id": "HUB-CON-AD-MODULAR-CONCEPT-ARCHITECTURE",
+    "old_version": "1.2",
+    "new_version": "1.3",
+    "new": "library_modules/Concept Development/Anti Drift/HUB-CON-AD-MODULAR-CONCEPT-ARCHITECTURE_v1.3.md"
+  },
+  {
+    "old": "library_modules/HUB-DOM-WORLDBUILDING-INTERNAL-LOGIC_v1.1.md",
+    "archive": "Source_archive/Canonical namespace migration 2026-11-11/library_modules/HUB-DOM-WORLDBUILDING-INTERNAL-LOGIC_v1.1.md",
+    "sha256": "54d73c1738b6fd997001f801e0e377dc097d1823b122e4b845af772bc72f1c58",
+    "old_id": "HUB-DOM-WORLDBUILDING-INTERNAL-LOGIC",
+    "new_id": "HUB-CON-AD-WORLDBUILDING-INTERNAL-LOGIC",
+    "old_version": "1.1",
+    "new_version": "1.2",
+    "new": "library_modules/Concept Development/Anti Drift/HUB-CON-AD-WORLDBUILDING-INTERNAL-LOGIC_v1.2.md"
+  },
+  {
+    "old": "library_modules/HUB-DOM-ACTOR-RECEPTION_v1.0.md",
+    "archive": "Source_archive/Canonical namespace migration 2026-11-11/library_modules/HUB-DOM-ACTOR-RECEPTION_v1.0.md",
+    "sha256": "52b91f502d982bb06ec4f9ab62fda503dc616c23e13980b4dfd76b7824584a43",
+    "old_id": "HUB-DOM-ACTOR-RECEPTION",
+    "new_id": "HUB-CON-AD-ACTOR-RECEPTION",
+    "old_version": "1.0",
+    "new_version": "1.1",
+    "new": "library_modules/Concept Development/Anti Drift/HUB-CON-AD-ACTOR-RECEPTION_v1.1.md"
+  },
+  {
+    "old": "library_modules/HUB-DOM-NARRATIVE-RESOLUTION_v1.0.md",
+    "archive": "Source_archive/Canonical namespace migration 2026-11-11/library_modules/HUB-DOM-NARRATIVE-RESOLUTION_v1.0.md",
+    "sha256": "843eea5116c715947ea75b8215c2ac7538489984a207f9bcdc814632fbb2fecb",
+    "old_id": "HUB-DOM-NARRATIVE-RESOLUTION",
+    "new_id": "HUB-CON-AD-NARRATIVE-RESOLUTION",
+    "old_version": "1.0",
+    "new_version": "1.1",
+    "new": "library_modules/Concept Development/Anti Drift/HUB-CON-AD-NARRATIVE-RESOLUTION_v1.1.md"
+  },
+  {
+    "old": "library_modules/HUB-CAP-AUTHORING_v0.8.md",
+    "archive": "Source_archive/Canonical namespace migration 2026-11-11/library_modules/HUB-CAP-AUTHORING_v0.8.md",
+    "sha256": "275f61b2a03334010c068d8b128c52a41224afe42a433dec5ba7ee46c885ee82",
+    "old_id": "HUB-CAP-AUTHORING",
+    "new_id": "HUB-AUTH-ENTRY",
+    "old_version": "0.8",
+    "new_version": "0.9",
+    "new": "library_modules/Authoring/HUB-AUTH-ENTRY_v0.9.md"
+  },
+  {
+    "old": "library_modules/HUB-DOM-SHOPPING_v1.0.md",
+    "archive": "Source_archive/Canonical namespace migration 2026-11-11/library_modules/HUB-DOM-SHOPPING_v1.0.md",
+    "sha256": "4a77dd7d6ea88eb1fb61fa6c290ee5672df075245cf78a787214f91a32f6636d",
+    "old_id": "HUB-DOM-SHOPPING",
+    "new_id": "HUB-SHOP-ENTRY",
+    "old_version": "1.0",
+    "new_version": "1.1",
+    "new": "library_modules/Shopping/HUB-SHOP-ENTRY_v1.1.md"
+  },
+  {
+    "old": "library_modules/HUB-CATALOG-SHOPPING_v1.0.yaml",
+    "archive": "Source_archive/Canonical namespace migration 2026-11-11/library_modules/HUB-CATALOG-SHOPPING_v1.0.yaml",
+    "sha256": "d67fa45d4fcea1677c9903fd07000d76da9b4ca92295b1fb5c1b91e30b19204f",
+    "old_id": "HUB-CATALOG-SHOPPING",
+    "new_id": "HUB-SHOP-CATALOG",
+    "old_version": "1.0",
+    "new_version": "1.1",
+    "new": "library_modules/Shopping/HUB-SHOP-CATALOG_v1.1.yaml"
+  },
+  {
+    "old": "library_modules/HUB-PROC-SHOPPING-SEARCH_v1.0.md",
+    "archive": "Source_archive/Canonical namespace migration 2026-11-11/library_modules/HUB-PROC-SHOPPING-SEARCH_v1.0.md",
+    "sha256": "bbc3593bff6931dc38f0219834ffae3bb86d28b7472a08c331ca64549ee42504",
+    "old_id": "HUB-PROC-SHOPPING-SEARCH",
+    "new_id": "HUB-SHOP-SEARCH",
+    "old_version": "1.0",
+    "new_version": "1.1",
+    "new": "library_modules/Shopping/HUB-SHOP-SEARCH_v1.1.md"
+  },
+  {
+    "old": "library_modules/HUB-PIPE-IMAGET_v1.3.md",
+    "archive": "Source_archive/Canonical namespace migration 2026-11-11/library_modules/HUB-PIPE-IMAGET_v1.3.md",
+    "sha256": "7aa00142788cfd0e9c58e157cb1ac51ed78fb6523fc3c4eb1e991303f8ffd9cf",
+    "old_id": "HUB-PIPE-IMAGET",
+    "new_id": "HUB-IMAGET-ENTRY",
+    "old_version": "1.3",
+    "new_version": "1.4",
+    "new": "library_modules/ImageT/HUB-IMAGET-ENTRY_v1.4.md"
+  },
+  {
+    "old": "library_modules/HUB-CATALOG-IMAGET_v0.1.yaml",
+    "archive": "Source_archive/Canonical namespace migration 2026-11-11/library_modules/HUB-CATALOG-IMAGET_v0.1.yaml",
+    "sha256": "705779a6ac76465f78fb823c719a8fdf096edc550285675af0b8a2d4cb7f5491",
+    "old_id": "HUB-CATALOG-IMAGET",
+    "new_id": "HUB-IMAGET-CATALOG",
+    "old_version": "0.1",
+    "new_version": "0.2",
+    "new": "library_modules/ImageT/HUB-IMAGET-CATALOG_v0.2.yaml"
+  },
+  {
+    "old": "library_modules/HUB-IMAGET-MANIFEST_v2.3.0.yaml",
+    "archive": "Source_archive/Canonical namespace migration 2026-11-11/library_modules/HUB-IMAGET-MANIFEST_v2.3.0.yaml",
+    "sha256": "44599eff6d9056403f36eac92664655f0c0e51fb99107ec028952818fd29975d",
+    "old_id": "HUB-IMAGET-MANIFEST",
+    "new_id": "HUB-IMAGET-CORE-MANIFEST",
+    "old_version": "2.3.0",
+    "new_version": "2.4.0",
+    "new": "library_modules/ImageT/Core/HUB-IMAGET-CORE-MANIFEST_v2.4.0.yaml"
+  },
+  {
+    "old": "library_modules/HUB-IMAGET-CONTROLLER_v1.3.md",
+    "archive": "Source_archive/Canonical namespace migration 2026-11-11/library_modules/HUB-IMAGET-CONTROLLER_v1.3.md",
+    "sha256": "fbedb350787d552342df00eeb5e06690f5cafa484dec80dbc2fe2bcef3116bd7",
+    "old_id": "HUB-IMAGET-CONTROLLER",
+    "new_id": "HUB-IMAGET-CORE-CONTROLLER",
+    "old_version": "1.3",
+    "new_version": "1.4",
+    "new": "library_modules/ImageT/Core/HUB-IMAGET-CORE-CONTROLLER_v1.4.md"
+  },
+  {
+    "old": "library_modules/HUB-IMAGET-ROUTER_v3.2.0.yaml",
+    "archive": "Source_archive/Canonical namespace migration 2026-11-11/library_modules/HUB-IMAGET-ROUTER_v3.2.0.yaml",
+    "sha256": "54785a6f1f5f24006d6b4bacfdfb0176cadbc3d9bc64d60c54e929095255c3f0",
+    "old_id": "HUB-IMAGET-ROUTER",
+    "new_id": "HUB-IMAGET-CORE-ROUTER",
+    "old_version": "3.2.0",
+    "new_version": "3.3.0",
+    "new": "library_modules/ImageT/Core/HUB-IMAGET-CORE-ROUTER_v3.3.0.yaml"
+  },
+  {
+    "old": "library_modules/HUB-IMAGET-READY-GATE_v1.1.md",
+    "archive": "Source_archive/Canonical namespace migration 2026-11-11/library_modules/HUB-IMAGET-READY-GATE_v1.1.md",
+    "sha256": "4c8651746e5ae87f6b1e9a4451710eef6c0b32ba5238380e10c3085cefef2326",
+    "old_id": "HUB-IMAGET-READY-GATE",
+    "new_id": "HUB-IMAGET-CORE-READY-GATE",
+    "old_version": "1.1",
+    "new_version": "1.2",
+    "new": "library_modules/ImageT/Core/HUB-IMAGET-CORE-READY-GATE_v1.2.md"
+  },
+  {
+    "old": "library_modules/HUB-IMAGET-ANTI-PRIOR_v1.2.0.md",
+    "archive": "Source_archive/Canonical namespace migration 2026-11-11/library_modules/HUB-IMAGET-ANTI-PRIOR_v1.2.0.md",
+    "sha256": "21aa1d9e1c79fc9f6d3a4590bcdb702faa8eff17bc2cdc734f644d62e837252d",
+    "old_id": "HUB-IMAGET-ANTI-PRIOR",
+    "new_id": "HUB-IMAGET-AD-ANTI-PRIOR",
+    "old_version": "1.2.0",
+    "new_version": "1.3.0",
+    "new": "library_modules/ImageT/Anti Drift/HUB-IMAGET-AD-ANTI-PRIOR_v1.3.0.md"
+  },
+  {
+    "old": "library_modules/HUB-IMAGET-ANTI-DRIFT_v2.1.0.md",
+    "archive": "Source_archive/Canonical namespace migration 2026-11-11/library_modules/HUB-IMAGET-ANTI-DRIFT_v2.1.0.md",
+    "sha256": "06f074b1003c5dd4bb9d99b8b5980889e521156c2610eff1ff33b167d3070908",
+    "old_id": "HUB-IMAGET-ANTI-DRIFT",
+    "new_id": "HUB-IMAGET-AD-ANTI-DRIFT",
+    "old_version": "2.1.0",
+    "new_version": "2.2.0",
+    "new": "library_modules/ImageT/Anti Drift/HUB-IMAGET-AD-ANTI-DRIFT_v2.2.0.md"
+  },
+  {
+    "old": "library_modules/HUB-IMAGET-HUMANOID-CONSTRUCTION_v0.1.md",
+    "archive": "Source_archive/Canonical namespace migration 2026-11-11/library_modules/HUB-IMAGET-HUMANOID-CONSTRUCTION_v0.1.md",
+    "sha256": "89ae58c78fcc5e4fa36c8c4f922b6ba887e49829f9dfa4730b4800b1f7844456",
+    "old_id": "HUB-IMAGET-HUMANOID-CONSTRUCTION",
+    "new_id": "HUB-IMAGET-HUM-CONSTRUCTION",
+    "old_version": "0.1",
+    "new_version": "0.2",
+    "new": "library_modules/ImageT/Humanoid/HUB-IMAGET-HUM-CONSTRUCTION_v0.2.md"
+  },
+  {
+    "old": "library_modules/HUB-IMAGET-HUMANOID-DESIGN-PREFERENCE_v0.2.md",
+    "archive": "Source_archive/Canonical namespace migration 2026-11-11/library_modules/HUB-IMAGET-HUMANOID-DESIGN-PREFERENCE_v0.2.md",
+    "sha256": "4b42f807d33e3a822e78484a4b8fde0afc1cbe2e08c4287e9e409a20ae34667e",
+    "old_id": "HUB-IMAGET-HUMANOID-DESIGN-PREFERENCE",
+    "new_id": "HUB-IMAGET-HUM-DESIGN-PREFERENCE",
+    "old_version": "0.2",
+    "new_version": "0.3",
+    "new": "library_modules/ImageT/Humanoid/HUB-IMAGET-HUM-DESIGN-PREFERENCE_v0.3.md"
+  },
+  {
+    "old": "HUB_ARCHITECTURE_v1.17.md",
+    "archive": "Source_archive/Canonical namespace migration 2026-11-11/HUB_ARCHITECTURE_v1.17.md",
+    "sha256": "df5cab607dc54b1e2d2ad849d06ac1ce7f47bb4f87467a7181f3c399b07bd089",
+    "new": "HUB_ARCHITECTURE_v1.18.md"
+  },
+  {
+    "old": "HUB_PACKAGE_CATALOG_v1.17.yaml",
+    "archive": "Source_archive/Canonical namespace migration 2026-11-11/HUB_PACKAGE_CATALOG_v1.17.yaml",
+    "sha256": "8c8297b75c5805fcb2a68e03e526628a9f00d37240edc0d0052a65b12006681b",
+    "new": "HUB_PACKAGE_CATALOG_v1.18.yaml"
+  },
+  {
+    "old": "HUB_ROUTER_v1.1.yaml",
+    "archive": "Source_archive/Canonical namespace migration 2026-11-11/HUB_ROUTER_v1.1.yaml",
+    "sha256": "610b93e09c876067783b5f0ecf07c64b0023584417d4f6b569e29a300e4211bf",
+    "new": "HUB_ROUTER_v1.1.yaml"
+  },
+  {
+    "old": "README.md",
+    "archive": "Source_archive/Canonical namespace migration 2026-11-11/README.md",
+    "sha256": "720ecf5573289959521d142f5edca77d5f56d8b3701ecf4413978a19bad239b0",
+    "new": "README.md"
+  },
+  {
+    "old": "How to use.md",
+    "archive": "Source_archive/Canonical namespace migration 2026-11-11/How to use.md",
+    "sha256": "edbc47d9c623d1d450837bdb82596b7dc4ebf6300ce2eb71563a35187812c30e",
+    "new": "How to use.md"
+  }
+]

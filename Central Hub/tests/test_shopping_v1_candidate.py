@@ -8,11 +8,15 @@ LIVE SHOPPING / HUB ROUTING / AIS COMPOSITION: NOT RUN.
 """
 import copy
 import re
+from pathlib import Path
 import unittest
 
 from test_hub_contracts import ROOT, SHOPPING_PREDECESSOR, load
 from test_shopping_candidate import candidate_spec
 from test_ais_research_core import completion_oracle, execution_oracle
+
+# Exact pre-namespace release assertions; successor contracts are covered in test_canonical_namespace.py.
+NAMESPACE_PREDECESSOR = Path(__file__).resolve().parents[1] / 'Source_archive/Canonical namespace migration 2026-11-11'
 
 
 BASE = ROOT / 'candidates/shopping_v1'
@@ -78,7 +82,7 @@ class ShoppingV1CandidateTests(unittest.TestCase):
 
     def test_V1_02_root_view_is_only_package_interface(self):
         entry = root_entry_fixture()
-        expected = load(ROOT / 'HUB_ROUTER_v1.1.yaml')['package_interface']['root_metadata']
+        expected = load(NAMESPACE_PREDECESSOR / 'HUB_ROUTER_v1.1.yaml')['package_interface']['root_metadata']
         self.assertEqual(set(entry), set(expected))
         for level in (entry, entry['local_catalog']):
             self.assertEqual(level['location']['root'], 'Central Hub Config')

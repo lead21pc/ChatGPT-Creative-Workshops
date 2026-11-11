@@ -1,3 +1,5 @@
+> Trạng thái sau migration 2026-11-11: Architecture/Catalog 1.18 và 26 identity successor theo [NAMESPACE_MIGRATION.md](NAMESPACE_MIGRATION.md). Các revision được kể dưới đây thuộc lịch sử tương ứng; để cài hiện hành dùng mapping/version trong tài liệu migration. Syntax và hành vi không đổi. Chưa deploy hoặc kiểm live successor.
+
 # Cách dùng Naming
 
 Tài nguyên User Profile dùng chung: xem [hướng dẫn và bốn object mẫu trống](shared_resources/USER_PROFILE.md). Người dùng tự tạo/chỉnh riêng trong Library `Central Hub Config`; model chỉ được đọc object đã khai báo quyền và thực sự cần cho tác vụ. Bản Profile 1.0 hiện mới được triển khai trong repository, chưa cài hoặc kiểm thử live.

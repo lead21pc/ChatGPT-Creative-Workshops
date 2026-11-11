@@ -12,10 +12,13 @@ import re
 import subprocess
 import unittest
 
-from test_hub_contracts import ROOT, load
+from test_hub_contracts import namespace_baseline_source, ROOT, load
 from test_concept_development import current_fixture, leaf_span_spec, PACKAGE, CORE, CATALOG
 from test_hub_router_candidate import simulate, integration_read_spec
 from test_hub_contracts import Closed
+
+# Exact pre-namespace release assertions; successor contracts are covered in test_canonical_namespace.py.
+NAMESPACE_PREDECESSOR = Path(__file__).resolve().parents[1] / 'Source_archive/Canonical namespace migration 2026-11-11'
 
 AP = 'HUB-DOM-ANTI-PRIOR'
 MCA = 'HUB-DOM-MODULAR-CONCEPT-ARCHITECTURE'
@@ -108,13 +111,13 @@ def verified(result):
 
 class ProductionAntiDriftTests(unittest.TestCase):
     def test_all_active_exact_bindings_and_real_requires(self):
-        local = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.5.yaml')
+        local = load(NAMESPACE_PREDECESSOR / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.5.yaml')
         rows = {row['module_id']: row for row in local['entries']}
         self.assertEqual(set(rows), set(IDS) | {'HUB-DOM-CREATIVE','HUB-CAP-DEBATE','HUB-CAP-BRAINSTORM','HUB-DOM-NAMING'})
         for identity in IDS:
             with self.subTest(identity=identity):
                 row = rows[identity]
-                text = (ROOT / f'library_modules/{identity}_v{VERSIONS[identity]}.md').read_text(encoding='utf-8')
+                text = (NAMESPACE_PREDECESSOR / f'library_modules/{identity}_v{VERSIONS[identity]}.md').read_text(encoding='utf-8')
                 for key, value in [('Module ID',identity),('Package ID',PACKAGE),('Runtime role','DOMAIN_CONTROL'),('Status','ACTIVE'),('Version',VERSIONS[identity])]:
                     self.assertEqual(re.findall('^'+key+r': (.+)$',text,re.M),[value])
                 self.assertEqual((row['status'],row['version']),('ACTIVE',VERSIONS[identity]))
@@ -206,7 +209,7 @@ class ProductionAntiDriftTests(unittest.TestCase):
                 self.assertFalse(any('archive' in str(x).lower() or 'FTH_' in str(x) for x in result['artifact_requests']))
 
     def test_selected_material_body_and_full_read_under_exact_library_contract(self):
-        local=load(ROOT/'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.5.yaml')
+        local=load(NAMESPACE_PREDECESSOR/'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.5.yaml')
         for row in local['entries'][3:]:
             entry=dict(row,entrypoint_module_id=row['module_id'],binding_mode='LIBRARY_MODULE')
             record=dict(module_id=row['module_id'],package_id=PACKAGE,runtime_role=row['runtime_role'],
@@ -250,7 +253,7 @@ class ProductionAntiDriftTests(unittest.TestCase):
           AR:['not compulsory belief reversal','correlated/non-independent','Public statement may diverge from private belief','Missing receipt is a bounded unknown','Do not choose an actor\'s action','PAST-LIFE HARM != PRESENT-LIFE GUILT'],
           NR:['an open ending can be intentional','Do not enforce immediate closure','No mandatory difficulty, new cost','easy victory may be earned','retain deferred consequences','No hard Requires']}
         for identity,clauses in guards.items():
-            text=(ROOT/f'library_modules/{identity}_v{VERSIONS[identity]}.md').read_text(encoding='utf-8')
+            text=(NAMESPACE_PREDECESSOR/f'library_modules/{identity}_v{VERSIONS[identity]}.md').read_text(encoding='utf-8')
             for clause in clauses: self.assertIn(clause.lower(),text.lower(),(identity,clause))
         core=(SEARCH_PREDECESSOR/'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.4.md').read_text(encoding='utf-8')
         for clause in ['UNKNOWN explicitly assigned to Creative may be developed','Brainstorm may mutate delegated assumptions','Debate may formulate hypotheses/objections without canon mutation','Fix an overreaching control rather than weakening an operation leaf']:
@@ -275,7 +278,7 @@ class ProductionAntiDriftTests(unittest.TestCase):
         for identity,version in [('HUB-DOM-CREATIVE','1.1'),('HUB-CAP-BRAINSTORM','1.1'),('HUB-CAP-DEBATE','1.0')]:
             rel=f'library_modules/{identity}_v{version}.md'
             previous=subprocess.check_output(['git','show',BASELINE+':Central Hub/'+rel],cwd=ROOT)
-            self.assertEqual((ROOT/rel).read_bytes(),previous)
+            self.assertEqual(namespace_baseline_source(rel).read_bytes(),previous)
         router=((ROOT / 'Source_archive/Production corrections 2026-11-08')/'HUB_ROUTER_v1.1.yaml').read_bytes()
         self.assertEqual(router,(HISTORY/'HUB_ROUTER_v1.1.yaml').read_bytes().replace(b'1.10',b'1.11'))
 
@@ -288,7 +291,7 @@ class ProductionAntiDriftTests(unittest.TestCase):
             if rel not in {'HUB_ROUTER_v1.1.yaml','tests/CONCEPT_ANTI_DRIFT_TEST_CASES.md'}:
                 self.assertFalse((ROOT/rel).exists())
         for identity in IDS:
-            data=(ROOT/f'library_modules/{identity}_v{VERSIONS[identity]}.md').read_bytes()
+            data=(NAMESPACE_PREDECESSOR/f'library_modules/{identity}_v{VERSIONS[identity]}.md').read_bytes()
             self.assertFalse(data.startswith(b'\xef\xbb\xbf')); self.assertNotIn(b'\r',data)
             self.assertTrue(data.endswith(b'\n'))
             self.assertFalse(any(line.rstrip()!=line for line in data.decode('utf-8').splitlines()))

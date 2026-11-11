@@ -6,11 +6,15 @@ See SHOPPING_M2_1_REGRESSIONS.md for owner decisions and untested boundaries.
 """
 import copy
 import hashlib
+from pathlib import Path
 import unittest
 
 from test_hub_contracts import ROOT, SHOPPING_PREDECESSOR, load
 from test_shopping_candidate import MODULE, candidate_spec, offer_spec, offer_fixture
 from test_ais_research_core import completion_oracle
+
+# Exact pre-namespace release assertions; successor contracts are covered in test_canonical_namespace.py.
+NAMESPACE_PREDECESSOR = Path(__file__).resolve().parents[1] / 'Source_archive/Canonical namespace migration 2026-11-11'
 
 
 class ShoppingM21Tests(unittest.TestCase):
@@ -131,7 +135,7 @@ class ShoppingM21Tests(unittest.TestCase):
         # by a model is still untested.
 
     def test_long_context_has_current_scope_contract_but_no_fake_conversation_engine(self):
-        router = load(ROOT / 'HUB_ROUTER_v1.1.yaml')
+        router = load(NAMESPACE_PREDECESSOR / 'HUB_ROUTER_v1.1.yaml')
         scope = router['stages']['ROOT_PACKAGE_SELECTION']
         self.assertIn('Recompute selection from the current task portion', scope)
         self.assertIn('Neither prior package selection nor prior package non-selection', scope)

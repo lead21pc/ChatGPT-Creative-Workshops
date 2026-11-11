@@ -5,9 +5,12 @@ import re
 import subprocess
 import unittest
 
-from test_hub_contracts import ROOT, CONCEPT_ARCHIVE, load, historical_source
+from test_hub_contracts import namespace_baseline_source, ROOT, CONCEPT_ARCHIVE, load, historical_source
 from test_hub_router_candidate import synthetic_module, synthetic_fixture, simulate, integration_read_spec
 from test_hub_contracts import Closed
+
+# Exact pre-namespace release assertions; successor contracts are covered in test_canonical_namespace.py.
+NAMESPACE_PREDECESSOR = Path(__file__).resolve().parents[1] / 'Source_archive/Canonical namespace migration 2026-11-11'
 
 
 # Exact predecessor release assertions; active SEARCH has separate promotion coverage.
@@ -26,7 +29,7 @@ def current_fixture():
     catalog = synthetic_module(CATALOG, PACKAGE, set(), role='PACKAGE_CATALOG', version='1.5')
     fixture['packages'][0]['local_catalog'] = catalog
     fixture['artifacts'][CATALOG] = [dict(copy.deepcopy(catalog), read_kind='FULL_FILE')]
-    local = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.5.yaml')
+    local = load(NAMESPACE_PREDECESSOR / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.5.yaml')
     leaves = []
     scopes = {'HUB-DOM-CREATIVE': {'CREATIVE'}, 'HUB-CAP-BRAINSTORM': {'BRAINSTORM'}, 'HUB-CAP-DEBATE': {'DEBATE'}, 'HUB-DOM-NAMING': {'NAME'}}
     for row in local['entries']:
@@ -99,7 +102,7 @@ class HistoricalConceptDevelopmentTests(unittest.TestCase):
                                       ('HUB-CAP-DEBATE', '1.0', 'CAPABILITY'),
                                       ('HUB-DOM-CREATIVE', '1.1', 'DOMAIN_CONTROL'),
                                       ('HUB-CAP-BRAINSTORM', '1.1', 'CAPABILITY')]:
-            text = ((SEARCH_PREDECESSOR if module == 'HUB-DOM-CONCEPT-DEVELOPMENT' else ROOT) / f'library_modules/{module}_v{version}.md').read_text(encoding='utf-8')
+            text = ((SEARCH_PREDECESSOR if module == 'HUB-DOM-CONCEPT-DEVELOPMENT' else NAMESPACE_PREDECESSOR) / f'library_modules/{module}_v{version}.md').read_text(encoding='utf-8')
             for key, value in [('Module ID', module), ('Package ID', PACKAGE), ('Runtime role', role),
                                ('Status', 'ACTIVE'), ('Version', version)]:
                 self.assertEqual(re.findall(r'^' + key + r': (.+)$', text, re.M), [value])
@@ -109,7 +112,7 @@ class HistoricalConceptDevelopmentTests(unittest.TestCase):
                 self.assertEqual(row['version'], '1.1')
                 self.assertEqual(row['requires'], [])
         previous = (CONCEPT_ARCHIVE / 'library_modules/HUB-CAP-BRAINSTORM_v1.0.md').read_bytes()
-        current = (ROOT / 'library_modules/HUB-CAP-BRAINSTORM_v1.1.md').read_bytes()
+        current = (NAMESPACE_PREDECESSOR / 'library_modules/HUB-CAP-BRAINSTORM_v1.1.md').read_bytes()
         marker = b'## Branching by premise change'
         self.assertEqual(previous.split(marker, 1)[1], current.split(marker, 1)[1])
 
@@ -265,8 +268,8 @@ class HistoricalConceptDevelopmentTests(unittest.TestCase):
             self.assertEqual((mini / 'source_archive' / name).read_bytes(), original)
             self.assertFalse((mini / name).exists())
         for text in [str(self.root), str(self.local), self.core,
-                     (ROOT / 'library_modules/HUB-DOM-CREATIVE_v1.1.md').read_text(encoding='utf-8'),
-                     (ROOT / 'library_modules/HUB-CAP-BRAINSTORM_v1.1.md').read_text(encoding='utf-8')]:
+                     (NAMESPACE_PREDECESSOR / 'library_modules/HUB-DOM-CREATIVE_v1.1.md').read_text(encoding='utf-8'),
+                     (NAMESPACE_PREDECESSOR / 'library_modules/HUB-CAP-BRAINSTORM_v1.1.md').read_text(encoding='utf-8')]:
             self.assertNotIn('miniConcept_CI', text)
             self.assertNotIn('Source_archive', text)
 
@@ -297,7 +300,7 @@ def leaf_span_spec(parts):
     """
     text = ''.join(body for role, body in parts)
     directive = [role == 'USER_DIRECTIVE' for role, body in parts for _ in body]
-    local = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.5.yaml')
+    local = load(NAMESPACE_PREDECESSOR / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.5.yaml')
     openers = {row['activation']: row['module_id'] for row in local['entries'] if 'activation' in row}
     # Foreign owner cue only: SEARCH remains AIS-owned, never a Concept catalog leaf.
     openers['/SEARCH'] = 'HUB-PKG-AIS'
@@ -413,21 +416,21 @@ class ExplicitLeafControlTests(unittest.TestCase):
         self.assertEqual(result['unscoped'][-1], ' outside')
 
     def test_local_ownership_and_no_root_router_parser(self):
-        local = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.5.yaml')
+        local = load(NAMESPACE_PREDECESSOR / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.5.yaml')
         selected = {row['activation']: row for row in local['entries'] if 'activation' in row}
         self.assertEqual(set(selected), {'/CREATIVE', '/DEBATE', '/BRAINSTORM', '/NAME'})
         for row in selected.values():
             self.assertEqual(row['requires'], [])
             self.assertIn('SELECT ONLY FOR A VALID EXPLICIT CONTROL SPAN', row['applicability'])
-        root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.17.yaml')
+        root = load(NAMESPACE_PREDECESSOR / 'HUB_PACKAGE_CATALOG_v1.17.yaml')
         for token in selected:
             self.assertNotIn(token, str(root))
-            self.assertNotIn(token, (ROOT / 'HUB_ROUTER_v1.1.yaml').read_text(encoding='utf-8'))
+            self.assertNotIn(token, (NAMESPACE_PREDECESSOR / 'HUB_ROUTER_v1.1.yaml').read_text(encoding='utf-8'))
         previous = subprocess.check_output(['git', 'show', '573c8fe:Central Hub/HUB_ROUTER_v1.1.yaml'], cwd=ROOT)
         self.assertEqual((SEARCH_PREDECESSOR / 'HUB_ROUTER_v1.1.yaml').read_bytes(), previous.replace(b'HUB_CI_v1.1.md', b'HUB_CI_v1.2.md').replace(b'Hub CI/Router v1.1 with', b'Hub CI v1.2 / Router v1.1 with').replace(b'1.7', b'1.14').replace(b'REPOSITORY_ACTIVE; PROJECT_DEPLOYMENT_NOT_VERIFIED', b'USER_CONFIRMED_BASELINE_INSTALLED_AND_LIVE; CORRECTION_DELTA_STATIC_ONLY').replace(b'LIVE INTEGRATION PARTIAL; I01-I07/I09-I10 PASS; I08 UNVERIFIABLE; USER_REPORTED', b'USER_CONFIRMED_BASELINE_LIVE_PASS; CORRECTION_DELTA_LIVE_NOT_RUN; historical trial I01-I07/I09-I10 PASS, I08 UNVERIFIABLE; USER_REPORTED'))
 
     def test_core_contract_guards_and_scope_dependency_distinction(self):
-        text = (ROOT / 'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.5.md').read_text(encoding='utf-8')
+        text = (NAMESPACE_PREDECESSOR / 'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.5.md').read_text(encoding='utf-8')
         for clause in ('SEMANTIC FIT != LEAF ACTIVATION', 'No nesting or overlap',
                        'TEXTUAL ORDER != AUTOMATIC DEPENDENCY', 'LEAF SCOPE != CONTEXT VISIBILITY',
                        'PREVIOUS SPAN != CURRENT ACTIVATION', 'PREVIOUS TURN != CURRENT ACTIVATION',
@@ -437,7 +440,7 @@ class ExplicitLeafControlTests(unittest.TestCase):
             self.assertIn(clause, text)
 
     def test_debate_reviewed_behavior_not_live_opposition_proof(self):
-        text = (ROOT / 'library_modules/HUB-CAP-DEBATE_v1.0.md').read_text(encoding='utf-8')
+        text = (NAMESPACE_PREDECESSOR / 'library_modules/HUB-CAP-DEBATE_v1.0.md').read_text(encoding='utf-8')
         for clause in ('strongest objection', 'one consequential objection at a time',
                        'same goal and constraints', 'a burden the alternative carries equally',
                        'unavoidable complexity, added design complexity and relocated complexity',
@@ -467,7 +470,7 @@ class ExplicitLeafControlTests(unittest.TestCase):
             previous = subprocess.check_output(['git', 'show', '573c8fe:Central Hub/' + name], cwd=ROOT)
             # This assertion belongs to the historical Concept 1.1 promotion.
             base = ROOT / 'Source_archive/Authoring 0.7 M2 2026-11-05' if name.endswith('HUB-CAP-AUTHORING_v0.6.md') else ROOT
-            source = historical_source(name) if name == 'HUB_CI_v1.1.md' else base / name
+            source = historical_source(name) if name == 'HUB_CI_v1.1.md' else (base / name if base != ROOT else namespace_baseline_source(name))
             self.assertEqual(source.read_bytes(), previous)
         prior = load(archive / 'HUB_PACKAGE_CATALOG_v1.7.yaml')
         current = load(ROOT / 'Source_archive/Authoring 0.7 M2 2026-11-05/HUB_PACKAGE_CATALOG_v1.8.yaml')

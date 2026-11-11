@@ -10,12 +10,15 @@ import re
 import subprocess
 import unittest
 
-from test_hub_contracts import ROOT, load, Closed
+from test_hub_contracts import namespace_baseline_source, ROOT, load, Closed
 from test_concept_development import (
     leaf_span_spec, naming_modifier_spec, current_fixture, PACKAGE, CORE, CATALOG,
 )
 from test_hub_router_candidate import simulate, integration_read_spec
 from test_concept_production_anti_drift import production_spec, AP
+
+# Exact pre-namespace release assertions; successor contracts are covered in test_canonical_namespace.py.
+NAMESPACE_PREDECESSOR = Path(__file__).resolve().parents[1] / 'Source_archive/Canonical namespace migration 2026-11-11'
 
 
 NAMING = 'HUB-DOM-NAMING'
@@ -29,7 +32,7 @@ ARCHIVE = ROOT / 'Source_archive/Naming 1.0 integration 2026-11-09'
 class NamingTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.body = (ROOT / f'library_modules/{NAMING}_v1.0.md').read_text(encoding='utf-8')
+        cls.body = (NAMESPACE_PREDECESSOR / f'library_modules/{NAMING}_v1.0.md').read_text(encoding='utf-8')
         cls.local = load(SEARCH_PREDECESSOR / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.4.yaml')
         cls.root = load(SEARCH_PREDECESSOR / 'HUB_PACKAGE_CATALOG_v1.14.yaml')
         cls.row = next(row for row in cls.local['entries'] if row['module_id'] == NAMING)
@@ -197,7 +200,7 @@ class NamingTests(unittest.TestCase):
                     'library_modules/HUB-CAP-BRAINSTORM_v1.1.md', 'library_modules/HUB-CAP-DEBATE_v1.0.md',
                     'tool_pipelines/AIS/AIS_PIPELINE_v1.1.md', 'tool_pipelines/AIS/AIS_ROUTER_v1.2.yaml',
                     'tool_pipelines/ImageT/IMAGE_CONTROLLER_v1.2.md'):
-            self.assertEqual(((SEARCH_PREDECESSOR if rel.startswith('tool_pipelines/AIS/') else ROOT)/rel).read_bytes(), subprocess.check_output(
+            self.assertEqual(((SEARCH_PREDECESSOR / rel) if rel.startswith('tool_pipelines/AIS/') else namespace_baseline_source(rel)).read_bytes(), subprocess.check_output(
                 ['git', 'show', BASELINE+':Central Hub/'+rel], cwd=ROOT), rel)
 
     def test_archive_byte_exact_and_predecessors_not_active(self):
@@ -212,7 +215,7 @@ class NamingTests(unittest.TestCase):
                 ['git', 'show', BASELINE+':Central Hub/'+rel], cwd=ROOT), rel)
 
     def test_user_guide_and_stress_cases_are_not_runtime_claims(self):
-        guide = (ROOT/'How to use.md').read_text(encoding='utf-8')
+        guide = (NAMESPACE_PREDECESSOR/'How to use.md').read_text(encoding='utf-8')
         for syntax in ('/NAME <instruction> #', '/NAME P1 <instruction> #',
                        '/NAME P2 <instruction> #', '/NAME P3 <instruction> #'):
             self.assertIn(syntax, guide)

@@ -9,12 +9,15 @@ import unittest
 from test_hub_contracts import ROOT, Closed, load, approval_oracle
 from test_imaget_library_candidate import EXPECTED, selection_spec
 
+# Exact pre-namespace release assertions; successor contracts are covered in test_canonical_namespace.py.
+NAMESPACE_PREDECESSOR = Path(__file__).resolve().parents[1] / 'Source_archive/Canonical namespace migration 2026-11-11'
+
 # Exact predecessor release assertions; active SEARCH has separate promotion coverage.
 SEARCH_PREDECESSOR = Path(__file__).resolve().parents[1] / 'Source_archive/AIS SEARCH promotion 2026-11-09'
 
 BASELINE = '2898d2358f6b3eebd4de65e78d5033af7c27dd12'
 PACKAGE = 'HUB-PKG-IMAGET'
-LIBRARY = ROOT / 'library_modules'
+LIBRARY = NAMESPACE_PREDECESSOR / 'library_modules'
 ARCHIVE = ROOT / 'Source_archive/ImageT Library promotion 2026-11-09'
 
 

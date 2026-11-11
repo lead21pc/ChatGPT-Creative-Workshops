@@ -2,6 +2,7 @@
 import hashlib
 import json
 import re
+from pathlib import Path
 import unittest
 
 from test_hub_contracts import ROOT
@@ -10,6 +11,9 @@ from test_hub_contracts import ROOT
 PREDECESSOR = ROOT / 'Source_archive/Authoring 0.7 M2 2026-11-05'
 from test_authoring_candidate import CASES, trigger_spec
 
+# Exact pre-namespace release assertions; successor contracts are covered in test_canonical_namespace.py.
+NAMESPACE_PREDECESSOR = Path(__file__).resolve().parents[1] / 'Source_archive/Canonical namespace migration 2026-11-11'
+
 
 class AuthoringM1Tests(unittest.TestCase):
     def test_context_provenance_correction_and_predecessor_preservation(self):
@@ -17,7 +21,7 @@ class AuthoringM1Tests(unittest.TestCase):
         old = ROOT / 'Source_archive/Authoring 0.4.1 correction 2026-11-01/library_modules/HUB-CAP-AUTHORING_v0.4.md'
         self.assertEqual(hashlib.sha256(old.read_bytes()).hexdigest(),
                          '2b86c680156b78062c2e4e412b1fe30e10002307c0bbd4342850db4a9aa9a317')
-        self.assertFalse((ROOT / 'library_modules/HUB-CAP-AUTHORING_v0.4.md').exists())
+        self.assertFalse((NAMESPACE_PREDECESSOR / 'library_modules/HUB-CAP-AUTHORING_v0.4.md').exists())
         corrected = active.split('## Context provenance\n', 1)[1].split('## Scoped transformation', 1)[0]
         for term in ('supplied context', 'current Hub state', 'optional grounded evidence',
                      'model-generated task structure', 'model knowledge', 'neutral research question',
@@ -51,7 +55,7 @@ class AuthoringM1Tests(unittest.TestCase):
         active = ROOT / 'Source_archive/Authoring 0.4 promotion 2026-11-01/library_modules/HUB-CAP-AUTHORING_v0.3.md'
         self.assertEqual(hashlib.sha256(active.read_bytes()).hexdigest(),
                          '65a9d88b9362481c7f42d0bf3c96358f0b4d688bda39ef8bd948a2c63d1906ef')
-        self.assertFalse((ROOT / 'library_modules/HUB-CAP-AUTHORING_v0.3.md').exists())
+        self.assertFalse((NAMESPACE_PREDECESSOR / 'library_modules/HUB-CAP-AUTHORING_v0.3.md').exists())
         self.assertFalse((ROOT / 'candidates/authoring_v0/HUB-CAP-AUTHORING_v0.4-candidate.md').exists())
         archive = ROOT / 'Source_archive/Authoring 0.4 promotion 2026-11-01'
         source = archive / 'candidates/authoring_v0/HUB-CAP-AUTHORING_v0.4-candidate.md'

@@ -6,11 +6,15 @@ roles are supplied by fixtures, never inferred by this test suite.
 import hashlib
 import json
 import subprocess
+from pathlib import Path
 import unittest
 
-from test_hub_contracts import ROOT, load
+from test_hub_contracts import namespace_baseline_source, ROOT, load
 from test_concept_development import leaf_span_spec
 from test_ais_research_core import completion_oracle, execution_oracle
+
+# Exact pre-namespace release assertions; successor contracts are covered in test_canonical_namespace.py.
+NAMESPACE_PREDECESSOR = Path(__file__).resolve().parents[1] / 'Source_archive/Canonical namespace migration 2026-11-11'
 
 
 PIPELINE = ROOT / 'tool_pipelines/AIS/AIS_PIPELINE_v1.2.md'
@@ -32,8 +36,8 @@ class SearchPromotionTests(unittest.TestCase):
     def setUpClass(cls):
         cls.pipeline = PIPELINE.read_text(encoding='utf-8')
         cls.router = load(ROUTER)
-        cls.catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.17.yaml')
-        cls.hub = load(ROOT / 'HUB_ROUTER_v1.1.yaml')
+        cls.catalog = load(NAMESPACE_PREDECESSOR / 'HUB_PACKAGE_CATALOG_v1.17.yaml')
+        cls.hub = load(NAMESPACE_PREDECESSOR / 'HUB_ROUTER_v1.1.yaml')
         cls.ais = next(p for p in cls.catalog['packages'] if p['package_id'] == 'HUB-PKG-AIS')
 
     def spec(self, text, role='USER_DIRECTIVE'):
@@ -95,7 +99,7 @@ class SearchPromotionTests(unittest.TestCase):
                     result = self.spec(text)
                     self.assertFalse(result['invocations'])
                     self.assertEqual(len(result['blocked']), 1)
-        core = (ROOT / 'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.5.md').read_text(encoding='utf-8')
+        core = (NAMESPACE_PREDECESSOR / 'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.5.md').read_text(encoding='utf-8')
         result = self.spec('/SEARCH X # /CREATIVE A /SEARCH B # /DEBATE C #')
         self.assertEqual(result['invocations'], [('HUB-PKG-AIS', 'X'), ('HUB-CAP-DEBATE', 'C')])
         self.assertEqual(len(result['blocked']), 1)
@@ -120,7 +124,7 @@ class SearchPromotionTests(unittest.TestCase):
             self.assertIn(token, self.pipeline)
 
     def test_T14_owner_boundaries_and_T15_glossary_non_authority(self):
-        local = load(ROOT / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.5.yaml')
+        local = load(NAMESPACE_PREDECESSOR / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.5.yaml')
         old = load(ROOT / 'Source_archive/AIS SEARCH promotion 2026-11-09/HUB_PACKAGE_CATALOG_v1.14.yaml')
         excluded = {'HUB-PKG-AIS', 'HUB-PKG-CONCEPT-DEVELOPMENT'}
         self.assertEqual([p for p in old['packages'] if p['package_id'] not in excluded],
@@ -132,7 +136,7 @@ class SearchPromotionTests(unittest.TestCase):
         for rel in ['library_modules/HUB-DOM-SHOPPING_v1.0.md',
                     'library_modules/HUB-CATALOG-SHOPPING_v1.0.yaml',
                     'library_modules/HUB-CAP-AUTHORING_v0.8.md', 'HUB_CI_v1.2.md']:
-            actual = (ROOT / rel).read_bytes()
+            actual = namespace_baseline_source(rel).read_bytes()
             if 'HUB-DOM-SHOPPING' in rel:
                 before, after = actual.split(b'## Optional shared User Profile input', 1)
                 actual = before + b'## PREPARE' + after.split(b'## PREPARE', 1)[1]
@@ -150,7 +154,7 @@ class SearchPromotionTests(unittest.TestCase):
         for key, ext in [('architecture', 'md'), ('root_catalog', 'yaml')]:
             contract = self.hub['contracts'][key]
             self.assertEqual(contract['version'], '1.17')
-            self.assertTrue((ROOT / contract['file']).is_file())
+            self.assertTrue(namespace_baseline_source(contract['file']).is_file())
         self.assertEqual(self.ais['version'], '1.2')
         self.assertEqual(self.ais['project_deployment'], 'NOT_PERFORMED')
         archive = ROOT / 'Source_archive/AIS SEARCH promotion 2026-11-09'

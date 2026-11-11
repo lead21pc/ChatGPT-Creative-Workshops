@@ -6,7 +6,10 @@ import re
 import subprocess
 import unittest
 
-from test_hub_contracts import ROOT, load, Closed, historical_source
+from test_hub_contracts import namespace_baseline_source, ROOT, load, Closed, historical_source
+
+# Exact pre-namespace release assertions; successor contracts are covered in test_canonical_namespace.py.
+NAMESPACE_PREDECESSOR = Path(__file__).resolve().parents[1] / 'Source_archive/Canonical namespace migration 2026-11-11'
 
 PACKAGE = 'HUB-PKG-IMAGET'
 CANDIDATE = ROOT / 'Source_archive/ImageT Library promotion 2026-11-09/candidates/imaget_library_v0'
@@ -151,12 +154,12 @@ class ImageTLibraryCandidateTests(unittest.TestCase):
         for name in PROTECTED:
             with self.subTest(active=name):
                 original = subprocess.check_output(['git', 'show', BASELINE + ':Central Hub/' + name], cwd=ROOT)
-                path = historical_source(name) if name == 'HUB_CI_v1.1.md' else ROOT / name
+                path = historical_source(name) if name == 'HUB_CI_v1.1.md' else namespace_baseline_source(name)
                 if name in {'HUB_ROUTER_v1.1.yaml', 'HUB_ARCHITECTURE_v1.3.md', 'HUB_PACKAGE_CATALOG_v1.3.yaml', 'library_modules/HUB-CAP-AUTHORING_v0.3.md'}:
                     path = ROOT / 'Source_archive/Authoring 0.4 promotion 2026-11-01' / name
                 baseline_path = (ROOT / 'Source_archive/Production corrections 2026-11-08') / path.relative_to(ROOT)
                 self.assertEqual((baseline_path if baseline_path.is_file() else path).read_bytes(), original)
-        root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.17.yaml')
+        root = load(NAMESPACE_PREDECESSOR / 'HUB_PACKAGE_CATALOG_v1.17.yaml')
         binding = next(p for p in root['packages'] if p['package_id'] == PACKAGE)
         self.assertEqual(binding['binding_mode'], 'LIBRARY_MODULE')
         self.assertEqual(binding['version'], '1.3')

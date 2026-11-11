@@ -8,6 +8,9 @@ import unittest
 from unittest.mock import patch
 import yaml
 
+# Exact pre-namespace release assertions; successor contracts are covered in test_canonical_namespace.py.
+NAMESPACE_PREDECESSOR = Path(__file__).resolve().parents[1] / 'Source_archive/Canonical namespace migration 2026-11-11'
+
 ROOT = Path(__file__).resolve().parents[1]
 IMAGE = ROOT / 'tool_pipelines/ImageT'
 
@@ -25,6 +28,12 @@ CONCEPT_PREDECESSORS = frozenset(['HUB_ARCHITECTURE_v1.0.md', 'HUB_PACKAGE_CATAL
 
 SHOPPING_PREDECESSOR = ROOT / 'Source_archive/Shopping 1.0 promotion 2026-11-06'
 
+def namespace_baseline_source(relative):
+    """Exact 1.17 release source for historical assertions only, never successor resolution."""
+    rows = json.loads((NAMESPACE_PREDECESSOR / 'ARCHIVE_RECEIPT.json').read_text(encoding='utf-8'))
+    paths = {row['old'] for row in rows}
+    return (NAMESPACE_PREDECESSOR if relative in paths else ROOT) / relative
+
 
 def historical_source(path):
     if path == 'HUB_CI_v1.1.md':
@@ -38,7 +47,7 @@ def historical_source(path):
         return CONCEPT_ARCHIVE / path  # Historical assertions only, never active resolution.
     if path in AIS_PREDECESSORS:
         return AIS_ARCHIVE / path  # Explicit history checks only, never runtime fallback.
-    return LEGACY_ARCHIVE / path if path in LEGACY_PATHS else ROOT / path
+    return LEGACY_ARCHIVE / path if path in LEGACY_PATHS else namespace_baseline_source(path)
 
 
 
@@ -424,7 +433,7 @@ class HubTests(unittest.TestCase):
         self.assertEqual((active['file'], active['version'], active['status']),
                          ('IMAGE_CONTROLLER_v1.2.md', '1.2', 'active'))
         self.assertEqual(self.manifest['controllers']['experiments'], [])
-        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.17.yaml')
+        catalog = load(NAMESPACE_PREDECESSOR / 'HUB_PACKAGE_CATALOG_v1.17.yaml')
         binding = next(p for p in catalog['packages'] if p['package_id'] == 'HUB-PKG-IMAGET')
         self.assertEqual(binding['binding_mode'], 'LIBRARY_MODULE')
         self.assertEqual(binding['version'], '1.3')
@@ -438,7 +447,7 @@ class HubTests(unittest.TestCase):
                          '6d33c80f4852c1b44c32abf6e898c14e8f001d24796d406aafc49a95ab3a2733')
         self.assertEqual(digest(archive / 'tool_pipelines/ImageT/IMAGE_CONTROLLER_v1.2-candidate.md'),
                          'bfe8cc64f23932633c3f2a5a279d96ff39c1a54aaa6014c27cfcb5152876d600')
-        self.assertNotIn(candidate_path.name, (ROOT / 'HUB_PACKAGE_CATALOG_v1.17.yaml').read_text(encoding='utf-8'))
+        self.assertNotIn(candidate_path.name, (NAMESPACE_PREDECESSOR / 'HUB_PACKAGE_CATALOG_v1.17.yaml').read_text(encoding='utf-8'))
         self.assertIn(candidate_path.name, (IMAGE / 'manifest.yaml').read_text(encoding='utf-8'))
         self.assertNotIn(candidate_path.name, (IMAGE / 'IMAGE_SOURCE_ROUTER.yaml').read_text(encoding='utf-8'))
         cases = (IMAGE / 'tests/ROUTE_TEST_CASES.md').read_text(encoding='utf-8')
@@ -933,7 +942,7 @@ class HubTests(unittest.TestCase):
 
     def test_technical_promotion_ready_header_and_exact_body_preservation(self):
         candidate = ROOT / 'candidates/HUB-DOM-TECHNICAL_v1.0-candidate.md'
-        promoted = ROOT / 'candidates/promotion/HUB-DOM-TECHNICAL_v1.0.md'
+        promoted = NAMESPACE_PREDECESSOR / 'candidates/promotion/HUB-DOM-TECHNICAL_v1.0.md'
         data = promoted.read_bytes()
         text = data.decode('utf-8')
         expected = {'Module ID': 'HUB-DOM-TECHNICAL', 'Package ID': 'HUB-PKG-TECHNICAL',

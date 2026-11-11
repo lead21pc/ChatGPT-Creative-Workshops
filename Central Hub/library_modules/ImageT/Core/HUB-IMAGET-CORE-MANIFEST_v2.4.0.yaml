@@ -1,0 +1,121 @@
+format_version: '1'
+module_id: HUB-IMAGET-CORE-MANIFEST
+package_id: HUB-PKG-IMAGET
+runtime_role: PIPELINE_MANIFEST
+scope: Required ImageT core inventory, exact compatibility and integrity only.
+status: ACTIVE
+version: 2.4.0
+active: true
+role_boundary: PIPELINE_MANIFEST is a pipeline-internal technical role under the accepted shared Architecture;
+  no new Hub-wide selectable role and no optional leaf inventory.
+binding_mode: LIBRARY_MODULE
+library_root: Central Hub Config
+deployment: NOT_PERFORMED
+admission: Exact ACTIVE Library identities and accepted bindings; FULL_FILE and material body verification
+  required.
+integrity:
+  algorithm: sha256
+  self_hash: null
+  self_hash_policy: Excluded to avoid self-reference.
+  entrypoint_hash_policy: Entrypoint is verified by its Hub binding; not a core back-edge.
+catalog_interface:
+  module_id: HUB-IMAGET-CATALOG
+  package_id: HUB-PKG-IMAGET
+  runtime_role: PACKAGE_CATALOG
+  format_version: '1'
+  binding: Exact version supplied by accepted Hub local_catalog deployment metadata; no newest-version discovery.
+  purpose: Optional specialized leaves only; this manifest never lists or activates them.
+  failure: Missing required catalog blocks dependent local selection, not sufficient independent core-only
+    work.
+source_name_aliases:
+  config.md: HUB-IMAGET-AD-ANTI-DRIFT
+  IMAGE_ANTI_PRIOR.md: HUB-IMAGET-AD-ANTI-PRIOR
+  meaning: Legacy names inside preserved core prose refer only to these canonical Library identities; never
+    to Project Sources or local files.
+optional_template:
+  status: optional_absent
+  unexpected_template: BLOCK_DEPENDENT
+  declared_required_but_missing_or_invalid: BLOCK_DEPENDENT
+core:
+- module_id: HUB-IMAGET-CORE-CONTROLLER
+  package_id: HUB-PKG-IMAGET
+  runtime_role: DOMAIN_PROCEDURE
+  status: ACTIVE
+  version: '1.4'
+  active: true
+  file: ImageT/Core/HUB-IMAGET-CORE-CONTROLLER_v1.4.md
+  sha256: 54787cd89021a63071ee41457d08e154520dfd63ea4e481a0c280f57ce3d70c8
+  required_for:
+  - ANALYZE
+  - CREATE
+  - EDIT
+  - VARIATION
+  - CORRECT
+  - RETRY
+  requires:
+  - HUB-IMAGET-CORE-ROUTER
+  - HUB-IMAGET-AD-ANTI-PRIOR
+  - HUB-IMAGET-AD-ANTI-DRIFT
+- module_id: HUB-IMAGET-CORE-ROUTER
+  package_id: HUB-PKG-IMAGET
+  runtime_role: DOMAIN_PROCEDURE
+  status: ACTIVE
+  version: 3.3.0
+  active: true
+  file: ImageT/Core/HUB-IMAGET-CORE-ROUTER_v3.3.0.yaml
+  sha256: e6220934c6cc2e22ebdf902fe6278fdf2f44988dc7845a2dda08732da6e56d34
+  required_for:
+  - ANALYZE
+  - CREATE
+  - EDIT
+  - VARIATION
+  - CORRECT
+  - RETRY
+  requires: []
+- module_id: HUB-IMAGET-CORE-READY-GATE
+  package_id: HUB-PKG-IMAGET
+  runtime_role: DOMAIN_PROCEDURE
+  status: ACTIVE
+  version: '1.2'
+  active: true
+  file: ImageT/Core/HUB-IMAGET-CORE-READY-GATE_v1.2.md
+  sha256: 1dbd112b9654ab7d4f9852c21b7293b1b12e8c1234b714edbc20e25f79644ba0
+  required_for:
+  - CREATE
+  - EDIT
+  - VARIATION
+  - CORRECT
+  - RETRY
+  requires: []
+- module_id: HUB-IMAGET-AD-ANTI-PRIOR
+  package_id: HUB-PKG-IMAGET
+  runtime_role: DOMAIN_PROCEDURE
+  status: ACTIVE
+  version: 1.3.0
+  active: true
+  file: ImageT/Anti Drift/HUB-IMAGET-AD-ANTI-PRIOR_v1.3.0.md
+  sha256: 45fbde91c90b8a7cfdfca72b152d8e31c4f1ae2f5e4354fa9d33ff9dc12ccf85
+  required_for:
+  - ANALYZE
+  - CREATE
+  - EDIT
+  - VARIATION
+  - CORRECT
+  - RETRY
+  requires: []
+- module_id: HUB-IMAGET-AD-ANTI-DRIFT
+  package_id: HUB-PKG-IMAGET
+  runtime_role: DOMAIN_PROCEDURE
+  status: ACTIVE
+  version: 2.2.0
+  active: true
+  file: ImageT/Anti Drift/HUB-IMAGET-AD-ANTI-DRIFT_v2.2.0.md
+  sha256: 39c25de5d6bf74905be4019c7d255174bf2c86b569e51699cff949601ace84d2
+  required_for:
+  - ANALYZE
+  - CREATE
+  - EDIT
+  - VARIATION
+  - CORRECT
+  - RETRY
+  requires: []

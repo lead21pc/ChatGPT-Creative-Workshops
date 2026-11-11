@@ -4,10 +4,14 @@ Scope matches are supplied by fixtures, not inferred from natural-language tasks
 FULL_FILE records below are simulated read evidence, never real Library retrieval.
 """
 import copy
+from pathlib import Path
 import unittest
 import yaml
 
 from test_hub_contracts import Closed, ROOT, digest, load, parse, historical_source
+
+# Exact pre-namespace release assertions; successor contracts are covered in test_canonical_namespace.py.
+NAMESPACE_PREDECESSOR = Path(__file__).resolve().parents[1] / 'Source_archive/Canonical namespace migration 2026-11-11'
 
 
 CANDIDATE = ROOT / 'candidates/HUB_ROUTER_v1.1-candidate.yaml'
@@ -875,7 +879,7 @@ class PriorSingletonMigration(unittest.TestCase):
             self.assertIn(invariant, previous)
             self.assertIn(invariant, architecture)
         self.assertIn('Runtime control language: English only', architecture)
-        readme = (ROOT / 'README.md').read_text(encoding='utf-8')
+        readme = (NAMESPACE_PREDECESSOR / 'README.md').read_text(encoding='utf-8')
         for name in ['HUB_CI_v1.2.md', 'HUB_ROUTER_v1.1.yaml', 'HUB_ARCHITECTURE_v1.17.md',
                      'HUB_PACKAGE_CATALOG_v1.17.yaml', 'REPOSITORY ACTIVE != PROJECT DEPLOYED']:
             self.assertIn(name, readme)
@@ -969,7 +973,7 @@ class PriorSingletonMigration(unittest.TestCase):
                 self.assertIn(token, plan)
 
     def test_library_two_identity_paths_preserve_existing_guards(self):
-        router = load(ROOT / 'HUB_ROUTER_v1.1.yaml')
+        router = load(NAMESPACE_PREDECESSOR / 'HUB_ROUTER_v1.1.yaml')
         library = router['library']
         self.assertEqual(library['root'], 'Central Hub Config')
         for phrase in ['A: prefer the verified bound', 'B: when usable internal identity is not exposed',
@@ -991,7 +995,7 @@ class PriorSingletonMigration(unittest.TestCase):
         self.assertEqual(router['verification']['read'], 'FULL_FILE')
         self.assertEqual(router['verification']['headers'],
                          ['Module ID', 'Package ID', 'Runtime role', 'Status', 'Version'])
-        architecture = (ROOT / 'HUB_ARCHITECTURE_v1.17.md').read_text(encoding='utf-8')
+        architecture = (NAMESPACE_PREDECESSOR / 'HUB_ARCHITECTURE_v1.17.md').read_text(encoding='utf-8')
         for phrase in ['Two identity paths serve one LIBRARY_MODULE binding',
                        'Hidden internal IDs may remain null', 'NAME MATCH != IDENTITY',
                        'SEARCH RESULT != MODULE READ', 'NOT FOUND != FALSE']:
@@ -1115,7 +1119,7 @@ class PriorSingletonMigration(unittest.TestCase):
 
     def test_brainstorm_explicit_scope_does_not_persist_or_activate_pipelines(self):
         """Declared portion/turn needs exercise existing reselection, not language recognition."""
-        router = load(ROOT / 'HUB_ROUTER_v1.1.yaml')
+        router = load(NAMESPACE_PREDECESSOR / 'HUB_ROUTER_v1.1.yaml')
         self.assertIn('Every turn and material scope change', router['persistence']['reassess'])
         self.assertFalse(router['persistence']['persistent_modes'])
         self.assertFalse(router['persistence']['self_activation'])
@@ -1139,7 +1143,7 @@ class PriorSingletonMigration(unittest.TestCase):
 
     def test_H36_prior_nonselection_does_not_persist_across_task_transition(self):
         """SPEC only: declared current needs, not model intent recognition or real tool calls."""
-        router = load(ROOT / 'HUB_ROUTER_v1.1.yaml')
+        router = load(NAMESPACE_PREDECESSOR / 'HUB_ROUTER_v1.1.yaml')
         rule = router['stages']['ROOT_PACKAGE_SELECTION']
         for phrase in ['Recompute selection from the current task portion before specialized execution',
                        'Neither prior package selection nor prior package non-selection',
@@ -1147,7 +1151,7 @@ class PriorSingletonMigration(unittest.TestCase):
                        'Direct tool availability does not bypass package selection']:
             self.assertIn(phrase, rule)
         self.assertNotIn('AIS', rule)  # Applicability remains catalog-owned and package-independent.
-        catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.17.yaml')
+        catalog = load(NAMESPACE_PREDECESSOR / 'HUB_PACKAGE_CATALOG_v1.17.yaml')
         ais = next(p for p in catalog['packages'] if p['package_id'] == 'HUB-PKG-AIS')
         self.assertEqual(ais['entrypoint_module_id'], 'HUB-PIPE-AIS')
         self.assertIn('explicit search requests', ais['applicability'])

@@ -6,10 +6,14 @@ import copy
 import hashlib
 import json
 import subprocess
+from pathlib import Path
 import unittest
 
-from test_hub_contracts import ROOT, load
+from test_hub_contracts import namespace_baseline_source, ROOT, load
 from test_user_profile_candidate import brand_input, read_plan
+
+# Exact pre-namespace release assertions; successor contracts are covered in test_canonical_namespace.py.
+NAMESPACE_PREDECESSOR = Path(__file__).resolve().parents[1] / 'Source_archive/Canonical namespace migration 2026-11-11'
 
 
 BASELINE = 'f06dea5be568cec9fb476a9040c723be8629507c'
@@ -69,9 +73,9 @@ class UserProfileTests(unittest.TestCase):
     def setUpClass(cls):
         cls.contract = load(PUBLIC / 'HUB-USER-PROFILE-CONTRACT_v1.0.yaml')
         cls.templates = {o: load(PUBLIC / f'HUB-USER-PROFILE-{o}-TEMPLATE_v1.0.yaml') for o in OBJECTS}
-        cls.arch = (ROOT / 'HUB_ARCHITECTURE_v1.17.md').read_text(encoding='utf-8')
+        cls.arch = (NAMESPACE_PREDECESSOR / 'HUB_ARCHITECTURE_v1.17.md').read_text(encoding='utf-8')
         cls.section = cls.arch.split('## 14.', 1)[1]
-        cls.catalog = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.17.yaml')
+        cls.catalog = load(NAMESPACE_PREDECESSOR / 'HUB_PACKAGE_CATALOG_v1.17.yaml')
 
     def plan(self, obj, purpose, need=True, consumer=SHOPPING):
         return read_plan(self.contract, selected_package=consumer, section=obj,
@@ -230,7 +234,7 @@ class UserProfileTests(unittest.TestCase):
         self.assertTrue(paths)
         for path in paths:
             rel = path.removeprefix('Central Hub/')
-            actual = (ROOT / rel).read_bytes()
+            actual = namespace_baseline_source(rel).read_bytes()
             if rel == 'library_modules/HUB-DOM-SHOPPING_v1.0.md':
                 first, rest = actual.split(b'## Optional shared User Profile input', 1)
                 interface, rest = rest.split(b'## PREPARE', 1)
@@ -239,16 +243,16 @@ class UserProfileTests(unittest.TestCase):
                 actual = first + b'## PREPARE' + rest
             with self.subTest(path=rel):
                 self.assertEqual(actual, before(rel))
-        self.assertEqual((ROOT / 'HUB_ROUTER_v1.1.yaml').read_bytes(), before('HUB_ROUTER_v1.1.yaml').replace(b'1.16', b'1.17'))
+        self.assertEqual((NAMESPACE_PREDECESSOR / 'HUB_ROUTER_v1.1.yaml').read_bytes(), before('HUB_ROUTER_v1.1.yaml').replace(b'1.16', b'1.17'))
 
     def test_P20_root_topology_pins_and_byte_exact_archive(self):
         prior = load(ROOT / 'Source_archive/HUB_PACKAGE_CATALOG_v1.16.yaml')
         self.assertEqual(self.catalog['packages'], prior['packages'])
         self.assertEqual(len(self.catalog['packages']), 6)
-        router = load(ROOT / 'HUB_ROUTER_v1.1.yaml')
+        router = load(NAMESPACE_PREDECESSOR / 'HUB_ROUTER_v1.1.yaml')
         for owner in ('architecture', 'root_catalog'):
             self.assertEqual(router['contracts'][owner]['version'], '1.17')
-            self.assertTrue((ROOT / router['contracts'][owner]['file']).is_file())
+            self.assertTrue(namespace_baseline_source(router['contracts'][owner]['file']).is_file())
         receipt = json.loads((ROOT / 'Source_archive/USER_PROFILE_ARCHIVE_RECEIPT_2026-11-11.json').read_text())
         for name, row in receipt.items():
             archived = (ROOT / row['archive']).read_bytes()

@@ -15,6 +15,9 @@ from test_hub_contracts import ROOT, load, historical_source
 from test_concept_development import leaf_span_spec
 from test_concept_production_anti_drift import production_spec, MCA, WIL, AR
 
+# Exact pre-namespace release assertions; successor contracts are covered in test_canonical_namespace.py.
+NAMESPACE_PREDECESSOR = Path(__file__).resolve().parents[1] / 'Source_archive/Canonical namespace migration 2026-11-11'
+
 HISTORY = ROOT / 'Source_archive/Production corrections 2026-11-08'
 # Exact predecessor release assertions; active SEARCH has separate promotion coverage.
 SEARCH_PREDECESSOR = Path(__file__).resolve().parents[1] / 'Source_archive/AIS SEARCH promotion 2026-11-09'
@@ -37,7 +40,7 @@ def author_call_spec(message, *, user_directive=True):
 class ProductionCorrectionsTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.author = (ROOT/'library_modules/HUB-CAP-AUTHORING_v0.8.md').read_text(encoding='utf-8')
+        cls.author = (NAMESPACE_PREDECESSOR/'library_modules/HUB-CAP-AUTHORING_v0.8.md').read_text(encoding='utf-8')
         cls.core = (SEARCH_PREDECESSOR/'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.4.md').read_text(encoding='utf-8')
         cls.catalog = load(SEARCH_PREDECESSOR/'HUB_PACKAGE_CATALOG_v1.14.yaml')
         cls.local = load(SEARCH_PREDECESSOR/'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.4.yaml')
@@ -104,7 +107,7 @@ class ProductionCorrectionsTests(unittest.TestCase):
 
     def test_mca_exact_local_correction_and_dependency_closure(self):
         old=(HISTORY/'library_modules/HUB-DOM-MODULAR-CONCEPT-ARCHITECTURE_v1.1.md').read_text(encoding='utf-8')
-        current=(ROOT/'library_modules/HUB-DOM-MODULAR-CONCEPT-ARCHITECTURE_v1.2.md').read_text(encoding='utf-8')
+        current=(NAMESPACE_PREDECESSOR/'library_modules/HUB-DOM-MODULAR-CONCEPT-ARCHITECTURE_v1.2.md').read_text(encoding='utf-8')
         expected=old.replace('Version: 1.1','Version: 1.2').replace(
             'verification of both B controls and necessary task sources',
             'verification of selected MCA, necessary task inputs/dependencies and any explicitly declared Requires; WIL is not an implicit requirement')
@@ -196,12 +199,12 @@ class ProductionCorrectionsTests(unittest.TestCase):
             self.assertEqual(hashlib.sha256(data).hexdigest(),digest,rel)
             self.assertEqual(data,subprocess.check_output(['git','show',BASELINE+':Central Hub/'+rel],cwd=ROOT),rel)
         # ImageT candidates were explicitly promoted and archived by the Library milestone.
-        self.assertEqual(subprocess.check_output(['git','diff',BASELINE,'--','candidates',
+        self.assertEqual(subprocess.check_output(['git','diff',BASELINE,'--','candidates', ':!candidates/promotion/HUB-DOM-TECHNICAL_v1.0.md',
             ':(exclude)candidates/imaget_library_v0'],cwd=ROOT),b'')
         for name in ('HUB-CAP-AUTHORING_v0.7.md','HUB-DOM-CONCEPT-DEVELOPMENT_v1.2.md',
                      'HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.2.yaml',
                      'HUB-DOM-MODULAR-CONCEPT-ARCHITECTURE_v1.1.md'):
-            self.assertFalse((ROOT/'library_modules'/name).exists())
+            self.assertFalse((NAMESPACE_PREDECESSOR/'library_modules'/name).exists())
 
 
 if __name__=='__main__':
