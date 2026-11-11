@@ -61,6 +61,8 @@ Each project's documentation determines how to read its sources. Folder names, v
 
 ## Central Hub
 
+> Central Hub sau migration 2026-11-11: Architecture/Catalog 1.18, 26 successor Library controls và sáu package. [Mapping, layout và hướng dẫn cài](Central%20Hub/NAMESPACE_MIGRATION.md). Chưa deploy hoặc kiểm live successor; folder Library lồng nhau chưa được xác minh. User Profile giữ shared non-module identity riêng. Các release distribution giữ tên lịch sử.
+
 Central Hub is the shared general-purpose workspace for capabilities that should not belong to any one fiction project. It does not sit inside FTH, above the creative systems, or act as a shared fiction runtime or canon layer. A project may bring a bounded question or slice of context into Hub and return the result for local review; Hub may also start from a fiction idea before any project has adopted it.
 
 Central Hub coordinates a **mission**: the user's current task. It keeps the overall objective while composing contributions with authority limited to their assigned portions. Ordinary chat, support, writing, or lightweight brainstorming may need no specialized package.
@@ -77,14 +79,17 @@ HUB CI — operation/stage · truth/state · action authorization
 HUB ROUTER — scope · selection · dependency/read validation
    ↓
 ROOT PACKAGE CATALOG
-   ├─ HUB-PKG-TECHNICAL → HUB-DOM-TECHNICAL
-   ├─ HUB-PKG-CONCEPT-DEVELOPMENT → HUB-DOM-CONCEPT-DEVELOPMENT
+   ├─ HUB-PKG-TECHNICAL → HUB-TECH-ENTRY
+   ├─ HUB-PKG-CONCEPT-DEVELOPMENT → HUB-CON-ENTRY
    │                                  └─ local catalog
    │                                      ├─ CREATIVE
-   │                                      └─ BRAINSTORM
-   ├─ HUB-PKG-AUTHORING → HUB-CAP-AUTHORING
+   │                                      ├─ BRAINSTORM
+   │                                      ├─ DEBATE / NAMING
+   │                                      └─ task-selected anti-drift controls
+   ├─ HUB-PKG-AUTHORING → HUB-AUTH-ENTRY
    ├─ HUB-PKG-AIS → AIS pipeline (internal dependencies)
-   └─ HUB-PKG-IMAGET → ImageT pipeline (internal dependencies)
+   ├─ HUB-PKG-IMAGET → HUB-IMAGET-ENTRY (internal dependencies)
+   └─ HUB-PKG-SHOPPING → HUB-SHOP-ENTRY
    ↓
 selected modules / package-local leaves / tool pipelines
    ↓
@@ -93,7 +98,7 @@ HUB COMPOSITION → WORKING RESULT
 
 **Hub CI** owns the requested operation/stage, truth and state discipline, action authorization, general verification need, and overall interaction. **Hub Router** scopes task portions, selects root packages, resolves entrypoints, composes the selected module set, expands hard dependencies, validates reads/bindings, and hands off scoped work. Packages own their internal selection; pipelines own their procedures; the platform performs actual retrieval and tool execution.
 
-The [active root Catalog](Central%20Hub/HUB_PACKAGE_CATALOG_v1.3.yaml) exposes exactly **five root packages**, not every leaf. Zero, one, or multiple packages may contribute to different portions of one task. Selection is recomputed each turn and when task scope materially changes; it is not a permanent chat mode.
+The [active root Catalog](Central%20Hub/HUB_PACKAGE_CATALOG_v1.18.yaml) exposes exactly **six root packages**, not every leaf. Zero, one, or multiple packages may contribute to different portions of one task. Selection is recomputed each turn and when task scope materially changes; it is not a permanent chat mode.
 
 ```text
 ROOT CATALOG KNOWS PACKAGE ENTRYPOINTS != ROOT CATALOG KNOWS EVERY LEAF
@@ -109,11 +114,12 @@ The table summarizes the active repository contracts. Deployment and runtime evi
 
 | Root package | Entrypoint / role | Contribution |
 | --- | --- | --- |
-| TECHNICAL | `HUB-DOM-TECHNICAL` 1.0 / `REASONING_PROFILE` | Mechanism reasoning, diagnosis with competing hypotheses, and bounded technical-change evaluation across subjects. |
-| CONCEPT DEVELOPMENT | `HUB-DOM-CONCEPT-DEVELOPMENT` 1.0 / `DOMAIN_CONTROL` | Concept consistency, causal development, bounded audit/analysis, and local selection of Creative and Brainstorm. |
-| AUTHORING | `HUB-CAP-AUTHORING` 0.3 / `CAPABILITY` | Explicitly triggered, target-adapted prompt construction; produces a prompt and stops. |
-| AIS | `HUB-PIPE-AIS` / `TOOL_PIPELINE`; pipeline 1.1, router 1.2 | External evidence verification, research, and provisional option discovery. |
-| ImageT | `HUB-PIPE-IMAGET` / `TOOL_PIPELINE`; controller 1.2 | Image analysis and generation operations with input authority, prompt, approval, and visible-result checks. |
+| TECHNICAL | `HUB-TECH-ENTRY` 1.1 / `REASONING_PROFILE` | Mechanism reasoning, diagnosis with competing hypotheses, and bounded technical-change evaluation across subjects. |
+| CONCEPT DEVELOPMENT | `HUB-CON-ENTRY` 1.6 / `DOMAIN_CONTROL` | Concept consistency, causal development, bounded audit/analysis, and local selection of Creative, Brainstorm, Debate, Naming and task-applicable anti-drift controls. |
+| AUTHORING | `HUB-AUTH-ENTRY` 0.9 / `CAPABILITY` | Explicitly triggered, target-adapted prompt construction; produces a prompt and stops. |
+| AIS | `HUB-PIPE-AIS` / `TOOL_PIPELINE`; pipeline 1.2, router 1.3 | External evidence verification, research, and provisional option discovery. |
+| ImageT | `HUB-IMAGET-ENTRY` / `TOOL_PIPELINE`; controller 1.4 | Image analysis and generation operations with input authority, prompt, approval, and visible-result checks. |
+| SHOPPING | `HUB-SHOP-ENTRY` 1.1 / `DOMAIN_CONTROL` | Product identity, purchase constraints, Offers and supported comparison; Hub selects AIS independently. |
 
 **TECHNICAL is selected for a reasoning need, not a technical topic alone.** A diagnosis may follow `symptom → competing hypotheses → mechanism chain → distinguishing test → supported cause → minimum sufficient change → behavioral verification`. If evidence cannot distinguish causes, the cause stays unresolved. The module owns no technical subject domain, does not activate AIS, and does not turn a simple explanation into an architecture audit.
 
@@ -121,18 +127,18 @@ The table summarizes the active repository contracts. Deployment and runtime evi
 TECHNICAL TOPIC != AUTOMATIC TECHNICAL MODULE SELECTION
 ```
 
-**Concept Development is a growing package with its own [local Catalog](Central%20Hub/library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.0.yaml).** The root Router selects the package; the concept entrypoint selects zero leaves, Creative only, Brainstorm only, or both for the scoped need.
+**Concept Development is a growing package with its own [local Catalog](Central%20Hub/library_modules/Concept%20Development/HUB-CON-CATALOG_v1.6.yaml).** The root Router selects the package; its entrypoint/Catalog select explicit operation leaves and task-applicable anti-drift controls under their current contracts.
 
 | Concept leaf | Role | Premise boundary |
 | --- | --- | --- |
-| [Creative 1.1](Central%20Hub/library_modules/HUB-DOM-CREATIVE_v1.1.md) / `HUB-DOM-CREATIVE` | `DOMAIN_CONTROL` | **Develop inside the selected premise:** imagery, action, rhythm, situations, relationships, and functional fictional detail. Fill gaps only within permitted creative latitude. |
-| [Brainstorm 1.1](Central%20Hub/library_modules/HUB-CAP-BRAINSTORM_v1.1.md) / `HUB-CAP-BRAINSTORM` | `CAPABILITY` | **Alter or branch the premise:** reversal/relaxation, second-order consequences, feedback, and concrete bridges between incomplete premises. Develop alternatives in parallel; select a winner only when requested. |
+| [Creative 1.2](Central%20Hub/library_modules/Concept%20Development/General/HUB-CON-GEN-CREATIVE_v1.2.md) / `HUB-CON-GEN-CREATIVE` | `DOMAIN_CONTROL` | **Develop inside the selected premise:** imagery, action, rhythm, situations, relationships, and functional fictional detail. Fill gaps only within permitted creative latitude. |
+| [Brainstorm 1.2](Central%20Hub/library_modules/Concept%20Development/General/HUB-CON-GEN-BRAINSTORM_v1.2.md) / `HUB-CON-GEN-BRAINSTORM` | `CAPABILITY` | **Alter or branch the premise:** reversal/relaxation, second-order consequences, feedback, and concrete bridges between incomplete premises. Develop alternatives in parallel; select a winner only when requested. |
 
 If Creative needs a material premise change, it keeps that change conditional/proposed and returns the need through the concept package; it does not select Brainstorm or accept the new premise itself.
 
 For illustration, a causal audit of an institution may need only the concept core; realizing daily life within it may add Creative; exploring alternatives to royal authority may add Brainstorm; realizing several premise variants may use both. These illustrate contributions, not literal routing rules.
 
-The current local Catalog also records three experimental anti-drift entries—Anti-Prior, Modular Concept Architecture, and Worldbuilding Internal Logic—all **INACTIVE** in the baseline. They are not active leaves or extra root packages. Their A/B configuration, dependency, and evidence details remain in the [Concept Development sources](Central%20Hub/library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.0.md).
+The current Concept local Catalog admits five task-selected anti-drift controls: Anti-Prior, Modular Concept Architecture, Worldbuilding Internal Logic, Actor Reception and Narrative Resolution. Eligibility does not autoload them. Actor Reception Requires Modular Concept Architecture; the other controls add no hard edge. Historical A/B records retain their old revision scope.
 
 ### Prompt Authoring / AT
 
@@ -165,7 +171,7 @@ Fiction idea discussion → /AUTHOR FTH → FTH-ready prompt → user brings it 
 AUTHORING != EXECUTION
 ```
 
-AT outputs the prompt and stops. It does not call AIS, FTH, ImageT, Codex, or Work. **Authoring 0.3 is active in the repository; its Library installation, binding verification, Project deployment, and promoted live routing remain unperformed/unverified.** See the [module contract](Central%20Hub/library_modules/HUB-CAP-AUTHORING_v0.3.md) before use.
+AT outputs the prompt and stops. It does not call AIS, FTH, ImageT, Codex, or Work. **Authoring successor 0.9 is active in the repository; its successor Library/Project deployment and live verification remain NOT_PERFORMED / NOT_RUN. Prior evidence keeps its original scope.** See the [module contract](Central%20Hub/library_modules/Authoring/HUB-AUTH-ENTRY_v0.9.md) before use.
 
 ### AIS: external evidence
 
@@ -177,7 +183,7 @@ AIS is a Hub-selected evidence pipeline with three modes:
 | `RESEARCH` | Collect, compare, and synthesize evidence within a scoped question. |
 | `EXPLORE` | Discover externally grounded options that remain provisional. |
 
-**AIS EXPLORE != BRAINSTORM:** AIS searches external sources; Brainstorm explores premise possibilities through reasoning. AIS returns evidence to Hub and owns neither the whole mission nor canon, design acceptance, or project authority. Greater research depth does not automatically launch Deep Research or Work. See the [AIS pipeline](Central%20Hub/tool_pipelines/AIS/AIS_PIPELINE_v1.1.md).
+**AIS EXPLORE != BRAINSTORM:** AIS searches external sources; Brainstorm explores premise possibilities through reasoning. AIS returns evidence to Hub and owns neither the whole mission nor canon, design acceptance, or project authority. Greater research depth does not automatically launch Deep Research or Work. See the [AIS pipeline](Central%20Hub/tool_pipelines/AIS/AIS_PIPELINE_v1.2.md).
 
 ### ImageT: image operations
 
@@ -201,7 +207,7 @@ OPEN GATE != READY GATE
 ONE APPROVAL = ONE EXACT TOOL CALL
 ```
 
-See the [ImageT controller](Central%20Hub/tool_pipelines/ImageT/IMAGE_CONTROLLER_v1.2.md) and [Ready Gate](Central%20Hub/tool_pipelines/ImageT/READY_GATE_v1.0.md) for exact contracts and verification limits.
+See the [ImageT controller](Central%20Hub/library_modules/ImageT/Core/HUB-IMAGET-CORE-CONTROLLER_v1.4.md) and [Ready Gate](Central%20Hub/library_modules/ImageT/Core/HUB-IMAGET-CORE-READY-GATE_v1.2.md) for exact contracts and verification limits.
 
 ### Composition and runtime boundaries
 
@@ -214,7 +220,7 @@ MENTION != DEPENDENCY
 PACKAGE MEMBERSHIP != DEPENDENCY
 ```
 
-Technical, Concept Development, and Authoring currently use Library-module bindings in the target architecture. AIS and ImageT retain Project-Source pipeline bindings. Storage/binding establishes neither semantic hierarchy nor authority. Exact identities, full-read verification, deployment status, and scoped runtime records belong in the [Central Hub documentation](Central%20Hub/README.md), [Architecture](Central%20Hub/HUB_ARCHITECTURE_v1.3.md), and [Catalog](Central%20Hub/HUB_PACKAGE_CATALOG_v1.3.yaml).
+Technical, Concept Development, Authoring, Shopping and ImageT use Library-module bindings. AIS alone retains its Project-Source pipeline binding. Storage/binding establishes neither semantic hierarchy nor authority. Exact identities, full-read verification, deployment status, and scoped runtime records belong in the [Central Hub documentation](Central%20Hub/README.md), [Architecture](Central%20Hub/HUB_ARCHITECTURE_v1.18.md), and [Catalog](Central%20Hub/HUB_PACKAGE_CATALOG_v1.18.yaml).
 
 > **User-reported build/test baseline:** The current workshop controls and Central Hub architecture were developed and behaviorally tested primarily with **GPT-5.6 Sol on ChatGPT Plus**. This is the user's reported runtime qualification, not a compatibility result reproduced by repository checks. Other models have not yet been systematically tested; other plans/runtime conditions may work, but equivalent behavior and stability are not guaranteed. This does not establish incompatibility.
 

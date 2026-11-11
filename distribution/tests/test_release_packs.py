@@ -27,6 +27,14 @@ TOKEN = re.compile(r'\{\{[A-Z_]+\}\}')
 ARCHIVES = None
 
 
+# Exact source revision recorded in the unchanged Architecture Pack 0.1.0 release notes.
+HUB_RELEASE_SOURCE = '7dd8ce9ceae77b09b6e20f0c686f41f9b1945807'
+
+
+def release_hub_source(relative):
+    return subprocess.check_output(['git', 'show', f'{HUB_RELEASE_SOURCE}:Central Hub/{relative}'], cwd=ROOT)
+
+
 class UniqueLoader(yaml.SafeLoader):
     def construct_mapping(self, node, deep=False):
         result = {}
@@ -56,6 +64,13 @@ def configured(content, values):
 
 
 def protected_digest(folder):
+    if folder == 'Central Hub':
+        records = subprocess.check_output(['git', 'ls-tree', '-r', '--name-only', '-z', HUB_RELEASE_SOURCE, '--', folder], cwd=ROOT).decode().split('\0')
+        result = hashlib.sha256()
+        for path in sorted(p for p in records if p):
+            data = subprocess.check_output(['git', 'show', f'{HUB_RELEASE_SOURCE}:{path}'], cwd=ROOT)
+            result.update(path.encode() + b'\0' + data + b'\0')
+        return result.hexdigest()
     paths = subprocess.check_output(['git', 'ls-files', '-z', '--', folder], cwd=ROOT).decode().split('\0')
     result = hashlib.sha256()
     for path in sorted(p for p in paths if p):
@@ -175,7 +190,7 @@ class ReleasePackTests(unittest.TestCase):
             source_section = original.split(heading, 1)[1].split('\n## ', 1)[0].strip()
             pack_section = extracted.split(heading, 1)[1].split('\n## ', 1)[0].strip()
             self.assertEqual(pack_section, source_section)
-        hub = (ROOT / 'Central Hub/HUB_CI_v1.1.md').read_text(encoding='utf-8')
+        hub = release_hub_source('HUB_CI_v1.1.md').decode('utf-8')
         source_body = hub.split('CONTROL KERNEL', 1)[1].replace('HUB_ROUTER_v1.1.yaml', 'hub-router.yaml').strip()
         self.assertEqual(text(HUB, 'starter/hub-ci.md').split('CONTROL KERNEL', 1)[1].strip(), source_body)
 
@@ -194,6 +209,7 @@ class ReleasePackTests(unittest.TestCase):
             self.assertIn(term.lower(), pack_pipeline.lower())
 
     def test_hub_singleton_is_replaceable_example(self):
+        self.assertEqual(protected_digest('Central Hub'), PROTECTED['Central Hub'])
         catalog = load(HUB, 'starter/root-catalog.yaml')
         self.assertFalse(catalog['active'])
         self.assertFalse(catalog['runtime_ready'])
@@ -203,8 +219,9 @@ class ReleasePackTests(unittest.TestCase):
         self.assertEqual(entry['requires'], [])
         self.assertEqual(entry['entrypoint_module_id'], 'HUB-DOM-TECHNICAL')
         self.assertIn('replaceable worked example', text(HUB, 'starter/root-catalog.yaml'))
-        original = ROOT / 'Central Hub/candidates/promotion/HUB-DOM-TECHNICAL_v1.0.md'
-        self.assertEqual((DIST / HUB / 'starter/packages/HUB-DOM-TECHNICAL_v1.0.md').read_bytes(), original.read_bytes())
+        # Release 0.1.0 keeps its historical identity; active Hub uses HUB-TECH-ENTRY.
+        original = release_hub_source('candidates/promotion/HUB-DOM-TECHNICAL_v1.0.md')
+        self.assertEqual((DIST / HUB / 'starter/packages/HUB-DOM-TECHNICAL_v1.0.md').read_bytes(), original)
         for name in ('README.md', 'ARCHITECTURE.md'):
             self.assertIn('CENTRAL HUB ARCHITECTURE != TECHNICAL', text(HUB, name))
             self.assertIn('TECHNICAL = INCLUDED WORKED EXAMPLE', text(HUB, name))
@@ -247,7 +264,7 @@ class ReleasePackTests(unittest.TestCase):
         self.assertIsNone(catalog['packages'][0]['location']['library_version_id'])
 
     def test_hub_composition_and_binding_preserved(self):
-        source = yaml.safe_load((ROOT / 'Central Hub/HUB_ROUTER_v1.1.yaml').read_text(encoding='utf-8'))
+        source = yaml.safe_load(release_hub_source('HUB_ROUTER_v1.1.yaml').decode('utf-8'))
         router = load(HUB, 'starter/hub-router.yaml')
         def bound(value):
             if isinstance(value, str):
