@@ -61,7 +61,7 @@ Each project's documentation determines how to read its sources. Folder names, v
 
 ## Central Hub
 
-> Central Hub sau migration 2026-11-11: Architecture/Catalog 1.19, 26 successor Library controls và sáu package. [Central Hub](Central%20Hub/README.md). Chưa deploy hoặc kiểm live successor; folder Library lồng nhau chưa được xác minh. User Profile giữ shared non-module identity riêng. Các release distribution giữ tên lịch sử.
+> Central Hub dùng namespace ACTIVE ổn định với Architecture/Catalog 1.19, 26 Library controls và sáu package. Người dùng báo smoke routing đạt 10 ca. Tình trạng cài đầy đủ và khả năng folder Library lồng nhau chưa được xác minh. [Central Hub](Central%20Hub/README.md). User Profile giữ shared non-module identity riêng. Các release distribution giữ tên lịch sử.
 
 Central Hub is the shared general-purpose workspace for capabilities that should not belong to any one fiction project. It does not sit inside FTH, above the creative systems, or act as a shared fiction runtime or canon layer. A project may bring a bounded question or slice of context into Hub and return the result for local review; Hub may also start from a fiction idea before any project has adopted it.
 
@@ -171,7 +171,7 @@ Fiction idea discussion → /AUTHOR FTH → FTH-ready prompt → user brings it 
 AUTHORING != EXECUTION
 ```
 
-AT outputs the prompt and stops. It does not call AIS, FTH, ImageT, Codex, or Work. **Authoring successor 0.9 is active in the repository; its successor Library/Project deployment and live verification remain NOT_PERFORMED / NOT_RUN. Prior evidence keeps its original scope.** See the [module contract](Central%20Hub/library_modules/Authoring/HUB-AUTH-ENTRY_v0.9.md) before use.
+AT outputs the prompt and stops. It does not call AIS, FTH, ImageT, Codex, or Work. **Authoring 0.9 is active in the repository. The user-reported routing smoke covers the CODEX case. Exact Library object and deployment inventory remain unverified.** See the [module contract](Central%20Hub/library_modules/Authoring/HUB-AUTH-ENTRY_v0.9.md) before use.
 
 ### AIS: external evidence
 

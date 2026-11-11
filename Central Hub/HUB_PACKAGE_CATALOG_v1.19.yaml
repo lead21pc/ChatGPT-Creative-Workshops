@@ -8,7 +8,7 @@ active: true
 runtime_ready: true
 identity_binding: EXACT_INSTALLED_CI_1_2_ROUTER_1_1_WITH_V1_19_ARCHITECTURE_CATALOG_CONTRACT
 library_discovery_root: Central Hub Config
-live_library_retrieval: PRE_NAMESPACE_EVIDENCE_ONLY; SUCCESSOR_IDENTITIES_NOT_VERIFIED
+live_library_retrieval: EXACT_LIBRARY_OBJECT_AND_FULL_READ_RECEIPTS_NOT_VERIFIED
 packages:
 - package_id: HUB-PKG-TECHNICAL
   entrypoint_module_id: HUB-TECH-ENTRY
@@ -244,7 +244,7 @@ concept_development_evidence:
   central_hub_project_switch: USER_CONFIRMED_FOR_INTEGRATED_RUNTIME_SMOKE
   live_routing: USER_CONFIRMED_PASS_FOR_INTEGRATED_RUNTIME_SMOKE_2026_10_27
   c01_c12_live: NOT_RUN
-deployment: NAMESPACE_SUCCESSOR_REPOSITORY_ACTIVE; PROJECT_LIBRARY_DEPLOYMENT_NOT_PERFORMED; LIVE_NOT_RUN
+deployment: STABLE_ACTIVE_REPOSITORY; USER_REPORTED_10_CASE_ROUTING_SMOKE_PASS; PROJECT_LIBRARY_DEPLOYMENT_NOT_VERIFIED
 production_evidence:
   baseline: USER_CONFIRMED_INSTALLED_AND_LIVE; USER_CONFIRMED_LIVE_PASS
   baseline_revisions: CI/Router 1.1; Architecture/Catalog 1.11; Concept core/catalog 1.2; Authoring 0.7; MCA

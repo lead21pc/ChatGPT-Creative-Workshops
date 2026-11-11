@@ -53,6 +53,38 @@ EXPECTED = [
     ('HUB-IMAGET-HUMANOID-DESIGN-PREFERENCE', 'HUB-IMAGET-HUM-DESIGN-PREFERENCE', '0.3'),
 ]
 IDS = {old: new for old, new, _ in EXPECTED}
+PACKAGE_TOKENS = {
+    'HUB-PKG-TECHNICAL': 'TECH',
+    'HUB-PKG-CONCEPT-DEVELOPMENT': 'CON',
+    'HUB-PKG-AUTHORING': 'AUTH',
+    'HUB-PKG-IMAGET': 'IMAGET',
+    'HUB-PKG-SHOPPING': 'SHOP',
+}
+
+
+def active_inventory(paths):
+    inventory = {}
+    for path in paths:
+        header = read_identity(path)
+        identity = header['module_id']
+        assert identity not in inventory, f'duplicate identity: {identity}'
+        assert identity in IDS.values(), f'unapproved active identity: {identity}'
+        assert identity.split('-')[1] == PACKAGE_TOKENS.get(header['package_id']), identity
+        assert header['status'] == 'ACTIVE', identity
+        assert path.name == f"{identity}_v{header['version']}{path.suffix}", path
+        inventory[identity] = (path, header)
+    return inventory
+
+
+def bound_artifact(inventory, row, identity_key='module_id', path_key=None):
+    identity = row[identity_key]
+    assert identity in inventory, f'unresolved identity: {identity}'
+    path, header = inventory[identity]
+    for field in ('package_id', 'runtime_role', 'status', 'version'):
+        assert row[field] == header[field], f'{identity}: {field} mismatch'
+    relative = row[path_key] if path_key else row['location']['artifact']
+    assert LIBRARY / relative == path and path.is_file(), f'{identity}: missing or wrong file'
+
 
 
 def core_closure(manifest, operation):
@@ -320,18 +352,132 @@ class CanonicalNamespaceTests(unittest.TestCase):
             self.assertFalse((ROOT / name).exists())
 
     def test_no_old_active_identity_and_deployable_flat_names(self):
+        pins = load(ROOT / 'HUB_ROUTER_v1.1.yaml')['contracts']
+        catalog_path = ROOT / pins['root_catalog']['file']
+        catalog = load(catalog_path)
         surfaces = [p for p in LIBRARY.rglob('*') if p.is_file()] + [
-            ROOT / 'HUB_ARCHITECTURE_v1.19.md', ROOT / 'HUB_PACKAGE_CATALOG_v1.19.yaml',
-            ROOT / 'HUB_ROUTER_v1.1.yaml']
+            ROOT / 'HUB_CI_v1.2.md', ROOT / pins['architecture']['file'],
+            catalog_path, ROOT / 'HUB_ROUTER_v1.1.yaml',
+            *ROOT.glob('shared_resources/*.yaml'),
+            *ROOT.glob('tool_pipelines/AIS/AIS_PIPELINE_*.md'),
+            *ROOT.glob('tool_pipelines/AIS/AIS_ROUTER_*.yaml'),
+        ]
         for path in surfaces:
             text = path.read_text(encoding='utf-8')
             for identity in IDS:
-                self.assertNotRegex(text, r'(?<![A-Z0-9-])' + re.escape(identity) + r'(?![A-Z0-9-])')
+                self.assertNotRegex(text, r'(?<![A-Z0-9-])' + re.escape(identity) + r'(?![A-Z0-9-])', str(path))
+        self.assertEqual({row['entrypoint_module_id'] for row in catalog['packages']
+                          if row['binding_mode'] == 'LEGACY_PROJECT_SOURCE'}, {'HUB-PIPE-AIS'})
         names = [p.name for p, _ in self.current.values()]
         self.assertEqual(len(set(names)), 26)
         document = (ROOT / 'NAMESPACE_MIGRATION.md').read_text(encoding='utf-8')
         self.assertIn('NESTED LIBRARY FOLDER CAPABILITY: NOT_VERIFIED', document)
-        self.assertIn('SUCCESSOR LIBRARY RETRIEVAL / LIVE BEHAVIOR: NOT_RUN', document)
+
+    def test_current_inventory_and_binding_reject_invalid_successors(self):
+        inventory = active_inventory(p for p in LIBRARY.rglob('*') if p.is_file())
+        self.assertEqual(set(inventory), set(IDS.values()))
+        root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.19.yaml')
+        bound = set()
+        for package in root['packages']:
+            if package['binding_mode'] == 'LEGACY_PROJECT_SOURCE':
+                continue
+            bound_artifact(inventory, package, 'entrypoint_module_id')
+            bound.add(package['entrypoint_module_id'])
+            catalog = package['local_catalog']
+            if catalog is None:
+                continue
+            self.assertEqual(package['package_id'], catalog['package_id'])
+            bound_artifact(inventory, catalog)
+            bound.add(catalog['module_id'])
+            for entry in load(inventory[catalog['module_id']][0])['entries']:
+                self.assertEqual(package['package_id'], entry['package_id'])
+                bound_artifact(inventory, entry)
+                bound.add(entry['module_id'])
+        image = next(row for row in root['packages'] if row['entrypoint_module_id'] == 'HUB-IMAGET-ENTRY')
+        manifest_path, manifest = inventory['HUB-IMAGET-CORE-MANIFEST']
+        self.assertEqual(manifest['package_id'], image['package_id'])
+        for field in ('module_id', 'package_id', 'runtime_role'):
+            self.assertEqual(manifest['catalog_interface'][field], image['local_catalog'][field])
+        entry = inventory['HUB-IMAGET-ENTRY'][0].read_text(encoding='utf-8')
+        self.assertIn(f"{manifest_path.name} / {manifest['module_id']} / "
+                      f"{manifest['runtime_role']} / {manifest['version']}", entry)
+        bound.add(manifest['module_id'])
+        for row in self.manifest['core']:
+            bound_artifact(inventory, row, path_key='file')
+            bound.add(row['module_id'])
+        self.assertEqual(bound, set(inventory))
+        tech = inventory['HUB-TECH-ENTRY'][0]
+        with self.assertRaisesRegex(AssertionError, 'duplicate identity'):
+            active_inventory([tech, tech])
+        with self.assertRaisesRegex(AssertionError, 'unapproved active identity'):
+            active_inventory([tech, ARCHIVE / self.rows['HUB-DOM-TECHNICAL']['old']])
+        concept = next(row for row in root['packages'] if row['entrypoint_module_id'] == 'HUB-CON-ENTRY')
+        for patch, reason in [
+            ({'module_id': 'HUB-CATALOG-CONCEPT-DEVELOPMENT'}, 'unresolved identity'),
+            ({'package_id': 'HUB-PKG-SHOPPING'}, 'package_id mismatch'),
+        ]:
+            with self.assertRaisesRegex(AssertionError, reason):
+                bound_artifact(inventory, dict(concept['local_catalog'], **patch))
+        with self.assertRaisesRegex(AssertionError, 'missing or wrong file'):
+            bound_artifact(inventory, dict(self.manifest['core'][0], file='missing.yaml'), path_key='file')
+
+    def test_smoke_selection_properties_with_declared_scopes(self):
+        # Applicability and pipeline authorization are fixture inputs. This does not classify user text.
+        root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.19.yaml')
+        def module(row, identity):
+            return synthetic_module(identity, row['package_id'], {identity}, row['runtime_role'],
+                                    version=row['version'], requires=row.get('requires', []),
+                                    refines=row.get('refines', []), complements=row.get('complements', []))
+
+        fixture = synthetic_fixture(*(module(row, row['entrypoint_module_id']) for row in root['packages']))
+        for binding, row in zip(fixture['packages'], root['packages']):
+            local = row['local_catalog']
+            if not local or row['runtime_role'] == 'TOOL_PIPELINE':
+                continue  # Pipeline internals use the manifest and authority tests, not generic leaf routing.
+            catalog = module(local, local['module_id'])
+            binding['local_catalog'] = catalog
+            entries = load(LIBRARY / local['location']['artifact'])['entries']
+            leaves = [module(entry, entry['module_id']) for entry in entries]
+            fixture['local_catalogs'][row['package_id']] = leaves
+            for record in [catalog, *leaves]:
+                fixture['artifacts'][record['module_id']] = [dict(record, read_kind='FULL_FILE')]
+
+        con, shop, ais, image = 'HUB-CON-ENTRY', 'HUB-SHOP-ENTRY', 'HUB-PIPE-AIS', 'HUB-IMAGET-ENTRY'
+        wil, brain = 'HUB-CON-AD-WORLDBUILDING-INTERNAL-LOGIC', 'HUB-CON-GEN-BRAINSTORM'
+        prior, actor = 'HUB-CON-AD-ANTI-PRIOR', 'HUB-CON-AD-ACTOR-RECEPTION'
+        mca = 'HUB-CON-AD-MODULAR-CONCEPT-ARCHITECTURE'
+        cases = [
+            ({'technical topic'}, (), set(), set()),
+            ({'HUB-TECH-ENTRY'}, (), {'HUB-TECH-ENTRY'}, {'HUB-TECH-ENTRY'}),
+            ({con, wil}, (), {con, 'HUB-CON-CATALOG', wil}, {wil}),
+            ({con, brain, wil}, (), {con, 'HUB-CON-CATALOG', brain, wil}, {brain, wil}),
+            ({con, prior, actor}, (), {con, 'HUB-CON-CATALOG', prior, actor, mca}, {prior, actor, mca}),
+            ({shop}, (), {shop, 'HUB-SHOP-CATALOG'}, set()),
+            ({shop, 'HUB-SHOP-SEARCH', ais}, ('HUB-PKG-AIS',),
+             {shop, 'HUB-SHOP-CATALOG', 'HUB-SHOP-SEARCH', ais}, {'HUB-SHOP-SEARCH', ais}),
+            ({'HUB-AUTH-ENTRY'}, (), {'HUB-AUTH-ENTRY'}, {'HUB-AUTH-ENTRY'}),
+            ({'image discussion'}, (), set(), set()),
+            ({image}, ('HUB-PKG-IMAGET',), {image}, {image}),
+        ]
+        for index, (scopes, pipelines, reads, verified) in enumerate(cases, 1):
+            with self.subTest(case=index):
+                result = simulate(fixture, scopes, pipeline_needs=pipelines)
+                self.assertFalse(result['blocked'])
+                self.assertEqual(set(result['spec_reads']), reads)
+                self.assertEqual({identity for _, identity in result['spec_verified']}, verified)
+                expected_edges = [(('HUB-PKG-CONCEPT-DEVELOPMENT', actor),
+                                   ('HUB-PKG-CONCEPT-DEVELOPMENT', mca))] if index == 5 else []
+                self.assertEqual(result['direct_dependencies'], expected_edges)
+                self.assertFalse(result['runtime_ready'])
+
+        # The current Concept interface must fail closed with a missing or ambiguous Catalog read.
+        for records, error in [([], 'ARTIFACT_MISSING'), (None, 'AMBIGUOUS_MODULE')]:
+            damaged = copy.deepcopy(fixture)
+            key = 'HUB-CON-CATALOG'
+            damaged['artifacts'][key] = records if records is not None else fixture['artifacts'][key] * 2
+            result = simulate(damaged, {con, wil, 'HUB-TECH-ENTRY'})
+            self.assertEqual(result['blocked']['HUB-PKG-CONCEPT-DEVELOPMENT'], f'{error}:{key}')
+            self.assertEqual(result['spec_verified'], [('HUB-PKG-TECHNICAL', 'HUB-TECH-ENTRY')])
 
 
 class ConceptEntryPhaseOneTests(unittest.TestCase):
@@ -344,6 +490,10 @@ class ConceptEntryPhaseOneTests(unittest.TestCase):
         concept = next(row for row in expected['packages'] if row['entrypoint_module_id'] == 'HUB-CON-ENTRY')
         concept['version'] = '1.7'
         concept['location']['artifact'] = Path(ENTRY_17).relative_to('library_modules').as_posix()
+        expected['live_library_retrieval'] = 'EXACT_LIBRARY_OBJECT_AND_FULL_READ_RECEIPTS_NOT_VERIFIED'
+        expected['deployment'] = (
+            'STABLE_ACTIVE_REPOSITORY; USER_REPORTED_10_CASE_ROUTING_SMOKE_PASS; '
+            'PROJECT_LIBRARY_DEPLOYMENT_NOT_VERIFIED')
         self.assertEqual(root, expected)
 
         entry = read_identity(ROOT / ENTRY_17)

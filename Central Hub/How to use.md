@@ -1,4 +1,4 @@
-> Xem [bộ active trong repository](README.md) để chọn đúng revision khi cài. Phase 1 cập nhật cách Concept Entry phát triển cùng tiền đề. Cú pháp lệnh bên dưới vẫn áp dụng. Chưa cài hoặc kiểm live bộ Phase 1.
+> Xem [bộ active trong repository](README.md) để chọn đúng revision khi cài. Phase 1 cập nhật cách Concept Entry phát triển cùng tiền đề. Cú pháp lệnh bên dưới vẫn áp dụng. Kết quả smoke routing do người dùng cung cấp và giới hạn xác minh được ghi trong [changelog bằng chứng](RUNTIME_EVIDENCE_CHANGELOG.md#namespace-stable-baseline-2026-11-12).
 
 # Cách dùng Naming
 

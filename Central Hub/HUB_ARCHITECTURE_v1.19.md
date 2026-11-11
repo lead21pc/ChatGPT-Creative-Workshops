@@ -9,9 +9,9 @@ Responsibility boundary: shared technical architecture only; no global behavior,
 
 ## 1. Status and ownership
 
-The explicitly authorized 2026-11-11 one-time canonical identity migration is ACTIVE in the repository: Architecture/Catalog 1.18 and 26 successor Library controls. PROJECT / LIBRARY DEPLOYMENT: NOT_PERFORMED; LIVE SUCCESSOR RETRIEVAL / BEHAVIOR: NOT_RUN. Earlier production, correction and inspection statements below retain their pre-namespace scope only. Old internal IDs, observed paths and byte receipts do not verify successor identities. User Profile contract/schema 1.0, established with Architecture 1.17, is adopted unchanged; its shared-resource identity/access/mutation contract and Context Snapshot remain independent.
+The package-oriented namespace is the stable ACTIVE repository baseline under Architecture/Catalog 1.19 and 26 Library controls. The user reported a ten-case routing smoke PASS on the 1.19 stack. Exact Library object and revision bindings, full-read receipts, deployment inventory and full routing coverage remain unverified. See RUNTIME_EVIDENCE_CHANGELOG.md for the case scope. Prior evidence remains attached to its recorded revision.
 
-Concept Entry 1.7 is ACTIVE in the repository with Architecture/Catalog 1.19 and local Concept Catalog 1.6. Deployment and live verification of Entry 1.7 remain unperformed.
+Concept Entry 1.7 is the active repository binding and local Concept Catalog 1.6 is unchanged. The smoke report did not specify an exact Concept Entry artifact revision. User Profile schema 1.0 and Context Snapshot retain their existing contracts.
 
 This v1.19 runtime contract is ACTIVE in the repository. The pre-correction production stack (CI/Router 1.1, Architecture/Catalog 1.11, Concept core/catalog 1.2, Authoring 0.7, production controls, Shopping 1.0 and AIS/ImageT) is USER_CONFIRMED_INSTALLED_AND_LIVE / USER_CONFIRMED_LIVE_PASS. This confirmation supersedes stale preparation-time deployment claims, not exact per-case or independently observed read receipts. Codex has not independently reproduced it; null internal IDs/locators do not negate that live state. Authoring 0.8, Concept core/catalog 1.3, MCA 1.2 and Architecture/Catalog 1.12 contain the bounded correction delta: IMPLEMENTED / STATICALLY VERIFIED; LIVE VERIFICATION OF NEW DELTA: NOT RUN. No deployment is performed by this local task. Six root packages and exact Library checks remain unchanged; the SEARCH delta below extends only admission and cross-owner composition validation.
 
@@ -33,8 +33,8 @@ Historical deployment observations remain scoped in RUNTIME_EVIDENCE_CHANGELOG.m
 | --- | --- |
 | Project Instructions | Hub CI only |
 | Project Sources | Hub Router, shared architecture, root package Catalog, AIS core |
-| ChatGPT Library / Central Hub Config | TECHNICAL 1.1; Concept entrypoint 1.7 and local catalog 1.6, Naming 1.1, CREATIVE/BRAINSTORM 1.2, DEBATE 1.1 and five anti-drift successors (MCA 1.3); Authoring 0.9; Shopping 1.1. Successor repository bindings only: deployment NOT_PERFORMED; successor Library identity/read and live behavior NOT_RUN. Pre-namespace production PASS retains its historical scope. Exact current-use identity/FULL_FILE/body checks remain required; unobserved successor locator/revision details remain null. |
-| ChatGPT Library / Central Hub Config — ImageT | HUB-IMAGET-ENTRY 1.4, required core, local Catalog 0.2 and two optional leaves; repository ACTIVE, deployment NOT_PERFORMED, Library reads NOT_VERIFIED. Preference requires separate current-operation activation. |
+| ChatGPT Library / Central Hub Config | TECHNICAL 1.1; Concept entrypoint 1.7 and local catalog 1.6, Naming 1.1, CREATIVE/BRAINSTORM 1.2, DEBATE 1.1 and five anti-drift successors (MCA 1.3); Authoring 0.9; Shopping 1.1. The user-reported routing smoke covers selected paths. Exact Library deployment inventory and object-level reads remain unverified. Pre-namespace production PASS retains its historical scope. Exact current-use identity/FULL_FILE/body checks remain required; unobserved successor locator/revision details remain null. |
+| ChatGPT Library / Central Hub Config — ImageT | HUB-IMAGET-ENTRY 1.4, required core, local Catalog 0.2 and two optional leaves; repository ACTIVE. The CREATE route is covered by the user-reported smoke. Exact Library deployment and reads remain unverified. Preference requires separate current-operation activation. |
 | ChatGPT Library / Central Hub Config — User Profile | Four private user-managed objects, HUB-USER-PROFILE schema 1.0. Optional, model read-only; not installed or live-tested by this task. Manual installation must include the shared public contract in Project Sources with this Architecture. |
 | Repository only | Tests, candidate development, migration reports, archives |
 
@@ -58,7 +58,7 @@ Existing ImageT manifest internal slot keys do not change in this milestone; the
 
 ### Authorized package-oriented canonical namespace
 
-For migrated Library controls, use exactly:
+For Library controls in the stable ACTIVE namespace, use exactly:
 
 ```text
 HUB-<PACKAGE>-<ARTIFACT>
@@ -69,7 +69,7 @@ Package tokens map to existing technical ownership contexts: TECH = HUB-PKG-TECH
 
 Subdomain is optional and denotes stable functional grouping, not runtime role. CON uses GEN for general operations and AD for anti-drift controls. IMAGET uses CORE for coordination machinery, AD for anti-drift controls and HUM for humanoid specialization. AD does not mean optional: the ImageT manifest still requires both anti-drift controls. Artifact identifies one concrete runtime artifact, including interfaces/catalogs/manifests. Singleton packages gain no artificial subdomain or Catalog.
 
-This explicitly authorized one-time canonical identity migration supersedes the ordinary rename/path stability rule only for the documented predecessor-to-successor mapping. New IDs remain stable across future filename, path, version and Library-folder changes. A later owning-package or canonical-subdomain change requires another explicit identity migration. No runtime alias lookup, dual-active identity or legacy fallback is created.
+The authorized one-time migration changed canonical identities according to the documented mapping. Current IDs remain stable across ordinary filename, path, version and Library-folder changes. Predecessor IDs are historical only. A later owning-package or canonical-subdomain change requires another explicit identity migration. No runtime alias lookup, dual-active identity or legacy fallback is created.
 
 Namespace segments and directories determine no role, authority, activation, dependency, load order, optional/required status or ontology. Explicit metadata and Catalog/manifest contracts retain those decisions. PACKAGE MEMBERSHIP != ONTOLOGY. DIRECTORY != ONTOLOGY. FILENAME != IDENTITY. Use <Canonical-Module-ID>_v<Artifact-Version>.<ext> for migrated Library filenames; a filename is only a discovery hint.
 

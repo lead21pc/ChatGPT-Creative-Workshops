@@ -1,10 +1,10 @@
 # Central Hub
 
-## Bộ active trong repository
+## Baseline ACTIVE trong repository
 
 [Architecture 1.19](HUB_ARCHITECTURE_v1.19.md), [root Catalog 1.19](HUB_PACKAGE_CATALOG_v1.19.yaml), [Router 1.1](HUB_ROUTER_v1.1.yaml) và [CI 1.2](HUB_CI_v1.2.md) là bộ active trong repository. Sáu package giữ nguyên; identity của 26 Library controls chuyển sang namespace package-oriented theo [hồ sơ migration 2026-11-11](NAMESPACE_MIGRATION.md). Phase 1 cập nhật Concept Entry để dùng hệ quả của tiền đề hiện có xác định phần cần phát triển.
 
-**REPOSITORY ACTIVE != PROJECT DEPLOYED.** Project/Library deployment chưa thực hiện; successor Library retrieval/live behavior NOT_RUN. Khả năng folder Library lồng nhau NOT_VERIFIED; có thể cài các object successor trực tiếp dưới sole root `Central Hub Config`. Path repository không là runtime locator. Catalog/manifest và exact identity/FULL_FILE/body checks tiếp tục sở hữu binding, dependency và verification; thư mục không tạo quan hệ runtime.
+Namespace của 26 Library controls là baseline ổn định. Người dùng báo smoke routing đạt 10 ca trên bộ 1.19. Tình trạng cài đầy đủ trong Project/Library, receipt đọc từng object và khả năng thư mục Library lồng nhau vẫn chưa được xác minh. Khi cài thủ công, có thể đặt các object trực tiếp dưới sole root `Central Hub Config`. Các kiểm tra exact identity, FULL_FILE, body và duplicate vẫn áp dụng. Xem [bằng chứng theo từng ca](RUNTIME_EVIDENCE_CHANGELOG.md#namespace-stable-baseline-2026-11-12).
 
 | Package ID | Entrypoint | Revision | Binding |
 | --- | --- | --- | --- |

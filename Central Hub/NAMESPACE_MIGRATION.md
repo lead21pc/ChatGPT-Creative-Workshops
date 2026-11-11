@@ -1,6 +1,6 @@
 # Central Hub — canonical namespace migration 2026-11-11
 
-## Trạng thái hiện hành
+## Trạng thái tại thời điểm migration
 
 Hồ sơ migration ngày 2026-11-11. Bộ lúc migration gồm Architecture/Catalog 1.18, Router 1.1 và CI 1.2. Để cài bản hiện hành, xem [bộ active trong repository](README.md). Đây là migration canonical identity một lần đã được người dùng cho phép; không là đổi role hoặc thiết kế lại runtime.
 

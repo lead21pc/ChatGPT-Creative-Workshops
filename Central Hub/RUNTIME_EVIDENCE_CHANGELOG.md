@@ -23,6 +23,27 @@ NO NEW EVIDENCE != STATUS RESET
 
 ## Current verified runtime status
 
+### Namespace stable baseline 2026-11-12
+
+- Namespace package-oriented của 26 Library controls là baseline ACTIVE ổn định trong repository. Architecture/Catalog 1.19, Router 1.1 và các revision module giữ nguyên. Đợt này cập nhật trạng thái bằng chứng và kiểm thử hồi quy.
+- **USER_REPORTED / 10-CASE ROUTING SMOKE PASS.** Người dùng báo quan sát Architecture/Catalog 1.19, Concept Catalog 1.6, Shopping Catalog 1.1 và ImageT Catalog 0.2. Báo cáo chỉ định tuyến theo các ca bên dưới. Phiên bản artifact của từng entrypoint, exact Library object/revision, FULL_FILE receipts, duplicate coverage và danh sách cài đặt đầy đủ chưa được cung cấp.
+- **STATIC / SIMULATED.** Kiểm thử repository đối chiếu binding, metadata, hash, closure và archive. Các ca mô phỏng cấp sẵn applicability và quyền chọn pipeline. Manifest và fixture authority kiểm phần nội bộ ImageT. Codex chưa tái hiện các ca bằng runtime Project hoặc Library.
+
+- **Kết quả kiểm thử.** Central Hub 365 đạt, namespace 19 đạt và nhóm ImageT 16 đạt. Distribution liên quan có 15 đạt và 1 skip. Toàn bộ distribution tái hiện lỗi digest Project Feather Core đã có trước migration.
+
+| Ca | Kết quả routing người dùng báo |
+| --- | --- |
+| 1 | Giải thích kỹ thuật đơn giản giữ NONE. |
+| 2 | Phân biệt nguyên nhân và phép thử chọn TECHNICAL. |
+| 3 | Concept Entry và WIL xử lý kiểm tra logic có giới hạn. |
+| 4 | Brainstorm tường minh đi cùng WIL áp dụng độc lập. |
+| 5 | Anti-Prior và Actor Reception được chọn. MCA được nạp qua Requires. |
+| 6 | So sánh từ dữ liệu người dùng chỉ chọn Shopping. |
+| 7 | Shopping chọn Search và Hub chọn AIS độc lập. |
+| 8 | Authoring cho CODEX không kéo theo Creative hoặc Brainstorm. |
+| 9 | Trao đổi về hình ảnh giữ NONE. |
+| 10 | ImageT CREATE dùng required core, hai control AD và Humanoid Construction. Design Preference không được chọn. |
+
 ### CONCEPT_ENTRY_PHASE_1_2026_11_12
 
 - Concept Entry 1.7 và Architecture/root Catalog 1.19 là ACTIVE trong repository. Local Concept Catalog vẫn là 1.6. Router 1.1 đổi pin; CI 1.2 giữ nguyên. Entry dùng hệ quả của tiền đề hiện có để xác định phần cần phát triển trong phạm vi được giao.
