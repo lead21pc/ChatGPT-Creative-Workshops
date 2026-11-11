@@ -20,4 +20,4 @@ Vai trò: MAINTENANCE / INTERPRETATION REFERENCE. Tài liệu hỗ trợ bảo t
 | Fresh search / prior evidence reuse | Thao tác kiểm tra mới liên quan khác việc dùng lại bằng chứng cũ; kết quả không đổi không chứng minh thiếu thao tác mới. |
 | Evidence / acceptance | Bằng chứng hỗ trợ thông tin không tự chấp thuận thiết kế/canon hoặc cấp quyền hành động cho bên nhận. |
 
-Các operation khác đang được chấp thuận: `/CREATIVE`, `/BRAINSTORM`, `/DEBATE`, `/NAME` thuộc Concept core/catalog 1.5; `/AUTHOR` thuộc Authoring 0.8 với cú pháp dòng đầu riêng. `/AD` là cue xét applicability theo lượt, không phải operation span. Glossary không định nghĩa thêm cú pháp hoặc toán tử và không phải nguồn đọc runtime bắt buộc.
+Các operation khác đang được chấp thuận: `/CREATIVE`, `/BRAINSTORM`, `/DEBATE`, `/NAME` thuộc Concept Entry `HUB-CON-ENTRY` 1.7 và Catalog `HUB-CON-CATALOG` 1.6; `/AUTHOR` thuộc `HUB-AUTH-ENTRY` 0.9 với cú pháp dòng đầu riêng. `/AD` là cue xét applicability theo lượt, không phải operation span. Glossary không định nghĩa thêm cú pháp hoặc toán tử và không phải nguồn đọc runtime bắt buộc.

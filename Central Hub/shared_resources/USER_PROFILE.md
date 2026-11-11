@@ -17,7 +17,7 @@ Tự tạo **bốn object riêng** dưới đúng root `Central Hub Config`. Sao
 
 Tên hiển thị chỉ giúp tìm; identity phải khớp `resource_id`, `object_id`, `schema_version: '1.0'` trong toàn bộ payload. Các field đều tùy chọn và nhận `null`; `null`/field thiếu là UNKNOWN. Danh sách trống chỉ nói chưa cung cấp mục nào, không chứng minh không có dị ứng hoặc bệnh lý. Chỉ tự điền điều đã khai báo, không nhờ model suy diễn rồi ghi lại. Object không cần header module, Package ID hoặc runtime role.
 
-Để dùng hợp đồng mới, tự cập nhật Project Sources với Architecture 1.18, Catalog 1.18, Router 1.1 đã đổi pins và hợp đồng Profile 1.0; cập nhật giao diện Shopping core 1.1 trong Library. CI 1.2 không đổi. Việc cài đặt này chưa được thực hiện trong tác vụ. Không cài tệp hướng dẫn này hoặc tệp mẫu công khai làm nguồn giá trị runtime thay thế.
+Để dùng hợp đồng mới, tự cập nhật Project Sources với Architecture 1.19, Catalog 1.19, Router 1.1 đã đổi pins và hợp đồng Profile 1.0; cập nhật giao diện Shopping core 1.1 trong Library. CI 1.2 không đổi. Việc cài đặt này chưa được thực hiện trong tác vụ. Không cài tệp hướng dẫn này hoặc tệp mẫu công khai làm nguồn giá trị runtime thay thế.
 
 ## Quyền đọc hiện hành
 

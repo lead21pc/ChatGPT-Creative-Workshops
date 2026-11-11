@@ -1,7 +1,7 @@
 """Current successor contracts and declared fixtures; no live Library/model execution.
 
-Earlier promotion tests retain exact predecessor reads. These tests independently
-check the active namespace and compare all successor behavior with that release.
+Namespace migration assertions retain exact historical revisions. Phase 1
+assertions check the active bindings and its scoped successor separately.
 """
 import copy
 import hashlib
@@ -19,6 +19,10 @@ from test_imaget_library_candidate import read_identity, selection_spec
 BASELINE = 'c818c1954c0a54b2f777687e07e4ae32530f1845'
 ARCHIVE = ROOT / 'Source_archive/Canonical namespace migration 2026-11-11'
 LIBRARY = ROOT / 'library_modules'
+PHASE_1_ARCHIVE = ROOT / 'Source_archive/Concept Entry Phase 1 2026-11-12'
+PHASE_1_BASELINE = '9e3194b552d669c031c245a0f0190992da768355'
+ENTRY_16 = 'library_modules/Concept Development/HUB-CON-ENTRY_v1.6.md'
+ENTRY_17 = 'library_modules/Concept Development/HUB-CON-ENTRY_v1.7.md'
 # Independent approved identity/version expectations, not inferred from filenames.
 EXPECTED = [
     ('HUB-DOM-TECHNICAL', 'HUB-TECH-ENTRY', '1.1'),
@@ -78,9 +82,12 @@ class CanonicalNamespaceTests(unittest.TestCase):
     def setUpClass(cls):
         cls.receipt = json.loads((ARCHIVE / 'ARCHIVE_RECEIPT.json').read_text(encoding='utf-8'))
         cls.rows = {r['old_id']: r for r in cls.receipt if 'old_id' in r}
-        cls.current = {r['new_id']: (ROOT / r['new'], read_identity(ROOT / r['new']))
-                       for r in cls.rows.values()}
-        cls.root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.18.yaml')
+        cls.current = {}
+        for row in cls.rows.values():
+            base = PHASE_1_ARCHIVE if row['new'] == ENTRY_16 else ROOT
+            path = base / row['new']
+            cls.current[row['new_id']] = (path, read_identity(path))
+        cls.root = load(PHASE_1_ARCHIVE / 'HUB_PACKAGE_CATALOG_v1.18.yaml')
         cls.old_root = load(ARCHIVE / 'HUB_PACKAGE_CATALOG_v1.17.yaml')
         cls.manifest = load(LIBRARY / 'ImageT/Core/HUB-IMAGET-CORE-MANIFEST_v2.4.0.yaml')
 
@@ -112,7 +119,8 @@ class CanonicalNamespaceTests(unittest.TestCase):
             self.assertFalse((ROOT / row['old']).exists())
             package_folder = {'TECH': 'Technical', 'CON': 'Concept Development', 'AUTH': 'Authoring',
                               'SHOP': 'Shopping', 'IMAGET': 'ImageT'}[new.split('-')[1]]
-            self.assertEqual(path.relative_to(LIBRARY).parts[0], package_folder)
+            library = PHASE_1_ARCHIVE / 'library_modules' if row['new'] == ENTRY_16 else LIBRARY
+            self.assertEqual(path.relative_to(library).parts[0], package_folder)
             for token, folder in (('-GEN-', 'General'), ('-AD-', 'Anti Drift'), ('-HUM-', 'Humanoid')):
                 if token in new:
                     self.assertEqual(path.parent.name, folder)
@@ -133,7 +141,8 @@ class CanonicalNamespaceTests(unittest.TestCase):
                 path, identity = self.current[binding[key]]
                 for field in ('package_id', 'runtime_role', 'status', 'version'):
                     self.assertEqual(binding[field], identity[field])
-                self.assertEqual(LIBRARY / binding['location']['artifact'], path)
+                self.assertEqual(Path('library_modules') / binding['location']['artifact'],
+                                 path.relative_to(PHASE_1_ARCHIVE if path.is_relative_to(PHASE_1_ARCHIVE) else ROOT))
                 self.assertEqual(binding['location']['root'], 'Central Hub Config')
                 for field in ('library_file_id', 'library_version_id', 'observed_path', 'locator'):
                     self.assertIsNone(binding['location'][field])
@@ -161,7 +170,7 @@ class CanonicalNamespaceTests(unittest.TestCase):
 
     def test_markdown_behavior_exact_except_authorized_identity_revision_references(self):
         for row in self.rows.values():
-            path = ROOT / row['new']
+            path = self.current[row['new_id']][0]
             if path.suffix != '.md':
                 continue
             expected = (ARCHIVE / row['old']).read_text(encoding='utf-8')
@@ -268,9 +277,9 @@ class CanonicalNamespaceTests(unittest.TestCase):
 
     def test_router_only_pins_change_and_shared_contract_sections_preserved(self):
         before = (ARCHIVE / 'HUB_ROUTER_v1.1.yaml').read_bytes()
-        self.assertEqual((ROOT / 'HUB_ROUTER_v1.1.yaml').read_bytes(), before.replace(b'1.17', b'1.18'))
+        self.assertEqual((PHASE_1_ARCHIVE / 'HUB_ROUTER_v1.1.yaml').read_bytes(), before.replace(b'1.17', b'1.18'))
         old = (ARCHIVE / 'HUB_ARCHITECTURE_v1.17.md').read_text(encoding='utf-8')
-        current = (ROOT / 'HUB_ARCHITECTURE_v1.18.md').read_text(encoding='utf-8')
+        current = (PHASE_1_ARCHIVE / 'HUB_ARCHITECTURE_v1.18.md').read_text(encoding='utf-8')
         for number in (5, 7, 8, 9, 10, 13, 14):
             section = lambda text: text.split(f'## {number}. ', 1)[1].split('\n## ', 1)[0]
             self.assertEqual(section(current), self.rename(section(old)).replace('1.17', '1.18'), number)
@@ -290,10 +299,15 @@ class CanonicalNamespaceTests(unittest.TestCase):
                 # Installation pointers only; resource identity/schema/access/mutation stay exact.
                 expected = expected.replace(b'Architecture 1.17', b'Architecture 1.18').replace(
                     b'Catalog 1.17', b'Catalog 1.18').replace(b'Shopping core 1.0', b'Shopping core 1.1')
+                phase_1_baseline = subprocess.check_output(
+                    ['git', 'show', f'{PHASE_1_BASELINE}:Central Hub/{relative}'], cwd=ROOT)
+                self.assertEqual(phase_1_baseline, expected, relative)
+                expected = expected.replace(b'Architecture 1.18, Catalog 1.18', b'Architecture 1.19, Catalog 1.19')
             self.assertEqual((ROOT / relative).read_bytes(), expected, relative)
         # Existing archive JSON may already have checkout CRLF conversion; do not rewrite it.
         unchanged = subprocess.check_output(['git', 'diff', '--name-only', BASELINE, '--',
-            'Source_archive', ':(exclude)Source_archive/Canonical namespace migration 2026-11-11'], cwd=ROOT)
+            'Source_archive', ':(exclude)Source_archive/Canonical namespace migration 2026-11-11',
+            ':(exclude)Source_archive/Concept Entry Phase 1 2026-11-12'], cwd=ROOT)
         self.assertEqual(unchanged, b'')
 
     def test_predecessors_byte_exact_and_not_dual_active(self):
@@ -307,7 +321,7 @@ class CanonicalNamespaceTests(unittest.TestCase):
 
     def test_no_old_active_identity_and_deployable_flat_names(self):
         surfaces = [p for p in LIBRARY.rglob('*') if p.is_file()] + [
-            ROOT / 'HUB_ARCHITECTURE_v1.18.md', ROOT / 'HUB_PACKAGE_CATALOG_v1.18.yaml',
+            ROOT / 'HUB_ARCHITECTURE_v1.19.md', ROOT / 'HUB_PACKAGE_CATALOG_v1.19.yaml',
             ROOT / 'HUB_ROUTER_v1.1.yaml']
         for path in surfaces:
             text = path.read_text(encoding='utf-8')
@@ -318,6 +332,90 @@ class CanonicalNamespaceTests(unittest.TestCase):
         document = (ROOT / 'NAMESPACE_MIGRATION.md').read_text(encoding='utf-8')
         self.assertIn('NESTED LIBRARY FOLDER CAPABILITY: NOT_VERIFIED', document)
         self.assertIn('SUCCESSOR LIBRARY RETRIEVAL / LIVE BEHAVIOR: NOT_RUN', document)
+
+
+class ConceptEntryPhaseOneTests(unittest.TestCase):
+    def test_exact_successor_bindings_and_pin_only_router(self):
+        root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.19.yaml')
+        old_root = load(PHASE_1_ARCHIVE / 'HUB_PACKAGE_CATALOG_v1.18.yaml')
+        expected = copy.deepcopy(old_root)
+        expected['version'] = '1.19'
+        expected['identity_binding'] = expected['identity_binding'].replace('V1_18', 'V1_19')
+        concept = next(row for row in expected['packages'] if row['entrypoint_module_id'] == 'HUB-CON-ENTRY')
+        concept['version'] = '1.7'
+        concept['location']['artifact'] = Path(ENTRY_17).relative_to('library_modules').as_posix()
+        self.assertEqual(root, expected)
+
+        entry = read_identity(ROOT / ENTRY_17)
+        for key in ('package_id', 'runtime_role', 'status', 'version'):
+            self.assertEqual(entry[key], concept[key])
+        self.assertEqual(entry['module_id'], concept['entrypoint_module_id'])
+        self.assertEqual(concept['location']['resolution'], 'UNRESOLVED')
+        for key in ('library_file_id', 'library_version_id', 'observed_path', 'locator'):
+            self.assertIsNone(concept['location'][key])
+
+        before = (PHASE_1_ARCHIVE / 'HUB_ROUTER_v1.1.yaml').read_bytes()
+        router = ROOT / 'HUB_ROUTER_v1.1.yaml'
+        self.assertEqual(router.read_bytes(), before.replace(b'1.18', b'1.19'))
+        pins = load(router)['contracts']
+        architecture = ROOT / pins['architecture']['file']
+        for name, path in [('architecture', architecture), ('root_catalog', ROOT / pins['root_catalog']['file'])]:
+            self.assertEqual(pins[name]['version'], '1.19')
+            self.assertTrue(path.is_file())
+        self.assertRegex(architecture.read_text(encoding='utf-8'), r'(?m)^Version: 1\.19$')
+
+    def test_entry_delta_preserves_surrounding_contract(self):
+        old = (PHASE_1_ARCHIVE / ENTRY_16).read_text(encoding='utf-8')
+        new = (ROOT / ENTRY_17).read_text(encoding='utf-8')
+        old_prefix, old_remaining = old.split('\nFor expansion,', 1)
+        new_prefix, new_remaining = new.split('\nWhen the current task assigns', 1)
+        self.assertEqual(new_prefix, old_prefix.replace('Library module v1.6', 'Library module v1.7')
+                         .replace('Version: 1.6', 'Version: 1.7'))
+        development, new_suffix = new_remaining.split('\nFor concept analysis/audit,', 1)
+        self.assertEqual(new_suffix, old_remaining.split('\nFor concept analysis/audit,', 1)[1])
+        # Text checks establish contract coverage, not reasoning or provenance recognition by a model.
+        development = 'When the current task assigns' + development
+        for rule in (
+            r'current task assigns .* within the same premise',
+            r'institutions only where material',
+            r'Check it against established definitions.*prior consequences',
+            r'consequences of the existing premise to identify what needs further development',
+            r'Preserve unsupported links as unknowns, proposals, conditional branches or unresolved dependencies',
+            r'constitutive assumption or introducing an independent driver.*keep any proposed change conditional',
+            r'supported consequences at whatever scale the mechanism produces',
+            r'Stop once the assigned question has enough causal development',
+            r'context alone does not assign development',
+        ):
+            self.assertRegex(development, rule)
+        self.assertNotIn('/REFINE', new)
+
+    def test_phase_one_archive_is_byte_exact(self):
+        receipt = json.loads((PHASE_1_ARCHIVE / 'ARCHIVE_RECEIPT.json').read_text(encoding='utf-8'))
+        self.assertEqual({row['old'] for row in receipt}, {
+            'HUB_ARCHITECTURE_v1.18.md', 'HUB_PACKAGE_CATALOG_v1.18.yaml', 'HUB_ROUTER_v1.1.yaml', ENTRY_16,
+        })
+        for row in receipt:
+            archived = ROOT / row['archive']
+            self.assertEqual(archived, PHASE_1_ARCHIVE / row['old'])
+            data = archived.read_bytes()
+            self.assertEqual(hashlib.sha256(data).hexdigest(), row['sha256'])
+            self.assertEqual(data, subprocess.check_output(
+                ['git', 'show', f'{PHASE_1_BASELINE}:Central Hub/{row["old"]}'], cwd=ROOT))
+            self.assertTrue((ROOT / row['new']).is_file())
+            if row['old'] != row['new']:
+                self.assertFalse((ROOT / row['old']).exists())
+
+    def test_glossary_points_to_active_bindings(self):
+        glossary = (ROOT / 'CONTROL_VOCABULARY_GLOSSARY.md').read_text(encoding='utf-8')
+        root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.19.yaml')
+        for package in root['packages']:
+            if package['entrypoint_module_id'] in {'HUB-CON-ENTRY', 'HUB-AUTH-ENTRY'}:
+                self.assertIn(f"\x60{package['entrypoint_module_id']}\x60 {package['version']}", glossary)
+                if package['local_catalog']:
+                    catalog = package['local_catalog']
+                    self.assertIn(f"\x60{catalog['module_id']}\x60 {catalog['version']}", glossary)
+        self.assertIn('MAINTENANCE / INTERPRETATION REFERENCE', glossary)
+        self.assertNotIn('/REFINE', glossary)
 
 
 if __name__ == '__main__':

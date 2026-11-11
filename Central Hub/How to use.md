@@ -1,4 +1,4 @@
-> Trạng thái sau migration 2026-11-11: Architecture/Catalog 1.18 và 26 identity successor theo [NAMESPACE_MIGRATION.md](NAMESPACE_MIGRATION.md). Các revision được kể dưới đây thuộc lịch sử tương ứng; để cài hiện hành dùng mapping/version trong tài liệu migration. Syntax và hành vi không đổi. Chưa deploy hoặc kiểm live successor.
+> Xem [bộ active trong repository](README.md) để chọn đúng revision khi cài. Phase 1 cập nhật cách Concept Entry phát triển cùng tiền đề. Cú pháp lệnh bên dưới vẫn áp dụng. Chưa cài hoặc kiểm live bộ Phase 1.
 
 # Cách dùng Naming
 

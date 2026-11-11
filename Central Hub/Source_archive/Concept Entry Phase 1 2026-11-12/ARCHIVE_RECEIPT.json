@@ -1,0 +1,26 @@
+[
+  {
+    "old": "HUB_ARCHITECTURE_v1.18.md",
+    "new": "HUB_ARCHITECTURE_v1.19.md",
+    "archive": "Source_archive/Concept Entry Phase 1 2026-11-12/HUB_ARCHITECTURE_v1.18.md",
+    "sha256": "4d825c71db715226a99d8b4d5d79d9586990895c260a00eb06c30aea5fffe69d"
+  },
+  {
+    "old": "HUB_PACKAGE_CATALOG_v1.18.yaml",
+    "new": "HUB_PACKAGE_CATALOG_v1.19.yaml",
+    "archive": "Source_archive/Concept Entry Phase 1 2026-11-12/HUB_PACKAGE_CATALOG_v1.18.yaml",
+    "sha256": "8edd3dbfbc66362140994ca04dfa6ccca8a697c804ec8e651bf30aca486d9245"
+  },
+  {
+    "old": "HUB_ROUTER_v1.1.yaml",
+    "new": "HUB_ROUTER_v1.1.yaml",
+    "archive": "Source_archive/Concept Entry Phase 1 2026-11-12/HUB_ROUTER_v1.1.yaml",
+    "sha256": "d08f9c4e06c9bcf41f86d72d2278575301d028f1a651ac6a955780ad40506aeb"
+  },
+  {
+    "old": "library_modules/Concept Development/HUB-CON-ENTRY_v1.6.md",
+    "new": "library_modules/Concept Development/HUB-CON-ENTRY_v1.7.md",
+    "archive": "Source_archive/Concept Entry Phase 1 2026-11-12/library_modules/Concept Development/HUB-CON-ENTRY_v1.6.md",
+    "sha256": "3c87e12402d4c4019a98a3cc94bcaeacc819403026a7aeb75de9e4e40b1d4530"
+  }
+]

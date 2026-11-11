@@ -1,15 +1,15 @@
 # Central Hub
 
-## Bộ active sau canonical namespace migration — 2026-11-11
+## Bộ active trong repository
 
-[Architecture 1.18](HUB_ARCHITECTURE_v1.18.md), [root Catalog 1.18](HUB_PACKAGE_CATALOG_v1.18.yaml), [Router 1.1](HUB_ROUTER_v1.1.yaml) và [CI 1.2](HUB_CI_v1.2.md) là bộ active trong repository. Sáu package giữ nguyên; identity của 26 Library controls chuyển sang namespace package-oriented theo [mapping, phiên bản, layout và hướng dẫn cài](NAMESPACE_MIGRATION.md).
+[Architecture 1.19](HUB_ARCHITECTURE_v1.19.md), [root Catalog 1.19](HUB_PACKAGE_CATALOG_v1.19.yaml), [Router 1.1](HUB_ROUTER_v1.1.yaml) và [CI 1.2](HUB_CI_v1.2.md) là bộ active trong repository. Sáu package giữ nguyên; identity của 26 Library controls chuyển sang namespace package-oriented theo [hồ sơ migration 2026-11-11](NAMESPACE_MIGRATION.md). Phase 1 cập nhật Concept Entry để dùng hệ quả của tiền đề hiện có xác định phần cần phát triển.
 
 **REPOSITORY ACTIVE != PROJECT DEPLOYED.** Project/Library deployment chưa thực hiện; successor Library retrieval/live behavior NOT_RUN. Khả năng folder Library lồng nhau NOT_VERIFIED; có thể cài các object successor trực tiếp dưới sole root `Central Hub Config`. Path repository không là runtime locator. Catalog/manifest và exact identity/FULL_FILE/body checks tiếp tục sở hữu binding, dependency và verification; thư mục không tạo quan hệ runtime.
 
 | Package ID | Entrypoint | Revision | Binding |
 | --- | --- | --- | --- |
 | HUB-PKG-TECHNICAL | HUB-TECH-ENTRY | 1.1 | LIBRARY_MODULE |
-| HUB-PKG-CONCEPT-DEVELOPMENT | HUB-CON-ENTRY | 1.6 | LIBRARY_MODULE |
+| HUB-PKG-CONCEPT-DEVELOPMENT | HUB-CON-ENTRY | 1.7 | LIBRARY_MODULE |
 | HUB-PKG-AUTHORING | HUB-AUTH-ENTRY | 0.9 | LIBRARY_MODULE |
 | HUB-PKG-AIS | HUB-PIPE-AIS | 1.2 | LEGACY_PROJECT_SOURCE |
 | HUB-PKG-IMAGET | HUB-IMAGET-ENTRY | 1.4 | LIBRARY_MODULE |

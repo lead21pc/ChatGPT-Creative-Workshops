@@ -2,7 +2,7 @@
 
 ## Trạng thái hiện hành
 
-REPOSITORY: ACTIVE / IMPLEMENTED. Architecture/Catalog 1.18, Router 1.1 và CI 1.2. Đây là migration canonical identity một lần đã được người dùng cho phép; không là đổi role hoặc thiết kế lại runtime.
+Hồ sơ migration ngày 2026-11-11. Bộ lúc migration gồm Architecture/Catalog 1.18, Router 1.1 và CI 1.2. Để cài bản hiện hành, xem [bộ active trong repository](README.md). Đây là migration canonical identity một lần đã được người dùng cho phép; không là đổi role hoặc thiết kế lại runtime.
 
 PROJECT / LIBRARY DEPLOYMENT: NOT_PERFORMED. SUCCESSOR LIBRARY RETRIEVAL / LIVE BEHAVIOR: NOT_RUN. NESTED LIBRARY FOLDER CAPABILITY: NOT_VERIFIED. Bằng chứng live trước migration giữ nguyên scope/revision cũ; không xác nhận identity successor. Không push, tạo branch hoặc tag trong tác vụ này.
 
@@ -47,7 +47,7 @@ Mỗi control đổi canonical identity tăng minor version vì header/binding v
 
 Mỗi file successor là một object Library riêng. Tất cả phải nằm dưới sole discovery root `Central Hub Config`. Chưa chứng minh Library hỗ trợ folder lồng nhau. Cách cài an toàn khi chưa có bằng chứng đó: tạo 26 object trực tiếp dưới root, dùng basename duy nhất của các file successor. `location.artifact` và manifest `file` là đường dẫn nguồn/cài đặt theo `library_modules/`, không là runtime locator; object vẫn được resolve bằng exact identity, bound version và FULL_FILE. Nếu nền tảng hỗ trợ folder, có thể mirror layout repository nhưng kiểm duplicate phải giữ coverage across root/subfolders, không chỉ thư mục của package.
 
-Cài cùng bộ Architecture 1.18, root Catalog 1.18, Router 1.1 đã đổi pins và CI 1.2 hiện hành. Hợp đồng User Profile 1.0 tiếp tục cài ở Project Sources khi dùng Profile; bốn object riêng do người dùng quản lý không bị model di chuyển/sửa. AIS pipeline/router giữ nguyên Project Sources.
+Bộ cài tại mốc migration gồm Architecture 1.18, root Catalog 1.18, Router 1.1 đã đổi pins và CI 1.2. Hợp đồng User Profile 1.0 tiếp tục cài ở Project Sources khi dùng Profile; bốn object riêng do người dùng quản lý không bị model di chuyển/sửa. AIS pipeline/router giữ nguyên Project Sources.
 
 Thay bộ Library cũ theo mapping đã duyệt; không để hai identity cùng là đường runtime ACTIVE. Chỉ ghi internal IDs/revision hoặc observed paths sau quan sát thực; giá trị cũ không được kế thừa như evidence của successor. Dùng exact headers/body, FULL_FILE và scoped duplicate checks; không fallback sang repository, Project Sources hoặc old identity.
 
