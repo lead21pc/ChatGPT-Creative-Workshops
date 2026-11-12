@@ -69,10 +69,15 @@ access:
     PREFERENCES: [purchase_filtering, product_comparison]
     DIETARY_CONSTRAINTS: [product_compatibility]
     HEALTH_CONTEXT: [product_compatibility]
+  HUB-PKG-FOOD:
+    GENERAL: [food_context]
+    PREFERENCES: [food_selection]
+    DIETARY_CONSTRAINTS: [food_compatibility]
+    HEALTH_CONTEXT: [food_compatibility]
 read:
   binding: LIBRARY_SHARED_RESOURCE
   root: Central Hub Config
-  contract_source: Exact shared contract installed with Architecture 1.17 in Project Sources.
+  contract_source: Exact shared contract declared by the bound Hub Architecture and installed with it in Project Sources.
   request_fields: [consumer_package, resource_id, object_id, schema_version, purpose, material_need]
   sequence:
     - CURRENT_TASK

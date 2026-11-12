@@ -61,7 +61,7 @@ Each project's documentation determines how to read its sources. Folder names, v
 
 ## Central Hub
 
-> Central Hub dùng namespace ACTIVE ổn định với Architecture/Catalog 1.19, 26 Library controls và sáu package. Người dùng báo smoke routing đạt 10 ca. Tình trạng cài đầy đủ và khả năng folder Library lồng nhau chưa được xác minh. [Central Hub](Central%20Hub/README.md). User Profile giữ shared non-module identity riêng. Các release distribution giữ tên lịch sử.
+> Central Hub dùng Architecture/Catalog 1.20 với bảy package và 27 Library controls trong repository. Food 0.1 chưa được cài hoặc kiểm thử live. Người dùng báo smoke routing đạt 10 ca trên bộ 1.19. Tình trạng cài đầy đủ và khả năng folder Library lồng nhau chưa được xác minh. [Central Hub](Central%20Hub/README.md). User Profile giữ shared non-module identity riêng. Các release distribution giữ tên lịch sử.
 
 Central Hub is the shared general-purpose workspace for capabilities that should not belong to any one fiction project. It does not sit inside FTH, above the creative systems, or act as a shared fiction runtime or canon layer. A project may bring a bounded question or slice of context into Hub and return the result for local review; Hub may also start from a fiction idea before any project has adopted it.
 
@@ -89,7 +89,8 @@ ROOT PACKAGE CATALOG
    ├─ HUB-PKG-AUTHORING → HUB-AUTH-ENTRY
    ├─ HUB-PKG-AIS → AIS pipeline (internal dependencies)
    ├─ HUB-PKG-IMAGET → HUB-IMAGET-ENTRY (internal dependencies)
-   └─ HUB-PKG-SHOPPING → HUB-SHOP-ENTRY
+   ├─ HUB-PKG-SHOPPING → HUB-SHOP-ENTRY
+   └─ HUB-PKG-FOOD → HUB-FOOD-ENTRY
    ↓
 selected modules / package-local leaves / tool pipelines
    ↓
@@ -98,7 +99,7 @@ HUB COMPOSITION → WORKING RESULT
 
 **Hub CI** owns the requested operation/stage, truth and state discipline, action authorization, general verification need, and overall interaction. **Hub Router** scopes task portions, selects root packages, resolves entrypoints, composes the selected module set, expands hard dependencies, validates reads/bindings, and hands off scoped work. Packages own their internal selection; pipelines own their procedures; the platform performs actual retrieval and tool execution.
 
-The [active root Catalog](Central%20Hub/HUB_PACKAGE_CATALOG_v1.19.yaml) exposes exactly **six root packages**, not every leaf. Zero, one, or multiple packages may contribute to different portions of one task. Selection is recomputed each turn and when task scope materially changes; it is not a permanent chat mode.
+The [active root Catalog](Central%20Hub/HUB_PACKAGE_CATALOG_v1.20.yaml) exposes exactly **seven root packages**, not every leaf. Zero, one, or multiple packages may contribute to different portions of one task. Selection is recomputed each turn and when task scope materially changes; it is not a permanent chat mode.
 
 ```text
 ROOT CATALOG KNOWS PACKAGE ENTRYPOINTS != ROOT CATALOG KNOWS EVERY LEAF
@@ -120,6 +121,7 @@ The table summarizes the active repository contracts. Deployment and runtime evi
 | AIS | `HUB-PIPE-AIS` / `TOOL_PIPELINE`; pipeline 1.2, router 1.3 | External evidence verification, research, and provisional option discovery. |
 | ImageT | `HUB-IMAGET-ENTRY` / `TOOL_PIPELINE`; controller 1.4 | Image analysis and generation operations with input authority, prompt, approval, and visible-result checks. |
 | SHOPPING | `HUB-SHOP-ENTRY` 1.1 / `DOMAIN_CONTROL` | Product identity, purchase constraints, Offers and supported comparison; Hub selects AIS independently. |
+| FOOD | `HUB-FOOD-ENTRY` 0.1 / `DOMAIN_CONTROL` | Culinary analysis, cooking plans, adaptation, serving and scoped recommendations. |
 
 **TECHNICAL is selected for a reasoning need, not a technical topic alone.** A diagnosis may follow `symptom → competing hypotheses → mechanism chain → distinguishing test → supported cause → minimum sufficient change → behavioral verification`. If evidence cannot distinguish causes, the cause stays unresolved. The module owns no technical subject domain, does not activate AIS, and does not turn a simple explanation into an architecture audit.
 
@@ -220,7 +222,7 @@ MENTION != DEPENDENCY
 PACKAGE MEMBERSHIP != DEPENDENCY
 ```
 
-Technical, Concept Development, Authoring, Shopping and ImageT use Library-module bindings. AIS alone retains its Project-Source pipeline binding. Storage/binding establishes neither semantic hierarchy nor authority. Exact identities, full-read verification, deployment status, and scoped runtime records belong in the [Central Hub documentation](Central%20Hub/README.md), [Architecture](Central%20Hub/HUB_ARCHITECTURE_v1.19.md), and [Catalog](Central%20Hub/HUB_PACKAGE_CATALOG_v1.19.yaml).
+Technical, Concept Development, Authoring, Shopping, ImageT and Food use Library-module bindings. AIS alone retains its Project-Source pipeline binding. Storage/binding establishes neither semantic hierarchy nor authority. Exact identities, full-read verification, deployment status, and scoped runtime records belong in the [Central Hub documentation](Central%20Hub/README.md), [Architecture](Central%20Hub/HUB_ARCHITECTURE_v1.20.md), and [Catalog](Central%20Hub/HUB_PACKAGE_CATALOG_v1.20.yaml).
 
 > **User-reported build/test baseline:** The current workshop controls and Central Hub architecture were developed and behaviorally tested primarily with **GPT-5.6 Sol on ChatGPT Plus**. This is the user's reported runtime qualification, not a compatibility result reproduced by repository checks. Other models have not yet been systematically tested; other plans/runtime conditions may work, but equivalent behavior and stability are not guaranteed. This does not establish incompatibility.
 

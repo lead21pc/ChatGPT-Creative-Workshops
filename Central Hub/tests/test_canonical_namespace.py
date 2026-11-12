@@ -21,6 +21,11 @@ ARCHIVE = ROOT / 'Source_archive/Canonical namespace migration 2026-11-11'
 LIBRARY = ROOT / 'library_modules'
 PHASE_1_ARCHIVE = ROOT / 'Source_archive/Concept Entry Phase 1 2026-11-12'
 PHASE_1_BASELINE = '9e3194b552d669c031c245a0f0190992da768355'
+FOOD_ARCHIVE = ROOT / 'Source_archive/Food 0.1 2026-11-12'
+FOOD_BASELINE = '9f439be4d90e1e789c8793d9fc3828c444b3e40a'
+FOOD = 'HUB-FOOD-ENTRY'
+FOOD_PACKAGE = 'HUB-PKG-FOOD'
+FOOD_CATALOG = 'HUB_PACKAGE_CATALOG_v1.20.yaml'
 ENTRY_16 = 'library_modules/Concept Development/HUB-CON-ENTRY_v1.6.md'
 ENTRY_17 = 'library_modules/Concept Development/HUB-CON-ENTRY_v1.7.md'
 # Independent approved identity/version expectations, not inferred from filenames.
@@ -59,6 +64,7 @@ PACKAGE_TOKENS = {
     'HUB-PKG-AUTHORING': 'AUTH',
     'HUB-PKG-IMAGET': 'IMAGET',
     'HUB-PKG-SHOPPING': 'SHOP',
+    FOOD_PACKAGE: 'FOOD',
 }
 
 
@@ -68,7 +74,7 @@ def active_inventory(paths):
         header = read_identity(path)
         identity = header['module_id']
         assert identity not in inventory, f'duplicate identity: {identity}'
-        assert identity in IDS.values(), f'unapproved active identity: {identity}'
+        assert identity in set(IDS.values()) | {FOOD}, f'unapproved active identity: {identity}'
         assert identity.split('-')[1] == PACKAGE_TOKENS.get(header['package_id']), identity
         assert header['status'] == 'ACTIVE', identity
         assert path.name == f"{identity}_v{header['version']}{path.suffix}", path
@@ -136,10 +142,6 @@ class CanonicalNamespaceTests(unittest.TestCase):
 
     def test_approved_mapping_unique_headers_versions_and_layout(self):
         self.assertEqual(set(self.rows), set(IDS))
-        files = [p for p in LIBRARY.rglob('*') if p.is_file()]
-        self.assertEqual(len(files), 26)
-        identities = [read_identity(p)['module_id'] for p in files]
-        self.assertEqual(len(set(identities)), 26)
         for old, new, version in EXPECTED:
             row = self.rows[old]
             path, header = self.current[new]
@@ -335,11 +337,19 @@ class CanonicalNamespaceTests(unittest.TestCase):
                     ['git', 'show', f'{PHASE_1_BASELINE}:Central Hub/{relative}'], cwd=ROOT)
                 self.assertEqual(phase_1_baseline, expected, relative)
                 expected = expected.replace(b'Architecture 1.18, Catalog 1.18', b'Architecture 1.19, Catalog 1.19')
-            self.assertEqual((ROOT / relative).read_bytes(), expected, relative)
+            if relative == 'shared_resources/USER_PROFILE.md':
+                phase_1 = subprocess.check_output(
+                    ['git', 'show', f'{FOOD_BASELINE}:Central Hub/{relative}'], cwd=ROOT)
+                self.assertEqual(phase_1, expected, relative)
+            elif relative == 'shared_resources/HUB-USER-PROFILE-CONTRACT_v1.0.yaml':
+                self.assertEqual((FOOD_ARCHIVE / relative).read_bytes(), expected, relative)
+            else:
+                self.assertEqual((ROOT / relative).read_bytes(), expected, relative)
         # Existing archive JSON may already have checkout CRLF conversion; do not rewrite it.
         unchanged = subprocess.check_output(['git', 'diff', '--name-only', BASELINE, '--',
             'Source_archive', ':(exclude)Source_archive/Canonical namespace migration 2026-11-11',
-            ':(exclude)Source_archive/Concept Entry Phase 1 2026-11-12'], cwd=ROOT)
+            ':(exclude)Source_archive/Concept Entry Phase 1 2026-11-12',
+            ':(exclude)Source_archive/Food 0.1 2026-11-12'], cwd=ROOT)
         self.assertEqual(unchanged, b'')
 
     def test_predecessors_byte_exact_and_not_dual_active(self):
@@ -375,8 +385,8 @@ class CanonicalNamespaceTests(unittest.TestCase):
 
     def test_current_inventory_and_binding_reject_invalid_successors(self):
         inventory = active_inventory(p for p in LIBRARY.rglob('*') if p.is_file())
-        self.assertEqual(set(inventory), set(IDS.values()))
-        root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.19.yaml')
+        self.assertEqual(set(inventory), set(IDS.values()) | {FOOD})
+        root = load(ROOT / FOOD_CATALOG)
         bound = set()
         for package in root['packages']:
             if package['binding_mode'] == 'LEGACY_PROJECT_SOURCE':
@@ -423,7 +433,7 @@ class CanonicalNamespaceTests(unittest.TestCase):
 
     def test_smoke_selection_properties_with_declared_scopes(self):
         # Applicability and pipeline authorization are fixture inputs. This does not classify user text.
-        root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.19.yaml')
+        root = load(ROOT / FOOD_CATALOG)
         def module(row, identity):
             return synthetic_module(identity, row['package_id'], {identity}, row['runtime_role'],
                                     version=row['version'], requires=row.get('requires', []),
@@ -458,6 +468,14 @@ class CanonicalNamespaceTests(unittest.TestCase):
             ({'HUB-AUTH-ENTRY'}, (), {'HUB-AUTH-ENTRY'}, {'HUB-AUTH-ENTRY'}),
             ({'image discussion'}, (), set(), set()),
             ({image}, ('HUB-PKG-IMAGET',), {image}, {image}),
+            ({'ordinary food mention'}, (), set(), set()),
+            ({FOOD}, (), {FOOD}, {FOOD}),
+            ({FOOD, ais}, (), {FOOD}, {FOOD}),
+            ({FOOD, ais}, ('HUB-PKG-AIS',), {FOOD, ais}, {FOOD, ais}),
+            ({FOOD, shop}, (), {FOOD, shop, 'HUB-SHOP-CATALOG'}, {FOOD}),
+            ({FOOD, shop, 'HUB-SHOP-SEARCH', ais}, ('HUB-PKG-AIS',),
+             {FOOD, shop, 'HUB-SHOP-CATALOG', 'HUB-SHOP-SEARCH', ais},
+             {FOOD, 'HUB-SHOP-SEARCH', ais}),
         ]
         for index, (scopes, pipelines, reads, verified) in enumerate(cases, 1):
             with self.subTest(case=index):
@@ -469,6 +487,22 @@ class CanonicalNamespaceTests(unittest.TestCase):
                                    ('HUB-PKG-CONCEPT-DEVELOPMENT', mca))] if index == 5 else []
                 self.assertEqual(result['direct_dependencies'], expected_edges)
                 self.assertFalse(result['runtime_ready'])
+
+        food_read = fixture['artifacts'][FOOD][0]
+        for records, error in [
+            ([], f'ARTIFACT_MISSING:{FOOD}'),
+            ([food_read, food_read], f'AMBIGUOUS_MODULE:{FOOD}'),
+            ([dict(food_read, module_id='LOOKALIKE')], 'HEADER_MISMATCH:module_id'),
+            ([dict(food_read, version='0.2')], 'HEADER_MISMATCH:version'),
+            ([dict(food_read, status='CANDIDATE')], f'INACTIVE_MODULE:{FOOD}'),
+            ([dict(food_read, read_kind='SNIPPET')], f'FULL_FILE_REQUIRED:{FOOD}'),
+        ]:
+            with self.subTest(error=error):
+                damaged = copy.deepcopy(fixture)
+                damaged['artifacts'][FOOD] = records
+                result = simulate(damaged, {FOOD, 'HUB-TECH-ENTRY'})
+                self.assertEqual(result['blocked'], {FOOD_PACKAGE: error})
+                self.assertEqual(result['spec_verified'], [('HUB-PKG-TECHNICAL', 'HUB-TECH-ENTRY')])
 
         # The current Concept interface must fail closed with a missing or ambiguous Catalog read.
         for records, error in [([], 'ARTIFACT_MISSING'), (None, 'AMBIGUOUS_MODULE')]:
@@ -482,7 +516,7 @@ class CanonicalNamespaceTests(unittest.TestCase):
 
 class ConceptEntryPhaseOneTests(unittest.TestCase):
     def test_exact_successor_bindings_and_pin_only_router(self):
-        root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.19.yaml')
+        root = load(FOOD_ARCHIVE / 'HUB_PACKAGE_CATALOG_v1.19.yaml')
         old_root = load(PHASE_1_ARCHIVE / 'HUB_PACKAGE_CATALOG_v1.18.yaml')
         expected = copy.deepcopy(old_root)
         expected['version'] = '1.19'
@@ -505,11 +539,12 @@ class ConceptEntryPhaseOneTests(unittest.TestCase):
             self.assertIsNone(concept['location'][key])
 
         before = (PHASE_1_ARCHIVE / 'HUB_ROUTER_v1.1.yaml').read_bytes()
-        router = ROOT / 'HUB_ROUTER_v1.1.yaml'
+        router = FOOD_ARCHIVE / 'HUB_ROUTER_v1.1.yaml'
         self.assertEqual(router.read_bytes(), before.replace(b'1.18', b'1.19'))
         pins = load(router)['contracts']
-        architecture = ROOT / pins['architecture']['file']
-        for name, path in [('architecture', architecture), ('root_catalog', ROOT / pins['root_catalog']['file'])]:
+        architecture = FOOD_ARCHIVE / pins['architecture']['file']
+        for name, path in [('architecture', architecture),
+                           ('root_catalog', FOOD_ARCHIVE / pins['root_catalog']['file'])]:
             self.assertEqual(pins[name]['version'], '1.19')
             self.assertTrue(path.is_file())
         self.assertRegex(architecture.read_text(encoding='utf-8'), r'(?m)^Version: 1\.19$')
@@ -551,13 +586,16 @@ class ConceptEntryPhaseOneTests(unittest.TestCase):
             self.assertEqual(hashlib.sha256(data).hexdigest(), row['sha256'])
             self.assertEqual(data, subprocess.check_output(
                 ['git', 'show', f'{PHASE_1_BASELINE}:Central Hub/{row["old"]}'], cwd=ROOT))
-            self.assertTrue((ROOT / row['new']).is_file())
+            successor = ROOT / row['new']
+            if row['new'] in {'HUB_ARCHITECTURE_v1.19.md', 'HUB_PACKAGE_CATALOG_v1.19.yaml'}:
+                successor = FOOD_ARCHIVE / row['new']
+            self.assertTrue(successor.is_file())
             if row['old'] != row['new']:
                 self.assertFalse((ROOT / row['old']).exists())
 
     def test_glossary_points_to_active_bindings(self):
         glossary = (ROOT / 'CONTROL_VOCABULARY_GLOSSARY.md').read_text(encoding='utf-8')
-        root = load(ROOT / 'HUB_PACKAGE_CATALOG_v1.19.yaml')
+        root = load(ROOT / FOOD_CATALOG)
         for package in root['packages']:
             if package['entrypoint_module_id'] in {'HUB-CON-ENTRY', 'HUB-AUTH-ENTRY'}:
                 self.assertIn(f"\x60{package['entrypoint_module_id']}\x60 {package['version']}", glossary)
@@ -566,6 +604,52 @@ class ConceptEntryPhaseOneTests(unittest.TestCase):
                     self.assertIn(f"\x60{catalog['module_id']}\x60 {catalog['version']}", glossary)
         self.assertIn('MAINTENANCE / INTERPRETATION REFERENCE', glossary)
         self.assertNotIn('/REFINE', glossary)
+
+
+class FoodAdmissionTests(unittest.TestCase):
+    def test_exact_successor_pins_and_food_singleton(self):
+        router = ROOT / 'HUB_ROUTER_v1.1.yaml'
+        before = (FOOD_ARCHIVE / router.name).read_bytes()
+        self.assertEqual(router.read_bytes(), before.replace(b'1.19', b'1.20'))
+        pins = load(router)['contracts']
+        self.assertEqual(pins['root_catalog']['file'], FOOD_CATALOG)
+        self.assertEqual(pins['architecture']['file'], 'HUB_ARCHITECTURE_v1.20.md')
+        self.assertEqual({pins[key]['version'] for key in ('architecture', 'root_catalog')}, {'1.20'})
+        architecture = (ROOT / pins['architecture']['file']).read_text(encoding='utf-8')
+        self.assertIn('Version: 1.20', architecture)
+        self.assertIn('FOOD = HUB-PKG-FOOD', architecture)
+        root = load(ROOT / FOOD_CATALOG)
+        self.assertEqual((root['version'], root['status'], root['active']), ('1.20', 'ACTIVE', True))
+        previous = load(FOOD_ARCHIVE / 'HUB_PACKAGE_CATALOG_v1.19.yaml')
+        self.assertEqual(len(root['packages']), 7)
+        self.assertEqual(len({row['package_id'] for row in root['packages']}), 7)
+        food = next(row for row in root['packages'] if row['package_id'] == FOOD_PACKAGE)
+        self.assertEqual([row for row in root['packages'] if row != food], previous['packages'])
+        self.assertEqual((food['entrypoint_module_id'], food['runtime_role'], food['status'],
+                          food['version'], food['binding_mode'], food['local_catalog'], food['requires']),
+                         (FOOD, 'DOMAIN_CONTROL', 'ACTIVE', '0.1', 'LIBRARY_MODULE', None, []))
+        location = food['location']
+        self.assertEqual((location['root'], location['resolution']), ('Central Hub Config', 'UNRESOLVED'))
+        for field in ('locator', 'library_file_id', 'library_version_id', 'observed_path'):
+            self.assertIsNone(location[field])
+        self.assertEqual([p.name for p in (LIBRARY / 'Food').iterdir()], ['HUB-FOOD-ENTRY_v0.1.md'])
+
+    def test_food_predecessor_receipt(self):
+        receipt = json.loads((FOOD_ARCHIVE / 'ARCHIVE_RECEIPT.json').read_text(encoding='utf-8'))
+        self.assertEqual({row['old'] for row in receipt}, {
+            'HUB_ARCHITECTURE_v1.19.md', 'HUB_PACKAGE_CATALOG_v1.19.yaml', 'HUB_ROUTER_v1.1.yaml',
+            'shared_resources/HUB-USER-PROFILE-CONTRACT_v1.0.yaml',
+        })
+        for row in receipt:
+            archived = ROOT / row['archive']
+            self.assertEqual(archived, FOOD_ARCHIVE / row['old'])
+            data = archived.read_bytes()
+            self.assertEqual(hashlib.sha256(data).hexdigest(), row['sha256'])
+            self.assertEqual(data, subprocess.check_output(
+                ['git', 'show', f'{FOOD_BASELINE}:Central Hub/{row["old"]}'], cwd=ROOT))
+            self.assertTrue((ROOT / row['new']).is_file())
+            if row['old'] != row['new']:
+                self.assertFalse((ROOT / row['old']).exists())
 
 
 if __name__ == '__main__':

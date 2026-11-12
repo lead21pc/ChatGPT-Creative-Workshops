@@ -23,9 +23,15 @@ NO NEW EVIDENCE != STATUS RESET
 
 ## Current verified runtime status
 
+### FOOD_0_1_2026_11_12
+
+- Food Entry 0.1 và Architecture/root Catalog 1.20 là ACTIVE trong repository. Router 1.1 đổi pin. User Profile schema 1.0 giữ bốn object và thêm quyền Food theo từng object/purpose.
+- STATIC / SPEC PASS: 371 test Central Hub, trong đó nhóm kiểm liên quan có 233 test. Kiểm binding, archive, composition và các ca sức khỏe A–E bằng dữ liệu khai báo trong fixture.
+- PROJECT / LIBRARY DEPLOYMENT: NOT_PERFORMED. FOOD LIBRARY RETRIEVAL / LIVE ROUTING / LIVE PROFILE USE: NOT_RUN. Smoke routing 1.19 giữ phạm vi cũ.
+
 ### Namespace stable baseline 2026-11-12
 
-- Namespace package-oriented của 26 Library controls là baseline ACTIVE ổn định trong repository. Architecture/Catalog 1.19, Router 1.1 và các revision module giữ nguyên. Đợt này cập nhật trạng thái bằng chứng và kiểm thử hồi quy.
+- Ở mốc 1.19, namespace package-oriented của 26 Library controls được chốt làm baseline ổn định trong repository. Architecture/Catalog 1.19, Router 1.1 và các revision module giữ nguyên. Đợt này cập nhật trạng thái bằng chứng và kiểm thử hồi quy.
 - **USER_REPORTED / 10-CASE ROUTING SMOKE PASS.** Người dùng báo quan sát Architecture/Catalog 1.19, Concept Catalog 1.6, Shopping Catalog 1.1 và ImageT Catalog 0.2. Báo cáo chỉ định tuyến theo các ca bên dưới. Phiên bản artifact của từng entrypoint, exact Library object/revision, FULL_FILE receipts, duplicate coverage và danh sách cài đặt đầy đủ chưa được cung cấp.
 - **STATIC / SIMULATED.** Kiểm thử repository đối chiếu binding, metadata, hash, closure và archive. Các ca mô phỏng cấp sẵn applicability và quyền chọn pipeline. Manifest và fixture authority kiểm phần nội bộ ImageT. Codex chưa tái hiện các ca bằng runtime Project hoặc Library.
 

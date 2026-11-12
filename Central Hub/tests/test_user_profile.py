@@ -19,6 +19,9 @@ NAMESPACE_PREDECESSOR = Path(__file__).resolve().parents[1] / 'Source_archive/Ca
 BASELINE = 'f06dea5be568cec9fb476a9040c723be8629507c'
 RESOURCE = 'HUB-USER-PROFILE'
 SHOPPING = 'HUB-PKG-SHOPPING'
+FOOD = 'HUB-PKG-FOOD'
+CONTRACT = 'HUB-USER-PROFILE-CONTRACT_v1.0.yaml'
+FOOD_PREDECESSOR = ROOT / 'Source_archive/Food 0.1 2026-11-12/shared_resources'
 OBJECTS = ('GENERAL', 'PREFERENCES', 'DIETARY_CONSTRAINTS', 'HEALTH_CONTEXT')
 PUBLIC = ROOT / 'shared_resources'
 
@@ -71,7 +74,7 @@ def resolve_fixture(contract, request, observed):
 class UserProfileTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.contract = load(PUBLIC / 'HUB-USER-PROFILE-CONTRACT_v1.0.yaml')
+        cls.contract = load(FOOD_PREDECESSOR / CONTRACT)
         cls.templates = {o: load(PUBLIC / f'HUB-USER-PROFILE-{o}-TEMPLATE_v1.0.yaml') for o in OBJECTS}
         cls.arch = (NAMESPACE_PREDECESSOR / 'HUB_ARCHITECTURE_v1.17.md').read_text(encoding='utf-8')
         cls.section = cls.arch.split('## 14.', 1)[1]
@@ -260,3 +263,101 @@ class UserProfileTests(unittest.TestCase):
             self.assertEqual(archived, before(name))
             if name != 'HUB_ROUTER_v1.1.yaml':
                 self.assertFalse((ROOT / name).exists())
+
+
+class FoodProfileTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.contract = load(PUBLIC / CONTRACT)
+        cls.before = load(FOOD_PREDECESSOR / CONTRACT)
+        cls.entry = (ROOT / 'library_modules/Food/HUB-FOOD-ENTRY_v0.1.md').read_text(encoding='utf-8')
+        cls.health = load(PUBLIC / 'HUB-USER-PROFILE-HEALTH_CONTEXT-TEMPLATE_v1.0.yaml')
+
+    def plan(self, obj, purpose, need=True):
+        return read_plan(self.contract, selected_package=FOOD, section=obj,
+                         purpose=purpose, material_need=need)
+
+    def test_food_access_preserves_shared_contract_except_declared_changes(self):
+        mapping = {
+            'GENERAL': ['food_context'],
+            'PREFERENCES': ['food_selection'],
+            'DIETARY_CONSTRAINTS': ['food_compatibility'],
+            'HEALTH_CONTEXT': ['food_compatibility'],
+        }
+        self.assertEqual(self.contract['access'][FOOD], mapping)
+        existing = copy.deepcopy(self.contract)
+        existing['access'].pop(FOOD)
+        self.assertIn('declared by the bound Hub Architecture', existing['read']['contract_source'])
+        existing['read']['contract_source'] = self.before['read']['contract_source']
+        self.assertEqual(existing, self.before)
+        for obj, (purpose,) in mapping.items():
+            with self.subTest(object=obj):
+                self.assertEqual(self.plan(obj, purpose), ('ALLOW', (obj,)))
+                self.assertEqual(self.plan(obj, purpose, need=False), ('SKIP', ()))
+                self.assertEqual(self.plan(obj, 'food_recommendation'), ('DENY', ()))
+        self.assertEqual(self.plan('UNDECLARED_OBJECT', 'food_compatibility'), ('DENY', ()))
+
+    def test_food_recommendation_health_cases_a_through_d(self):
+        # Applicability is supplied, so this exercises the declared read plan, not model behavior.
+        cases = [
+            ('A difficulty', 'Skip HEALTH_CONTEXT when it cannot affect that criterion.', False, False, ()),
+            ('B overall suitability', 'request HEALTH_CONTEXT before concluding', True, False,
+             ('HEALTH_CONTEXT',)),
+            ('B sufficient current input', 'Use the current input directly when sufficient.', False, False, ()),
+            ('C taste supplied', 'Rank by taste from sufficient current input.', False, False, ()),
+            ('C taste missing', 'only if missing taste preferences could change the ranking.', False, True,
+             ('PREFERENCES',)),
+            ('D overall suitability established', 'Use the overall suitability path', True, False,
+             ('HEALTH_CONTEXT',)),
+            ('D criterion unclear', 'Clarify a materially ambiguous evaluation criterion', False, False, ()),
+        ]
+        for case, wording, health_needed, taste_needed, expected in cases:
+            with self.subTest(case=case):
+                self.assertIn(wording, self.entry)
+                health = self.plan('HEALTH_CONTEXT', 'food_compatibility', need=health_needed)
+                taste = self.plan('PREFERENCES', 'food_selection', need=taste_needed)
+                self.assertEqual(health[1] + taste[1], expected)
+        for wording in (
+            'Every Food recommendation or ranking must assess health relevance.',
+            'Request HEALTH_CONTEXT only when all four conditions hold:',
+            'The current task has a specific suitability, ranking or preparation decision.',
+            'Health context could materially change that decision.',
+            'Current explicit user input does not resolve the health-relevant part.',
+            'Data in HEALTH_CONTEXT could resolve the identified gap.',
+            'General uncertainty is insufficient.',
+        ):
+            self.assertIn(wording, self.entry)
+
+    def test_food_case_e_exact_object_and_unknown_values(self):
+        request = dict(consumer_package=FOOD, resource_id=RESOURCE, object_id='HEALTH_CONTEXT',
+                       schema_version='1.0', purpose='food_compatibility', material_need=True)
+        observed = dict(root='Central Hub Config', coverage_complete=True, full_file=True, matches=[self.health])
+        self.assertEqual(resolve_fixture(self.contract, request, observed), ('ALLOW', ('HEALTH_CONTEXT',)))
+        for change in (
+            {'matches': []}, {'matches': [self.health, self.health]},
+            {'root': 'OTHER_ROOT'}, {'coverage_complete': False}, {'full_file': False},
+            {'matches': [dict(self.health, object_id='GENERAL')]},
+            {'matches': [dict(self.health, resource_id='OTHER')]},
+            {'matches': [dict(self.health, schema_version='0.2')]},
+            {'matches': [dict(self.health, data={'conditions': 'SYNTHETIC_INVALID'})]},
+        ):
+            with self.subTest(change=change):
+                self.assertEqual(resolve_fixture(self.contract, request, dict(observed, **change)),
+                                 ('UNRESOLVED', ()))
+        for data in ({}, {'conditions': None}, {'conditions': []}):
+            self.assertTrue(validate_object(self.contract, dict(self.health, data=data), 'HEALTH_CONTEXT'))
+        self.assertEqual(self.contract['object_schema']['field_absent_or_null'], 'UNKNOWN')
+        self.assertIn('not proof', self.contract['object_schema']['empty_list'])
+        self.assertIn('leave dependent personalization unresolved', self.entry)
+        self.assertIn('Continue independent analysis or clearly conditional options.', self.entry)
+        self.assertIn('Null, omitted fields and empty lists provide no evidence', self.entry)
+
+    def test_food_current_input_precedence_and_no_write(self):
+        self.assertEqual(brand_input(stored='SYNTHETIC_STORED', explicit='SYNTHETIC_CURRENT'),
+                         ('SYNTHETIC_CURRENT', 'CURRENT_USER_INPUT'))
+        interpretation = self.contract['interpretation']
+        self.assertEqual(interpretation['current_explicit_input'], 'OVERRIDES_STORED_VALUE_FOR_CURRENT_TASK_ONLY')
+        self.assertFalse(interpretation['current_override_mutates_profile'])
+        self.assertFalse(self.contract['mutation']['model_allowed'])
+        self.assertIn('Explicit current user input overrides conflicting stored values', self.entry)
+        self.assertIn('Never infer and store values, write back or persist the chat to Profile.', self.entry)

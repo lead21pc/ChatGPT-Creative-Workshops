@@ -17,7 +17,7 @@ Tự tạo **bốn object riêng** dưới đúng root `Central Hub Config`. Sao
 
 Tên hiển thị chỉ giúp tìm; identity phải khớp `resource_id`, `object_id`, `schema_version: '1.0'` trong toàn bộ payload. Các field đều tùy chọn và nhận `null`; `null`/field thiếu là UNKNOWN. Danh sách trống chỉ nói chưa cung cấp mục nào, không chứng minh không có dị ứng hoặc bệnh lý. Chỉ tự điền điều đã khai báo, không nhờ model suy diễn rồi ghi lại. Object không cần header module, Package ID hoặc runtime role.
 
-Để dùng hợp đồng mới, tự cập nhật Project Sources với Architecture 1.19, Catalog 1.19, Router 1.1 đã đổi pins và hợp đồng Profile 1.0; cập nhật giao diện Shopping core 1.1 trong Library. CI 1.2 không đổi. Việc cài đặt này chưa được thực hiện trong tác vụ. Không cài tệp hướng dẫn này hoặc tệp mẫu công khai làm nguồn giá trị runtime thay thế.
+Để dùng hợp đồng mới, tự cập nhật Project Sources với Architecture 1.20, Catalog 1.20, Router 1.1 đã đổi pins và hợp đồng Profile 1.0; dùng Shopping core 1.1 và cài Food Entry 0.1 trong Library để dùng từng consumer tương ứng. CI 1.2 không đổi. Việc cài đặt này chưa được thực hiện trong tác vụ. Không cài tệp hướng dẫn này hoặc tệp mẫu công khai làm nguồn giá trị runtime thay thế.
 
 ## Quyền đọc hiện hành
 
@@ -27,10 +27,14 @@ Tên hiển thị chỉ giúp tìm; identity phải khớp `resource_id`, `objec
 | HUB-PKG-SHOPPING | PREFERENCES | purchase_filtering, product_comparison |
 | HUB-PKG-SHOPPING | DIETARY_CONSTRAINTS | product_compatibility |
 | HUB-PKG-SHOPPING | HEALTH_CONTEXT | product_compatibility |
+| HUB-PKG-FOOD | GENERAL | food_context |
+| HUB-PKG-FOOD | PREFERENCES | food_selection |
+| HUB-PKG-FOOD | DIETARY_CONSTRAINTS | food_compatibility |
+| HUB-PKG-FOOD | HEALTH_CONTEXT | food_compatibility |
 
-Không có khai báo phù hợp thì từ chối. Có quyền nhưng không cần cho tác vụ thì không đọc. Hub chọn package trước, consumer xác định object/purpose cần thiết, Hub kiểm access và nhu cầu, rồi mới truy xuất đúng object và đọc FULL_FILE. Food chưa tồn tại trong working tree này nên chưa đăng ký; Health là FUTURE / NOT REGISTERED. Khi Food được admission thật, mapping dự kiến để xem xét riêng là GENERAL/food_context, PREFERENCES/food_selection và DIETARY_CONSTRAINTS/food_compatibility; không có HEALTH_CONTEXT mặc định.
+Không có khai báo phù hợp thì từ chối. Có quyền nhưng không cần cho tác vụ thì không đọc. Hub chọn package trước, consumer xác định object/purpose cần thiết, Hub kiểm access và nhu cầu, rồi mới truy xuất đúng object và đọc FULL_FILE. Shopping và Food có quyền theo bảng. Health vẫn là FUTURE / NOT REGISTERED. Food luôn xét yếu tố sức khỏe khi khuyến nghị. Chỉ yêu cầu HEALTH_CONTEXT khi dữ kiện sức khỏe có thể đổi một quyết định cụ thể, input hiện tại chưa đủ và object có thể giải quyết điểm thiếu. Làm rõ tiêu chí mơ hồ trước khi đọc.
 
-Profile cung cấp dữ liệu; consumer tự diễn giải trong hợp đồng chuyên môn. Chỉ dẫn tường minh hiện tại thắng giá trị lưu cho tác vụ hiện tại; không cập nhật object lưu. Thiếu Profile không chặn Shopping độc lập. Profile và Context Snapshot độc lập, không tự chuyển đổi hoặc lưu chat.
+Profile cung cấp dữ liệu; consumer tự diễn giải trong hợp đồng chuyên môn. Chỉ dẫn tường minh hiện tại thắng giá trị lưu cho tác vụ hiện tại; không cập nhật object lưu. Thiếu Profile chỉ để phần cá nhân hóa phụ thuộc ở trạng thái chưa giải quyết. Phần Food hoặc Shopping có đủ dữ kiện độc lập vẫn tiếp tục. Profile và Context Snapshot độc lập, không tự chuyển đổi hoặc lưu chat.
 
 ## Chuẩn bị kiểm thử live thủ công
 
