@@ -1,62 +1,40 @@
 ---
 name: central-hub-maintenance
-description: Tra cứu, audit và bảo trì control, module, pipeline và candidate của Central Hub; kiểm tra trách nhiệm, phụ thuộc, promotion và bằng chứng kiểm chứng. Không dùng chỉ vì đang ở thư mục Hub, cho tác vụ thuần Git hoặc để thực hiện nghiên cứu/tạo ảnh thông thường qua AIS/ImageT.
+description: Tra cứu, audit và bảo trì control, module và pipeline Central Hub. Dùng cho thay đổi hợp đồng, phụ thuộc hoặc bằng chứng Hub. Không dùng cho tác vụ thuần Git hoặc sử dụng AIS/ImageT thông thường.
 ---
 
 # Bảo trì Central Hub
 
-Skill hướng dẫn Codex đọc và bảo trì Central Hub. Kiến trúc và trạng thái hiện hành do nguồn Hub xác lập; skill không là runtime control, Router, Catalog hoặc bản sao cấu hình active. Không áp kiến trúc Hub cho FTH hay các paracosm khác.
+## Nguồn, phạm vi và chủ sở hữu
 
-## Xác định phạm vi và nguồn hiện hành
+Đọc SYSTEM_CONTEXT.md và AGENTS.md áp dụng. Từ Central Hub/README.md, lần theo binding hiện hành tới CI, Router, Architecture, Catalog và các phụ thuộc trực tiếp. Đối chiếu identity, role, status, version và body, không đoán theo tên file hay bản mới nhất. Đọc rationale được yêu cầu khi thiết kế control.
 
-Mặc định tra cứu hẹp khi người dùng chỉ hỏi. Audit hoặc thiết kế chỉ đọc; chỉ sửa khi tác vụ cho phép triển khai. Xác định mục tiêu, phạm vi đọc/ghi và điều kiện hoàn tất; không biến phát hiện thành quyền tự sửa hoặc promotion.
+Hub CI giữ thao tác, giai đoạn, quyền, trạng thái và chuẩn kết luận. Router giữ lựa chọn theo scope, composition, closure, phân giải và lỗi đọc dùng chung. Catalog khai báo admission/binding. Architecture giữ hợp đồng kỹ thuật. Module giữ quyết định domain và trạng thái cục bộ, pipeline giữ thủ tục thực thi. Platform thực hiện truy xuất và gọi công cụ.
 
-Tìm repository chứa target từ working tree hiện tại. Vị trí đã biết là `C:/Users/Sheeplark/Desktop/CI Versioning Audit & Changelog/Central Hub`, chỉ dùng làm gợi ý khi không có target rõ. Không chuyển sang checkout khác để né trạng thái local; nếu không xác định được nguồn, báo thiếu và hỏi phần cần thiết.
+## ACTIVE-FIRST và NO CANDIDATE
 
-Đọc `SYSTEM_CONTEXT.md` ở repository root và các `AGENTS.md` áp dụng trước khi phân tích. Bắt đầu từ `Central Hub/README.md`, lần theo tham chiếu tới bộ CI, Router, Architecture và root Package Catalog hiện hành. Đọc `Central Hub/RUNTIME_EVIDENCE_CHANGELOG.md` khi tác vụ liên quan runtime status, deployment, Library retrieval, integration, smoke/live verification, promotion/migration verification, claim rằng một path chưa được chứng minh, hoặc quyết định maintenance phụ thuộc live state. Không cần đọc changelog cho tác vụ Git thuần túy hoặc lookup hoàn toàn không liên quan runtime. Chỉ đọc phần cần cho câu hỏi; khi audit hoặc sửa quan hệ giữa các tầng, đọc các định nghĩa liên quan trong bộ đó. Tiếp tục tới module, pipeline, manifest, candidate và tests được tham chiếu trực tiếp. Đọc rationale mà nguồn áp dụng yêu cầu trước khi thiết kế control liên quan.
+Audit, thiết kế và proposal chỉ đọc. Đối chiếu đề xuất với working tree và phạm vi được giao. Với đề xuất từ Revamp hoặc nơi khác, dùng ACCEPT, ACCEPT WITH LOCAL CORRECTION hoặc RETURN FOR REPLAN. Giữ ngữ nghĩa và tiêu chí kiểm phù hợp, bỏ vòng tạo candidate và promotion của đề xuất. Quyền triển khai vẫn phải được cấp.
 
-Không chọn phiên bản theo tên file, số lớn nhất, ngày sửa hoặc sự hiện diện. Đối chiếu status, binding, tham chiếu và quyết định đã chấp nhận. Nếu nguồn hiện hành lệch nhau, chỉ rõ điểm lệch; không tự coi README, file mới hơn hay candidate là thẩm quyền thắng. Skill không hardcode hoặc tự sở hữu phiên bản active, package count, Library locator hay kết quả live. Runtime evidence continuity được đọc từ Hub-owned runtime evidence changelog khi material; changelog ghi bằng chứng, không thay runtime source/config.
+Khi đã được phép, sửa trực tiếp owner active, đồng bộ binding và tham chiếu chịu tác động, kiểm chứng rồi commit đúng phạm vi với project-git-workflow. Không yêu cầu phê duyệt promotion lần hai. Giữ một binding được chấp nhận, exact identity và kiểm phụ thuộc. Cài Project/Library và push cần quyền riêng.
 
-## Giữ continuity của bằng chứng runtime
+Dùng Git làm lịch sử và rollback mặc định. Chỉ dùng archive riêng khi được yêu cầu, có dependency cụ thể, hoặc Git và bộ binding tương thích không đủ để khôi phục. Các archive hiện có là nguồn lịch sử, không dùng làm runtime fallback.
 
-Trước khi kết luận một Central Hub runtime path là `NOT_VERIFIED`, `UNKNOWN` hoặc `NOT_RUN`, kiểm runtime evidence changelog cho một PASS còn applicable và chưa superseded/invalidated. PASS đó là prior evidence trong đúng scope/revision; thiếu lần test mới không xóa nó. `RECORDED PASS != CURRENT REPRODUCTION`, `OLD REVISION PASS != NEW REVISION PASS`, `NO NEW EVIDENCE != STATUS RESET`. Nếu người dùng yêu cầu chạy lại live test hiện tại, record cũ không thay việc tái hiện; nếu câu hỏi là path từng được chứng minh chưa, record phù hợp trả lời continuity đó.
+## Hợp đồng hiện hành
 
-Khi người dùng xác nhận rõ một runtime test đã PASS và scope/revision/result đủ xác định, phân loại `USER_CONFIRMED_LIVE_PASS`; không yêu cầu họ chứng minh lại chỉ vì Codex không tự chạy test. Nếu local write thuộc phạm vi tác vụ, cập nhật `Current verified runtime status` và append entry ngắn vào `Verification log` trong cùng task, giữ provenance và giới hạn PASS. Nếu task read-only hoặc không cho sửa, không mutate; báo proposed changelog delta cần ghi. Output không kèm xác nhận PASS, hoặc scope/revision chưa đủ rõ, không được tự nâng thành user-confirmed PASS.
+Control active chỉ chứa ngữ nghĩa và metadata cần để chọn, xác minh hoặc thực hiện hợp đồng hiện hành. Thay điều khoản đã lỗi thời tại owner. Ghi quan sát vào Central Hub/RUNTIME_EVIDENCE_CHANGELOG.md. Dùng tài liệu thiết kế/cài đặt hiện có khi cần giữ rationale hay hướng dẫn migration. README dẫn đến nguồn active. Git giữ diff và predecessor.
 
-Nếu evidence mới xác nhận FAIL trong cùng scope/revision, không xóa lịch sử PASS: cập nhật current status thành superseded/invalidated trong affected scope và append failure entry. Khi revision/path đổi material, giữ PASS cũ như lịch sử và để revision mới unverified cho tới khi có evidence riêng. Actual newer evidence thắng cho current status trong phạm vi của nó; reconcile changelog thay vì dùng record cũ phủ nhận failure mới.
+## Bằng chứng theo hành vi
 
-## Chọn chủ sở hữu trước khi sửa
+Tra changelog trước khi kết luận một hành vi chưa được xác minh. Ghi hành vi, điều kiện, môi trường, kết quả, provenance và revision nếu biết. Phân biệt USER_CONFIRMED_LIVE_PASS, CODEX_REPRODUCED_LIVE, UI_OBSERVATION, kiểm tĩnh, fixture/mô phỏng và tài liệu nhà cung cấp. PASS người dùng xác nhận trực tiếp có giá trị trong môi trường và phạm vi đã thử.
 
-Dùng các ranh giới sau để định hướng, rồi kiểm lại hợp đồng hiện hành trong nguồn:
+Xét lại phần PASS bị tác động bởi thay đổi có thể đổi kết quả hoặc bằng chứng mới trái với kết quả trong cùng điều kiện. Giữ các PASS độc lập và bản ghi gốc. Kiểm riêng việc cài hoặc đọc exact object/body khi mệnh đề cần nó. Không yêu cầu xác nhận lại chỉ vì đổi version. Bằng chứng cũ không thay một lần tái hiện hiện tại đã được yêu cầu.
 
-- Hub CI giữ operation, stage, truth/state, quyền hành động, nhu cầu kiểm chứng và cách giải thích.
-- Router chọn/composition package theo phạm vi và kiểm tra phụ thuộc/đọc nguồn; Catalog khai báo inventory và binding.
-- Architecture giữ hợp đồng kỹ thuật dùng chung; module giữ hành vi chuyên biệt theo role và scope.
-- Hub chọn entrypoint pipeline; AIS/ImageT giữ thủ tục và phụ thuộc nội bộ của mình. Đọc nội bộ khi cần bảo trì pipeline, không chuyển trách nhiệm đó lên Hub.
-- Platform/tool thực hiện truy xuất và thao tác thực tế; chỉ dẫn mô tả hành vi không chứng minh công cụ đã chạy.
+Tài liệu im lặng, thiếu hoặc chậm cập nhật không hạ quan sát live. Chỉ ghi mâu thuẫn nếu tài liệu khẳng định trái với quan sát trong cùng phạm vi. Giữ cả hai nguồn và giới hạn kết luận theo môi trường đã quan sát. Ghi một entry khi có bằng chứng mới và quyền ghi, cập nhật tóm tắt khi kết luận hiện hành đổi. Audit chỉ đề xuất delta khi có căn cứ mới.
 
-Đối chiếu đề xuất với hành vi đang có và failure/yêu cầu cụ thể. Ưu tiên sửa tại chủ sở hữu hiện có; chỉ thêm thành phần khi trách nhiệm cần thiết chưa biểu đạt được bằng cơ chế đang dùng. Không suy ra role từ prefix, quan hệ ngữ nghĩa từ thư mục, hoặc hard dependency từ một chỗ nhắc tên. Kiểm Refines/Complements/Requires theo khai báo thực, không tự biến refinement thành replacement, autoload hoặc thứ tự ưu tiên.
+## Hồi quy hiện hành theo phạm vi ảnh hưởng
 
-Với đề xuất từ Revamp hoặc chat khác, dùng `ACCEPT`, `ACCEPT WITH LOCAL CORRECTION` hoặc `RETURN FOR REPLAN` dựa trên nguồn thực tế. Nêu bằng chứng cho phần xung đột và phương án sửa đủ dùng; thiết kế lại ngoài phạm vi được duyệt vẫn cần người dùng quyết định.
+Giữ kiểm hợp đồng hiện hành và lỗi còn tái diễn. Gộp ca trùng sau khi giữ đủ ca biên. Chuyển ca và helper còn dùng tới suite của owner trước khi bỏ test khóa candidate, promotion, revision hay migration đã hết nhiệm vụ. Kiểm imports trước khi bỏ file. Dùng Git cho test đã retire.
 
-## Thực hiện thay đổi được duyệt
+Domain-only chạy test owner. Đổi interface thêm consumer trực tiếp. Đổi hợp đồng chung chạy shared và consumer chịu ảnh hưởng. Full Hub suite dành cho thay đổi ngữ nghĩa CI, thuật toán routing/composition, mô hình admission, phân giải dùng rộng, context/state chung, topology lớn, dọn test nhiều owner hoặc yêu cầu rõ. Dọn lịch sử hay định dạng dùng kiểm tương xứng.
 
-Dùng `project-git-workflow` cho baseline repository, phân loại dirty state, phạm vi ghi, staging và commit đúng file task-owned. Giữ nguyên thay đổi ngoài phạm vi. Audit chỉ đọc không stage/commit. Quyền triển khai local không tự cho phép push, PR hoặc thao tác Project/Library.
-
-Trước sửa, xác định thay đổi nằm ở core, package/module, pipeline hay candidate; lần theo các tham chiếu và bên sử dụng trực tiếp bị ảnh hưởng. Chỉ mở rộng đọc theo phụ thuộc cần thiết. Không sửa tất cả các tầng chỉ để chúng trông đồng bộ.
-
-Giữ candidate ngoài active cho tới khi có quyết định promotion đúng phạm vi. Khi được duyệt promotion/migration, kiểm bản được chọn, identity/role/version, binding, phụ thuộc, tham chiếu và các giả định tests/docs chịu tác động. Không tự tạo Registry, Catalog cục bộ, manifest hoặc Router mới nếu cơ chế hiện có đủ dùng. Không suy từ commit hoặc Catalog membership ra runtime activation.
-
-Nếu tạo successor thay thế artifact cũ, dùng `artifact-source-archive` cho cơ chế archive và kiểm byte-exact predecessor trước khi báo hoàn tất. Candidate song song hoặc sửa tại chỗ không tự cần archive. Không đọc archive để làm nguồn active/fallback; chỉ đọc lịch sử khi người dùng yêu cầu cụ thể. Cài hoặc cập nhật Project/Library là hành động riêng, cần được cho phép trong tác vụ; không báo đã triển khai chỉ từ thay đổi repository.
-
-Runtime control/config dùng ngôn ngữ do hợp đồng Hub hiện hành quy định; không áp quy tắc đó lên ghi chú dành cho người đọc, trích dẫn hoặc nội dung người dùng. Trả lời người dùng bằng tiếng Việt theo chỉ dẫn áp dụng.
-
-## Kiểm chứng và báo cáo
-
-Chọn kiểm tra từ nội dung thay đổi: parse YAML/metadata khi sửa cấu hình, kiểm tham chiếu/binding/hash khi chúng chịu tác động, và các ca hợp đồng/hồi quy liên quan trong `Central Hub/tests/` hoặc tests do pipeline sở hữu. Khi thay đổi hợp đồng dùng chung, chạy bộ hồi quy Hub có liên quan rộng hơn. Không tạo tests chỉ khớp câu chữ của skill; không chạy kiểm tra toàn repository cho một tra cứu hẹp.
-
-Đọc lại đầu ra thực tế và diff; kiểm cả điều được đổi và ràng buộc cần giữ. Với artifact văn bản, kiểm UTF-8, BOM, line endings, whitespace và `git diff --check` trong phạm vi ghi; giữ quy tắc byte-exact nơi có yêu cầu. Sửa fixture hoặc kỳ vọng chỉ khi hợp đồng mới đã được duyệt, không để che failure.
-
-Tách bằng chứng repository/static, mô phỏng/fixture, UI quan sát, người dùng báo cáo và live được tái hiện. `SEARCH HIT != FULL READ`, `SELECTED != EXECUTED`, `STATIC PASS != LIVE PASS`, `REPOSITORY ACTIVE != PROJECT DEPLOYED`. Khi thiếu bằng chứng quyết định, giữ UNKNOWN và chặn phần phụ thuộc cần nó; tiếp tục phần độc lập có đủ căn cứ.
-
-Báo ngắn gọn thay đổi/kết luận, nguồn hoặc file liên quan, kiểm chứng đã thực hiện và phần chưa kiểm chứng. Nếu chưa thể xác minh runtime, nêu thao tác tái hiện và kết quả cần quan sát phù hợp với thay đổi; không tự chạy live test ngoài quyền tác vụ. Tách local commit khỏi push và khỏi cài đặt runtime.
+Kiểm parse, identity, binding, closure, hash và tham chiếu theo ảnh hưởng. Đọc diff, kiểm định dạng và báo giới hạn bằng chứng. Giữ quyền thao tác, ngôn ngữ runtime và quy tắc Git của tác vụ.

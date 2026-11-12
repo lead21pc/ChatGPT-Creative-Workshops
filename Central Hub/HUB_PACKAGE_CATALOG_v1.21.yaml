@@ -1,0 +1,147 @@
+format_version: '1'
+module_id: HUB-CORE-PACKAGE-CATALOG
+runtime_role: PACKAGE_CATALOG
+scope: Major Central Hub package entrypoints only; no leaf-module inventory.
+status: ACTIVE
+version: '1.21'
+active: true
+library_discovery_root: Central Hub Config
+packages:
+- package_id: HUB-PKG-TECHNICAL
+  entrypoint_module_id: HUB-TECH-ENTRY
+  runtime_role: REASONING_PROFILE
+  status: ACTIVE
+  version: '1.2'
+  applicability: Mechanism reasoning, distinguishing causes during diagnosis or bounded technical-change evaluation;
+    not simple technical explanations alone.
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    artifact: Technical/HUB-TECH-ENTRY_v1.2.md
+  local_catalog: null
+  requires: []
+  binding_mode: LIBRARY_MODULE
+- package_id: HUB-PKG-CONCEPT-DEVELOPMENT
+  entrypoint_module_id: HUB-CON-ENTRY
+  runtime_role: DOMAIN_CONTROL
+  status: ACTIVE
+  version: '1.8'
+  applicability: Concept-specific consistency/causal analysis, bounded concept audit, fictional realization/deepening
+    or specialized premise exploration, including explicit requests for specialized idea expansion. Explicit requests
+    for specialized naming generation, analysis, comparison or evaluation admit this package even when brief and otherwise
+    baseline-sized. Admission is not operation activation; only the package-local interface validates control syntax
+    and strategy. Ordinary topic mentions and lightweight brainstorming alone need no package. Local applicability and
+    leaf selection belong to this package interface. Also admit the exact case-sensitive standalone token /AD anywhere
+    in the current user-authored directive turn, including when ordinary routing would choose NONE, solely to evaluate
+    Concept anti-drift applicability. Require whitespace or input boundaries; no aliases, lowercase or longer tokens.
+    Exclude quotes, inline/fenced code, sources, attachments, documentation, analyzed prompts, tool/assistant text and
+    prior turns. No span, terminator or persistence. This cue selects no local control or operation; all local applicability,
+    dependencies and execution remain package-owned.
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    artifact: Concept Development/HUB-CON-ENTRY_v1.8.md
+  local_catalog:
+    module_id: HUB-CON-CATALOG
+    package_id: HUB-PKG-CONCEPT-DEVELOPMENT
+    runtime_role: PACKAGE_CATALOG
+    status: ACTIVE
+    version: '1.7'
+    location:
+      class: LIBRARY
+      root: Central Hub Config
+      artifact: Concept Development/HUB-CON-CATALOG_v1.7.yaml
+  requires: []
+  binding_mode: LIBRARY_MODULE
+- package_id: HUB-PKG-AUTHORING
+  entrypoint_module_id: HUB-AUTH-ENTRY
+  runtime_role: CAPABILITY
+  status: ACTIVE
+  version: '1.0'
+  applicability: Admit only an exact first non-empty user-authored line of the form /AUTHOR <TARGET> [<PRESET>] [ISOLATED].
+    Brackets indicate optional tokens, not literal text. TARGET is AIS, IMAGET, CODEX, WORK or GENERIC. PRESET is P1,
+    P2 or P3. ISOLATED, when present, is last. Match case-sensitively with one ASCII space per token and no surrounding
+    whitespace. Skip leading empty or space/tab-only lines; accept LF and CRLF. The rest of the message is the request.
+    Do not trim non-empty lines, strip quote or fence markers, normalize or repair. Quoted, code, retrieved, attached,
+    prior-turn, tool and later-line commands do not activate. Reject all extra tokens, DEFAULT and plus-suffix forms;
+    + CREATIVE and + BRAINSTORM are unsupported and non-activating. Never downgrade them to a plain call. Reassess every
+    turn; no inferred target, preset or isolation. Pass the admitted target and modifiers to Authoring for prompt construction.
+    No downstream activation.
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    artifact: Authoring/HUB-AUTH-ENTRY_v1.0.md
+  local_catalog: null
+  requires: []
+  binding_mode: LIBRARY_MODULE
+- package_id: HUB-PKG-AIS
+  entrypoint_module_id: HUB-PIPE-AIS
+  runtime_role: TOOL_PIPELINE
+  status: LEGACY_EXISTING
+  version: '1.3'
+  applicability: Hub-assigned external evidence verification, collection, comparison, synthesis or option discovery,
+    including explicit search requests. Also admit an exact case-sensitive standalone /SEARCH cue (whitespace/input boundaries)
+    in the current user-authored directive, excluding quotes, code, sources, attachments, documentation, assistant/tool
+    text and prior turns. Admission reaches AIS for scoped validation only; AIS owns grammar and execution. AUTO evidence-need
+    selection remains available without this cue.
+  location:
+    class: PROJECT_SOURCES
+    declared_source_path: tool_pipelines/AIS/AIS_PIPELINE_v1.3.md
+    source_name: AIS_PIPELINE_v1.3.md
+    identity_basis: Root Catalog plus exact declared source; catalog Module ID is routing alias, not an existing header.
+  local_catalog: null
+  requires: []
+  binding_mode: LEGACY_PROJECT_SOURCE
+- package_id: HUB-PKG-IMAGET
+  entrypoint_module_id: HUB-IMAGET-ENTRY
+  runtime_role: TOOL_PIPELINE
+  status: ACTIVE
+  version: '1.5'
+  applicability: Actual image analysis, creation, editing, variation or correction; not image discussion or descriptive
+    prose alone.
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    artifact: ImageT/HUB-IMAGET-ENTRY_v1.5.md
+  local_catalog:
+    module_id: HUB-IMAGET-CATALOG
+    package_id: HUB-PKG-IMAGET
+    runtime_role: PACKAGE_CATALOG
+    status: ACTIVE
+    version: '0.3'
+    location:
+      class: LIBRARY
+      root: Central Hub Config
+      artifact: ImageT/HUB-IMAGET-CATALOG_v0.3.yaml
+  requires: []
+  binding_mode: LIBRARY_MODULE
+- package_id: HUB-PKG-SHOPPING
+  entrypoint_module_id: HUB-SHOP-ENTRY
+  runtime_role: DOMAIN_CONTROL
+  status: ACTIVE
+  version: '1.2'
+  applicability: Purchase-context product identification or discovery, purchase constraints and preferences, Offer or
+    storefront/channel comparison, price or stock interpretation, or commerce-specific research preparation or interpretation.
+    A product mention alone does not establish Shopping scope.
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    artifact: Shopping/HUB-SHOP-ENTRY_v1.2.md
+  local_catalog: null
+  requires: []
+  binding_mode: LIBRARY_MODULE
+- package_id: HUB-PKG-FOOD
+  entrypoint_module_id: HUB-FOOD-ENTRY
+  runtime_role: DOMAIN_CONTROL
+  status: ACTIVE
+  version: '0.2'
+  applicability: Materially useful culinary analysis, cooking decomposition, diagnosis, functional substitution, serving
+    or storage planning, regional interpretation, or food recommendation. An ordinary food mention or simple food question
+    that needs no culinary specialization does not select Food.
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    artifact: Food/HUB-FOOD-ENTRY_v0.2.md
+  local_catalog: null
+  requires: []
+  binding_mode: LIBRARY_MODULE

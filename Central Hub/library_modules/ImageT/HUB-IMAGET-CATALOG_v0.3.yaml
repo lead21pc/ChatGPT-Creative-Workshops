@@ -1,0 +1,39 @@
+format_version: '1'
+module_id: HUB-IMAGET-CATALOG
+package_id: HUB-PKG-IMAGET
+runtime_role: PACKAGE_CATALOG
+scope: Optional specialized ImageT leaf inventory; no execution or field authority.
+status: ACTIVE
+version: '0.3'
+active: true
+entries:
+- module_id: HUB-IMAGET-HUM-CONSTRUCTION
+  package_id: HUB-PKG-IMAGET
+  runtime_role: DOMAIN_PROCEDURE
+  status: ACTIVE
+  version: '0.2'
+  active: true
+  scope: Conditional expression of already-authorized humanoid structure.
+  applicability: Actual humanoid structure-expression need within fields already authorized for construction; subject
+    alone is insufficient.
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    artifact: ImageT/HUB-IMAGET-HUM-CONSTRUCTION_v0.2.md
+  requires: []
+- module_id: HUB-IMAGET-HUM-DESIGN-PREFERENCE
+  package_id: HUB-PKG-IMAGET
+  runtime_role: PREFERENCE
+  status: ACTIVE
+  version: '0.4'
+  active: true
+  scope: Soft humanoid aesthetic relationships under separate explicit authority.
+  activation: explicit_current_operation_only
+  eligibility: Separate explicit current-operation preference authority; preserved input requires exact preference-authorized
+    fields.
+  applicability: Soft aesthetic relationships for authorized existing humanoid components; no design authority from selection.
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    artifact: ImageT/HUB-IMAGET-HUM-DESIGN-PREFERENCE_v0.4.md
+  requires: []

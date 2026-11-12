@@ -1,4 +1,4 @@
-> Xem [bộ active trong repository](README.md) để chọn đúng revision khi cài. Phase 1 cập nhật cách Concept Entry phát triển cùng tiền đề. Cú pháp lệnh bên dưới vẫn áp dụng. Kết quả smoke routing do người dùng cung cấp và giới hạn xác minh được ghi trong [changelog bằng chứng](RUNTIME_EVIDENCE_CHANGELOG.md#namespace-stable-baseline-2026-11-12).
+> Xem [bộ active và hướng dẫn cài](README.md), cùng [changelog bằng chứng](RUNTIME_EVIDENCE_CHANGELOG.md).
 
 # Cách dùng Naming
 
@@ -86,7 +86,7 @@ Bạn vẫn có thể cố ý chọn tên có nghĩa trái với vai trò nhân 
 
 ## Context Snapshot
 
-Context Snapshot đóng băng một phần kết quả có phạm vi để dùng lại làm baseline hoặc so sánh. Nó giữ riêng kết quả nghiên cứu, phần phát triển sáng tạo, giả định, quyết định thật của người dùng và các câu hỏi/xung đột còn mở; không chỉ tóm tắt toàn chat. Hợp đồng Architecture 1.16 ACTIVE trong repository; chưa deploy hoặc kiểm chứng live/stress phần bổ sung này.
+Context Snapshot đóng băng một phần kết quả có phạm vi để dùng lại làm baseline hoặc so sánh. Nó giữ riêng kết quả nghiên cứu, phần phát triển sáng tạo, giả định, quyết định thật của người dùng và các câu hỏi/xung đột còn mở; không chỉ tóm tắt toàn chat. Xem [hợp đồng Context Snapshot](shared_resources/CONTEXT_SNAPSHOT.md) để biết cách tạo, tham chiếu và so sánh.
 
 Tạo bằng yêu cầu tự nhiên, chỉ rõ đầu vào truy cập được và phần loại trừ. Ví dụ minh họa dưới đây chỉ dùng được khi A và B đã xác định đủ rõ:
 

@@ -6,22 +6,14 @@ This file preserves runtime-evidence continuity for Central Hub maintenance. It 
 
 Repository checks, fixtures and static tests remain separate evidence classes. Before a maintenance task concludes that a material runtime path is `NOT_VERIFIED`, `UNKNOWN` or `NOT_RUN`, inspect the current entries and the chronological log for an applicable, non-superseded result. User-confirmed runtime results are valid provenance when attributed as such; direct tool or UI reproduction must use its own provenance label. New actual evidence controls current status in its affected scope and must be reconciled here without deleting earlier history.
 
-Evidence applies only to the recorded path, scope and revisions. A later material revision needs its own verification. A later failure or replacement may invalidate current applicability for the affected scope; absence of a newer test does not by itself erase a still-applicable result. A recorded result can establish that a path was verified, but cannot substitute for a requested current reproduction.
-
-```text
-CHANGELOG RECORDS EVIDENCE
-CHANGELOG DOES NOT CREATE EVIDENCE
-
-STATIC PASS != LIVE PASS
-USER-CONFIRMED LIVE PASS != MODEL INFERENCE
-RECORDED PASS != CURRENT REPRODUCTION
-OLD REVISION PASS != NEW REVISION PASS
-PASS IN ONE PATH != GLOBAL SYSTEM PASS
-NOT RECHECKED != FAILED
-NO NEW EVIDENCE != STATUS RESET
-```
+Bằng chứng đi theo hành vi và điều kiện đã thử. Giữ PASS còn áp dụng qua thay đổi revision không ảnh hưởng hành vi. Khi có thay đổi material hoặc kết quả mới mâu thuẫn, đánh giá lại đúng phần chịu tác động và giữ bản ghi gốc. Xác minh cài đặt, exact object/body và lần tái hiện hiện tại riêng khi mệnh đề cần chúng. Tài liệu nhà cung cấp im lặng không làm mất quan sát trực tiếp. Nếu tài liệu khẳng định trái với quan sát trong cùng phạm vi, giữ cả hai và giới hạn kết luận theo môi trường.
 
 ## Current verified runtime status
+
+### 2026-11-13 — Folder Library và refactor cấu trúc
+
+- **USER_CONFIRMED_LIVE_PASS:** người dùng trực tiếp thử trong runtime liên quan và xác nhận model có thể phân giải, đọc và dùng nội dung trong folder Library lồng nhau. Kết quả này cập nhật trạng thái khả năng folder còn chưa xác minh ở các entry trước. Không suy thành bảo đảm mọi môi trường, exact revision/object hoặc danh sách file của bộ mới.
+- Bộ cấu trúc mới là thay đổi repository. Chưa cài bộ Project Sources, di chuyển object, đối chiếu exact body trong Library hoặc thử đường live mới. PASS hiện có giữ phạm vi hành vi đã thử. Việc resolve toàn bộ object ở layout một folder trực tiếp cho mỗi package vẫn cần kiểm khi thực sự cài.
 
 ### FOOD_0_1_2026_11_12
 

@@ -3,7 +3,7 @@
 Trạng thái: NOT_RUN. Đây là hướng dẫn kiểm tra live về sau, không phải dependency runtime hoặc bằng chứng về độ bền hành vi.
 
 1. Chọn hội thoại thật đã có kết quả tìm kiếm liên quan và nhiều lượt trao đổi tiếp. Ghi nguồn, thời điểm và câu hỏi kiểm tra hiện tại. Giữ nguyên lịch sử, quyền công cụ, câu hỏi, mục tiêu và giới hạn trong bốn nhánh từ cùng điểm này.
-2. Ghi revision thực sự được cài/đọc: A dùng baseline trước sửa; B/C/D dùng stack mới. File trong repository không chứng minh runtime đã đọc revision đó.
+2. Ghi revision thực sự được cài/đọc: A dùng baseline trước sửa đã chọn trong Git; B/C/D dùng stack active đang được kiểm. Ghi rõ revision cho từng nhánh. File trong repository không chứng minh runtime đã đọc revision đó.
 3. Chạy từng điều kiện dưới đây; lưu nguyên đầu vào, đầu ra và dấu vết công cụ quan sát được.
 
 | Nhánh | Chỉ thị hiện tại | Quan sát chính |

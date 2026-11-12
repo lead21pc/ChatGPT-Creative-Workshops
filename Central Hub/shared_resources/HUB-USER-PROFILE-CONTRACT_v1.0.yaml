@@ -77,6 +77,7 @@ access:
 read:
   binding: LIBRARY_SHARED_RESOURCE
   root: Central Hub Config
+  folder: Shared
   contract_source: Exact shared contract declared by the bound Hub Architecture and installed with it in Project Sources.
   request_fields: [consumer_package, resource_id, object_id, schema_version, purpose, material_need]
   sequence:
@@ -90,14 +91,14 @@ read:
     - HANDOFF_USER_DECLARED_CONTEXT
   automatic_load: false
   read_boundary: ONE_OBJECT_PER_LIBRARY_OBJECT
-  identity: Exact root, resource_id, object_id and bound schema_version; no module headers.
-  coverage: Finish relevant root-scoped pagination/loading and inspect plausible matches; exactly one acceptable object.
+  identity: Exact root and Shared folder, resource_id, object_id and bound schema_version; no module headers.
+  coverage: Check relevant pagination and plausible matches within the root for exactly one acceptable Shared object.
   internal_identity: Prefer verified object/revision identity when available; IDs may remain null after sufficient scoped resolution.
   ambiguity: UNRESOLVED_NO_FIRST_LATEST_OR_LOOKALIKE_SELECTION
   unavailable: DEPENDENT_PERSONALIZATION_UNRESOLVED_CONTINUE_INDEPENDENT_WORK
   no_need: DO_NOT_RETRIEVE
   no_access: DO_NOT_RETRIEVE
-  forbidden_fallbacks: [repository, local_filesystem, project_sources, memory, prior_chat, archive, other_library_root]
+  forbidden_fallbacks: [repository, local_filesystem, project_sources, memory, prior_chat, archive, other_library_root, other_folder]
 interpretation:
   fact_role: USER_DECLARED_CONTEXT
   owner: CONSUMER_DOMAIN_CONTRACT

@@ -1,72 +1,24 @@
-"""Static/spec verification only: no model, parser service, storage or live isolation proof."""
-import hashlib
-import json
+"""Context Snapshot remains a scoped shared data contract."""
 import re
-import subprocess
 import unittest
 
 import yaml
 
-from test_hub_contracts import ROOT, load
-
-
-BASELINE = 'a4e9981c736e18518bc9150b8a8f0da238d4dfb1'
-RELEASE = ROOT / 'Source_archive'
-
-ARCHIVE = ROOT / 'Source_archive/Context Snapshot contract 2026-11-10'
-
-
-def baseline(path):
-    return subprocess.check_output(['git', 'show', f'{BASELINE}:Central Hub/{path}'], cwd=ROOT)
+from test_hub_contracts import ARCHITECTURE, ROOT, ROOT_CATALOG, load
 
 
 class ContextSnapshotTests(unittest.TestCase):
-    # Exact 1.16 promotion snapshot; active 1.17 regression is tested in test_user_profile.py.
     @classmethod
     def setUpClass(cls):
-        cls.arch = (RELEASE / 'HUB_ARCHITECTURE_v1.16.md').read_text(encoding='utf-8')
-        cls.contract = cls.arch.split('## 13. Shared immutable Context Snapshot artifact', 1)[1]
+        cls.contract = (ROOT / 'shared_resources/CONTEXT_SNAPSHOT.md').read_text(encoding='utf-8')
         cls.spec = (ROOT / 'tests/CONTEXT_SNAPSHOT_TEST_CASES.md').read_text(encoding='utf-8')
 
-    def test_active_binding_and_no_new_package_or_router_logic(self):
-        router = load(RELEASE / 'HUB_ROUTER_v1.1_before_profile_2026-11-11.yaml')
-        catalog = load(RELEASE / 'HUB_PACKAGE_CATALOG_v1.16.yaml')
-        old = yaml.safe_load(baseline('HUB_PACKAGE_CATALOG_v1.15.yaml'))
-        expected = dict(old, version='1.16', identity_binding=
-                        'EXACT_INSTALLED_V1_1_CI_ROUTER_WITH_V1_16_ARCHITECTURE_CATALOG_CONTRACT')
-        self.assertEqual(catalog, expected)
-        self.assertEqual(len(catalog['packages']), 6)
-        self.assertEqual((RELEASE / 'HUB_ROUTER_v1.1_before_profile_2026-11-11.yaml').read_bytes(),
-                         baseline('HUB_ROUTER_v1.1.yaml').replace(b'1.15', b'1.16'))
-        for owner, ext in [('architecture', 'md'), ('root_catalog', 'yaml')]:
-            self.assertEqual(router['contracts'][owner]['version'], '1.16')
-            self.assertTrue((RELEASE / router['contracts'][owner]['file']).is_file())
-        self.assertIn('Status: ACTIVE\nVersion: 1.16', self.arch)
-        self.assertIn('ACTIVE PRODUCTION CONTRACT', self.contract)
-        self.assertIn('exact installed Architecture/Catalog 1.16 pins', self.arch)
-
-    def test_preexisting_architecture_only_bounded_metadata_correction(self):
-        old = baseline('HUB_ARCHITECTURE_v1.15.md').decode('utf-8')
-        expected = old.replace('architecture v1.15', 'architecture v1.16').replace(
-            'Version: 1.15', 'Version: 1.16').replace('This v1.15 runtime contract',
-            'This v1.16 runtime contract').replace('common failure behavior\n',
-            'common failure behavior and shared Context Snapshot data artifacts\n').replace(
-            'status ACTIVE, version 1.14.', 'status ACTIVE, version 1.16.').replace(
-            'exact installed Architecture/Catalog 1.15 pins',
-            'exact installed Architecture/Catalog 1.16 pins')
-        self.assertEqual(self.arch.split('## 13. Shared immutable Context Snapshot artifact', 1)[0],
-                         expected + '\n\n')
-
-    def test_ci_and_every_contributing_owner_remain_byte_unchanged(self):
-        paths = subprocess.check_output(['git', 'ls-tree', '-r', '--name-only', BASELINE,
-                                        '--', 'library_modules', 'tool_pipelines', 'HUB_CI_v1.2.md'],
-                                       cwd=ROOT, text=True).splitlines()
-        self.assertTrue(paths)
-        for path in paths:
-            # ls-tree prints repository-relative paths even when run from Central Hub.
-            rel = path.removeprefix('Central Hub/')
-            with self.subTest(path=rel):
-                self.assertEqual(subprocess.check_output(['git', 'show', f'f06dea5:Central Hub/{rel}'], cwd=ROOT), baseline(rel))
+    def test_context_snapshot_is_on_demand_project_source(self):
+        body = ARCHITECTURE.read_text(encoding='utf-8')
+        self.assertIn('consult them only on the corresponding scoped need', body)
+        self.assertIn('CONTEXT_SNAPSHOT.md', body)
+        self.assertNotIn('CONTEXT_SNAPSHOT', str(load(ROOT_CATALOG)))
+        self.assertNotIn('HUB-USER-PROFILE', self.contract)
 
     def test_F1_F10_contract_boundaries(self):
         requirements = {
@@ -121,27 +73,3 @@ class ContextSnapshotTests(unittest.TestCase):
                     self.assertEqual(entry['status'], 'proposed')
                 if entry['key'] == 'enforcement':
                     self.assertEqual(entry['status'], 'unknown')
-
-    def test_spec_covers_all_requested_scenarios_and_evidence_limits(self):
-        for case in list('ABCDEFGHIJ') + [f'N{i}' for i in range(1, 9)]:
-            self.assertRegex(self.spec, rf'(?m)^\| {case} \|')
-        for token in ['LIVE VERIFICATION: NOT_RUN', 'REAL-CONTEXT STRESS: NOT_RUN',
-                      'FORMAT CORRECTNESS != REAL CONTEXT ISOLATION PROVEN']:
-            self.assertIn(token, self.spec)
-        self.assertIn('Project deployment: NOT_PERFORMED', self.contract)
-        self.assertIn('live verification and real-context stress: NOT_RUN', self.contract)
-
-    def test_archive_integrity_and_active_predecessors_absent(self):
-        receipt = json.loads((ARCHIVE / 'ARCHIVE_RECEIPT.json').read_text(encoding='utf-8'))
-        self.assertEqual(set(receipt), {'HUB_ARCHITECTURE_v1.15.md', 'HUB_PACKAGE_CATALOG_v1.15.yaml',
-                                        'HUB_ROUTER_v1.1.yaml'})
-        for path, expected_hash in receipt.items():
-            data = (ARCHIVE / path).read_bytes()
-            self.assertEqual(hashlib.sha256(data).hexdigest(), expected_hash)
-            self.assertEqual(data, baseline(path))
-            if path != 'HUB_ROUTER_v1.1.yaml':
-                self.assertFalse((ROOT / path).exists())
-
-
-if __name__ == '__main__':
-    unittest.main()

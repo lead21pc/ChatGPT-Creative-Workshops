@@ -1,0 +1,160 @@
+format_version: '1'
+module_id: HUB-CON-CATALOG
+package_id: HUB-PKG-CONCEPT-DEVELOPMENT
+runtime_role: PACKAGE_CATALOG
+scope: Scoped selection metadata for the concept-development package; no global package routing or execution.
+status: ACTIVE
+version: '1.7'
+anti_drift_configuration: AUTO and current-user /AD evaluate task-local applicability. Select zero or more matches and
+  close actual Requires. Use the Hub Router read and composition contract.
+entries:
+- module_id: HUB-CON-GEN-CREATIVE
+  package_id: HUB-PKG-CONCEPT-DEVELOPMENT
+  runtime_role: DOMAIN_CONTROL
+  status: ACTIVE
+  version: '1.2'
+  activation: /CREATIVE
+  applicability: 'SELECT ONLY FOR A VALID EXPLICIT CONTROL SPAN: /CREATIVE <content> # under the entrypoint''s current-user
+    directive, literal-text, token, closure and malformed-span rules. Realization/deepening inside the supplied selected
+    premise; semantic usefulness alone never selects this leaf.'
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    artifact: Concept Development/HUB-CON-GEN-CREATIVE_v1.2.md
+  refines: []
+  complements: []
+  requires: []
+- module_id: HUB-CON-GEN-BRAINSTORM
+  package_id: HUB-PKG-CONCEPT-DEVELOPMENT
+  runtime_role: CAPABILITY
+  status: ACTIVE
+  version: '1.2'
+  activation: /BRAINSTORM
+  applicability: 'SELECT ONLY FOR A VALID EXPLICIT CONTROL SPAN: /BRAINSTORM <content> # under the entrypoint''s current-user
+    directive, literal-text, token, closure and malformed-span rules. Premise variation, reversal/relaxation, second-order
+    consequences, feedback and incomplete-premise links; no semantic or natural-language phrase activation. Selection
+    proves no retrieval or execution.'
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    artifact: Concept Development/HUB-CON-GEN-BRAINSTORM_v1.2.md
+  refines: []
+  complements: []
+  requires: []
+- module_id: HUB-CON-GEN-DEBATE
+  package_id: HUB-PKG-CONCEPT-DEVELOPMENT
+  runtime_role: CAPABILITY
+  status: ACTIVE
+  version: '1.1'
+  activation: /DEBATE
+  applicability: 'SELECT ONLY FOR A VALID EXPLICIT CONTROL SPAN: /DEBATE <content> # under the entrypoint''s current-user
+    directive, literal-text, token, closure and malformed-span rules. Adversarial testing of a supplied proposal against
+    consequential objections; ordinary critique or audit never activates it.'
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    artifact: Concept Development/HUB-CON-GEN-DEBATE_v1.1.md
+  refines: []
+  complements: []
+  requires: []
+- module_id: HUB-CON-AD-ANTI-PRIOR
+  package_id: HUB-PKG-CONCEPT-DEVELOPMENT
+  runtime_role: DOMAIN_CONTROL
+  status: ACTIVE
+  version: '1.3'
+  applicability: Select when a familiar prior, label, aesthetic, prestige or observable signal risks supplying an unsupported
+    material premise, mechanism, capability, authority or value in the current portion. Includes surface substitution
+    even when other premises are complete. Do not select for surface description alone, explicit user/ontology-defined
+    mappings, authorized blank-slate invention or a requested conventional trope absent a different undeclared material
+    link. Non-implication is not prohibition or inverted prior.
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    artifact: Concept Development/HUB-CON-AD-ANTI-PRIOR_v1.3.md
+  refines: []
+  complements: []
+  requires: []
+- module_id: HUB-CON-AD-MODULAR-CONCEPT-ARCHITECTURE
+  package_id: HUB-PKG-CONCEPT-DEVELOPMENT
+  runtime_role: DOMAIN_CONTROL
+  status: ACTIVE
+  version: '1.3'
+  applicability: Select for a material typed relation, ownership, actor agency/information/authority, capability execution
+    or state transition, module autonomy/interface, conditional branch or continuity distinction. Protect existing kit
+    and material goals without optimal-play or subplot mandates. Named entities and fiction topic alone are insufficient.
+    Independently selectable; no hard WIL dependency. Compose WIL only for material institution/resource/system interfaces.
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    artifact: Concept Development/HUB-CON-AD-MODULAR-CONCEPT-ARCHITECTURE_v1.3.md
+  refines: []
+  complements: []
+  requires: []
+- module_id: HUB-CON-AD-WORLDBUILDING-INTERNAL-LOGIC
+  package_id: HUB-PKG-CONCEPT-DEVELOPMENT
+  runtime_role: DOMAIN_CONTROL
+  status: ACTIVE
+  version: '1.2'
+  applicability: Independently select for material bounded institution/resource flow, authority implementation, systemic
+    interface/propagation, feedback, temporal viability or political consequence. Resource source/liquidity and agreement/implementation
+    require only enough detail to close the assigned causal interface. No MCA dependency, mandatory complete-world expansion,
+    Earth realism or bureaucracy. A passing mention of institutions is insufficient.
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    artifact: Concept Development/HUB-CON-AD-WORLDBUILDING-INTERNAL-LOGIC_v1.2.md
+  refines: []
+  complements: []
+  requires: []
+- module_id: HUB-CON-AD-ACTOR-RECEPTION
+  package_id: HUB-PKG-CONCEPT-DEVELOPMENT
+  runtime_role: DOMAIN_CONTROL
+  status: ACTIVE
+  version: '1.1'
+  applicability: Select when signal receipt, interpretation/appraisal, uncertainty/suspicion, evidence accumulation or
+    belief continuity materially determines the current task. Repeated anomalies require represented reassessment, not
+    forced belief reversal. Uses MCA actor information/agency framework through Requires; no automatic WIL load for institution
+    mentions. Does not select action or outcome.
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    artifact: Concept Development/HUB-CON-AD-ACTOR-RECEPTION_v1.1.md
+  refines: []
+  complements: []
+  requires:
+  - module_id: HUB-CON-AD-MODULAR-CONCEPT-ARCHITECTURE
+- module_id: HUB-CON-AD-NARRATIVE-RESOLUTION
+  package_id: HUB-PKG-CONCEPT-DEVELOPMENT
+  runtime_role: DOMAIN_CONTROL
+  status: ACTIVE
+  version: '1.1'
+  applicability: Select only when a material narrative question, conflict, promise, setup/payoff, closure/reveal, accumulated
+    pressure or resolution claim is being developed or assessed. Track supported obligations without a state engine.
+    Not a universal Concept requirement; intentional open endings, valid cliffhangers and easy causally earned victories
+    remain valid. Compose mechanical owners only when their distinct mechanics matter.
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    artifact: Concept Development/HUB-CON-AD-NARRATIVE-RESOLUTION_v1.1.md
+  refines: []
+  complements: []
+  requires: []
+- module_id: HUB-CON-GEN-NAMING
+  package_id: HUB-PKG-CONCEPT-DEVELOPMENT
+  runtime_role: DOMAIN_PROCEDURE
+  status: ACTIVE
+  version: '1.1'
+  activation: /NAME
+  applicability: 'SELECT ONLY FOR A VALID EXPLICIT CONTROL SPAN: /NAME <instruction> # under the entrypoint''s current-user
+    directive, literal-text, token, closure and malformed-span rules. Scoped name generation, analysis, comparison and
+    evaluation; semantic fit alone never activates. Optional first directive token P1/P2/P3 modifies strategy only, with
+    non-empty remaining instruction; malformed preset-like tokens, preset-only and repeated preset modifiers invalidate
+    that invocation without repair or plain fallback. Preset details and naming behavior belong to the verified leaf,
+    not this Catalog.'
+  location:
+    class: LIBRARY
+    root: Central Hub Config
+    artifact: Concept Development/HUB-CON-GEN-NAMING_v1.1.md
+  refines: []
+  complements: []
+  requires: []

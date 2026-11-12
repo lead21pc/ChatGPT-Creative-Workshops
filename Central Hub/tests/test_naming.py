@@ -1,41 +1,22 @@
-"""STATIC / modeled fixtures only; no LLM behavior, real research or Library reads.
-
-Provenance and semantic applicability are fixture-declared. Reuse the existing
-Concept lexical and generic composition oracles; no production parser is added.
-"""
-from pathlib import Path
-import hashlib
-import json
+"""Naming behavior on declared fixture roles and the current leaf."""
 import re
-import subprocess
 import unittest
 
-from test_hub_contracts import namespace_baseline_source, ROOT, load, Closed
-from test_concept_development import (
-    leaf_span_spec, naming_modifier_spec, current_fixture, PACKAGE, CORE, CATALOG,
-)
-from test_hub_router_candidate import simulate, integration_read_spec
-from test_concept_production_anti_drift import production_spec, AP
+from test_hub_contracts import Closed, ROOT_CATALOG, load
+from test_concept_development import CATALOG, CORE, DIRECTORY, LOCAL, PACKAGE, current_fixture, leaf_span_spec, naming_modifier_spec
+from test_concept_production_anti_drift import AP, production_spec
+from test_hub_router import integration_read_spec, simulate
 
-# Exact pre-namespace release assertions; successor contracts are covered in test_canonical_namespace.py.
-NAMESPACE_PREDECESSOR = Path(__file__).resolve().parents[1] / 'Source_archive/Canonical namespace migration 2026-11-11'
-
-
-NAMING = 'HUB-DOM-NAMING'
-# Exact predecessor release assertions; active SEARCH has separate promotion coverage.
-SEARCH_PREDECESSOR = Path(__file__).resolve().parents[1] / 'Source_archive/AIS SEARCH promotion 2026-11-09'
-
-BASELINE = 'e804cfa03a54d6caba67b0ed877890e9a5711128'
-ARCHIVE = ROOT / 'Source_archive/Naming 1.0 integration 2026-11-09'
+NAMING = 'HUB-CON-GEN-NAMING'
 
 
 class NamingTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.body = (NAMESPACE_PREDECESSOR / f'library_modules/{NAMING}_v1.0.md').read_text(encoding='utf-8')
-        cls.local = load(SEARCH_PREDECESSOR / 'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.4.yaml')
-        cls.root = load(SEARCH_PREDECESSOR / 'HUB_PACKAGE_CATALOG_v1.14.yaml')
+        cls.root = load(ROOT_CATALOG)
+        cls.local = load(LOCAL)
         cls.row = next(row for row in cls.local['entries'] if row['module_id'] == NAMING)
+        cls.body = (DIRECTORY / 'HUB-CON-GEN-NAMING_v1.1.md').read_text(encoding='utf-8')
 
     def spans(self, text):
         return leaf_span_spec([('USER_DIRECTIVE', text)])
@@ -69,7 +50,7 @@ class NamingTests(unittest.TestCase):
             self.assertEqual(self.spans(malformed)['invocations'], [], malformed)
             self.assertEqual(len(self.spans(malformed)['blocked']), 1, malformed)
         result = self.spans('/NAME P4 X # independent /CREATIVE Y # /NAME Z #')
-        self.assertEqual(result['invocations'], [('HUB-DOM-CREATIVE', 'Y'), (NAMING, 'Z')])
+        self.assertEqual(result['invocations'], [('HUB-CON-GEN-CREATIVE', 'Y'), (NAMING, 'Z')])
         self.assertIn(' independent ', result['unscoped'])
         self.assertEqual(self.spans('/NAME use #heading and ## as text #')['invocations'],
                          [(NAMING, 'use #heading and ## as text')])
@@ -101,7 +82,7 @@ class NamingTests(unittest.TestCase):
         package = next(row for row in self.root['packages'] if row['package_id'] == PACKAGE)
         self.assertIn('specialized naming', package['applicability'])
         self.assertIn('even when brief', package['applicability'])
-        for literal in ('/NAME', 'HUB-DOM-NAMING', 'P1', 'P2', 'P3'):
+        for literal in ('/NAME', 'HUB-CON-GEN-NAMING', 'P1', 'P2', 'P3'):
             self.assertNotIn(literal, str(package))
         short = self.spans('/NAME X #')
         self.assertEqual(short['invocations'], [(NAMING, 'X')])
@@ -114,17 +95,17 @@ class NamingTests(unittest.TestCase):
 
     def test_exact_headers_binding_and_no_new_dependencies(self):
         for key, value in [('Module ID', NAMING), ('Package ID', PACKAGE),
-                           ('Runtime role', 'DOMAIN_PROCEDURE'), ('Status', 'ACTIVE'), ('Version', '1.0')]:
+                           ('Runtime role', 'DOMAIN_PROCEDURE'), ('Status', 'ACTIVE'), ('Version', '1.1')]:
             self.assertEqual(re.findall('^'+key+r': (.+)$', self.body, re.M), [value])
         self.assertEqual(self.row['runtime_role'], 'DOMAIN_PROCEDURE')
         self.assertEqual(self.row['activation'], '/NAME')
         for key in ('requires', 'refines', 'complements'):
             self.assertEqual(self.row[key], [])
         self.assertNotRegex(self.body, r'(?m)^(Requires|Refines|Complements):')
-        self.assertEqual(self.row['location']['resolution'], 'UNRESOLVED')
+        self.assertNotIn('library_file_id', self.row['location'])
         entry = dict(self.row, entrypoint_module_id=NAMING, binding_mode='LIBRARY_MODULE')
         observed = dict(module_id=NAMING, package_id=PACKAGE, runtime_role='DOMAIN_PROCEDURE',
-                        status='ACTIVE', version='1.0', root='Central Hub Config', location='LIBRARY',
+                        status='ACTIVE', version='1.1', root='Central Hub Config', location='LIBRARY',
                         read_kind='FULL_FILE', has_more=False, body_matches=True, opened_object='FIXTURE')
         result = integration_read_spec(entry, [observed], direct_identity_usable=False,
                                        scoped_search_sufficient=True)
@@ -147,7 +128,7 @@ class NamingTests(unittest.TestCase):
                 fixture['artifacts'][NAMING][0]['read_kind'] = 'SNIPPET'
             result = simulate(fixture, {'NAME', 'CREATIVE'})
             self.assertIn((PACKAGE, NAMING), result['blocked'])
-            self.assertIn((PACKAGE, 'HUB-DOM-CREATIVE'), result['spec_verified'])
+            self.assertIn((PACKAGE, 'HUB-CON-GEN-CREATIVE'), result['spec_verified'])
 
     def test_anti_prior_selection_remains_applicability_owned(self):
         plain = simulate(current_fixture(), {'NAME'})
@@ -185,47 +166,3 @@ class NamingTests(unittest.TestCase):
                             'MEANING AVAILABLE != MEANING REQUIRED', 'SOURCE MEANING != AUTHORIZED SYMBOLISM',
                             'MODEL-PRIOR FAMILIARITY != REAL-WORLD FREQUENCY'):
             self.assertIn(distinction, self.body)
-
-    def test_unchanged_owners_and_router_algorithm(self):
-        before = subprocess.check_output(['git', 'show', BASELINE+':Central Hub/HUB_ROUTER_v1.1.yaml'], cwd=ROOT)
-        self.assertEqual((SEARCH_PREDECESSOR/'HUB_ROUTER_v1.1.yaml').read_bytes(),
-                         before.replace(b'1.12', b'1.14'))
-        old = load(ARCHIVE/'HUB_PACKAGE_CATALOG_v1.12.yaml')
-        self.assertEqual([p for p in old['packages'] if p['package_id'] not in {PACKAGE, 'HUB-PKG-IMAGET'}],
-                         [p for p in self.root['packages'] if p['package_id'] not in {PACKAGE, 'HUB-PKG-IMAGET'}])
-        old_local = load(ARCHIVE/'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.3.yaml')
-        self.assertEqual(self.local['entries'][:-1], old_local['entries'])
-        for rel in ('HUB_CI_v1.2.md', 'library_modules/HUB-DOM-ANTI-PRIOR_v1.1.md',
-                    'library_modules/HUB-CAP-AUTHORING_v0.8.md', 'library_modules/HUB-DOM-CREATIVE_v1.1.md',
-                    'library_modules/HUB-CAP-BRAINSTORM_v1.1.md', 'library_modules/HUB-CAP-DEBATE_v1.0.md',
-                    'tool_pipelines/AIS/AIS_PIPELINE_v1.1.md', 'tool_pipelines/AIS/AIS_ROUTER_v1.2.yaml',
-                    'tool_pipelines/ImageT/IMAGE_CONTROLLER_v1.2.md'):
-            self.assertEqual(((SEARCH_PREDECESSOR / rel) if rel.startswith('tool_pipelines/AIS/') else namespace_baseline_source(rel)).read_bytes(), subprocess.check_output(
-                ['git', 'show', BASELINE+':Central Hub/'+rel], cwd=ROOT), rel)
-
-    def test_archive_byte_exact_and_predecessors_not_active(self):
-        receipt = json.loads((ARCHIVE/'ARCHIVE_RECEIPT.json').read_text(encoding='utf-8'))
-        self.assertEqual(set(receipt), {'HUB_ARCHITECTURE_v1.12.md', 'HUB_PACKAGE_CATALOG_v1.12.yaml',
-                         'library_modules/HUB-DOM-CONCEPT-DEVELOPMENT_v1.3.md',
-                         'library_modules/HUB-CATALOG-CONCEPT-DEVELOPMENT_v1.3.yaml'})
-        for rel, digest in receipt.items():
-            self.assertFalse((ROOT/rel).exists(), rel)
-            self.assertEqual(hashlib.sha256((ARCHIVE/rel).read_bytes()).hexdigest(), digest)
-            self.assertEqual((ARCHIVE/rel).read_bytes(), subprocess.check_output(
-                ['git', 'show', BASELINE+':Central Hub/'+rel], cwd=ROOT), rel)
-
-    def test_user_guide_and_stress_cases_are_not_runtime_claims(self):
-        guide = (NAMESPACE_PREDECESSOR/'How to use.md').read_text(encoding='utf-8')
-        for syntax in ('/NAME <instruction> #', '/NAME P1 <instruction> #',
-                       '/NAME P2 <instruction> #', '/NAME P3 <instruction> #'):
-            self.assertIn(syntax, guide)
-        self.assertIn('không kích hoạt', guide)
-        stress = (ROOT/'tests/NAMING_REAL_CONTEXT_STRESS.md').read_text(encoding='utf-8')
-        self.assertIn('REAL-CONTEXT STRESS: NOT RUN', stress)
-        self.assertEqual(re.findall(r'^\| (N\d{2}) \|', stress, re.M), [f'N{i:02}' for i in range(1, 9)])
-        self.assertIn('夜神月', stress)
-        self.assertIn('太乙真人', stress)
-
-
-if __name__ == '__main__':
-    unittest.main()

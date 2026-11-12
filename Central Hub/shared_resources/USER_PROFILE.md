@@ -6,7 +6,7 @@
 
 ## Bốn object riêng để tự tạo trong Library
 
-Tự tạo **bốn object riêng** dưới đúng root `Central Hub Config`. Sao chép toàn bộ payload của từng tệp dưới đây vào object tương ứng rồi tự điền giá trị riêng tư. Không tải một tệp gộp bốn object; `FULL_FILE` luôn chỉ đọc một object. Các bản mẫu công khai được giữ trống; không đưa bản có giá trị thật vào repository hoặc commit.
+Tự tạo **bốn object riêng** trong `Central Hub Config/Shared/`. Sao chép toàn bộ payload của từng tệp dưới đây vào object tương ứng rồi tự điền giá trị riêng tư. Không tải một tệp gộp bốn object; `FULL_FILE` luôn chỉ đọc một object. Các bản mẫu công khai được giữ trống; không đưa bản có giá trị thật vào repository hoặc commit.
 
 | Tên gợi ý cho object riêng | Payload trống chính xác | Nội dung |
 | --- | --- | --- |
@@ -17,7 +17,9 @@ Tự tạo **bốn object riêng** dưới đúng root `Central Hub Config`. Sao
 
 Tên hiển thị chỉ giúp tìm; identity phải khớp `resource_id`, `object_id`, `schema_version: '1.0'` trong toàn bộ payload. Các field đều tùy chọn và nhận `null`; `null`/field thiếu là UNKNOWN. Danh sách trống chỉ nói chưa cung cấp mục nào, không chứng minh không có dị ứng hoặc bệnh lý. Chỉ tự điền điều đã khai báo, không nhờ model suy diễn rồi ghi lại. Object không cần header module, Package ID hoặc runtime role.
 
-Để dùng hợp đồng mới, tự cập nhật Project Sources với Architecture 1.20, Catalog 1.20, Router 1.1 đã đổi pins và hợp đồng Profile 1.0; dùng Shopping core 1.1 và cài Food Entry 0.1 trong Library để dùng từng consumer tương ứng. CI 1.2 không đổi. Việc cài đặt này chưa được thực hiện trong tác vụ. Không cài tệp hướng dẫn này hoặc tệp mẫu công khai làm nguồn giá trị runtime thay thế.
+Khi cài, dùng bộ Project Sources và binding consumer trong [README](../README.md).
+Cài hợp đồng Profile vào Project Sources. Tạo từng object giá trị riêng trong folder Shared.
+Không dùng tệp hướng dẫn hoặc template repository thay cho object runtime.
 
 ## Quyền đọc hiện hành
 

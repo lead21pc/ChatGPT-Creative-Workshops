@@ -61,7 +61,7 @@ Each project's documentation determines how to read its sources. Folder names, v
 
 ## Central Hub
 
-> Central Hub dùng Architecture/Catalog 1.20 với bảy package và 27 Library controls trong repository. Food 0.1 chưa được cài hoặc kiểm thử live. Người dùng báo smoke routing đạt 10 ca trên bộ 1.19. Tình trạng cài đầy đủ và khả năng folder Library lồng nhau chưa được xác minh. [Central Hub](Central%20Hub/README.md). User Profile giữ shared non-module identity riêng. Các release distribution giữ tên lịch sử.
+> Central Hub dùng Architecture/Catalog 1.21 với bảy package và 23 Library controls trong repository. Người dùng đã thử thành công việc đọc và sử dụng folder Library lồng nhau trong runtime liên quan. Bộ cấu trúc 1.21 chưa được cài hoặc thử live. [Central Hub](Central%20Hub/README.md). User Profile giữ shared non-module identity riêng. Các release distribution giữ tên lịch sử.
 
 Central Hub is the shared general-purpose workspace for capabilities that should not belong to any one fiction project. It does not sit inside FTH, above the creative systems, or act as a shared fiction runtime or canon layer. A project may bring a bounded question or slice of context into Hub and return the result for local review; Hub may also start from a fiction idea before any project has adopted it.
 
@@ -99,7 +99,7 @@ HUB COMPOSITION → WORKING RESULT
 
 **Hub CI** owns the requested operation/stage, truth and state discipline, action authorization, general verification need, and overall interaction. **Hub Router** scopes task portions, selects root packages, resolves entrypoints, composes the selected module set, expands hard dependencies, validates reads/bindings, and hands off scoped work. Packages own their internal selection; pipelines own their procedures; the platform performs actual retrieval and tool execution.
 
-The [active root Catalog](Central%20Hub/HUB_PACKAGE_CATALOG_v1.20.yaml) exposes exactly **seven root packages**, not every leaf. Zero, one, or multiple packages may contribute to different portions of one task. Selection is recomputed each turn and when task scope materially changes; it is not a permanent chat mode.
+The [active root Catalog](Central%20Hub/HUB_PACKAGE_CATALOG_v1.21.yaml) exposes exactly **seven root packages**, not every leaf. Zero, one, or multiple packages may contribute to different portions of one task. Selection is recomputed each turn and when task scope materially changes; it is not a permanent chat mode.
 
 ```text
 ROOT CATALOG KNOWS PACKAGE ENTRYPOINTS != ROOT CATALOG KNOWS EVERY LEAF
@@ -115,13 +115,13 @@ The table summarizes the active repository contracts. Deployment and runtime evi
 
 | Root package | Entrypoint / role | Contribution |
 | --- | --- | --- |
-| TECHNICAL | `HUB-TECH-ENTRY` 1.1 / `REASONING_PROFILE` | Mechanism reasoning, diagnosis with competing hypotheses, and bounded technical-change evaluation across subjects. |
-| CONCEPT DEVELOPMENT | `HUB-CON-ENTRY` 1.6 / `DOMAIN_CONTROL` | Concept consistency, causal development, bounded audit/analysis, and local selection of Creative, Brainstorm, Debate, Naming and task-applicable anti-drift controls. |
-| AUTHORING | `HUB-AUTH-ENTRY` 0.9 / `CAPABILITY` | Explicitly triggered, target-adapted prompt construction; produces a prompt and stops. |
-| AIS | `HUB-PIPE-AIS` / `TOOL_PIPELINE`; pipeline 1.2, router 1.3 | External evidence verification, research, and provisional option discovery. |
-| ImageT | `HUB-IMAGET-ENTRY` / `TOOL_PIPELINE`; controller 1.4 | Image analysis and generation operations with input authority, prompt, approval, and visible-result checks. |
-| SHOPPING | `HUB-SHOP-ENTRY` 1.1 / `DOMAIN_CONTROL` | Product identity, purchase constraints, Offers and supported comparison; Hub selects AIS independently. |
-| FOOD | `HUB-FOOD-ENTRY` 0.1 / `DOMAIN_CONTROL` | Culinary analysis, cooking plans, adaptation, serving and scoped recommendations. |
+| TECHNICAL | `HUB-TECH-ENTRY` 1.2 / `REASONING_PROFILE` | Mechanism reasoning, diagnosis with competing hypotheses, and bounded technical-change evaluation across subjects. |
+| CONCEPT DEVELOPMENT | `HUB-CON-ENTRY` 1.8 / `DOMAIN_CONTROL` | Concept consistency, causal development, bounded audit/analysis, and local selection of Creative, Brainstorm, Debate, Naming and task-applicable anti-drift controls. |
+| AUTHORING | `HUB-AUTH-ENTRY` 1.0 / `CAPABILITY` | Explicitly triggered, target-adapted prompt construction; produces a prompt and stops. |
+| AIS | `HUB-PIPE-AIS` / `TOOL_PIPELINE`; single Project Source 1.3 | External evidence verification, research, and provisional option discovery. |
+| ImageT | `HUB-IMAGET-ENTRY` / `TOOL_PIPELINE`; controller 1.5 | Image analysis and generation operations with input authority, prompt, approval, and visible-result checks. |
+| SHOPPING | `HUB-SHOP-ENTRY` 1.2 / `DOMAIN_CONTROL` | Product identity, purchase constraints, Offers and supported comparison; Hub selects AIS independently. |
+| FOOD | `HUB-FOOD-ENTRY` 0.2 / `DOMAIN_CONTROL` | Culinary analysis, cooking plans, adaptation, serving and scoped recommendations. |
 
 **TECHNICAL is selected for a reasoning need, not a technical topic alone.** A diagnosis may follow `symptom → competing hypotheses → mechanism chain → distinguishing test → supported cause → minimum sufficient change → behavioral verification`. If evidence cannot distinguish causes, the cause stays unresolved. The module owns no technical subject domain, does not activate AIS, and does not turn a simple explanation into an architecture audit.
 
@@ -129,12 +129,12 @@ The table summarizes the active repository contracts. Deployment and runtime evi
 TECHNICAL TOPIC != AUTOMATIC TECHNICAL MODULE SELECTION
 ```
 
-**Concept Development is a growing package with its own [local Catalog](Central%20Hub/library_modules/Concept%20Development/HUB-CON-CATALOG_v1.6.yaml).** The root Router selects the package; its entrypoint/Catalog select explicit operation leaves and task-applicable anti-drift controls under their current contracts.
+**Concept Development is a growing package with its own [local Catalog](Central%20Hub/library_modules/Concept%20Development/HUB-CON-CATALOG_v1.7.yaml).** The root Router selects the package; its entrypoint/Catalog select explicit operation leaves and task-applicable anti-drift controls under their current contracts.
 
 | Concept leaf | Role | Premise boundary |
 | --- | --- | --- |
-| [Creative 1.2](Central%20Hub/library_modules/Concept%20Development/General/HUB-CON-GEN-CREATIVE_v1.2.md) / `HUB-CON-GEN-CREATIVE` | `DOMAIN_CONTROL` | **Develop inside the selected premise:** imagery, action, rhythm, situations, relationships, and functional fictional detail. Fill gaps only within permitted creative latitude. |
-| [Brainstorm 1.2](Central%20Hub/library_modules/Concept%20Development/General/HUB-CON-GEN-BRAINSTORM_v1.2.md) / `HUB-CON-GEN-BRAINSTORM` | `CAPABILITY` | **Alter or branch the premise:** reversal/relaxation, second-order consequences, feedback, and concrete bridges between incomplete premises. Develop alternatives in parallel; select a winner only when requested. |
+| [Creative 1.2](Central%20Hub/library_modules/Concept%20Development/HUB-CON-GEN-CREATIVE_v1.2.md) / `HUB-CON-GEN-CREATIVE` | `DOMAIN_CONTROL` | **Develop inside the selected premise:** imagery, action, rhythm, situations, relationships, and functional fictional detail. Fill gaps only within permitted creative latitude. |
+| [Brainstorm 1.2](Central%20Hub/library_modules/Concept%20Development/HUB-CON-GEN-BRAINSTORM_v1.2.md) / `HUB-CON-GEN-BRAINSTORM` | `CAPABILITY` | **Alter or branch the premise:** reversal/relaxation, second-order consequences, feedback, and concrete bridges between incomplete premises. Develop alternatives in parallel; select a winner only when requested. |
 
 If Creative needs a material premise change, it keeps that change conditional/proposed and returns the need through the concept package; it does not select Brainstorm or accept the new premise itself.
 
@@ -169,11 +169,11 @@ The activation line must match exactly: case-sensitive, one ASCII space, no surr
 
 ```text
 Hub discussion → /AUTHOR AIS → enhanced AIS prompt → user runs AIS separately
-Fiction idea discussion → /AUTHOR FTH → FTH-ready prompt → user brings it to FTH
+Fiction idea discussion → /AUTHOR GENERIC → prompt retaining the supplied fiction context
 AUTHORING != EXECUTION
 ```
 
-AT outputs the prompt and stops. It does not call AIS, FTH, ImageT, Codex, or Work. **Authoring 0.9 is active in the repository. The user-reported routing smoke covers the CODEX case. Exact Library object and deployment inventory remain unverified.** See the [module contract](Central%20Hub/library_modules/Authoring/HUB-AUTH-ENTRY_v0.9.md) before use.
+AT outputs the prompt and stops. It does not call AIS, FTH, ImageT, Codex, or Work. **Authoring 1.0 is active in the repository.** The CODEX routing smoke applies to the recorded earlier stack. See the [module contract](Central%20Hub/library_modules/Authoring/HUB-AUTH-ENTRY_v1.0.md) before use.
 
 ### AIS: external evidence
 
@@ -185,7 +185,7 @@ AIS is a Hub-selected evidence pipeline with three modes:
 | `RESEARCH` | Collect, compare, and synthesize evidence within a scoped question. |
 | `EXPLORE` | Discover externally grounded options that remain provisional. |
 
-**AIS EXPLORE != BRAINSTORM:** AIS searches external sources; Brainstorm explores premise possibilities through reasoning. AIS returns evidence to Hub and owns neither the whole mission nor canon, design acceptance, or project authority. Greater research depth does not automatically launch Deep Research or Work. See the [AIS pipeline](Central%20Hub/tool_pipelines/AIS/AIS_PIPELINE_v1.2.md).
+**AIS EXPLORE != BRAINSTORM:** AIS searches external sources; Brainstorm explores premise possibilities through reasoning. AIS returns evidence to Hub and owns neither the whole mission nor canon, design acceptance, or project authority. Greater research depth does not automatically launch Deep Research or Work. See the [AIS pipeline](Central%20Hub/tool_pipelines/AIS/AIS_PIPELINE_v1.3.md).
 
 ### ImageT: image operations
 
@@ -209,7 +209,7 @@ OPEN GATE != READY GATE
 ONE APPROVAL = ONE EXACT TOOL CALL
 ```
 
-See the [ImageT controller](Central%20Hub/library_modules/ImageT/Core/HUB-IMAGET-CORE-CONTROLLER_v1.4.md) and [Ready Gate](Central%20Hub/library_modules/ImageT/Core/HUB-IMAGET-CORE-READY-GATE_v1.2.md) for exact contracts and verification limits.
+See the [ImageT controller](Central%20Hub/library_modules/ImageT/HUB-IMAGET-CORE-CONTROLLER_v1.5.md) and [Ready Gate](Central%20Hub/library_modules/ImageT/HUB-IMAGET-CORE-READY-GATE_v1.3.md) for exact contracts and verification limits.
 
 ### Composition and runtime boundaries
 
@@ -222,7 +222,7 @@ MENTION != DEPENDENCY
 PACKAGE MEMBERSHIP != DEPENDENCY
 ```
 
-Technical, Concept Development, Authoring, Shopping, ImageT and Food use Library-module bindings. AIS alone retains its Project-Source pipeline binding. Storage/binding establishes neither semantic hierarchy nor authority. Exact identities, full-read verification, deployment status, and scoped runtime records belong in the [Central Hub documentation](Central%20Hub/README.md), [Architecture](Central%20Hub/HUB_ARCHITECTURE_v1.20.md), and [Catalog](Central%20Hub/HUB_PACKAGE_CATALOG_v1.20.yaml).
+Technical, Concept Development, Authoring, Shopping, ImageT and Food use Library-module bindings. AIS alone retains its Project-Source pipeline binding. Storage/binding establishes neither semantic hierarchy nor authority. Exact identities, full-read verification, deployment status, and scoped runtime records belong in the [Central Hub documentation](Central%20Hub/README.md), [Architecture](Central%20Hub/HUB_ARCHITECTURE_v1.21.md), and [Catalog](Central%20Hub/HUB_PACKAGE_CATALOG_v1.21.yaml).
 
 > **User-reported build/test baseline:** The current workshop controls and Central Hub architecture were developed and behaviorally tested primarily with **GPT-5.6 Sol on ChatGPT Plus**. This is the user's reported runtime qualification, not a compatibility result reproduced by repository checks. Other models have not yet been systematically tested; other plans/runtime conditions may work, but equivalent behavior and stability are not guaranteed. This does not establish incompatibility.
 

@@ -1,0 +1,44 @@
+scope: Install-time verification of Entry-bound ImageT core. Not a runtime source.
+entrypoint: ImageT/HUB-IMAGET-ENTRY_v1.5.md
+core:
+- module_id: HUB-IMAGET-CORE-CONTROLLER
+  package_id: HUB-PKG-IMAGET
+  runtime_role: DOMAIN_PROCEDURE
+  status: ACTIVE
+  version: '1.5'
+  file: ImageT/HUB-IMAGET-CORE-CONTROLLER_v1.5.md
+  sha256: ddd22bf6b1ca40ec8259ffcd1579dd95a16d63848ce7094fbded030324baa5a8
+  required_for:
+  - ANALYZE
+  - CREATE
+  - EDIT
+  - VARIATION
+  - CORRECT
+  - RETRY
+- module_id: HUB-IMAGET-AD-ANTI-PRIOR
+  package_id: HUB-PKG-IMAGET
+  runtime_role: DOMAIN_PROCEDURE
+  status: ACTIVE
+  version: 1.4.0
+  file: ImageT/HUB-IMAGET-AD-ANTI-PRIOR_v1.4.0.md
+  sha256: be1ddcd5bcb43258a95c6ef1e9acf332f2b6ab6369ea6484ea11af33c50f50e9
+  required_for:
+  - ANALYZE
+  - CREATE
+  - EDIT
+  - VARIATION
+  - CORRECT
+  - RETRY
+- module_id: HUB-IMAGET-CORE-READY-GATE
+  package_id: HUB-PKG-IMAGET
+  runtime_role: DOMAIN_PROCEDURE
+  status: ACTIVE
+  version: '1.3'
+  file: ImageT/HUB-IMAGET-CORE-READY-GATE_v1.3.md
+  sha256: 6c425861c382ba0f7e6db591f4553748dd5f93419d48f0434f1109c4b8bd1927
+  required_for:
+  - CREATE
+  - EDIT
+  - VARIATION
+  - CORRECT
+  - RETRY

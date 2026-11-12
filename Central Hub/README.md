@@ -1,26 +1,21 @@
 # Central Hub
 
-## Baseline ACTIVE trong repository
+## Bộ active trong repository
 
-[Architecture 1.20](HUB_ARCHITECTURE_v1.20.md), [root Catalog 1.20](HUB_PACKAGE_CATALOG_v1.20.yaml), [Router 1.1](HUB_ROUTER_v1.1.yaml) và [CI 1.2](HUB_CI_v1.2.md) là bộ active trong repository. Food 0.1 là package thứ bảy và thêm một Library control. 26 Library controls của baseline trước giữ identity theo [hồ sơ migration 2026-11-11](NAMESPACE_MIGRATION.md). Phase 1 cập nhật Concept Entry để dùng hệ quả của tiền đề hiện có xác định phần cần phát triển.
+[CI 1.3](HUB_CI_v1.3.md), [Router 1.2](HUB_ROUTER_v1.2.yaml), [Architecture 1.21](HUB_ARCHITECTURE_v1.21.md) và [root Catalog 1.21](HUB_PACKAGE_CATALOG_v1.21.yaml) là bộ pin hiện hành. Catalog là nguồn định danh, revision, applicability và binding của bảy package.
 
-Namespace của 26 Library controls là baseline ổn định. Người dùng báo smoke routing đạt 10 ca trên bộ 1.19. Tình trạng cài đầy đủ trong Project/Library, receipt đọc từng object và khả năng thư mục Library lồng nhau vẫn chưa được xác minh. Khi cài thủ công, có thể đặt các object trực tiếp dưới sole root `Central Hub Config`. Các kiểm tra exact identity, FULL_FILE, body và duplicate vẫn áp dụng. Xem [bằng chứng theo từng ca](RUNTIME_EVIDENCE_CHANGELOG.md#namespace-stable-baseline-2026-11-12).
+- Technical, Authoring và Food là singleton. Concept giữ Entry/Catalog và lá theo nhu cầu.
+- AIS dùng một [Project Source](tool_pipelines/AIS/AIS_PIPELINE_v1.3.md). Shopping Entry tự chọn Search tùy nhu cầu.
+- ImageT dùng Entry, Controller, Anti-Prior và Ready Gate cho sinh ảnh. ANALYZE không dùng Ready Gate. Catalog và hai lá humanoid chỉ đọc khi cần. [Inventory kiểm cài đặt ImageT](tool_pipelines/ImageT/IMAGET_INSTALL_INTEGRITY.yaml) không phải Project Source hoặc Library control.
+- [Context Snapshot](shared_resources/CONTEXT_SNAPSHOT.md) và [hợp đồng Profile](shared_resources/HUB-USER-PROFILE-CONTRACT_v1.0.yaml) là Project Sources dùng theo nhu cầu. [Profile](shared_resources/USER_PROFILE.md) có bốn object dữ liệu riêng do người dùng quản lý.
 
-| Package ID | Entrypoint | Revision | Binding |
-| --- | --- | --- | --- |
-| HUB-PKG-TECHNICAL | HUB-TECH-ENTRY | 1.1 | LIBRARY_MODULE |
-| HUB-PKG-CONCEPT-DEVELOPMENT | HUB-CON-ENTRY | 1.7 | LIBRARY_MODULE |
-| HUB-PKG-AUTHORING | HUB-AUTH-ENTRY | 0.9 | LIBRARY_MODULE |
-| HUB-PKG-AIS | HUB-PIPE-AIS | 1.2 | LEGACY_PROJECT_SOURCE |
-| HUB-PKG-IMAGET | HUB-IMAGET-ENTRY | 1.4 | LIBRARY_MODULE |
-| HUB-PKG-SHOPPING | HUB-SHOP-ENTRY | 1.1 | LIBRARY_MODULE |
-| HUB-PKG-FOOD | HUB-FOOD-ENTRY | 0.1 | LIBRARY_MODULE |
+## Layout Library và cài đặt
 
-Concept dùng local Catalog 1.6 và nhóm General/Anti Drift; ImageT dùng Catalog 0.2, manifest 2.4.0 cùng Core/Anti Drift/Humanoid; Shopping dùng Catalog 1.1. Technical, Authoring và Food là singleton. Food 0.1 chưa được cài hoặc kiểm thử live. Xem inventory có thẩm quyền trong Catalog/manifest; không chọn module theo prefix hoặc thư mục.
+Root duy nhất là `Central Hub Config`. Sáu folder package trực tiếp là Technical, Concept Development, Authoring, ImageT, Shopping và Food. Mỗi artifact Library trong `library_modules/<package>/` đặt trực tiếp trong folder package tương ứng. `Shared/` chứa object dữ liệu Profile riêng, người dùng tạo thủ công từ hợp đồng hiện hành. Các template repository chỉ là mẫu. Không dùng thư mục chức năng cấp hai.
 
-[User Profile](shared_resources/USER_PROFILE.md) tiếp tục là `HUB-USER-PROFILE` schema 1.0 do người dùng sở hữu, model read-only, bốn object riêng, default deny và need-before-read. Shopping và Food là consumer theo quyền và nhu cầu của từng object. Context Snapshot là artifact dữ liệu độc lập; không tạo package/module hoặc lưu tự động.
+Khi được phép cài, đồng bộ cả bộ Project Instructions, Project Sources và các binding Library đã đổi. Đối chiếu exact ID/role/status/version và toàn văn, kiểm không có match trùng, giữ đúng một binding đang dùng và kiểm từng đường bị tác động. Rollback theo Git và bộ binding tương thích đã ghi nhận. Các báo cáo cũ phía dưới phục vụ đối chiếu lịch sử.
 
-[Cách dùng](<How to use.md>) giữ syntax/behavior hiện hành. [Runtime evidence changelog](RUNTIME_EVIDENCE_CHANGELOG.md) giữ continuity đúng scope/revision; không chuyển PASS cũ sang successor namespace. CI, AIS, bốn template Profile và bộ rollback ImageT giữ nguyên byte.
+Người dùng đã xác nhận khả năng phân giải, đọc và dùng nội dung trong folder Library lồng nhau ở runtime đã thử. [Changelog](RUNTIME_EVIDENCE_CHANGELOG.md) ghi phạm vi. Lần refactor repository này chưa cài bộ mới. [Cách dùng](<How to use.md>) giữ cú pháp và hành vi đang áp dụng.
 
 ## Hồ sơ lịch sử
 

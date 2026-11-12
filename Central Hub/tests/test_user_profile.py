@@ -1,33 +1,34 @@
-"""STATIC / SPEC ONLY: declared premises, not model need detection or Library enforcement.
-
-No live routing, object read/non-read, persistence, platform privacy or medical behavior is proven.
-"""
+"""Active Profile schema, access and declared-need cases. Fixtures do not search Library."""
 import copy
-import hashlib
-import json
-import subprocess
-from pathlib import Path
 import unittest
 
-from test_hub_contracts import namespace_baseline_source, ROOT, load
-from test_user_profile_candidate import brand_input, read_plan
+from test_hub_contracts import ROOT, ROOT_CATALOG, entry_path, load, package
 
-# Exact pre-namespace release assertions; successor contracts are covered in test_canonical_namespace.py.
-NAMESPACE_PREDECESSOR = Path(__file__).resolve().parents[1] / 'Source_archive/Canonical namespace migration 2026-11-11'
-
-
-BASELINE = 'f06dea5be568cec9fb476a9040c723be8629507c'
 RESOURCE = 'HUB-USER-PROFILE'
 SHOPPING = 'HUB-PKG-SHOPPING'
 FOOD = 'HUB-PKG-FOOD'
 CONTRACT = 'HUB-USER-PROFILE-CONTRACT_v1.0.yaml'
-FOOD_PREDECESSOR = ROOT / 'Source_archive/Food 0.1 2026-11-12/shared_resources'
 OBJECTS = ('GENERAL', 'PREFERENCES', 'DIETARY_CONSTRAINTS', 'HEALTH_CONTEXT')
 PUBLIC = ROOT / 'shared_resources'
 
 
-def before(path):
-    return subprocess.check_output(['git', 'show', f'{BASELINE}:Central Hub/{path}'], cwd=ROOT)
+def read_plan(schema, *, selected_package, section, purpose, material_need):
+    """Evaluate declared premises before a synthetic object could be supplied."""
+    if not selected_package or not material_need:
+        return 'SKIP', ()
+    purposes = schema['access'].get(selected_package, {}).get(section, ())
+    if purpose not in purposes:
+        return schema['default_access'], ()
+    return 'ALLOW', (section,)
+
+
+def brand_input(*, stored, explicit):
+    """Project declared input roles for this turn without persisting anything."""
+    if explicit is not None:
+        return explicit, 'CURRENT_USER_INPUT'
+    if stored is not None:
+        return stored, 'PREFERENCE'
+    return None, 'UNKNOWN'
 
 
 def validate_object(contract, payload, expected_object):
@@ -61,7 +62,8 @@ def resolve_fixture(contract, request, observed):
         return decision, ()
     if request['resource_id'] != RESOURCE or request['schema_version'] != contract['schema_version']:
         return 'UNRESOLVED', ()
-    if observed['root'] != contract['read']['root'] or not observed['coverage_complete']:
+    if (observed['root'] != contract['read']['root'] or observed['folder'] != contract['read']['folder']
+            or not observed['coverage_complete']):
         return 'UNRESOLVED', ()
     matches = observed['matches']
     if len(matches) != 1 or not observed['full_file']:
@@ -74,11 +76,10 @@ def resolve_fixture(contract, request, observed):
 class UserProfileTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.contract = load(FOOD_PREDECESSOR / CONTRACT)
-        cls.templates = {o: load(PUBLIC / f'HUB-USER-PROFILE-{o}-TEMPLATE_v1.0.yaml') for o in OBJECTS}
-        cls.arch = (NAMESPACE_PREDECESSOR / 'HUB_ARCHITECTURE_v1.17.md').read_text(encoding='utf-8')
-        cls.section = cls.arch.split('## 14.', 1)[1]
-        cls.catalog = load(NAMESPACE_PREDECESSOR / 'HUB_PACKAGE_CATALOG_v1.17.yaml')
+        cls.contract = load(PUBLIC / CONTRACT)
+        cls.templates = {obj: load(PUBLIC / f'HUB-USER-PROFILE-{obj}-TEMPLATE_v1.0.yaml')
+                         for obj in OBJECTS}
+        cls.catalog = load(ROOT_CATALOG)
 
     def plan(self, obj, purpose, need=True, consumer=SHOPPING):
         return read_plan(self.contract, selected_package=consumer, section=obj,
@@ -111,7 +112,7 @@ class UserProfileTests(unittest.TestCase):
     def test_P03_customizable_manual_only(self):
         self.assertIs(self.contract['customizable'], True)
         self.assertEqual(self.contract['customization_mode'], 'MANUAL_USER_ONLY')
-        self.assertIn('CUSTOMIZABLE != MODEL MAY MODIFY PROFILE', self.section)
+        self.assertFalse(self.contract['mutation']['model_allowed'])
 
     def test_P04_all_model_mutation_forbidden(self):
         mutation = self.contract['mutation']
@@ -122,7 +123,6 @@ class UserProfileTests(unittest.TestCase):
                          'refresh_stale_values', 'merge', 'correct_values', 'synchronize'}
                         <= set(mutation['forbidden_model_actions']))
         self.assertEqual(mutation['proposed_change'], 'RETURN_TO_USER_WITHOUT_WRITING')
-        self.assertIn('PROFILE MUTATION BY MODEL: NEVER', self.section)
 
     def test_P05_repository_authorization_never_grants_profile_write(self):
         for repository_write_authorized in (False, True):
@@ -146,23 +146,15 @@ class UserProfileTests(unittest.TestCase):
         obj = 'DIETARY_CONSTRAINTS'
         request = dict(consumer_package=SHOPPING, resource_id=RESOURCE, object_id=obj,
                        schema_version='1.0', purpose='product_compatibility', material_need=True)
-        observed = dict(root='Central Hub Config', coverage_complete=True, full_file=True,
+        observed = dict(root='Central Hub Config', folder='Shared', coverage_complete=True, full_file=True,
                         matches=[self.templates[obj]])
         self.assertEqual(resolve_fixture(self.contract, request, observed), ('ALLOW', (obj,)))
-        for change in ({'root': 'OTHER_ROOT'}, {'coverage_complete': False}, {'full_file': False},
+        for change in ({'root': 'OTHER_ROOT'}, {'folder': 'ImageT'}, {'coverage_complete': False}, {'full_file': False},
                        {'matches': []}, {'matches': [self.templates[obj], self.templates[obj]]},
                        {'matches': [self.templates['HEALTH_CONTEXT']]}):
             self.assertEqual(resolve_fixture(self.contract, request, dict(observed, **change)), ('UNRESOLVED', ()))
-        for key, value in [('resource_id', 'OTHER'), ('schema_version', '0.1-candidate')]:
+        for key, value in [('resource_id', 'OTHER'), ('schema_version', 'old')]:
             self.assertEqual(resolve_fixture(self.contract, dict(request, **{key: value}), observed), ('UNRESOLVED', ()))
-
-    def test_P09_food_absent_no_active_preference_access(self):
-        self.assertNotIn('HUB-PKG-FOOD', {p['package_id'] for p in self.catalog['packages']})
-        self.assertEqual(self.plan('PREFERENCES', 'food_selection', consumer='HUB-PKG-FOOD'), ('DENY', ()))
-
-    def test_P10_food_absent_no_active_dietary_or_health_access(self):
-        for obj in ('DIETARY_CONSTRAINTS', 'HEALTH_CONTEXT'):
-            self.assertEqual(self.plan(obj, 'food_compatibility', consumer='HUB-PKG-FOOD'), ('DENY', ()))
 
     def test_P11_access_without_need_skips_before_retrieval(self):
         self.assertEqual(self.plan('HEALTH_CONTEXT', 'product_compatibility', need=False), ('SKIP', ()))
@@ -215,69 +207,19 @@ class UserProfileTests(unittest.TestCase):
         self.assertEqual(self.contract['read']['unavailable'], 'DEPENDENT_PERSONALIZATION_UNRESOLVED_CONTINUE_INDEPENDENT_WORK')
         self.assertEqual(self.contract['object_schema']['field_absent_or_null'], 'UNKNOWN')
 
-    def test_P17_future_health_without_ownership_migration(self):
-        future = copy.deepcopy(self.contract)
-        future['access']['HUB-PKG-HEALTH'] = {o: ['health_context'] for o in ('GENERAL', 'DIETARY_CONSTRAINTS', 'HEALTH_CONTEXT')}
-        self.assertEqual((future['owner'], future['objects']), ('USER', self.contract['objects']))
-        self.assertEqual(read_plan(future, selected_package='HUB-PKG-HEALTH', section='HEALTH_CONTEXT',
-                                   purpose='health_context', material_need=True), ('ALLOW', ('HEALTH_CONTEXT',)))
-        self.assertEqual(set(self.contract['access']), {SHOPPING})
-        self.assertNotIn('HUB-PKG-HEALTH', str(self.catalog))
-
-    def test_P18_context_snapshot_section_byte_preserved_and_independent(self):
-        old = before('HUB_ARCHITECTURE_v1.16.md').decode('utf-8').split('## 13.', 1)[1]
-        current = self.arch.split('## 13.', 1)[1].split('## 14.', 1)[0]
-        self.assertEqual(current.strip(), old.strip())
-        self.assertEqual(self.contract['context_snapshot'], {'dependency': 'NONE', 'automatic_conversion': False})
-        self.assertNotIn('snapshot_id', str(self.templates))
-
-    def test_P19_active_stack_and_shopping_semantics_preserved(self):
-        paths = subprocess.check_output(['git', 'ls-tree', '-r', '--name-only', BASELINE,
-                                        '--', 'library_modules', 'tool_pipelines', 'HUB_CI_v1.2.md'], cwd=ROOT, text=True).splitlines()
-        self.assertTrue(paths)
-        for path in paths:
-            rel = path.removeprefix('Central Hub/')
-            actual = namespace_baseline_source(rel).read_bytes()
-            if rel == 'library_modules/HUB-DOM-SHOPPING_v1.0.md':
-                first, rest = actual.split(b'## Optional shared User Profile input', 1)
-                interface, rest = rest.split(b'## PREPARE', 1)
-                self.assertIn(b'Profile is optional input, not Requires', interface)
-                self.assertIn(b'PROFILE MUTATION BY MODEL: NEVER', interface)
-                actual = first + b'## PREPARE' + rest
-            with self.subTest(path=rel):
-                self.assertEqual(actual, before(rel))
-        self.assertEqual((NAMESPACE_PREDECESSOR / 'HUB_ROUTER_v1.1.yaml').read_bytes(), before('HUB_ROUTER_v1.1.yaml').replace(b'1.16', b'1.17'))
-
-    def test_P20_root_topology_pins_and_byte_exact_archive(self):
-        prior = load(ROOT / 'Source_archive/HUB_PACKAGE_CATALOG_v1.16.yaml')
-        self.assertEqual(self.catalog['packages'], prior['packages'])
-        self.assertEqual(len(self.catalog['packages']), 6)
-        router = load(NAMESPACE_PREDECESSOR / 'HUB_ROUTER_v1.1.yaml')
-        for owner in ('architecture', 'root_catalog'):
-            self.assertEqual(router['contracts'][owner]['version'], '1.17')
-            self.assertTrue(namespace_baseline_source(router['contracts'][owner]['file']).is_file())
-        receipt = json.loads((ROOT / 'Source_archive/USER_PROFILE_ARCHIVE_RECEIPT_2026-11-11.json').read_text())
-        for name, row in receipt.items():
-            archived = (ROOT / row['archive']).read_bytes()
-            self.assertEqual(hashlib.sha256(archived).hexdigest(), row['sha256'])
-            self.assertEqual(archived, before(name))
-            if name != 'HUB_ROUTER_v1.1.yaml':
-                self.assertFalse((ROOT / name).exists())
-
 
 class FoodProfileTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.contract = load(PUBLIC / CONTRACT)
-        cls.before = load(FOOD_PREDECESSOR / CONTRACT)
-        cls.entry = (ROOT / 'library_modules/Food/HUB-FOOD-ENTRY_v0.1.md').read_text(encoding='utf-8')
+        cls.entry = entry_path(package('FOOD')).read_text(encoding='utf-8')
         cls.health = load(PUBLIC / 'HUB-USER-PROFILE-HEALTH_CONTEXT-TEMPLATE_v1.0.yaml')
 
     def plan(self, obj, purpose, need=True):
         return read_plan(self.contract, selected_package=FOOD, section=obj,
                          purpose=purpose, material_need=need)
 
-    def test_food_access_preserves_shared_contract_except_declared_changes(self):
+    def test_food_uses_exact_allowed_purposes(self):
         mapping = {
             'GENERAL': ['food_context'],
             'PREFERENCES': ['food_selection'],
@@ -285,11 +227,6 @@ class FoodProfileTests(unittest.TestCase):
             'HEALTH_CONTEXT': ['food_compatibility'],
         }
         self.assertEqual(self.contract['access'][FOOD], mapping)
-        existing = copy.deepcopy(self.contract)
-        existing['access'].pop(FOOD)
-        self.assertIn('declared by the bound Hub Architecture', existing['read']['contract_source'])
-        existing['read']['contract_source'] = self.before['read']['contract_source']
-        self.assertEqual(existing, self.before)
         for obj, (purpose,) in mapping.items():
             with self.subTest(object=obj):
                 self.assertEqual(self.plan(obj, purpose), ('ALLOW', (obj,)))
@@ -331,7 +268,7 @@ class FoodProfileTests(unittest.TestCase):
     def test_food_case_e_exact_object_and_unknown_values(self):
         request = dict(consumer_package=FOOD, resource_id=RESOURCE, object_id='HEALTH_CONTEXT',
                        schema_version='1.0', purpose='food_compatibility', material_need=True)
-        observed = dict(root='Central Hub Config', coverage_complete=True, full_file=True, matches=[self.health])
+        observed = dict(root='Central Hub Config', folder='Shared', coverage_complete=True, full_file=True, matches=[self.health])
         self.assertEqual(resolve_fixture(self.contract, request, observed), ('ALLOW', ('HEALTH_CONTEXT',)))
         for change in (
             {'matches': []}, {'matches': [self.health, self.health]},
