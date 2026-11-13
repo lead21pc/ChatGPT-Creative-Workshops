@@ -9,9 +9,9 @@
 
 ## Tiền đề toàn project
 
-Project Cosmic Core (`C2`) xoay quanh đoàn tàu xuyên qua các thế giới để thu thập thần khí, thánh tích và những vật tương tự. Rongo quản trị đoàn tàu và các đội. Thành viên đến từ các thế giới khác nhau, mỗi người có căn tính, năng lực và mục tiêu riêng.
+Project Cosmic Core (`C2`) xoay quanh đoàn tàu xuyên qua các thế giới để thu thập thần khí, thánh tích và những vật tương tự. Rongo quản trị đoàn tàu và các đội. Thành viên đến từ các thế giới khác nhau, mỗi người có căn tính, năng lực và mục tiêu riêng, với tư cách tác nhân độc lập trong đội và trên tàu.
 
-Các thế giới tồn tại tiếp sau nhiệm vụ và có thể vận hành theo quy luật riêng. Khả năng tương thích giữa các hệ năng lực cần được xác lập theo từng trường hợp. Hệ quả đã được tác giả chấp nhận có thể theo nhân vật, tài sản hoặc trạng thái qua các thế giới và được ghi tại nguồn có thẩm quyền.
+Các thế giới tồn tại tiếp sau nhiệm vụ và có thể vận hành theo quy luật riêng. Khả năng tương thích giữa các hệ năng lực cần được xác lập theo từng trường hợp. Hệ quả đã được tác giả chấp nhận có thể theo nhân vật, tài sản hoặc trạng thái qua các thế giới và được ghi tại nguồn có thẩm quyền. Năng lượng, công nghệ, tri thức, lời hứa và quan hệ cũng có thể tiếp diễn khi đã xác lập đường chuyển tiếp tương ứng.
 
 
 ## Điều hướng

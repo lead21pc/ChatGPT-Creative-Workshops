@@ -69,3 +69,11 @@ Căn cứ: yêu cầu nhập lore sau kiểm định ổn định, phần lore d
 `C2M-021` giữ định nghĩa câu chú riêng Os s5shi của 25_1. `C2M-022` giữ năng lực riêng của 25_2. `C2M-110` giữ thánh tích trong phạm vi World 1. 02 định tuyến tới các nguồn này. Tên Rongo được ghi ở 11 cho đoàn tàu và ở 10 cho tổ chức quản trị, với hai identity tra cứu riêng ở 01.
 
 Nhận `C2M-112` cho diễn biến Campaign 01. 110 giữ sự thật bền của World 1 và 111 giữ thông tin được cấp cho nhiệm vụ. Chỉ ghi các mốc được nêu rõ trong yêu cầu. Kết quả tranh đoạt, cơ chế chi tiết và xuất xứ từng dữ kiện giữ theo mức bằng chứng hiện có.
+
+## C2-INGESTION-002 — 2026-11-14 — Nhập delta tiền đề và World 1
+
+Căn cứ: tác giả duyệt nhập các bổ sung tương thích trong `C2_INITIAL_PREMISE_AND_WORLD1_LORE_DELTA_2026-11-14.md` sau `DELTA_AUDIT` và chỉnh cách phân loại nhãn đội. Nguồn gốc riêng của từng dữ kiện vẫn chưa xác lập.
+
+`C2M-021` giữ câu chú Os s5shi và cơ chế sao lưu ký ức. Quyền dùng phép của người khác vẫn là đề xuất. `C2M-022` giữ cơ chế bảo hộ bản chất của 25_2. Cả hai dùng module hiện hành.
+
+`C2M-110` giữ sự thật bền và định nghĩa thánh tích. `C2M-112` giữ diễn biến tranh đoạt, vượt mê cung và trích xuất. Mốc niệm chú trước trích xuất và quan hệ bên lấy vật thuộc đội khác đã xác lập. Giữ mốc “Team 1 trở về trước”. Ánh xạ giữa nhãn “Team 1” và Team 25 là `UNKNOWN`, cùng với danh tính bên lấy vật và kết quả khôi phục thực tế.

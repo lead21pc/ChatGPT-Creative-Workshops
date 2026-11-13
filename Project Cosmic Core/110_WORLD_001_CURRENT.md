@@ -14,9 +14,10 @@
 - Con người và ma thuật cùng tồn tại.
 - Campaign đầu tiên diễn ra tại đây.
 
-- World 1 có một thành phố đông đúc và một ngọn đồi. Khu vực nguy hiểm ít được người địa phương lui tới.
+- World 1 có một thành phố đông đúc và một ngọn đồi. Một khu vực cực kỳ nguy hiểm hầu như không có người địa phương lui tới. Lý do cụ thể còn mở.
 - Đồi có mê cung ảo giác. Chân và sườn đồi có các mê cung câu đố. Đền nằm trên đỉnh đồi.
-- Thánh tích ở đền có tác dụng tăng tiềm năng. Cơ chế và giới hạn còn mở.
+- Quái vật xuất hiện ngẫu nhiên. Điều kiện và quy luật xuất hiện còn mở.
+- Thánh tích ở đền có tác dụng tăng tiềm năng. Thánh tích tồn tại độc lập với đội đang giữ nó. Cơ chế và giới hạn tác dụng còn mở.
 
 Sơ đồ chi tiết, câu đố, quy luật xuất hiện quái vật và hệ ma thuật còn mở.
 

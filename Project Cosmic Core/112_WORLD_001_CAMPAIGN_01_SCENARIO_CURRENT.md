@@ -9,10 +9,10 @@
 
 ## Diễn biến đã xác lập
 
-- Các đội vào World 1 rồi tách ra. Hành trình qua khu vực mê cung gắn với cuộc tranh đoạt thánh tích.
-- Cosmic Mage `25_1` bỏ qua tuyến mê cung dự kiến và dùng cổng. Battle Shaman / Battle Priest `25_2` xuyên qua các lớp thực tại. Hồ sơ [21](21_CHARACTER_25_1_CURRENT.md) và [22](22_CHARACTER_25_2_CURRENT.md) giữ năng lực riêng của từng người.
-- Team 1 trở về trước. Sau đó có trích xuất ký ức.
+- Nhiều đội cạnh tranh vào World 1 rồi tách ra. Team 25 gặp mê cung. Một thành viên hoặc nhóm thuộc đội đối thủ lấy được thánh tích, khiến Team 25 bực tức hoặc thất vọng vì mất vật.
+- Cosmic Mage `25_1` từ chối tiếp tục theo tuyến mê cung dự kiến và dùng cổng để thoát hoặc vượt qua. Battle Shaman / Battle Priest `25_2` gọi tay của các vị thần để xuyên qua các lớp thực tại và thoát ra. Hồ sơ [21](21_CHARACTER_25_1_CURRENT.md) và [22](22_CHARACTER_25_2_CURRENT.md) giữ năng lực riêng của từng người.
+- Team 1 trở về trước. Sau đó, Rongo thực hiện trích xuất ký ức. `25_1` đã niệm `Os s5shi` trước lần trích xuất.
 
 ## Mốc còn mở
 
-Trình tự chi tiết trong mê cung, thời điểm niệm `Os s5shi` so với lần trích xuất, người lấy được thánh tích và Rongo thực sự quan sát hay phản ứng thế nào đều chưa xác định. Việc trở về trước chỉ xác lập thứ tự trở về. [111](111_WORLD_001_CAMPAIGN_01_BRIEFCASE_CURRENT.md) giữ nội dung được cấp cho nhiệm vụ khi có căn cứ.
+Chưa xác định cách gọi “Team 1” trong diễn biến có chỉ Team 25 hay không. Tổng số đội, danh tính chính xác của đội hoặc người lấy thánh tích, trình tự chi tiết trong mê cung và thời điểm chính xác niệm chú còn mở. Việc khôi phục ký ức có xảy ra hay không, thời điểm, trình tự và mức khôi phục thực tế vẫn chưa xác lập. Tri thức Rongo thu được, mức hiểu hai cơ chế thoát mê cung và phản ứng của tổ chức, kể cả khả năng trừng phạt, còn mở. [111](111_WORLD_001_CAMPAIGN_01_BRIEFCASE_CURRENT.md) giữ nội dung được cấp cho nhiệm vụ khi có căn cứ.

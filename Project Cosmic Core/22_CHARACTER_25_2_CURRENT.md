@@ -14,7 +14,7 @@
 - Member của Team `25` theo [20](20_TEAM_25_TAIYI_ZHENREN_CURRENT.md).
 - Actual capability family: Battle Shaman / Battle Priest.
 
-Năng lực của 25_2 gắn với bốn vị thần. Phạm vi bảo hộ bản chất và phạm vi bảo hộ ký ức được xét riêng. Danh tính, vai trò từng vị thần và cơ chế chống xóa hoặc thay thế bản chất cần thêm xác nhận. Lần 25_2 xuyên qua các lớp thực tại tại World 1 được ghi ở [112](112_WORLD_001_CAMPAIGN_01_SCENARIO_CURRENT.md).
+Năng lực của 25_2 gắn với bốn vị thần nguyên tố. Ít nhất một vị thần kiêu hãnh có thể chống lại nỗ lực xóa hoặc thay thế bản chất cốt lõi của 25_2. Sự bảo hộ bản chất không tự bảo toàn hoặc khôi phục mọi ký ức con người. Cơ chế bảo hộ này thuộc 25_2. Cơ chế sao lưu và đồng bộ ký ức thuộc [25_1](21_CHARACTER_25_1_CURRENT.md#os-s5shi). Khả năng áp dụng phép đó cho người khác vẫn mở. Danh tính, lịch sử, vai trò và cơ chế đầy đủ của các vị thần cần thêm căn cứ. Lần 25_2 xuyên qua các lớp thực tại tại World 1 được ghi ở [112](112_WORLD_001_CAMPAIGN_01_SCENARIO_CURRENT.md).
 
 Tri thức của Rongo về năng lực thực này là UNKNOWN.
 

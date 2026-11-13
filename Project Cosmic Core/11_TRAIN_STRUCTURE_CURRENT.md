@@ -9,9 +9,9 @@
 
 ## Đoàn tàu và các toa
 
-`TRAIN` là đoàn tàu có tên Rongo. Tàu đi xuyên không gian và thời gian giữa các thế giới, vừa là phương tiện di chuyển vừa là nơi các đội sinh hoạt. Tàu có nhiều loại toa, gồm toa dành cho đội năm người.
+`TRAIN` là đoàn tàu có tên Rongo. Tàu đi xuyên không gian và thời gian giữa các thế giới, vừa là phương tiện di chuyển vừa là nơi các đội sinh hoạt và chiến đấu. Tàu có toa ở, toa nghiên cứu và phát triển, toa hậu cần và các toa chức năng khác.
 
-Sơ đồ toa chức năng, bố trí không gian chung và riêng của toa 25, tổng số đội, cơ chế xuyên thế giới và giới hạn vận hành còn mở.
+Toa ở của đội có thể gồm chỗ sinh hoạt, phòng ngủ, thư viện chung, khu làm việc với thiết bị và khu luyện tập riêng. Bố trí đã biết là đội năm người với hai người mỗi phòng ngủ. Số phòng, cách bố trí người còn lại và sơ đồ cụ thể của toa 25 còn mở, cùng sơ đồ toàn tàu, tổng số đội, cơ chế xuyên thế giới và giới hạn vận hành.
 
 `CARRIAGE_25` có Carriage ID `25`; quan hệ của Team 25 với toa này được ghi ở [20](20_TEAM_25_TAIYI_ZHENREN_CURRENT.md). Cùng số không có nghĩa team chính là toa, sở hữu toa hoặc có toàn quyền trên toa.
 
