@@ -48,3 +48,17 @@ Lore chi tiết, family Anti-Drift bổ sung, scenario, Authoring Pipeline và l
 Dán nội dung CI vào phần chỉ dẫn Project không tự tải Router hoặc các source từ máy/GitHub. Cung cấp Router `C2_Anti_Drift_Source_Router_v1.0.json`, bốn control và các current source cần dùng qua Project Sources hoặc file Library được gắn vào chat. Đây là bước cài đặt nguồn, tách khỏi commit/push.
 
 CI yêu cầu tìm Router theo tên tài liệu, xác minh identity/version và đọc đầy đủ; Router chọn nguồn/control tiếp theo qua nguồn thực sự có sẵn. Path tương đối và quy tắc thư mục trong JSON chỉ phục vụ bảo trì local. Tên trùng không đủ xác lập authority; thiếu, mơ hồ hoặc chỉ lấy được một phần tài liệu thì chặn phần phụ thuộc và yêu cầu file. `FULL_FILE` là yêu cầu đọc, không phải bảo đảm backend luôn cung cấp đủ nội dung. Chưa có lần kiểm chứng live nào được thực hiện.
+
+## Thử nghiệm cổng thực thi C2
+
+Harness thử nghiệm trong `tools/runtime_probe.py` nhận đề xuất route và đánh giá ngữ nghĩa qua hai callback. Code giữ quyền mở `PROMPT_EXECUTION`, còn adapter cục bộ trả nội dung file cùng bằng chứng đọc tới EOF. Harness đối chiếu 00/05 và nguồn được chọn với cùng bộ hash trong manifest, kiểm header và mở rộng phụ thuộc theo Router. Bộ hash cố định cho lượt thử, chỉ xác nhận nội dung khớp snapshot và không cấp thẩm quyền canon. CI ngữ nghĩa được caller gắn trước lượt thử. Harness xử lý một lượt phụ thuộc C2 theo chế độ chỉ đọc. Với nguồn stale hoặc thiếu điều kiện quyết định, harness dừng để xem xét, chưa thử nhánh phục hồi của Router.
+
+Từ thư mục C2, chạy bộ test và xuất hai đầu vào cho cùng một tình huống. Đổi `mission` thành `lookup`, `mca` hoặc `reception` để xem các tình huống còn lại.
+
+```powershell
+python -B -m unittest discover -s tests -p test_runtime_probe.py -v
+python -B -m tests.test_runtime_probe mission packet
+python -B -m tests.test_runtime_probe mission raw
+```
+
+Hai đầu vào dùng cùng văn bản nguồn, chỉ dẫn hành vi và các Anti-Drift đã chọn. Bản `raw` cho model thấy mã, config, metadata và đề xuất ngữ nghĩa. Bản `packet` chuyển giao kết quả các cổng cùng giới hạn kết luận. Kịch bản dùng callback cố định để kiểm flow, không đánh giá độ chính xác khi model tự chọn nguồn, phân xử conflict hay viết câu trả lời. Cần so A/B bằng cùng model và cùng câu hỏi, chấm độc lập theo thẩm quyền, phạm vi, tri thức actor, trạng thái UNKNOWN và quyền canon. Sau đó mới kiểm native retrieval bằng lượt thực trên host có thể cung cấp bằng chứng đọc. `LIVE VERIFIED: NOT RUN`.
