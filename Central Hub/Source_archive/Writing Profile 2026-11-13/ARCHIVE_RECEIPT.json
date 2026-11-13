@@ -1,0 +1,20 @@
+[
+  {
+    "old": "HUB_ARCHITECTURE_v1.22.md",
+    "new": "HUB_ARCHITECTURE_v1.23.md",
+    "archive": "Source_archive/Writing Profile 2026-11-13/HUB_ARCHITECTURE_v1.22.md",
+    "sha256": "20c3684d5d7953aa2275b540c2c057c5c82062f3cd8221e9ac1a3715e67f468c"
+  },
+  {
+    "old": "HUB_ROUTER_v1.2.yaml",
+    "new": "HUB_ROUTER_v1.2.yaml",
+    "archive": "Source_archive/Writing Profile 2026-11-13/HUB_ROUTER_v1.2.yaml",
+    "sha256": "e01778b0fe18d38d1f0f911b66754111a5f248144f956ed3f838fccfd70142b6"
+  },
+  {
+    "old": "shared_resources/HUB-USER-PROFILE-CONTRACT_v1.0.yaml",
+    "new": "shared_resources/HUB-USER-PROFILE-CONTRACT_v1.1.yaml",
+    "archive": "Source_archive/Writing Profile 2026-11-13/shared_resources/HUB-USER-PROFILE-CONTRACT_v1.0.yaml",
+    "sha256": "5b4b1f4747963d96fab4591fd62f40746f0f0119c8777ed02e935be5536c1244"
+  }
+]

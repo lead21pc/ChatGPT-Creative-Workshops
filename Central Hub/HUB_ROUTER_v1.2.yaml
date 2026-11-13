@@ -4,7 +4,7 @@ runtime_role: CORE_ROUTER
 router_version: '1.2'
 status: ACTIVE
 contracts:
-  architecture: {file: HUB_ARCHITECTURE_v1.22.md, module_id: HUB-CORE-ARCH, version: '1.22', status: ACTIVE}
+  architecture: {file: HUB_ARCHITECTURE_v1.23.md, module_id: HUB-CORE-ARCH, version: '1.23', status: ACTIVE}
   root_catalog: {file: HUB_PACKAGE_CATALOG_v1.22.yaml, module_id: HUB-CORE-PACKAGE-CATALOG, version: '1.22', status: ACTIVE}
   ci: HUB_CI_v1.3.md
 default: NONE

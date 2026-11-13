@@ -222,7 +222,7 @@ MENTION != DEPENDENCY
 PACKAGE MEMBERSHIP != DEPENDENCY
 ```
 
-Technical, Concept Development, Authoring, Shopping, ImageT and Food use Library-module bindings. AIS alone retains its Project-Source pipeline binding. Storage/binding establishes neither semantic hierarchy nor authority. Exact identities, full-read verification, deployment status, and scoped runtime records belong in the [Central Hub documentation](Central%20Hub/README.md), [Architecture](Central%20Hub/HUB_ARCHITECTURE_v1.22.md), and [Catalog](Central%20Hub/HUB_PACKAGE_CATALOG_v1.22.yaml).
+Technical, Concept Development, Authoring, Shopping, ImageT and Food use Library-module bindings. AIS alone retains its Project-Source pipeline binding. Storage/binding establishes neither semantic hierarchy nor authority. Exact identities, full-read verification, deployment status, and scoped runtime records belong in the [Central Hub documentation](Central%20Hub/README.md), [Architecture](Central%20Hub/HUB_ARCHITECTURE_v1.23.md), and [Catalog](Central%20Hub/HUB_PACKAGE_CATALOG_v1.22.yaml).
 
 > **User-reported build/test baseline:** The current workshop controls and Central Hub architecture were developed and behaviorally tested primarily with **GPT-5.6 Sol on ChatGPT Plus**. This is the user's reported runtime qualification, not a compatibility result reproduced by repository checks. Other models have not yet been systematically tested; other plans/runtime conditions may work, but equivalent behavior and stability are not guaranteed. This does not establish incompatibility.
 
