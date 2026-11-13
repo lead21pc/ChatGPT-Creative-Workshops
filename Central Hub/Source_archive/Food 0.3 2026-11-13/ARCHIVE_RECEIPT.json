@@ -1,0 +1,26 @@
+[
+  {
+    "old": "library_modules/Food/HUB-FOOD-ENTRY_v0.2.md",
+    "new": "library_modules/Food/HUB-FOOD-ENTRY_v0.3.md",
+    "archive": "Source_archive/Food 0.3 2026-11-13/library_modules/Food/HUB-FOOD-ENTRY_v0.2.md",
+    "sha256": "45868fc8410b79625ee08b0dae712ed8848d6cd4b340261e5923fb848f107a05"
+  },
+  {
+    "old": "HUB_ARCHITECTURE_v1.21.md",
+    "new": "HUB_ARCHITECTURE_v1.22.md",
+    "archive": "Source_archive/Food 0.3 2026-11-13/HUB_ARCHITECTURE_v1.21.md",
+    "sha256": "2e1b194a47a85dfe63bfd9a2c8e820007f49c7ff296bfc174c88a2b3f21544d4"
+  },
+  {
+    "old": "HUB_PACKAGE_CATALOG_v1.21.yaml",
+    "new": "HUB_PACKAGE_CATALOG_v1.22.yaml",
+    "archive": "Source_archive/Food 0.3 2026-11-13/HUB_PACKAGE_CATALOG_v1.21.yaml",
+    "sha256": "398cf7298e278747ffa51fd55deb609b85397b7b817d3fd123116486311daecc"
+  },
+  {
+    "old": "HUB_ROUTER_v1.2.yaml",
+    "new": "HUB_ROUTER_v1.2.yaml",
+    "archive": "Source_archive/Food 0.3 2026-11-13/HUB_ROUTER_v1.2.yaml",
+    "sha256": "36c5fd806760a5837d01cf761fcc5bdb82d1bfd743592ea9f73d9bd88b47b5a9"
+  }
+]

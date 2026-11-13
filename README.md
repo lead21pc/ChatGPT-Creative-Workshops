@@ -61,7 +61,7 @@ Each project's documentation determines how to read its sources. Folder names, v
 
 ## Central Hub
 
-> Central Hub dùng Architecture/Catalog 1.21 với bảy package và 23 Library controls trong repository. Người dùng đã thử thành công việc đọc và sử dụng folder Library lồng nhau trong runtime liên quan. Bộ cấu trúc 1.21 chưa được cài hoặc thử live. [Central Hub](Central%20Hub/README.md). User Profile giữ shared non-module identity riêng. Các release distribution giữ tên lịch sử.
+> Central Hub dùng Architecture/Catalog 1.22 với bảy package và 23 Library controls trong repository. Người dùng đã thử thành công việc đọc và sử dụng folder Library lồng nhau trong runtime liên quan. Bộ 1.22 chưa được cài hoặc thử live. [Central Hub](Central%20Hub/README.md). User Profile giữ shared non-module identity riêng. Các release distribution giữ tên lịch sử.
 
 Central Hub is the shared general-purpose workspace for capabilities that should not belong to any one fiction project. It does not sit inside FTH, above the creative systems, or act as a shared fiction runtime or canon layer. A project may bring a bounded question or slice of context into Hub and return the result for local review; Hub may also start from a fiction idea before any project has adopted it.
 
@@ -99,7 +99,7 @@ HUB COMPOSITION → WORKING RESULT
 
 **Hub CI** owns the requested operation/stage, truth and state discipline, action authorization, general verification need, and overall interaction. **Hub Router** scopes task portions, selects root packages, resolves entrypoints, composes the selected module set, expands hard dependencies, validates reads/bindings, and hands off scoped work. Packages own their internal selection; pipelines own their procedures; the platform performs actual retrieval and tool execution.
 
-The [active root Catalog](Central%20Hub/HUB_PACKAGE_CATALOG_v1.21.yaml) exposes exactly **seven root packages**, not every leaf. Zero, one, or multiple packages may contribute to different portions of one task. Selection is recomputed each turn and when task scope materially changes; it is not a permanent chat mode.
+The [active root Catalog](Central%20Hub/HUB_PACKAGE_CATALOG_v1.22.yaml) exposes exactly **seven root packages**, not every leaf. Zero, one, or multiple packages may contribute to different portions of one task. Selection is recomputed each turn and when task scope materially changes; it is not a permanent chat mode.
 
 ```text
 ROOT CATALOG KNOWS PACKAGE ENTRYPOINTS != ROOT CATALOG KNOWS EVERY LEAF
@@ -222,7 +222,7 @@ MENTION != DEPENDENCY
 PACKAGE MEMBERSHIP != DEPENDENCY
 ```
 
-Technical, Concept Development, Authoring, Shopping, ImageT and Food use Library-module bindings. AIS alone retains its Project-Source pipeline binding. Storage/binding establishes neither semantic hierarchy nor authority. Exact identities, full-read verification, deployment status, and scoped runtime records belong in the [Central Hub documentation](Central%20Hub/README.md), [Architecture](Central%20Hub/HUB_ARCHITECTURE_v1.21.md), and [Catalog](Central%20Hub/HUB_PACKAGE_CATALOG_v1.21.yaml).
+Technical, Concept Development, Authoring, Shopping, ImageT and Food use Library-module bindings. AIS alone retains its Project-Source pipeline binding. Storage/binding establishes neither semantic hierarchy nor authority. Exact identities, full-read verification, deployment status, and scoped runtime records belong in the [Central Hub documentation](Central%20Hub/README.md), [Architecture](Central%20Hub/HUB_ARCHITECTURE_v1.22.md), and [Catalog](Central%20Hub/HUB_PACKAGE_CATALOG_v1.22.yaml).
 
 > **User-reported build/test baseline:** The current workshop controls and Central Hub architecture were developed and behaviorally tested primarily with **GPT-5.6 Sol on ChatGPT Plus**. This is the user's reported runtime qualification, not a compatibility result reproduced by repository checks. Other models have not yet been systematically tested; other plans/runtime conditions may work, but equivalent behavior and stability are not guaranteed. This does not establish incompatibility.
 

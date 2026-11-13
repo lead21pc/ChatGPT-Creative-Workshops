@@ -8,9 +8,9 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 LIBRARY = ROOT / 'library_modules'
-ROOT_CATALOG = ROOT / 'HUB_PACKAGE_CATALOG_v1.21.yaml'
+ROOT_CATALOG = ROOT / 'HUB_PACKAGE_CATALOG_v1.22.yaml'
 HUB_ROUTER = ROOT / 'HUB_ROUTER_v1.2.yaml'
-ARCHITECTURE = ROOT / 'HUB_ARCHITECTURE_v1.21.md'
+ARCHITECTURE = ROOT / 'HUB_ARCHITECTURE_v1.22.md'
 CI = ROOT / 'HUB_CI_v1.3.md'
 IMAGE_INSTALL = ROOT / 'tool_pipelines/ImageT/IMAGET_INSTALL_INTEGRITY.yaml'
 
