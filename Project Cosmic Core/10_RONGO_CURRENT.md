@@ -7,9 +7,11 @@
 > Cross-domain owner boundary: Cấu trúc tàu ở `C2M-011`; team ở `C2M-020`; tri thức liên quan A ở `C2M-021`; briefing ở `C2M-111`; world truth ở `C2M-110`.
 > Load mode: `FULL_FILE`
 
-## Baseline
+## Quản trị và kiểm soát
 
-Identity tra nguồn: `RONGO`. Rongo là tổ chức/ban quản trị đoàn tàu. Phạm vi có thể quản con người, team, nhiệm vụ và cơ chế kiểm soát; chưa chốt hierarchy, rank, protocol hoặc quyền hạn chi tiết.
+`RONGO` là tổ chức quản trị đoàn tàu, các đội và nhiệm vụ. Rongo cho phép tranh đoạt thần khí, thánh tích và các vật tương tự. Trong trật tự của Rongo, người lấy được vật được hưởng lợi từ vật đó. Điều kiện áp dụng, ngoại lệ và cách phân bổ tài nguyên khác còn mở.
+
+Việc trích xuất ký ức có ghi nhận trong [diễn biến Campaign 01](112_WORLD_001_CAMPAIGN_01_SCENARIO_CURRENT.md). Phạm vi tuyển mộ tự nguyện hoặc cưỡng ép, cách lưu ký ức, lớp thôi miên phục tùng, máy quét mắt và phương án dự phòng còn cần xác nhận chi tiết.
 
 Rongo không mặc định omniscient. Tri thức tổ chức tách khỏi objective truth và có thể khác giữa người nhận/bộ phận; không tự sáng tác bộ phận hoặc người biết.
 

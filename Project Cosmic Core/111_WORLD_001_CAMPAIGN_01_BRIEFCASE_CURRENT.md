@@ -9,14 +9,14 @@
 
 ## Phạm vi đã biết
 
-Campaign đầu diễn ra tại `WORLD_001`. Milestone chỉ thiết lập owner briefing; chưa nhập nội dung lệnh, tình báo hoặc kịch bản.
+Campaign đầu diễn ra tại `WORLD_001`. Nội dung lệnh, danh sách chính thức và tình báo được Rongo cấp còn mở.
 
 | Phần briefing | Trạng thái nội dung |
 | --- | --- |
 | Mục tiêu được giao | UNKNOWN |
 | Information/intelligence được cấp | UNKNOWN |
 | Constraints | UNKNOWN |
-| Participating-team information | UNKNOWN — không tự gán Team 25 |
+| Participating-team information | UNKNOWN — chưa có danh sách đội trong briefing |
 | Organization expectation | UNKNOWN |
 | Known unknowns của nhiệm vụ | Chưa nhập; không đồng nghĩa không có |
 
@@ -26,4 +26,4 @@ Campaign đầu diễn ra tại `WORLD_001`. Milestone chỉ thiết lập owner
 
 Lệnh đã phát không chứng minh đã nhận, hiểu, tin hoặc thực thi. Briefing có thể chỉ chứa phần thông tin được tổ chức cung cấp; không mặc định đúng toàn bộ hoặc đầy đủ, cũng không tự bịa thông tin sai. Khi có dữ liệu, giữ đường cung cấp/người nhận/mốc và mức chắc chắn đủ cho tác vụ.
 
-World truth theo [110](110_WORLD_001_CURRENT.md). Scenario/event/branch chưa có source trong baseline. Kết quả được chấp nhận cập nhật từng controlling owner liên quan theo hợp đồng persistent state ở 110; cập nhật world truth không tự cập nhật briefing hoặc actor knowledge.
+World truth theo [110](110_WORLD_001_CURRENT.md). Diễn biến thực tế theo [112](112_WORLD_001_CAMPAIGN_01_SCENARIO_CURRENT.md). Kết quả được chấp nhận cập nhật từng controlling owner liên quan theo hợp đồng persistent state ở 110; cập nhật world truth không tự cập nhật briefing hoặc actor knowledge.

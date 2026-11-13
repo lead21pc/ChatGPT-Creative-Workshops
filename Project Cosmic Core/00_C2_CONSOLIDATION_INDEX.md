@@ -15,13 +15,13 @@ Với tác vụ phụ thuộc C2 current state: CI gọi Router; đọc đầy �
 | Địa chỉ | Vai trò và boundary |
 | --- | --- |
 | 01 | Actor/organization catalog: identity → owner; không sao chép profile. |
-| 02 | Capability/relic catalog: definition owner khác holder/user; chưa có định nghĩa độc lập được nhập. |
+| 02 | Capability/relic catalog: định tuyến tới nguồn định nghĩa theo phạm vi. |
 | 03 / 04 / 05 | History / quyết định-reconciliation / open state; không là current lore fallback. |
 | 06 / 07 | Premise tối thiểu / nguồn gốc-độ chắc chắn; chấp nhận là trục riêng. |
 | 10 / 11 | Rongo / cấu trúc tàu; tổ chức khác cấu trúc vật lý. |
 | 20 / 21 / 22 | Team composition, slot mở 25_3–25_5 / hai hồ sơ nhân vật riêng. Team 25 khác toa 25. |
 | 100 | World catalog: World ID → world owner; không chứa world detail. |
-| 110 / 111 | Persistent world truth / campaign briefing-mission knowledge. Scenario chưa tạo. |
+| 110 / 111 / 112 | Sự thật bền World 1 / thông tin được cấp trong briefing / diễn biến Campaign 01. |
 
 ## Control và bảo trì
 
@@ -54,5 +54,6 @@ World owner giữ world truth/state bền; briefing giữ thông tin/lệnh/kỳ
 | `C2M-100` | `100_WORLD_CATALOG_CURRENT.md` |
 | `C2M-110` | `110_WORLD_001_CURRENT.md` |
 | `C2M-111` | `111_WORLD_001_CAMPAIGN_01_BRIEFCASE_CURRENT.md` |
+| `C2M-112` | `112_WORLD_001_CAMPAIGN_01_SCENARIO_CURRENT.md` |
 
 <!-- END GENERATED MODULE CATALOG -->

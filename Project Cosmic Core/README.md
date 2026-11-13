@@ -1,6 +1,6 @@
 # Project Cosmic Core (`C2`)
 
-Project fiction cá nhân về đoàn tàu xuyên các world. Repository này là skeleton quản lý đã nhập đúng premise tối thiểu; chưa phải toàn bộ lore tác giả.
+Project fiction cá nhân về đoàn tàu xuyên các world. Package quản lý lore C2 theo phạm vi từng nguồn.
 
 ## Bản đồ nguồn
 
@@ -14,7 +14,7 @@ Project fiction cá nhân về đoàn tàu xuyên các world. Repository này l�
 | 06 / 07 | Premise core / provenance-độ chắc chắn; trạng thái chấp nhận là trục riêng |
 | 10 / 11 | Rongo / cấu trúc tàu |
 | 20 / 21 / 22 | Team 25 và ba slot mở / hai hồ sơ nhân vật riêng |
-| 110 / 111 | World 1 persistent truth / campaign briefing knowledge |
+| 110 / 111 / 112 | Sự thật bền World 1 / thông tin briefing / diễn biến Campaign 01 |
 
 `FILE NUMBER != MODULE ID != FICTION ENTITY ID`. Mapping module tường minh trong builder, không suy từ thứ tự filename. Dải chục không là quota; không có source lấp số hoặc scenario chưa được nhập.
 
@@ -35,13 +35,13 @@ git diff --check
 
 Sau thay đổi current sources được phép, dùng `python -B build_consolidation.py --write`, rồi `--check`. Chỉ vùng generated module catalog trong 00 và metadata/hash trong MANIFEST được ghi; builder không là lore generator, không infer dependency/ownership hoặc giải OPEN/canon. Catalog admission nằm tường minh trong builder; khi nhận source mới phải cập nhật mapping cùng inventory generated đúng tập được duyệt, không tự nhận từ glob. `--write` từ chối inventory sai/tùy tiện thay vì tự cấp admission.
 
-Manifest băm 16 numbered current files; không băm chính nó/control/tooling. `--check-router` kiểm cấu trúc control, không chứng minh ý nghĩa đúng hoặc mô hình tuân thủ. Test dùng bản sao tạm, không sửa nguồn baseline.
+Manifest băm 17 tệp hiện hành đánh số; không băm chính nó/control/tooling. `--check-router` kiểm cấu trúc control, không chứng minh ý nghĩa đúng hoặc mô hình tuân thủ. Test dùng bản sao tạm, không sửa nguồn baseline.
 
 ## Trạng thái bằng chứng
 
 Local repository khác live GPT Project deployment. Chỉnh file/commit không tự đồng bộ Project Sources/Library hoặc cài CI. `LIVE VERIFIED: NOT RUN`.
 
-Lore chi tiết, family Anti-Drift bổ sung, scenario, Authoring Pipeline và live deployment/verification giữ ngoài milestone này.
+Các mục lore còn mở được ghi ở [05](05_OPEN_ISSUES_CURRENT.md).
 
 ## Dùng CI trên ChatGPT web
 

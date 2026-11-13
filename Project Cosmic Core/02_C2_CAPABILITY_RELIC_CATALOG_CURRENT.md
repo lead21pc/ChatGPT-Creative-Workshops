@@ -4,14 +4,20 @@
 > Runtime role: `CURRENT_SOURCE`
 > Domain / Scope: Định tuyến hệ sức mạnh, capability, spell, technique, relic, divine/sacred artifact, inheritance, energy source và tài sản có identity.
 > Authority boundary: Chỉ định tuyến; không là bộ định nghĩa chung hoặc nơi cấp quyền sở hữu.
-> Cross-domain owner boundary: Năng lực áp dụng cho A ở `C2M-021`, B ở `C2M-022`; identity tác nhân qua `C2M-001`; world qua `C2M-100`.
+> Cross-domain owner boundary: Năng lực riêng của 25_1 ở `C2M-021`, của 25_2 ở `C2M-022`; thánh tích World 1 ở `C2M-110`; định tuyến tác nhân và thế giới qua `C2M-001`, `C2M-100`.
 > Load mode: `FULL_FILE`
 
-## Trạng thái baseline
+## Danh mục
 
-Chưa có định nghĩa capability/relic độc lập được nhập và cấp identity riêng. Vì vậy chưa có entry định nghĩa hoặc relic instance trong danh mục này.
+| Mục tra cứu | Loại | Nguồn định nghĩa trong phạm vi đã xác lập |
+| --- | --- | --- |
+| Cosmic Mage | Nhóm năng lực của 25_1 | [21](21_CHARACTER_25_1_CURRENT.md) |
+| Os s5shi | Câu chú riêng của 25_1 | [21](21_CHARACTER_25_1_CURRENT.md) |
+| Battle Shaman / Battle Priest | Nhóm năng lực của 25_2 | [22](22_CHARACTER_25_2_CURRENT.md) |
+| Thánh tích World 1 | Thánh tích | [110](110_WORLD_001_CURRENT.md) |
 
-Hai nhãn năng lực tối thiểu đã biết được ghi trong hồ sơ [A](21_CHARACTER_25_1_CURRENT.md) và [B](22_CHARACTER_25_2_CURRENT.md); chúng không phải định nghĩa đầy đủ của hệ sức mạnh và không tự tạo capability ID.
+Một nguồn có thể sở hữu nhiều định nghĩa trong phạm vi của mình.
+
 
 ## Hợp đồng entry khi có nguồn
 

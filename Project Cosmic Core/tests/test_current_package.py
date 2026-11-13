@@ -50,8 +50,8 @@ class PackageTests(unittest.TestCase):
             result = self.cli(*args)
             self.assertEqual(result.returncode, 0, result.stderr)
             self.assertEqual(before, self.snapshot())
-        self.assertEqual(len(tool.ACCEPTED), 12)
-        self.assertEqual(len(tool.CURRENT_FILES), 16)
+        self.assertEqual(len(tool.ACCEPTED), 13)
+        self.assertEqual(len(tool.CURRENT_FILES), 17)
 
     def test_open_slots_resolve_to_team_without_dedicated_modules(self):
         team = (self.root / tool.ACCEPTED['C2M-020']).read_text(encoding='utf-8')

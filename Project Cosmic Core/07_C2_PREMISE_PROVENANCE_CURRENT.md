@@ -16,7 +16,7 @@ Theo tác giả, C2 bắt đầu từ một lucid dream cũ, sau đó có phần
 - Nguồn gốc / độ chắc chắn: `REMEMBERED_FROM_OLD_LUCID_DREAM`, `LATER_ADDITION`, `UNCERTAIN_MEMORY` khi có căn cứ từ tác giả.
 - Trạng thái chấp nhận: `CURRENT`, `PROPOSAL`, `OPEN`, `UNKNOWN` theo quyết định thực tế.
 
-Các nhãn có thể kết hợp. Nhớ từ giấc mơ không tự thành CURRENT; bổ sung về sau không tự được chấp nhận. Không gán nhãn remembered/later cho chi tiết chỉ vì nó hợp premise. Xuất xứ từng assertion hiện UNKNOWN nếu chưa được cung cấp.
+Các nhãn có thể kết hợp. Nhớ từ giấc mơ không tự thành CURRENT; bổ sung về sau không tự được chấp nhận. Không gán nhãn remembered/later cho chi tiết chỉ vì nó hợp premise. Xuất xứ từng dữ kiện vẫn là UNKNOWN nếu chưa có căn cứ từ tác giả, kể cả các dữ kiện được nhập trong `C2-INGESTION-001`.
 
 ## Ranh giới hồ sơ
 

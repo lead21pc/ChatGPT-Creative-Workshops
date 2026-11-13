@@ -15,6 +15,10 @@
 - Designation dùng quy ước đặt tên celestial/mythological; không nhập thuộc tính thần thoại vào team hoặc nhân vật.
 - Members: `25_1`, `25_2`, `25_3`, `25_4`, `25_5`.
 
+## Quan hệ trong đội
+
+Quy tắc sinh tồn cấp đội buộc các thành viên hợp tác dù có thể khác lý tưởng hay mục tiêu. Nếu một thành viên chết hoặc biến mất, các thành viên còn lại bị xóa sổ. Điều kiện chi tiết và cơ chế của quy tắc còn mở.
+
 ## Ranh giới
 
 Team source sở hữu composition, quan hệ và state cấp team. Hồ sơ [21](21_CHARACTER_25_1_CURRENT.md), [22](22_CHARACTER_25_2_CURRENT.md) giữ căn tính/trạng thái nhân vật riêng. Các slot 25_3–25_5 chưa cần owner độc lập.

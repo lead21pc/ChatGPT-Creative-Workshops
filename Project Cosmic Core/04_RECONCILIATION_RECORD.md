@@ -61,3 +61,11 @@ Tác giả làm rõ CI được dán vào phần chỉ dẫn trên ChatGPT web. 
 CI yêu cầu truy xuất `C2_Anti_Drift_Source_Router_v1.0.json` từ nguồn thực sự có của Project (Project Sources hoặc file Library được gắn vào chat), xác minh identity/version, đọc FULL_FILE rồi vào PROMPT_ROUTE_ONLY. Thiếu/trùng/một phần Router phải chặn phần phụ thuộc và yêu cầu file, không bịa nội dung. Router áp cùng contract cho source/control tiếp theo; local path, directory/direct-child chỉ là metadata bảo trì, không là web filesystem hoặc tự truy cập GitHub. Không có registry/locator schema mới.
 
 Checker vẫn kiểm file local để bảo trì, nhưng CI gate dùng tên tài liệu và web-source contract; test từ chối metadata-only, local-path-only, summary thay full read và bỏ điều kiện chặn. README ghi rõ việc cung cấp Router/control/source trên web là bước riêng, không tự xảy ra sau commit/push. Tham chiếu sản phẩm đã đọc: https://learn.chatgpt.com/docs/projects . CI 7991 ký tự gồm newline cuối, dưới 8.000. LIVE VERIFIED: NOT RUN; không upload/cài Project hoặc push trong correction này.
+
+## C2-INGESTION-001 — 2026-11-14 — Nhập lore theo nguồn có thẩm quyền
+
+Căn cứ: yêu cầu nhập lore sau kiểm định ổn định, phần lore do tác giả cung cấp trong [Audit Cosmic Core CI](https://chatgpt.com/c/6af31549-72d8-83ec-86de-73dd8b28c708) và xác nhận về câu chú trong [Project Cosmic Core Control](https://chatgpt.com/c/6ae98537-1a10-83ec-a3e9-6b9948fa317b).
+
+`C2M-021` giữ định nghĩa câu chú riêng Os s5shi của 25_1. `C2M-022` giữ năng lực riêng của 25_2. `C2M-110` giữ thánh tích trong phạm vi World 1. 02 định tuyến tới các nguồn này. Tên Rongo được ghi ở 11 cho đoàn tàu và ở 10 cho tổ chức quản trị, với hai identity tra cứu riêng ở 01.
+
+Nhận `C2M-112` cho diễn biến Campaign 01. 110 giữ sự thật bền của World 1 và 111 giữ thông tin được cấp cho nhiệm vụ. Chỉ ghi các mốc được nêu rõ trong yêu cầu. Kết quả tranh đoạt, cơ chế chi tiết và xuất xứ từng dữ kiện giữ theo mức bằng chứng hiện có.

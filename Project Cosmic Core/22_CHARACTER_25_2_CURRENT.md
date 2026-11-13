@@ -3,18 +3,20 @@
 > Module ID: `C2M-022`
 > Runtime role: `CURRENT_SOURCE`
 > Domain / Scope: Identity, state cá nhân và ranh giới tri thức của 25_2.
-> Authority boundary: Giữ state nhân vật; không quản định nghĩa năng lực/relic độc lập, team hoặc tổ chức.
+> Authority boundary: Giữ căn tính, trạng thái và năng lực riêng của 25_2, gồm sự bảo hộ gắn với nhân vật. Định nghĩa độc lập thuộc nguồn tương ứng khi được xác lập.
 > Cross-domain owner boundary: Team ở `C2M-020`; Rongo ở `C2M-010`; định tuyến definition owner qua `C2M-002`.
 > Load mode: `FULL_FILE`
 
-## Baseline
+## Căn tính và năng lực
 
 - Character ID: `25_2`.
 - Placeholder: B; không phải tên thật.
 - Member của Team `25` theo [20](20_TEAM_25_TAIYI_ZHENREN_CURRENT.md).
 - Actual capability family: Battle Shaman / Battle Priest.
 
-Chưa nhập full profile, cơ chế hoặc divine-backer detail. Tri thức của Rongo về năng lực thực này là UNKNOWN; không suy chỉ từ membership.
+Năng lực của 25_2 gắn với bốn vị thần. Phạm vi bảo hộ bản chất và phạm vi bảo hộ ký ức được xét riêng. Danh tính, vai trò từng vị thần và cơ chế chống xóa hoặc thay thế bản chất cần thêm xác nhận. Lần 25_2 xuyên qua các lớp thực tại tại World 1 được ghi ở [112](112_WORLD_001_CAMPAIGN_01_SCENARIO_CURRENT.md).
+
+Tri thức của Rongo về năng lực thực này là UNKNOWN.
 
 ## State và carryover
 

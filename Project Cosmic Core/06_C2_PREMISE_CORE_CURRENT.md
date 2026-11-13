@@ -2,16 +2,17 @@
 
 > Module ID: `C2M-006`
 > Runtime role: `CURRENT_SOURCE`
-> Domain / Scope: Identity project và các ranh giới premise được phép nhập ở baseline.
+> Domain / Scope: Căn tính và tiền đề cấp project.
 > Authority boundary: Chỉ giữ premise tối thiểu dưới đây; chi tiết được giao cho owner chuyên biệt.
 > Cross-domain owner boundary: Provenance ở `C2M-007`; Rongo ở `C2M-010`; tàu ở `C2M-011`; team ở `C2M-020`; world ở `C2M-110`.
 > Load mode: `FULL_FILE`
 
-## Identity và phạm vi
+## Tiền đề toàn project
 
-Project Cosmic Core (`C2`) là project fiction cá nhân. Baseline có đoàn tàu xuyên các world, tổ chức/ban quản trị Rongo, nhiều loại toa, team và các nhân vật giữ identity độc lập. Các hệ năng lực và world không mặc định dùng cùng ontology.
+Project Cosmic Core (`C2`) xoay quanh đoàn tàu xuyên qua các thế giới để thu thập thần khí, thánh tích và những vật tương tự. Rongo quản trị đoàn tàu và các đội. Thành viên đến từ các thế giới khác nhau, mỗi người có căn tính, năng lực và mục tiêu riêng.
 
-C2 tái sử dụng kỷ luật quản lý nguồn; không nhập ontology hoặc lore của project tham chiếu. Đây chỉ là lượng premise được phép ghi trong milestone skeleton, không đại diện toàn bộ lore tác giả đã có.
+Các thế giới tồn tại tiếp sau nhiệm vụ và có thể vận hành theo quy luật riêng. Khả năng tương thích giữa các hệ năng lực cần được xác lập theo từng trường hợp. Hệ quả đã được tác giả chấp nhận có thể theo nhân vật, tài sản hoặc trạng thái qua các thế giới và được ghi tại nguồn có thẩm quyền.
+
 
 ## Điều hướng
 
