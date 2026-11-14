@@ -26,4 +26,4 @@ Campaign đầu diễn ra tại `WORLD_001`. Nội dung lệnh, danh sách chín
 
 Lệnh đã phát không chứng minh đã nhận, hiểu, tin hoặc thực thi. Briefing có thể chỉ chứa phần thông tin được tổ chức cung cấp; không mặc định đúng toàn bộ hoặc đầy đủ, cũng không tự bịa thông tin sai. Khi có dữ liệu, giữ đường cung cấp/người nhận/mốc và mức chắc chắn đủ cho tác vụ.
 
-World truth theo [110](110_WORLD_001_CURRENT.md). Diễn biến thực tế theo [112](112_WORLD_001_CAMPAIGN_01_SCENARIO_CURRENT.md). Kết quả được chấp nhận cập nhật từng controlling owner liên quan theo hợp đồng persistent state ở 110; cập nhật world truth không tự cập nhật briefing hoặc actor knowledge.
+World truth theo [110](110_WORLD_001.md). Diễn biến thực tế theo [112](112_WORLD_001_CAMPAIGN_01_SCENARIO.md). Kết quả được chấp nhận cập nhật từng controlling owner liên quan theo hợp đồng persistent state ở 110; cập nhật world truth không tự cập nhật briefing hoặc actor knowledge.

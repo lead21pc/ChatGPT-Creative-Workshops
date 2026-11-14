@@ -58,17 +58,17 @@ class PackageTests(unittest.TestCase):
         catalog = (self.root / tool.ACCEPTED['C2M-001']).read_text(encoding='utf-8')
         for number in (3, 4, 5):
             key = f'C2M-02{number}'
-            name = f'2{number}_CHARACTER_25_{number}_CURRENT.md'
+            name = f'2{number}_CHARACTER_25_{number}.md'
             self.assertNotIn(key, tool.ACCEPTED)
             self.assertNotIn(name, tool.CURRENT_FILES)
             self.assertFalse((self.root / name).exists())
             self.assertIn(f'`25_{number}`', team)
             row = next(line for line in catalog.splitlines()
                        if line.startswith(f'| `25_{number}` |'))
-            self.assertIn('20_TEAM_25_TAIYI_ZHENREN_CURRENT.md#slot-mo', row)
+            self.assertIn('20_TEAM_25_TAIYI_ZHENREN.md#slot-mo', row)
         # A formerly admitted header cannot silently re-enter the managed root.
         data = (self.root / tool.ACCEPTED['C2M-021']).read_bytes()
-        (self.root / '23_CHARACTER_25_3_CURRENT.md').write_bytes(
+        (self.root / '23_CHARACTER_25_3.md').write_bytes(
             data.replace(b'> Module ID: `C2M-021`', b'> Module ID: `C2M-023`', 1))
         self.rejected()
 
@@ -163,7 +163,7 @@ class PackageTests(unittest.TestCase):
         # This models an explicitly approved path-map edit, not runtime ID generation.
         mapping = dict(reversed(list(tool.ACCEPTED.items())))
         old = mapping['C2M-021']
-        new = '77_CHARACTER_25_1_CURRENT.md'
+        new = '77_CHARACTER_25_1.md'
         (self.root / old).rename(self.root / new)
         mapping['C2M-021'] = new
         files = (tool.INDEX,) + tuple(mapping.values()) + tool.CURRENT_FILES[-3:]

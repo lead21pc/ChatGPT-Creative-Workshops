@@ -12,7 +12,7 @@ from tools.check_controls import CI, FAMILIES
 from tools import runtime_probe as probe
 
 ROOT = Path(__file__).resolve().parents[1]
-BOOTSTRAP = ('00_C2_CONSOLIDATION_INDEX.md', '05_OPEN_ISSUES_CURRENT.md')
+BOOTSTRAP = ('00_C2_CONSOLIDATION_INDEX.md', '05_OPEN_ISSUES.md')
 RECORD = '04_RECONCILIATION_RECORD.md'
 WORLD = 'C2M-110'
 BRIEF = 'C2M-111'
@@ -192,7 +192,7 @@ class RuntimeProbeTests(unittest.TestCase):
         self.assertEqual(self.calls, [])
 
     def test_archive_and_history_cannot_substitute_current(self):
-        for path in ('Source_Archive/110_WORLD_001_CURRENT.md',
+        for path in (f"Source_Archive/{ACCEPTED[WORLD]}",
                      '03_DESIGN_HISTORY_AND_RECONSIDERATIONS.md'):
             with self.subTest(path=path):
                 self.assert_denied(self.execute(route=proposal(modules=(path,))), probe.REVIEW)

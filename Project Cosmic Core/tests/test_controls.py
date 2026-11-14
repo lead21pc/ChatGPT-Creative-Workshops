@@ -17,7 +17,7 @@ class ControlTests(unittest.TestCase):
         self.addCleanup(temporary.cleanup)
         self.root = Path(temporary.name)
         for name in (CI, ROUTER, *FAMILIES.values(), '00_C2_CONSOLIDATION_INDEX.md',
-                     '04_RECONCILIATION_RECORD.md', '05_OPEN_ISSUES_CURRENT.md'):
+                     '04_RECONCILIATION_RECORD.md', '05_OPEN_ISSUES.md'):
             path = self.root / name
             path.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(ROOT / name, path)
@@ -84,6 +84,8 @@ class ControlTests(unittest.TestCase):
         variants = [
             text.replace(gate, f'Router REQUIRED before current-C2-dependent work. '
                          f'FULL_FILE {ROUTER} -> PROMPT_ROUTE_ONLY; missing Router blocks dependent work.'),
+            text.replace("this Project's Project Sources",
+                         "this Project's Project Sources or chat-attached Library files"),
             text.replace('read FULL_FILE -> PROMPT_ROUTE_ONLY', 'read a summary -> PROMPT_ROUTE_ONLY'),
             text.replace('Missing/ambiguous/partial Router: block dependent work;',
                          'If the Router is missing, continue anyway;'),

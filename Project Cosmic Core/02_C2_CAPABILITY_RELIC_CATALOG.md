@@ -11,10 +11,10 @@
 
 | Mục tra cứu | Loại | Nguồn định nghĩa trong phạm vi đã xác lập |
 | --- | --- | --- |
-| Cosmic Mage | Nhóm năng lực của 25_1 | [21](21_CHARACTER_25_1_CURRENT.md) |
-| Os s5shi | Câu chú riêng của 25_1 | [21](21_CHARACTER_25_1_CURRENT.md) |
-| Battle Shaman / Battle Priest | Nhóm năng lực của 25_2 | [22](22_CHARACTER_25_2_CURRENT.md) |
-| Thánh tích World 1 | Thánh tích | [110](110_WORLD_001_CURRENT.md) |
+| Cosmic Mage | Nhóm năng lực của 25_1 | [21](21_CHARACTER_25_1.md) |
+| Os s5shi | Câu chú riêng của 25_1 | [21](21_CHARACTER_25_1.md) |
+| Battle Shaman / Battle Priest | Nhóm năng lực của 25_2 | [22](22_CHARACTER_25_2.md) |
+| Thánh tích World 1 | Thánh tích | [110](110_WORLD_001.md) |
 
 Một nguồn có thể sở hữu nhiều định nghĩa trong phạm vi của mình.
 

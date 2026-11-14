@@ -11,6 +11,6 @@
 
 | World ID | Controlling source |
 | --- | --- |
-| `WORLD_001` | [110_WORLD_001_CURRENT.md](110_WORLD_001_CURRENT.md) |
+| `WORLD_001` | [110_WORLD_001.md](110_WORLD_001.md) |
 
 Không có World 2 được nhập trong milestone này. Số địa chỉ không là World ID; không suy ontology, dependency hoặc ownership từ vị trí trong catalog. World detail ở owner, không sao chép vào bảng này.

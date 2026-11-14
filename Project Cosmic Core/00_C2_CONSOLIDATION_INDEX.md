@@ -10,7 +10,7 @@ C2 là project fiction cá nhân. Current sources được duy trì trực tiế
 
 Module ID được cấp tường minh trong builder; giữ ổn định khi đổi tên/số/sắp file. Dải chục world là cách nhóm địa chỉ, không là quota vĩnh viễn; chưa thiết kế overflow. Không tạo file lấp 08/09, scenario trống hoặc World 2.
 
-Với tác vụ phụ thuộc C2 current state: CI gọi Router; đọc đầy đủ 00 và [05](05_OPEN_ISSUES_CURRENT.md), rồi [04](04_RECONCILIATION_RECORD.md) khi provenance/conflict/supersession/priority/owner transition có thể quyết định tác vụ. Chọn owner theo scope, không theo số kề nhau; baseline chỉ FULL_FILE.
+Với tác vụ phụ thuộc C2 current state: CI gọi Router; đọc đầy đủ 00 và [05](05_OPEN_ISSUES.md), rồi [04](04_RECONCILIATION_RECORD.md) khi provenance/conflict/supersession/priority/owner transition có thể quyết định tác vụ. Chọn owner theo scope, không theo số kề nhau; baseline chỉ FULL_FILE.
 
 | Địa chỉ | Vai trò và boundary |
 | --- | --- |
@@ -42,18 +42,18 @@ World owner giữ world truth/state bền; briefing giữ thông tin/lệnh/kỳ
 
 | Module ID | Current source path (relative to Project Cosmic Core/) |
 | --- | --- |
-| `C2M-001` | `01_C2_ACTOR_ORGANIZATION_CATALOG_CURRENT.md` |
-| `C2M-002` | `02_C2_CAPABILITY_RELIC_CATALOG_CURRENT.md` |
-| `C2M-006` | `06_C2_PREMISE_CORE_CURRENT.md` |
-| `C2M-007` | `07_C2_PREMISE_PROVENANCE_CURRENT.md` |
-| `C2M-010` | `10_RONGO_CURRENT.md` |
-| `C2M-011` | `11_TRAIN_STRUCTURE_CURRENT.md` |
-| `C2M-020` | `20_TEAM_25_TAIYI_ZHENREN_CURRENT.md` |
-| `C2M-021` | `21_CHARACTER_25_1_CURRENT.md` |
-| `C2M-022` | `22_CHARACTER_25_2_CURRENT.md` |
-| `C2M-100` | `100_WORLD_CATALOG_CURRENT.md` |
-| `C2M-110` | `110_WORLD_001_CURRENT.md` |
-| `C2M-111` | `111_WORLD_001_CAMPAIGN_01_BRIEFCASE_CURRENT.md` |
-| `C2M-112` | `112_WORLD_001_CAMPAIGN_01_SCENARIO_CURRENT.md` |
+| `C2M-001` | `01_C2_ACTOR_ORGANIZATION_CATALOG.md` |
+| `C2M-002` | `02_C2_CAPABILITY_RELIC_CATALOG.md` |
+| `C2M-006` | `06_C2_PREMISE_CORE.md` |
+| `C2M-007` | `07_C2_PREMISE_PROVENANCE.md` |
+| `C2M-010` | `10_RONGO.md` |
+| `C2M-011` | `11_TRAIN_STRUCTURE.md` |
+| `C2M-020` | `20_TEAM_25_TAIYI_ZHENREN.md` |
+| `C2M-021` | `21_CHARACTER_25_1.md` |
+| `C2M-022` | `22_CHARACTER_25_2.md` |
+| `C2M-100` | `100_WORLD_CATALOG.md` |
+| `C2M-110` | `110_WORLD_001.md` |
+| `C2M-111` | `111_WORLD_001_CAMPAIGN_01_BRIEFCASE.md` |
+| `C2M-112` | `112_WORLD_001_CAMPAIGN_01_SCENARIO.md` |
 
 <!-- END GENERATED MODULE CATALOG -->

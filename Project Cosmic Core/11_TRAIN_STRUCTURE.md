@@ -13,7 +13,7 @@
 
 Toa ở của đội có thể gồm chỗ sinh hoạt, phòng ngủ, thư viện chung, khu làm việc với thiết bị và khu luyện tập riêng. Bố trí đã biết là đội năm người với hai người mỗi phòng ngủ. Số phòng, cách bố trí người còn lại và sơ đồ cụ thể của toa 25 còn mở, cùng sơ đồ toàn tàu, tổng số đội, cơ chế xuyên thế giới và giới hạn vận hành.
 
-`CARRIAGE_25` có Carriage ID `25`; quan hệ của Team 25 với toa này được ghi ở [20](20_TEAM_25_TAIYI_ZHENREN_CURRENT.md). Cùng số không có nghĩa team chính là toa, sở hữu toa hoặc có toàn quyền trên toa.
+`CARRIAGE_25` có Carriage ID `25`; quan hệ của Team 25 với toa này được ghi ở [20](20_TEAM_25_TAIYI_ZHENREN.md). Cùng số không có nghĩa team chính là toa, sở hữu toa hoặc có toàn quyền trên toa.
 
 `TRAIN STRUCTURE != ORGANIZATION STRUCTURE`.
 

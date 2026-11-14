@@ -20,4 +20,4 @@ Các nhãn có thể kết hợp. Nhớ từ giấc mơ không tự thành CURRE
 
 ## Ranh giới hồ sơ
 
-[06](06_C2_PREMISE_CORE_CURRENT.md) giữ premise hiện hành; [04](04_RECONCILIATION_RECORD.md) ghi quyết định, phạm vi thay thế và reconciliation; file này giữ xuất xứ/độ chắc chắn. Dẫn chéo theo assertion khi cần, không nhân bản toàn hồ sơ. Provenance của tác giả không phải ký ức hoặc thông tin mà nhân vật tự biết.
+[06](06_C2_PREMISE_CORE.md) giữ premise hiện hành; [04](04_RECONCILIATION_RECORD.md) ghi quyết định, phạm vi thay thế và reconciliation; file này giữ xuất xứ/độ chắc chắn. Dẫn chéo theo assertion khi cần, không nhân bản toàn hồ sơ. Provenance của tác giả không phải ký ức hoặc thông tin mà nhân vật tự biết.

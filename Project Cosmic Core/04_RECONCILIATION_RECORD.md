@@ -10,13 +10,13 @@ Các quyết định quản lý: Module ID/path tường minh và ổn định; 
 
 ## C2-BASELINE-002 — Phạm vi dữ kiện được ghi
 
-Chỉ nhập premise tối thiểu ở [06](06_C2_PREMISE_CORE_CURRENT.md); nguồn gốc project ở [07](07_C2_PREMISE_PROVENANCE_CURRENT.md); Rongo/tàu ở 10/11; Team 25 và năm identity ở 20–25; minimal World 1 ở 110. 111 chỉ giữ boundary và các mục briefing chưa được nhập.
+Chỉ nhập premise tối thiểu ở [06](06_C2_PREMISE_CORE.md); nguồn gốc project ở [07](07_C2_PREMISE_PROVENANCE.md); Rongo/tàu ở 10/11; Team 25 và năm identity ở 20–25; minimal World 1 ở 110. 111 chỉ giữ boundary và các mục briefing chưa được nhập.
 
 Character 25_1/A: Cosmic Mage thực và elemental-mage cover Rongo biết là hai lớp riêng. Character 25_2/B: Battle Shaman / Battle Priest thực; không nhập full profile/divine-backer detail. 25_3–25_5 chỉ giữ slot/identity. Không gán xuất xứ lucid-dream/later-addition cho từng assertion khi tác giả chưa cung cấp.
 
 ## Giới hạn và hồ sơ sau này
 
-[03](03_DESIGN_HISTORY_AND_RECONSIDERATIONS.md) giữ lịch sử; [05](05_OPEN_ISSUES_CURRENT.md) giữ mục mở. Reconciliation về sau ghi căn cứ chấp nhận, assertion/scope bị thay, predecessor/owner mới khi có, và vị trí current source đã cập nhật; không tự hòa giải conflict. File này không là world-truth fallback.
+[03](03_DESIGN_HISTORY_AND_RECONSIDERATIONS.md) giữ lịch sử; [05](05_OPEN_ISSUES.md) giữ mục mở. Reconciliation về sau ghi căn cứ chấp nhận, assertion/scope bị thay, predecessor/owner mới khi có, và vị trí current source đã cập nhật; không tự hòa giải conflict. File này không là world-truth fallback.
 
 Static verification không chứng minh live GPT Project. LIVE VERIFIED: NOT RUN.
 
@@ -26,7 +26,7 @@ Căn cứ: tác giả yêu cầu local correction trên baseline repository `d3a
 
 Gỡ các source `23_CHARACTER_25_3_CURRENT.md`, `24_CHARACTER_25_4_CURRENT.md`, `25_CHARACTER_25_5_CURRENT.md` và admission `C2M-023`, `C2M-024`, `C2M-025`. Không tái cấp các ID đó hoặc đổi ID của module còn lại. Git giữ bản tiền nhiệm; không tạo archive hoặc nguồn dự phòng hoạt động.
 
-Ba identity/slot `25_3`, `25_4`, `25_5` và membership Team 25 vẫn tồn tại; [20](20_TEAM_25_TAIYI_ZHENREN_CURRENT.md#slot-mo) giữ slot mở cho tới khi có trạng thái độc lập và quyết định tác giả riêng cho hồ sơ mới. [01](01_C2_ACTOR_ORGANIZATION_CATALOG_CURRENT.md) và [05](05_OPEN_ISSUES_CURRENT.md) định tuyến về 20. Không nhập nội dung nhân vật mới. Giữ 21/22 và owner thông tin nhiệm vụ 111.
+Ba identity/slot `25_3`, `25_4`, `25_5` và membership Team 25 vẫn tồn tại; [20](20_TEAM_25_TAIYI_ZHENREN.md#slot-mo) giữ slot mở cho tới khi có trạng thái độc lập và quyết định tác giả riêng cho hồ sơ mới. [01](01_C2_ACTOR_ORGANIZATION_CATALOG.md) và [05](05_OPEN_ISSUES.md) định tuyến về 20. Không nhập nội dung nhân vật mới. Giữ 21/22 và owner thông tin nhiệm vụ 111.
 
 Package sau correction có 12 current modules / 16 numbered current-file hashes. Generated catalog/hash được đồng bộ bằng builder; topology, header contract và những owner khác giữ nguyên.
 

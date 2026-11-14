@@ -9,7 +9,7 @@
 | C2-OPEN-003 | UNKNOWN | Tổng số đội trên tàu, sơ đồ tàu, số phòng và cách phân bổ người còn lại trong đội năm người với bố trí hai người/phòng, bố trí cụ thể toa 25 và giới hạn xuyên thế giới; 11. |
 | C2-OPEN-004 | UNKNOWN | Giới hạn, chi phí, lịch sử và điều kiện thất bại của Os s5shi, danh tính thần cổ, giới hạn tự chủ của bản thể astral và đường Rongo biết thêm; 21. Quyền dùng phép của người khác vẫn là đề xuất. |
 | C2-OPEN-005 | UNKNOWN | Chi tiết bốn vị thần, giới hạn bảo hộ và tri thức Rongo; 22. |
-| C2-OPEN-006 | UNKNOWN | Hồ sơ ngoài identity/slot của 25_3–25_5; owner slot hiện là [20](20_TEAM_25_TAIYI_ZHENREN_CURRENT.md#slot-mo), chưa có source nhân vật riêng. |
+| C2-OPEN-006 | UNKNOWN | Hồ sơ ngoài identity/slot của 25_3–25_5; owner slot hiện là [20](20_TEAM_25_TAIYI_ZHENREN.md#slot-mo), chưa có source nhân vật riêng. |
 | C2-OPEN-007 | OPEN | Sơ đồ, câu đố, quy luật quái vật, giới hạn thánh tích và siêu hình học xuyên thế giới; 110. |
 | C2-OPEN-008 | UNKNOWN | Mục tiêu, tình báo, constraints, team tham gia và kỳ vọng campaign; 111. |
 | C2-OPEN-009 | UNKNOWN | Điều kiện và cơ chế ràng buộc sinh tồn của đội; 20. |

@@ -10,7 +10,7 @@
 ## Identity và composition
 
 - Team ID: `25`; identity tra nguồn: `TEAM_25`.
-- Carriage ID: `25`; toa là thực thể cấu trúc riêng theo [11](11_TRAIN_STRUCTURE_CURRENT.md).
+- Carriage ID: `25`; toa là thực thể cấu trúc riêng theo [11](11_TRAIN_STRUCTURE.md).
 - Designation: 太乙真人 / Tàiyǐ Zhēnrén.
 - Designation dùng quy ước đặt tên celestial/mythological; không nhập thuộc tính thần thoại vào team hoặc nhân vật.
 - Members: `25_1`, `25_2`, `25_3`, `25_4`, `25_5`.
@@ -21,7 +21,7 @@ Quy tắc sinh tồn cấp đội buộc các thành viên hợp tác dù có th
 
 ## Ranh giới
 
-Team source sở hữu composition, quan hệ và state cấp team. Hồ sơ [21](21_CHARACTER_25_1_CURRENT.md), [22](22_CHARACTER_25_2_CURRENT.md) giữ căn tính/trạng thái nhân vật riêng. Các slot 25_3–25_5 chưa cần owner độc lập.
+Team source sở hữu composition, quan hệ và state cấp team. Hồ sơ [21](21_CHARACTER_25_1.md), [22](22_CHARACTER_25_2.md) giữ căn tính/trạng thái nhân vật riêng. Các slot 25_3–25_5 chưa cần owner độc lập.
 
 Membership không cấp tri thức dùng chung hoặc toàn quyền điều khiển; chưa nhập rank, leader, protocol hoặc team khác. Mã nhân vật không tự đổi theo membership. Team 25 không đồng nhất Carriage 25.
 

@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "deployment": {
-    "status": "ACTIVE_LOCAL",
+    "status": "ACTIVE",
     "router_version": "1.0",
     "ci_version": "1.0",
     "ci": "Project Cosmic Core CI/C2_CI_v1.0.md",
-    "live_verified": "NOT_RUN"
+    "live_verified": "PASS"
   },
   "runtime": {
     "entry": "PROMPT_ROUTE_ONLY",
@@ -23,7 +23,7 @@
   "bootstrap": {
     "full_file": [
       "00_C2_CONSOLIDATION_INDEX.md",
-      "05_OPEN_ISSUES_CURRENT.md"
+      "05_OPEN_ISSUES.md"
     ],
     "same_current_generation": true,
     "reconciliation_record": "04_RECONCILIATION_RECORD.md",
@@ -114,7 +114,7 @@
     "loading": "The baseline admits FULL_FILE only for relevant controlling sources, 00/05, and 04 when material. Snippets, search hits, headers, summaries, and Memory do not prove a full read. Do not load all sources or every actor in a team. NODE_OR_FULL, MODULE_REQUIRES, and NODE_REQUIRES are outside the current source contract. Cross-references are not dependencies.",
     "authority": "The latest explicit author decision controls only its stated scope, then accepted current owners, then older facts explicitly preserved. Recency, metadata, and repetition grant no priority. Retain UNKNOWN/OPEN/DEFERRED/CONFLICTED and viable alternatives; absence is neither false nor resolved. Questions, proposals, and simulations do not mutate canon. History, rejected/superseded material, and archives are provenance or explicitly requested comparison only, never fallback. Do not use withdrawn premises to invent replacement consequences.",
     "provenance": "07 owns origin/certainty, 06 current premise, and 04 acceptance/reconciliation decisions. Remembered, later-added, and uncertain-memory labels do not automatically confer CURRENT status; combine origin/certainty and acceptance labels only with support. Do not assign assertion-level provenance not supplied by the author.",
-    "access": "On ChatGPT web, retrieve documents from sources actually available to this Project: Project Sources or Library files attached to the chat. Resolve each referenced source/control by its filename, then verify identity, version, role, scope, and authority as applicable before use. Repository directories, direct-child rules, and relative paths describe local maintenance, not web filesystem access or automatic GitHub access. A filename match alone grants no authority. If a required document is missing, ambiguous, or only partly retrieved, block dependent work and request the document; never invent contents or claim FULL_FILE from snippets. Repository inspection does not prove uploaded/attached availability or live retrieval.",
+    "access": "On ChatGPT web, resolve the active Router and selected Anti-Drift controls from this Project's Project Sources. Resolve current C2 bootstrap, material reconciliation, catalogs, and controlling lore from Library/C2 Config. Use the host's available Library retrieval with evidence that the item belongs to C2 Config, or request the exact Library item from that folder as a chat attachment. A generic search hit or filename match alone does not establish source location or authority. Verify identity, version or current generation, role, admission, scope, and authority as applicable. Apply FULL_FILE wherever required. Missing, ambiguous, partial, or location-unverified required documents block dependent work under the existing failure rules. Repository directories, direct-child rules, and relative paths are local maintenance metadata. Never substitute repository or GitHub copies, archived or superseded material, or chat memory for a required source.",
     "overlays": "After source loading and reconciliation, select families by semantic materiality and the declared active document identities; retrieve them through the access policy. Read selected controls FULL_FILE and transitively expand required and actually satisfied conditional dependencies. A decisive unresolved applicability condition requires review/blocking, not an assumed false value. Do not load all families. Local path checks do not prove web source availability or live deployment. Missing/ambiguous required controls block only dependent work. No overlay executes during PROMPT_ROUTE_ONLY or changes source authority/truth status or chooses actor outcomes. Expose material control conflicts rather than silently merging them.",
     "carryover": "World sources own persistent objective truth/state; briefcases own mission information/beliefs supplied by Rongo; scenarios, when created, own event/branch state. Only author-accepted consequences update each actual affected owner within scope/time, with decisions in 04 and open state in 05. Do not reset worlds, characters, or losses, or automatically synchronize knowledge. Holder/user is not definition owner.",
     "coverage": "Before execution and response, recheck route, owners/premises, actual reads, reconciliation/open state, applicable controls, and material gaps. Block only dependent conclusions. PARTIAL requires a named secondary gap demonstrably unable to change the bounded result; relabeling scope cannot bypass decisive missing evidence. Static checks prove neither semantic compliance nor live GPT Project behavior. Stop at task-local closure, not a complete graph."

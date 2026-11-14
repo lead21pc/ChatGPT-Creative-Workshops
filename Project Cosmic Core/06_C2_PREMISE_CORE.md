@@ -16,8 +16,8 @@ Các thế giới tồn tại tiếp sau nhiệm vụ và có thể vận hành 
 
 ## Điều hướng
 
-[10](10_RONGO_CURRENT.md) giữ Rongo; [11](11_TRAIN_STRUCTURE_CURRENT.md) giữ cấu trúc tàu; [20](20_TEAM_25_TAIYI_ZHENREN_CURRENT.md) giữ Team 25; [100](100_WORLD_CATALOG_CURRENT.md) dẫn tới world owner.
+[10](10_RONGO.md) giữ Rongo; [11](11_TRAIN_STRUCTURE.md) giữ cấu trúc tàu; [20](20_TEAM_25_TAIYI_ZHENREN.md) giữ Team 25; [100](100_WORLD_CATALOG.md) dẫn tới world owner.
 
 ## Quyền và trạng thái
 
-Tác giả quyết định canon/outcome. Câu hỏi, proposal, giả định và kết quả mô phỏng không tự là quyết định chấp nhận. UNKNOWN không là phủ định và không cho phép sáng tác để lấp nguồn. [07](07_C2_PREMISE_PROVENANCE_CURRENT.md) quản nguồn gốc/độ chắc chắn; [04](04_RECONCILIATION_RECORD.md) quản quyết định. Không suy mọi chi tiết trong baseline đều được nhớ từ cùng một giấc mơ.
+Tác giả quyết định canon/outcome. Câu hỏi, proposal, giả định và kết quả mô phỏng không tự là quyết định chấp nhận. UNKNOWN không là phủ định và không cho phép sáng tác để lấp nguồn. [07](07_C2_PREMISE_PROVENANCE.md) quản nguồn gốc/độ chắc chắn; [04](04_RECONCILIATION_RECORD.md) quản quyết định. Không suy mọi chi tiết trong baseline đều được nhớ từ cùng một giấc mơ.

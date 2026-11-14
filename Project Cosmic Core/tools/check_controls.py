@@ -129,8 +129,8 @@ def check(root):
         'control_selection', 'controls', 'failures', 'policies'}, 'Invalid Router sections')
     require(config['schema_version'] == 1, 'Invalid schema version')
     require(config['deployment'] == {
-        'status': 'ACTIVE_LOCAL', 'router_version': '1.0', 'ci_version': '1.0',
-        'ci': CI, 'live_verified': 'NOT_RUN'}, 'Invalid CI/Router relation or evidence state')
+        'status': 'ACTIVE', 'router_version': '1.0', 'ci_version': '1.0',
+        'ci': CI, 'live_verified': 'PASS'}, 'Invalid CI/Router relation or evidence state')
     ci = local_file(root, CI).read_text(encoding='utf-8-sig')
     require(ci.startswith('# Project Cosmic Core — CI v1.0\n')
             and '> Status: ACTIVE\n' in ci, 'CI identity/status mismatch')
@@ -138,7 +138,8 @@ def check(root):
     router_name = ROUTER.rsplit('/', 1)[-1]
     require('Router REQUIRED before current-C2-dependent work.' in source_gate
             and f'`{router_name}`' in source_gate and ROUTER not in source_gate
-            and 'Project Sources' in source_gate and 'Library' in source_gate
+            and "from this Project's Project Sources." in source_gate
+            and 'Library' not in source_gate
             and 'Verify C2 Router 1.0; read FULL_FILE -> PROMPT_ROUTE_ONLY.' in source_gate
             and 'Missing/ambiguous/partial Router: block dependent work;' in source_gate
             and 'ask for the file, never invent it.' in source_gate,
@@ -148,7 +149,7 @@ def check(root):
     require(isinstance(bootstrap, dict) and set(bootstrap) == {
         'full_file', 'same_current_generation', 'reconciliation_record', 'record_read_when'},
         'Invalid bootstrap')
-    require(bootstrap['full_file'] == ['00_C2_CONSOLIDATION_INDEX.md', '05_OPEN_ISSUES_CURRENT.md']
+    require(bootstrap['full_file'] == ['00_C2_CONSOLIDATION_INDEX.md', '05_OPEN_ISSUES.md']
             and bootstrap['same_current_generation'] is True
             and bootstrap['reconciliation_record'] == '04_RECONCILIATION_RECORD.md'
             and isinstance(bootstrap['record_read_when'], str) and bootstrap['record_read_when'].strip(),
