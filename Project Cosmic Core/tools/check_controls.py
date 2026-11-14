@@ -4,7 +4,7 @@ import json
 import re
 
 ROUTER_VERSION = '1.1'
-CI_VERSION = '1.0'
+CI_VERSION = '1.1'
 ROUTER = f'Anti-Drift Source/C2_Anti_Drift_Source_Router_v{ROUTER_VERSION}.json'
 CI = f'Project Cosmic Core CI/C2_CI_v{CI_VERSION}.md'
 FAMILIES = {

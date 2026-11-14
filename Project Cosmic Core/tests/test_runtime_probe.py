@@ -31,9 +31,9 @@ CONDITIONS = {
 def bind_inputs():
     ci = (ROOT / CI).read_text(encoding='utf-8')
     before, _, rest = ci.partition('## Source gate\n')
-    local_constraints = rest.partition('## C2 and subordinate controls\n')[2]
-    local_constraints = local_constraints.partition('Router alone selects')[0]
-    return *probe.local_inputs(ROOT), before + local_constraints
+    _, heading, relations = rest.partition('## Relations and simulation\n')
+    relations = relations.partition('## Subordinate controls\n')[0]
+    return *probe.local_inputs(ROOT), before + heading + relations
 
 
 def proposal(modules=(WORLD,), scope=('world baseline',), operation='lookup', **changes):
@@ -108,7 +108,8 @@ class RuntimeProbeTests(unittest.TestCase):
                          ['routing_index', 'open_state', 'current_module'])
         self.assertEqual(packet['semantic_controls'], [])
         self.assertIn('Con người và ma thuật', packet['sources'][-1]['text'])
-        self.assertIn('WORLD TRUTH != BRIEFING != ACTOR BELIEF', packet['semantic_ci'])
+        self.assertIn('Separate objective state, information supplied, and actor belief or knowledge.',
+                      packet['semantic_ci'])
         self.assertFalse(packet['canon_mutation_allowed'])
 
     def test_semantic_selection_and_transitive_dependencies(self):

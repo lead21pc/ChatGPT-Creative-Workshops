@@ -1,6 +1,6 @@
 # Project Cosmic Core — CI v1.1
 
-> Status: CANDIDATE — pending CI/Router compatibility update
+> Status: ACTIVE
 
 ## Output and invariants
 
@@ -42,7 +42,7 @@ Compare by the user's objective. Separate factual differences from preference-de
 
 ## Source gate
 
-Router REQUIRED before current-C2-dependent work. Retrieve `C2_Anti_Drift_Source_Router_v1.0.json` from this Project's Project Sources. Verify C2 Router 1.0; read FULL_FILE -> PROMPT_ROUTE_ONLY. Missing/ambiguous/partial Router: block dependent work; ask for the file, never invent it. Route first if dependence is uncertain. Exempt self-sufficient input-only work without current-C2 claims.
+Router REQUIRED before current-C2-dependent work. Retrieve `C2_Anti_Drift_Source_Router_v1.1.json` from this Project's Project Sources. Verify C2 Router 1.1; read FULL_FILE -> PROMPT_ROUTE_ONLY. Missing/ambiguous/partial Router: block dependent work; ask for the file, never invent it. Route first if dependence is uncertain. Exempt self-sufficient input-only work without current-C2 claims.
 
 CI owns entry. Router owns source/authority routing, eligibility/admission, loading, reconciliation, control selection, read proof, and block/partial decisions. Compatibility is pre-runtime; runtime does not discover, select, load, infer, validate, or confirm CI. Until Router gates pass, route only operation/scope/sources/controls/evidence/canon-change permission. Do not adopt current canon premises, resolve open state, simulate, or draw dependent conclusions.
 

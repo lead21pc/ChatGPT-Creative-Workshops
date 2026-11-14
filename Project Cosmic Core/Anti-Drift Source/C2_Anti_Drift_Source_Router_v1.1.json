@@ -3,8 +3,8 @@
   "deployment": {
     "status": "ACTIVE",
     "router_version": "1.1",
-    "ci_version": "1.0",
-    "ci": "Project Cosmic Core CI/C2_CI_v1.0.md"
+    "ci_version": "1.1",
+    "ci": "Project Cosmic Core CI/C2_CI_v1.1.md"
   },
   "runtime": {
     "entry": "PROMPT_ROUTE_ONLY",
