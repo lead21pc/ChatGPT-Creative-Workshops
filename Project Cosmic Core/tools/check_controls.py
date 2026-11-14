@@ -1,15 +1,28 @@
 """Static C2 control checks; applicability is judged by the model, not inferred here."""
 
 import json
+import re
 
-ROUTER = 'Anti-Drift Source/C2_Anti_Drift_Source_Router_v1.0.json'
-CI = 'Project Cosmic Core CI/C2_CI_v1.0.md'
+ROUTER_VERSION = '1.1'
+CI_VERSION = '1.0'
+ROUTER = f'Anti-Drift Source/C2_Anti_Drift_Source_Router_v{ROUTER_VERSION}.json'
+CI = f'Project Cosmic Core CI/C2_CI_v{CI_VERSION}.md'
 FAMILIES = {
-    'MCA': 'Anti-Drift Source/C2_Anti_Drift_Modular_Concept_Architecture_v1.0.md',
-    'WIL': 'Anti-Drift Source/C2_Anti_Drift_Worldbuilding_Internal_Logic_v1.0.md',
-    'ACTOR_RECEPTION': 'Anti-Drift Source/C2_Anti_Drift_Actor_Reception_v1.0.md',
-    'OPERATIONAL_MISSION': 'Anti-Drift Source/C2_Anti_Drift_Operational_Mission_v1.0.md',
+    'MCA': 'C2_Anti_Drift_Modular_Concept_Architecture',
+    'WIL': 'C2_Anti_Drift_Worldbuilding_Internal_Logic',
+    'ACTOR_RECEPTION': 'C2_Anti_Drift_Actor_Reception',
+    'OPERATIONAL_MISSION': 'C2_Anti_Drift_Operational_Mission',
 }
+CONTROL_SELECTION = {
+    'directory': 'Anti-Drift Source',
+    'files': 'direct_children_only',
+    'version_order': 'numeric',
+    'eligible_status': 'ACTIVE',
+    'excluded_statuses': ['CANDIDATE', 'DRAFT', 'REJECTED', 'SUPERSEDED', 'RETIRED', 'ARCHIVED'],
+    'load': 'FULL_FILE',
+    'ambiguity': 'SOURCE_LOAD_BLOCKED',
+}
+VERSION = r'[0-9]+\.[0-9]+(?:\.[0-9]+)?'
 STAGES = ['PROMPT_ROUTE_ONLY', 'BOOTSTRAP_GATE', 'MODULE_GATE', 'SOURCE_LOAD',
           'RECONCILIATION', 'ANTI_DRIFT_OVERLAY_GATE', 'PROMPT_EXECUTION', 'PRE_RESPONSE_CHECK']
 FIELDS = ['Module ID', 'Runtime role', 'Domain / Scope', 'Authority boundary',
@@ -66,11 +79,11 @@ def controls_by_id(config):
     result = {}
     for row in controls:
         require(isinstance(row, dict) and set(row) == {
-            'id', 'path', 'select_when', 'requires', 'conditional_requires'}, 'Invalid control row')
+            'id', 'stem', 'select_when', 'requires', 'conditional_requires'}, 'Invalid control row')
         key = row['id']
         require(isinstance(key, str) and key in FAMILIES and key not in result,
                 'Unknown or duplicate control family')
-        require(row['path'] == FAMILIES[key], f'Wrong active path: {key}')
+        require(row['stem'] == FAMILIES[key], f'Wrong family stem: {key}')
         require(isinstance(row['select_when'], str) and row['select_when'].strip(),
                 f'Missing applicability: {key}')
         requires = row['requires']
@@ -122,6 +135,73 @@ def resolve(config, selected=(), conditions=()):
     return done
 
 
+def version_parts(version):
+    parts = tuple(int(value) for value in version.split('.'))
+    return parts + (0,) * (3 - len(parts))
+
+
+def control_header(text, name):
+    # Read status and family from the initial Markdown header only.
+    lines = text.splitlines()
+    block = []
+    for line in lines[1:]:
+        if not line.strip() and not block:
+            continue
+        if not line.startswith('>'):
+            break
+        block.append(line)
+    statuses = [match[1].strip() for line in block
+                if (match := re.fullmatch(r'>\s*Status:\s*(.*)', line))]
+    require(len(statuses) == 1, f'Missing or ambiguous control status: {name}')
+    families = [match[1].strip() for line in block
+                if (match := re.fullmatch(r'>\s*Family:\s*(.*)', line))]
+    return lines[0], statuses[0], families
+
+
+def control_filename(row):
+    return re.compile(re.escape(row['stem']) + rf'_v({VERSION})\.md')
+
+
+def eligible_version(path, row, text, selection):
+    filename = control_filename(row).fullmatch(path.name)
+    require(filename is not None, f'Invalid control filename: {path.name}')
+    heading, status, families = control_header(text, path.name)
+    if status in selection['excluded_statuses']:
+        return None
+    require(status == selection['eligible_status'], f'Unknown control status: {path.name}')
+    version = version_parts(filename[1])
+    match = re.fullmatch(rf'# C2 — .+ v({VERSION})', heading)
+    require(families == [row['id']] and match is not None and version_parts(match[1]) == version,
+            f'Invalid active control identity: {path.name}')
+    return version
+
+
+def resolve_control(root, selection, row):
+    # Resolve a required family without consulting other families.
+    require(selection == CONTROL_SELECTION, 'Invalid control selection')
+    directory = root / selection['directory']
+    require(not directory.is_symlink() and directory.resolve().parent == root.resolve()
+            and directory.is_dir(), f'Missing or redirected control directory: {directory.name}')
+    pattern = control_filename(row)
+    candidates = []
+    for path in sorted(directory.iterdir()):
+        if not pattern.fullmatch(path.name):
+            continue
+        relative = path.relative_to(root).as_posix()
+        try:
+            text = local_file(root, relative).read_text(encoding='utf-8-sig')
+        except (UnicodeError, OSError) as error:
+            raise ControlError(f'Cannot read control identity: {relative}') from error
+        version = eligible_version(path, row, text, selection)
+        if version is not None:
+            candidates.append((version, path))
+    require(candidates, f"Missing eligible control: {row['id']} ({row['stem']})")
+    highest = max(version for version, _ in candidates)
+    winners = [path for version, path in candidates if version == highest]
+    require(len(winners) == 1, f"Ambiguous highest version: {row['id']}")
+    return winners[0]
+
+
 def check(root):
     config = load(root)
     require(isinstance(config, dict) and set(config) == {
@@ -129,10 +209,10 @@ def check(root):
         'control_selection', 'controls', 'failures', 'policies'}, 'Invalid Router sections')
     require(config['schema_version'] == 1, 'Invalid schema version')
     require(config['deployment'] == {
-        'status': 'ACTIVE', 'router_version': '1.0', 'ci_version': '1.0',
-        'ci': CI, 'live_verified': 'PASS'}, 'Invalid CI/Router relation or evidence state')
+        'status': 'ACTIVE', 'router_version': ROUTER_VERSION, 'ci_version': CI_VERSION,
+        'ci': CI}, 'Invalid CI/Router relation or evidence state')
     ci = local_file(root, CI).read_text(encoding='utf-8-sig')
-    require(ci.startswith('# Project Cosmic Core — CI v1.0\n')
+    require(ci.startswith(f'# Project Cosmic Core — CI v{CI_VERSION}\n')
             and '> Status: ACTIVE\n' in ci, 'CI identity/status mismatch')
     source_gate = ci.partition('## Source gate\n\n')[2].partition('\n## ')[0]
     router_name = ROUTER.rsplit('/', 1)[-1]
@@ -140,7 +220,7 @@ def check(root):
             and f'`{router_name}`' in source_gate and ROUTER not in source_gate
             and "from this Project's Project Sources." in source_gate
             and 'Library' not in source_gate
-            and 'Verify C2 Router 1.0; read FULL_FILE -> PROMPT_ROUTE_ONLY.' in source_gate
+            and f'Verify C2 Router {ROUTER_VERSION}; read FULL_FILE -> PROMPT_ROUTE_ONLY.' in source_gate
             and 'Missing/ambiguous/partial Router: block dependent work;' in source_gate
             and 'ask for the file, never invent it.' in source_gate,
             'CI must locate and fully read the Router from available web project sources')
@@ -161,10 +241,8 @@ def check(root):
     require(config['loading'] == {
         'default': 'FULL_FILE', 'modes': ['FULL_FILE'], 'read_proofs': ['FULL_FILE']},
         'Only FULL_FILE is admitted')
-    require(config['control_selection'] == {
-        'directory': 'Anti-Drift Source', 'files': 'direct_children_only',
-        'versions': 'explicit_active_paths', 'load': 'FULL_FILE',
-        'ambiguity': 'SOURCE_LOAD_BLOCKED'}, 'Invalid control selection')
+    selection = config['control_selection']
+    require(selection == CONTROL_SELECTION, 'Invalid control selection')
     controls = controls_by_id(config)
     expected_requires = {'MCA': [], 'WIL': [], 'ACTOR_RECEPTION': ['MCA'],
                          'OPERATIONAL_MISSION': ['MCA']}
@@ -174,11 +252,6 @@ def check(root):
                      {'when': 'operational_interface_material', 'target': 'OPERATIONAL_MISSION'}]
                     if key == 'ACTOR_RECEPTION' else [])
         require(row['conditional_requires'] == expected, f'Conditional dependency drift: {key}')
-        text = local_file(root, row['path']).read_text(encoding='utf-8-sig')
-        require(text.startswith('# C2 — ') and '> Status: ACTIVE\n' in text
-                and f'> Family: {key}\n' in text, f'Invalid active control identity: {key}')
-    actual = {p.relative_to(root).as_posix() for p in (root / 'Anti-Drift Source').glob('*.md')}
-    require(actual == set(FAMILIES.values()), 'Unexpected or missing baseline control file')
     require(config['failures'] == FAILURES, 'Invalid failure behavior')
     require(isinstance(config['policies'], dict) and set(config['policies']) == POLICIES
             and all(isinstance(x, str) and x.strip() for x in config['policies'].values()),
@@ -187,4 +260,4 @@ def check(root):
     conditions = {edge['when'] for row in controls.values() for edge in row['conditional_requires']}
     resolve(config, controls, conditions)
     require(resolve(config) == set(), 'Controls must not be selected by default')
-    return {key: local_file(root, row['path']) for key, row in controls.items()}
+    return {key: resolve_control(root, selection, row) for key, row in controls.items()}

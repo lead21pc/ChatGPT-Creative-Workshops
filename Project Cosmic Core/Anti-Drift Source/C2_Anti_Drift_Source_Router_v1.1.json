@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "deployment": {
+    "status": "ACTIVE",
+    "router_version": "1.1",
+    "ci_version": "1.0",
+    "ci": "Project Cosmic Core CI/C2_CI_v1.0.md"
+  },
+  "runtime": {
+    "entry": "PROMPT_ROUTE_ONLY",
+    "stages": [
+      "PROMPT_ROUTE_ONLY",
+      "BOOTSTRAP_GATE",
+      "MODULE_GATE",
+      "SOURCE_LOAD",
+      "RECONCILIATION",
+      "ANTI_DRIFT_OVERLAY_GATE",
+      "PROMPT_EXECUTION",
+      "PRE_RESPONSE_CHECK"
+    ]
+  },
+  "bootstrap": {
+    "full_file": [
+      "00_C2_CONSOLIDATION_INDEX.md",
+      "05_OPEN_ISSUES.md"
+    ],
+    "same_current_generation": true,
+    "reconciliation_record": "04_RECONCILIATION_RECORD.md",
+    "record_read_when": "Conflict, supersession, provenance, priority, or an owner transition could decide the task."
+  },
+  "modules": {
+    "required_header": [
+      "Module ID",
+      "Runtime role",
+      "Domain / Scope",
+      "Authority boundary",
+      "Cross-domain owner boundary",
+      "Load mode"
+    ],
+    "runtime_role": "CURRENT_SOURCE"
+  },
+  "loading": {
+    "default": "FULL_FILE",
+    "modes": [
+      "FULL_FILE"
+    ],
+    "read_proofs": [
+      "FULL_FILE"
+    ]
+  },
+  "control_selection": {
+    "directory": "Anti-Drift Source",
+    "files": "direct_children_only",
+    "version_order": "numeric",
+    "eligible_status": "ACTIVE",
+    "excluded_statuses": [
+      "CANDIDATE",
+      "DRAFT",
+      "REJECTED",
+      "SUPERSEDED",
+      "RETIRED",
+      "ARCHIVED"
+    ],
+    "load": "FULL_FILE",
+    "ambiguity": "SOURCE_LOAD_BLOCKED"
+  },
+  "controls": [
+    {
+      "id": "MCA",
+      "stem": "C2_Anti_Drift_Modular_Concept_Architecture",
+      "select_when": "Module/actor identity, autonomy, typed relations, actor information/authority, mechanism/outcome distinctions, or state transitions materially affect the task.",
+      "requires": [],
+      "conditional_requires": []
+    },
+    {
+      "id": "WIL",
+      "stem": "C2_Anti_Drift_Worldbuilding_Internal_Logic",
+      "select_when": "Coherence, institutions, world/system interfaces, feedback, or temporal change materially affect the task; not a sufficiently sourced lookup alone.",
+      "requires": [],
+      "conditional_requires": []
+    },
+    {
+      "id": "ACTOR_RECEPTION",
+      "stem": "C2_Anti_Drift_Actor_Reception",
+      "select_when": "Actor receipt, understanding, trust, appraisal, or updates from signals, orders, briefings, or information materially affect the answer.",
+      "requires": [
+        "MCA"
+      ],
+      "conditional_requires": [
+        {
+          "when": "institutional_interface_material",
+          "target": "WIL"
+        },
+        {
+          "when": "operational_interface_material",
+          "target": "OPERATIONAL_MISSION"
+        }
+      ]
+    },
+    {
+      "id": "OPERATIONAL_MISSION",
+      "stem": "C2_Anti_Drift_Operational_Mission",
+      "select_when": "Mission feasibility, routes/access, execution, capture/escape/pursuit/competition, or persistent loss materially affect the answer.",
+      "requires": [
+        "MCA"
+      ],
+      "conditional_requires": []
+    }
+  ],
+  "failures": {
+    "bootstrap_missing_or_inconsistent": "SOURCE_LOAD_BLOCKED",
+    "decisive_source_or_authority_missing": "SOURCE_LOAD_BLOCKED",
+    "required_control_missing_or_ambiguous": "SOURCE_LOAD_BLOCKED",
+    "module_identity_or_role_ambiguous": "REVIEW_REQUIRED",
+    "unresolved_controlling_owner": "SOURCE_LOAD_BLOCKED",
+    "demonstrably_nondecisive_secondary_gap": "SOURCE_LOAD_PARTIAL"
+  },
+  "policies": {
+    "routing": "CI owns entry into this Router. Begin at PROMPT_ROUTE_ONLY. Until the required gates pass, identify only the operation, scope, candidate domains/modules, required evidence, candidate controls, and canon-change authorization. Do not adopt unread canon premises, resolve open state, simulate, choose an outcome, or draw dependent conclusions. Re-route materially expanded scope. CI/Router compatibility belongs to maintenance. Runtime does not discover, select, load, infer, validate, or confirm the active CI.",
+    "discovery": "Read 00 and 05 FULL_FILE from the same current generation. The index and catalogs guide discovery and navigation. Neither grants canon authority, module admission, or dependency. Do not presume complete backend enumeration or access to every header. Search results do not establish package completeness. With a stale catalog, continue only bounded work supported by independently identified, admitted, authoritative owners actually read FULL_FILE. Otherwise block dependent work. Supplied sources whose current package admission is unconfirmed remain UNCONFIRMED. Never invent a Module ID or claim package completeness without established discovery.",
+    "module_gate": "Before using a module, establish identity, runtime role, package admission, scope, and authority from current evidence. Require all six declared header fields with Runtime role CURRENT_SOURCE and Load mode FULL_FILE. Missing, duplicate, or unknown identity or role requires REVIEW_REQUIRED. Module ID routes to a stable identity across renames and renumbering. File numbering does not define Module ID. CURRENT_SOURCE and header presence confer no canon rank or assertion acceptance. Catalog presence and Module ID alone do not establish admission or truth. Document containment does not establish ontology or in-world hierarchy. Shared actors or interfaces do not merge owners. Mentions, hyperlinks, owner boundaries, shared actors or events, and adjacent files do not create dependencies. Resolve material overlapping authority with FULL_FILE reads of the controlling owners and the reconciliation record. Unresolved material ownership blocks only dependent conclusions. The module gate establishes source eligibility and boundaries, without validating lore.",
+    "loading": "Require actual complete reads of each required controlling source, bootstrap document, material reconciliation record, and selected control. Search hits, snippets, headers, summaries, Memory, and prior answers cannot serve as FULL_FILE proof. Limit loaded owners and controls to those required for the task. Read the reconciliation record FULL_FILE when conflict, supersession, provenance, priority, or an owner transition could decide the task. Open issues expose state without resolving it.",
+    "authority": "Apply the latest explicit author decision within its stated scope, then accepted current controlling owners, then older facts explicitly preserved. Recency, metadata, detail, repetition, filenames, and catalog presence confer no priority. Keep new input UNCONFIRMED until a scoped decision assigns its role. Preserve UNKNOWN, OPEN, DEFERRED, CONFLICTED, and supported alternatives where material. Absence proves neither falsity nor resolution. Questions, proposals, designs, and simulations do not mutate canon. Use historical, rejected, archived, or superseded material only for provenance or explicit comparison, never as fallback. Withdraw only conclusions that actually depend on a changed accepted premise. Preserve other conclusions and invent no replacement consequences.",
+    "provenance": "07 records origin and certainty, 06 holds current accepted premises within scope, and 04 records acceptance and reconciliation decisions. Track origin/certainty independently of acceptance. Remembered, later-added, and uncertain-memory labels do not confer CURRENT status or actor knowledge. Combine provenance and acceptance labels only where supported. Assign assertion-level provenance only when the author or controlling source supplies it.",
+    "access": "On ChatGPT web, use this Project's Project Sources for the Router and Anti-Drift. For controls, verify that candidates are the Project Sources equivalents of direct children of Anti-Drift Source. Local paths describe package placement for maintenance and grant no web filesystem access. If available Project evidence cannot establish eligibility or the highest eligible version for a required family, request the identifying evidence or exact Project Sources files and block dependent work pending verification. Resolve current C2 bootstrap, material reconciliation, catalogs, and controlling lore from Library/C2 Config. Verify Library membership through available retrieval or request the exact item from that folder as a chat attachment. When material, verify identity, version or current generation, role, admission, scope, and authority. Same filenames and generic search results do not establish location or authority. Repository copies, GitHub copies, chat memory, and archive or superseded files cannot substitute for a required current source. A required document that is missing, ambiguous, partial, or of unverified location blocks dependent work. Local presence establishes no live installation.",
+    "overlays": "After source loading and reconciliation, judge family applicability by material semantic scope. For each selected family, consider only direct-child Markdown filenames matching its exact stem followed by _v and two or three dot-separated nonnegative integer components. Use the initial header: a single Status must be ACTIVE and a single Family must match the ID. Exclude the listed statuses. Missing, duplicated, or unknown Status, or mismatched ACTIVE identity, blocks resolution of the required family. For ACTIVE files, verify the C2 heading version matches the filename. Compare version components numerically, treating an absent patch as zero. A new eligible version can win without a Router edit. A tie at the highest eligible version or no verifiable winner blocks dependent work; never fall back to an older version when the winner cannot be fully read. Expand requires and actually satisfied conditional_requires transitively, using the same resolution for each newly required family. A decisive unresolved condition requires review before execution. Read every selected control FULL_FILE. Do not select all families by default. Control filenames and dependency edges confer no canon authority or source dependency. More specific controls may refine scoped distinctions, reasoning depth, and stopping conditions within scope. CI, routing, source authority, current canon, and open state retain priority. Overlays cannot execute during PROMPT_ROUTE_ONLY, choose actor actions or outcomes, invent world state, or silently merge material control conflicts.",
+    "carryover": "World sources own persistent objective truth and state. Briefcases own mission information and expectations supplied by Rongo. Scenarios own established event and branch state. Character and relic owners retain their scoped state. Only author-accepted consequences update each actual affected owner within the accepted scope and time. Record decisions in 04 and preserve open state in 05. Do not reset worlds, characters, or losses, or automatically synchronize actor knowledge. Holding or using a relic grants no definition ownership.",
+    "coverage": "Before PROMPT_EXECUTION and at PRE_RESPONSE_CHECK, recheck the route, controlling premises and owners, actual FULL_FILE reads, reconciliation and open-state relevance, applicable overlays, and unresolved material gaps. Block only dependent work. Independent work may continue. SOURCE_LOAD_PARTIAL requires a named secondary gap demonstrably unable to change the bounded conclusion. Relabeling a claim as bounded cannot bypass missing decisive evidence. Preserve CANON, UNCONFIRMED, HISTORICAL/SUPERSEDED, UNKNOWN, OPEN/DEFERRED, CONFLICTED, INFERENCE, HYPOTHETICAL, and PROPOSAL distinctions where material. Task-local sufficiency establishes no package completeness. Static package and control checks establish neither live deployment and retrieval nor model compliance."
+  }
+}

@@ -3,10 +3,12 @@
 from copy import deepcopy
 from dataclasses import dataclass
 from hashlib import sha256
+from pathlib import Path
 
 from build_consolidation import (ACCEPTED, CURRENT_FILES, HASHES, MANIFEST, ValidationError,
                                  header, read_root, region, rows)
-from tools.check_controls import ControlError, controls_by_id, load, local_file, resolve
+from tools.check_controls import (ControlError, controls_by_id, eligible_version, load,
+                                  local_file, resolve, resolve_control)
 
 FULL = 'FULL_FILE'
 BLOCKED = 'SOURCE_LOAD_BLOCKED'
@@ -40,7 +42,10 @@ def local_inputs(root):
         except (ControlError, OSError):
             return None
 
-    return config, hashes, retrieve
+    def locate_control(row):
+        return resolve_control(root, config['control_selection'], row).relative_to(root).as_posix()
+
+    return config, hashes, retrieve, locate_control
 
 
 def text(value):
@@ -67,7 +72,7 @@ def gate(condition, reason, status=REVIEW):
         raise StopRoute(status, reason)
 
 
-def run(request, propose, assess, config, hashes, retrieve, semantic_ci):
+def run(request, propose, assess, config, hashes, retrieve, locate_control, semantic_ci):
     """Run one read-only turn. Callbacks propose semantics; only this core grants execution."""
     controls = controls_by_id(config)
     bootstrap = config['bootstrap']
@@ -88,7 +93,8 @@ def run(request, propose, assess, config, hashes, retrieve, semantic_ci):
             body = result.body.decode('utf-8-sig')
             metadata = header(result.body, path) if module else None
         except (UnicodeError, ValidationError) as error:
-            raise StopRoute(REVIEW, f'{path}: invalid identity or content ({error})') from error
+            status = BLOCKED if role == 'semantic_control' else REVIEW
+            raise StopRoute(status, f'{path}: invalid identity or content ({error})') from error
         if module:
             gate(metadata['Module ID'] == module, f'{path}: mismatched Module ID')
         return {'path': path, 'proof': FULL, 'sha256': digest, 'role': role,
@@ -162,12 +168,14 @@ def run(request, propose, assess, config, hashes, retrieve, semantic_ci):
         gate(all(conditions.get(key) is not None for key in needed),
              'Material overlay condition needs a semantic decision')
         for key in sorted(closure):
-            doc = read(controls[key]['path'], 'semantic_control')
-            heading, _, identity, family, *_ = doc['text'].split('\n', 4) + [''] * 4
-            heading, identity, family = (line.rstrip('\r') for line in (heading, identity, family))
-            gate(heading.startswith('# C2 — ') and heading.endswith(' v1.0')
-                 and identity == '> Status: ACTIVE' and family == f'> Family: {key}',
-                 f'{key}: wrong overlay identity/version/status', BLOCKED)
+            row = controls[key]
+            try:
+                path = locate_control(row)
+                doc = read(path, 'semantic_control')
+                gate(eligible_version(Path(path), row, doc['text'], config['control_selection'])
+                     is not None, f'{key}: selected overlay is no longer ACTIVE', BLOCKED)
+            except (ControlError, OSError) as error:
+                raise StopRoute(BLOCKED, str(error)) from error
             overlays.append({**doc, 'family': key})
 
         stage.append(EXECUTION)

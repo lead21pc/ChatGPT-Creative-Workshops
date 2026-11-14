@@ -16,7 +16,8 @@ class ControlTests(unittest.TestCase):
         temporary = tempfile.TemporaryDirectory(prefix='c2-controls-')
         self.addCleanup(temporary.cleanup)
         self.root = Path(temporary.name)
-        for name in (CI, ROUTER, *FAMILIES.values(), '00_C2_CONSOLIDATION_INDEX.md',
+        self.controls = {key: path.relative_to(ROOT).as_posix() for key, path in check(ROOT).items()}
+        for name in (CI, ROUTER, *self.controls.values(), '00_C2_CONSOLIDATION_INDEX.md',
                      '04_RECONCILIATION_RECORD.md', '05_OPEN_ISSUES.md'):
             path = self.root / name
             path.parent.mkdir(parents=True, exist_ok=True)
@@ -48,7 +49,7 @@ class ControlTests(unittest.TestCase):
         # Diacritic screening is a regression aid, not proof of language or semantics.
         # Supplied fiction names remain literal and are not translated.
         vietnamese_letters = re.compile('[\u0102\u0103\u0110\u0111\u01a0\u01a1\u01af\u01b0\u1ea0-\u1ef9]')
-        for name in (CI, ROUTER, *FAMILIES.values()):
+        for name in (CI, ROUTER, *self.controls.values()):
             text = (self.root / name).read_text(encoding='utf-8')
             for proper_name in ('Rongo', '太乙真人', 'Tàiyǐ Zhēnrén'):
                 text = text.replace(proper_name, '')
@@ -104,7 +105,7 @@ class ControlTests(unittest.TestCase):
             check(self.root)
 
     def test_missing_or_inactive_control_fails(self):
-        path = self.root / FAMILIES['MCA']
+        path = self.root / self.controls['MCA']
         original = path.read_bytes()
         path.unlink()
         with self.assertRaises(ControlError):
@@ -112,6 +113,60 @@ class ControlTests(unittest.TestCase):
         path.write_bytes(original.replace(b'> Status: ACTIVE', b'> Status: DRAFT'))
         with self.assertRaises(ControlError):
             check(self.root)
+
+    def add_mca(self, version, status='ACTIVE', directory='Anti-Drift Source',
+                family='MCA', heading_version=None):
+        path = self.root / directory / f'{FAMILIES["MCA"]}_v{version}.md'
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(f'# C2 — Test control v{heading_version or version}\n\n'
+                        f'> Status: {status}\n> Family: {family}\n\nFixture.\n', encoding='utf-8')
+        return path
+
+    def test_numeric_resolution_without_router_edit(self):
+        router = (self.root / ROUTER).read_bytes()
+        (self.root / self.controls['MCA']).unlink()
+        oldest = self.add_mca('1.0')
+        self.assertEqual(check(self.root)['MCA'], oldest)
+        newer = self.add_mca('1.9')
+        self.assertEqual(check(self.root)['MCA'], newer)
+        newest = self.add_mca('1.10')
+        self.assertEqual(check(self.root)['MCA'], newest)
+        self.assertEqual((self.root / ROUTER).read_bytes(), router)
+
+    def test_excluded_statuses_and_nested_archive_are_ineligible(self):
+        baseline = self.root / self.controls['MCA']
+        for version, status in enumerate(
+                ('DRAFT', 'CANDIDATE', 'SUPERSEDED', 'ARCHIVED', 'REJECTED', 'RETIRED')):
+            self.add_mca(f'9000.{version}', status)
+        self.add_mca('9001.0', directory='Anti-Drift Source/source_archive')
+        self.add_mca('9002.0', directory='Source_Archive')
+        self.assertEqual(check(self.root)['MCA'], baseline)
+        baseline.unlink()
+        with self.assertRaisesRegex(ControlError, 'Missing eligible control: MCA'):
+            check(self.root)
+
+    def test_ambiguous_highest_numeric_version_fails(self):
+        self.add_mca('9000.10')
+        self.add_mca('9000.10.0')
+        with self.assertRaisesRegex(ControlError, 'Ambiguous highest version: MCA'):
+            check(self.root)
+        unique = self.add_mca('9000.11')
+        self.assertEqual(check(self.root)['MCA'], unique)
+
+    def test_unverifiable_status_or_active_identity_blocks(self):
+        cases = [
+            {'status': 'UNKNOWN'},
+            {'status': 'ACTIVE\n> Status: ACTIVE'},
+            {'status': ''},
+            {'family': 'WIL'},
+            {'heading_version': '1.0'},
+        ]
+        for kwargs in cases:
+            with self.subTest(kwargs=kwargs):
+                path = self.add_mca('9000.0', **kwargs)
+                with self.assertRaises(ControlError):
+                    check(self.root)
+                path.unlink()
 
     def test_cycle_and_unknown_dependency_fail(self):
         config = load(self.root)

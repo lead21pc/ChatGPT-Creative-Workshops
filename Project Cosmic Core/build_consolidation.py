@@ -263,12 +263,12 @@ def main(argv=None):
     try:
         root = Path(__file__).resolve().parent
         if args.check_router:
-            from tools.check_controls import ControlError, check
+            from tools.check_controls import CI_VERSION, ROUTER_VERSION, ControlError, check
             try:
                 resolved = check(root)
             except ControlError as error:
                 raise ValidationError(str(error)) from error
-            print(f'PASS: C2 CI 1.0 / Router 1.0; {len(resolved)} control families. '
+            print(f'PASS: C2 CI {CI_VERSION} / Router {ROUTER_VERSION}; {len(resolved)} control families. '
                   'Static only; no prompt execution or deployment.')
             return 0
         inputs, changes = plan(root, write=args.write)

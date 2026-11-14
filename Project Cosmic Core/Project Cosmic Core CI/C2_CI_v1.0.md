@@ -48,7 +48,7 @@ Scale depth to consequence/complexity. Explain premises, causal links, mechanism
 
 ## Source gate
 
-Router REQUIRED before current-C2-dependent work. Retrieve `C2_Anti_Drift_Source_Router_v1.0.json` from this Project's Project Sources. Verify C2 Router 1.0; read FULL_FILE -> PROMPT_ROUTE_ONLY. Local paths are not web access. Missing/ambiguous/partial Router: block dependent work; ask for the file, never invent it. Uncertain dependence: route first. Self-sufficient input-only work without current-C2 claims is exempt.
+Router REQUIRED before current-C2-dependent work. Retrieve `C2_Anti_Drift_Source_Router_v1.1.json` from this Project's Project Sources. Verify C2 Router 1.1; read FULL_FILE -> PROMPT_ROUTE_ONLY. Local paths are not web access. Missing/ambiguous/partial Router: block dependent work; ask for the file, never invent it. Uncertain dependence: route first. Self-sufficient input-only work without current-C2 claims is exempt.
 
 CI owns entry; Router owns source/authority routing, admission, loading, reconciliation, controls, read proofs, block/partial decisions. Runtime must not discover/select/load/infer/validate/confirm CI; compatibility is pre-runtime. Before gates pass, route only operation/scope/sources/evidence/controls/canon-change permission: no adopted canon premise, resolved open state, simulation, or dependent conclusion.
 

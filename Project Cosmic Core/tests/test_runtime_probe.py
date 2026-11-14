@@ -4,16 +4,19 @@ import argparse
 from dataclasses import replace
 import json
 from pathlib import Path
+import shutil
+import tempfile
 import sys
 import unittest
 
 from build_consolidation import ACCEPTED
-from tools.check_controls import CI, FAMILIES
+from tools.check_controls import CI, FAMILIES, ROUTER, check
 from tools import runtime_probe as probe
 
 ROOT = Path(__file__).resolve().parents[1]
 BOOTSTRAP = ('00_C2_CONSOLIDATION_INDEX.md', '05_OPEN_ISSUES.md')
 RECORD = '04_RECONCILIATION_RECORD.md'
+CONTROL_PATHS = {key: path.relative_to(ROOT).as_posix() for key, path in check(ROOT).items()}
 WORLD = 'C2M-110'
 BRIEF = 'C2M-111'
 TEAM = 'C2M-020'
@@ -74,7 +77,7 @@ def scenario(name):
 
 class RuntimeProbeTests(unittest.TestCase):
     def setUp(self):
-        self.config, self.hashes, self.adapter, self.ci = bind_inputs()
+        self.config, self.hashes, self.adapter, self.locate_control, self.ci = bind_inputs()
         self.calls = []
 
     def execute(self, name='lookup', *, route=None, judge=None, override=None):
@@ -86,7 +89,7 @@ class RuntimeProbeTests(unittest.TestCase):
 
         return probe.run(request, lambda *_: default_route if route is None else route,
                          judge or (lambda *_: default_decision), self.config,
-                         self.hashes, retrieve, self.ci)
+                         self.hashes, retrieve, self.locate_control, self.ci)
 
     def assert_denied(self, result, expected=probe.BLOCKED):
         self.assertEqual(result['status'], expected)
@@ -121,15 +124,15 @@ class RuntimeProbeTests(unittest.TestCase):
                 self.assertIsNotNone(result['packet'], result)
                 overlays = result['packet']['semantic_controls']
                 self.assertEqual({row['family'] for row in overlays}, expected)
-                self.assertEqual({path for path, _ in self.calls if path in FAMILIES.values()},
-                                 {FAMILIES[key] for key in expected})
+                self.assertEqual({path for path, _ in self.calls if path in CONTROL_PATHS.values()},
+                                 {CONTROL_PATHS[key] for key in expected})
                 self.assertTrue(all(row['proof'] == probe.FULL and row['text'] for row in overlays))
         self.assertEqual(result['status'], probe.PARTIAL)
         self.assertIn('C2-OPEN-007/008', result['packet']['unresolved_gaps'][0]['issue'])
 
     def test_missing_material_source_or_overlay_blocks_only_that_route(self):
         for missing, name in [(BOOTSTRAP[1], 'lookup'), (ACCEPTED[WORLD], 'lookup'),
-                              (FAMILIES['MCA'], 'reception')]:
+                              (CONTROL_PATHS['MCA'], 'reception')]:
             with self.subTest(missing=missing):
                 def omit(path, proof):
                     return None if path == missing else self.adapter(path, proof)
@@ -137,6 +140,46 @@ class RuntimeProbeTests(unittest.TestCase):
                 result = self.execute(name, override=omit)
                 self.assert_denied(result)
                 self.assertIn(missing, result['reason'])
+
+    def test_probe_uses_dynamic_dependency_version_and_blocks_ambiguity(self):
+        with tempfile.TemporaryDirectory(prefix='c2-probe-controls-') as temporary:
+            root = Path(temporary)
+            names = (ROUTER, probe.MANIFEST, *CONTROL_PATHS.values())
+            for name in names:
+                path = root / name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(ROOT / name, path)
+            _, _, local_read, self.locate_control = probe.local_inputs(root)
+
+            def retrieve(path, proof):
+                if path.startswith('Anti-Drift Source/'):
+                    return local_read(path, proof)
+                return self.adapter(path, proof)
+
+            def add_mca(version):
+                path = f'Anti-Drift Source/{FAMILIES["MCA"]}_v{version}.md'
+                (root / path).write_text(f'# C2 — Test control v{version}\n\n'
+                                         '> Status: ACTIVE\n> Family: MCA\n\nFixture.\n', encoding='utf-8')
+                return path
+
+            newest = add_mca('9000.10')
+            result = self.execute('reception', override=retrieve)
+            self.assertIsNotNone(result['packet'], result)
+            self.assertIn(newest, {doc['path'] for doc in result['packet']['semantic_controls']})
+            self.assertNotIn((CONTROL_PATHS['MCA'], probe.FULL), self.calls)
+
+            self.calls.clear()
+            self.assert_denied(self.execute(
+                'reception', override=lambda path, proof: None if path == newest else retrieve(path, proof)))
+            self.assertNotIn((CONTROL_PATHS['MCA'], probe.FULL), self.calls)
+
+            tied = add_mca('9000.10.0')
+            self.assert_denied(self.execute('reception', override=retrieve))
+            self.assertEqual(self.execute('lookup', override=retrieve)['status'], probe.PASS)
+
+            for path in (newest, tied, CONTROL_PATHS['MCA']):
+                (root / path).unlink()
+            self.assert_denied(self.execute('reception', override=retrieve))
 
     def test_found_is_not_full_read_and_snapshot_mismatch_blocks(self):
         for mode in ('FOUND', 'SNIPPET', probe.FULL):
@@ -182,7 +225,7 @@ class RuntimeProbeTests(unittest.TestCase):
         result = self.execute('reception', judge=lambda *_: assessment(
             ('ACTOR_RECEPTION',), {'institutional_interface_material': False}))
         self.assert_denied(result, probe.REVIEW)
-        self.assertFalse(any(path in FAMILIES.values() for path, _ in self.calls))
+        self.assertFalse(any(path in CONTROL_PATHS.values() for path, _ in self.calls))
 
     def test_model_cannot_declare_execution_reads_or_mutation(self):
         for changes in ({'execution_state': probe.EXECUTION}, {'status': probe.PASS},
@@ -231,10 +274,10 @@ class RuntimeProbeTests(unittest.TestCase):
 
 def compare_contexts(name):
     """Export two inspectable context representations, without calling a model."""
-    config, hashes, retrieve, ci = bind_inputs()
+    config, hashes, retrieve, locate_control, ci = bind_inputs()
     request, route, decision = scenario(name)
     result = probe.run(request, lambda *_: route, lambda *_: decision,
-                       config, hashes, retrieve, ci)
+                       config, hashes, retrieve, locate_control, ci)
     packet = result['packet']
     if packet is None:
         raise RuntimeError(result['reason'])
