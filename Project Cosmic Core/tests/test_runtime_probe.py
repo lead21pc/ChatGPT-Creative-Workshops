@@ -24,6 +24,7 @@ CARRIAGE = 'C2M-011'
 CONDITIONS = {
     'institutional_interface_material': False,
     'operational_interface_material': False,
+    'economic_mechanism_material': False,
 }
 
 # Semantic CI is bound by the experiment caller before any request. The router
@@ -130,6 +131,31 @@ class RuntimeProbeTests(unittest.TestCase):
                 self.assertTrue(all(row['proof'] == probe.FULL and row['text'] for row in overlays))
         self.assertEqual(result['status'], probe.PARTIAL)
         self.assertIn('C2-OPEN-007/008', result['packet']['unresolved_gaps'][0]['issue'])
+
+    def test_new_families_expand_only_material_dependencies(self):
+        self.assertEqual(self.execute(judge=lambda *_: assessment(('MORTALITY',), {
+            'operational_conflict_material': False,
+        }))['status'], probe.PASS)
+        self.assertNotIn((CONTROL_PATHS['OPERATIONAL_MISSION'], probe.FULL), self.calls)
+
+        conditions = {
+            **CONDITIONS,
+            'actor_reception_material': True,
+            'operational_conflict_material': False,
+            'economic_mechanism_material': True,
+        }
+
+        def judge(*_):
+            return assessment(('BELIEF_CULTURE',), conditions)
+
+        result = self.execute(judge=judge)
+        self.assertIsNotNone(result['packet'], result)
+        self.assertEqual({row['family'] for row in result['packet']['semantic_controls']},
+                         {'BELIEF_CULTURE', 'ACTOR_RECEPTION', 'MCA', 'ECONOMY'})
+        self.assert_denied(self.execute(judge=judge, override=lambda path, proof:
+                                       None if path == CONTROL_PATHS['ECONOMY']
+                                       else self.adapter(path, proof)))
+        self.assertEqual(self.execute()['status'], probe.PASS)
 
     def test_missing_material_source_or_overlay_blocks_only_that_route(self):
         for missing, name in [(BOOTSTRAP[1], 'lookup'), (ACCEPTED[WORLD], 'lookup'),

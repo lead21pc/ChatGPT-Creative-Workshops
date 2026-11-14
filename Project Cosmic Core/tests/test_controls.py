@@ -6,7 +6,7 @@ import shutil
 import tempfile
 import unittest
 
-from tools.check_controls import CI, ROUTER, FAMILIES, ControlError, check, load, resolve
+from tools.check_controls import CI, PIPELINE, ROUTER, FAMILIES, ControlError, check, load, resolve, resolve_control
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -17,7 +17,7 @@ class ControlTests(unittest.TestCase):
         self.addCleanup(temporary.cleanup)
         self.root = Path(temporary.name)
         self.controls = {key: path.relative_to(ROOT).as_posix() for key, path in check(ROOT).items()}
-        for name in (CI, ROUTER, *self.controls.values(), '00_C2_CONSOLIDATION_INDEX.md',
+        for name in (CI, ROUTER, PIPELINE, *self.controls.values(), '00_C2_CONSOLIDATION_INDEX.md',
                      '04_RECONCILIATION_RECORD.md', '05_OPEN_ISSUES.md'):
             path = self.root / name
             path.parent.mkdir(parents=True, exist_ok=True)
@@ -41,6 +41,26 @@ class ControlTests(unittest.TestCase):
                          {'ACTOR_RECEPTION', 'MCA', 'OPERATIONAL_MISSION'})
         self.assertEqual(resolve(config, ['ACTOR_RECEPTION'], ['institutional_interface_material']),
                          {'ACTOR_RECEPTION', 'MCA', 'WIL'})
+        cases = [
+            ('ECONOMY', [], {'ECONOMY'}),
+            ('MCA', ['economic_mechanism_material'], {'MCA'}),
+            ('WIL', ['economic_mechanism_material'], {'WIL', 'ECONOMY'}),
+            ('ACTOR_RECEPTION', ['economic_mechanism_material'], {'ACTOR_RECEPTION', 'MCA', 'ECONOMY'}),
+            ('OPERATIONAL_MISSION', ['operational_conflict_material'], {'OPERATIONAL_MISSION', 'MCA'}),
+            ('MORTALITY', [], {'MORTALITY', 'MCA'}),
+            ('MORTALITY', ['operational_interface_material'], {'MORTALITY', 'MCA'}),
+            ('MORTALITY', ['operational_conflict_material'], {'MORTALITY', 'MCA', 'OPERATIONAL_MISSION'}),
+            ('BELIEF_CULTURE', [], {'BELIEF_CULTURE'}),
+            ('BELIEF_CULTURE', ['actor_reception_material'], {'BELIEF_CULTURE', 'ACTOR_RECEPTION', 'MCA'}),
+            ('BELIEF_CULTURE', ['institutional_interface_material'], {'BELIEF_CULTURE', 'WIL'}),
+            ('BELIEF_CULTURE', ['economic_mechanism_material'], {'BELIEF_CULTURE', 'ECONOMY'}),
+            ('BELIEF_CULTURE', ['operational_conflict_material'], {'BELIEF_CULTURE', 'OPERATIONAL_MISSION', 'MCA'}),
+            ('BELIEF_CULTURE', ['actor_reception_material', 'operational_interface_material'],
+             {'BELIEF_CULTURE', 'ACTOR_RECEPTION', 'OPERATIONAL_MISSION', 'MCA'}),
+        ]
+        for family, conditions, expected in cases:
+            with self.subTest(family=family, conditions=conditions):
+                self.assertEqual(resolve(config, [family], conditions), expected)
 
     def test_ci_size_and_english_active_control_text(self):
         import re
@@ -49,7 +69,7 @@ class ControlTests(unittest.TestCase):
         # Diacritic screening is a regression aid, not proof of language or semantics.
         # Supplied fiction names remain literal and are not translated.
         vietnamese_letters = re.compile('[\u0102\u0103\u0110\u0111\u01a0\u01a1\u01af\u01b0\u1ea0-\u1ef9]')
-        for name in (CI, ROUTER, *self.controls.values()):
+        for name in (CI, ROUTER, PIPELINE, *self.controls.values()):
             text = (self.root / name).read_text(encoding='utf-8')
             for proper_name in ('Rongo', '太乙真人', 'Tàiyǐ Zhēnrén'):
                 text = text.replace(proper_name, '')
@@ -97,12 +117,33 @@ class ControlTests(unittest.TestCase):
                 with self.assertRaises(ControlError):
                     check(self.root)
 
-    def test_exactly_four_families(self):
+    def test_all_registered_families_required(self):
         config = load(self.root)
         config['controls'].pop()
         self.save(config)
         with self.assertRaises(ControlError):
             check(self.root)
+
+    def test_pipeline_is_required_by_ci_outside_router_families(self):
+        path = self.root / PIPELINE
+        self.assertNotIn(path, check(self.root).values())
+        self.assertFalse(any(row['stem'] == 'C2_Authoring_Pipeline'
+                             for row in load(self.root)['controls']))
+        path.unlink()
+        with self.assertRaisesRegex(ControlError, 'Missing or redirected control'):
+            check(self.root)
+
+    def test_pipeline_activation_gate_requires_full_read_and_preserves_router_entry(self):
+        path = self.root / CI
+        text = path.read_text(encoding='utf-8')
+        for original in ('Read FULL_FILE and follow it before transforming.',
+                         'Keywords alone do not activate it.',
+                         'blocks only the dependent transformation.',
+                         'cannot waive Router entry.'):
+            with self.subTest(original=original):
+                path.write_text(text.replace(original, ''), encoding='utf-8')
+                with self.assertRaisesRegex(ControlError, 'CI must locate and fully read the Pipeline'):
+                    check(self.root)
 
     def test_missing_or_inactive_control_fails(self):
         path = self.root / self.controls['MCA']
@@ -115,7 +156,7 @@ class ControlTests(unittest.TestCase):
             check(self.root)
 
     def add_mca(self, version, status='ACTIVE', directory='Anti-Drift Source',
-                family='MCA', heading_version=None):
+                    family='MCA', heading_version=None):
         path = self.root / directory / f'{FAMILIES["MCA"]}_v{version}.md'
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(f'# C2 — Test control v{heading_version or version}\n\n'
@@ -124,13 +165,36 @@ class ControlTests(unittest.TestCase):
 
     def test_numeric_resolution_without_router_edit(self):
         router = (self.root / ROUTER).read_bytes()
-        (self.root / self.controls['MCA']).unlink()
-        oldest = self.add_mca('1.0')
-        self.assertEqual(check(self.root)['MCA'], oldest)
-        newer = self.add_mca('1.9')
-        self.assertEqual(check(self.root)['MCA'], newer)
-        newest = self.add_mca('1.10')
-        self.assertEqual(check(self.root)['MCA'], newest)
+        config = load(self.root)
+        for row in config['controls']:
+            family = row['id']
+            with self.subTest(family=family), tempfile.TemporaryDirectory() as temporary:
+                control_root = Path(temporary)
+                selection = config['control_selection']
+                directory = control_root / selection['directory']
+                directory.mkdir()
+
+                def resolve_family():
+                    return resolve_control(control_root, selection, row)
+
+                def add_version(version, status='ACTIVE'):
+                    path = directory / f"{row['stem']}_v{version}.md"
+                    path.write_text(f'# C2 — Test control v{version}\n\n'
+                                    f'> Status: {status}\n> Family: {family}\n\nFixture.\n',
+                                    encoding='utf-8')
+                    return path
+
+                with self.assertRaisesRegex(ControlError, f'Missing eligible control: {family}'):
+                    resolve_family()
+                first = add_version('1.9')
+                self.assertEqual(resolve_family(), first)
+                newest = add_version('1.10')
+                self.assertEqual(resolve_family(), newest)
+                add_version('1.11', 'CANDIDATE')
+                self.assertEqual(resolve_family(), newest)
+                add_version('1.10.0')
+                with self.assertRaisesRegex(ControlError, f'Ambiguous highest version: {family}'):
+                    resolve_family()
         self.assertEqual((self.root / ROUTER).read_bytes(), router)
 
     def test_excluded_statuses_and_nested_archive_are_ineligible(self):

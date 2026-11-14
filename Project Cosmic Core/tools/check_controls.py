@@ -3,15 +3,19 @@
 import json
 import re
 
-ROUTER_VERSION = '1.1'
-CI_VERSION = '1.1'
+ROUTER_VERSION = '1.2'
+CI_VERSION = '1.2'
 ROUTER = f'Anti-Drift Source/C2_Anti_Drift_Source_Router_v{ROUTER_VERSION}.json'
 CI = f'Project Cosmic Core CI/C2_CI_v{CI_VERSION}.md'
+PIPELINE = 'Anti-Drift Source/C2_Authoring_Pipeline_v1.0.md'
 FAMILIES = {
     'MCA': 'C2_Anti_Drift_Modular_Concept_Architecture',
     'WIL': 'C2_Anti_Drift_Worldbuilding_Internal_Logic',
     'ACTOR_RECEPTION': 'C2_Anti_Drift_Actor_Reception',
     'OPERATIONAL_MISSION': 'C2_Anti_Drift_Operational_Mission',
+    'ECONOMY': 'C2_Anti_Drift_Interface_Economy_State_Stabilization',
+    'BELIEF_CULTURE': 'C2_Anti_Drift_Belief_Culture',
+    'MORTALITY': 'C2_Anti_Drift_Mortality_Relationship_Plot_Immunity',
 }
 CONTROL_SELECTION = {
     'directory': 'Anti-Drift Source',
@@ -103,7 +107,7 @@ def controls_by_id(config):
             require(pair not in seen, 'Duplicate conditional edge')
             seen.add(pair)
         result[key] = row
-    require(set(result) == set(FAMILIES), 'Exactly four baseline families required')
+    require(set(result) == set(FAMILIES), 'Router must register exactly the C2 Anti-Drift families')
     return result
 
 
@@ -224,6 +228,20 @@ def check(root):
             and 'Missing/ambiguous/partial Router: block dependent work;' in source_gate
             and 'ask for the file, never invent it.' in source_gate,
             'CI must locate and fully read the Router from available web project sources')
+    pipeline = local_file(root, PIPELINE).read_text(encoding='utf-8-sig')
+    heading, status, families = control_header(pipeline, PIPELINE)
+    require(heading == '# C2 — Authoring Pipeline v1.0' and status == 'ACTIVE' and not families
+            and '> Type: PROCEDURAL AUTHORING CONTROL' in pipeline.partition('\n\n')[2].partition('\n\n')[0].splitlines(),
+            'Invalid procedural control identity')
+    activation = ci.partition('## Subordinate controls\n\n')[2].partition('\n\n')[0]
+    pipeline_name = PIPELINE.rsplit('/', 1)[-1]
+    require(f'`{pipeline_name}`' in activation and PIPELINE not in activation
+            and "from this Project's Project Sources." in activation
+            and 'Read FULL_FILE and follow it before transforming.' in activation
+            and 'Keywords alone do not activate it.' in activation
+            and 'blocks only the dependent transformation.' in activation
+            and 'cannot waive Router entry.' in activation,
+            'CI must locate and fully read the Pipeline for requested transformations')
     require(config['runtime'] == {'entry': STAGES[0], 'stages': STAGES}, 'Invalid stages')
     bootstrap = config['bootstrap']
     require(isinstance(bootstrap, dict) and set(bootstrap) == {
@@ -244,14 +262,23 @@ def check(root):
     selection = config['control_selection']
     require(selection == CONTROL_SELECTION, 'Invalid control selection')
     controls = controls_by_id(config)
-    expected_requires = {'MCA': [], 'WIL': [], 'ACTOR_RECEPTION': ['MCA'],
-                         'OPERATIONAL_MISSION': ['MCA']}
+    requires_mca = {'ACTOR_RECEPTION', 'OPERATIONAL_MISSION', 'MORTALITY'}
+    economic = ('economic_mechanism_material', 'ECONOMY')
+    institutional = ('institutional_interface_material', 'WIL')
+    conflict = ('operational_conflict_material', 'OPERATIONAL_MISSION')
+    expected_conditions = {
+        'WIL': {economic},
+        'ACTOR_RECEPTION': {institutional, economic,
+                            ('operational_interface_material', 'OPERATIONAL_MISSION')},
+        'BELIEF_CULTURE': {('actor_reception_material', 'ACTOR_RECEPTION'),
+                          institutional, economic, conflict},
+        'MORTALITY': {conflict},
+    }
     for key, row in controls.items():
-        require(row['requires'] == expected_requires[key], f'Dependency drift: {key}')
-        expected = ([{'when': 'institutional_interface_material', 'target': 'WIL'},
-                     {'when': 'operational_interface_material', 'target': 'OPERATIONAL_MISSION'}]
-                    if key == 'ACTOR_RECEPTION' else [])
-        require(row['conditional_requires'] == expected, f'Conditional dependency drift: {key}')
+        require(row['requires'] == (['MCA'] if key in requires_mca else []),
+                f'Dependency drift: {key}')
+        edges = {(item['when'], item['target']) for item in row['conditional_requires']}
+        require(edges == expected_conditions.get(key, set()), f'Conditional dependency drift: {key}')
     require(config['failures'] == FAILURES, 'Invalid failure behavior')
     require(isinstance(config['policies'], dict) and set(config['policies']) == POLICIES
             and all(isinstance(x, str) and x.strip() for x in config['policies'].values()),

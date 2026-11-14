@@ -25,7 +25,7 @@ Với tác vụ phụ thuộc C2 current state: CI gọi Router; đọc đầy �
 
 ## Control và bảo trì
 
-CI ở `Project Cosmic Core CI/`; Router và đúng bốn family Anti-Drift ở `Anti-Drift Source/`. Router chọn theo tác vụ, không nạp mọi file. Control/tooling/manifest/tests/tools/archive không chiếm số nguồn.
+CI ở `Project Cosmic Core CI/`; Router, bảy họ Anti-Drift và quy trình Authoring Pipeline ở `Anti-Drift Source/`. CI kích hoạt Pipeline theo yêu cầu biến đổi nội dung. Router chỉ chọn các họ Anti-Drift cần cho tác vụ. Control/tooling/manifest/tests/tools/archive không chiếm số nguồn.
 
 `Source_Archive/` chỉ lịch sử/provenance, không là fallback hoặc đầu vào dựng lại current. Manifest và builder không chốt canon; --write chỉ cập nhật vùng generated allowlisted. Local repository khác live GPT Project deployment.
 

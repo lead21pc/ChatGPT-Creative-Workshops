@@ -20,7 +20,7 @@ Project fiction cá nhân về đoàn tàu xuyên các world. Package quản lý
 
 ## Control và bảo trì
 
-[CI 1.1](Project%20Cosmic%20Core%20CI/C2_CI_v1.1.md) gọi [Router 1.1](Anti-Drift%20Source/C2_Anti_Drift_Source_Router_v1.1.json) cho tác vụ phụ thuộc C2 current state. Router chọn trong bốn họ kiểm soát MCA, WIL, Actor Reception và Operational Mission. Mỗi họ cần dùng được phân giải đến phiên bản ACTIVE cao nhất theo thứ tự số. Router dùng JSON chuẩn để checker chạy bằng Python standard library, không thêm dependency. Applicability vẫn do mô hình đánh giá, không phải suy luận tự động bằng tool.
+[CI 1.2](Project%20Cosmic%20Core%20CI/C2_CI_v1.2.md) gọi [Router 1.2](Anti-Drift%20Source/C2_Anti_Drift_Source_Router_v1.2.json) cho tác vụ phụ thuộc C2 current state. Router chọn trong bảy họ Anti-Drift: MCA, WIL, Actor Reception, Operational Mission, Interface Economy / State Stabilization, Belief / Culture và Mortality / Relationship / Plot Immunity. CI yêu cầu đọc đầy đủ Authoring Pipeline cho các thao tác biến đổi nội dung được chỉ định. Pipeline chuyển nhu cầu thông tin hiện hành đến Router trước khi dùng thông tin đó. Mỗi họ cần dùng được phân giải đến phiên bản ACTIVE cao nhất theo thứ tự số. Router dùng JSON chuẩn để checker chạy bằng Python standard library, không thêm dependency. Applicability vẫn do mô hình đánh giá, không phải suy luận tự động bằng tool.
 
 Control ở `Project Cosmic Core CI/` và `Anti-Drift Source/`; checker ở `tools/`, test ở `tests/`. Chúng cùng manifest/builder/archive nằm ngoài namespace đánh số. `Source_Archive/` giữ lịch sử/provenance khi có, không là current fallback hoặc đầu vào tái dựng lore.
 
@@ -39,7 +39,7 @@ Manifest băm 17 tệp hiện hành đánh số; không băm chính nó/control/
 
 ## Trạng thái bằng chứng
 
-Cặp trong repository là CI 1.1 và Router 1.1. Cấu hình triển khai đặt CI trong Project Instructions, Router và các Anti-Drift trong Project Sources, nguồn đánh số trong Library/`C2 Config`. Chưa xác minh cặp mới trong Project đang chạy. Commit chỉ cập nhật gói repository.
+Cặp trong repository là CI 1.2 và Router 1.2. Cấu hình triển khai đặt CI trong Project Instructions, Router, Authoring Pipeline và các Anti-Drift trong Project Sources, nguồn đánh số trong Library/`C2 Config`. Chưa xác minh cặp mới trong Project đang chạy. Commit chỉ cập nhật gói repository.
 
 Bản Router 1.0 lưu trong `Source_Archive/` ghi nhận lượt thử trước đây do tác giả báo cáo sau khi sửa Project Instructions. Lượt đó dùng bộ tên trước khi chuẩn hóa và xác nhận CI gọi Router, truy xuất Library/`C2 Config`, đọc đầy đủ các nguồn cần thiết, bootstrap 00/05, hòa giải 04, phân vai 110/112 và chọn MCA. Lượt thử không dùng repository hay archive làm fallback. WIL, Actor Reception và Operational Mission chưa được xác minh trong lượt này. Lượt thử đó chỉ áp dụng cho bộ tệp đã dùng khi thử.
 
@@ -47,7 +47,7 @@ Các mục lore còn mở được ghi ở [05](05_OPEN_ISSUES.md).
 
 ## Dùng CI trên ChatGPT web
 
-Dán nội dung CI vào phần chỉ dẫn Project không tự tải Router hoặc các source từ máy/GitHub. Cung cấp Router `C2_Anti_Drift_Source_Router_v1.1.json` và bốn Anti-Drift qua Project Sources. Truy xuất nguồn lore từ Library/`C2 Config`; nếu chưa xác minh được tệp thuộc đúng thư mục, yêu cầu gắn đúng bản Library từ thư mục đó. Đây là bước cài đặt nguồn, tách khỏi commit/push.
+Dán nội dung CI vào phần chỉ dẫn Project không tự tải Router hoặc các source từ máy/GitHub. Cung cấp Router `C2_Anti_Drift_Source_Router_v1.2.json`, `C2_Authoring_Pipeline_v1.0.md` và bảy họ Anti-Drift qua Project Sources. Truy xuất nguồn lore từ Library/`C2 Config`; nếu chưa xác minh được tệp thuộc đúng thư mục, yêu cầu gắn đúng bản Library từ thư mục đó. Đây là bước cài đặt nguồn, tách khỏi commit/push.
 
 CI yêu cầu tìm Router theo tên tài liệu, xác minh identity/version và đọc đầy đủ; Router chọn nguồn/control tiếp theo qua nguồn thực sự có sẵn. Đường dẫn tương đối mô tả cách bố trí tệp trong repository. Trên web, dùng bằng chứng từ Project Sources để xác minh họ, phiên bản và trạng thái của bản Anti-Drift cần đọc. Tên trùng không đủ xác lập authority; thiếu, mơ hồ hoặc chỉ lấy được một phần tài liệu thì chặn phần phụ thuộc và yêu cầu file. `FULL_FILE` là yêu cầu đọc, không phải bảo đảm backend luôn cung cấp đủ nội dung.
 
