@@ -26,3 +26,20 @@ Sau câu xin quyền cụ thể ở ca 1, câu trả lời `có` cho phép đún
 - Failure lặp qua mọi task: USER-REPORTED; một lần auto-review từ chối generic push đã được quan sát trong chat sửa Revamp trước bản sửa workflow này. Không coi một lần đó là tái hiện mọi repository/runtime.
 - Review tĩnh 8 ca: đối chiếu contract, không thực hiện push hoặc gọi model/auto-review. LIVE BEHAVIOR: NOT RUN.
 - Bộ `tests/test_git_workflow.py` kiểm local inspect/commit/isolation, giữ unrelated changes và đường commit không gọi push. Không thay kỳ vọng các test này để chứng minh một permission gate không được triển khai trong script.
+
+## Ca cho quyền thường trực
+
+Trừ khi có nêu khác, fixture có local `main`, một đích fetch/push `origin`, và tip remote là tổ tiên của local tip. Không chạy các ca từ chối vào GitHub thật. Đây là kỳ vọng, không phải kết quả chạy live.
+
+| Ca | Dữ kiện | Kỳ vọng |
+| --- | --- | --- |
+| T1 — Đúng repository | GitHub API trả `lead21pc/ChatGPT-Creative-Workshops`, ID `1361687313`, default `main`; toàn bộ outgoing đã kiểm chứng. | Cho phép fast-forward `main → origin/main`; không xin quyền từng lần; xác minh SHA remote. |
+| T2 — Cùng tên remote | `origin` trỏ repo khác, hoặc push URL hiệu lực khác fetch URL chính thức. | Không áp quyền thường trực; dùng gate thông thường. |
+| T3 — Task mới | Repo và ref đúng, task mới có commit đã kiểm chứng, payload đủ điều kiện. | Không xin lại quyền; không đòi SHA phải có lúc cấp quyền. |
+| T4 — Force | Đúng repo nhưng dùng force hoặc force-with-lease. | Không thuộc quyền thường trực. |
+| T5 — Nhánh khác | `feature-x → origin/feature-x`. | Cần quyền riêng. |
+| T6 — Lịch sử phân kỳ | Remote main có commit riêng. | Dừng, không tự rewrite/merge/rebase/force. |
+| T7 — Sai hoặc thiếu identity | URL gần giống hoặc metadata GitHub trả ID khác/không xác minh được ID. | Không áp quyền thường trực dù tên hoặc URL nhìn giống. |
+| T8 — Nền tảng không cấp ngoại lệ | Không có cơ chế trust theo GitHub ID hoặc runtime từ chối. | Ghi nhận quyền workflow và giới hạn runtime; không tạo registry hoặc né review. |
+
+Thử thêm outgoing chưa kiểm chứng, chỉ dẫn local-only và push URL thứ hai: không xuất bản theo ngoại lệ. Khi chạy live, ghi riêng kết quả kiểm metadata, quyền workflow, auto-review và SHA remote.

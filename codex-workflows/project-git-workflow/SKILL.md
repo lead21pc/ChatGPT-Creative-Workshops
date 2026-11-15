@@ -1,6 +1,6 @@
 ---
 name: project-git-workflow
-description: Điều phối Git theo một shared local working state cho mỗi repository. Dùng working tree hiện tại làm nguồn thật, giới hạn thao tác bằng READ/WRITE scope, tự stage và commit local đúng file thuộc task sau khi kiểm chứng; branch/worktree chỉ là fallback khi có nhu cầu cô lập cụ thể. Push cần quyền xuất bản rõ đích và phạm vi commit; không suy quyền từ trạng thái Git.
+description: Điều phối Git trên working tree hiện tại, giới hạn READ/WRITE, stage và commit local đúng phạm vi đã kiểm chứng; branch/worktree chỉ là fallback. Kiểm quyền và payload trước push; quyền thường trực chỉ áp cho đích GitHub và nhánh đã được người dùng chỉ định.
 ---
 
 # Project Git Workflow
@@ -94,24 +94,30 @@ Lệnh `isolate` không được gọi như bước chuẩn bị mặc định. 
 
 ## Push
 
-`PUSH REQUIRES EXPLICIT ACTION-SCOPED AUTHORIZATION.`
-`REPOSITORY STATE RESOLUTION != USER AUTHORIZATION`; `COMMIT != PUSH`; `PUSH != GENERIC PERMISSION TO REMOTE EGRESS`.
+`REPOSITORY STATE RESOLUTION != USER AUTHORIZATION`; `COMMIT != PUSH`.
 
-Skill này sở hữu quy trình kiểm quyền push chung; helper hiện chỉ làm việc local, không thực thi push. Quyền sửa/stage/commit local không tự cấp quyền xuất bản.
+Skill này sở hữu quy trình kiểm quyền push; helper chỉ thao tác local, không thực thi push. Với repository thông thường, push cần quyền rõ cho hành động cụ thể: repository/remote đích, source/destination ref, payload và loại thao tác. Quyền sửa/stage/commit hoặc trạng thái Git không thay được quyền xuất bản.
 
-Trước mỗi push:
+### Ngoại lệ do người dùng cấp: repository chính thức
 
-1. Kiểm tra working tree/HEAD và trạng thái remote liên quan. Xác định remote cùng URL push thực tế, source/local ref và tip, destination remote ref, cùng toàn bộ commit sẽ được xuất bản so với trạng thái đích. Tính cả commit tổ tiên chưa có ở đích, không chỉ tip hoặc file của task. Chưa đủ dữ kiện để xác định đích/payload thì chưa push.
-2. Đối chiếu hành động đã xác định với quyền người dùng hiện hành: đúng repository/remote đích, source ref, destination ref, tập commit hoặc phạm vi task được cho phép, và loại thao tác. Git state đã biết không phải quyền của người dùng; không diễn giải riêng chữ `push` thành quyền `main → origin/main` cho payload tự suy ra.
-3. Nếu quyền chưa bao phủ rõ đích và payload, **không phát lệnh push**, kể cả dry-run. Đưa một câu xin quyền cụ thể rồi chờ xác nhận, ví dụ: “Bạn cho phép push các commit `A`, `B` hiện có trên local `main` lên `origin/main` (`<URL đã kiểm tra>`) chứ?” Dùng SHA thực đã kiểm tra, không placeholder. Nếu payload được nêu theo tập “toàn bộ commit local hiện tại”, giữ rõ mốc/tip và tập commit tại thời điểm xin quyền. Không hỏi lại remote/branch như dữ kiện chưa biết; câu hỏi xin quyền phải nêu chính hành động đã xác định, không chỉ “confirm push”.
-4. Khi quyền đã đủ rõ, dùng ngay trong đúng phạm vi, **không xin xác nhận lần hai**. Ví dụ “push các commit local hiện tại trên main lên origin/main” bao phủ tập hiện có lúc cấp quyền. “Sửa task này, commit rồi push thay đổi của task này từ main lên origin/main” có thể bao phủ commit của task tạo sau đó; không hỏi lại chỉ vì SHA chưa tồn tại lúc cấp quyền. Vẫn đối chiếu payload cuối: commit ngoài task hoặc tổ tiên chưa được cho phép không tự được bao phủ.
-5. Ngay trước khi thực hiện, kiểm lại source tip, destination và payload với quyền đã nhận. Nếu đích/phạm vi thay đổi, chỉ phần vượt quyền cần xin lại; không tự thêm commit phát sinh sau một quyền đã chốt tập hiện tại. Phát lệnh push trực tiếp thể hiện đúng remote và ref/payload đã được cho phép; không để source ref dịch chuyển làm publish thêm commit. Kiểm kết quả và SHA remote sau push; attempt không phải success.
+Người dùng đã cấp quyền thường trực cho push fast-forward thông thường từ local `refs/heads/main` lên `origin` tại `refs/heads/main`, chỉ cho GitHub `lead21pc/ChatGPT-Creative-Workshops`, ID `1361687313`, nhánh mặc định `main`. Quyền này bao phủ các commit local đã kiểm chứng trên `main`, kể cả commit từ task sau hoặc từ nhiều task; không khóa theo SHA/task. Khi đủ điều kiện, được push sau kiểm chứng mà không xin lại quyền từng task hay từng lần push. Chỉ dẫn mới hơn, giới hạn local-only hoặc yêu cầu chỉ đọc vẫn được tôn trọng.
 
-Quyền cho commit A không bao phủ B mới phát sinh, ref/remote khác, force-push, tag, release, PR hay sửa remote metadata. Wording cấp phạm vi task tương lai rõ ràng là ngoại lệ có chủ đích cho commit của đúng task, không là quyền thường trực. Quyền của task cũ không truyền sang task mới; xác nhận “có” chỉ có nghĩa trong phạm vi hành động cụ thể đang được hỏi.
+Trước khi áp ngoại lệ:
 
-Tôn trọng auto-review: nếu bị từ chối, báo hành động/lý do và xin phần quyền còn thiếu. Không dùng wrapper, alias, Python/subprocess, mã hóa lệnh hoặc đổi transport để né kiểm duyệt. Helper không thay được user authorization; không thêm permission registry hoặc persistent approval system.
+1. Kiểm đúng repository local, source branch/tip và URL fetch/push **thực tế** của `origin` (kể cả override/rewrite). Chỉ áp nếu đích fetch và push đều resolve về repository GitHub chính thức, không có thêm đích push. Dùng metadata từ GitHub API của chính repository mà URL hiệu lực trỏ tới để đối chiếu đồng thời `full_name`, số `id` và `default_branch`; tên `origin`, URL giống nhau, local project trust hoặc API lookup một repo khác không đủ. Không xác minh được thì không áp ngoại lệ; dùng gate quyền thông thường.
+2. Làm mới và xác nhận tip thực tế của remote `main`. Nếu remote có commit riêng hoặc không chứng minh được fast-forward, dừng; không tự merge/rebase/rewrite để push. Kiểm toàn bộ outgoing commits, kể cả tổ tiên chưa xuất bản: chỉ push khi toàn bộ payload đã kiểm chứng và thuộc quyền xuất bản. Giữ nguyên các thay đổi local không liên quan; không stage chúng để push.
+3. Kiểm lại đích, tip và payload ngay trước khi chạy. Push trực tiếp đúng một refspec đã kiểm chứng (có thể ghim SHA đã xác nhận từ local `main` làm nguồn), không force, không gửi tag theo, rồi xác minh SHA remote. Nếu ref/payload thay đổi, kiểm lại trước khi thực hiện; không tự đưa commit chưa kiểm chứng lên remote.
 
-Các ca regression và cách đánh giá nằm ở [references/push-authorization-cases.md](references/push-authorization-cases.md). Chúng là đặc tả hành vi, không phải bằng chứng đã chạy model/auto-review.
+Ngoại lệ không bao phủ force push (kể cả `--force-with-lease`), xóa remote ref, nhánh/remote/repository khác, tag, release, PR, thay metadata/URL hay rewrite history. Nó không cấp quyền bỏ qua sandbox, GitHub branch protection hoặc auto-review.
+
+### Gate thông thường và kiểm chứng
+
+- Kiểm working tree/HEAD, URL push thực tế, source/local ref và tip, destination ref, cũng như **toàn bộ** outgoing commits. Không suy từ riêng chữ `push`, default branch, upstream hay tip.
+- Nếu quyền chưa bao phủ rõ hành động đã xác định, không phát lệnh push, kể cả dry-run. Xin quyền một lần, nêu đích/URL và SHA thực. Quyền cho tập commit hiện tại không bao phủ commit phát sinh sau đó; quyền cho task cụ thể có thể bao phủ commit tạo sau trong task nhưng không bao phủ tổ tiên ngoài task. Quyền của task cũ không tự truyền sang task mới. Khi quyền đã đủ, không xin lần hai.
+- Kiểm lại tip, đích và payload ngay trước khi phát lệnh trực tiếp; xác minh SHA remote sau push. Attempt không phải success.
+- Quyền thường trực ở workflow không phải allowlist của nền tảng. Nếu sandbox hoặc auto-review từ chối, báo hành động và lý do theo runtime; không dùng wrapper, alias, subprocess, mã hóa lệnh hoặc đổi transport để né review; không dựng registry quyền giả.
+
+Xem [các ca kiểm quyền push](references/push-authorization-cases.md). Đây là đặc tả hành vi, không phải kết quả chạy model/auto-review.
 
 ## Legacy state
 
