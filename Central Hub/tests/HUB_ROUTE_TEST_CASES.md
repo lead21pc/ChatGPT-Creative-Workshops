@@ -93,7 +93,7 @@ Run live tests only when separately requested: install exact Hub CI and sources;
 
 H31–H35: observe reports and every mutation/write call during test/audit; defect discovery must leave files unchanged. After explicit correction authorization, mutate only within authorized scope. Record trace and before/after diff; static checks do not prove live model compliance with this boundary.
 
-## Production correction 2026-11-08 — current STATIC/SPEC cases
+## Production correction 2026-11-08 — historical Authoring STATIC/SPEC cases
 
 Baseline production USER_CONFIRMED_INSTALLED_AND_LIVE; cases below are new-delta specifications, LIVE NOT_RUN.
 
@@ -107,6 +107,14 @@ Baseline production USER_CONFIRMED_INSTALLED_AND_LIVE; cases below are new-delta
 | PC06 | MCA-only / Actor Reception-only scope | No WIL requirement; Actor Reception closure includes MCA |
 
 Observe actual outputs/reads when a live run is separately requested. These lexical/contract cases do not prove model compliance.
+
+## Authoring 1.1 — retained real-context differential
+
+Status: SPEC READY / LIVE NOT_RUN. Use the active revision only after a separately authorized installation with verified bindings. In two fresh chats, establish the same natural conversation about comparing note formats. Have the user settle on a paper notebook as the default, with plain text allowed only if paper cannot be accessed. Add a related but irrelevant earlier detail such as the notebook color. Keep the conversation and request body identical. Use the request bodies and calls from I1 and I6 in [the fixture](AUTHORING_SOURCE_CASES.json), without showing the reference outputs or evaluator criteria.
+
+Read each output for meaning. The bare call must compare both options without adopting a default, an order of preference or a conditional switch from the earlier discussion, including through paraphrase. P1 must convey both the default and the exact condition for switching in one independently usable prompt. Both may omit notebook color. Record the actual loaded controls, prompt, blockers and any package reads or tool calls. No research or downstream tool call is required. A fixed fixture or same-context harness result alone cannot establish robustness in an actual conversation.
+
+For the focused follow-up use I3: ambiguous existing prompt → one question with the exact fresh call → plain answer alone leaves Authoring inactive → new exact call with the source supplied. Use I7 and I10 to check rebuild, cross-turn relations and embedded instructions. Use I5/I9/I11 to check supplied recipient limits and ordinary target naming without Authoring-owned module selection, loading or execution.
 
 ## CI 1.2 correction — clarification, correction and interpersonal scope
 

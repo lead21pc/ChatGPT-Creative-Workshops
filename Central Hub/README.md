@@ -2,7 +2,7 @@
 
 ## Bộ active trong repository
 
-[CI 1.3](HUB_CI_v1.3.md), [Router 1.2](HUB_ROUTER_v1.2.yaml), [Architecture 1.24](HUB_ARCHITECTURE_v1.24.md) và [root Catalog 1.23](HUB_PACKAGE_CATALOG_v1.23.yaml) là bộ pin hiện hành. Catalog là nguồn định danh, revision, applicability và binding của bảy package.
+[CI 1.3](HUB_CI_v1.3.md), [Router 1.2](HUB_ROUTER_v1.2.yaml), [Architecture 1.25](HUB_ARCHITECTURE_v1.25.md) và [root Catalog 1.24](HUB_PACKAGE_CATALOG_v1.24.yaml) là bộ pin hiện hành. Catalog là nguồn định danh, revision, applicability và binding của bảy package.
 
 - Technical, Authoring và Food là singleton. Concept giữ Entry/Catalog và lá theo nhu cầu.
 - AIS dùng một [Project Source](tool_pipelines/AIS/AIS_PIPELINE_v1.3.md). Shopping Entry tự chọn Search tùy nhu cầu.

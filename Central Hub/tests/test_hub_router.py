@@ -492,7 +492,7 @@ class LibraryReadTests(unittest.TestCase):
 
     def test_library_scoped_wrong_headers_partial_body_root_and_substitutes_rejected(self):
         entry, observed = self.library_identity_fixture('HUB-PKG-AUTHORING')
-        observed['filename'] = 'HUB-AUTH-ENTRY_v1.0.md'  # A perfect name cannot fix bad identity.
+        observed['filename'] = 'HUB-AUTH-ENTRY_v1.1.md'  # A perfect name cannot fix bad identity.
         mutations = [('module_id', 'OTHER'), ('package_id', 'OTHER'), ('runtime_role', 'DOMAIN_CONTROL'),
                      ('status', 'CANDIDATE'), ('status', 'INACTIVE'), ('version', 'wrong'),
                      ('read_kind', 'SNIPPET'), ('read_kind', 'HEADER_ONLY'), ('has_more', True),

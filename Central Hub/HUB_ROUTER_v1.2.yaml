@@ -4,8 +4,8 @@ runtime_role: CORE_ROUTER
 router_version: '1.2'
 status: ACTIVE
 contracts:
-  architecture: {file: HUB_ARCHITECTURE_v1.24.md, module_id: HUB-CORE-ARCH, version: '1.24', status: ACTIVE}
-  root_catalog: {file: HUB_PACKAGE_CATALOG_v1.23.yaml, module_id: HUB-CORE-PACKAGE-CATALOG, version: '1.23', status: ACTIVE}
+  architecture: {file: HUB_ARCHITECTURE_v1.25.md, module_id: HUB-CORE-ARCH, version: '1.25', status: ACTIVE}
+  root_catalog: {file: HUB_PACKAGE_CATALOG_v1.24.yaml, module_id: HUB-CORE-PACKAGE-CATALOG, version: '1.24', status: ACTIVE}
   ci: HUB_CI_v1.3.md
 default: NONE
 stages:
@@ -20,8 +20,10 @@ stages:
   PACKAGE_INTERFACE_RESOLUTION: >-
     Verify the exact bound entrypoint before use. Dispatch by binding mode. A singleton returns its
     entrypoint; a growing package uses its declared interface for materially needed leaves. Pipelines
-    own internal procedure and inventory. Pass accepted admission details (including an exact
-    Authoring target, preset and isolation if selected) with the scoped input.
+    own internal procedure and inventory. Pass accepted current-turn admission details with the scoped input.
+    For Authoring, supply the exact admitted form, request body and resolved task material within its
+    source bounds. When material, supply verified recipient constraints as input. A recipient mentioned
+    for prompt construction does not select its package or authorize its execution.
   SCOPED_MODULE_SET: >-
     Accept only declared, verified owner interfaces and scoped selections. Return package and module
     identities, roles, matched scope, reason, binding, applicable relations, direct dependencies,

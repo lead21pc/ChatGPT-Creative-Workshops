@@ -10,6 +10,11 @@ Bằng chứng đi theo hành vi và điều kiện đã thử. Giữ PASS còn 
 
 ## Current verified runtime status
 
+### 2026-11-16 — Authoring 1.1 standalone
+
+- Authoring 1.1 là revision hiện hành trong repository. Root Catalog 1.24 nhận `/AT`, `/AT P1`, `/AT P2`. Router 1.2 chuyển dạng gọi đã xác nhận và đầu vào có phạm vi. Architecture 1.25 cập nhật tham chiếu Catalog. AT áp dụng ràng buộc bên nhận do Hub cung cấp; lựa chọn và đọc control khác thuộc Hub.
+- I1/I6 giữ chung context và thân yêu cầu để so sự khác biệt giữa hai dạng gọi. Fixture và hướng dẫn kiểm theo nghĩa nằm trong bộ ca Hub. Live cho revision 1.1 và thử nghiệm trong hội thoại thực: NOT_RUN. Exact Library identity/FULL_FILE: NOT_VERIFIED. Project/Library deployment trong tác vụ này: NOT_PERFORMED. Bằng chứng 0.6/0.7 bên dưới giữ phạm vi ban đầu.
+
 ### 2026-11-13 — Folder Library và refactor cấu trúc
 
 - **USER_CONFIRMED_LIVE_PASS:** người dùng trực tiếp thử trong runtime liên quan và xác nhận model có thể phân giải, đọc và dùng nội dung trong folder Library lồng nhau. Kết quả này cập nhật trạng thái khả năng folder còn chưa xác minh ở các entry trước. Không suy thành bảo đảm mọi môi trường, exact revision/object hoặc danh sách file của bộ mới.
