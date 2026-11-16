@@ -1,0 +1,8 @@
+{
+  "HUB_ARCHITECTURE_v1.25.md": "9eeacfc1351215da4f22add2847d33d3b5ae03302fbad87a4090a61ae6dffcd1",
+  "HUB_PACKAGE_CATALOG_v1.24.yaml": "79f84195b409d2c15d640c12ae1a257df37c1f67eacedfdcd8620ad893a4e368",
+  "HUB_ROUTER_v1.2.yaml": "7ca328c511dfe02b9d4fe5f17d9ccf7faeb3cebc63dabe5f5147cb42b561b96d",
+  "library_modules/ImageT/HUB-IMAGET-ENTRY_v1.6.md": "ad61e0c8878a203d5d8aa623a96aef81a69cacea28d56f6cbb9ea4340c035c02",
+  "library_modules/ImageT/HUB-IMAGET-CORE-CONTROLLER_v1.6.md": "d79e0cc504e3226e933131dd58a2c87db77d1a06b87c10731eacdc955b3cf3a8",
+  "library_modules/ImageT/HUB-IMAGET-AD-ANTI-PRIOR_v1.4.0.md": "be1ddcd5bcb43258a95c6ef1e9acf332f2b6ab6369ea6484ea11af33c50f50e9"
+}

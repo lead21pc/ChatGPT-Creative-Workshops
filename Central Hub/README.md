@@ -2,11 +2,11 @@
 
 ## Bộ active trong repository
 
-[CI 1.3](HUB_CI_v1.3.md), [Router 1.2](HUB_ROUTER_v1.2.yaml), [Architecture 1.25](HUB_ARCHITECTURE_v1.25.md) và [root Catalog 1.24](HUB_PACKAGE_CATALOG_v1.24.yaml) là bộ pin hiện hành. Catalog là nguồn định danh, revision, applicability và binding của bảy package.
+[CI 1.3](HUB_CI_v1.3.md), [Router 1.2](HUB_ROUTER_v1.2.yaml), [Architecture 1.26](HUB_ARCHITECTURE_v1.26.md) và [root Catalog 1.25](HUB_PACKAGE_CATALOG_v1.25.yaml) là bộ pin hiện hành. Catalog là nguồn định danh, revision, applicability và binding của bảy package.
 
 - Technical, Authoring và Food là singleton. Concept giữ Entry/Catalog và lá theo nhu cầu.
 - AIS dùng một [Project Source](tool_pipelines/AIS/AIS_PIPELINE_v1.3.md). Shopping Entry tự chọn Search tùy nhu cầu.
-- ImageT dùng Entry, Controller và Anti-Prior. Controller kiểm tra thẩm quyền, độ trung thành của prompt và mức sẵn sàng trước khi gửi. Yêu cầu sinh ảnh trực tiếp đủ điều kiện cho phép tối đa một lần gọi công cụ. Yêu cầu xem trước hiển thị bản chuẩn bị rồi dừng. ANALYZE chỉ kiểm tra ảnh. Catalog và hai lá humanoid chỉ đọc khi cần. [Inventory kiểm cài đặt ImageT](tool_pipelines/ImageT/IMAGET_INSTALL_INTEGRITY.yaml) không phải Project Source hoặc Library control.
+- ImageT dùng Entry, Controller và Anti-Prior. Controller kiểm tra thẩm quyền rồi giới hạn ImageT vào bốn nhóm tham chiếu gồm nhận dạng/tài liệu, nhân vật, vật phẩm/trang bị và công trình/vùng môi trường. Mỗi yêu cầu cần một mục tiêu tham chiếu thống nhất hoặc một vùng giới hạn. Controller tiếp tục kiểm tra độ trung thành của prompt và mức sẵn sàng trước khi gửi. Yêu cầu sinh ảnh trực tiếp đủ điều kiện cho phép tối đa một lần gọi công cụ. Yêu cầu xem trước hiển thị bản chuẩn bị rồi dừng. ANALYZE chỉ kiểm tra mục tiêu hoặc vùng đã chỉ rõ trong ảnh nguồn. Catalog và hai lá humanoid chỉ đọc khi cần. [Inventory kiểm cài đặt ImageT](tool_pipelines/ImageT/IMAGET_INSTALL_INTEGRITY.yaml) không phải Project Source hoặc Library control.
 - [Context Snapshot](shared_resources/CONTEXT_SNAPSHOT.md) và [hợp đồng Profile](shared_resources/HUB-USER-PROFILE-CONTRACT_v1.1.yaml) là Project Sources dùng theo nhu cầu. [Profile](shared_resources/USER_PROFILE.md) có năm object dữ liệu riêng do người dùng quản lý. Hub có thể đọc `WRITING_PROFILE` khi thao tác viết trực tiếp cần giữ cách diễn đạt cá nhân và đủ điều kiện theo hợp đồng.
 
 ## Layout Library và cài đặt

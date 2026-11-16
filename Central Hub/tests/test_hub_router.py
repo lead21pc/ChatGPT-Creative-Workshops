@@ -538,6 +538,20 @@ class ActiveRouterTests(unittest.TestCase):
         self.assertEqual(preview['pipeline_entrypoints'], [(package_id, 'HUB-IMAGET-ENTRY')])
         self.assertEqual(descriptive_prose['pipeline_entrypoints'], [])
 
+    def test_imaget_admits_actual_generation_before_closed_scope_decision(self):
+        package_id = 'HUB-PKG-IMAGET'
+        row = next(row for row in load(ROOT_CATALOG)['packages'] if row['package_id'] == package_id)
+        self.assertIn('Actual image analysis, creation, editing, variation or correction', row['applicability'])
+        self.assertIn('ImageT decides closed-scope eligibility for that image work', row['applicability'])
+        self.assertIn('A blocked ImageT operation has no generic image-generation fallback', row['applicability'])
+        rule = load(HUB_ROUTER)['stages']['ROOT_PACKAGE_SELECTION']
+        self.assertIn('before its specialized work, including direct tool use', rule)
+
+        # Even an out-of-scope generation request matches at root. The fixture verifies the
+        # handoff only. It has no natural-language classifier or image tool dispatch.
+        result = simulate(current_metadata_fixture(), {package_id}, pipeline_needs={package_id})
+        self.assertEqual(result['pipeline_entrypoints'], [(package_id, 'HUB-IMAGET-ENTRY')])
+
     def test_prior_none_and_activation_do_not_route_the_current_turn(self):
         router = load(HUB_ROUTER)
         self.assertEqual(router['default'], 'NONE')
