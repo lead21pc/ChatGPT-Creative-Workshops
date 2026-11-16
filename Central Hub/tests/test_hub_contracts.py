@@ -8,9 +8,9 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 LIBRARY = ROOT / 'library_modules'
-ROOT_CATALOG = ROOT / 'HUB_PACKAGE_CATALOG_v1.22.yaml'
+ROOT_CATALOG = ROOT / 'HUB_PACKAGE_CATALOG_v1.23.yaml'
 HUB_ROUTER = ROOT / 'HUB_ROUTER_v1.2.yaml'
-ARCHITECTURE = ROOT / 'HUB_ARCHITECTURE_v1.23.md'
+ARCHITECTURE = ROOT / 'HUB_ARCHITECTURE_v1.24.md'
 CI = ROOT / 'HUB_CI_v1.3.md'
 IMAGE_INSTALL = ROOT / 'tool_pipelines/ImageT/IMAGET_INSTALL_INTEGRITY.yaml'
 
@@ -123,6 +123,7 @@ class HubContracts(unittest.TestCase):
             else:
                 for header, field in [('Module ID', 'module_id'), ('Version', 'version'), ('Status', 'status')]:
                     self.assertIn(f'{header}: {pin[field]}', path.read_text(encoding='utf-8'))
+        self.assertIn(ROOT_CATALOG.name, ARCHITECTURE.read_text(encoding='utf-8'))
         body = CI.read_text(encoding='utf-8')
         for rule in ('CONTROL GROUNDING', 'DISCOURSE FIDELITY', 'EPISTEMIC NON-ESCALATION',
                      'Local mutation requires separate explicit user implementation authorization',

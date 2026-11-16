@@ -1,5 +1,4 @@
-"""Current ImageT closure, authority, approval and visible-result fixtures."""
-from pathlib import Path
+"""Current ImageT closure, authority, execution and visible-result fixtures."""
 import unittest
 
 from test_hub_contracts import Closed, IMAGE_INSTALL, LIBRARY, check_binding, digest, entry_path, load, package
@@ -7,7 +6,7 @@ from test_hub_contracts import Closed, IMAGE_INSTALL, LIBRARY, check_binding, di
 PACKAGE = 'HUB-PKG-IMAGET'
 CONTROLLER = 'HUB-IMAGET-CORE-CONTROLLER'
 ANTI_PRIOR = 'HUB-IMAGET-AD-ANTI-PRIOR'
-READY = 'HUB-IMAGET-CORE-READY-GATE'
+OPERATIONS = ('ANALYZE', 'PREVIEW', 'CREATE', 'EDIT', 'VARIATION', 'CORRECT', 'RETRY')
 
 
 def selection_spec(catalog, *, humanoid, authority, fields=(), delegated=(),
@@ -31,19 +30,20 @@ def selection_spec(catalog, *, humanoid, authority, fields=(), delegated=(),
     return {'selected': selected, 'payload': payload, 'new_field_authority': set()}
 
 
-def approval_oracle(state, event, same_snapshot=True):
-    """Expected Ready Gate transitions only; no language interpretation/backend state."""
-    if not same_snapshot or event == 'lost_context':
-        return 'STALE', False
-    if event in {'revision', 'yes_but'}:
-        return 'REVISION_REQUIRED', False
-    if event == 'approve_current' and state == 'PENDING_APPROVAL':
-        return 'APPROVED', False
-    if event == 'submit' and state == 'APPROVED':
-        return 'CONSUMED', True
-    if event == 'question':
-        return state, False
-    return 'PENDING_APPROVAL', False
+def execution_spec(*, intent, required_sources=True, decision_resolved=True, operation_locked=True,
+                   fidelity=True, references_ready=True, inputs_available=True, options_available=True,
+                   sources_current=True, consumed=False, prepared=None, current=None,
+                   artifact_accessible=True):
+    """Acceptance fixture with declared checks and context, without tool or intent detection."""
+    reuse = prepared is not None and artifact_accessible and prepared == current
+    if not all((required_sources, decision_resolved, operation_locked, fidelity, references_ready,
+                inputs_available, options_available, sources_current)):
+        return 'BLOCKED', 0
+    if intent == 'PREVIEW':
+        return 'SHOW_PREPARED_ARTIFACT', 0
+    if intent not in {'CREATE', 'EDIT', 'VARIATION', 'CORRECT'} or consumed:
+        return 'NO_INVOCATION', 0
+    return ('REUSE_PREPARED_ARTIFACT' if reuse else 'USE_CURRENT_PREPARATION'), 1
 
 
 def open_gate_oracle(*, payload, current_user_preservation=False, signal_in_data=False,
@@ -94,8 +94,6 @@ def checked_core(inventory, operation):
     rows = [row for row in inventory['core'] if operation in row['required_for']]
     ids = {row['module_id'] for row in rows}
     required = {CONTROLLER, ANTI_PRIOR}
-    if operation in {'CREATE', 'EDIT', 'VARIATION', 'CORRECT', 'RETRY'}:
-        required.add(READY)
     if ids != required or len(rows) != len(ids):
         raise Closed('incorrect core closure')
     for row in rows:
@@ -114,52 +112,97 @@ class ImageTTests(unittest.TestCase):
         cls.inventory = load(IMAGE_INSTALL)
         cls.rows = {r['module_id']: r for r in cls.inventory['core']}
         cls.controller = (LIBRARY / cls.rows[CONTROLLER]['file']).read_text(encoding='utf-8')
-        cls.ready = (LIBRARY / cls.rows[READY]['file']).read_text(encoding='utf-8')
         cls.entry = entry_path(package('IMAGET')).read_text(encoding='utf-8')
         cls.catalog = load(entry_path(package('IMAGET')['local_catalog']))
 
     def test_install_inventory_matches_exact_runtime_bindings(self):
         self.assertEqual(self.inventory['entrypoint'], package('IMAGET')['location']['artifact'])
-        self.assertEqual(set(self.rows), {CONTROLLER, ANTI_PRIOR, READY})
+        self.assertEqual(set(self.rows), {CONTROLLER, ANTI_PRIOR})
         for identity, row in self.rows.items():
             self.assertIn(f'| {identity} | {row["version"]} |', self.entry)
-        for operation in ('ANALYZE', 'CREATE', 'EDIT', 'VARIATION', 'CORRECT', 'RETRY'):
+        for operation in OPERATIONS:
             with self.subTest(operation=operation):
-                ids = checked_core(self.inventory, operation)
-                self.assertEqual(READY in ids, operation != 'ANALYZE')
+                self.assertEqual(checked_core(self.inventory, operation), {CONTROLLER, ANTI_PRIOR})
         self.assertNotIn(IMAGE_INSTALL.name, self.entry)
         self.assertNotIn('CORE-MANIFEST', self.entry)
         self.assertNotIn('CORE-ROUTER', self.controller)
         self.assertNotIn('ANTI-DRIFT', self.entry)
 
-    def test_install_failures_do_not_allow_generation_without_gate(self):
-        no_ready = {'core': [row for row in self.inventory['core'] if row['module_id'] != READY]}
-        self.assertEqual(checked_core(no_ready, 'ANALYZE'), {CONTROLLER, ANTI_PRIOR})
-        with self.assertRaises(Closed):
-            checked_core(no_ready, 'CREATE')
+    def test_install_failures_block_dependent_work(self):
+        for missing in (CONTROLLER, ANTI_PRIOR):
+            inventory = {'core': [row for row in self.inventory['core'] if row['module_id'] != missing]}
+            for operation in OPERATIONS:
+                with self.subTest(missing=missing, operation=operation), self.assertRaises(Closed):
+                    checked_core(inventory, operation)
         for change in ({'sha256': 'bad'}, {'version': 'old'}, {'runtime_role': 'PREFERENCE'},
+                       {'status': 'CANDIDATE'}, {'package_id': 'OTHER'},
                        {'file': 'ImageT/missing.md'}, {'file': '../Source_archive/control.md'}):
-            mutated = {'core': [dict(row, **change) if row['module_id'] == READY else row
+            mutated = {'core': [dict(row, **change) if row['module_id'] == CONTROLLER else row
                                 for row in self.inventory['core']]}
             with self.subTest(change=change), self.assertRaises(Closed):
                 checked_core(mutated, 'CREATE')
 
-    def test_snapshot_hold_freshness_send_and_retry(self):
-        self.assertIn('hold before generation cost', self.ready)
-        self.assertIn('READY SNAPSHOT vN, PENDING_APPROVAL', self.ready)
-        for clause in ('exact final prompt', 'assigned roles', 'recheck the exact approved snapshot',
-                       'Submission consumes approval', 'Any retry needs a fresh valid snapshot and approval',
-                       'hidden payload and backend attempt count are outside ImageT observation'):
-            self.assertIn(clause, self.ready)
-        self.assertEqual(approval_oracle('PENDING_APPROVAL', 'submit')[1], False)
-        self.assertEqual(approval_oracle('PENDING_APPROVAL', 'approve_current'), ('APPROVED', False))
-        self.assertEqual(approval_oracle('APPROVED', 'submit'), ('CONSUMED', True))
-        self.assertEqual(approval_oracle('CONSUMED', 'submit')[1], False)
-        self.assertEqual(approval_oracle('APPROVED', 'submit', same_snapshot=False), ('STALE', False))
-        for event, state in [('yes_but', 'REVISION_REQUIRED'), ('lost_context', 'STALE'),
-                             ('question', 'PENDING_APPROVAL'), ('approval_for_old_version', 'PENDING_APPROVAL')]:
-            with self.subTest(event=event):
-                self.assertEqual(approval_oracle('PENDING_APPROVAL', event), (state, False))
+    def test_active_controller_owns_execution_checks(self):
+        headings = ('## Authority Check', '## Fidelity / Prompt Check', '## Send-Readiness Check')
+        positions = [self.controller.index(heading) for heading in headings]
+        self.assertEqual(positions, sorted(positions))
+        for clause in ('without an extra approval turn', 'show an identifiable artifact',
+                       'Stop with zero image tool calls', 'Viewing an artifact grants no invocation authority',
+                       'Unrelated conversation does not', 'Initiation consumes the authority on success, failure or uncertainty',
+                       'new explicit current-user generation request and fresh affected checks',
+                       'REFERENCES: NONE means ImageT did not intentionally select any generator reference asset',
+                       'cannot verify hidden backend prompts'):
+            self.assertIn(clause, self.controller)
+        for obsolete in ('HUB-IMAGET-CORE-READY-GATE', 'PENDING_APPROVAL', 'Ready Snapshot'):
+            self.assertNotIn(obsolete, self.controller + self.entry)
+        self.assertFalse(list((LIBRARY / 'ImageT').glob('HUB-IMAGET-CORE-READY-GATE*')))
+
+    def test_direct_generation_and_blockers(self):
+        for operation in ('CREATE', 'EDIT', 'VARIATION', 'CORRECT'):
+            with self.subTest(operation=operation):
+                self.assertEqual(execution_spec(intent=operation), ('USE_CURRENT_PREPARATION', 1))
+        for condition in ('required_sources', 'decision_resolved', 'operation_locked', 'fidelity',
+                          'references_ready', 'inputs_available', 'options_available', 'sources_current'):
+            with self.subTest(condition=condition):
+                self.assertEqual(execution_spec(intent='CREATE', **{condition: False}), ('BLOCKED', 0))
+        for intent in ('ANALYZE', None):
+            self.assertEqual(execution_spec(intent=intent), ('NO_INVOCATION', 0))
+
+    def test_preview_and_fresh_reuse(self):
+        prepared = {'prompt': 'A square', 'lock': 'CREATE'}
+        self.assertEqual(execution_spec(intent='PREVIEW'), ('SHOW_PREPARED_ARTIFACT', 0))
+        self.assertEqual(execution_spec(intent=None, prepared=prepared, current=dict(prepared)),
+                         ('NO_INVOCATION', 0))
+        self.assertEqual(execution_spec(intent='CREATE', prepared=prepared, current=dict(prepared)),
+                         ('REUSE_PREPARED_ARTIFACT', 1))
+
+    def test_stale_preview_follows_current_intent_after_repreparation(self):
+        prepared = dict.fromkeys(('prompt', 'payload', 'lock', 'field_authority', 'references',
+                                 'roles', 'options', 'attachments', 'inputs', 'source'), 'original')
+        for field in prepared:
+            with self.subTest(field=field):
+                changed = dict(prepared, **{field: 'changed'})
+                self.assertEqual(execution_spec(intent='PREVIEW', prepared=prepared, current=changed),
+                                 ('SHOW_PREPARED_ARTIFACT', 0))
+                self.assertEqual(execution_spec(intent='CREATE', prepared=prepared, current=changed),
+                                 ('USE_CURRENT_PREPARATION', 1))
+        self.assertEqual(execution_spec(intent='CREATE', prepared=prepared, current=prepared,
+                                        artifact_accessible=False), ('USE_CURRENT_PREPARATION', 1))
+
+    def test_invocation_consumption_and_new_retry_intent(self):
+        for previous_outcome in ('success', 'failure', 'uncertain'):
+            with self.subTest(previous_outcome=previous_outcome):
+                self.assertEqual(execution_spec(intent='CREATE', consumed=True), ('NO_INVOCATION', 0))
+                self.assertEqual(execution_spec(intent='CREATE', sources_current=False), ('BLOCKED', 0))
+                self.assertEqual(execution_spec(intent='CREATE'), ('USE_CURRENT_PREPARATION', 1))
+
+    def test_fidelity_checks_protect_preserved_state_and_negatives(self):
+        for clause in ('Leave an unspecified detail open', 'every protected constraint and semantic state',
+                       'invented specificity, changed counts, weakened negatives, unauthorized reference traits',
+                       'state promotion, relation changes, scope expansion, destructive compression and unauthorized source influence',
+                       'OPEN FIELD != NEGATIVE CONSTRAINT', 'Do not beautify, normalize, enrich',
+                       'unassigned traits have no authority', 'A finding may produce a correction proposal, never execution authority'):
+            self.assertIn(clause, self.controller)
 
     def test_anti_prior_and_bounded_completion_have_separate_owners(self):
         anti_prior = (LIBRARY / self.rows[ANTI_PRIOR]['file']).read_text(encoding='utf-8')

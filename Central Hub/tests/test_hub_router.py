@@ -523,6 +523,21 @@ class LibraryReadTests(unittest.TestCase):
 
 
 class ActiveRouterTests(unittest.TestCase):
+    def test_imaget_admits_explicit_preview_only_for_execution_artifact(self):
+        package_id = 'HUB-PKG-IMAGET'
+        row = next(row for row in load(ROOT_CATALOG)['packages'] if row['package_id'] == package_id)
+        admission = row['applicability']
+        self.assertIn('Actual image analysis, creation, editing, variation or correction', admission)
+        self.assertIn('explicit preparation or preview of an ImageT execution artifact', admission)
+        self.assertIn('Image discussion or descriptive prose alone do not qualify', admission)
+
+        # Applicability is supplied by the fixture. The router fixture does not interpret natural language.
+        fixture = current_metadata_fixture()
+        preview = simulate(fixture, {package_id}, pipeline_needs={package_id})
+        descriptive_prose = simulate(fixture, set())
+        self.assertEqual(preview['pipeline_entrypoints'], [(package_id, 'HUB-IMAGET-ENTRY')])
+        self.assertEqual(descriptive_prose['pipeline_entrypoints'], [])
+
     def test_prior_none_and_activation_do_not_route_the_current_turn(self):
         router = load(HUB_ROUTER)
         self.assertEqual(router['default'], 'NONE')
