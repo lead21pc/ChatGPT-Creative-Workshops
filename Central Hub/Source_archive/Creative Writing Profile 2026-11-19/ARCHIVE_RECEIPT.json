@@ -1,0 +1,44 @@
+[
+  {
+    "old": "HUB_ARCHITECTURE_v1.26.md",
+    "new": "HUB_ARCHITECTURE_v1.27.md",
+    "archive": "Source_archive/Creative Writing Profile 2026-11-19/HUB_ARCHITECTURE_v1.26.md",
+    "sha256": "f66a5d0afd5ebd397a7c51ffb2cefe397dc68a6ec066d324978345009751c8f5"
+  },
+  {
+    "old": "HUB_PACKAGE_CATALOG_v1.25.yaml",
+    "new": "HUB_PACKAGE_CATALOG_v1.26.yaml",
+    "archive": "Source_archive/Creative Writing Profile 2026-11-19/HUB_PACKAGE_CATALOG_v1.25.yaml",
+    "sha256": "a9bdd4f3acdb2c2227c15989cb233a3f158b76ed4ed7feec019b301231b9a8da"
+  },
+  {
+    "old": "HUB_ROUTER_v1.2.yaml",
+    "new": "HUB_ROUTER_v1.2.yaml",
+    "archive": "Source_archive/Creative Writing Profile 2026-11-19/HUB_ROUTER_v1.2.yaml",
+    "sha256": "3a7c702ad7aca157a3df4eb428632ffdbf981a915a65fe2aeabc0a2d3ea5a3c2"
+  },
+  {
+    "old": "shared_resources/HUB-USER-PROFILE-CONTRACT_v1.1.yaml",
+    "new": "shared_resources/HUB-USER-PROFILE-CONTRACT_v1.2.yaml",
+    "archive": "Source_archive/Creative Writing Profile 2026-11-19/HUB-USER-PROFILE-CONTRACT_v1.1.yaml",
+    "sha256": "2b8436f8f129f0007c10e3ffe68581f0a182423dcca2a82ec37c25804ed71419"
+  },
+  {
+    "old": "library_modules/Concept Development/HUB-CON-ENTRY_v1.8.md",
+    "new": "library_modules/Concept Development/HUB-CON-ENTRY_v1.9.md",
+    "archive": "Source_archive/Creative Writing Profile 2026-11-19/HUB-CON-ENTRY_v1.8.md",
+    "sha256": "1e60d54cc5eeb3794186711d7f30235e3d10354c2e1693415facd6f48d2016d6"
+  },
+  {
+    "old": "library_modules/Concept Development/HUB-CON-CATALOG_v1.7.yaml",
+    "new": "library_modules/Concept Development/HUB-CON-CATALOG_v1.8.yaml",
+    "archive": "Source_archive/Creative Writing Profile 2026-11-19/HUB-CON-CATALOG_v1.7.yaml",
+    "sha256": "2bc764090a8e5e047f048baddd1403e6ae6c1d93ba188bc0ce24b40948096d5a"
+  },
+  {
+    "old": "library_modules/Concept Development/HUB-CON-GEN-CREATIVE_v1.2.md",
+    "new": "library_modules/Concept Development/HUB-CON-GEN-CREATIVE_v1.3.md",
+    "archive": "Source_archive/Creative Writing Profile 2026-11-19/HUB-CON-GEN-CREATIVE_v1.2.md",
+    "sha256": "066438bbac035f88acebec658daf7d384f8e4dfe8ea2ad50467ae30f1bf72fe5"
+  }
+]

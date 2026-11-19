@@ -10,15 +10,15 @@ PACKAGE = 'HUB-PKG-CONCEPT-DEVELOPMENT'
 CORE = 'HUB-CON-ENTRY'
 CATALOG = 'HUB-CON-CATALOG'
 DIRECTORY = LIBRARY / 'Concept Development'
-LOCAL = DIRECTORY / 'HUB-CON-CATALOG_v1.7.yaml'
-ENTRY = DIRECTORY / 'HUB-CON-ENTRY_v1.8.md'
+LOCAL = DIRECTORY / 'HUB-CON-CATALOG_v1.8.yaml'
+ENTRY = DIRECTORY / 'HUB-CON-ENTRY_v1.9.md'
 
 
 def current_fixture():
     """Project interfaces into the SPEC oracle; specialized scopes declare already-valid explicit invocations, not semantic auto-selection."""
-    core = synthetic_module(CORE, PACKAGE, {'CORE', 'CREATIVE', 'DEBATE', 'BRAINSTORM', 'NAME'}, version='1.8')
+    core = synthetic_module(CORE, PACKAGE, {'CORE', 'CREATIVE', 'DEBATE', 'BRAINSTORM', 'NAME'}, version='1.9')
     fixture = synthetic_fixture(core)
-    catalog = synthetic_module(CATALOG, PACKAGE, set(), role='PACKAGE_CATALOG', version='1.7')
+    catalog = synthetic_module(CATALOG, PACKAGE, set(), role='PACKAGE_CATALOG', version='1.8')
     fixture['packages'][0]['local_catalog'] = catalog
     fixture['artifacts'][CATALOG] = [dict(copy.deepcopy(catalog), read_kind='FULL_FILE')]
     local = load(LOCAL)
@@ -199,3 +199,51 @@ class CurrentConceptContracts(unittest.TestCase):
                          {'/CREATIVE', '/DEBATE', '/BRAINSTORM', '/NAME'})
         root = load(ROOT_CATALOG)
         self.assertNotIn('HUB-CON-GEN-CREATIVE', str(root))
+
+
+class CreativeExpressionContractTests(unittest.TestCase):
+    def test_profile_precedence_and_protected_state(self):
+        leaf = next(row for row in load(LOCAL)['entries'] if row['module_id'] == 'HUB-CON-GEN-CREATIVE')
+        body = (LIBRARY / leaf['location']['artifact']).read_text(encoding='utf-8')
+        rule = body.split('## Optional fiction-expression prior', 1)[1]
+        order = [text.split('. ', 1)[1] for text in rule.splitlines() if re.match(r'^[1-4]\. ', text)]
+        self.assertEqual(order, [
+            'Current explicit style request.',
+            'Applicable source-defined prose constraints and narrator or character-specific voice.',
+            'CREATIVE_WRITING_PROFILE as a soft prior for remaining choices such as cadence, rhythm, description or dialogue construction.',
+            'Model default fiction expression.',
+        ])
+        # Synthetic conflicts are checked against the declared order, not executed by a model.
+        roles = dict(zip(('explicit', 'voice', 'profile', 'default'), order))
+        values = {'explicit': 'clipped', 'voice': 'formal', 'profile': 'slow and descriptive', 'default': 'neutral'}
+        for candidates, expected in (
+            (values, 'clipped'),
+            ({**values, 'explicit': None}, 'formal'),
+            ({**values, 'explicit': None, 'voice': None}, 'slow and descriptive'),
+            ({**values, 'explicit': None, 'voice': None, 'profile': None}, 'neutral'),
+        ):
+            selected = min((role for role in candidates if candidates[role]),
+                           key=lambda role: order.index(roles[role]))
+            self.assertEqual(candidates[selected], expected)
+        self.assertIn('supplied premise, canon, character facts and voice, narrator identity, '
+                      'causal state, actor knowledge, authority and task scope', rule)
+        self.assertIn('The profile supplies no fiction state, facts or authorization.', rule)
+        self.assertIn('absent, null, unavailable, ambiguous or unneeded', rule)
+        self.assertIn('continue independently sufficient Creative work', rule)
+        self.assertIn('admitted and handed off by Hub for this portion', rule)
+        self.assertIn('Never retrieve it or substitute WRITING_PROFILE.', rule)
+        self.assertIn('Profile use and Anti-Prior applicability are independent.', rule)
+
+    def test_profile_introduces_no_package_or_dependency(self):
+        root = load(ROOT_CATALOG)
+        concept = next(row for row in root['packages'] if row['package_id'] == PACKAGE)
+        self.assertEqual(concept['requires'], [])
+        entries = load(LOCAL)['entries']
+        self.assertEqual(len(entries), 9)
+        for module_id in ('HUB-CON-GEN-CREATIVE', 'HUB-CON-AD-ANTI-PRIOR'):
+            entry = next(row for row in entries if row['module_id'] == module_id)
+            self.assertEqual(entry['requires'], [])
+        authoring = next(row for row in root['packages'] if row['package_id'] == 'HUB-PKG-AUTHORING')
+        self.assertEqual(authoring['requires'], [])
+        self.assertNotIn('CREATIVE_WRITING_PROFILE', str(root))
+        self.assertNotIn('CREATIVE_WRITING_PROFILE', str(entries))

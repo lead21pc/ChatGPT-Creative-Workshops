@@ -1,6 +1,6 @@
-# User Profile dùng chung — hợp đồng 1.1, schema payload 1.0
+# User Profile dùng chung — hợp đồng 1.2, schema payload 1.0
 
-`HUB-USER-PROFILE` là tài nguyên dữ liệu **ACTIVE trong repository**, do người dùng sở hữu. Hợp đồng công khai: [HUB-USER-PROFILE-CONTRACT_v1.1.yaml](HUB-USER-PROFILE-CONTRACT_v1.1.yaml). Đây là schema/access contract; không chứa dữ liệu cá nhân thật và không tạo package mới.
+`HUB-USER-PROFILE` là tài nguyên dữ liệu **ACTIVE trong repository**, do người dùng sở hữu. Hợp đồng công khai: [HUB-USER-PROFILE-CONTRACT_v1.2.yaml](HUB-USER-PROFILE-CONTRACT_v1.2.yaml). Đây là schema/access contract; không chứa dữ liệu cá nhân thật và không tạo package mới.
 
 `PROFILE MUTATION BY MODEL: NEVER`. `customizable: true` chỉ cho phép người dùng tự chỉnh thủ công. Quyền sửa repository, chỉ dẫn trong chat hoặc dữ liệu mới không cho phép model sửa Profile. Nếu thấy dữ liệu có thể cũ, model chỉ báo chênh lệch hoặc đề xuất sửa để người dùng tự thực hiện.
 
@@ -14,9 +14,10 @@ Tự tạo **năm object riêng** trong `Central Hub Config/Shared/`. Sao chép 
 | HUB-USER-PROFILE / PREFERENCES | [PREFERENCES](HUB-USER-PROFILE-PREFERENCES-TEMPLATE_v1.0.yaml) | Sở thích; không tự thành yêu cầu bắt buộc |
 | HUB-USER-PROFILE / DIETARY_CONSTRAINTS | [DIETARY_CONSTRAINTS](HUB-USER-PROFILE-DIETARY_CONSTRAINTS-TEMPLATE_v1.0.yaml) | Ràng buộc ăn uống do người dùng khai báo |
 | HUB-USER-PROFILE / HEALTH_CONTEXT | [HEALTH_CONTEXT](HUB-USER-PROFILE-HEALTH_CONTEXT-TEMPLATE_v1.0.yaml) | Bối cảnh sức khỏe khai báo, schema nông |
-| HUB-USER-PROFILE / WRITING_PROFILE | [WRITING_PROFILE](HUB-USER-PROFILE-WRITING_PROFILE-TEMPLATE_v1.0.yaml) | Cách diễn đạt do bạn khai báo |
+| HUB-USER-PROFILE / WRITING_PROFILE | [WRITING_PROFILE](HUB-USER-PROFILE-WRITING_PROFILE-TEMPLATE_v1.0.yaml) | Cách diễn đạt thông thường do bạn khai báo |
+| HUB-USER-PROFILE / CREATIVE_WRITING_PROFILE | [CREATIVE_WRITING_PROFILE](HUB-USER-PROFILE-CREATIVE_WRITING_PROFILE-TEMPLATE_v1.0.yaml) | Xu hướng diễn đạt hư cấu do bạn khai báo |
 
-Để tự điền `WRITING_PROFILE`, thay `profile_text: null` bằng `profile_text: |-` rồi dán nguyên nội dung `USER_WRITING_PROFILE v1` vào khối văn bản, thụt thêm hai dấu cách so với dòng `profile_text`. Bốn object hiện có tiếp tục dùng payload schema 1.0.
+Để tự điền `WRITING_PROFILE`, thay `profile_text: null` bằng `profile_text: |-` rồi dán nguyên nội dung `USER_WRITING_PROFILE v1` vào khối văn bản, thụt thêm hai dấu cách so với dòng `profile_text`. Bạn tự điền `CREATIVE_WRITING_PROFILE` vào object riêng bằng cùng trường `profile_text`. Cả sáu object dùng payload schema 1.0.
 
 Tên hiển thị chỉ giúp tìm; identity phải khớp `resource_id`, `object_id`, `schema_version: '1.0'` trong toàn bộ payload. Các field đều tùy chọn và nhận `null`; `null`/field thiếu là UNKNOWN. Danh sách trống chỉ nói chưa cung cấp mục nào, không chứng minh không có dị ứng hoặc bệnh lý. Chỉ tự điền điều đã khai báo, không nhờ model suy diễn rồi ghi lại. Object không cần header module, Package ID hoặc runtime role.
 
@@ -37,10 +38,13 @@ Không dùng tệp hướng dẫn hoặc template repository thay cho object run
 | HUB-PKG-FOOD | DIETARY_CONSTRAINTS | food_compatibility |
 | HUB-PKG-FOOD | HEALTH_CONTEXT | food_compatibility |
 | HUB_DIRECT_WRITING | WRITING_PROFILE | preserve_user_expression |
+| HUB-PKG-CONCEPT-DEVELOPMENT | CREATIVE_WRITING_PROFILE | shape_fiction_expression |
 
 Không có khai báo phù hợp thì từ chối. Có quyền nhưng không cần cho tác vụ thì không đọc. Với consumer package, Hub chọn package trước. Với thao tác viết trực tiếp, Hub xác lập định danh từ phần việc hiện tại. Hub kiểm định danh, quyền và nhu cầu trước khi truy xuất đúng object và đọc FULL_FILE. Shopping và Food có quyền theo bảng. Health vẫn là FUTURE / NOT REGISTERED. Food luôn xét yếu tố sức khỏe khi khuyến nghị. Chỉ yêu cầu HEALTH_CONTEXT khi dữ kiện sức khỏe có thể đổi một quyết định cụ thể, input hiện tại chưa đủ và object có thể giải quyết điểm thiếu. Làm rõ tiêu chí mơ hồ trước khi đọc.
 
 Chỉ thao tác viết trực tiếp của Hub được cấp quyền đọc `WRITING_PROFILE`. Shopping và Food không được cấp quyền này. Hub chỉ đọc khi tác vụ cần giữ cách diễn đạt cá nhân và còn một quyết định diễn đạt quan trọng mà dữ liệu này có thể giúp giải quyết. Viết trung tính, dịch đơn giản hoặc yêu cầu đã nêu đủ cách diễn đạt thì bỏ qua. Profile chỉ hỗ trợ cách diễn đạt nội dung có căn cứ. Khi thiếu object hoặc không xác minh được, Hub tiếp tục phần viết có đủ dữ kiện và nêu giới hạn nếu phần cá nhân hóa phụ thuộc vào Profile.
+
+Hub chỉ đọc `CREATIVE_WRITING_PROFILE` khi đã xác minh đúng leaf Creative cho phần việc hiện tại, phần đó tạo văn xuôi hư cấu hoặc lời thoại, và dữ liệu có thể ảnh hưởng đáng kể đến một lựa chọn diễn đạt còn bỏ ngỏ. Hub xác minh object riêng rồi chuyển phần dữ liệu cần thiết cho Creative. Thứ tự áp dụng là yêu cầu phong cách hiện tại → quy tắc văn phong từ nguồn và giọng người kể/nhân vật → xu hướng trong `CREATIVE_WRITING_PROFILE` → cách diễn đạt mặc định. Khi thiếu dữ liệu, Creative tiếp tục phần việc có đủ căn cứ. Hai profile có quyền đọc riêng và không thay thế hay đồng bộ với nhau. AT không có quyền đọc hai object này.
 
 Profile cung cấp dữ liệu; consumer tự diễn giải trong hợp đồng chuyên môn. Chỉ dẫn tường minh hiện tại thắng giá trị lưu cho tác vụ hiện tại; không cập nhật object lưu. Thiếu Profile chỉ để phần cá nhân hóa phụ thuộc ở trạng thái chưa giải quyết. Phần Food hoặc Shopping có đủ dữ kiện độc lập vẫn tiếp tục. Profile và Context Snapshot độc lập, không tự chuyển đổi hoặc lưu chat.
 
@@ -57,5 +61,8 @@ Chỉ dùng giá trị tổng hợp được đánh dấu rõ nếu muốn thử
 
 7. Yêu cầu Hub viết trực tiếp theo giọng cá nhân, với một quyết định diễn đạt chưa được nguồn hoặc chỉ dẫn xác định. Dùng payload tổng hợp. Kỳ vọng chỉ đọc đúng WRITING_PROFILE trong Shared. Lặp lại với bản dịch đơn giản hoặc chỉ dẫn giọng viết đã đủ và kiểm Hub bỏ qua đọc.
 8. Dùng một ca WRITING_PROFILE thiếu hoặc có identity trùng. Kỳ vọng phần viết độc lập vẫn tiếp tục, phần cá nhân hóa phụ thuộc chưa được xác lập. Tự đối chiếu payload để xác nhận model không sửa dữ liệu.
+
+9. Tự cài hai object tổng hợp xung đột, ví dụ ngắn/gọn và chậm/giàu miêu tả. So yêu cầu viết trực tiếp cần giữ giọng cá nhân với `/CREATIVE <phần văn xuôi có lựa chọn diễn đạt còn bỏ ngỏ> #`. Kỳ vọng mỗi phần chỉ đọc object được cấp quyền. Lặp lại với một ca Debate hoặc phân tích, và một ca Creative đã đủ chỉ dẫn hoặc giọng nguồn. Kỳ vọng bỏ qua đọc.
+10. Trong Creative, đối chiếu ưu tiên khi chỉ dẫn hiện tại hoặc giọng nguồn xung đột với xu hướng tổng hợp. Kiểm premise, canon, sự kiện về nhân vật, người kể, tri thức, trạng thái và thẩm quyền theo nguồn. Thử thiếu hoặc để trống object; phần Creative đủ căn cứ vẫn tiếp tục. So payload trước và sau để kiểm tra việc bảo toàn dữ liệu.
 
 **STATIC PASS != LIVE BEHAVIOR PROVEN.** Tác vụ chỉ triển khai repository: không cài Library/Project, không tạo Profile thật, không kiểm chứng truy xuất live hoặc cơ chế bảo vệ riêng tư của nền tảng. Baseline PASS cũ giữ đúng scope/revision cũ.

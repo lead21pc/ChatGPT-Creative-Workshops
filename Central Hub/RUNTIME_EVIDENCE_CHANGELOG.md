@@ -10,6 +10,12 @@ Bằng chứng đi theo hành vi và điều kiện đã thử. Giữ PASS còn 
 
 ## Current verified runtime status
 
+### Creative Writing Profile — hợp đồng 1.2
+
+- Trong repository, Hub chỉ đọc object `CREATIVE_WRITING_PROFILE` khi phần việc hư cấu được giao cho leaf Creative đã xác minh và còn nhu cầu diễn đạt cụ thể. Creative 1.3 dùng dữ liệu như xu hướng mềm. Quyền của `WRITING_PROFILE` vẫn dành cho thao tác viết trực tiếp đủ điều kiện.
+- STATIC CONTRACT: Profile 25/25, Concept Development 11/11, Hub contract 4/4, Hub Router 22/22, full Central Hub 177/177.
+- LIVE CONTROLLED PATH và REAL-CONTEXT STRESS cho quyền đọc và áp dụng mới: NOT_RUN. DEPLOYMENT vào Project Sources và Library: NOT_PERFORMED. Các kết quả trước đây giữ phạm vi đã thử.
+
 ### 2026-11-16 — Authoring 1.1 standalone
 
 - Authoring 1.1 là revision hiện hành trong repository. Root Catalog 1.24 nhận `/AT`, `/AT P1`, `/AT P2`. Router 1.2 chuyển dạng gọi đã xác nhận và đầu vào có phạm vi. Architecture 1.25 cập nhật tham chiếu Catalog. AT áp dụng ràng buộc bên nhận do Hub cung cấp; lựa chọn và đọc control khác thuộc Hub.
