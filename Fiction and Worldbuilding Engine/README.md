@@ -7,4 +7,6 @@ Friendly Support Project (FSP) là tiền nhiệm cung cấp một phần di s�
 - Bắt đầu ở [Kiến trúc FWE](FWE_ARCHITECTURE.md) để hiểu thẩm quyền, đường sáng tác trực tiếp, nguồn và ranh giới các thành phần.
 - Xem [Kế hoạch phát triển](FWE_DEVELOPMENT_PLAN.md) để biết mốc hiện tại, điều kiện đạt và bước được phép giao tiếp theo.
 
-[CI nền v0.1](controls/FWE_CI_v0.1.md) đã được tạo local và rà ngữ nghĩa tĩnh ở M1. Chưa triển khai Router, hợp đồng nguồn, Brainstorm hay Anti-Prior dạng tệp riêng. Chưa cài ChatGPT Project và chưa xác minh hành vi FWE khi chạy.
+Bộ điều khiển hiện hành trong repository gồm [CI v1.0](controls/FWE_CI_v1.0.md) và [Router v1.0](controls/FWE_ROUTER_v1.0.yaml). Cả hai ở trạng thái `ACTIVE / STATIC PASS / LIVE NOT RUN`. CI gọi đúng Project Source có tên `FWE_ROUTER_v1.0.yaml` tại `ROUTE_ONLY` khi có phụ thuộc cần giải quyết. Chưa cài hay thử truy xuất tệp này trong ChatGPT Project.
+
+Router có bốn tuyến `SOURCE`, `EVIDENCE`, `PROFILE` và `CONTROL`. Phiên bản này chưa có liên kết AIS, quyền và liên kết Profile dành cho FWE, hay kiểm soát chọn lọc được liên kết. [Hồ sơ tiền nhiệm và CI ứng viên](source_archive/) dùng để đối chiếu lịch sử. Kết quả M0–M3 được ghi theo bộ v0.1 trong [kế hoạch phát triển](FWE_DEVELOPMENT_PLAN.md).

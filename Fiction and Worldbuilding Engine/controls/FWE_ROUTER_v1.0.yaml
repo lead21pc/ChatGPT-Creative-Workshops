@@ -1,0 +1,110 @@
+status: ACTIVE
+live_verified: NOT_RUN
+router_version: '1.0'
+
+entry: ROUTE_ONLY
+entry_owner: FWE_CI
+bypass_when: self_sufficient
+flow: [ROUTE_ONLY, RESOLVE, RETURN]
+
+route_only: >-
+  Enter only for a material dependency identified by CI. Identify the waiting portion
+  and the exact missing contribution, then match the relevant route. Preserve the
+  operation, stage, scope and authority assigned by CI. Carry only the basis material
+  to this dependency: premise, branch, accepted state, assumptions and protected
+  conditions as relevant. Return a scope mismatch or an unresolved need to CI.
+  Questions of creative development, candidate repair, premise change, fiction
+  state, outcome and acceptance belong to CI/FWE. CI compatibility is established
+  before runtime. Do not discover, select or validate the active CI.
+
+admission:
+  before_access: [material_need, scope, permission]
+  before_use: [verified_identity_or_role, actual_read, sufficient_coverage]
+  rule: >-
+    Check eligibility before access and validate the obtained contribution before use.
+    Selection, availability, retrieval, reading, sufficient support and application
+    are distinct. Claim each only when established. Use admitted contributions
+    within their verified roles and scope.
+
+routes:
+  SOURCE:
+    resolve: scoped_source_read
+    rule: >-
+      Resolve missing fiction or reference content the waiting portion materially
+      depends on. Establish role, scope and authority before relying on the source.
+      Presence, filename, date, detail, repository location and prior use confer no
+      authority. Read enough to support the proposition, including material conditions,
+      exceptions, qualifiers and bounds. Expand the read if those bounds are unclear.
+      Follow any stricter loading rule of the target source system for this portion.
+      A sufficient formative premise or an assigned creative gap needs no lookup.
+    unresolved: >-
+      If decisive content or authority is missing, limit or condition the dependent
+      world claim and continue independent creative work.
+
+  EVIDENCE:
+    resolve: direct_ais_binding
+    rule: >-
+      For a material external factual or causal question, hand an authorized, directly
+      bound AIS the bounded question, waiting decision, material conditions, allowed
+      evidence-update scope and stop condition. AIS owns search, reading, comparison
+      and source assessment. It may refine the search within the same question.
+      Return a materially new question to CI before additional research. Use AIS
+      findings, actual evidence, conditions, applicability, conflicts and decisive
+      gaps only within the delegated scope. World support requires separate fictional
+      conditions. Evidence grants no premise-change or new task authority.
+    unresolved: >-
+      This baseline has no AIS binding. An unavailable engine or decisive evidence
+      leaves the dependent factual claim unresolved or conditional. Continue
+      independently sufficient fiction work without claiming verification.
+
+  PROFILE:
+    resolve: authorized_profile_contract
+    rule: >-
+      Identify a material expression choice left open by CI precedence. Check the
+      FWE consumer's permission and purpose before requesting the exact
+      CREATIVE_WRITING_PROFILE contribution through Profile infrastructure, which
+      owns object binding, storage and retrieval. Hub's Creative-leaf grant confers
+      no FWE permission. Admit only the scoped expression data actually returned and
+      verified. Keep fiction state, identity and creative authority with CI and the author.
+    unresolved: >-
+      This baseline has no FWE Profile grant or binding. Skip access when permission
+      or binding is missing. Continue using higher-precedence constraints or model
+      defaults when the Profile is optional. Limit only the requirement that depends
+      on a Profile explicitly required for the task.
+
+  CONTROL:
+    resolve: directly_bound_applicable_control
+    rule: >-
+      Select a directly bound control only for a concrete material failure class.
+      Topic, filename, directory membership, similarity and prior use are insufficient.
+      Verify permission, identity, content and applicability. A hard dependency must
+      supply necessary behavior absent from both CI/core and the selected control.
+      Follow only such verified edges for the dependent portion. Return the verified
+      control and its use limits. FWE applies it during resumed execution. Selection,
+      reading and verification of a control do not establish its application.
+    unresolved: >-
+      This baseline binds no selective controls. Limit only reasoning that requires
+      unavailable or unresolved specialized support. Continue work adequately
+      governed by CI/core without claiming equivalent control execution.
+
+reroute:
+  owner: FWE_CI
+  require: new_material_need_for_waiting_decision
+  stop_on: [sufficient, scoped_limit, cycle, unchanged_unresolved_need]
+  rule: >-
+    Before use, route only the newly dependent portion. Preserve its waiting point,
+    operation, stage, scope, authority and material basis. Track pending and attempted
+    needs in the current task. Return an unresolved gap for a cycle such as A -> B ->
+    A, or a repeated unresolved need. Retry only when a material source, evidence,
+    permission or capability changes, within the same authorized scope. Incidental
+    discoveries do not start adjacent research, redesign or world expansion.
+
+return:
+  to: same_waiting_portion
+  include: [contribution, use_limits, actual_evidence, unresolved_gaps]
+  rule: >-
+    Return the admitted contribution or its unresolved dependency to the exact
+    waiting point. Preserve role, coverage, conditions and conflicts. Resolution
+    ends here. CI/FWE resumes the assigned operation, checks that the basis still
+    holds and owns the conclusion. Router output does not accept or update fiction
+    by itself. Continue independently sufficient work.

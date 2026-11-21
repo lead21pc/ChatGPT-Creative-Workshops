@@ -9,8 +9,12 @@ Mỗi mốc dùng `PLANNED`, `ACTIVE`, `PASS` hoặc `BLOCKED`. Đây là trạn
 | Mốc | Trạng thái | Bằng chứng hiện có |
 |---|---|---|
 | M0 — Foundation | PASS | STRUCTURAL_PASS và STATIC_SEMANTIC_PASS cho ba tài liệu nền; đã rà M0-A–F. Chưa có bằng chứng runtime. |
-| M1 — CI nền | PASS | `STRUCTURAL_PASS` và `STATIC_SEMANTIC_PASS` cho [CI v0.1](controls/FWE_CI_v0.1.md); đã rà C1–C15 và các ca phủ định. Chưa xác minh khi chạy. |
-| M2–M10 | PLANNED | Chưa triển khai; không có bằng chứng khi chạy |
+| M1 — CI nền | PASS | `STRUCTURAL_PASS` và `STATIC_SEMANTIC_PASS` cho [CI v0.1](source_archive/controls/FWE_CI_v0.1.md); đã rà C1–C15 và các ca phủ định. Chưa xác minh khi chạy. |
+| M2 — Hợp đồng nguồn + Router | PASS | `STRUCTURAL_PASS` và `STATIC_SEMANTIC_PASS` cho [Hợp đồng nguồn](source_archive/source_management/FWE_SOURCE_CONTRACT.md) và [Router v0.1](source_archive/controls/FWE_ROUTER_v0.1.md) cùng tham chiếu từ CI; đã rà S1–S8, R1–R10, E1–E3 và các ca xung đột thẩm quyền. Chưa có bằng chứng định tuyến hay truy xuất khi chạy. |
+| M3 — Ứng viên Brainstorm | PASS | `STRUCTURAL_PASS` và `STATIC_SEMANTIC_PASS` cho [Brainstorm v0.1](source_archive/capabilities/FWE_BRAINSTORM_v0.1.md), tích hợp Router và chuẩn hóa lớp điều khiển sang tiếng Anh. Đã rà B1–B4, BN1–BN5, hồi quy M1–M2, ranh giới thẩm quyền, khả năng chuyển lõi và điểm mở rộng M4. Chưa chạy đối chứng. |
+| M4–M10 | PLANNED | Các mốc dự kiến của kế hoạch v0.1, chưa triển khai. |
+
+Bộ hiện hành gồm [CI v1.0](controls/FWE_CI_v1.0.md) và [Router v1.0](controls/FWE_ROUTER_v1.0.yaml), cả hai `ACTIVE / STATIC PASS / LIVE NOT RUN`. Router có bốn tuyến `SOURCE`, `EVIDENCE`, `PROFILE`, `CONTROL`. Chưa có liên kết AIS, quyền và liên kết Profile riêng cho FWE hoặc kiểm soát chọn lọc được liên kết. Chưa cài đặt ChatGPT Project. Các mốc và phép đối chứng v0.1 dưới đây được giữ làm hồ sơ của bộ tiền nhiệm.
 
 Khi một ca lỗi, ghi đó là lỗi đã quan sát, đã tái hiện, rủi ro có căn cứ hay giả thuyết. Chẩn đoán và mở lại đúng phần bị ảnh hưởng; giữ các kết quả độc lập. Một phát hiện không cấp quyền thiết kế lại hoặc sửa ngoài phạm vi.
 
@@ -83,7 +87,7 @@ Kiểm đường trực tiếp bằng cảnh gặp lại sau 20 năm; sau đó k
 
 Dùng các đối chứng nguồn: bối cảnh đã đủ nên không tra ngoài; tệp hiện hành được giao nên dùng đúng phạm vi; nguồn quyết định thiếu nên không khẳng định trạng thái đích; archive chỉ cho lịch sử; cảm hứng từ FTH phải tách cơ chế khỏi lore/quyền/phụ thuộc. Kiểm lại đường sáng tác thường sau khi phối hợp. Không suy “không gọi Router” từ việc câu trả lời không in nhãn.
 
-Giữ Router Markdown. Chỉ xem lại khi có nhu cầu máy đọc thực tế như kiểm dữ liệu chọn, nhiều phụ thuộc cứng, phân giải phiên bản/trạng thái hoặc kiểm trực tiếp cấu trúc Router. Không xây parser để chuẩn bị trước.
+Router Markdown thuộc bộ tiền nhiệm. Router v1.0 dùng YAML đã qua kiểm cấu trúc và rà ngữ nghĩa tĩnh.
 
 ## Mức bằng chứng
 
