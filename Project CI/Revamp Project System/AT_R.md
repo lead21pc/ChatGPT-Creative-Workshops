@@ -19,6 +19,8 @@ When downstream verification materially depends on manual user action, specify t
 
 For multi-step manual tests, separate copyable payloads when distinct submissions, destinations or output dependencies make separation clearer. Give each block its step number, exact copyable content, destination and any output to collect. Keep related commands together when they run as one unit and splitting would add no clarity.
 
+For a natural-use test of autonomous detection or choice, keep the user-facing input faithful to the real user's intent and what they would know. Before finalizing, identify the behavior being measured and check whether the target-visible prompt or setup already supplies the decision, action, routing, evidence requirement, or fallback being tested. Move cues added solely because the author knows the expected behavior into evaluator-only criteria, and mark which input goes to the target. Retain genuine user cues and precise wording. If a visible cue supplies the behavior, it cannot be scored as autonomous discovery. In an explicit compliance or control test, the instruction being tested belongs in the stimulus.
+
 Instruct the downstream evaluator to distinguish a valid system or test failure from an invalid or incomplete manual procedure and from UNKNOWN evidence when adherence cannot be established. Withhold a behavior PASS or FAIL when a required condition was violated, skipped or cannot be confirmed from the evidence. Output alone does not establish that the required procedure was followed.
 
 ## State handoffs and receipts

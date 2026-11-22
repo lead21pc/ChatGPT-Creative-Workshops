@@ -282,6 +282,8 @@ The loop is useful only if both checks remain independent.
 
 For optional comparison of failure-entry situations, see [FAILURE_ENTRY_MODES.md](FAILURE_ENTRY_MODES.md). It is a reference, not required preflight or additional control.
 
+USER-REPORTED AUTHORING FAILURE: In a Central Hub Movie/AIS test, Revamp included current-source verification and access-failure instructions in a film question intended to measure whether Hub would recognize the need for verification on its own. The author requested a rewrite as a natural-use film question. The original prompt could test explicit compliance, but it could not establish autonomous discovery. Keep the behavior being measured in the evaluator's criteria unless it is part of the user's real request.
+
 ---
 
 ## 8A. The base-semantics propagation failure

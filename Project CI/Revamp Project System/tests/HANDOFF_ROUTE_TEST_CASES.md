@@ -142,6 +142,11 @@ Các case A01–A10 kiểm contract và expected behavior; test Python chỉ ki�
 | M03 | Payload A chạy trong chat mới. Payload B chạy ở runtime khác và dùng output của A | A và B nằm trong hai khối copy riêng theo thứ tự. Mỗi khối có đích rõ ràng. B chỉ chạy sau khi có output A, với chỉ dẫn lấy và chuyển đúng output, giữ nguyên điều kiện có ảnh hưởng đến kết quả. |
 | M04 | Ba lệnh terminal chạy liền nhau như một đơn vị trong cùng môi trường | Giữ chung một khối nếu tách lệnh không làm rõ cách chạy. |
 | M05 | Người dùng bỏ bước bắt buộc nhưng vẫn gửi output cuối, hoặc chưa rõ họ có thực hiện bước đó hay không | Nếu xác nhận đã bỏ bước, đánh dấu thủ tục không hợp lệ hoặc chưa hoàn tất. Nếu chưa xác định được, ghi evidence là UNKNOWN. Chỉ kết luận lỗi hệ thống hoặc lỗi test khi có bằng chứng từ quy trình hợp lệ. |
+| M06 | Câu hỏi dùng tự nhiên: `The Dark Knight được bao nhiêu điểm trên IMDb, Rotten Tomatoes với Metacritic? IMDb có khoảng bao nhiêu lượt chấm? Tóm tắt phim giúp mình.` | Chỉ gửi câu hỏi vào chat đích. Người chấm kiểm Hub nhận ra điểm và lượt chấm cần bằng chứng hiện hành, xử lý riêng phần tóm tắt và có nguồn hỗ trợ cho số liệu. Số liệu chỉ lấy từ trí nhớ không đủ bằng chứng. Chỉ chấm đường AIS đạt khi quan sát được bằng chứng đủ. Thiếu dấu vết thì ghi UNKNOWN cho đường AIS. |
+| M07 | Ca tuân thủ có chủ đích: `Hãy kiểm nguồn hiện tại cho ba điểm này. Nếu nguồn nào không truy cập được, nói rõ nguồn đó.` | Giữ các chỉ dẫn vì việc tuân thủ chúng là hành vi cần đo. |
+| M08 | Người dùng thật hỏi: `Bạn kiểm giúp mình nguồn mới nhất xem IMDb của The Dark Knight giờ là bao nhiêu nhé.` | Giữ yêu cầu nguồn mới nhất. Có thể chấm hệ thống tự chọn cách kiểm. Nhu cầu làm mới đã được người dùng nêu rõ. |
+| M09 | Người dùng hỏi chính xác: `Cho mình điểm IMDb kèm số lượt chấm, Tomatometer và điểm khán giả tách riêng, cùng Metascore của bản phim năm 2008.` | Giữ nguyên các phân biệt và mức độ chính xác. Không áp văn phong xuề xòa hay chèn AIS, routing hoặc cutoff vào câu hỏi. |
+| M10 | Ca M06 có tiêu chí chấm về bằng chứng, AIS và cách báo giới hạn | Chỉ gửi câu hỏi M06. Nếu tiêu chí lọt vào ngữ cảnh đích, phần hành vi đã được gợi ý không đủ điều kiện chấm là tự nhận diện hoặc tự chọn. |
 
 ## Cách chạy live khi có quyền
 
