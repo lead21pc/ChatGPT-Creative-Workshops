@@ -1,0 +1,20 @@
+[
+  {
+    "old": "library_modules/Media/HUB-MEDIA-ENTRY_v1.0.md",
+    "new": "library_modules/Media/HUB-MEDIA-ENTRY_v1.1.md",
+    "archive": "Source_archive/Media 1.1 2026-11-23/library_modules/Media/HUB-MEDIA-ENTRY_v1.0.md",
+    "sha256": "416df4ad075e0ced93a0d8dd0962ebae024a2d9797eeacbf3ce9a490192615f4"
+  },
+  {
+    "old": "library_modules/Media/HUB-MEDIA-MOVIE_v1.0.md",
+    "new": "library_modules/Media/HUB-MEDIA-MOVIE_v1.1.md",
+    "archive": "Source_archive/Media 1.1 2026-11-23/library_modules/Media/HUB-MEDIA-MOVIE_v1.0.md",
+    "sha256": "5f1beae9e3fbabdd16ce332afb8497f259f33ec9e33a61f2f002b769d1cb973f"
+  },
+  {
+    "old": "library_modules/Media/HUB-MEDIA-MUSIC_v1.0.md",
+    "new": "library_modules/Media/HUB-MEDIA-MUSIC_v1.1.md",
+    "archive": "Source_archive/Media 1.1 2026-11-23/library_modules/Media/HUB-MEDIA-MUSIC_v1.0.md",
+    "sha256": "ee124b9808edcc9ad1383133b411e71a0e6fb9e0c52fe0c2723d68f6c373e255"
+  }
+]

@@ -125,3 +125,39 @@ Record each manual outcome as PASS / FAIL / UNVERIFIABLE with the actual input/o
 | R2-02 | Thử riêng lệnh Concept đã retire với nội dung trung tính. Kiểm không có owner hoặc tool chỉ vì lệnh đó. |
 | R2-03 | Phân tích một phim, một bản thu, rồi hai phần trong cùng lượt. Kỳ vọng Movie, Music và cả hai tương ứng. Dịch một câu chỉ nhắc tên phim cho ca NONE. Kiểm yêu cầu dùng dữ liệu đã cho không phát sinh AIS. |
 | R2-04 | Yêu cầu receipt cho phần việc đã định tuyến, rồi chạy một lượt thành công thường. Receipt chỉ xuất ở lượt debug. Thử một binding bị thiếu trong tác vụ hai phần. Kiểm receipt giữ UNKNOWN khi thiếu trace, chỉ rõ chỗ chặn và tiếp tục phần độc lập. |
+
+## Media 1.1 — nhận diện từ ký ức rời rạc
+
+Trạng thái đặc tả: sẵn sàng. Chạy trong Central Hub: chưa thực hiện.
+
+Dùng một chat mới cho từng ca sau khi Library và Project Sources đã được đồng bộ theo quyền riêng. Gửi nguyên văn cột đầu vào. Với ca có tiền đề nhiều lượt, dựng tiền đề trong cùng chat trước khi gửi câu tiếp theo. Giữ cột quan sát ngoài chat đang thử. Nếu không dựng được tiền đề, ghi ca chưa kiểm được.
+
+| Ca | Đầu vào và tiền đề |
+| --- | --- |
+| M01 — xem TV thời nhỏ | “Tìm giúp tôi một phim. Khoảng 2004–2006, hồi còn nhỏ, tôi thấy trên TV một cảnh có cô bé thả chiếc chìa khóa xuống giếng. Hình như là kênh quốc tế, nhưng tôi nhớ có tiếng Việt. Tôi không biết phim ra năm nào.” |
+| M02 — bác ứng viên | Sau khi trợ lý nêu một tựa phim cụ thể, gửi “Không phải phim đó.” |
+| M03 — ký ức trộn | Dùng hai bản tóm tắt giả lập, mỗi bản chứa một trong hai cảnh và xác nhận không có cảnh còn lại. Gửi “Tôi nhớ khá rõ cảnh cô bé thả chìa khóa xuống giếng và cảnh một đoàn tàu chui qua gương. Tôi nhớ là cùng một phim. Hai tóm tắt này giúp gì không?” |
+| M04 — câu hỏi phân biệt | Cho ba ứng viên giả lập cùng có cảnh thả chìa khóa xuống giếng, với vị trí giếng lần lượt là vườn, sân thành và tầng hầm. Gửi “Tôi nhớ rõ cái chìa khóa rơi, còn lại thì mờ lắm. Bạn muốn tôi nhớ thêm gì?” |
+| M05 — chi tiết phim và bản cắt | “Dựa vào hai mô tả bản cắt tôi gửi, phân tích cách dựng cảnh mở đầu mỗi bản. Đừng tiết lộ kết thúc. Nếu thích nhịp chậm hơn thì tôi nên xem bản nào?” Cung cấp hai mô tả mở đầu khác nhau và chi tiết kết thúc cần giữ kín. |
+| S01 — lời nghe gần đúng | “Tìm bài giúp tôi. Điệp khúc nghe giống ‘stay by the river’ nhưng tai tôi nghe không rõ. Nhịp chậm và có tiếng piano trước khi vào câu ấy.” |
+| S02 — bản hát lại | Dùng ca có tên bài đã được xác lập trong lượt trước, nhưng bản thu chưa có căn cứ. Gửi “Đúng là bài đó. Bản tôi nghe có giọng nữ và phần đệm rất thưa. Ai hát bản đó vậy?” |
+| S03 — video và âm thanh lệch nhau | “Tôi nhớ video quay trong nhà ga, nhưng bản tôi nghe có tiếng khán giả và mở đầu bằng guitar mộc. Tôi có hai mô tả này, bạn xem chúng có cùng bản không?” Cung cấp mô tả video của bản phòng thu và mô tả âm thanh của bản diễn trực tiếp, chưa có bằng chứng nối hai bản. |
+| S04 — nghe radio thời nhỏ | “Hồi khoảng 2001 tôi nghe trên đài địa phương một bài có đoạn kèn ngay đầu, giọng nghe như giọng nam. Bạn giúp tôi tìm bài được không?” |
+| S05 — so sánh và đề xuất | “Đây là ghi chú tôi nghe từ hai bản diễn của cùng một bài. So sánh nhịp và phần đệm, rồi đề xuất bản hợp để nghe lúc làm việc.” Cung cấp ghi chú đủ để so sánh, gồm khác biệt có thể ảnh hưởng lựa chọn. |
+| E01 — bằng chứng ngoài có tính quyết định | Sau một ca Movie còn hai khả năng khác nhau về tên dịch, gửi “Bạn kiểm tra giúp tên dịch tôi nhớ có từng dùng cho một trong hai phim trong giai đoạn đó không?” Dùng hai ứng viên có thể kiểm tra bằng nguồn ngoài và ghi lại vùng, thời kỳ đã cung cấp. |
+
+| Ca | Kết quả cần quan sát |
+| --- | --- |
+| M01 | Chọn Movie. Giữ năm xem và đài ở vai trò tiếp cận, xét được phim phát hành sớm hơn nhiều năm và không suy quốc gia sản xuất hoặc tiếng gốc từ lần phát. |
+| M02 | Hạ mức ủng hộ của ứng viên đã bị bác. Hỏi một đặc điểm trung tính hoặc xét khả năng khác, không gợi người dùng nhớ sai để giữ ứng viên. |
+| M03 | Nêu mâu thuẫn, giữ hai mảnh theo độ chắc đã nêu và để mở khả năng đến từ hai phim. |
+| M04 | Hỏi đặc điểm có thể phân biệt các ứng viên, chẳng hạn bối cảnh của chiếc giếng, mà không gợi đáp án hoặc tên phim. |
+| M05 | Phân tích theo từng bản cắt, giữ giới hạn tiết lộ và giải thích đề xuất theo nhịp dựng. Dữ liệu đã đủ nên không gọi AIS. |
+| S01 | Chọn Music. Dùng lời nhớ như manh mối âm gần đúng. Lệch nguyên văn chưa đủ để loại ứng viên. |
+| S02 | Giữ danh tính bài đã được hỗ trợ. Để người hát, bản thu và phiên bản còn mở nếu thiếu căn cứ. |
+| S03 | Giữ riêng manh mối video và âm thanh. Xét khả năng thuộc hai phiên bản và chỉ nối chúng khi có bằng chứng. |
+| S04 | Giữ năm nghe và đài ở vai trò tiếp cận. Không suy năm phát hành, xuất xứ nghệ sĩ hay danh tính ca sĩ từ các manh mối đó. |
+| S05 | So sánh phần nghe được và giải thích đề xuất theo mục đích đã cho. Dữ liệu đã đủ nên không gọi AIS. |
+| E01 | Leaf nêu câu hỏi có sức phân biệt cho Hub. Router giao phần bằng chứng cho AIS và AIS trả nguồn, giới hạn và khoảng trống qua Hub. Khi tiếp tục, Movie cân cả điểm khớp lẫn điểm trái và chỉ chốt danh tính nếu đủ căn cứ. |
+
+Ghi đầu vào, kết quả, phiên bản đọc được, lựa chọn leaf và dấu vết gọi công cụ quan sát được. Nếu thiếu dấu vết cần thiết, giữ kết quả tương ứng ở trạng thái chưa xác minh.

@@ -582,7 +582,7 @@ def receipt_fixture(*, debug=False, blocker=None, read=None, traces=()):
     return '\n'.join((
         'TASK | operation=compare; stage=analysis; scope=film and recording; return=Hub',
         'DECISION | selected=Media/Movie and Music; basis=declared comparison; tool authority=none',
-        f'SOURCE / DEPENDENCY | Entry 1.0 → Movie 1.0; read={read or "UNKNOWN"}',
+        f'SOURCE / DEPENDENCY | Entry 1.1 → Movie 1.1; read={read or "UNKNOWN"}',
         f'RESULT / BLOCKER | last=selection; attempt={execution_oracle(traces)}; basis={evidence}',
         f'first unresolved={blocker or "none"}; independent=Music',
     ))

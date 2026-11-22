@@ -102,7 +102,7 @@ packages:
   entrypoint_module_id: HUB-MEDIA-ENTRY
   runtime_role: DOMAIN_CONTROL
   status: ACTIVE
-  version: '1.0'
+  version: '1.1'
   applicability: >-
     Film or music analysis, comparison, recommendations or discovery where domain interpretation
     materially serves the task. Incidental mentions, supplied text transformations and simple facts
@@ -110,7 +110,7 @@ packages:
   location:
     class: LIBRARY
     root: Central Hub Config
-    artifact: Media/HUB-MEDIA-ENTRY_v1.0.md
+    artifact: Media/HUB-MEDIA-ENTRY_v1.1.md
   local_catalog: null
   requires: []
   binding_mode: LIBRARY_MODULE
