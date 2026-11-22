@@ -6,11 +6,27 @@
     pwsh -NoProfile -File ./watch-git-state.ps1 -Path .
 #>
 [CmdletBinding()]
-param([string]$Path = '.')
+param(
+    [string]$Path = '.',
+    [switch]$StructuredOutput,
+    [int]$ParentProcessId,
+    [long]$ParentStartTimeTicks
+)
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 $PSNativeCommandUseErrorActionPreference = $false
+if ($StructuredOutput) { [Console]::OutputEncoding = [Text.UTF8Encoding]::new($false) }
+
+function Write-WatcherError {
+    param([string]$Message, [switch]$Fatal)
+
+    if ($StructuredOutput) {
+        @{ type = 'error'; message = $Message; fatal = $Fatal.IsPresent } | ConvertTo-Json -Compress
+    } else {
+        "[GIT WATCH] $Message"
+    }
+}
 
 function Read-Git {
     param([string[]]$GitArguments, [switch]$AllowMissingRef)
@@ -93,7 +109,7 @@ try {
         '--git-path', 'CHERRY_PICK_HEAD', '--git-path', 'reftable'
     )
 } catch {
-    "[GIT WATCH] Không thể mở worktree. $($_.Exception.Message)"
+    Write-WatcherError -Fatal -Message "Không thể mở worktree. $($_.Exception.Message)"
     exit 1
 }
 
@@ -113,8 +129,24 @@ $sourcePrefix = "git-watch-$([guid]::NewGuid())-"
 $previous = [pscustomobject]@{ Unmerged = @(); Merge = $false; Rebase = $false; CherryPick = $false }
 $readFailed = $false
 $fatalWatchError = $null
+$hasSnapshot = $false
+$conflictRevision = 0
+$parent = $null
+$parentExitSource = "${sourcePrefix}parent-exit"
 
 try {
+    if ($ParentProcessId) {
+        try {
+            $parent = [Diagnostics.Process]::GetProcessById($ParentProcessId)
+            if ($parent.StartTime.ToUniversalTime().Ticks -ne $ParentStartTimeTicks) { return }
+            Register-ObjectEvent -InputObject $parent -EventName Exited -SourceIdentifier $parentExitSource
+            $parent.EnableRaisingEvents = $true
+            if ($parent.HasExited) { return }
+        } catch [ArgumentException], [InvalidOperationException] {
+            return
+        }
+    }
+
     $metadataWatcher = [IO.FileSystemWatcher]::new($gitDir)
     $watchers += $metadataWatcher
     $metadataWatcher.IncludeSubdirectories = $true
@@ -139,23 +171,41 @@ try {
 
     $firstRead = $true
     while ($true) {
+        if ($parent -and $parent.HasExited) { return }
         try {
             $current = Read-GitState
-            Write-GitTransition -Previous $previous -Current $current
-            $previous = $current
-            if ($readFailed) {
-                '[GIT WATCH] Đã đọc lại được trạng thái Git.'
+            if ($StructuredOutput) {
+                $conflictsChanged = ($current.Unmerged -join "`0") -cne ($previous.Unmerged -join "`0")
+                if ($conflictsChanged) { $conflictRevision++ }
+                if (-not $hasSnapshot -or $readFailed -or $conflictsChanged -or
+                    $current.Merge -ne $previous.Merge -or $current.Rebase -ne $previous.Rebase -or
+                    $current.CherryPick -ne $previous.CherryPick) {
+                    $operations = @(
+                        if ($current.Merge) { 'merge' }
+                        if ($current.Rebase) { 'rebase' }
+                        if ($current.CherryPick) { 'cherry-pick' }
+                    )
+                    @{
+                        type = 'state'; unmergedCount = $current.Unmerged.Count
+                        conflictRevision = $conflictRevision; operations = $operations
+                    } | ConvertTo-Json -Compress
+                }
+            } else {
+                Write-GitTransition -Previous $previous -Current $current
+                if ($readFailed) { '[GIT WATCH] Đã đọc lại được trạng thái Git.' }
             }
+            $previous = $current
+            $hasSnapshot = $true
             $readFailed = $false
         } catch {
             if (-not $readFailed) {
-                "[GIT WATCH] Không đọc được trạng thái Git. $($_.Exception.Message)"
+                Write-WatcherError -Message "Không đọc được trạng thái Git. $($_.Exception.Message)"
             }
             $readFailed = $true
         }
 
         if ($fatalWatchError) { throw $fatalWatchError }
-        if ($firstRead) {
+        if ($firstRead -and -not $StructuredOutput) {
             "[GIT WATCH] Đang theo dõi $checkout"
             $firstRead = $false
         }
@@ -163,6 +213,7 @@ try {
         # Wait in the dedicated terminal process. Events arriving during a Git read stay queued.
         do {
             [void](Wait-Event)
+            if ($parent -and $parent.HasExited) { return }
             Start-Sleep -Milliseconds 150
             $readAgain = $false
             foreach ($watchEvent in (Get-Event | Where-Object SourceIdentifier -Like "$sourcePrefix*")) {
@@ -182,10 +233,11 @@ try {
         } until ($readAgain)
     }
 } catch {
-    "[GIT WATCH] Đã dừng theo dõi. $($_.Exception.Message)"
+    Write-WatcherError -Fatal -Message "Đã dừng theo dõi. $($_.Exception.Message)"
     exit 1
 } finally {
     Get-EventSubscriber | Where-Object SourceIdentifier -Like "$sourcePrefix*" | Unregister-Event
     Get-Event | Where-Object SourceIdentifier -Like "$sourcePrefix*" | Remove-Event
     foreach ($watcher in $watchers) { $watcher.Dispose() }
+    if ($parent) { $parent.Dispose() }
 }
