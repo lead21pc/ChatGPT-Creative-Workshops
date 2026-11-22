@@ -11,6 +11,15 @@ description: Tra cứu, audit và bảo trì control, module và pipeline Centra
 
 Hub CI giữ thao tác, giai đoạn, quyền, trạng thái và chuẩn kết luận. Router giữ lựa chọn theo scope, composition, closure, phân giải và lỗi đọc dùng chung. Catalog khai báo admission/binding. Architecture giữ hợp đồng kỹ thuật. Module giữ quyết định domain và trạng thái cục bộ, pipeline giữ thủ tục thực thi. Platform thực hiện truy xuất và gọi công cụ.
 
+## Vietnamese output invariant
+
+Tiếng Việt phổ thông là bất biến hành vi được giữ qua nhiều thế hệ CI. Không làm yếu, rút gọn, khái quát, đổi tên hoặc chuyển vị trí quy tắc chỉ để câu chữ gọn, đồng nhất, ít ký tự hoặc dễ đọc hơn cho model. Khi đề xuất chạm ngôn ngữ, văn phong, ngoại lệ tiếng Anh hoặc định danh, dịch thuật ngữ, nhãn song ngữ, cách giải thích hay lượt rà trước khi gửi, đọc CI hiện hành và bản tiền nhiệm trực tiếp. Tra thêm lịch sử hoặc Global CI chỉ khi cần xác định phạm vi của bất biến.
+
+- **Gate 1 — WHAT CONCRETE FAILURE REQUIRES CHANGING THE VIETNAMESE OUTPUT CONTRACT?** Chỉ đạt khi có lỗi cụ thể đã quan sát hoặc tái hiện, hoặc yêu cầu rõ của người dùng. Câu chữ gọn hơn, thống nhất với mục khác, giọng kỹ thuật hoặc kiến trúc mới tự chúng chưa đủ. Nếu không đạt, giữ nguyên hợp đồng.
+- **Gate 2 — WHAT CONCRETE FAILURE REQUIRES CHANGING THIS SPECIFIC LANGUAGE GUARD?** Hỏi riêng cho từng chốt bị tác động, kể cả khi Gate 1 đã đạt. Nêu lỗi cụ thể do chốt hiện tại gây ra, cách sửa giải quyết lỗi và cách giữ đầy đủ mức bảo vệ khi đổi câu chữ. Thiếu căn cứ riêng thì giữ chốt hoặc phần diễn đạt tương đương đầy đủ.
+
+Chỉ thay đổi hợp đồng khi Gate 1 đạt và Gate 2 đạt cho từng chốt bị đổi về ngữ nghĩa. Lý do chung của một đợt sửa cấu trúc không thay thế căn cứ riêng. Chốt nào chưa đủ căn cứ thì giữ nguyên mức bảo vệ của chốt đó.
+
 ## ACTIVE-FIRST và NO CANDIDATE
 
 Audit, thiết kế và proposal chỉ đọc. Đối chiếu đề xuất với working tree và phạm vi được giao. Với đề xuất từ Revamp hoặc nơi khác, dùng ACCEPT, ACCEPT WITH LOCAL CORRECTION hoặc RETURN FOR REPLAN. Giữ ngữ nghĩa và tiêu chí kiểm phù hợp, bỏ vòng tạo candidate và promotion của đề xuất. Quyền triển khai vẫn phải được cấp.

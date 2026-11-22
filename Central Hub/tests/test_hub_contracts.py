@@ -11,7 +11,7 @@ LIBRARY = ROOT / 'library_modules'
 ROOT_CATALOG = ROOT / 'HUB_PACKAGE_CATALOG_v2.0.yaml'
 HUB_ROUTER = ROOT / 'HUB_ROUTER_v2.0.yaml'
 ARCHITECTURE = ROOT / 'HUB_ARCHITECTURE_v2.0.md'
-CI = ROOT / 'HUB_CI_v2.0.md'
+CI = ROOT / 'HUB_CI_v2.1.md'
 IMAGE_INSTALL = ROOT / 'tool_pipelines/ImageT/IMAGET_INSTALL_INTEGRITY.yaml'
 
 
@@ -130,6 +130,26 @@ class HubContracts(unittest.TestCase):
                      'QUESTION != APPROVAL', 'AUDIT OR TEST != REMEDIATION AUTHORITY',
                      'IMPLEMENTATION != COMMIT != PUSH', 'Current explicit input prevails'):
             self.assertIn(rule, body)
+
+    def test_vietnamese_language_guard_is_first_and_explicit(self):
+        body = CI.read_text(encoding='utf-8')
+        output, separator, _ = body.partition('\nOPERATION / STAGE / AUTHORITY\n')
+        self.assertTrue(separator)
+        self.assertEqual(output.splitlines()[0], 'OUTPUT / EXPLANATION')
+        self.assertTrue(output.splitlines()[2].startswith('Use everyday, direct and concrete Vietnamese'))
+        for rule in (
+            'English is allowed only for proper names, code, literal quotes, commands, '
+            'exact external identifiers, or forms explicitly requested by the user.',
+            'Field or technical terminology alone is not an identifier.',
+            'Familiarity with English terms grants no permission to mix languages or raise the register.',
+            'Translate all other English, including technical terms used in prose.',
+            'Use bilingual labels only when explicitly requested or when exact identity requires the English form.',
+            'Explain necessary terms plainly at first use.',
+            'Before sending, silently scan the full response and rewrite all language violations.',
+        ):
+            with self.subTest(rule=rule):
+                self.assertIn(rule, output)
+        self.assertNotIn('without lookup', output)
 
     def test_current_inventory_and_shallow_layout(self):
         packages = load(ROOT_CATALOG)['packages']

@@ -10,6 +10,11 @@ Bằng chứng đi theo hành vi và điều kiện đã thử. Giữ PASS còn 
 
 ## Current verified runtime status
 
+### Hợp đồng đầu ra tiếng Việt sau Refactor 2
+
+- **USER_REPORTED — OBSERVED OUTPUT-LANGUAGE REGRESSION.** Người dùng ghi nhận văn xuôi tiếng Việt trộn nhiều thuật ngữ tiếng Anh nằm ngoài các ngoại lệ của hợp đồng. Phiên và điều kiện chạy cụ thể chưa được ghi nhận.
+- CI 2.1 phục hồi các chốt ngôn ngữ trong repository. **LIVE LANGUAGE BEHAVIOR FOR 2.1: NOT RUN.**
+
 ### Creative Writing Profile — hợp đồng 1.2
 
 - Trong repository, Hub chỉ đọc object `CREATIVE_WRITING_PROFILE` khi phần việc hư cấu được giao cho leaf Creative đã xác minh và còn nhu cầu diễn đạt cụ thể. Creative 1.3 dùng dữ liệu như xu hướng mềm. Quyền của `WRITING_PROFILE` vẫn dành cho thao tác viết trực tiếp đủ điều kiện.

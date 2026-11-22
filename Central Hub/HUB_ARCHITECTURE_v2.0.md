@@ -14,7 +14,7 @@ Runtime controls use English. User content, quotes and human documentation follo
 
 ## Installed surfaces and identity
 
-- Project Instructions: HUB_CI_v2.0.md.
+- Project Instructions: HUB_CI_v2.1.md.
 - Project Sources: HUB_ROUTER_v2.0.yaml, this Architecture and HUB_PACKAGE_CATALOG_v2.0.yaml. On demand, consult the separately installed AIS, Profile and Snapshot sources bound below.
 - ChatGPT Library: Central Hub Config is the sole discovery root for Library bindings. A package has one direct folder containing its active artifacts. The root has Technical, Authoring, ImageT, Shopping, Food and Media package folders and a shallow Shared folder for shared data objects. Folder membership expresses package ownership only. No nested functional taxonomy.
 - Installation records, static integrity inventories, tests, templates and archives are repository material.

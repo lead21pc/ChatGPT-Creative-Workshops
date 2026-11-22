@@ -74,7 +74,7 @@ Central Hub composes scoped work across six packages. Hub CI owns operation, sta
 
 AIS 2.0 is a core Project Source bound as HUB-CORE-AIS. Router dispatches scoped evidence work on demand, including an eligible /SEARCH span when no domain package is selected. User Profile Contract 2.0 applies consumer, object, purpose and material-need checks to four user-managed Shared objects. Context Snapshot carries scoped data with provenance. Explicit debug requests and material diagnostic blockers can produce a copyable receipt.
 
-The repository uses CI, Router, Architecture and root Catalog 2.0. The user confirmed nested Library folder retrieval and use in the earlier runtime they tested. Refactor 2 deployment and live checks are pending. [Central Hub setup](Central%20Hub/README.md) · [Architecture](Central%20Hub/HUB_ARCHITECTURE_v2.0.md) · [Root Catalog](Central%20Hub/HUB_PACKAGE_CATALOG_v2.0.yaml)
+The repository uses CI 2.1, with Router, Architecture and root Catalog at 2.0. The user confirmed nested Library folder retrieval and use in the earlier runtime they tested. Refactor 2 deployment and live checks are pending. [Central Hub setup](Central%20Hub/README.md) · [Architecture](Central%20Hub/HUB_ARCHITECTURE_v2.0.md) · [Root Catalog](Central%20Hub/HUB_PACKAGE_CATALOG_v2.0.yaml)
 
 ## Choose your path
 

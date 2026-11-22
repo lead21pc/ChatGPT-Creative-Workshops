@@ -2,7 +2,7 @@
 
 ## Bộ active trong repository
 
-[CI 2.0](HUB_CI_v2.0.md), [Router 2.0](HUB_ROUTER_v2.0.yaml), [Architecture 2.0](HUB_ARCHITECTURE_v2.0.md) và [root Catalog 2.0](HUB_PACKAGE_CATALOG_v2.0.yaml) là bộ pin hiện hành. Catalog là nguồn định danh, revision, applicability và binding của sáu package.
+[CI 2.1](HUB_CI_v2.1.md), [Router 2.0](HUB_ROUTER_v2.0.yaml), [Architecture 2.0](HUB_ARCHITECTURE_v2.0.md) và [root Catalog 2.0](HUB_PACKAGE_CATALOG_v2.0.yaml) là bộ pin hiện hành. Catalog là nguồn định danh, revision, applicability và binding của sáu package.
 
 - Technical, Authoring và Food là singleton. Media Entry chọn Movie và Music độc lập theo phần việc.
 - [AIS 2.0](tool_pipelines/AIS/AIS_PIPELINE_v2.0.md) là Project Source core dùng theo nhu cầu bằng chứng. Shopping Entry tự chọn Search tùy nhu cầu.
