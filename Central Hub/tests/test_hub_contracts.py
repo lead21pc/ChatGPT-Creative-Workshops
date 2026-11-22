@@ -8,10 +8,10 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 LIBRARY = ROOT / 'library_modules'
-ROOT_CATALOG = ROOT / 'HUB_PACKAGE_CATALOG_v1.26.yaml'
-HUB_ROUTER = ROOT / 'HUB_ROUTER_v1.2.yaml'
-ARCHITECTURE = ROOT / 'HUB_ARCHITECTURE_v1.27.md'
-CI = ROOT / 'HUB_CI_v1.3.md'
+ROOT_CATALOG = ROOT / 'HUB_PACKAGE_CATALOG_v2.0.yaml'
+HUB_ROUTER = ROOT / 'HUB_ROUTER_v2.0.yaml'
+ARCHITECTURE = ROOT / 'HUB_ARCHITECTURE_v2.0.md'
+CI = ROOT / 'HUB_CI_v2.0.md'
 IMAGE_INSTALL = ROOT / 'tool_pipelines/ImageT/IMAGET_INSTALL_INTEGRITY.yaml'
 
 
@@ -125,16 +125,17 @@ class HubContracts(unittest.TestCase):
                     self.assertIn(f'{header}: {pin[field]}', path.read_text(encoding='utf-8'))
         self.assertIn(ROOT_CATALOG.name, ARCHITECTURE.read_text(encoding='utf-8'))
         body = CI.read_text(encoding='utf-8')
-        for rule in ('CONTROL GROUNDING', 'DISCOURSE FIDELITY', 'EPISTEMIC NON-ESCALATION',
-                     'Local mutation requires separate explicit user implementation authorization',
-                     'CONTROL != EXECUTION', 'EXPLANATION'):
+        for rule in ('OUTPUT / EXPLANATION', 'OPERATION / STAGE / AUTHORITY',
+                     'CLAIM / EVIDENCE / UPDATE', 'ACTION / OBSERVED RESULT', 'SPECIALIZATION',
+                     'QUESTION != APPROVAL', 'AUDIT OR TEST != REMEDIATION AUTHORITY',
+                     'IMPLEMENTATION != COMMIT != PUSH', 'Current explicit input prevails'):
             self.assertIn(rule, body)
 
     def test_current_inventory_and_shallow_layout(self):
         packages = load(ROOT_CATALOG)['packages']
         self.assertEqual(len({row['package_id'] for row in packages}), len(packages))
         self.assertEqual({row['package_id'].removeprefix('HUB-PKG-') for row in packages},
-                         {'TECHNICAL', 'FOOD', 'AIS', 'AUTHORING', 'IMAGET', 'CONCEPT-DEVELOPMENT', 'SHOPPING'})
+                         {'TECHNICAL', 'FOOD', 'MEDIA', 'AUTHORING', 'IMAGET', 'SHOPPING'})
         bound = set()
         identities = set()
 
@@ -149,13 +150,6 @@ class HubContracts(unittest.TestCase):
             return path
 
         for row in packages:
-            if row['binding_mode'] == 'LEGACY_PROJECT_SOURCE':
-                self.assertEqual(row['package_id'], 'HUB-PKG-AIS')
-                source = ROOT / row['location']['declared_source_path']
-                self.assertEqual(row['location']['source_name'], source.name)
-                self.assertIn(f'AIS pipeline v{row["version"]}', source.read_text(encoding='utf-8'))
-                self.assertEqual(list(source.parent.glob('AIS_*_v*')), [source])
-                continue
             self.assertEqual(row['binding_mode'], 'LIBRARY_MODULE')
             self.assertEqual(row['location']['root'], 'Central Hub Config')
             admit(row, 'entrypoint_module_id')
@@ -178,6 +172,14 @@ class HubContracts(unittest.TestCase):
         identity, owner, role, status, version = match.groups()
         admit(dict(module_id=identity, package_id=owner, runtime_role=role, status=status, version=version),
               path=LIBRARY / 'Shopping' / f'{identity}_v{version}.md')
+        media = package('MEDIA')
+        self.assertIsNone(media['local_catalog'])
+        media_body = entry_path(media).read_text(encoding='utf-8')
+        for identity, role, status, version in re.findall(
+                r'^\| (HUB-MEDIA-(?:MOVIE|MUSIC)) \| (\w+) \| (\w+) \| ([\d.]+) \|$', media_body, re.M):
+            admit(dict(module_id=identity, package_id=media['package_id'],
+                       runtime_role=role, status=status, version=version),
+                  path=LIBRARY / 'Media' / f'{identity}_v{version}.md')
         self.assertEqual(bound, {p for p in LIBRARY.rglob('*') if p.is_file()})
 
     def test_binding_mismatches_and_hard_closure_fail(self):

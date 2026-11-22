@@ -31,6 +31,8 @@ Xét lại phần PASS bị tác động bởi thay đổi có thể đổi kế
 
 Tài liệu im lặng, thiếu hoặc chậm cập nhật không hạ quan sát live. Chỉ ghi mâu thuẫn nếu tài liệu khẳng định trái với quan sát trong cùng phạm vi. Giữ cả hai nguồn và giới hạn kết luận theo môi trường đã quan sát. Ghi một entry khi có bằng chứng mới và quyền ghi, cập nhật tóm tắt khi kết luận hiện hành đổi. Audit chỉ đề xuất delta khi có căn cứ mới.
 
+Khi nhận receipt, xác định phần việc, owner đã chọn, nguồn yêu cầu, dấu vết thực đọc hoặc thực thi và cạnh đầu tiên bị chặn. Đối chiếu ID, version và binding với working tree. Tra revision Git liên quan nếu receipt thuộc bản cũ và đủ căn cứ để ghép bản. Giữ xuất xứ và UNKNOWN. Báo chẩn đoán có giới hạn cho Revamp hoặc người dùng, phân biệt lỗi admission/định tuyến, phân giải/đọc, thực thi và lỗi hợp đồng repository.
+
 ## Hồi quy hiện hành theo phạm vi ảnh hưởng
 
 Giữ kiểm hợp đồng hiện hành và lỗi còn tái diễn. Gộp ca trùng sau khi giữ đủ ca biên. Chuyển ca và helper còn dùng tới suite của owner trước khi bỏ test khóa candidate, promotion, revision hay migration đã hết nhiệm vụ. Kiểm imports trước khi bỏ file. Dùng Git cho test đã retire.

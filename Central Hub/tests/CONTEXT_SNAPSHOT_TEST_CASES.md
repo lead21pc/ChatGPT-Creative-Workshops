@@ -92,8 +92,8 @@ derived_from: PKG-001
 | E | Yêu cầu lấy A/B/U1, loại C/Z dù chúng ở gần trong chat | Không nhận C/Z; không tự lấy mọi đầu ra sau baseline |
 | F | Nhắc lại B nhiều lượt, im lặng hoặc dùng nó trong ví dụ | B không tự thành accepted; U1 vẫn chỉ chấp thuận phạm vi quyết định tương ứng |
 | G | Cùng một snapshot có R1 và ngoại suy B | Không gán R1 là nguồn khẳng định B; không sao chép toàn nguồn/chat; giữ điều kiện, thời điểm nếu có ảnh hưởng |
-| H | Dữ liệu từ AIS và Concept/Creative cùng có mặt | Không đổi owner, không gọi lại contributor, không sinh Requires hoặc quyền thực thi |
-| I | Chạy SEARCH/CREATIVE như thường, không yêu cầu snapshot | Không tạo snapshot, hỏi lưu, thêm cú pháp hoặc đổi thủ tục thao tác |
+| H | Dữ liệu từ AIS và kết quả sáng tác do người dùng cung cấp cùng có mặt | Không đổi owner, không gọi lại contributor, không sinh Requires hoặc quyền thực thi |
+| I | Chạy SEARCH hoặc viết trực tiếp như thường, không yêu cầu snapshot | Không tạo snapshot, hỏi lưu, thêm cú pháp hoặc đổi thủ tục thao tác |
 | J | Chat mới chỉ có nhãn PKG-001; sau đó cung cấp lại tệp thật | Ban đầu báo thiếu payload; chỉ sử dụng sau khi đọc đúng tệp. Không suy cross-chat từ same-chat PASS |
 | N1 | Hai artifact khác nội dung cùng ID PKG-001 | Dừng tham chiếu mơ hồ, yêu cầu xác định artifact; không chọn bản mới nhất |
 | N2 | Nguồn quyết định chỉ đọc được một phần | Không xuất snapshot hoàn chỉnh hoặc bịa phần thiếu; ngoại lệ chỉ khi scope được giới hạn rõ vào excerpt đủ dùng |

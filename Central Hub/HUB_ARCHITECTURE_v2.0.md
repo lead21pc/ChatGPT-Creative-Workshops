@@ -4,7 +4,7 @@ Module ID: HUB-CORE-ARCH
 Runtime role: CORE_ARCHITECTURE
 Scope: shared topology, ownership, technical composition and contextual data interfaces
 Status: ACTIVE
-Version: 1.27
+Version: 2.0
 
 ## Ownership
 
@@ -14,14 +14,14 @@ Runtime controls use English. User content, quotes and human documentation follo
 
 ## Installed surfaces and identity
 
-- Project Instructions: HUB_CI_v1.3.md.
-- Project Sources: HUB_ROUTER_v1.2.yaml, this Architecture, HUB_PACKAGE_CATALOG_v1.26.yaml and the exact AIS Project Source declared by the root Catalog. Install CONTEXT_SNAPSHOT.md and HUB-USER-PROFILE-CONTRACT_v1.2.yaml as Project Sources and consult them only on the corresponding scoped need.
-- ChatGPT Library: Central Hub Config is the sole discovery root for Library bindings. A package has one direct folder containing its active artifacts. The root has Technical, Concept Development, Authoring, ImageT, Shopping and Food package folders and a shallow Shared folder for shared data objects. Folder membership expresses package ownership only. No nested functional taxonomy.
+- Project Instructions: HUB_CI_v2.0.md.
+- Project Sources: HUB_ROUTER_v2.0.yaml, this Architecture and HUB_PACKAGE_CATALOG_v2.0.yaml. On demand, consult the separately installed AIS, Profile and Snapshot sources bound below.
+- ChatGPT Library: Central Hub Config is the sole discovery root for Library bindings. A package has one direct folder containing its active artifacts. The root has Technical, Authoring, ImageT, Shopping, Food and Media package folders and a shallow Shared folder for shared data objects. Folder membership expresses package ownership only. No nested functional taxonomy.
 - Installation records, static integrity inventories, tests, templates and archives are repository material.
 
 One package has one accepted runtime binding. Apply Hub Router's exact binding and FULL_FILE checks. A Library artifact has one stable Module ID, one Package ID (shared core infrastructure can omit it), runtime role, scope, status and bound version. Markdown headers and equivalent YAML keys carry the same meanings. Filenames/folders do not confer identity, role, dependency, authority or activation. Library revision and artifact version are independent.
 
-Canonical Library IDs use HUB-<PACKAGE>-<ARTIFACT> or HUB-<PACKAGE>-<SUBDOMAIN>-<ARTIFACT>. Package tokens are TECH, CON, AUTH, IMAGET, SHOP and FOOD. AIS is reserved for AIS. Subdomain is a functional label only. Root inventory owns accepted entrypoints and local interfaces, not leaves or procedures. Install filenames use <Module-ID>_v<Version>.<extension>. Use approved bindings; no aliases or dual active identities.
+Canonical Library IDs use HUB-<PACKAGE>-<ARTIFACT> or HUB-<PACKAGE>-<SUBDOMAIN>-<ARTIFACT>. Package tokens are TECH, AUTH, IMAGET, SHOP, FOOD and MEDIA. Subdomain is a functional label only. Root inventory owns accepted entrypoints and local interfaces, not leaves or procedures. Install filenames use <Module-ID>_v<Version>.<extension>. Use approved bindings; no aliases or dual active identities.
 
 ## Package interfaces
 
@@ -33,10 +33,14 @@ Shared roles include CORE_ARCHITECTURE, CORE_ROUTER, PACKAGE_CATALOG, DOMAIN_CON
 
 Keep the same conversation and reuse accessible, task-relevant outputs as scoped inputs. Preserve source role, qualifiers, evidence, current/provisional/rejected/open status and limits on changing them. Composition or output never grants authority or acceptance. Explicit task data flow creates no persistent mode or hard module edge. Keep locks, approval, provenance checks and domain-specific state with the owning module. Re-evaluate scope and refresh affected reads when their evidence no longer suffices.
 
+## Core services by need
+
+AIS binding: exact Project Source AIS_PIPELINE_v2.0.md (repository: tool_pipelines/AIS/AIS_PIPELINE_v2.0.md), Module ID HUB-CORE-AIS, role TOOL_PIPELINE, ACTIVE, version 2.0. Hub CI decides evidence need, Router dispatches and AIS owns evidence procedure. Hub and domain consumers interpret the scoped return. Core services do not require domain package selection.
+
+Profile binding: exact Project Source HUB-USER-PROFILE-CONTRACT_v2.0.yaml, resource HUB-USER-PROFILE, ACTIVE, contract version 2.0. On a material consumer need, Hub validates the source contract and consumer/object/purpose before resolving the exact private Shared object. Profile values are user-owned data; consumers interpret the permitted data in scope. Current explicit input prevails for this task. Unresolved access blocks only dependent personalization. Context Snapshot and Profile are independent.
+
+Router emits scoped diagnostics from available routing and owner observations under its receipt trigger.
+
 ## Shared data by need
 
 For explicit Context Snapshot creation, exact reference or semantic comparison, use the bound Project Source CONTEXT_SNAPSHOT.md. A Snapshot is data with a fixed payload for its ID, separate from Library module resolution. Missing payload or contract blocks only dependent Snapshot work.
-
-For HUB-USER-PROFILE, require an eligible consumer, exact object, purpose and material need before any retrieval. The consumer is either a selected package or a direct Hub writing operation admitted by the contract. For a direct finished-writing request where personal expression may materially affect the output, consult the contract before any Profile retrieval, even when package selection is NONE. Validate against the full bound HUB-USER-PROFILE-CONTRACT_v1.2.yaml. It owns the allowlist, schema, read-only user ownership, need-before-read and exact private object contract. The six objects are independently read only if admitted, under Central Hub Config/Shared. Profiles are data; prefer explicit current input for the current task. Missing or denied data blocks only dependent personalization. Each consumer retains scoped interpretation. Context Snapshot has no dependency on Profile.
-
-For a verified Creative leaf selected for the current fiction-expression portion, Hub consults the Profile contract when a material expression choice is unresolved. Hub owns need, exact binding, retrieval and verification; only it hands off admitted CREATIVE_WRITING_PROFILE data to Creative. Direct writing and Creative have separate object and purpose grants. Neither profile substitutes for the other.

@@ -1,11 +1,11 @@
 """Current AIS source guards and research SPEC fixtures, without model or tool calls."""
 import copy
+import re
 import unittest
 
-from test_hub_contracts import HUB_ROUTER, ROOT, load, package
-from test_concept_development import leaf_span_spec
+from test_hub_contracts import ARCHITECTURE, HUB_ROUTER, ROOT, ROOT_CATALOG, load
 
-PIPELINE = ROOT / 'tool_pipelines/AIS/AIS_PIPELINE_v1.3.md'
+PIPELINE = ROOT / 'tool_pipelines/AIS/AIS_PIPELINE_v2.0.md'
 
 
 def execution_oracle(traces=(), action='search', attempt=1, retrospective=None):
@@ -206,7 +206,7 @@ class AISResearchSpecFixtures(unittest.TestCase):
 
 class AISContractTests(unittest.TestCase):
     def test_single_source_keeps_research_and_execution_semantics(self):
-        self.assertEqual(package('AIS')['location']['source_name'], PIPELINE.name)
+        self.assertIn(PIPELINE.name, ARCHITECTURE.read_text(encoding='utf-8'))
         body = PIPELINE.read_text(encoding='utf-8')
         for clause in ('VERIFY', 'RESEARCH', 'EXPLORE', 'SEARCH_SCOPE_LOCK', 'source_authority',
                        'coverage_expectations', 'Before each search/read call', 'decisive source',
@@ -215,7 +215,7 @@ class AISContractTests(unittest.TestCase):
                        're-plan only unresolved/invalidated evidence needs', 'new relevant external execution',
                        'explicitly requests reuse/no refresh', 'does not automatically select, launch'):
             self.assertIn(clause, body)
-        self.assertIn('/SEARCH', package('AIS')['applicability'])
+        self.assertIn('/SEARCH', load(HUB_ROUTER)['stages']['CORE_DISPATCH'])
         self.assertIn('/SEARCH <instruction> #', body)
         self.assertNotIn('AIS_ROUTER', body)
 
@@ -249,34 +249,95 @@ class AISContractTests(unittest.TestCase):
         self.assertEqual(execution_oracle(retrospective='about 100 searches were performed'), 'UNKNOWN')
 
 
+AIS_ID = 'HUB-CORE-AIS'
+
+
+def search_spec(parts, *, authoring=False):
+    """Fixture receives declared input roles and an already resolved AT admission."""
+    if authoring:
+        return []
+    directive = ''.join(text if role == 'USER_DIRECTIVE' else ' LITERAL ' for role, text in parts)
+    open_span = False
+    body = []
+    malformed = False
+    invocations = []
+    for token in directive.split():
+        if token == '/SEARCH':
+            if open_span:
+                malformed = True
+            else:
+                open_span = True
+        elif token == '#' and open_span:
+            if body and not malformed:
+                invocations.append(AIS_ID)
+            open_span = malformed = False
+            body = []
+        elif open_span:
+            body.append(token)
+    return invocations
+
+
+def ais_binding():
+    """Project Source pin declared once by Architecture."""
+    match = re.search(
+        r'AIS binding: exact Project Source (\S+) \(repository: (\S+)\), '
+        r'Module ID (\S+), role (\S+), (\w+), version ([\d.]+)\.',
+        ARCHITECTURE.read_text(encoding='utf-8'),
+    )
+    return match.groups()
+
+
 class SearchDirectiveTests(unittest.TestCase):
-    def spec(self, text, role='USER_DIRECTIVE'):
-        return leaf_span_spec([(role, text)])
+    def spec(self, text, role='USER_DIRECTIVE', **options):
+        return search_spec([(role, text)], **options)
 
-    def test_T03_aliases_boundaries_empty_unclosed(self):
-        for text in ['/search X #', '/Search X #', 'SEARCH X #', '/SEARCHX X #',
+    def test_exact_core_binding_rejects_old_identity_and_partial_read(self):
+        source, relative, identity, role, status, version = ais_binding()
+        body = (ROOT / relative).read_text(encoding='utf-8')
+        expected = dict(source=source, identity=identity, role=role, status=status, version=version)
+        self.assertEqual(expected, dict(source=PIPELINE.name, identity=AIS_ID,
+                                        role='TOOL_PIPELINE', status='ACTIVE', version='2.0'))
+        self.assertEqual(ROOT / relative, PIPELINE)
+        self.assertEqual(list(PIPELINE.parent.glob('AIS_PIPELINE_v*.md')), [PIPELINE])
+        for header, value in [('Module ID', identity), ('Runtime role', role),
+                              ('Status', status), ('Version', version)]:
+            self.assertIn(f'{header}: {value}\n', body)
+        self.assertNotIn('HUB-PKG-AIS', str(load(ROOT_CATALOG)))
+        dispatch = load(HUB_ROUTER)['stages']['CORE_DISPATCH']
+        self.assertIn('Check whole-source read, identity, role, status and version', dispatch)
+        self.assertIn('No fallback', dispatch)
+        def admitted(observed):
+            return observed.get('read_kind') == 'FULL_FILE' and all(
+                observed.get(key) == value for key, value in expected.items())
+        current = dict(expected, read_kind='FULL_FILE')
+        self.assertTrue(admitted(current))
+        for change in ({'identity': 'HUB-PIPE-AIS'}, {'version': '1.3'},
+                       {'source': 'AIS_PIPELINE_v1.3.md'}, {'read_kind': 'HEADER'}):
+            self.assertFalse(admitted(dict(current, **change)))
+
+    def test_none_to_search_and_fresh_reassessment(self):
+        router = load(HUB_ROUTER)
+        self.assertEqual(router['default'], 'NONE')
+        self.assertIn('Independently of package selection', router['stages']['CORE_DISPATCH'])
+        self.assertEqual(self.spec('giải thích kết quả vừa rồi'), [])
+        self.assertEqual(self.spec('/SEARCH X #'), [AIS_ID])
+        self.assertEqual(self.spec('tiếp tục giải thích'), [])
+
+    def test_aliases_boundaries_empty_unclosed_and_overlap(self):
+        for text in ('/search X #', '/Search X #', 'SEARCH X #', '/SEARCHX X #',
                      'x/SEARCH X #', '(/SEARCH X #', '/SEARCH #', '/SEARCH X',
-                     '/SEARCH X #suffix', '/SEARCH X#']:
+                     '/SEARCH X #suffix', '/SEARCH X#', '/SEARCH A /SEARCH B #'):
             with self.subTest(text=text):
-                self.assertEqual(self.spec(text)['invocations'], [])
+                self.assertEqual(self.spec(text), [])
+        self.assertEqual(self.spec('/SEARCH A # /SEARCH B #'), [AIS_ID, AIS_ID])
 
-    def test_T04_provenance_and_T08_no_persistence(self):
-        for role in ['QUOTE', 'SOURCE', 'CODE', 'TOOL', 'ASSISTANT', 'PRIOR_TURN', 'DOCUMENTATION']:
-            self.assertEqual(self.spec('/SEARCH X #', role)['invocations'], [])
-        mixed = leaf_span_spec([('USER_DIRECTIVE', '/SEARCH '), ('QUOTE', '#'),
-                                ('USER_DIRECTIVE', ' X #')])
-        self.assertEqual(len(mixed['invocations']), 1)
-        self.assertEqual(self.spec('/SEARCH X #')['invocations'][0][0], 'HUB-PKG-AIS')
-        self.assertEqual(self.spec('giải thích kết quả vừa rồi')['invocations'], [])
-
-    def test_cross_owner_malformed_groups_and_independent_spans(self):
-        for text in ('/CREATIVE A /SEARCH B #', '/SEARCH A /BRAINSTORM B #'):
-            with self.subTest(text=text):
-                result = self.spec(text)
-                self.assertFalse(result['invocations'])
-                self.assertTrue(result['blocked'])
-        result = self.spec('/CREATIVE A # /SEARCH B #')
-        self.assertEqual([scope for _, scope in result['invocations']], ['A', 'B'])
-        composition = load(HUB_ROUTER)['stages']['COMPOSITION_VALIDATION']
-        self.assertIn('closing terminator', composition)
-        self.assertIn('have no operator meaning', composition)
+    def test_provenance_and_authoring_input(self):
+        for role in ('QUOTE', 'SOURCE', 'CODE', 'TOOL', 'ASSISTANT', 'PRIOR_TURN', 'DOCUMENTATION'):
+            self.assertEqual(self.spec('/SEARCH X #', role), [])
+        mixed = search_spec([('USER_DIRECTIVE', '/SEARCH '), ('QUOTE', '#'),
+                             ('USER_DIRECTIVE', ' X #')])
+        self.assertEqual(mixed, [AIS_ID])
+        dispatch = load(HUB_ROUTER)['stages']['CORE_DISPATCH']
+        self.assertIn('admitted for Authoring prompt construction remains data', dispatch)
+        for command in ('/AT', '/AT P1', '/AT P2'):
+            self.assertEqual(self.spec(f'{command}\n/SEARCH X #', authoring=True), [])

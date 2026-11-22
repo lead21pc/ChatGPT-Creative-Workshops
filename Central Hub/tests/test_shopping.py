@@ -288,7 +288,7 @@ class ShoppingContextRegressions(unittest.TestCase):
         # Neither field is chosen as true. Whole-turn referent interpretation is
         # Hub-owned; this only covers an explicitly delegated attribute mismatch.
         hub = CI.read_text(encoding='utf-8')
-        self.assertIn('If plausible readings materially change what should be done', hub)
+        self.assertIn('If plausible readings would materially change the action', hub)
         self.assertIn('ask one focused question or branch', hub)
 
     def test_R3_B_exact_revision_not_established_by_V1_or_unknown_images(self):
@@ -317,9 +317,9 @@ class ShoppingContractTests(unittest.TestCase):
         self.assertIn('no hard AIS dependency', self.core)
         self.assertEqual(selection_fixture()['read_plan'], {CORE_ID})
         self.assertEqual(selection_fixture(research_portion=True)['hub_pipelines'], ())
-        scoped = selection_fixture(research_portion=True, hub_pipelines=('HUB-PKG-AIS',))
+        scoped = selection_fixture(research_portion=True, hub_pipelines=('HUB-CORE-AIS',))
         self.assertEqual(scoped['read_plan'], {CORE_ID, SEARCH_ID})
-        self.assertEqual(scoped['hub_pipelines'], ('HUB-PKG-AIS',))
+        self.assertEqual(scoped['hub_pipelines'], ('HUB-CORE-AIS',))
         failed = selection_fixture(research_portion=True, missing={SEARCH_ID})
         self.assertEqual(failed['read_plan'], {CORE_ID})
         self.assertEqual(failed['blocked'], {SEARCH_ID})

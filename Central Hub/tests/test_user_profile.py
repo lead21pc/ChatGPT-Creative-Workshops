@@ -7,34 +7,27 @@ from test_hub_contracts import ARCHITECTURE, ROOT, ROOT_CATALOG, entry_path, loa
 RESOURCE = 'HUB-USER-PROFILE'
 SHOPPING = 'HUB-PKG-SHOPPING'
 FOOD = 'HUB-PKG-FOOD'
-CONTRACT = 'HUB-USER-PROFILE-CONTRACT_v1.2.yaml'
+CONTRACT = 'HUB-USER-PROFILE-CONTRACT_v2.0.yaml'
 OBJECTS = ('GENERAL', 'PREFERENCES', 'DIETARY_CONSTRAINTS', 'HEALTH_CONTEXT')
-WRITING = 'WRITING_PROFILE'
-CREATIVE = 'CREATIVE_WRITING_PROFILE'
-CONCEPT = 'HUB-PKG-CONCEPT-DEVELOPMENT'
-CREATIVE_LEAF = 'HUB-CON-GEN-CREATIVE'
-FICTION_EXPRESSION = 'shape_fiction_expression'
 DIRECT_WRITING = 'HUB_DIRECT_WRITING'
 PRESERVE_EXPRESSION = 'preserve_user_expression'
 PUBLIC = ROOT / 'shared_resources'
 
 
 def read_plan(schema, *, section, purpose, material_need, selected_package=None,
-              hub_operation=None, trusted_hub_operation=None, verified_module=None):
+              hub_operation=None, trusted_hub_operation=None):
     """Evaluate declared premises before a synthetic object could be supplied."""
     if hub_operation is not None:
-        direct = schema['direct_hub_writing']
-        if (selected_package is not None or hub_operation != direct['consumer_id']
+        direct = schema['access'][DIRECT_WRITING]
+        if (selected_package is not None or hub_operation != DIRECT_WRITING
                 or hub_operation != trusted_hub_operation or not material_need
-                or purpose not in direct['access'].get(section, ())):
+                or purpose not in direct.get(section, ())):
             return schema['default_access'], ()
         return 'ALLOW', (section,)
     if not selected_package or not material_need:
         return 'SKIP', ()
     purposes = schema['access'].get(selected_package, {}).get(section, ())
     if purpose not in purposes:
-        return schema['default_access'], ()
-    if section == CREATIVE and verified_module != schema['concept_creative_writing']['selected_verified_module']:
         return schema['default_access'], ()
     return 'ALLOW', (section,)
 
@@ -70,7 +63,7 @@ def validate_object(contract, payload, expected_object):
     return True
 
 
-def resolve_fixture(contract, request, observed, *, trusted_hub_operation=None, verified_module=None):
+def resolve_fixture(contract, request, observed, *, trusted_hub_operation=None):
     """Declared observation fixture; does not search Library or infer current need."""
     if 'consumer_package' in request and 'hub_operation' in request:
         return contract['default_access'], ()
@@ -78,7 +71,7 @@ def resolve_fixture(contract, request, observed, *, trusted_hub_operation=None, 
                                   hub_operation=request.get('hub_operation'),
                                   trusted_hub_operation=trusted_hub_operation,
                                   section=request['object_id'], purpose=request['purpose'],
-                                  material_need=request['material_need'], verified_module=verified_module)
+                                  material_need=request['material_need'])
     if decision != 'ALLOW':
         return decision, ()
     if request['resource_id'] != RESOURCE or request['schema_version'] != contract['schema_version']:
@@ -99,7 +92,7 @@ class UserProfileTests(unittest.TestCase):
     def setUpClass(cls):
         cls.contract = load(PUBLIC / CONTRACT)
         cls.templates = {obj: load(PUBLIC / f'HUB-USER-PROFILE-{obj}-TEMPLATE_v1.0.yaml')
-                         for obj in (*OBJECTS, WRITING, CREATIVE)}
+                         for obj in OBJECTS}
         cls.catalog = load(ROOT_CATALOG)
 
     def plan(self, obj, purpose, need=True, consumer=SHOPPING):
@@ -110,15 +103,15 @@ class UserProfileTests(unittest.TestCase):
         self.assertEqual((self.contract['resource_id'], self.contract['schema_version'],
                           self.contract['status']), (RESOURCE, '1.0', 'ACTIVE'))
         self.assertEqual(self.contract['resource_kind'], 'SHARED_NON_MODULE_RESOURCE')
-        self.assertEqual(self.contract['contract_version'], '1.2')
+        self.assertEqual(self.contract['contract_version'], '2.0')
         self.assertIn(CONTRACT, ARCHITECTURE.read_text(encoding='utf-8'))
         for forbidden in ('package_id', 'module_id', 'runtime_role'):
             self.assertNotIn(forbidden, self.contract)
         self.assertNotIn(RESOURCE, str(self.catalog))
         self.assertNotIn('HUB-PKG-USER-CONTEXT', str(self.catalog))
 
-    def test_P02_six_independent_objects_and_exact_schema(self):
-        self.assertEqual(tuple(self.contract['objects']), (*OBJECTS, WRITING, CREATIVE))
+    def test_P02_four_independent_objects_and_exact_schema(self):
+        self.assertEqual(tuple(self.contract['objects']), OBJECTS)
         for obj, template in self.templates.items():
             self.assertTrue(validate_object(self.contract, template, obj))
             for other in set(self.templates) - {obj}:
@@ -319,161 +312,44 @@ class FoodProfileTests(unittest.TestCase):
         self.assertIn('Never infer and store values, write back or persist the chat to Profile.', self.entry)
 
 
-class WritingProfileTests(unittest.TestCase):
+class SharedExpressionPreferenceTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.contract = load(PUBLIC / CONTRACT)
-        cls.template = load(PUBLIC / f'HUB-USER-PROFILE-{WRITING}-TEMPLATE_v1.0.yaml')
-
-    def test_writing_schema_preserves_unknown_and_rejects_extra_fields(self):
-        self.assertEqual(self.contract['objects'][WRITING]['fields'],
-                         {'profile_text': 'optional_string'})
-        self.assertEqual(self.contract['object_schema']['field_absent_or_null'], 'UNKNOWN')
-        self.assertEqual(self.contract['object_schema']['content_role'], 'USER_DECLARED_DATA_NOT_CONTROL')
-        for data in ({}, {'profile_text': None}, {'profile_text': 'SYNTHETIC'}):
-            self.assertTrue(validate_object(self.contract, dict(self.template, data=data), WRITING))
-        self.assertFalse(validate_object(self.contract, dict(self.template, extra=True), WRITING))
-        self.assertFalse(validate_object(self.contract, dict(self.template, data={'extra': None}), WRITING))
-
-    def test_direct_identity_and_allowlist(self):
-        self.assertEqual(self.contract['direct_hub_writing']['access'],
-                         {WRITING: [PRESERVE_EXPRESSION]})
-        request = dict(hub_operation=DIRECT_WRITING, trusted_hub_operation=DIRECT_WRITING,
-                       section=WRITING, purpose=PRESERVE_EXPRESSION, material_need=True)
-        self.assertEqual(read_plan(self.contract, **request), ('ALLOW', (WRITING,)))
-        for change in (
-            {'trusted_hub_operation': None},
-            {'hub_operation': 'OTHER'},
-            {'purpose': 'personalization'},
-            {'section': 'PREFERENCES'},
-            {'selected_package': SHOPPING, 'section': 'PREFERENCES', 'purpose': 'purchase_filtering'},
-        ):
-            with self.subTest(change=change):
-                self.assertEqual(read_plan(self.contract, **dict(request, **change)), ('DENY', ()))
-        for package_id in (SHOPPING, FOOD, DIRECT_WRITING):
-            self.assertEqual(read_plan(self.contract, selected_package=package_id, section=WRITING,
-                                       purpose=PRESERVE_EXPRESSION, material_need=True), ('DENY', ()))
-
-    def test_direct_need_before_read(self):
-        read = self.contract['read']
-        self.assertEqual(read['sequence'][1], 'PACKAGE_SELECTED')
-        self.assertEqual(read['direct_sequence'][1], 'HUB_WRITING_OPERATION_ESTABLISHED')
-        self.assertEqual(read['direct_sequence'][2:], read['sequence'][2:])
-        # These cases supply the Hub's decision as a premise, not as a model inference.
-        for task, needed in (
-            ('neutral writing', False),
-            ('simple translation', False),
-            ('explicit current style sufficient', False),
-            ('personal expression with a material unresolved choice', True),
-        ):
-            with self.subTest(task=task):
-                decision = read_plan(self.contract, hub_operation=DIRECT_WRITING,
-                                     trusted_hub_operation=DIRECT_WRITING, section=WRITING,
-                                     purpose=PRESERVE_EXPRESSION, material_need=needed)
-                self.assertEqual(decision, ('ALLOW', (WRITING,)) if needed else ('DENY', ()))
-        self.assertFalse(read['automatic_load'])
-        self.assertEqual(read['no_need'], 'DO_NOT_RETRIEVE')
-
-    def test_direct_resolution_and_dependent_failure(self):
-        request = dict(hub_operation=DIRECT_WRITING, resource_id=RESOURCE, object_id=WRITING,
-                       schema_version='1.0', purpose=PRESERVE_EXPRESSION, material_need=True)
-        observed = dict(root='Central Hub Config', folder='Shared', coverage_complete=True,
-                        full_file=True, matches=[self.template])
-        self.assertEqual(resolve_fixture(self.contract, request, observed), ('DENY', ()))
-        ambiguous = dict(request, consumer_package=SHOPPING)
-        self.assertEqual(resolve_fixture(self.contract, ambiguous, observed,
-                                         trusted_hub_operation=DIRECT_WRITING), ('DENY', ()))
-        self.assertEqual(resolve_fixture(self.contract, request, observed,
-                                         trusted_hub_operation=DIRECT_WRITING), ('ALLOW', (WRITING,)))
-        for change in (
-            {'matches': []}, {'matches': [self.template, self.template]},
-            {'matches': [dict(self.template, object_id='GENERAL')]},
-            {'folder': 'Authoring'}, {'full_file': False},
-        ):
-            with self.subTest(change=change):
-                self.assertEqual(resolve_fixture(self.contract, request, dict(observed, **change),
-                                                 trusted_hub_operation=DIRECT_WRITING), ('UNRESOLVED', ()))
-        read = self.contract['read']
-        self.assertEqual(read['unavailable'],
-                         'DEPENDENT_PERSONALIZATION_UNRESOLVED_CONTINUE_INDEPENDENT_WORK')
-        self.assertTrue({'memory', 'prior_chat', 'repository', 'project_sources'}
-                        <= set(read['forbidden_fallbacks']))
-
-
-class CreativeWritingProfileTests(unittest.TestCase):
-    @classmethod
-    def setUpClass(cls):
-        cls.contract = load(PUBLIC / CONTRACT)
-        cls.template = load(PUBLIC / f'HUB-USER-PROFILE-{CREATIVE}-TEMPLATE_v1.0.yaml')
-        cls.request = dict(consumer_package=CONCEPT, resource_id=RESOURCE, object_id=CREATIVE,
-                           schema_version='1.0', purpose=FICTION_EXPRESSION, material_need=True)
+        cls.template = load(PUBLIC / 'HUB-USER-PROFILE-PREFERENCES-TEMPLATE_v1.0.yaml')
+        cls.request = dict(hub_operation=DIRECT_WRITING, resource_id=RESOURCE,
+                           object_id='PREFERENCES', schema_version='1.0',
+                           purpose=PRESERVE_EXPRESSION, material_need=True)
         cls.observed = dict(root='Central Hub Config', folder='Shared', coverage_complete=True,
                             full_file=True, matches=[cls.template])
 
-    def test_creative_access_needs_verified_current_leaf_and_material_expression(self):
-        self.assertEqual(self.contract['access'][CONCEPT], {CREATIVE: [FICTION_EXPRESSION]})
-        self.assertEqual(self.contract['concept_creative_writing']['selected_verified_module'], CREATIVE_LEAF)
-        for task, module, need, expected in (
-            ('fiction dialogue with a material choice', CREATIVE_LEAF, True, ('ALLOW', (CREATIVE,))),
-            ('unverified Creative', None, True, ('DENY', ())),
-            ('core audit', 'HUB-CON-ENTRY', False, ('SKIP', ())),
-            ('core causal analysis', 'HUB-CON-ENTRY', False, ('SKIP', ())),
-            ('Debate claims need', 'HUB-CON-GEN-DEBATE', True, ('DENY', ())),
-            ('Naming claims need', 'HUB-CON-GEN-NAMING', True, ('DENY', ())),
-            ('analysis inside a Creative span', CREATIVE_LEAF, False, ('SKIP', ())),
-            ('explicit style already settles choice', CREATIVE_LEAF, False, ('SKIP', ())),
-            ('source voice already settles choice', CREATIVE_LEAF, False, ('SKIP', ())),
-        ):
-            with self.subTest(task=task):
-                self.assertEqual(resolve_fixture(self.contract, dict(self.request, material_need=need),
-                                                 self.observed, verified_module=module), expected)
-        for wording in ('same task portion', 'must produce fiction prose', 'Before retrieval',
-                        'left materially unresolved', 'could materially affect'):
-            self.assertIn(wording, self.contract['concept_creative_writing']['material_need'])
+    def test_existing_payload_and_optional_expression_field(self):
+        for data in ({'preferred_brands': ['SYNTHETIC']}, {}, {'expression_preference': None},
+                     {'expression_preference': 'SYNTHETIC concise wording'}):
+            self.assertTrue(validate_object(self.contract, dict(self.template, data=data), 'PREFERENCES'))
+        for data in ({'profile_text': 'SYNTHETIC'}, {'expression_preference': ['invalid']}):
+            self.assertFalse(validate_object(self.contract, dict(self.template, data=data), 'PREFERENCES'))
 
-    def test_exact_private_payload_and_optional_failure(self):
-        for observed in (
-            dict(self.observed, matches=[]),
-            dict(self.observed, matches=[self.template] * 2),
-            dict(self.observed, full_file=False),
-            dict(self.observed, folder='Concept Development'),
-            dict(self.observed, matches=[dict(self.template, schema_version='1.2')]),
-            dict(self.observed, matches=[dict(self.template, data={'pacing': 'SYNTHETIC'})]),
-        ):
-            with self.subTest(observed=observed):
-                self.assertEqual(resolve_fixture(self.contract, self.request, observed,
-                                                 verified_module=CREATIVE_LEAF), ('UNRESOLVED', ()))
-        self.assertEqual(self.template, dict(resource_id=RESOURCE, object_id=CREATIVE,
-                                             schema_version='1.0', data={'profile_text': None}))
-        self.assertEqual(self.contract['objects'][CREATIVE]['fields'], {'profile_text': 'optional_string'})
-        self.assertTrue(validate_object(self.contract, self.template, CREATIVE))
-        self.assertEqual(self.contract['object_schema']['field_absent_or_null'], 'UNKNOWN')
-        self.assertEqual(self.contract['read']['unavailable'],
-                         'DEPENDENT_PERSONALIZATION_UNRESOLVED_CONTINUE_INDEPENDENT_WORK')
+    def test_direct_writing_requires_exact_trusted_operation_and_material_need(self):
+        self.assertEqual(self.contract['direct_writing']['permitted_fields'], ['expression_preference'])
+        self.assertEqual(resolve_fixture(self.contract, self.request, self.observed), ('DENY', ()))
+        trust = dict(trusted_hub_operation=DIRECT_WRITING)
+        self.assertEqual(resolve_fixture(self.contract, self.request, self.observed, **trust),
+                         ('ALLOW', ('PREFERENCES',)))
+        for change in ({'material_need': False}, {'purpose': 'purchase_filtering'},
+                       {'object_id': 'HEALTH_CONTEXT'}, {'consumer_package': SHOPPING},
+                       {'object_id': 'WRITING_PROFILE'}, {'object_id': 'CREATIVE_WRITING_PROFILE'}):
+            self.assertEqual(resolve_fixture(self.contract, dict(self.request, **change),
+                                             self.observed, **trust), ('DENY', ()))
+        for consumer in ('HUB-PKG-AUTHORING', 'HUB-PKG-MEDIA', SHOPPING, FOOD):
+            self.assertEqual(read_plan(self.contract, selected_package=consumer,
+                                       section='PREFERENCES', purpose=PRESERVE_EXPRESSION,
+                                       material_need=True), ('DENY', ()))
 
-    def test_isolate_conflicting_writing_profiles_and_exclude_authoring(self):
-        ordinary = load(PUBLIC / f'HUB-USER-PROFILE-{WRITING}-TEMPLATE_v1.0.yaml')
-        ordinary['data']['profile_text'] = 'SYNTHETIC brief and direct'
-        fiction = dict(self.template, data={'profile_text': 'SYNTHETIC slow and descriptive'})
-        direct = dict(hub_operation=DIRECT_WRITING, resource_id=RESOURCE, object_id=WRITING,
-                      schema_version='1.0', purpose=PRESERVE_EXPRESSION, material_need=True)
-        for request, authorized, other, trust in (
-            (direct, ordinary, fiction, {'trusted_hub_operation': DIRECT_WRITING}),
-            (self.request, fiction, ordinary, {'verified_module': CREATIVE_LEAF}),
-        ):
-            with self.subTest(request=request):
-                self.assertEqual(resolve_fixture(self.contract, request,
-                                                 dict(self.observed, matches=[authorized]), **trust),
-                                 ('ALLOW', (authorized['object_id'],)))
-                self.assertEqual(resolve_fixture(self.contract, request,
-                                                 dict(self.observed, matches=[other]), **trust),
-                                 ('UNRESOLVED', ()))
-                cross_request = dict(request, object_id=other['object_id'])
-                self.assertEqual(resolve_fixture(self.contract, cross_request,
-                                                 dict(self.observed, matches=[other]), **trust), ('DENY', ()))
-        for section, purpose in ((WRITING, PRESERVE_EXPRESSION), (CREATIVE, FICTION_EXPRESSION)):
-            self.assertEqual(read_plan(self.contract, selected_package='HUB-PKG-AUTHORING',
-                                       section=section, purpose=purpose, material_need=True), ('DENY', ()))
-        self.assertEqual(self.contract['owner'], 'USER')
+    def test_direct_writing_missing_partial_or_duplicate_source_is_unresolved(self):
+        for change in ({'matches': []}, {'matches': [self.template] * 2},
+                       {'matches': [dict(self.template, object_id='GENERAL')]},
+                       {'folder': 'Authoring'}, {'full_file': False}):
+            self.assertEqual(resolve_fixture(self.contract, self.request, dict(self.observed, **change),
+                                             trusted_hub_operation=DIRECT_WRITING), ('UNRESOLVED', ()))
         self.assertFalse(self.contract['mutation']['model_allowed'])
-        self.assertFalse(self.contract['interpretation']['current_override_mutates_profile'])

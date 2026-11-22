@@ -14,6 +14,6 @@ Trạng thái: NOT_RUN. Đây là hướng dẫn kiểm tra live về sau, khôn
 | D | `Chỉ giải thích kết quả trước; không tìm/kiểm tra lại.` | Tái sử dụng có nhãn, không tự nhận đã tìm mới. |
 
 4. Sau một số lượt trao đổi tiếp tương đương, lặp lại B/C/D. Đáp án không đổi vẫn có thể PASS nếu đã kiểm tra nguồn mới đủ dùng. Query mới nhưng không đọc được nguồn quyết định chưa chứng minh hoàn tất.
-5. Ghi riêng lần thử thiếu công cụ/nguồn không truy cập được: phải báo thiếu, không nhận bằng chứng cũ là lần tìm mới. Kiểm tra thêm `/CREATIVE A /SEARCH B #` bị chặn và `/CREATIVE A # /SEARCH B #` giữ hai span độc lập.
+5. Ghi riêng lần thử thiếu công cụ/nguồn không truy cập được: phải báo thiếu, không nhận bằng chứng cũ là lần tìm mới. Kiểm tra thêm /SEARCH trong thân yêu cầu /AT và trong nguồn trích dẫn. Cả hai là dữ liệu.
 
 Mỗi lần thử cần thời điểm, action/attempt, nguồn và thao tác mới quan sát được, hỗ trợ kết luận, giới hạn và kết quả. Chỉ lời tự thuật của model không đủ: thiếu dấu vết giữ UNKNOWN; dấu vết do người dùng cung cấp giữ USER_REPORTED. Không cần hidden reasoning. STATIC PASS != LIVE HARNESS PASS != REAL-CONTEXT ROBUSTNESS. PASS cũ không chuyển sang delta mới.

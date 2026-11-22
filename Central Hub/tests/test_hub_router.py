@@ -1,8 +1,10 @@
 """Test-only scope and read fixtures for the generic active Hub Router."""
 import copy
+import re
 import unittest
 
-from test_hub_contracts import Closed, HUB_ROUTER, ROOT_CATALOG, load
+from test_ais_research_core import execution_oracle, search_spec
+from test_hub_contracts import Closed, HUB_ROUTER, ROOT_CATALOG, entry_path, load, package
 
 
 def integration_read_spec(entry, observations, *, direct_identity_usable=True, scoped_search_sufficient=False):
@@ -36,12 +38,6 @@ def integration_read_spec(entry, observations, *, direct_identity_usable=True, s
                 raise Closed('unverified internal identity')
         if any(observed.get(k) != v for k, v in expected.items()):
             raise Closed('Library binding mismatch; no fallback')
-    elif entry['binding_mode'] == 'LEGACY_PROJECT_SOURCE':
-        expected = dict(location='PROJECT_SOURCES',
-                        declared_source_path=location['declared_source_path'],
-                        source_name=location['source_name'], version=entry['version'])
-        if any(observed.get(k) != v for k, v in expected.items()):
-            raise Closed('legacy source mismatch; no Library discovery')
     else:
         raise Closed('unsupported binding')
     return dict(evidence='SPEC_SIMULATION_ONLY', runtime_ready=False,
@@ -297,13 +293,11 @@ def simulate(fixture, scopes, *, pipeline_needs=(), requested_packages=(), libra
 class RouterCompositionTests(unittest.TestCase):
     def test_multi_role_cross_portion_composition(self):
         fixture = current_metadata_fixture()
-        selected = {'HUB-PKG-CONCEPT-DEVELOPMENT', 'HUB-PKG-AUTHORING'}
+        selected = {'HUB-PKG-MEDIA', 'HUB-PKG-AUTHORING'}
         result = simulate(fixture, selected)
         self.assertEqual({key[0] for key in result['spec_verified']}, selected)
         roles = {row['entrypoint']['runtime_role'] for row in fixture['packages'] if row['package_id'] in selected}
         self.assertEqual(roles, {'DOMAIN_CONTROL', 'CAPABILITY'})
-        mixed = simulate(fixture, selected | {'HUB-PKG-AIS'}, pipeline_needs={'HUB-PKG-AIS'})
-        self.assertEqual({key[0] for key in mixed['spec_verified']}, selected | {'HUB-PKG-AIS'})
         for identity in selected:
             self.assertEqual({key[0] for key in simulate(fixture, {identity})['spec_verified']}, {identity})
 
@@ -373,13 +367,13 @@ class RouterCompositionTests(unittest.TestCase):
 
     def test_L_pipeline_entrypoint_is_opaque_and_independently_selected(self):
         fixture = current_metadata_fixture()
-        result = simulate(fixture, {'HUB-PKG-TECHNICAL', 'HUB-PKG-AIS'}, pipeline_needs={'HUB-PKG-AIS'})
-        self.assertEqual(result['pipeline_entrypoints'], [('HUB-PKG-AIS', 'HUB-PIPE-AIS')])
-        self.assertEqual(set(result['spec_reads']), {'HUB-TECH-ENTRY', 'HUB-PIPE-AIS'})
-        denied = simulate(fixture, {'HUB-PKG-TECHNICAL', 'HUB-PKG-AIS'})
+        result = simulate(fixture, {'HUB-PKG-TECHNICAL', 'HUB-PKG-IMAGET'}, pipeline_needs={'HUB-PKG-IMAGET'})
+        self.assertEqual(result['pipeline_entrypoints'], [('HUB-PKG-IMAGET', 'HUB-IMAGET-ENTRY')])
+        self.assertEqual(set(result['spec_reads']), {'HUB-TECH-ENTRY', 'HUB-IMAGET-ENTRY'})
+        denied = simulate(fixture, {'HUB-PKG-TECHNICAL', 'HUB-PKG-IMAGET'})
         self.assertEqual(denied['pipeline_entrypoints'], [])
         technical = next(p['entrypoint'] for p in fixture['packages'] if p['package_id'] == 'HUB-PKG-TECHNICAL')
-        edge = dict(module_id='HUB-PIPE-AIS', package_id='HUB-PKG-AIS', admitted=True)
+        edge = dict(module_id='HUB-IMAGET-ENTRY', package_id='HUB-PKG-IMAGET', admitted=True)
         technical['requires'] = [edge]
         fixture['artifacts'][technical['module_id']][0]['requires'] = [edge]
         denied = simulate(fixture, {'HUB-PKG-TECHNICAL'})
@@ -387,7 +381,7 @@ class RouterCompositionTests(unittest.TestCase):
 
     def test_M_scope_change_does_not_keep_activation(self):
         fixture = current_metadata_fixture()
-        old = simulate(fixture, {'HUB-PKG-TECHNICAL', 'HUB-PKG-AIS'}, pipeline_needs={'HUB-PKG-AIS'})
+        old = simulate(fixture, {'HUB-PKG-TECHNICAL', 'HUB-PKG-IMAGET'}, pipeline_needs={'HUB-PKG-IMAGET'})
         new = simulate(fixture, set())
         self.assertEqual(len(old['spec_verified']), 2)
         self.assertEqual(new['spec_verified'], [])
@@ -560,10 +554,9 @@ class ActiveRouterTests(unittest.TestCase):
         self.assertIn('including direct tool use', rule)
         self.assertNotIn('AIS', rule)
         fixture = current_metadata_fixture()
-        aid = 'HUB-PKG-AIS'
-        results = [simulate(fixture, scopes, pipeline_needs=needs)
-                   for scopes, needs in [(set(), ()), ({aid}, (aid,)), (set(), ())]]
-        self.assertEqual([r['spec_reads'] for r in results], [[], ['HUB-PIPE-AIS'], []])
+        technical = 'HUB-PKG-TECHNICAL'
+        results = [simulate(fixture, scopes) for scopes in (set(), {technical}, set())]
+        self.assertEqual([r['spec_reads'] for r in results], [[], ['HUB-TECH-ENTRY'], []])
         self.assertTrue(all(not r['runtime_ready'] for r in results))
 
     def test_growth_selects_only_needed_leaf_closure(self):
@@ -572,3 +565,88 @@ class ActiveRouterTests(unittest.TestCase):
             self.assertEqual(result['spec_reads'],
                              ['SYNTHETIC_ENTRY', 'SYNTHETIC_LOCAL_CATALOG',
                               'SYNTHETIC_LEAF_0', 'SYNTHETIC_LEAF_1', 'SYNTHETIC_LEAF_2'])
+
+def media_plan(material_domains):
+    """Project inline bindings against declared domain needs, without inferring them."""
+    row = package('MEDIA')
+    entry = entry_path(row).read_text(encoding='utf-8')
+    bindings = re.findall(r'^\| (HUB-MEDIA-(MOVIE|MUSIC)) \|', entry, re.M)
+    return tuple(module for module, domain in bindings if domain.lower() in material_domains)
+
+
+def receipt_fixture(*, debug=False, blocker=None, read=None, traces=()):
+    """Expected receipt for a supplied scoped observation, never a live trace."""
+    if not debug and blocker is None:
+        return None
+    evidence = 'fixture direct trace' if traces else 'no direct execution trace'
+    return '\n'.join((
+        'TASK | operation=compare; stage=analysis; scope=film and recording; return=Hub',
+        'DECISION | selected=Media/Movie and Music; basis=declared comparison; tool authority=none',
+        f'SOURCE / DEPENDENCY | Entry 1.0 → Movie 1.0; read={read or "UNKNOWN"}',
+        f'RESULT / BLOCKER | last=selection; attempt={execution_oracle(traces)}; basis={evidence}',
+        f'first unresolved={blocker or "none"}; independent=Music',
+    ))
+
+
+class RefactorTwoRoutingTests(unittest.TestCase):
+    def test_media_selects_only_material_leaves_without_automatic_ais(self):
+        row = package('MEDIA')
+        self.assertIn('Incidental mentions', row['applicability'])
+        self.assertEqual(row['requires'], [])
+        entry = entry_path(row).read_text(encoding='utf-8')
+        self.assertIn('Return material external-evidence needs to Hub', entry)
+        for needs, expected in (
+            (set(), ()), ({'movie'}, ('HUB-MEDIA-MOVIE',)),
+            ({'music'}, ('HUB-MEDIA-MUSIC',)),
+            ({'movie', 'music'}, ('HUB-MEDIA-MOVIE', 'HUB-MEDIA-MUSIC')),
+        ):
+            with self.subTest(needs=needs):
+                self.assertEqual(media_plan(needs), expected)
+                selected = {row['package_id']} if needs else set()
+                result = simulate(current_metadata_fixture(), selected)
+                self.assertEqual(result['pipeline_entrypoints'], [])
+                self.assertEqual(result['spec_reads'], ['HUB-MEDIA-ENTRY'] if needs else [])
+
+    def test_retired_controls_grant_no_routing_authority(self):
+        router = load(HUB_ROUTER)
+        self.assertIn('Retired directive text grants no admission', router['stages']['COMPOSITION_VALIDATION'])
+        for command in ('/CREATIVE', '/BRAINSTORM', '/DEBATE', '/NAME', '/AD'):
+            directive = f'{command} example #'
+            self.assertNotIn(command, str(load(ROOT_CATALOG)))
+            self.assertEqual(search_spec([('USER_DIRECTIVE', directive)]), [])
+        result = simulate(current_metadata_fixture(), set(),
+                          requested_packages=['HUB-PKG-CONCEPT-DEVELOPMENT'])
+        self.assertEqual(result['spec_reads'], [])
+        self.assertEqual(result['pipeline_entrypoints'], [])
+
+    def test_receipt_trigger_and_unknown_read(self):
+        rule = load(HUB_ROUTER)['diagnostic_receipt']
+        for phrase in ('explicit routing or execution debug/audit request', 'material blocker',
+                       'actual read evidence', 'SCOPED_HANDOFF', 'UNKNOWN', 'CONFLICTED',
+                       'private Profile values', 'ordinary-turn receipt'):
+            self.assertIn(phrase, rule)
+        self.assertIsNone(receipt_fixture(read='FULL_FILE'))
+        self.assertIn('read=UNKNOWN', receipt_fixture(debug=True))
+        self.assertNotIn('FULL_FILE', receipt_fixture(debug=True))
+        self.assertIn('attempt=UNKNOWN', receipt_fixture(debug=True, traces=[('search', 1, 'TIMEOUT')]))
+        self.assertIn('attempt=CONFLICTED', receipt_fixture(debug=True, traces=[
+            ('search', 1, 'DIRECT_EXECUTION_TRACE'), ('search', 1, 'DIRECT_NON_EXECUTION_TRACE'),
+        ]))
+
+    def test_material_blocker_emits_and_isolates_the_dependent_branch(self):
+        owner = 'HUB-PKG-MEDIA'
+        movie = synthetic_module('HUB-MEDIA-MOVIE', owner, {'movie'})
+        music = synthetic_module('HUB-MEDIA-MUSIC', owner, {'music'})
+        fixture = synthetic_growing_fixture()
+        entry = fixture['packages'][0]['entrypoint']
+        # The shared closure fixture supplies a neutral two-branch interface.
+        for module in (movie, music):
+            module['package_id'] = entry['package_id']
+        fixture['packages'][0]['applicability'] = {'movie', 'music'}
+        fixture['local_catalogs'][entry['package_id']] = [movie, music]
+        fixture['artifacts'][music['module_id']] = [dict(music, read_kind='FULL_FILE')]
+        result = simulate(fixture, {'movie', 'music'})
+        self.assertNotIn('HUB-MEDIA-MOVIE', result['spec_reads'])
+        self.assertIn('HUB-MEDIA-MUSIC', result['spec_reads'])
+        receipt = receipt_fixture(blocker='Movie source unresolved')
+        self.assertIn('first unresolved=Movie source unresolved; independent=Music', receipt)

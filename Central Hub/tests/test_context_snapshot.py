@@ -15,7 +15,7 @@ class ContextSnapshotTests(unittest.TestCase):
 
     def test_context_snapshot_is_on_demand_project_source(self):
         body = ARCHITECTURE.read_text(encoding='utf-8')
-        self.assertIn('consult them only on the corresponding scoped need', body)
+        self.assertIn('On demand, consult the separately installed AIS, Profile and Snapshot sources', body)
         self.assertIn('CONTEXT_SNAPSHOT.md', body)
         self.assertNotIn('CONTEXT_SNAPSHOT', str(load(ROOT_CATALOG)))
         self.assertNotIn('HUB-USER-PROFILE', self.contract)
