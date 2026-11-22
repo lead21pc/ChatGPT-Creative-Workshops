@@ -1,9 +1,9 @@
 # Revamp Project System — History and What Not to Do
 
 STATUS: REFERENCE / PREFLIGHT
-SCOPE: Revamp Project System only.
-ROLE: Historical failure context and preventive guidance for Revamp work.
-NOT: Current workstream state, canon, repository authority, implementation authorization, a second Router, or a replacement for CURRENT handoffs.
+SCOPE: Work performed in Revamp, including proposals concerning another project.
+ROLE: Historical failure context and preventive guidance. For structural or control change proposals, read this file in full before target inspection as specified in section 10.
+NOT: Governing CI, Router, target-project authority, current workstream state, canon, or implementation authorization.
 
 ---
 
@@ -340,7 +340,7 @@ These are user-reported observations, not an independently reproduced runtime ro
 
 OBSERVED REPOSITORY CORRECTION:
 
-[Revamp CI v2.6](<../Revamp_Project_System_CI_v2.6.md>) corrected the dependency model by using ChatGPT 9.1.1 as design source / lineage and integrating the necessary core directly into the Revamp CI artifact. Grounding, operation/stage control, claim state, updating and stopping no longer depend on an external Global CI reference to supply missing behavior. TASK_ROUTER remains a governed task/context/source selector, not a loader for its governor. This is a repository correction, not proof of live installation or runtime success.
+[Revamp CI v2.6](<../Source_Archive/Revamp_Project_System_CI_v2.6.md>) corrected the dependency model by using ChatGPT 9.1.1 as design source / lineage and integrating the necessary core directly into the Revamp CI artifact. Grounding, operation/stage control, claim state, updating and stopping no longer depend on an external Global CI reference to supply missing behavior. TASK_ROUTER remains a governed task/context/source selector, not a loader for its governor. This is a repository correction, not proof of live installation or runtime success.
 
 ```text
 DESIGN BASE != RUNTIME DEPENDENCY
@@ -360,13 +360,45 @@ A DESIGN-LINEAGE RELATION MUST NOT SILENTLY BECOME
 A RUNTIME-DEPENDENCY RELATION.
 ```
 
-When interpreting `base`, `based on`, `governs`, `inherits` or `refines`, establish the actual relation from project intent and sources: design source, integrated core, runtime dependency, reference only or provenance only. Wording alone must not decide the architecture. This history creates no new authority, mandatory loading step or universal requirement to embed every base.
+When interpreting `base`, `based on`, `governs`, `inherits` or `refines`, establish the actual relation from project intent and sources: design source, integrated core, runtime dependency, reference only or provenance only. Wording alone must not decide the architecture. This base-semantics lesson grants no authority to require every project to embed its base.
+
+---
+
+## 8B. Vietnamese output discipline
+
+USER-PROVIDED HISTORY:
+
+Throughout the author's work with AI and CI design, everyday Vietnamese and limited code-switching have been deliberate output requirements. Technical subject matter and the author's use of English terms do not call for a higher register, retention of English field terms in prose, or unrequested bilingual labels. The author has tightened or restored protections when outputs drifted.
+
+OBSERVED REPOSITORY HISTORY:
+
+Global CI v1.0 required Vietnamese answers. The v2 line added natural, direct explanation. The standalone output rule was absent in v3–v5. The v6 line developed Vietnamese sentence-structure and terminology controls. The v7 and v8 lines tightened, relaxed, and reorganized them, including corrections following user-reported regressions. Global 9.1.1 uses everyday, direct Vietnamese, narrow English exceptions, a distinction between field terms and exact identifiers, translation of other English, no bilingual pairing, and a silent final language scan. It preserves depth and does not infer a higher register from prior terminology. FTH 3.4 and Hub 1.3 implement related protections in their own contracts. The design intent persisted across these changes in wording and implementation.
+
+See the [version audit](../../docs/instruction-analysis/CI_VERSIONING_AUDIT_VI.md), [instruction changelog](../../docs/instruction-history/CHANGELOG_VI.md), [Global 9.1.1](<../../llm-controls/global-instructions/ChatGPT Project Global Native/chatgpt v9.1.1.txt>), and [FTH 3.4](<../../Project Feather Core/Project Feather Core CI/FTH_CI_version_v3.4.md>). Hub 1.3 is recorded at `6b0eae9:Central Hub/HUB_CI_v1.3.md`.
+
+USER-REPORTED OUTPUT REGRESSION:
+
+After Central Hub Refactor 2, the author reported Vietnamese prose with English outside the allowed exceptions. The 1.3-to-2.0 diff (`b4b76a9`) shows that the compressed rewrite removed or weakened specific language guards while retaining the general Vietnamese requirement. This supports a causal mechanism. The independent effect of each clause remains unestablished. Hub 2.1 restored explicit protections in the repository. The [Hub evidence log](<../../Central Hub/RUNTIME_EVIDENCE_CHANGELOG.md>) records the runtime evidence and its limits.
+
+Compression can retain the general aim while removing specific behavioral protections. Assess parity at the level of the affected behavior.
 
 ---
 
 ## 9. What Revamp must not do
 
-### 9.1 Do not turn every recurring inconvenience into a primitive
+### 9.1 Preserve the Vietnamese output contract
+
+Treat the author's Vietnamese output discipline as protected behavior. Shorter wording, fewer characters, cleaner architecture, uniformity, machine-oriented control text, technical tone, and refactoring do not justify weakening it. English control text and user-facing language have separate requirements. A field term is not an exact identifier. The user's use of English terms does not authorize code-switching or a higher register. Preserve the target's authorized exceptions and request-specific overrides.
+
+**Contract gate.** What concrete failure or explicit user requirement requires changing the Vietnamese output contract? Without either, preserve the contract.
+
+**Clause gate.** What concrete failure or explicit user requirement requires changing this specific language guard? Ask separately for every affected guard, including everyday Vietnamese, plain register, English exceptions, field terms versus identifiers, translation of other English, bilingual labels, and the final scan where applicable. A general reason to edit the contract does not answer the clause-level question. Without a clause-specific basis, preserve the guard or its full behavioral equivalent.
+
+Apply both gates in proposal review, implementation, and final diff review.
+
+---
+
+### 9.2 Do not turn every recurring inconvenience into a primitive
 
 Before adding a schema, registry, Router, manifest, validator, owner file, lifecycle state, governance layer, or new abstraction, ask:
 
@@ -376,7 +408,7 @@ If no concrete failure requires it, keep it out of the baseline.
 
 ---
 
-### 9.2 Do not redesign from names, summaries, or apparent patterns
+### 9.3 Do not redesign from names, summaries, or apparent patterns
 
 Inspect the real files, workflow, and runtime behavior first.
 
@@ -391,7 +423,7 @@ Do not infer a system merely because its serialization looks familiar.
 
 ---
 
-### 9.3 Do not mistake serialization for the thing being serialized
+### 9.4 Do not mistake serialization for the thing being serialized
 
 This is especially important for projects built from internal simulation or long-lived conceptual systems.
 
@@ -407,7 +439,7 @@ DOCUMENT OWNER != SEMANTIC OWNER UNLESS ESTABLISHED
 
 ---
 
-### 9.4 Do not normalize heterogeneous components for elegance
+### 9.5 Do not normalize heterogeneous components for elegance
 
 A shared document envelope may be useful.
 
@@ -421,7 +453,7 @@ COMPOSITION != DEPENDENCY
 
 ---
 
-### 9.5 Do not repair UNKNOWN by invention
+### 9.6 Do not repair UNKNOWN by invention
 
 The model's strongest failure mode is often plausible completion.
 
@@ -436,7 +468,7 @@ A clean-looking system built from invented bridges is worse than an incomplete b
 
 ---
 
-### 9.6 Do not promote analysis into authority
+### 9.7 Do not promote analysis into authority
 
 A good diagnosis is still a diagnosis.
 
@@ -452,7 +484,7 @@ Preserve stage boundaries.
 
 ---
 
-### 9.7 Do not use a past failure as permission for permanent over-control
+### 9.8 Do not use a past failure as permission for permanent over-control
 
 A guardrail should remain no broader than the failure it solves.
 
@@ -462,7 +494,7 @@ History should prevent regression, not prohibit evolution.
 
 ---
 
-### 9.8 Do not let Revamp become recursive governance
+### 9.9 Do not let Revamp become recursive governance
 
 Revamp exists partly because previous control work could over-expand.
 
@@ -481,7 +513,7 @@ CONTROL COMPLEXITY IS STILL COMPLEXITY.
 
 ---
 
-### 9.9 Do not silently copy FTH architecture into other projects
+### 9.10 Do not silently copy FTH architecture into other projects
 
 FTH contains hardened solutions to FTH-scale problems.
 
@@ -491,7 +523,7 @@ Use FTH as evidence of a solution that worked in its scope, not as proof of a un
 
 ---
 
-### 9.10 Do not overwrite the user's viable simple proposal with a more formal one
+### 9.11 Do not overwrite the user's viable simple proposal with a more formal one
 
 First ask:
 
@@ -503,7 +535,7 @@ Do not replace a viable simple mechanism merely because a more systematic archit
 
 ---
 
-### 9.11 Do not turn design lineage into runtime dependency
+### 9.12 Do not turn design lineage into runtime dependency
 
 ```text
 DESIGN SOURCE != RUNTIME DEPENDENCY
@@ -519,12 +551,12 @@ Do not infer that every base must be embedded. A project may intentionally use r
 
 ## 10. Required preflight posture
 
-For substantial repository/system-dependent Revamp work in either Task ID (independent tasks need no repository/history/CURRENT preflight):
+Independent tasks need no repository, history, or CURRENT preflight. For substantial repository- or system-dependent work, use the following order under the selected Task ID.
 
-1. Read `TASK_ROUTER.yaml` to select the task path and required context.
-2. Inspect current relevant repository sources as directed by the Router, then FULL_FILE-read this file as historical failure context before any CURRENT handoff recovery.
-3. Determine whether prior workstream continuity remains necessary after repository/history inspection; FULL_FILE-read only the CURRENT handoffs needed for that continuity. Repository evidence may suffice without a handoff.
-4. Inspect the actual system relevant to the task.
+1. Use the governing CI and `TASK_ROUTER.yaml` to select the task and scope.
+2. **Structural or control change proposal.** When Revamp forms, evaluates, or plans a material change to architecture, structure, controls, routing, governance, dependencies, migration, or system organization, FULL_FILE-read this History before inspecting the target. This applies under either Task ID and to any target project. Then inspect the current target sources and real system. Establish target intent, owners, and the concrete failure or authorized requirement before forming or evaluating a solution. Apply Architecture Preflight when its own conditions are met.
+3. **Other system-dependent work.** Inspect current relevant sources first, then FULL_FILE-read this History. Factual explanation, descriptive inspection, and bounded handoff of a settled decision do not by themselves trigger History-first.
+4. After both History and current-source inspection, load CURRENT only if a material continuity need remains. If required History or target evidence is unavailable, identify the missing source and defer dependent conclusions.
 5. Classify findings as observed failure, reproduced failure, supported risk, or hypothetical future risk.
 6. Identify the smallest level of change that can solve the established problem.
 7. Preserve working behavior and known-safe fallback.
@@ -541,26 +573,9 @@ It supplies a historical prior:
 
 ## 11. Relationship to handoffs
 
-This file is not a CURRENT handoff.
+Follow the applicable order in section 10. In either path, establish current target evidence and read the required History before any CURRENT recovery.
 
-It should be read before Revamp handoff recovery because it explains the failure history and operating posture that should shape interpretation of later state.
-
-Order:
-
-```text
-TASK_ROUTER (ID1 / ID2; system-dependent context only)
-→ current relevant repository sources / accepted decisions / implementation
-→ REVAMP HISTORY / WHAT NOT TO DO (FULL_FILE)
-→ assess remaining continuity need; FULL_FILE-read needed CURRENT handoff(s) only
-→ real files / runtime needed for the task
-→ audit / design / implementation within authorized scope
-```
-
-The Router still owns handoff selection.
-
-CURRENT files still own bounded continuation state.
-
-This file must not become a global memory dump, repository snapshot, or second authority system.
+The Router selects the task, context, and sources. Target sources establish implementation and ownership. CURRENT supplies bounded continuation state when materially needed. History supplies failure context and preventive guidance. Authority to change the target remains with the user. Reading History first confers no authority to replace the target's architecture or rules.
 
 ---
 

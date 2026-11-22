@@ -8,8 +8,8 @@ Router hiện hành: `TASK_ROUTER.yaml` v2.0. Các case cũ bên dưới giữ n
 
 | ID | Tác vụ/điều kiện | Kỳ vọng |
 | --- | --- | --- |
-| R01 | Sửa cơ chế handoff hoặc CI handoff Revamp | Đọc Router, kiểm tra nguồn repo hiện hành liên quan và FULL_FILE history; chỉ chọn `revamp_system` và đọc FULL_FILE CURRENT nếu còn cần prior continuity mà nguồn hiện tại chưa đủ cung cấp. Repo đủ thì không nạp; kiểm tra thêm file/runtime khi cần. |
-| R02 | Trong Revamp, làm migration Central Hub | Kiểm tra repo trước; chỉ nạp riêng CURRENT Central Hub nếu cần continuity và có entry/source hợp lệ. Baseline chưa có entry: không tự tạo hoặc dùng Revamp-system thay thế; báo gap nếu còn cần continuity, tiếp tục phần có nguồn trực tiếp. |
+| R01 | Sửa cơ chế handoff hoặc CI handoff Revamp | Đọc Router và áp dụng thứ tự theo mục Preflight hai đường bên dưới; chỉ chọn `revamp_system` và đọc FULL_FILE CURRENT nếu còn cần prior continuity mà nguồn hiện tại chưa đủ cung cấp. Repo đủ thì không nạp; kiểm tra thêm file/runtime khi cần. |
+| R02 | Trong Revamp, đánh giá phương án migration đáng kể cho Central Hub | Đọc History trước, rồi kiểm tra nguồn Hub và hệ thống thật trước khi đánh giá; chỉ nạp riêng CURRENT Central Hub nếu cần continuity và có entry/source hợp lệ. Baseline chưa có entry: không tự tạo hoặc dùng Revamp-system thay thế; báo gap nếu còn cần continuity, tiếp tục phần có nguồn trực tiếp. |
 | R03 | Dùng Central Hub làm ví dụ tương tự trong thiết kế FTH | Không nạp handoff Central Hub; mention/analogy không chứng minh material match. |
 | R04 | Dọn repository không liên quan | Không nạp handoff; không match là bình thường. |
 | R05 | Sau repo/history inspection, tác vụ còn cần continuity của hai workstream đã có entry và file | Với fixture hai entry/file hợp lệ, nạp FULL_FILE cả hai; giữ trạng thái/phạm vi riêng, không tổng hợp mega-state. |
@@ -31,7 +31,7 @@ Router hiện hành: `TASK_ROUTER.yaml` v2.0. Các case cũ bên dưới giữ n
 
 | ID | Tác vụ/điều kiện | Kỳ vọng |
 | --- | --- | --- |
-| P01 | Công việc Revamp đáng kể cần prior state | CI vào Router trước; kiểm tra nguồn repo hiện hành liên quan trước FULL_FILE history; sau đó xác định continuity còn thiếu, chỉ chọn/đọc FULL_FILE CURRENT cần thiết và kiểm tra thêm file/runtime theo nhu cầu. |
+| P01 | Công việc Revamp đáng kể cần prior state | CI vào Router trước; áp dụng thứ tự ở mục Preflight hai đường; sau đó xác định continuity còn thiếu, chỉ chọn/đọc FULL_FILE CURRENT cần thiết và kiểm tra thêm file/runtime theo nhu cầu. |
 | P02 | History đã đọc, có CURRENT liên quan | Chỉ đọc FULL_FILE CURRENT nếu còn cần prior continuity; history không thay continuity cần thiết. Repo đủ thì không nạp CURRENT, preflight vẫn đầy đủ. |
 | P03 | History nhắc FTH hoặc workstream khác | Không tạo match từ lịch sử; vẫn chỉ chọn explicit CURRENT entry có material relevance với tác vụ. |
 | P04 | Chỉ nhắc Revamp hoặc dùng làm ví dụ tương tự | Không kích hoạt toàn quy trình Router/history/CURRENT. |
@@ -43,7 +43,7 @@ Router hiện hành: `TASK_ROUTER.yaml` v2.0. Các case cũ bên dưới giữ n
 
 | ID | Tác vụ/điều kiện | Kỳ vọng |
 | --- | --- | --- |
-| Q01 | Sắp trình bày phương án mà repo đã thông qua và triển khai | Đọc nguồn/decision hiện hành liên quan trước history; dẫn source path/section, phân loại đã đáp ứng; không trình bày lại là ý tưởng mới. File tồn tại không tự chứng minh accepted; implemented không chứng minh live verified. |
+| Q01 | Sắp trình bày phương án mà repo đã thông qua và triển khai | Đọc nguồn/decision hiện hành theo thứ tự ở mục Preflight hai đường, trước khi đánh giá phương án; dẫn source path/section, phân loại đã đáp ứng; không trình bày lại là ý tưởng mới. File tồn tại không tự chứng minh accepted; implemented không chứng minh live verified. |
 | Q02 | Có chứng cứ trái mới, triển khai lệch hoặc user yêu cầu xét lại | Có thể mở lại đúng phạm vi và giải thích lý do; không đóng băng mọi quyết định cũ. |
 | Q03 | Repo không truy cập được, chỉ thấy landing page hoặc chưa đọc đủ nguồn liên quan | Báo phạm vi đã đọc và phần thiếu; hoãn phương án phụ thuộc, chỉ tiếp tục phần độc lập; không suy absence/novelty từ retrieval thất bại. |
 | Q04 | Local working tree mới hơn main remote hoặc có dependency dirty liên quan | Dùng local hiện tại, ghi branch/HEAD và quan hệ remote khi biết; không âm thầm thay bằng snapshot cũ hoặc commit dependency của người dùng. |
@@ -59,9 +59,21 @@ Các tình huống N01–N08 là fixture giả định trong Revamp; không tạ
 | N03 | CURRENT ghi Architecture 1.7 / Authoring 0.6; repo hiện có 1.8 / 0.6; task cần continuity Authoring | Dùng Architecture 1.8 hiện hành; đánh dấu pin 1.7 stale khi material, giữ Authoring history/state còn hợp lệ; không vô hiệu toàn handoff hoặc đồng bộ mọi CURRENT. |
 | N04 | Chỉ dùng Authoring làm ví dụ so sánh/analogy | Không nạp Authoring CURRENT. |
 | N05 | Repo không phân biệt rejected/deferred/unimplemented; CURRENT hợp lệ ghi status cần cho task | Sau repo/history, nạp CURRENT cho đúng câu hỏi continuity; không dùng status đó thay trạng thái implementation từ repo. |
-| N06 | Audit Revamp substantive đủ đáp án từ primary repo sources | Repo/history preflight như cũ; không CURRENT load, không báo preflight thiếu chỉ vì bỏ qua handoff không cần thiết. |
+| N06 | Audit mô tả hiện trạng Revamp, đủ đáp án từ primary repo sources | Repo/history preflight như cũ; không CURRENT load, không báo preflight thiếu chỉ vì bỏ qua handoff không cần thiết. |
 | N07 | CURRENT đã nạp ghi chưa IMPLEMENTED; repo hiện chứng minh đã IMPLEMENTED | Repo thắng cho implementation claim; chỉ claim tương ứng STALE / CONFLICTED, giữ lịch sử/quyết định/attribution khác. |
 | N08 | Repo thiếu quyết định cũ, không có entry/CURRENT hợp lệ cung cấp continuity | Báo UNKNOWN / continuity gap; không suy quyết định cũ, không thay nguồn bằng file version/latest hoặc bịa state. |
+
+## Preflight hai đường — đặc tả tĩnh
+
+| ID | Tác vụ/điều kiện | Kỳ vọng |
+| --- | --- | --- |
+| O01 | ID1 đánh giá phương án thay control hoặc kiến trúc của Revamp | Chọn ID1, FULL_FILE History, kiểm nguồn đích hiện hành và hệ thống thật, rồi mới đánh giá phương án. Architecture Preflight áp dụng theo điều kiện sẵn có. |
+| O02 | ID2 viết brief giới hạn phạm vi để xây dựng phương án đổi routing đáng kể | Giữ ID2. Revamp đọc History trước khi kiểm nguồn đích, rồi đưa bằng chứng và ràng buộc cần thiết vào brief. Brief không thực thi thay đổi. |
+| O03 | Trong Revamp, đề xuất thay đổi cấu trúc cho project khác | History trước nguồn đích. Kiến trúc và chủ sở hữu lấy từ nguồn hiện hành của project đích. Lượt đọc không cấp quyền sửa hay cài control Revamp vào project đó. |
+| O04 | Descriptive audit hoặc kiểm tra thông tin thực tế về cấu trúc đang dùng | Nguồn hiện hành trước History đối với việc phụ thuộc hệ thống. Việc nhắc kiến trúc không tự kích hoạt History-first hoặc mở đề xuất. |
+| O05 | ID2 bàn giao quyết định đã chốt, cần đối chiếu hệ thống và không có blocker mở lại thiết kế | Dùng nguồn hiện hành trước History. Giữ quyết định và phạm vi đã chốt. |
+| O06 | Sau History và nguồn đích, một trong hai đường còn hoặc hết nhu cầu tiếp nối | Chỉ đọc FULL_FILE CURRENT khi còn nhu cầu có ảnh hưởng. CURRENT không thay bằng chứng tại đích và không cấp quyền. |
+| O07 | Đề xuất cấu trúc đã vào đúng đường nhưng History thiếu hoặc không đọc được | Báo đúng nguồn thiếu và hoãn phần đề xuất phụ thuộc. Không thay History bằng CURRENT. |
 
 ## Mẫu tạo/cập nhật CURRENT
 
@@ -79,7 +91,7 @@ Các dòng V01–V15 là kỳ vọng chuẩn tắc để review tĩnh và làm f
 | ID | Yêu cầu/điều kiện | Kỳ vọng |
 | --- | --- | --- |
 | V01 | Audit repository hiện hành | ID1; kiểm tra repo liên quan rồi FULL_FILE history; CURRENT chỉ khi còn cần continuity. |
-| V02 | Tiếp tục workstream, thiếu lý do quyết định cũ trong repo, có CURRENT hợp lệ | ID1; repo → history → needed FULL_FILE CURRENT; không coi CURRENT là quyền mới. |
+| V02 | Tiếp tục workstream đã chốt, thiếu lý do quyết định cũ trong repo, có CURRENT hợp lệ | ID1; repo → history → needed FULL_FILE CURRENT; không coi CURRENT là quyền mới. |
 | V03 | Viết một cảnh fiction hoặc content độc lập | ID1; làm trực tiếp; không tự nạp repo/history/CURRENT, không tự ghi CURRENT. |
 | V04 | Brainstorm thông thường | ID1; capability dùng trực tiếp, không tạo module. |
 | V05 | “Viết prompt cho Codex” | ID2; đọc AT_R; giữ settled scope/decisions; chỉ inspect repo khi artifact phụ thuộc repo; không implement task downstream. |
@@ -135,7 +147,7 @@ Các case A01–A10 kiểm contract và expected behavior; test Python chỉ ki�
 
 Trong môi trường Revamp thử nghiệm được người dùng cho phép, cung cấp CI/Router và nguồn đúng cho từng tình huống; yêu cầu thực hiện tác vụ ngắn tương ứng, quan sát nguồn được chọn, trạng thái báo cáo và hành động ghi thực tế. Với R05 dùng đúng hai nguồn fixture tạm do người kiểm tra cung cấp; với R06/R18 chủ động không cung cấp dependency. Đối chiếu kỳ vọng từng dòng; ghi PASS/FAIL/NOT RUN cùng chứng cứ thật vào CURRENT khi có quyền. Kiểm thử riêng trong Central Hub cho R11 mà không cài cơ chế Revamp vào đó. Xóa fixture khỏi môi trường thử theo quyền của người kiểm tra, không biến chúng thành entry production.
 
-## S — Core tự đủ v2.6 (đặc tả; LIVE NOT RUN)
+## S — Core tự đủ (đặc tả v2.6; chưa có kết quả cho các probe này)
 
 Đây là ca để người dùng thực hiện sau khi cho phép môi trường thử; lượt bảo trì repository chỉ review tĩnh, không gọi model, không tự cài Instructions.
 

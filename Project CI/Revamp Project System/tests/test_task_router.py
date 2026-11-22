@@ -9,6 +9,7 @@ import yaml
 
 SYSTEM = Path(__file__).resolve().parents[1]
 ROOT = SYSTEM.parent
+MAINTENANCE = ROOT.parent / "codex-workflows/revamp-system-maintenance/SKILL.md"
 
 
 class TaskRouterContractTests(unittest.TestCase):
@@ -16,7 +17,7 @@ class TaskRouterContractTests(unittest.TestCase):
     def setUpClass(cls):
         cls.raw = (SYSTEM / "TASK_ROUTER.yaml").read_text(encoding="utf-8")
         cls.router = yaml.safe_load(cls.raw)
-        cls.ci = (ROOT / "Revamp_Project_System_CI_v2.6.md").read_text(encoding="utf-8")
+        cls.ci = (ROOT / "Revamp_Project_System_CI_v2.7.md").read_text(encoding="utf-8")
         cls.authoring = (SYSTEM / "AT_R.md").read_text(encoding="utf-8")
         cls.cases = (SYSTEM / "tests/HANDOFF_ROUTE_TEST_CASES.md").read_text(encoding="utf-8")
 
@@ -57,7 +58,6 @@ class TaskRouterContractTests(unittest.TestCase):
         repo = self.router["repository_preflight"]
         self.assertEqual(repo["url"], "https://github.com/lead21pc/ChatGPT-Creative-Workshops")
         self.assertIn("current local working tree", repo["local_state"])
-        self.assertIn("before history, CURRENT recovery", repo["timing"])
         self.assertIn("already satisfied, genuine gap or conflict", repo["proposal_check"])
         history = self.router["historical_preflight"]
         self.assertEqual(history["read_mode"], "FULL_FILE")
@@ -77,6 +77,45 @@ class TaskRouterContractTests(unittest.TestCase):
         for rule in ("takes precedence", "STALE / CONFLICTED",
                      "STALE SHARED VERSION PIN != STALE ENTIRE HANDOFF", "Central Hub"):
             self.assertIn(rule, boundaries)
+
+    def test_preflight_order_for_proposals_and_other_system_work(self):
+        context = self.router["context_loading"]["order"]
+        for rule in ("in either ID", "forms, evaluates, or plans",
+                     "before target inspection", "for any project",
+                     "inspect current sources before history",
+                     "only needed FULL_FILE CURRENT",
+                     "descriptive inspection", "settled-decision handoff"):
+            self.assertIn(rule, context)
+        history = self.router["historical_preflight"]
+        self.assertIn("before target inspection", history["timing"])
+        self.assertIn("after repository_preflight otherwise", history["timing"])
+        self.assertIn("repository authority", history["excludes"])
+        self.assertIn("Defer the dependent proposal", history["failure_behavior"])
+        repo = self.router["repository_preflight"]["timing"]
+        self.assertIn("after FULL_FILE history and before forming or evaluating a solution", repo)
+        self.assertIn("Otherwise before history", repo)
+        self.assertIn("Always before CURRENT recovery", repo)
+        routing = self.ci.split("4A. ROUTING", 1)[1].split("5. MINIMUM", 1)[0]
+        self.assertIn("FULL_FILE history before target read for material structural/control proposals", routing)
+        self.assertIn("after sources otherwise", routing)
+        self.assertIn("CURRENT: needed continuity only", routing)
+        self.assertEqual(re.findall(r"^\| (O\d\d) \|", self.cases, re.M),
+                         [f"O{i:02}" for i in range(1, 8)])
+
+    def test_vietnamese_protection_is_first_and_uses_two_gates(self):
+        history = (SYSTEM / "HISTORY_AND_WHAT_NOT_TO_DO.md").read_text(encoding="utf-8")
+        rules = history.split("## 9. What Revamp must not do", 1)[1].lstrip()
+        self.assertTrue(rules.startswith("### 9.1 Preserve the Vietnamese output contract\n"))
+        language = rules.split("### 9.2", 1)[0]
+        for rule in ("**Contract gate.**", "**Clause gate.**", "explicit user requirement",
+                     "every affected guard", "full behavioral equivalent",
+                     "proposal review, implementation, and final diff review"):
+            self.assertIn(rule, language)
+        skill = MAINTENANCE.read_text(encoding="utf-8")
+        for rule in ("bản tiền nhiệm trực tiếp", "cả hai gate ở History §9.1",
+                     "khi xét đề xuất, triển khai và kiểm diff cuối",
+                     "BASE = DESIGN SOURCE / LINEAGE", "HOLD UP: BASE SEMANTICS MISMATCH"):
+            self.assertIn(rule, skill)
 
     def test_deliverable_based_selection_and_no_composition(self):
         selection = self.router["task_selection"]
@@ -120,12 +159,12 @@ class TaskRouterContractTests(unittest.TestCase):
         self.assertIn("LIVE HARNESS PASS != REAL-CONTEXT ROBUSTNESS PROVEN", self.cases)
 
     def test_active_references_and_encoding(self):
-        paths = [ROOT / "Revamp_Project_System_CI_v2.6.md", ROOT / "CHANGELOG.md",
+        paths = [ROOT / "Revamp_Project_System_CI_v2.7.md", ROOT / "CHANGELOG.md",
                  SYSTEM / "TASK_ROUTER.yaml", SYSTEM / "AT_R.md",
                  SYSTEM / "ARCHITECTURE_PREFLIGHT.md",
                  SYSTEM / "HISTORY_AND_WHAT_NOT_TO_DO.md",
                  SYSTEM / "Handoffs/REVAMP_SYSTEM_CURRENT.md",
-                 SYSTEM / "tests/HANDOFF_ROUTE_TEST_CASES.md", Path(__file__)]
+                 SYSTEM / "tests/HANDOFF_ROUTE_TEST_CASES.md", MAINTENANCE, Path(__file__)]
         for path in paths:
             with self.subTest(path=path.name):
                 raw = path.read_bytes()

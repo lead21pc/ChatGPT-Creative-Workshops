@@ -1,15 +1,22 @@
 # Changelog — Revamp Project System CI
 
-Cập nhật ngày 2026-11-11. Phạm vi: dòng Revamp CI và các thay đổi trực tiếp của cơ chế handoff đi kèm.
+Cập nhật ngày 2026-11-23. Phạm vi: dòng Revamp CI và các thay đổi trực tiếp của cơ chế handoff đi kèm.
 
 Ngày commit được quy về UTC+07:00. Ngày nhập hoặc khôi phục file vào Git không chứng minh ngày tạo, ngày chấp thuận hay ngày cài vào ChatGPT Project. Các bản trong `Source_Archive` chỉ được đọc để đối chiếu lịch sử theo yêu cầu làm changelog; chúng không trở thành nguồn điều khiển hiện hành.
 
 ## Trạng thái hiện hành
 
-- CI: [Revamp_Project_System_CI_v2.6.md](Revamp_Project_System_CI_v2.6.md), `ACTIVE` trong repository; core cần thiết từ ChatGPT Project Global Native 9.1.1 được tích hợp trực tiếp. Global CI là nguồn thiết kế, không là runtime dependency.
+- CI: [Revamp_Project_System_CI_v2.7.md](Revamp_Project_System_CI_v2.7.md), `ACTIVE` trong repository; core cần thiết từ ChatGPT Project Global Native 9.1.1 được tích hợp trực tiếp. Global CI là nguồn thiết kế, không là runtime dependency.
 - Task Router: [TASK_ROUTER.yaml](<Revamp Project System/TASK_ROUTER.yaml>), v2.0, `active`; ID1 `REVAMP_CORE`, ID2 `AUTHORING` qua [AT_R.md](<Revamp Project System/AT_R.md>).
 - Trạng thái tiếp nối và bằng chứng kiểm chứng được ghi tại [REVAMP_SYSTEM_CURRENT.md](<Revamp Project System/Handoffs/REVAMP_SYSTEM_CURRENT.md>).
-- CI v2.6: `LIVE VERIFIED: NOT RUN`, chưa cài vào Project runtime. Baseline v2.5/receipt có `LIVE VERIFIED: ACTIVE` theo báo cáo người dùng ngày 2026-11-05 trong CURRENT; Codex chưa tái hiện độc lập, runtime/probe coverage chưa được cung cấp. Promotion, commit và kiểm tra tĩnh không tự chứng minh cài đặt hoặc hành vi live. Changelog này ghi lịch sử, không cấp quyền hay thay CURRENT.
+- CI v2.7 và thứ tự nạp mới: `LIVE VERIFIED: NOT RUN`. Người dùng xác nhận v2.6 đã chạy live và ổn định. Phạm vi probe và kết quả đối chiếu hồi quy chưa được cung cấp. Bằng chứng của v2.5/receipt và v2.6 giữ đúng phạm vi cũ. Changelog này ghi lịch sử, không cấp quyền hay thay CURRENT.
+
+## 2026-11-23 — CI v2.7: đọc History trước đề xuất cấu trúc hoặc điều khiển
+
+- CI §4A và Router quy định đọc đầy đủ History trước nguồn đích khi Revamp hình thành, đánh giá hoặc lên kế hoạch cho thay đổi cấu trúc hay điều khiển đáng kể. Công việc phụ thuộc hệ thống còn lại giữ thứ tự nguồn trước History. CURRENT chỉ đọc nếu còn nhu cầu tiếp nối có ảnh hưởng.
+- Router giữ v2.0 theo tiền lệ bổ sung preflight có điều kiện ở `9a21bf4`. Hai ID, trách nhiệm của CI và Router, cùng cách ly Central Hub được giữ nguyên.
+- History §8B ghi lịch sử kỷ luật tiếng Việt và bài học từ lần Hub làm yếu chốt ngôn ngữ khi nén CI. §9.1 và skill bảo trì yêu cầu căn cứ riêng cho hợp đồng và từng chốt. Base semantics được giữ nguyên.
+- [CI v2.6](Source_Archive/Revamp_Project_System_CI_v2.6.md) được lưu nguyên byte. SHA-256 `3544b5fffda86fed1daa4c00a698021c102a260d36f5a00c6512134715c82ea5`.
 
 ## 2026-11-11 — Cài skill Revamp vào Codex
 
