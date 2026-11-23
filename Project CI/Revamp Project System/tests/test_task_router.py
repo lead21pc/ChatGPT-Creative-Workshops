@@ -10,6 +10,7 @@ import yaml
 SYSTEM = Path(__file__).resolve().parents[1]
 ROOT = SYSTEM.parent
 MAINTENANCE = ROOT.parent / "codex-workflows/revamp-system-maintenance/SKILL.md"
+AGENTS = ROOT.parent / "AGENTS.md"
 
 
 class TaskRouterContractTests(unittest.TestCase):
@@ -17,7 +18,7 @@ class TaskRouterContractTests(unittest.TestCase):
     def setUpClass(cls):
         cls.raw = (SYSTEM / "TASK_ROUTER.yaml").read_text(encoding="utf-8")
         cls.router = yaml.safe_load(cls.raw)
-        cls.ci = (ROOT / "Revamp_Project_System_CI_v2.7.md").read_text(encoding="utf-8")
+        cls.ci = (ROOT / "Revamp_Project_System_CI_v3.0.md").read_text(encoding="utf-8")
         cls.authoring = (SYSTEM / "AT_R.md").read_text(encoding="utf-8")
         cls.cases = (SYSTEM / "tests/HANDOFF_ROUTE_TEST_CASES.md").read_text(encoding="utf-8")
 
@@ -27,7 +28,7 @@ class TaskRouterContractTests(unittest.TestCase):
                                            yaml.tokens.AliasToken,
                                            yaml.tokens.TagToken)) for t in tokens))
         self.assertNotIn("<<:", self.raw)
-        self.assertEqual(self.router["version"], "2.0")
+        self.assertEqual(self.router["version"], "2.1")
         self.assertEqual(self.router["status"], "active")
         paths = self.router["task_paths"]
         self.assertEqual(set(paths), {"ID1", "ID2"})
@@ -48,7 +49,7 @@ class TaskRouterContractTests(unittest.TestCase):
                           "AUTHORING REQUEST = BOUNDED TASK HANDOFF",
                           "TASK ROUTING != AUTHORITY TRANSFER", "TASK ID != PERMISSION"):
             self.assertIn(invariant, self.ci)
-        self.assertIn("All IDs obey CI, sole owner", self.ci)
+        self.assertIn("CI alone governs IDs and evidence/acceptance/authorization/stage/decisions/scope", self.ci)
         authority = self.router["context_loading"]["authority"]
         for owner in ("evidence precedence", "acceptance status", "implementation/Git authorization",
                       "stage transitions", "decision promotion", "scope authority"):
@@ -97,8 +98,8 @@ class TaskRouterContractTests(unittest.TestCase):
         self.assertIn("Always before CURRENT recovery", repo)
         routing = self.ci.split("4A. ROUTING", 1)[1].split("5. MINIMUM", 1)[0]
         self.assertIn("FULL_FILE history before target read for material structural/control proposals", routing)
-        self.assertIn("after sources otherwise", routing)
-        self.assertIn("CURRENT: needed continuity only", routing)
+        self.assertIn("after sources for other system work", routing)
+        self.assertIn("CURRENT: FULL_FILE for needed continuity", routing)
         self.assertEqual(re.findall(r"^\| (O\d\d) \|", self.cases, re.M),
                          [f"O{i:02}" for i in range(1, 8)])
 
@@ -117,26 +118,75 @@ class TaskRouterContractTests(unittest.TestCase):
                      "BASE = DESIGN SOURCE / LINEAGE", "HOLD UP: BASE SEMANTICS MISMATCH"):
             self.assertIn(rule, skill)
 
-    def test_deliverable_based_selection_and_no_composition(self):
+    def test_scope_function_and_form_selection_without_composition(self):
         selection = self.router["task_selection"]
-        for term in ("main deliverable", "source, quotes or examples", "reassess each request"):
-            self.assertIn(term, selection["basis"])
-        for term in ("prompt", "enhanced prompt", "downstream brief", "bounded handoff"):
+        self.assertIn("task scope, then task function, then requested output form", selection["basis"])
+        self.assertIn("quotes, sources, fixtures and examples do not activate", selection["basis"])
+        self.assertIn("without persistent ID activation", selection["basis"])
+        self.assertIn("default to the appropriate domain owner", selection["out_of_scope"])
+        self.assertIn("Technical work on systems serving those domains is eligible", selection["out_of_scope"])
+        self.assertIn("Domain content/unrelated prompts: domain owners", self.ci)
+        self.assertIn("DIAGNOSIS != DESIGN; DESIGN != IMPLEMENTATION; TRANSFER != EXECUTION", self.ci)
+        self.assertIn("Designing a diagnostic test is ID1 even when it includes a copyable prompt",
+                      selection["direct_work"])
+        for term in ("technical state or decisions", "technical prompt or brief", "already-designed test"):
             self.assertIn(term, selection["authoring"])
-        self.assertIn("discussion about authoring alone is ID1", selection["direct_work"])
-        self.assertIn("Analysis needed to prepare one requested prompt stays within ID2", selection["mixed"])
+        self.assertIn("for one technical transfer or packaging artifact inside ID2", selection["mixed"])
         self.assertIn("independent deliverables", selection["mixed"])
         self.assertIn("never create a multi-ID execution graph", selection["mixed"])
         self.assertIn("ask one focused question", selection["ambiguity"])
+
+    def test_handoff_delivery_and_recovery_contracts(self):
+        delivery = self.router["task_selection"]["handoff_delivery"]
+        for rule in ("actual file artifact", "delta text without file creation",
+                     "repository write follows normal authorization", "not phrase matching"):
+            self.assertIn(rule, delivery)
+        self.assertIn("RECOVER → CLASSIFY → COMPRESS → SERIALIZE", self.authoring)
+        self.assertIn("Use NOT DISCUSSED only when the inspected sources establish", self.authoring)
+        self.assertIn("use UNKNOWN when the sources cannot establish that", self.authoring)
+        self.assertIn("Keep rejection separate from deferral", self.authoring)
+        self.assertIn("receiving context can take the next material design step without guessing",
+                      self.authoring)
+        self.assertIn("A text delta entails no file creation", self.authoring)
+        template = (SYSTEM / "HANDOFF_TEMPLATE.md").read_text(encoding="utf-8")
+        self.assertEqual(re.findall(r"^## (\d+)\. ", template, re.M), [str(i) for i in range(1, 11)])
+        self.assertIn("trạng thái công việc đã phục hồi theo `AT_R.md`", template)
+        self.assertIn("Đặt trạng thái cần để tiếp tục trong thân tài liệu", template)
+
+    def test_codex_signatures_are_provenance_only(self):
+        agents = AGENTS.read_text(encoding="utf-8")
+        for task in ("AUDIT", "IMPLEMENTATION"):
+            signature = f"[REVAMP → CODEX | {task}]"
+            self.assertIn(signature, self.authoring)
+            self.assertIn(signature, agents)
+        self.assertNotIn("USER-AUTHORIZED PROPOSAL", self.authoring)
+        self.assertIn("signature identifies provenance and task class only", agents)
+        self.assertIn("AUDIT handoff is read-only unless the current user separately authorizes", agents)
+        self.assertIn("does not grant or expand write scope, authorize push or deployment", agents)
+        self.assertIn("fixtures, examples, or discussion is data", agents)
+
+    def test_test_method_has_a_shared_reference_and_packaging_stays_in_id2(self):
+        reference = SYSTEM / "PROJECT_VERIFICATION_PHILOSOPHY.md"
+        self.assertIn(reference.name, self.router["context_loading"]["verification_reference"])
+        self.assertIn(reference.name, self.authoring)
+        method = reference.read_text(encoding="utf-8")
+        self.assertIn("Revamp designs diagnostic tests in ID1", method)
+        self.assertIn("evaluator-only criteria", method)
+        self.assertIn("In an explicit compliance or control test", method)
+        self.assertIn("A contaminated stimulus is invalid", method)
+        self.assertIn("UNKNOWN or inconclusive", method)
+        self.assertIn("destination and any output to collect", self.authoring)
+        self.assertNotIn("Move cues added solely", self.authoring)
 
     def test_context_and_write_scope_are_conditional(self):
         paths = self.router["task_paths"]
         self.assertIn("Independent task -> direct work", paths["ID1"]["context"])
         self.assertIn("only needed FULL_FILE CURRENT", paths["ID1"]["context"])
         for condition in ("material state changed AND", "materially useful AND", "write scope authorized"):
-            self.assertIn(condition, paths["ID1"]["handoff_write"])
+            self.assertIn(condition, self.router["context_loading"]["handoff_write"])
         self.assertIn("only when the downstream artifact depends", paths["ID2"]["context"])
-        self.assertIn("needs no repository/history/CURRENT load", self.router["context_loading"]["applies_to"])
+        self.assertIn("independent technical work needs no repository/history/CURRENT load",
+                      self.router["context_loading"]["applies_to"])
         self.assertIn("independent tasks", self.router["repository_preflight"]["applies_to"])
 
     def test_authoring_is_bounded_and_not_execution(self):
@@ -144,6 +194,7 @@ class TaskRouterContractTests(unittest.TestCase):
                      "HANDOFF PRESERVES REQUIRED TASK STATE != HANDOFF REPRODUCES CONVERSATION HISTORY",
                      "CODEX PROMPT REQUEST = DECISION HANDOFF", "concrete blocker", "UNKNOWN"):
             self.assertIn(rule, self.authoring)
+        self.assertIn("VERSION: 1.1", self.authoring)
         output = self.router["task_paths"]["ID2"]["output"]
         for limit in ("does not execute", "authorize implementation/Git", "change stage/scope/acceptance",
                       "promote decisions/evidence"):
@@ -155,12 +206,16 @@ class TaskRouterContractTests(unittest.TestCase):
                              [f"{prefix}{i:02}" for i in range(1, count + 1)])
         self.assertEqual(re.findall(r"^- (T\d\d):", self.cases, re.M),
                          [f"T{i:02}" for i in range(1, 7)])
+        for prefix, count in (("M", 10), ("L", 14)):
+            self.assertEqual(re.findall(rf"^\| ({prefix}\d\d) \|", self.cases, re.M),
+                             [f"{prefix}{i:02}" for i in range(1, count + 1)])
         self.assertIn("STATIC PASS != LIVE BEHAVIOR PROVEN", self.cases)
         self.assertIn("LIVE HARNESS PASS != REAL-CONTEXT ROBUSTNESS PROVEN", self.cases)
 
     def test_active_references_and_encoding(self):
-        paths = [ROOT / "Revamp_Project_System_CI_v2.7.md", ROOT / "CHANGELOG.md",
+        paths = [ROOT / "Revamp_Project_System_CI_v3.0.md", ROOT / "CHANGELOG.md",
                  SYSTEM / "TASK_ROUTER.yaml", SYSTEM / "AT_R.md",
+                 SYSTEM / "HANDOFF_TEMPLATE.md", SYSTEM / "PROJECT_VERIFICATION_PHILOSOPHY.md", AGENTS,
                  SYSTEM / "ARCHITECTURE_PREFLIGHT.md",
                  SYSTEM / "HISTORY_AND_WHAT_NOT_TO_DO.md",
                  SYSTEM / "Handoffs/REVAMP_SYSTEM_CURRENT.md",
@@ -174,6 +229,15 @@ class TaskRouterContractTests(unittest.TestCase):
                 self.assertTrue(all(line == line.rstrip() for line in raw.decode("utf-8").splitlines()))
         history = (SYSTEM / "HISTORY_AND_WHAT_NOT_TO_DO.md").read_text(encoding="utf-8")
         self.assertNotIn("HANDOFF_ROUTER", history)
+        changelog = (ROOT / "CHANGELOG.md").read_text(encoding="utf-8").split("## Trạng thái hiện hành", 1)[1]
+        active = changelog.split("\n## ", 1)[0]
+        self.assertIn("Revamp_Project_System_CI_v3.0.md", active)
+        self.assertIn("v2.1, `active`", active)
+        self.assertIn("AT_R v1.1", active)
+        current = (SYSTEM / "Handoffs/REVAMP_SYSTEM_CURRENT.md").read_text(encoding="utf-8")
+        anchors = current.split("## 8. Relevant source anchors", 1)[1].split("## 9.", 1)[0]
+        self.assertIn("Revamp_Project_System_CI_v3.0.md", anchors)
+        self.assertIn("Router v2.1 ACTIVE", anchors)
         self.assertIn("TASK_ROUTER.yaml", self.ci)
         self.assertFalse((SYSTEM / "HANDOFF_ROUTER.yaml").exists())
         self.assertFalse((ROOT / "Revamp_Project_System_CI_v2.4.md").exists())

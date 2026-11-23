@@ -1,15 +1,24 @@
 # Changelog — Revamp Project System CI
 
-Cập nhật ngày 2026-11-23. Phạm vi: dòng Revamp CI và các thay đổi trực tiếp của cơ chế handoff đi kèm.
+Cập nhật ngày 2026-11-24. Phạm vi: dòng Revamp CI và các thay đổi trực tiếp của cơ chế handoff đi kèm.
 
 Ngày commit được quy về UTC+07:00. Ngày nhập hoặc khôi phục file vào Git không chứng minh ngày tạo, ngày chấp thuận hay ngày cài vào ChatGPT Project. Các bản trong `Source_Archive` chỉ được đọc để đối chiếu lịch sử theo yêu cầu làm changelog; chúng không trở thành nguồn điều khiển hiện hành.
 
 ## Trạng thái hiện hành
 
-- CI: [Revamp_Project_System_CI_v2.7.md](Revamp_Project_System_CI_v2.7.md), `ACTIVE` trong repository; core cần thiết từ ChatGPT Project Global Native 9.1.1 được tích hợp trực tiếp. Global CI là nguồn thiết kế, không là runtime dependency.
-- Task Router: [TASK_ROUTER.yaml](<Revamp Project System/TASK_ROUTER.yaml>), v2.0, `active`; ID1 `REVAMP_CORE`, ID2 `AUTHORING` qua [AT_R.md](<Revamp Project System/AT_R.md>).
+- CI: [Revamp_Project_System_CI_v3.0.md](Revamp_Project_System_CI_v3.0.md), `ACTIVE` trong repository; core cần thiết từ ChatGPT Project Global Native 9.1.1 được tích hợp trực tiếp. Global CI là nguồn thiết kế, không là runtime dependency.
+- Task Router: [TASK_ROUTER.yaml](<Revamp Project System/TASK_ROUTER.yaml>), v2.1, `active`; ID1 `REVAMP_CORE`, ID2 `AUTHORING` qua [AT_R v1.1](<Revamp Project System/AT_R.md>).
 - Trạng thái tiếp nối và bằng chứng kiểm chứng được ghi tại [REVAMP_SYSTEM_CURRENT.md](<Revamp Project System/Handoffs/REVAMP_SYSTEM_CURRENT.md>).
-- CI v2.7 và thứ tự nạp mới: `LIVE VERIFIED: NOT RUN`. Người dùng xác nhận v2.6 đã chạy live và ổn định. Phạm vi probe và kết quả đối chiếu hồi quy chưa được cung cấp. Bằng chứng của v2.5/receipt và v2.6 giữ đúng phạm vi cũ. Changelog này ghi lịch sử, không cấp quyền hay thay CURRENT.
+- CI v3.0, Router v2.1 và AT_R v1.1: `LIVE VERIFIED: NOT RUN`. Báo cáo của người dùng về v2.6 và v2.5/receipt giữ phạm vi cũ. Changelog này ghi lịch sử, không cấp quyền hay thay CURRENT.
+
+## 2026-11-24 — Revamp v3.0: nhiệm vụ kỹ thuật và chuyển giao trạng thái
+
+- CI v3.0 ghi quyết định thu hẹp phạm vi: chẩn đoán, audit, thiết kế, kiểm chứng, chuyển giao và triển khai kỹ thuật có quyền. Công việc nội dung và prompt chung mặc định thuộc project sở hữu miền.
+- Router v2.1 xét phạm vi, chức năng rồi dạng đầu ra. Giữ ID1 `REVAMP_CORE` và ID2 `AUTHORING`. ID1 thiết kế phép thử. ID2 chuyển giao quyết định, trạng thái hoặc phép thử đã chốt.
+- AT_R v1.1 giữ đường dẫn cũ, phục hồi trạng thái trước khi nén, phân biệt file tải xuống, delta dạng văn bản và ghi repository. Mẫu CURRENT giữ 10 mục. Quy tắc thiết kế và chấm phép thử nằm trong nguồn kiểm chứng chung.
+- AT_R phát dấu `[REVAMP → CODEX | AUDIT]` hoặc `[REVAMP → CODEX | IMPLEMENTATION]`. AGENTS gốc nhận diện nguồn gốc và loại việc. Quyền thao tác tiếp tục theo yêu cầu người dùng và bằng chứng tại đích.
+- Bản tiền nhiệm được lưu nguyên byte: [CI v2.7](Source_Archive/Revamp_Project_System_CI_v2.7.md), [Router v2.0](Source_Archive/TASK_ROUTER_v2.0.yaml), [AT_R chưa đánh số](Source_Archive/AT_R_unversioned_pre_v1.1.md).
+- Các probe v3.0 nằm trong [đặc tả kiểm thử](<Revamp Project System/tests/HANDOFF_ROUTE_TEST_CASES.md>). LIVE VERIFIED: NOT RUN.
 
 ## 2026-11-23 — CI v2.7: đọc History trước đề xuất cấu trúc hoặc điều khiển
 

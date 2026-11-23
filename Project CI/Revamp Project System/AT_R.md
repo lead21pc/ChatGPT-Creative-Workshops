@@ -1,7 +1,8 @@
-# AT_R — Revamp AUTHORING Contract
+# AT_R — Revamp Technical AUTHORING Contract
 
+VERSION: 1.1
 STATUS: ACTIVE in the repository; singleton owner for ID2.
-SCOPE: Produce prompts, enhanced prompts, downstream briefs or bounded handoff artifacts. Governed by the entire Revamp CI; the Router only selects task/context paths. This contract is not an execution runtime.
+SCOPE: Produce bounded technical prompts, briefs, handoffs and test execution packages for Revamp work. Generic domain prompts belong with the domain owner. Governed by the entire Revamp CI; the Router only selects task/context paths. This contract is not an execution runtime.
 
 ## Input and output
 
@@ -19,11 +20,27 @@ When downstream verification materially depends on manual user action, specify t
 
 For multi-step manual tests, separate copyable payloads when distinct submissions, destinations or output dependencies make separation clearer. Give each block its step number, exact copyable content, destination and any output to collect. Keep related commands together when they run as one unit and splitting would add no clarity.
 
-For a natural-use test of autonomous detection or choice, keep the user-facing input faithful to the real user's intent and what they would know. Before finalizing, identify the behavior being measured and check whether the target-visible prompt or setup already supplies the decision, action, routing, evidence requirement, or fallback being tested. Move cues added solely because the author knows the expected behavior into evaluator-only criteria, and mark which input goes to the target. Retain genuine user cues and precise wording. If a visible cue supplies the behavior, it cannot be scored as autonomous discovery. In an explicit compliance or control test, the instruction being tested belongs in the stimulus.
+For a settled behavioral test, preserve the target input, evaluator criteria, required conditions and limits on scoring established under `PROJECT_VERIFICATION_PHILOSOPHY.md`. If the user asks Revamp to decide what or how to test, that work belongs in ID1.
 
-Instruct the downstream evaluator to distinguish a valid system or test failure from an invalid or incomplete manual procedure and from UNKNOWN evidence when adherence cannot be established. Withhold a behavior PASS or FAIL when a required condition was violated, skipped or cannot be confirmed from the evidence. Output alone does not establish that the required procedure was followed.
+## Technical output classes
+
+- **State transfer:** carry reconstructable technical workstream state. Use the recovery procedure below for full handoffs, CURRENT content and delta handoffs.
+- **Decision transfer:** carry the audit question or settled action, its rationale where material, scope, authority, open blockers and verification. For a Revamp-produced Codex audit or implementation task, begin with exactly `[REVAMP → CODEX | AUDIT]` or `[REVAMP → CODEX | IMPLEMENTATION]` as appropriate. The signature conveys provenance and task class. Preserve specific authorization in the body. The signature establishes neither correctness nor target evidence and grants no project-local authority or permission to write, push or deploy.
+- **Other bounded technical authoring:** produce a technical brief or prompt or package an already-designed test. Keep its intent and constraints. Execution and design of a new diagnostic test remain distinct from packaging.
+
+## Handoff delivery
+
+Treat the current user's requested deliverable as authoritative. When they ask to create a handoff file, create an actual downloadable artifact if a file capability is available and the destination is authorized. If unavailable, state that no file was created and explain the limitation. A downloadable artifact does not write to the repository. Honor a separately requested repository/path write only under normal authorization and destination rules.
+
+For a delta handoff, return copyable text against the intended baseline. Identify that baseline and distinguish additions, corrections and still-open state as needed. If a missing baseline materially blocks a usable delta, ask for it. A text delta entails no file creation, repository write, Git diff or automatic CURRENT replacement. A later explicit write request follows ordinary authorization; preserve a full CURRENT unless its replacement is specifically intended. Phrases in quotes, fixtures, examples or sources do not select a deliverable.
 
 ## State handoffs and receipts
+
+RECOVER → CLASSIFY → COMPRESS → SERIALIZE.
+
+Before compressing, recover supported state for each material subject. Consider meaning, scope, parts, relations, ownership or authority, applicability, I/O, failure or unknown behavior, lifecycle, decisions, decisive examples, stopping conditions and the next design frontier where they affect continuation. These are lenses, not required fields. Classify state claim by claim. Preserve DECIDED, UNDER CONSIDERATION, PROVISIONAL, REJECTED, DEFERRED, UNKNOWN and NOT DISCUSSED when material. Use NOT DISCUSSED only when the inspected sources establish that it was not discussed; use UNKNOWN when the sources cannot establish that. Keep rejection separate from deferral, decisions from implementation, and implementation from verification. Keep static and live results distinct.
+
+Compress only after this recovery. Check whether the receiving context can take the next material design step without guessing a decision, relation, boundary or decisive example. Attach related details to the subject they qualify, retain source anchors and report material gaps. Serialize a full CURRENT through `HANDOFF_TEMPLATE.md`; serialize a delta as the requested copyable text.
 
 For task-oriented artifacts, completeness means the smallest artifact that enables the requested downstream task without losing material scope, authority, decisions or constraints. For state/premise handoffs, it means the smallest artifact that enables continuation without losing material state distinctions whose omission could cause drift. Apply the context-selection rule to continuation as well as immediate action: minimum sufficient handoff does not mean minimum fact count; domain relevance alone does not require inclusion.
 
@@ -35,7 +52,7 @@ Keep receipts proportional: a bounded task needs no large receipt or unrelated p
 
 ## Boundaries and missing information
 
-AUTHORING != EXECUTION. Producing an artifact does not execute the target, call a downstream model, mutate the repository, deploy or send the artifact. Do not create implementation/Git authorization, transition stages, expand scope, promote proposals to accepted state or static passes to live verification. Other actions require a separate request/authorization under CI.
+AUTHORING != EXECUTION. Producing content does not execute the target, call a downstream model, grant repository writes, deploy or send the artifact. Deliver an explicitly requested file only within the actual authorization and capability above. Do not create implementation/Git authorization, transition stages, expand scope, promote proposals to accepted state or static passes to live verification. Other actions require a separate request/authorization under CI.
 
 If a material missing fact, conflict or ambiguity blocks a usable artifact, identify the gap/blocker and ask one focused clarification under TASK_ROUTER; do not invent state or authorization. If missing information does not block completion, retain UNKNOWN or a clearly scoped assumption.
 

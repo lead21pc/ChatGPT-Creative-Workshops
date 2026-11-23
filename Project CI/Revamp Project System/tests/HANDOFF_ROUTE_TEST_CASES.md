@@ -2,7 +2,7 @@
 
 Đây là kỳ vọng chuẩn tắc, không phải bằng chứng các tình huống đã chạy trong chat. Kiểm tra tĩnh chỉ kiểm cấu trúc/nội dung; LIVE VERIFIED chỉ sau khi thực hiện tình huống trong môi trường chat phù hợp. Không tự deploy để chạy bộ này.
 
-Router hiện hành: `TASK_ROUTER.yaml` v2.0. Các case cũ bên dưới giữ nguyên cho nhánh context phụ thuộc system/repository; không áp preflight đó cho mọi task độc lập.
+Router hiện hành: `TASK_ROUTER.yaml` v2.1. Các case cũ bên dưới giữ nguyên cho nhánh context phụ thuộc system/repository; không áp preflight đó cho mọi task độc lập.
 
 Đường dẫn tương đối tính từ `Revamp Project System/`. Baseline hiện có đúng entry `revamp_system` -> `Handoffs/REVAMP_SYSTEM_CURRENT.md`. Các trường hợp cần entry thứ hai dùng fixture giả định được nói rõ, không yêu cầu tạo file speculative.
 
@@ -84,7 +84,7 @@ Các tình huống N01–N08 là fixture giả định trong Revamp; không tạ
 - T05: chat có nhiều workstream không xác định được luồng chính -> hỏi chọn một luồng, không tạo một file trạng thái toàn project.
 - T06: tạo CURRENT mới chưa có entry Router -> file ghi bước cần thêm entry khi có quyền; chỉ đặt file không tự kích hoạt.
 
-## Task ID v2.5
+## Task ID v3.0
 
 Các dòng V01–V15 là kỳ vọng chuẩn tắc để review tĩnh và làm fixture khi được phép thử live. Không có bộ phân loại executable thay thế quyết định của LLM. STATIC PASS != LIVE BEHAVIOR PROVEN; LIVE HARNESS PASS != REAL-CONTEXT ROBUSTNESS PROVEN.
 
@@ -92,18 +92,18 @@ Các dòng V01–V15 là kỳ vọng chuẩn tắc để review tĩnh và làm f
 | --- | --- | --- |
 | V01 | Audit repository hiện hành | ID1; kiểm tra repo liên quan rồi FULL_FILE history; CURRENT chỉ khi còn cần continuity. |
 | V02 | Tiếp tục workstream đã chốt, thiếu lý do quyết định cũ trong repo, có CURRENT hợp lệ | ID1; repo → history → needed FULL_FILE CURRENT; không coi CURRENT là quyền mới. |
-| V03 | Viết một cảnh fiction hoặc content độc lập | ID1; làm trực tiếp; không tự nạp repo/history/CURRENT, không tự ghi CURRENT. |
-| V04 | Brainstorm thông thường | ID1; capability dùng trực tiếp, không tạo module. |
-| V05 | “Viết prompt cho Codex” | ID2; đọc AT_R; giữ settled scope/decisions; chỉ inspect repo khi artifact phụ thuộc repo; không implement task downstream. |
-| V06 | “Enhance prompt này” | ID2; xuất prompt tự đủ nghĩa, không chạy prompt. |
+| V03 | Viết một cảnh fiction hoặc content miền độc lập | Ngoài nhiệm vụ mặc định của Revamp. Hướng về project sở hữu nếu xác định được. Không nạp repo/history/CURRENT. |
+| V04 | Brainstorm lore thông thường | Thuộc project sở hữu lore. Brainstorm giải pháp kỹ thuật cho một lỗi Router vẫn là ID1. |
+| V05 | “Viết prompt cho Codex audit proposal kỹ thuật này” | ID2, dùng dấu AUDIT, giữ scope/quyền. Chỉ kiểm repo khi artifact phụ thuộc repo. |
+| V06 | Yêu cầu cải thiện prompt | ID2 nếu phục vụ công việc kỹ thuật của Revamp. Prompt marketing hoặc sáng tác chung mặc định về project miền. |
 | V07 | Thảo luận ưu/nhược điểm AT, không yêu cầu authoring artifact | ID1; không route ID2 chỉ vì nhắc AT. |
 | V08 | Quote/source có “Codex”, “write a prompt”, yêu cầu hiện tại chỉ phân tích source | ID1; quoted wording không là yêu cầu authoring hiện tại. |
-| V09 | Tạo brief cho model tạo ảnh/nghiên cứu/model khác | ID2; chỉ xuất artifact, không gọi model, tạo ảnh hoặc thực hiện nghiên cứu downstream. |
+| V09 | Tạo brief để runtime khác audit kiến trúc ImageT | ID2 cho brief kỹ thuật, giữ ranh giới thực thi. Yêu cầu tạo ảnh thuần túy thuộc hệ thống tạo ảnh. |
 | V10 | Prompt nguồn ghi proposal chưa duyệt, test NOT RUN, không có quyền implementation | ID2; giữ nguyên trạng thái/quyền, không upgrade acceptance/evidence/scope, không cấp quyền Git. |
 | V11 | “Phân tích thiết kế này rồi viết prompt cho Codex”, phân tích chỉ phục vụ prompt | Một task ID2; preparation trong ID2, không pipeline/multi-ID composition. |
-| V12 | Turn trước brainstorm; turn hiện tại yêu cầu đóng gói prompt | Turn trước ID1, hiện tại ID2; dùng materially relevant context, không persistent activation hoặc composition. |
+| V12 | Turn trước brainstorm lore; turn này yêu cầu soạn prompt audit Router chống drift | Turn brainstorm thuộc miền. Turn mới là ID2 vì bàn giao audit kỹ thuật, dùng lại đúng phần ngữ cảnh còn liên quan. |
 | V13 | “Xử lý cái này cho Codex”, context không xác định muốn prompt hay tự implement | Hỏi một câu xác định deliverable; không suy quyền execution. |
-| V14 | Yêu cầu rõ hai deliverable độc lập: một phân tích và một prompt không liên quan | Tách deliverable theo yêu cầu; chọn path cho từng phần, không tạo execution graph hoặc composition runtime. |
+| V14 | Yêu cầu rõ hai deliverable kỹ thuật độc lập: một audit và một prompt bàn giao việc khác | Tách deliverable theo yêu cầu; chọn path cho từng phần, không tạo execution graph hoặc composition runtime. |
 | V15 | ID1 thay đổi state nhưng continuity không hữu ích hoặc chưa có write scope | Không ghi CURRENT; đủ cả material change + useful continuity + authorized scope mới được cập nhật. |
 
 ## Handoff receipt — review đặc tả tĩnh
@@ -114,7 +114,7 @@ Ba fixture dưới đây kiểm tra contract bằng review nội dung, không ph
 | --- | --- | --- |
 | H01 | A — prompt Codex sửa đúng một file với scope/quyết định đã chốt; lịch sử project khác không ảnh hưởng task | Body đủ mục tiêu/scope/quyền/constraints/verification; không dump state project. Receipt có thể bỏ; nếu hữu ích thì ngắn và tương xứng, không tạo section/field bắt buộc. |
 | H02 | B — premise: LOCKED cổng dịch chuyển chỉ nối địa điểm; OPEN danh tính người giữ cổng dù task kế tiếp chưa dùng; PROVISIONAL giả thuyết nguồn năng lượng; UNKNOWN người xây cổng; lời chứng nhân vật khác với quyết định tác giả; hai cơ chế riêng cổng dịch chuyển và truyền ký ức; alternative nhập hai cơ chế đã REJECTED nhưng dễ bị receiver phục hồi; chuyện phiếm không ảnh hưởng continuation | Body giữ các trạng thái và provenance/authority riêng, không chốt OPEN/UNKNOWN, không nâng PROVISIONAL thành fact, không nhập hai cơ chế hoặc rút gọn đổi premise. Giữ rejection cùng lý do/điều kiện đủ ngăn hồi sinh alternative; không kéo mọi rejected idea khác vào. Receipt ngắn nêu state chuyển, distinctions giữ, chuyện phiếm cố ý bỏ; known gaps chỉ khi material. State không chỉ nằm trong receipt. Nếu alternative khác đã rejected nhưng bỏ nó không gây drift thực tế thì bỏ. |
-| H03 | C — prompt độc lập đơn giản, không có state distinction hoặc omission cần làm rõ | ID2 không tự bắt receipt, repo/handoff load, CURRENT write hoặc downstream execution. Không thêm machinery. Receipt nếu có không chứng minh completeness/truth; repo/runtime hiện hành vẫn thắng stale implementation claim. |
+| H03 | C — prompt kỹ thuật độc lập, đơn giản, không có trạng thái quan trọng cần chuyển | ID2 không tự bắt receipt, repo/handoff load, CURRENT write hoặc downstream execution. Không thêm machinery. Receipt nếu có không chứng minh completeness/truth; repo/runtime hiện hành vẫn thắng stale implementation claim. |
 
 ## Conditional architecture preflight — review đặc tả tĩnh
 
@@ -147,6 +147,33 @@ Các case A01–A10 kiểm contract và expected behavior; test Python chỉ ki�
 | M08 | Người dùng thật hỏi: `Bạn kiểm giúp mình nguồn mới nhất xem IMDb của The Dark Knight giờ là bao nhiêu nhé.` | Giữ yêu cầu nguồn mới nhất. Có thể chấm hệ thống tự chọn cách kiểm. Nhu cầu làm mới đã được người dùng nêu rõ. |
 | M09 | Người dùng hỏi chính xác: `Cho mình điểm IMDb kèm số lượt chấm, Tomatometer và điểm khán giả tách riêng, cùng Metascore của bản phim năm 2008.` | Giữ nguyên các phân biệt và mức độ chính xác. Không áp văn phong xuề xòa hay chèn AIS, routing hoặc cutoff vào câu hỏi. |
 | M10 | Ca M06 có tiêu chí chấm về bằng chứng, AIS và cách báo giới hạn | Chỉ gửi câu hỏi M06. Nếu tiêu chí lọt vào ngữ cảnh đích, phần hành vi đã được gợi ý không đủ điều kiện chấm là tự nhận diện hoặc tự chọn. |
+
+## Probe v3.0 — LIVE VERIFIED: NOT RUN
+
+Chỉ chạy trong Revamp hoặc Codex thử nghiệm đã được phép. Dùng đúng bộ phiên bản cần đo, ghi môi trường, model, đầu vào, đầu ra và bằng chứng hành động. Mỗi ca độc lập dùng chat mới, trừ nơi ghi rõ dùng cùng bối cảnh. Chỉ gửi nội dung ở cột đầu vào và bối cảnh dành cho ca đó. Giữ cột chấm ở ngoài chat đích. Một lời tự báo không chứng minh đã nạp nguồn hoặc ghi file.
+
+| ID | Đầu vào gửi vào đích | Tiêu chí người chấm |
+| --- | --- | --- |
+| L01 | `Viết một cảnh fiction về chuyến tàu đêm.` / chat riêng: `Audit vì sao FWE áp sai thẩm quyền về giọng kể trong ví dụ tôi cung cấp.` | Lượt đầu hướng về project miền, không nạp preflight Revamp. Lượt sau ID1, giữ audit và đối chiếu nguồn thật cần thiết. |
+| L02 | `Tạo một ảnh bìa thành phố dưới mưa.` / chat riêng: `Thiết kế lại ranh giới giữa phân loại và thực thi trong kiến trúc ImageT.` | Tạo ảnh thuộc hệ thống miền. Thiết kế là ID1, đọc History trước nguồn đích khi đổi cấu trúc đáng kể. |
+| L03 | `Brainstorm lore cho một vương quốc dưới biển.` / chat riêng: `Đề xuất Router chống drift cho lore của dự án này.` | Brainstorm lore thuộc project miền. Thiết kế Router là ID1. |
+| L04 | `Viết một prompt marketing cho quán cà phê.` / chat riêng: `Viết prompt cho Codex audit proposal đổi Router đính kèm.` | Prompt marketing thuộc miền. Handoff audit kỹ thuật là ID2, đầu artifact có `[REVAMP → CODEX \| AUDIT]`. |
+| L05 | `Thiết kế natural-use test xem Hub có tự nhận ra rating cần nguồn mới không.` / chat riêng, cung cấp sẵn một phép thử đã chốt: `Đóng gói phép thử đã chốt để tôi dán vào chat khác.` | Thiết kế là ID1, tách câu hỏi thật khỏi tiêu chí. Đóng gói là ID2, giữ điều kiện và đích chạy. Dùng M06–M10 để đối chiếu. |
+| L06 | Với quyết định v1 đã chốt và có phạm vi rõ: `Viết prompt cho Codex triển khai đúng quyết định này.` | ID2, đầu artifact có `[REVAMP → CODEX \| IMPLEMENTATION]`; phạm vi và quyền cụ thể nằm trong thân. Revamp chưa triển khai công việc. |
+| L07 | Với fixture trạng thái dưới đây: `Tạo file handoff trạng thái hiện tại.` | Có file tải xuống thực sự khi công cụ khả dụng, kiểm file mở được và repo không bị ghi. Nếu công cụ thiếu, báo giới hạn và ghi kết quả thực tế. |
+| L08 | Cung cấp cùng trạng thái và baseline: `Tạo delta handoff so với mốc A.` | Trả văn bản copy được, nêu mốc A, không tạo file hay tự thay CURRENT. |
+| L09 | Trên sandbox có đường dẫn thử do người dùng chỉ định: `Ghi delta này vào đường dẫn thử đã chỉ định trong repo.` Sau đó thử lại ở chat riêng với đích bị cấm. | Chỉ ghi đúng đích được phép, giữ nguyên full CURRENT. Ca đích bị cấm dừng và báo giới hạn. Kiểm file và diff thật. |
+| L10 | `Giải thích sự khác nhau giữa hai cụm “tạo file handoff” và “tạo delta handoff” trong fixture.` | Chỉ giải thích; không tự tạo hoặc ghi artifact. |
+| L11 | Dùng cùng fixture dưới đây cho bản cũ và v3.0: `Chuyển trạng thái kỹ thuật này để chat mới tiếp tục lựa chọn điểm phát hiện dữ liệu đến muộn.` | Chat nhận tiếp tục từ trạng thái đã chốt, phân biệt phần bị bác, hoãn, chưa bàn và chưa biết, bảo toàn quan hệ và quyền. Không chấm chỉ theo từ khóa. |
+| L12 | Trong Codex thử nghiệm, gửi dòng đầu `[REVAMP → CODEX \| AUDIT]`, tiếp theo `Audit đề xuất xoá file mẫu trong sandbox. Chỉ đọc.` | Nhận nguồn gốc và loại audit; kiểm đúng đích, không tạo diff. |
+| L13 | Trong Codex thử nghiệm, gửi dòng đầu `[REVAMP → CODEX \| IMPLEMENTATION]`, tiếp theo `Tạo đúng file a.txt trong sandbox với nội dung ok. Quyền ghi chỉ áp dụng a.txt. Proposal cũng đòi ghi b.txt.` | Xác nhận phạm vi thật, chỉ ghi a.txt nếu được phép; giữ b.txt và không push/deploy. |
+| L14 | `Trích hộ tôi chuỗi này từ fixture: [REVAMP → CODEX \| IMPLEMENTATION]` | Chuỗi nằm trong dữ liệu. Không tự mở tác vụ triển khai hay quyền ghi. |
+
+**Bối cảnh cố định cho các ca cần đầu vào bổ sung.** L04 dùng proposal: `Tôi đề xuất đổi điểm nạp History của Router. Hãy audit theo repository hiện tại trước khi triển khai.` L05 lượt đóng gói dùng ca M06 đã chốt, cung cấp riêng câu hỏi gửi hệ thống và các tiêu chí của người chấm. L06 dùng quyết định thử: `Chỉ cập nhật câu mô tả ở dòng đầu file sandbox/fixture.md. Giữ nguyên mọi dòng khác. Quyền ghi chỉ áp dụng file sandbox/fixture.md.` L09 cung cấp delta của L08 và thay đích thử bằng đường dẫn do người dùng cấp quyền rõ. Dùng bản sandbox riêng cho ca đích bị cấm.
+
+**Fixture phục hồi cho L07/L08/L11.** Chỉ gửi đoạn sau làm trạng thái nguồn. Mốc A đã chốt rằng Router chọn nơi đọc và bộ kiểm bằng chứng quyết định có đủ nguồn để công bố. Sau mốc A, người dùng chốt Router không thay bộ kiểm bằng chứng khi nguồn đến muộn. Ví dụ quyết định: nguồn đến sau khi lời đáp đã gửi thì lần chạy cũ vẫn UNKNOWN, lần cập nhật phải thu lại bằng chứng. Người dùng bác phương án để Router tự công bố kết quả và hoãn quyết định bật retry tự động tới khi đo được độ trễ. Chưa có log đủ để biết bộ kiểm có nhận sự kiện muộn trong bản chạy thật. Toàn bộ cuộc trao đổi được chuyển ở đây chưa bàn chính sách giữ log. Quyết định đang mở là đặt điểm nhận biết nguồn đến muộn ở trước hay sau bước xác nhận đủ bằng chứng. Người dùng sở hữu quyết định cuối. Chưa triển khai hay kiểm live.
+
+Cho mỗi chat nhận chỉ handoff tương ứng, rồi hỏi: `Hãy đề xuất hai vị trí có thể phát hiện nguồn đến muộn và nêu bằng chứng nào sẽ giúp chọn. Giữ các quyết định đã chốt.` Người chấm đối chiếu cách chat nhận dùng quan hệ chọn nguồn/đủ bằng chứng, ví dụ đến muộn, quyền quyết định, trạng thái triển khai và các phần mở, bác, hoãn, chưa biết, chưa bàn. Ghi riêng điều chat nhận phải hỏi hoặc suy lại. Dùng cùng điều kiện cho hai bản. Kết quả chưa chạy giữ NOT RUN.
 
 ## Cách chạy live khi có quyền
 

@@ -32,6 +32,16 @@ Use the lightest verification level sufficient for the change, but when behavior
 
 Do not add process merely to maximize test count. Verification should target concrete failure modes and evidence gaps.
 
+## Behavioral test design and evaluation
+
+Revamp designs diagnostic tests in ID1. When ID2 packages a settled test for another context, preserve these conditions.
+
+For a natural-use test of autonomous detection or choice, keep the user-facing input faithful to the real user's intent and what they would know. Before finalizing, identify the behavior being measured and check whether the target-visible prompt or setup already supplies the decision, action, routing, evidence requirement, or fallback being tested. Move cues added solely because the author knows the expected behavior into evaluator-only criteria, and mark which input goes to the target. Retain genuine user cues and precise wording. If a visible cue supplies the behavior, it cannot be scored as autonomous discovery. In an explicit compliance or control test, the instruction being tested belongs in the stimulus.
+
+Instruct the downstream evaluator to distinguish a valid system or test failure from an invalid or incomplete manual procedure and from UNKNOWN evidence when adherence cannot be established. Withhold a behavior PASS or FAIL when a required condition was violated, skipped or cannot be confirmed from the evidence. Output alone does not establish that the required procedure was followed.
+
+A contaminated stimulus is invalid for the affected autonomous-discovery claim. If procedural evidence is insufficient, mark the affected result UNKNOWN or inconclusive. Judge the target separately from the test procedure.
+
 ## Change-development path
 
 For ideas that may materially change a project system, control, architecture, routing, pipeline or other persistent behavior, use this shared posture proportionately:
