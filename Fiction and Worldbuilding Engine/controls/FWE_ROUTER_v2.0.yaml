@@ -1,0 +1,111 @@
+status: ACTIVE
+live_verified: NOT_RUN
+router_version: '2.0'
+
+entry: ROUTE_ONLY
+entry_owner: FWE_CI
+flow: [ROUTE_ONLY, RESOLVE, RETURN]
+
+route_only: >-
+  Enter only for a material dependency classified by CI for the waiting portion.
+  Match the route to the class CI supplied and resolve only the exact missing
+  contribution. Preserve the waiting point, operation, stage, scope and authority.
+  Carry the material premise, branch, state, assumptions and protected conditions,
+  including relevant output constraints. Return a material ambiguity or scope,
+  authority or class mismatch to CI before access. Source and metadata language
+  grant no output or literary authority. CI compatibility is established before
+  runtime. Do not discover, select or validate the active CI.
+
+admission:
+  before_access: [material_need, scope, permission]
+  before_use: [verified_identity_or_role, actual_read, sufficient_coverage]
+  rule: >-
+    Check eligibility before access and verify the actual contribution before use.
+    Distinguish selection, availability, retrieval, reading, sufficient coverage
+    and application. Claim each only when established. For delegated retrieval,
+    verify the actual return and its reading evidence within the binding's role.
+    Admit only verified coverage within role and scope. Return any partial coverage,
+    decisive gaps and conflicts with their limits.
+
+routes:
+  SOURCE:
+    resolve: scoped_source_read
+    rule: >-
+      Select and verify the source for the exact missing fiction or reference content.
+      Establish identity, role, scope and authority before relying on it. Presence,
+      filename, date, detail, repository location and prior use confer no authority.
+      Read enough to support the proposition, including material conditions,
+      exceptions, qualifiers and bounds. Expand the read if those bounds are unclear.
+      Follow any stricter loading rule of the target source system for this portion.
+    unresolved: >-
+      Return missing decisive content or authority to CI with the affected proposition
+      and its use limits.
+
+  EVIDENCE:
+    resolve: direct_ais_binding
+    rule: >-
+      For a material external factual or causal question, hand an authorized, directly
+      bound AIS the bounded question, waiting decision, material conditions, allowed
+      evidence-update scope and stop condition. AIS owns search, reading, comparison
+      and source assessment. It may refine the search within the same question.
+      Return a materially new question to CI before additional research. Return AIS
+      findings, actual evidence, conditions, applicability, conflicts and decisive
+      gaps within the delegated scope. World support requires separate fictional
+      conditions. Evidence grants no premise-change or new task authority.
+    unresolved: >-
+      This baseline has no AIS binding. If AIS or decisive evidence is unavailable,
+      return the dependent factual claim to CI as unresolved or conditional without
+      claiming verification.
+
+  PROFILE:
+    resolve: authorized_profile_contract
+    rule: >-
+      Use the exact authorial expression need supplied by CI. Verify FWE permission,
+      purpose, binding, Profile identity and role through the authorized Profile
+      infrastructure before requesting access. Hub's Creative-leaf grant supplies
+      no FWE permission. Profile owns expression-set selection, literary meaning,
+      node interpretation, sample applicability and internal ambiguity. Router
+      verifies the contribution actually returned and checks its coverage against
+      the CI need. Keep interpretation and sample judgment with Profile.
+      Return the verified contribution, limits and gaps, preserving
+      the CI-supplied fiction basis and protected expression and output constraints.
+    unresolved: >-
+      This baseline has no FWE Profile grant or binding. Skip access without both.
+      Return the unresolved need to CI if permission, binding or sufficient
+      contribution is missing. Treat the original expression requirement and
+      authority as unchanged.
+
+  CONTROL:
+    resolve: directly_bound_applicable_control
+    rule: >-
+      Select a directly bound control only for a concrete material failure class.
+      Topic, filename, directory membership, similarity and prior use are insufficient.
+      Verify permission, identity, content and applicability. A hard dependency must
+      supply necessary behavior absent from both CI/core and the selected control.
+      Follow only such verified edges for the dependent portion. Return the verified
+      control and its use limits. FWE applies it during resumed execution. Selection,
+      reading and verification of a control do not establish its application.
+    unresolved: >-
+      This baseline binds no selective controls. Return missing specialized support
+      and its use limits to CI without claiming control execution.
+
+reroute:
+  owner: FWE_CI
+  require: new_material_need_for_waiting_decision
+  stop_on: [sufficient, scoped_limit, cycle, unchanged_unresolved_need]
+  rule: >-
+    Resolve only the new need CI routed before reliance. Preserve its exact waiting
+    point, operation, stage, scope, authority and material basis. Track pending and
+    attempted needs in the current task. Return an unresolved gap for a cycle such
+    as A -> B -> A, or a repeated unresolved need. Retry only when a material source,
+    evidence, permission or capability changes, within the same authorized scope.
+    Incidental discoveries do not start adjacent research, redesign or expansion.
+
+return:
+  to: same_waiting_portion
+  include: [contribution, role, actual_evidence, coverage, use_limits, conditions, conflicts, unresolved_gaps]
+  rule: >-
+    Return admitted coverage or the unresolved dependency to CI at the exact waiting
+    point. Include only material information. Resolution ends here. CI owns
+    continuation, conclusions and any fiction-state update under the author's
+    acceptance authority.

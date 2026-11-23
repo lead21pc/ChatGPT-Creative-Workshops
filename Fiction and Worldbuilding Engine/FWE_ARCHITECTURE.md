@@ -1,12 +1,12 @@
 # Kiến trúc Fiction and Worldbuilding Engine
 
-Tài liệu này sở hữu quyết định kiến trúc và ranh giới trách nhiệm. [Kế hoạch phát triển](FWE_DEVELOPMENT_PLAN.md) ghi thứ tự triển khai, tiêu chí và bằng chứng. Bộ điều khiển hiện hành gồm [CI v1.0](controls/FWE_CI_v1.0.md) và [Router v1.0](controls/FWE_ROUTER_v1.0.yaml) ở trạng thái `ACTIVE / STATIC PASS / LIVE NOT RUN`. M0–M3 thuộc bộ v0.1 tiền nhiệm.
+Tài liệu này sở hữu quyết định kiến trúc và ranh giới trách nhiệm. [Kế hoạch phát triển](FWE_DEVELOPMENT_PLAN.md) ghi thứ tự triển khai, tiêu chí và bằng chứng. Bộ điều khiển hiện hành gồm [CI v2.0](controls/FWE_CI_v2.0.md) và [Router v2.0](controls/FWE_ROUTER_v2.0.yaml), ở trạng thái `ACTIVE / STATIC PASS / LIVE NOT RUN` trong repository. M0–M3 thuộc bộ v0.1 tiền nhiệm.
 
 ## Quyết định đã chốt
 
 FWE là Project riêng để sáng tác và phát triển nhiều thế giới hư cấu. FWE giữ quyền sáng tạo trong phần được giao và tôn trọng trạng thái của từng thế giới. FTH, C2, The Kingdom, LitRPG và các dự án khác tiếp tục giữ nguồn sự thật của riêng chúng. Người dùng chọn Project theo việc cần làm; FWE không chuyển sang một runtime khác giữa lượt.
 
-FWE dùng một CI tự chứa và một Router xử lý phụ thuộc theo nhu cầu. Router có bốn tuyến và trả đóng góp theo phần việc CI giao.
+FWE dùng một CI tự chứa trong Project Instructions và một Router ở Project Sources. Mỗi vai trò có đúng một tệp `ACTIVE`. Cặp được xác lập tương thích trước khi chạy. CI gọi đúng tên Router tại `ROUTE_ONLY`. Trạng thái ứng viên có thể dùng cho Profile và dữ liệu văn học sau này. CI và Router chỉ có hiệu lực khi là bộ đang hoạt động.
 
 ## Thẩm quyền và luồng thực hiện
 
@@ -21,7 +21,7 @@ CI tiếp tục giữ ranh giới trạng thái, sự thật, chấp nhận, can
 quyền hành động và lời báo hoàn tất trong cả hai đường.
 ```
 
-CI quyết định người dùng đang giao việc gì. Router chọn tuyến `SOURCE`, `EVIDENCE`, `PROFILE` hoặc `CONTROL` cho phần việc đã xác định, kiểm tra quyền và trả đóng góp hoặc điểm thiếu. CI quyết định có định tuyến lại khi phát sinh phụ thuộc. FWE áp dụng kiểm soát nếu đã nhận đủ căn cứ. Việc chọn, truy xuất, đọc và áp dụng cần bằng chứng riêng. CI giữ ranh giới chấp nhận; người dùng hoặc hệ đích mới có thẩm quyền chấp nhận.
+CI xác định việc được giao, phần đang chờ và loại phụ thuộc `SOURCE`, `EVIDENCE`, `PROFILE` hoặc `CONTROL`. Router khớp tuyến đã chỉ định, kiểm quyền, xác minh phần đóng góp thực nhận và trả đóng góp hoặc điểm thiếu về đúng chỗ đang chờ. CI quyết định định tuyến lại, tiếp tục, giới hạn hoặc hoãn từng phần. Việc chọn, truy xuất, đọc và áp dụng cần bằng chứng riêng. CI giữ ranh giới chấp nhận. Tác giả hoặc hệ đích có thẩm quyền chấp nhận trong phạm vi tương ứng.
 
 “Viết cảnh hai người gặp lại sau 20 năm” đi thẳng nếu tự đủ. Không tra nguồn, nạp control hay xuất báo cáo định tuyến mặc định. Nếu trong lúc viết xuất hiện một phụ thuộc có hệ quả, chỉ xét lại phần cần nó; không khởi động lại cả lượt.
 
@@ -37,9 +37,15 @@ CI quyết định người dùng đang giao việc gì. Router chọn tuyến `
 
 Sáng tác, phát triển cảnh, nảy ý, phản biện và đặt tên thông thường thuộc nền FWE. Không tách thành phần Creative, Debate hay Naming. Phần viết vẫn thuộc nền khi đi sau một yêu cầu mở nhánh.
 
-**Brainstorm và Anti-Prior.** CI v1.0 xử lý trực tiếp việc mở nhánh và đổi giả định đã được giao, đồng thời giữ quy tắc bảo toàn cấu trúc trước những mặc định quen thuộc. [Brainstorm v0.1](source_archive/capabilities/FWE_BRAINSTORM_v0.1.md) là ứng viên của bộ tiền nhiệm.
+**Brainstorm và Anti-Prior.** CI xử lý trực tiếp việc mở nhánh và đổi giả định đã được giao, đồng thời giữ quy tắc bảo toàn cấu trúc trước những mặc định quen thuộc. [Brainstorm v0.1](source_archive/capabilities/FWE_BRAINSTORM_v0.1.md) là ứng viên của bộ tiền nhiệm.
 
-**Phối hợp.** Router trả từng đóng góp hoặc điểm thiếu về đúng phần đang chờ. Bộ v1.0 hiện chưa liên kết AIS, Profile dành cho FWE hoặc kiểm soát chọn lọc. Nếu thiếu đóng góp quyết định, giới hạn phần phụ thuộc và tiếp tục phần độc lập.
+**Phối hợp.** Router trả từng đóng góp hoặc điểm thiếu về đúng phần đang chờ. Bộ v2.0 chưa có liên kết AIS, quyền hoặc liên kết Profile riêng cho FWE, hay liên kết kiểm soát chọn lọc. Khi thiếu đóng góp quyết định, CI giới hạn phần phụ thuộc và tiếp tục phần độc lập.
+
+### Diễn đạt và tiếng Việt
+
+CI xác định quyền diễn đạt theo từng lựa chọn. Nếu cần căn cứ diễn đạt của tác giả, CI giao đúng nhu cầu qua Router cho Profile được cấp quyền. Profile sở hữu việc giải nghĩa, chọn tập diễn đạt và xét mẫu. Router xác minh đóng góp và phạm vi đáp ứng. Khi Profile thiếu căn cứ cần thiết, CI giữ phần đó ở trạng thái chưa giải quyết và giữ nguyên quyền đã giao.
+
+Văn hư cấu và phân tích văn học của FWE dùng tiếng Việt. Lớp điều khiển có thể viết bằng tiếng Anh. Cơ chế giao và xử lý phụ thuộc có thể dùng lại, còn định nghĩa văn học, nhịp, từ ngữ, hình ảnh, hàm ý, cách hiện thực hóa cảm xúc và mẫu phải có căn cứ riêng của từng ngôn ngữ.
 
 ## Trách nhiệm xử lý nguồn
 

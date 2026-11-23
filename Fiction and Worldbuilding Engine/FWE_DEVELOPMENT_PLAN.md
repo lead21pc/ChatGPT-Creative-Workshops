@@ -14,7 +14,7 @@ Mỗi mốc dùng `PLANNED`, `ACTIVE`, `PASS` hoặc `BLOCKED`. Đây là trạn
 | M3 — Ứng viên Brainstorm | PASS | `STRUCTURAL_PASS` và `STATIC_SEMANTIC_PASS` cho [Brainstorm v0.1](source_archive/capabilities/FWE_BRAINSTORM_v0.1.md), tích hợp Router và chuẩn hóa lớp điều khiển sang tiếng Anh. Đã rà B1–B4, BN1–BN5, hồi quy M1–M2, ranh giới thẩm quyền, khả năng chuyển lõi và điểm mở rộng M4. Chưa chạy đối chứng. |
 | M4–M10 | PLANNED | Các mốc dự kiến của kế hoạch v0.1, chưa triển khai. |
 
-Bộ hiện hành gồm [CI v1.0](controls/FWE_CI_v1.0.md) và [Router v1.0](controls/FWE_ROUTER_v1.0.yaml), cả hai `ACTIVE / STATIC PASS / LIVE NOT RUN`. Router có bốn tuyến `SOURCE`, `EVIDENCE`, `PROFILE`, `CONTROL`. Chưa có liên kết AIS, quyền và liên kết Profile riêng cho FWE hoặc kiểm soát chọn lọc được liên kết. Chưa cài đặt ChatGPT Project. Các mốc và phép đối chứng v0.1 dưới đây được giữ làm hồ sơ của bộ tiền nhiệm.
+Bộ hiện hành gồm [CI v2.0](controls/FWE_CI_v2.0.md) và [Router v2.0](controls/FWE_ROUTER_v2.0.yaml), cả hai `ACTIVE / STATIC PASS / LIVE NOT RUN` trong repository. Router có bốn tuyến `SOURCE`, `EVIDENCE`, `PROFILE`, `CONTROL`. Chưa có liên kết AIS, quyền hoặc liên kết Profile riêng cho FWE, hay liên kết kiểm soát chọn lọc. Cặp v2.0 chưa được cài trên ChatGPT Project. Các mốc và phép đối chứng v0.1 dưới đây được giữ làm hồ sơ của bộ tiền nhiệm.
 
 Khi một ca lỗi, ghi đó là lỗi đã quan sát, đã tái hiện, rủi ro có căn cứ hay giả thuyết. Chẩn đoán và mở lại đúng phần bị ảnh hưởng; giữ các kết quả độc lập. Một phát hiện không cấp quyền thiết kế lại hoặc sửa ngoài phạm vi.
 
@@ -87,7 +87,7 @@ Kiểm đường trực tiếp bằng cảnh gặp lại sau 20 năm; sau đó k
 
 Dùng các đối chứng nguồn: bối cảnh đã đủ nên không tra ngoài; tệp hiện hành được giao nên dùng đúng phạm vi; nguồn quyết định thiếu nên không khẳng định trạng thái đích; archive chỉ cho lịch sử; cảm hứng từ FTH phải tách cơ chế khỏi lore/quyền/phụ thuộc. Kiểm lại đường sáng tác thường sau khi phối hợp. Không suy “không gọi Router” từ việc câu trả lời không in nhãn.
 
-Router Markdown thuộc bộ tiền nhiệm. Router v1.0 dùng YAML đã qua kiểm cấu trúc và rà ngữ nghĩa tĩnh.
+Router Markdown thuộc bộ v0.1. Cặp v1.0 là [bản lưu](source_archive/controls/). Cặp v2.0 giữ Router YAML và đã qua kiểm hợp đồng tĩnh cho đường sáng tác trực tiếp, phát triển cùng tiền đề, thiếu nguồn, thiếu AIS và phụ thuộc phát sinh giữa chừng (P1–P5). Việc thử các ca này trên ChatGPT Project chưa diễn ra trong đợt này.
 
 ## Mức bằng chứng
 
