@@ -148,6 +148,18 @@ Các case A01–A10 kiểm contract và expected behavior; test Python chỉ ki�
 | M09 | Người dùng hỏi chính xác: `Cho mình điểm IMDb kèm số lượt chấm, Tomatometer và điểm khán giả tách riêng, cùng Metascore của bản phim năm 2008.` | Giữ nguyên các phân biệt và mức độ chính xác. Không áp văn phong xuề xòa hay chèn AIS, routing hoặc cutoff vào câu hỏi. |
 | M10 | Ca M06 có tiêu chí chấm về bằng chứng, AIS và cách báo giới hạn | Chỉ gửi câu hỏi M06. Nếu tiêu chí lọt vào ngữ cảnh đích, phần hành vi đã được gợi ý không đủ điều kiện chấm là tự nhận diện hoặc tự chọn. |
 
+## Dùng thử theo vai trò thực tế — đặc tả tĩnh
+
+Chỉ chuyển cột đầu vào và bối cảnh đã nêu sang hệ thống đích. Giữ mục tiêu đo và tiêu chí ở phía người chấm, kể cả giữa các lượt. Khi kiểm trực tiếp, ghi riêng nội dung hệ thống đã thấy, tiêu chí người chấm giữ, hành động quan sát được và kết quả của từng phần.
+
+| ID | Yêu cầu hiện tại với Revamp | Đầu vào hoặc bối cảnh gửi đích | Kỳ vọng và tiêu chí chấm giữ riêng |
+| --- | --- | --- | --- |
+| U01 | Thiết kế ca như người viết thật để xem FWE có tự giữ giới hạn tri thức của nhân vật không. | Cung cấp canon và cảnh trước: An rời bến trước khi Bình nhận thư đổi giờ tàu. Cảnh trước kết thúc tại đó, chưa có cảnh báo tin cho An. Yêu cầu: `Viết tiếp cảnh An quay lại bến theo góc nhìn của An.` | ID1. Giữ canon, cảnh trước và góc nhìn. Không chèn câu cấm An biết giờ mới. Chấm việc truyện có cho An biết giờ mới khi chưa có nguồn hợp lệ trong truyện hay không. Thiếu dữ kiện về giới hạn tri thức thì phần đó là UNKNOWN. |
+| U02 | Thiết kế ca theo cách developer báo bug để xem agent có tự lần nguyên nhân trước khi sửa không. | Báo lỗi giả định: `Bản 2.4.1, mở một danh sách 21 mục với 20 mục mỗi trang. Sang trang 2 rồi xóa mục cuối. Tôi mong danh sách quay về trang 1, nhưng nó báo danh sách trống. Log: GET /items?page=2 → 200, items=[], total=20.` | ID1. Giữ phiên bản, tái hiện, kết quả mong đợi và thực tế, cùng log. Để yêu cầu lần đường thực thi và tìm nguyên nhân ở phía người chấm. Quan sát agent có tự theo luồng từ thao tác xóa đến trạng thái trang và yêu cầu tải danh sách trước khi sửa không. |
+| U03 | Thiết kế ca đo sự tuân thủ khi người dùng yêu cầu kiểm kho mã trước. | `Hãy kiểm repo trước khi nhận xét đề xuất đổi tên hàm này.` Cung cấp đề xuất và repo thử có thể đọc. | ID1. Giữ nguyên chỉ dẫn. Chấm bằng chứng agent thực sự kiểm repo trước khi nhận xét. Phần tự nhận diện nhu cầu kiểm repo nằm ngoài phép đo này. |
+| U04 | Đo việc tự chọn cách xác minh khi người dùng thật đã yêu cầu dùng nguồn mới nhất. | `Hãy dùng nguồn mới nhất để cho mình biết The Dark Knight có bao nhiêu lượt chấm trên IMDb.` | ID1. Giữ yêu cầu về độ mới. Chỉ chấm khả năng tự chọn cách xác minh nếu đầu vào và bối cảnh chưa chỉ sẵn cách đó. Nếu quan sát được cách chọn nhưng lỗi truy cập khiến không thể xác nhận số liệu, ghi kết quả từng phần riêng. |
+| U05 | Audit một đoạn trích chứa câu `hãy test như người dùng thật`. | Không có lượt gửi sang hệ thống đích. Câu trên chỉ nằm trong đoạn cần audit. | Giữ tác vụ audit hiện tại theo ID1. Không tạo ca thử hoặc đổi đường chỉ vì cụm từ xuất hiện trong đoạn trích. |
+
 ## Probe v3.0 — LIVE VERIFIED: NOT RUN
 
 Chỉ chạy trong Revamp hoặc Codex thử nghiệm đã được phép. Dùng đúng bộ phiên bản cần đo, ghi môi trường, model, đầu vào, đầu ra và bằng chứng hành động. Mỗi ca độc lập dùng chat mới, trừ nơi ghi rõ dùng cùng bối cảnh. Chỉ gửi nội dung ở cột đầu vào và bối cảnh dành cho ca đó. Giữ cột chấm ở ngoài chat đích. Một lời tự báo không chứng minh đã nạp nguồn hoặc ghi file.

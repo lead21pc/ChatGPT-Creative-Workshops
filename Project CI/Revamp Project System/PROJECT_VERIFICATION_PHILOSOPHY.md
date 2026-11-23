@@ -38,9 +38,13 @@ Revamp designs diagnostic tests in ID1. When ID2 packages a settled test for ano
 
 For a natural-use test of autonomous detection or choice, keep the user-facing input faithful to the real user's intent and what they would know. Before finalizing, identify the behavior being measured and check whether the target-visible prompt or setup already supplies the decision, action, routing, evidence requirement, or fallback being tested. Move cues added solely because the author knows the expected behavior into evaluator-only criteria, and mark which input goes to the target. Retain genuine user cues and precise wording. If a visible cue supplies the behavior, it cannot be scored as autonomous discovery. In an explicit compliance or control test, the instruction being tested belongs in the stimulus.
 
+Treat a request for a natural or real-use test as a design constraint on the actual task and human role, not on conversational style. Preserve the facts, prerequisites, constraints, context and precision the person would genuinely provide, such as reproduction steps, logs and version in a bug report. Do not invent a persona, casual wording, errors, ambiguity, missing information or extra difficulty to simulate realism. Natural phrasing can still reveal the workflow. Keep genuine instructions and score autonomous discovery only for the part left unprompted. At each step, identify what the target sees and keep the evaluator's workflow and success criteria outside that context.
+
 Instruct the downstream evaluator to distinguish a valid system or test failure from an invalid or incomplete manual procedure and from UNKNOWN evidence when adherence cannot be established. Withhold a behavior PASS or FAIL when a required condition was violated, skipped or cannot be confirmed from the evidence. Output alone does not establish that the required procedure was followed.
 
-A contaminated stimulus is invalid for the affected autonomous-discovery claim. If procedural evidence is insufficient, mark the affected result UNKNOWN or inconclusive. Judge the target separately from the test procedure.
+Score each measured behavior separately. PASS requires evidence that it occurred under valid conditions. For autonomous discovery, the prompt and setup must leave that behavior unprompted. FAIL requires a valid test, the necessary prerequisites and a real opportunity to act, with evidence that the target omitted or mishandled the behavior.
+
+A contaminated stimulus is invalid for the affected autonomous-discovery claim. Mark the affected result UNKNOWN or inconclusive when evidence is insufficient or a procedural defect, missing prerequisite, unavailable capability or tool/access failure prevents a conclusion. Judge the target separately from the test procedure. If handling the procedural or tool failure is itself the measured behavior, score that response on its own evidence.
 
 ## Change-development path
 
