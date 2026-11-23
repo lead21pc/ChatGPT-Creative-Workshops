@@ -16,26 +16,69 @@ if (-not $created) { $mutex.Dispose(); return }
 $child = $null
 $snapshot = $null
 $icon = $null
+$trayIcons = @{}
 $menu = $null
 $context = $null
 $timer = $null
 $failure = $null
 $parentStartTicks = (Get-Process -Id $PID).StartTime.ToUniversalTime().Ticks
 
+function New-TrayIcon {
+    param([Drawing.Color]$Color)
+
+    $glyph = @(
+        '................'
+        '..###......###..'
+        '.#####....#####.'
+        '.#####....#####.'
+        '..####....####..'
+        '....###..###....'
+        '.....######.....'
+        '......####......'
+        '......####......'
+        '.......##.......'
+        '.......##.......'
+        '......####......'
+        '.....######.....'
+        '.....######.....'
+        '......####......'
+        '................'
+    )
+    $bitmap = [Drawing.Bitmap]::new(16, 16)
+    try {
+        for ($y = 0; $y -lt 16; $y++) {
+            for ($x = 0; $x -lt 16; $x++) {
+                if ($glyph[$y][$x] -eq '#') { $bitmap.SetPixel($x, $y, $Color) }
+            }
+        }
+
+        $png = [IO.MemoryStream]::new()
+        try {
+            $bitmap.Save($png, [Drawing.Imaging.ImageFormat]::Png)
+            $stream = [IO.MemoryStream]::new()
+            $writer = [IO.BinaryWriter]::new($stream)
+            try {
+                # ICO header and single directory entry, followed by the 32-bit PNG.
+                $writer.Write([byte[]]@(0, 0, 1, 0, 1, 0, 16, 16, 0, 0, 1, 0, 32, 0))
+                $writer.Write([uint32]$png.Length)
+                $writer.Write([uint32]22)
+                $writer.Write($png.ToArray())
+                $writer.Flush()
+                $stream.Position = 0
+                [Drawing.Icon]::new($stream)
+            } finally { $writer.Dispose() }
+        } finally { $png.Dispose() }
+    } finally { $bitmap.Dispose() }
+}
+
 function Set-TrayDisplay {
     param([string]$State, [string]$Detail)
 
-    $image = switch ($State) {
-        'CONFLICT' { [Drawing.SystemIcons]::Warning }
-        'ERROR' { [Drawing.SystemIcons]::Error }
-        'OPERATION' { [Drawing.SystemIcons]::Information }
-        'PAUSED' { [Drawing.SystemIcons]::Question }
-        default { [Drawing.SystemIcons]::Application }
-    }
+    $image = if ($trayIcons.ContainsKey($State)) { $trayIcons[$State] } else { $trayIcons.PAUSED }
     $text = if ($Detail) { "$State · $Detail" } else { $State }
     $tooltip = "Git Side Watcher · $text"
     if ($tooltip.Length -gt 63) { $tooltip = $text }
-    $icon.Icon = $image
+    if (-not [object]::ReferenceEquals($icon.Icon, $image)) { $icon.Icon = $image }
     $icon.Text = $tooltip.Substring(0, [Math]::Min(63, $tooltip.Length))
     $statusItem.Text = $text.Replace('&', '&&').Replace("`r", ' ').Replace("`n", ' ')
     $toggleItem.Text = if ($script:child) { 'Pause' } else { 'Enable' }
@@ -178,6 +221,10 @@ function Read-WatcherStreams {
 
 try {
     Add-Type -AssemblyName System.Windows.Forms
+    $colors = @{ ACTIVE = '#1D9A55'; OPERATION = '#B88700'; CONFLICT = '#E24143'; PAUSED = '#80868E' }
+    foreach ($state in $colors.Keys) {
+        $trayIcons[$state] = New-TrayIcon ([Drawing.ColorTranslator]::FromHtml($colors[$state]))
+    }
     $context = [Windows.Forms.ApplicationContext]::new()
     $menu = [Windows.Forms.ContextMenuStrip]::new()
     $statusItem = $menu.Items.Add('Git Side Watcher')
@@ -214,6 +261,7 @@ try {
     finally {
         if ($timer) { $timer.Dispose() }
         if ($icon) { $icon.Visible = $false; $icon.Dispose() }
+        foreach ($trayIcon in $trayIcons.Values) { $trayIcon.Dispose() }
         if ($menu) { $menu.Dispose() }
         if ($context) { $context.Dispose() }
         $mutex.ReleaseMutex()
