@@ -38,6 +38,8 @@ Valid flows include `IDEA → FTH`, `IDEA → The Kingdom`, and `IDEA → Fanfic
 
 When work leaves a project for Central Hub, the Hub works on the supplied material without inheriting that project's canon authority. The result returns as working material. The receiving project's own sources, local logic, controls, and authorial review determine what the result means there and whether any part is accepted.
 
+When the same chat moves between ChatGPT Projects, any history still available can carry useful reasoning, constraints, explored ideas, open questions, and conclusions whose basis still holds. The receiving Project uses the current request and its own controls to determine the task and stage, assess claims and assumptions against its local sources, and decide what is accepted or authorized within its scope. Prior approvals stay within their original scope. A chat can move from brainstorming in Central Hub to an audit in a fiction project, return to the Hub for creative development, or later bring a reviewed result into Revamp for proposal work.
+
 A transferable result may be re-abstracted into a new fiction idea and explored elsewhere. Its local implementation does not transfer automatically: each project evaluates the idea under its own logic and author decisions.
 
 ```text
