@@ -1,0 +1,34 @@
+role: SOURCE_ROUTER
+version: '1.0'
+status: ACTIVE
+
+resolution:
+  input: ci_selected_source_roles
+  lookup: current_project_sources_only
+  match: exact_filename_version_status_and_role
+  read: FULL_FILE
+  output: exact_reads_and_blockers
+  missing_unreadable_or_incomplete: block_dependent_work
+  wrong_version_status_or_binding: block_dependent_work
+  unknown_role_or_multiple_active_bindings: block_dependent_work
+  ambiguous_project_source: block_dependent_work
+  forbidden_fallbacks: [archive, lookalike_filename, memory, prior_chat, local_git_path]
+
+# Only resolve roles supplied by the CI. Activation describes the required
+# request from the CI, with all applicability decisions made upstream.
+sources:
+  - role: ANTI_PRIOR
+    file: IMAGE_ANTI_PRIOR_v1.0.md
+    version: '1.0'
+    status: ACTIVE
+    activation: ci_required_role
+  - role: HUMANOID_CONSTRUCTION
+    file: HUMANOID_CONSTRUCTION_v1.0.md
+    version: '1.0'
+    status: ACTIVE
+    activation: ci_material_construction_need
+  - role: HUMANOID_DESIGN_PREFERENCE
+    file: HUMANOID_DESIGN_PREFERENCE_v1.0.md
+    version: '1.0'
+    status: ACTIVE
+    activation: explicit_current_operation_only
