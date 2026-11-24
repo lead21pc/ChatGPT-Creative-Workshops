@@ -39,7 +39,7 @@ Manifest băm 17 tệp hiện hành đánh số; không băm chính nó/control/
 
 ## Trạng thái bằng chứng
 
-Cặp trong repository là CI 1.2 và Router 1.2. Cấu hình triển khai đặt CI trong Project Instructions, Router, Authoring Pipeline và các Anti-Drift trong Project Sources, nguồn đánh số trong Library/`C2 Config`. Chưa xác minh cặp mới trong Project đang chạy. Commit chỉ cập nhật gói repository.
+Cặp trong repository là CI 1.2 và Router 1.2. Cấu hình triển khai đặt CI trong Project Instructions, Router, Authoring Pipeline và các Anti-Drift trong Project Sources, nguồn đánh số trong Library/`C2 Config`. Người dùng xác nhận ngày 2026-11-24 rằng bộ điều khiển hiện hành đã được cài và đang chạy. INSTALLED: USER-REPORTED. LIVE ACTIVE: USER-REPORTED. INDEPENDENT LIVE VERIFICATION: NOT RUN. Báo cáo này không xác nhận mọi probe hoặc hồi quy đã đạt.
 
 Bản Router 1.0 lưu trong `Source_Archive/` ghi nhận lượt thử trước đây do tác giả báo cáo sau khi sửa Project Instructions. Lượt đó dùng bộ tên trước khi chuẩn hóa và xác nhận CI gọi Router, truy xuất Library/`C2 Config`, đọc đầy đủ các nguồn cần thiết, bootstrap 00/05, hòa giải 04, phân vai 110/112 và chọn MCA. Lượt thử không dùng repository hay archive làm fallback. WIL, Actor Reception và Operational Mission chưa được xác minh trong lượt này. Lượt thử đó chỉ áp dụng cho bộ tệp đã dùng khi thử.
 

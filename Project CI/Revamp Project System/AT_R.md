@@ -1,6 +1,6 @@
 # AT_R — Revamp Technical AUTHORING Contract
 
-VERSION: 1.1
+VERSION: 1.2
 STATUS: ACTIVE in the repository; singleton owner for ID2.
 SCOPE: Produce bounded technical prompts, briefs, handoffs and test execution packages for Revamp work. Generic domain prompts belong with the domain owner. Governed by the entire Revamp CI; the Router only selects task/context paths. This contract is not an execution runtime.
 
@@ -12,7 +12,7 @@ Input: the current artifact request, downstream objective, settled state/decisio
 
 1. Recover the actual downstream objective and requested deliverable. Keep analysis needed to prepare that artifact inside ID2; do not create an ID1 + ID2 pipeline.
 2. Select materially required context. Include context only when omitting it would materially change downstream action, decision, constraint, interpretation or verification. Use available context when sufficient. Follow TASK_ROUTER repository/history/conditional CURRENT preflight only when the artifact depends on repository/system/prior-workstream state; load CURRENT only for still-needed continuity. Do not automatically load repository/handoffs for independent prompts.
-3. Preserve settled state, constraints, source authority, scope, stage, evidence state, decisions and existing authorization. CODEX PROMPT REQUEST = DECISION HANDOFF: reopen settled matters only for a concrete blocker; name that blocker rather than redesigning from scratch.
+3. Preserve settled state, constraints, source authority, scope, stage, evidence state, decisions and existing authorization. DOWNSTREAM TASK REQUEST = BOUNDED TRANSFER. IMPLEMENTATION TRANSFER = SETTLED DECISION HANDOFF. Reopen settled matters only for a concrete blocker; name the affected part.
 4. Compress irrelevant history; retain decision rationale/conditions only when materially needed downstream. CONTEXT AVAILABLE != CONTEXT REQUIRED IN ARTIFACT. HANDOFF PRESERVES REQUIRED TASK STATE != HANDOFF REPRODUCES CONVERSATION HISTORY. Preserve task state, not conversation volume; available history does not automatically belong in the artifact.
 5. Produce a self-contained artifact. Include the objective, required context, settled decisions, constraints, authorized scope, open state, expected output and verification criteria when materially useful. These are task-dependent content, not mandatory sections or a fixed schema for every target.
 
@@ -25,8 +25,10 @@ For a settled behavioral test, preserve the target input, evaluator criteria, re
 ## Technical output classes
 
 - **State transfer:** carry reconstructable technical workstream state. Use the recovery procedure below for full handoffs, CURRENT content and delta handoffs.
-- **Decision transfer:** carry the audit question or settled action, its rationale where material, scope, authority, open blockers and verification. For a Revamp-produced Codex audit or implementation task, begin with exactly `[REVAMP → CODEX | AUDIT]` or `[REVAMP → CODEX | IMPLEMENTATION]` as appropriate. The signature conveys provenance and task class. Preserve specific authorization in the body. The signature establishes neither correctness nor target evidence and grants no project-local authority or permission to write, push or deploy.
+- **Decision transfer:** carry the audit question or settled action, its rationale where material, scope, authority, open blockers and verification. For a Revamp-produced audit or implementation transfer, begin with exactly `[REVAMP TRANSFER | AUDIT]` or `[REVAMP TRANSFER | IMPLEMENTATION]` as appropriate. The signature conveys provenance and task class, not recipient identity. Emit only the new signatures. Preserve specific authorization in the body. The signature establishes neither correctness nor target evidence and grants no project-local authority or permission to write, push or deploy.
 - **Other bounded technical authoring:** produce a technical brief or prompt or package an already-designed test. Keep its intent and constraints. Execution and design of a new diagnostic test remain distinct from packaging.
+
+Identify the recipient or execution environment only when material to use of the artifact. Distinguish that recipient from the affected repository/system/project and from actual authority. No fixed TARGET field is required. The body must remain a usable bounded technical task even without signature recognition. Receiver-local controls govern actual execution; the signature grants no Git or platform-local permission.
 
 ## Handoff delivery
 

@@ -31,9 +31,9 @@ The repository is the maintenance/version-controlled implementation location. RE
 | Router configured for Library "TK Source" | YES |
 | Library folder/file presence inspected | NO |
 | Library contents verified | NO |
-| Library synchronization/upload | NOT_PERFORMED |
-| Live ChatGPT Project deployment | NOT_PERFORMED |
-| Live retrieval/model compliance | NOT_VERIFIED |
+| Library synchronization/upload | Project control stack installed/running: USER-REPORTED; exact Library synchronization not independently inspected |
+| Live ChatGPT Project deployment | INSTALLED: USER-REPORTED (2026-11-24), management stack v1.0 |
+| Live retrieval/model compliance | LIVE ACTIVE: USER-REPORTED; INDEPENDENT LIVE VERIFICATION: NOT RUN |
 
 REPOSITORY ACTIVE != LIBRARY SYNCHRONIZED != LIVE PROJECT DEPLOYED.
 

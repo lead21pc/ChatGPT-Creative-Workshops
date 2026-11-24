@@ -6,10 +6,34 @@ Ngày commit được quy về UTC+07:00. Ngày nhập hoặc khôi phục file 
 
 ## Trạng thái hiện hành
 
-- CI: [Revamp_Project_System_CI_v3.0.md](Revamp_Project_System_CI_v3.0.md), `ACTIVE` trong repository; core cần thiết từ ChatGPT Project Global Native 9.1.1 được tích hợp trực tiếp. Global CI là nguồn thiết kế, không là runtime dependency.
-- Task Router: [TASK_ROUTER.yaml](<Revamp Project System/TASK_ROUTER.yaml>), v2.1, `active`; ID1 `REVAMP_CORE`, ID2 `AUTHORING` qua [AT_R v1.1](<Revamp Project System/AT_R.md>).
+- CI: [Revamp_Project_System_CI_v3.1.md](Revamp_Project_System_CI_v3.1.md), `ACTIVE` trong repository; core cần thiết từ ChatGPT Project Global Native 9.1.1 được tích hợp trực tiếp. Global CI là nguồn thiết kế, không là runtime dependency.
+- Task Router: [TASK_ROUTER.yaml](<Revamp Project System/TASK_ROUTER.yaml>), v2.1, `active`; ID1 `REVAMP_CORE`, ID2 `AUTHORING` qua [AT_R v1.2](<Revamp Project System/AT_R.md>).
 - Trạng thái tiếp nối và bằng chứng kiểm chứng được ghi tại [REVAMP_SYSTEM_CURRENT.md](<Revamp Project System/Handoffs/REVAMP_SYSTEM_CURRENT.md>).
-- CI v3.0, Router v2.1 và AT_R v1.1: `LIVE VERIFIED: NOT RUN`. Báo cáo của người dùng về v2.6 và v2.5/receipt giữ phạm vi cũ. Changelog này ghi lịch sử, không cấp quyền hay thay CURRENT.
+- CI v3.1 / AT_R v1.2: `LIVE VERIFIED: NOT RUN`. Bộ tiền nhiệm CI v3.0 / Router v2.1 / AT_R v1.1: INSTALLED và LIVE ACTIVE theo báo cáo người dùng ngày 2026-11-24; INDEPENDENT LIVE VERIFICATION: NOT RUN. Các mốc lịch sử bên dưới giữ phạm vi riêng.
+
+## 2026-11-24 — Revamp v3.1: tiếng Việt và giao thức chuyển giao chung
+
+- A. Phục hồi hợp đồng tiếng Việt: ngôn ngữ được yêu cầu ưu tiên; mặc định tiếng Việt đời thường, trực tiếp, cụ thể, giữ độ sâu và phân biệt kỹ thuật. Ngoại lệ tiếng Anh hẹp; thuật ngữ lĩnh vực khác định danh chính xác. Dịch phần còn lại, giải thích khái niệm lần đầu, không tự ghép nhãn song ngữ, rà thầm trước khi gửi. Chủ đề/nguồn/thuật ngữ đã dùng/mức quen thuộc không cho đổi ngôn ngữ hoặc nâng văn phong.
+- B. Chuyển giao không gắn nền tảng: yêu cầu chuyển giao có giới hạn; chuyển giao triển khai giữ quyết định đã chốt, trạng thái/quyền/phạm vi/blocker/kiểm chứng. Audit chưa được duyệt không thành quyết định. AT_R v1.2 chỉ phát `[REVAMP TRANSFER | AUDIT]` và `[REVAMP TRANSFER | IMPLEMENTATION]`; thân tự đủ, nơi nhận chỉ ghi khi có ảnh hưởng. AGENTS là bên nhận Codex, hỗ trợ cả dấu mới/cũ, chỉ kích hoạt theo tác vụ hiện tại; dấu không cấp quyền.
+- Router v2.1 giữ nguyên byte; hai ID, mẫu CURRENT, triết lý kiểm chứng và cách ly Central Hub không đổi. Lưu CI v3.0 và AT_R v1.1 nguyên byte trong Source_Archive. Không thêm bộ thích ứng, bộ phân tích dấu hay trường TARGET bắt buộc.
+- Đối chiếu toàn bộ v3.0 → v3.1: §1 mở rộng ngôn ngữ có chủ đích; §2/§4A đổi nghĩa chuyển giao có chủ đích. Các đoạn còn lại là nén cần thiết để vừa trần host: core giữ grounding/discourse/chứng cứ/claim/update/giải thích; §2 giữ operation/stage/chuyển bước/quyền/dừng; §3–§4 giữ kiểm đề xuất/nguồn/lớp lỗi; §4A giữ chủ sở hữu/thứ tự nguồn/CURRENT/cách ly; §5–§14 giữ mức sửa đủ dùng/độ phức tạp/phạm vi/đường đúng/dùng cá nhân/ontology/governance/tự kiểm/lựa chọn. Tiêu đề rút gọn, dòng trống bớt; không ghi nhận regression ngữ nghĩa ngoài hai delta đã duyệt. Đây là review văn bản, chưa chứng minh mô hình tuân thủ.
+- Các hồ sơ hiện hành được đối soát theo xác nhận người dùng; bảng dưới ghi đúng bộ active, chủ hồ sơ và lớp chứng cứ. Lịch sử NOT RUN không sửa. Không đổi kiến trúc hay điều khiển vận hành của project khác.
+
+| Bộ / chủ hồ sơ hiện hành | Artifact/version active xác định từ repository | Khẳng định hiện hành trước → sau |
+| --- | --- | --- |
+| Revamp / CURRENT, CHANGELOG | CI3.0 / Router2.1 / AT_R1.1 đã cài; kế nhiệm repository CI3.1 / AT_R1.2 | Chưa cài/NOT RUN → tiền nhiệm INSTALLED / LIVE ACTIVE: USER-REPORTED; kế nhiệm LIVE VERIFIED: NOT RUN |
+| FWE / README, DEVELOPMENT_PLAN | CI2.0 / Router2.0 | Chưa cài/LIVE NOT RUN → INSTALLED / LIVE ACTIVE: USER-REPORTED |
+| FTH / README | CI3.4 / Router5.0 / Authoring Pipeline1.1 | Chỉ khai báo local → INSTALLED / LIVE ACTIVE: USER-REPORTED |
+| C2 / README | CI1.2 / Router1.2 | Chưa xác minh bộ mới đang chạy → INSTALLED / LIVE ACTIVE: USER-REPORTED |
+| Central Hub / README, RUNTIME_EVIDENCE_CHANGELOG | CI2.1 / Router2.0 / Architecture2.0 / Catalog2.0 và active bindings | Bộ2.0 NOT RUN → INSTALLED / LIVE ACTIVE: USER-REPORTED; không suy đã soi đúng mọi Library body |
+| Fanfiction Engine / Current_State, README | CI2.0 / Router1.1 / kernel hiện hành | Triển khai UNVERIFIED → INSTALLED / LIVE ACTIVE: USER-REPORTED; kiểm writer không đổi |
+| The Kingdom / README | management stack1.0, 13 control active | Deployment NOT_PERFORMED / compliance NOT_VERIFIED → INSTALLED / LIVE ACTIVE: USER-REPORTED; chưa soi độc lập Library |
+
+Mọi dòng báo cáo người dùng trên có ngày 2026-11-24 và `INDEPENDENT LIVE VERIFICATION: NOT RUN`. Báo cáo không chứng minh mọi probe đạt. Header NOT RUN trong operational controls giữ nguyên; báo cáo mới được lưu ở hồ sơ trạng thái, không sửa control chỉ để ghi deployment.
+
+### Kiểm chứng release
+
+Bộ kiểm pytest đạt 16/16 (baseline 15/15); kiểm riêng từng điều khoản ngôn ngữ, producer/receiver mới/cũ và các ca chuyển giao. CI v3.1 dài 7.994 ký tự gồm newline cuối, đủ 14 mục và §4A. YAML parse, UTF-8 không BOM, LF, newline cuối, không trailing whitespace và diff trong phạm vi đạt. SHA-256 archive: CI v3.0 `b659d47e3bd5344ebdd136e1abd35d0e429c03915ce9fcf0a6f92fa7c9b367e7`; AT_R v1.1 `a8b87d341cb2449727a7539b6e2f52b7ec7e5ea410f26df3b974aa8a312960e7`, khớp nguyên bản trước sửa. V3.1 và nơi nhận ngoài Codex: LIVE VERIFIED: NOT RUN. Các ca mới trong đặc tả là hướng dẫn thử, không phải bằng chứng runtime. Tác vụ không push/deploy.
 
 ## 2026-11-24 — Revamp v3.0: nhiệm vụ kỹ thuật và chuyển giao trạng thái
 

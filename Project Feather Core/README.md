@@ -38,7 +38,7 @@ Các nguồn đánh số tại root được duy trì trực tiếp. Công cụ 
 
 ## Bộ điều khiển hiện hành
 
-Trạng thái dưới đây được khai báo trong các file local, không phải xác nhận cấu hình đang cài trong ChatGPT Project.
+Bộ hiện hành là FTH CI 3.4, Router 5.0 và Authoring Pipeline 1.1. Người dùng xác nhận ngày 2026-11-24 rằng bộ điều khiển hiện hành đã được cài và đang chạy. INSTALLED: USER-REPORTED. LIVE ACTIVE: USER-REPORTED. INDEPENDENT LIVE VERIFICATION: NOT RUN. Báo cáo này không xác nhận mọi probe hoặc hồi quy đã đạt.
 
 | Thành phần | Bản local | Trách nhiệm |
 | --- | --- | --- |

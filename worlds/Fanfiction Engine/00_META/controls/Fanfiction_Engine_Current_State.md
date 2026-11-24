@@ -22,7 +22,7 @@
 | Chống drift | [Anti-Drift Kernel](../../12_ANTI_DRIFT/Fanfiction_Engine_Anti_Drift_Kernel.md) |
 | Điều hướng | [README](../../README.md) |
 
-CI/Router được sửa tại chỗ trong lần project-control revamp; nhãn version được giữ nguyên, không tạo bản kế nhiệm. Trạng thái triển khai/nạp và hành vi ChatGPT Project vẫn `UNVERIFIED`.
+CI/Router được sửa tại chỗ trong lần project-control revamp; nhãn version được giữ nguyên, không tạo bản kế nhiệm. Bộ CI 2.0, Router 1.1 và Anti-Drift Kernel hiện hành được người dùng xác nhận đã cài và đang chạy ngày 2026-11-24. INSTALLED: USER-REPORTED. LIVE ACTIVE: USER-REPORTED. INDEPENDENT LIVE VERIFICATION: NOT RUN. Writer validation và các probe vẫn giữ trạng thái riêng.
 
 ## 2. Kiến trúc miền và trạng thái nhánh
 

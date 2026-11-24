@@ -8,10 +8,11 @@ UPDATED: 2026-11-24
 
 ## 1. Established current state
 
-- DECIDED / IMPLEMENTED (2026-11-24): CI v3.0, Router v2.1 và AT_R v1.1 active trong repository. Revamp mặc định xử lý công việc kỹ thuật về hệ thống. Các project miền giữ nhiệm vụ sáng tác và prompt chung.
+- DECIDED / IMPLEMENTED (2026-11-24): CI v3.1, Router v2.1 và AT_R v1.2 active trong repository. Revamp mặc định xử lý công việc kỹ thuật về hệ thống. Các project miền giữ nhiệm vụ sáng tác và prompt chung.
 - DECIDED / IMPLEMENTED: Router xét phạm vi rồi chức năng rồi dạng đầu ra. ID1 thiết kế phép thử. ID2 đóng gói phép thử đã chốt và chuyển giao công việc kỹ thuật. Giữ hai ID, History-first có điều kiện và CURRENT theo nhu cầu.
-- DECIDED / IMPLEMENTED: AT_R phục hồi trạng thái từng chủ đề trước khi phân loại, nén và trình bày. Full CURRENT giữ 10 mục. File tải xuống, delta dạng văn bản và ghi repo có đích và quyền riêng. Dấu Revamp → Codex xác nhận nguồn gốc và loại việc; AGENTS gốc áp dụng kiểm tra đích.
-- STATICALLY VERIFIED: bộ test contract và kiểm archive byte-exact đạt. LIVE VERIFIED: NOT RUN cho v3.0, v2.1, v1.1 và đường nhận dấu. Chưa deploy hoặc cài đặt.
+- DECIDED / IMPLEMENTED: AT_R phục hồi trạng thái từng chủ đề trước khi phân loại, nén và trình bày. Full CURRENT giữ 10 mục. File tải xuống, delta dạng văn bản và ghi repo có đích và quyền riêng. AT_R v1.2 chỉ phát dấu REVAMP TRANSFER cho AUDIT/IMPLEMENTATION; AGENTS gốc nhận cả dấu mới và dấu Revamp → Codex cũ. Dấu chỉ ghi nguồn gốc/loại việc, không cấp quyền; thân tự đủ với nơi nhận khác.
+- IMPLEMENTED: CI v3.1 phục hồi hợp đồng tiếng Việt đầy đủ và chuyển giao không gắn riêng Codex; Router v2.1 giữ nguyên byte. Kiểm chứng tĩnh và archive ghi ở CHANGELOG. CI v3.1 / AT_R v1.2: LIVE VERIFIED: NOT RUN; chưa cài/deploy trong tác vụ này.
+- USER-REPORTED (2026-11-24): bộ tiền nhiệm CI v3.0 / Router v2.1 / AT_R v1.1 đã cài và đang chạy. INSTALLED: USER-REPORTED. LIVE ACTIVE: USER-REPORTED. INDEPENDENT LIVE VERIFICATION: NOT RUN. Không suy mọi probe đạt hoặc bản kế nhiệm đã chạy.
 
 - IMPLEMENTED (2026-11-23): CI v2.7 được đưa vào làm bản active tại thời điểm đó. Thay đổi giới hạn ở thứ tự nạp nguồn trong §4A và các trường tương ứng của Router v2.0. Với đề xuất cấu trúc hoặc điều khiển đáng kể, Revamp đọc History trước nguồn đích. Công việc phụ thuộc hệ thống còn lại giữ thứ tự nguồn trước History. CURRENT vẫn theo nhu cầu tiếp nối có ảnh hưởng.
 - IMPLEMENTED (2026-11-23): History ghi lịch sử tiếng Việt và yêu cầu căn cứ riêng ở cấp hợp đồng và từng chốt. Bản skill trong repository dùng hai câu hỏi đó khi xét đề xuất, triển khai và kiểm diff cuối. Bản skill mới chưa được cài.
@@ -73,7 +74,7 @@ Next: chỉ khi cần và có quyền, ghi thêm runtime/probe evidence hoặc t
 
 ## 3. Outstanding / blocked
 
-- CI v3.0, Router v2.1 và AT_R v1.1: LIVE VERIFIED: NOT RUN. Các probe L01–L14 nằm trong đặc tả Revamp. Báo cáo live v2.6 và v2.5/receipt giữ phạm vi ở các mục tương ứng.
+- CI v3.1 / AT_R v1.2: LIVE VERIFIED: NOT RUN. Bộ CI v3.0 / Router v2.1 / AT_R v1.1 đã cài và đang chạy theo người dùng ngày 2026-11-24; chưa kiểm chứng độc lập. Các ca L01–L14, G01–G07, W01–W03 là đặc tả, không phải kết quả chạy. Báo cáo live v2.6 và v2.5/receipt giữ phạm vi cũ.
 
 - LIVE VERIFIED: ACTIVE theo báo cáo người dùng ngày 2026-11-05 cho v2.5/receipt. Codex chưa tái hiện độc lập; chi tiết cài đặt runtime, probe và độ bền qua nhiều context còn UNKNOWN. Promotion/push repository không tự chứng minh deployment.
 - Không có blocker local được thiết lập. Quyền push từng cấp cho các đợt publication cũ là lịch sử; chính sách stage/commit hiện hành theo §2, còn push vẫn cần lệnh riêng. Đợt rebase ngày 2026-10-29 không có quyền push hoặc deploy.
@@ -117,15 +118,15 @@ Thứ tự trong history mục 10–11 đã đồng bộ với Router v1.1: vào
 - `llm-controls/global-instructions/ChatGPT Project Global Native/chatgpt v9.1.1.txt`: nguồn thiết kế đã đọc đầy đủ, core cần thiết tích hợp trực tiếp vào v2.6. `chatgpt v9.0.txt` giữ nguyên; không là runtime dependency của v2.6.
 - `llm-controls/global-instructions/ChatGPT Project Global Native/DESIGN_RATIONALE.md`: rationale bắt buộc đã đọc đầy đủ; tham chiếu thiết kế, không phải bằng chứng live.
 - `Project CI/Source_Archive/Revamp_Project_System_CI_v2.3.md`: predecessor không hoạt động, được lưu byte-exact khi promote v2.4; chỉ dùng cho provenance/rollback khi được yêu cầu.
-- `Project CI/Revamp_Project_System_CI_v3.0.md`: CI ACTIVE tự đủ, ghi nhiệm vụ kỹ thuật và hai thứ tự nạp nguồn.
+- `Project CI/Revamp_Project_System_CI_v3.1.md`: CI ACTIVE tự đủ, ghi nhiệm vụ kỹ thuật và hai thứ tự nạp nguồn.
 - `Project CI/Source_Archive/Revamp_Project_System_CI_v2.4.md` và `Project CI/Source_Archive/HANDOFF_ROUTER_v1.1.yaml`: predecessor không hoạt động, byte-exact; không dùng làm nguồn mặc định.
-- `Project CI/Revamp Project System/AT_R.md`: v1.1 ACTIVE, soạn đầu ra kỹ thuật ID2. Phục hồi trạng thái, giao file/delta và phát dấu Codex.
+- `Project CI/Revamp Project System/AT_R.md`: v1.2 ACTIVE, soạn đầu ra kỹ thuật ID2. Phục hồi trạng thái, giao file/delta và phát dấu REVAMP TRANSFER.
 - `Project CI/Revamp Project System/TASK_ROUTER.yaml`: Router v2.1 ACTIVE; ID1/ID2, nạp nguồn theo điều kiện và một CURRENT entry `revamp_system`.
 - `Project CI/Revamp Project System/HISTORY_AND_WHAT_NOT_TO_DO.md`: bối cảnh lỗi lịch sử/phòng ngừa; đọc FULL_FILE sau Router, trước CURRENT. HISTORY != CURRENT STATE; PAST FAILURE != PRESENT FAILURE; WARNING != AUTHORIZATION; GENEALOGY != REQUIRED ARCHITECTURE; HISTORICAL PAIN != PERMANENT MAXIMUM CONTROL.
 - `Project CI/Revamp Project System/HANDOFF_TEMPLATE.md`: tạo mới hoặc thay thế toàn bộ CURRENT từ trạng thái có chứng cứ trong chat.
 - `Project CI/Revamp Project System/ARCHITECTURE_PREFLIGHT.md`: conditional reference cho aggregate structural self-check; Router chọn nạp, CI giữ authority, AT_R giữ ID2 authoring.
-- `Project CI/Revamp Project System/tests/HANDOFF_ROUTE_TEST_CASES.md`: đặc tả contract và probe v3.0; không phải log thử nghiệm live.
-- `Project CI/Revamp Project System/tests/test_task_router.py`: 15 kiểm tra cấu trúc và contract, không phải lượt chạy model.
+- `Project CI/Revamp Project System/tests/HANDOFF_ROUTE_TEST_CASES.md`: đặc tả contract và probe v3.1; không phải log thử nghiệm live.
+- `Project CI/Revamp Project System/tests/test_task_router.py`: 16 kiểm tra cấu trúc và contract, không phải lượt chạy model.
 
 ## 9. Next-entry guidance
 

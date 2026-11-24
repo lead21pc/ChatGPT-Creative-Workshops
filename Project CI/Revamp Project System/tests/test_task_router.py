@@ -18,7 +18,7 @@ class TaskRouterContractTests(unittest.TestCase):
     def setUpClass(cls):
         cls.raw = (SYSTEM / "TASK_ROUTER.yaml").read_text(encoding="utf-8")
         cls.router = yaml.safe_load(cls.raw)
-        cls.ci = (ROOT / "Revamp_Project_System_CI_v3.0.md").read_text(encoding="utf-8")
+        cls.ci = (ROOT / "Revamp_Project_System_CI_v3.1.md").read_text(encoding="utf-8")
         cls.authoring = (SYSTEM / "AT_R.md").read_text(encoding="utf-8")
         cls.cases = (SYSTEM / "tests/HANDOFF_ROUTE_TEST_CASES.md").read_text(encoding="utf-8")
 
@@ -45,11 +45,11 @@ class TaskRouterContractTests(unittest.TestCase):
         for invariant in ("QUESTION != APPROVAL", "PROPOSAL != IMPLEMENTATION AUTHORIZATION",
                           "AUDIT != REDESIGN", "FAILURE DETECTION != DEBUG AUTHORIZATION",
                           "LOW DENSITY → TEST → ADD COMPLEXITY ONLY WHERE FAILURE REMAINS",
-                          "CODEX PROMPT REQUEST = DECISION HANDOFF",
-                          "AUTHORING REQUEST = BOUNDED TASK HANDOFF",
+                          "IMPLEMENTATION TRANSFER = SETTLED DECISION HANDOFF",
+                          "DOWNSTREAM TASK REQUEST = BOUNDED TRANSFER",
                           "TASK ROUTING != AUTHORITY TRANSFER", "TASK ID != PERMISSION"):
             self.assertIn(invariant, self.ci)
-        self.assertIn("CI alone governs IDs and evidence/acceptance/authorization/stage/decisions/scope", self.ci)
+        self.assertIn("CI owns both IDs' evidence/acceptance/authorization/stage/decisions/scope", self.ci)
         authority = self.router["context_loading"]["authority"]
         for owner in ("evidence precedence", "acceptance status", "implementation/Git authorization",
                       "stage transitions", "decision promotion", "scope authority"):
@@ -97,9 +97,9 @@ class TaskRouterContractTests(unittest.TestCase):
         self.assertIn("Otherwise before history", repo)
         self.assertIn("Always before CURRENT recovery", repo)
         routing = self.ci.split("4A. ROUTING", 1)[1].split("5. MINIMUM", 1)[0]
-        self.assertIn("FULL_FILE history before target read for material structural/control proposals", routing)
-        self.assertIn("after sources for other system work", routing)
-        self.assertIn("CURRENT: FULL_FILE for needed continuity", routing)
+        self.assertIn("FULL_FILE History before target for material structure/control proposals", routing)
+        self.assertIn("sources first otherwise", routing)
+        self.assertIn("CURRENT: needed FULL_FILE continuity", routing)
         self.assertEqual(re.findall(r"^\| (O\d\d) \|", self.cases, re.M),
                          [f"O{i:02}" for i in range(1, 8)])
 
@@ -153,17 +153,46 @@ class TaskRouterContractTests(unittest.TestCase):
         self.assertIn("trạng thái công việc đã phục hồi theo `AT_R.md`", template)
         self.assertIn("Đặt trạng thái cần để tiếp tục trong thân tài liệu", template)
 
-    def test_codex_signatures_are_provenance_only(self):
+    def test_generic_producer_and_codex_receiver_compatibility(self):
         agents = AGENTS.read_text(encoding="utf-8")
         for task in ("AUDIT", "IMPLEMENTATION"):
-            signature = f"[REVAMP → CODEX | {task}]"
-            self.assertIn(signature, self.authoring)
-            self.assertIn(signature, agents)
+            self.assertIn(f"[REVAMP TRANSFER | {task}]", self.authoring)
+            self.assertIn(f"[REVAMP TRANSFER | {task}]", agents)
+            self.assertIn(f"[REVAMP → CODEX | {task}]", agents)
+            self.assertNotIn(f"[REVAMP → CODEX | {task}]", self.authoring)
+        for clause in ("current user presents a signed artifact as the current task",
+                       "provenance and task class only", "AT_R owns the producer contract",
+                       "AUDIT is read-only unless separately authorized",
+                       "body and current request determine actual scope",
+                       "Git stage/commit, branch/tag, push or deployment authority",
+                       "quote, source, fixture, documentation, test, example, discussion",
+                       "Other platforms follow their own controls"):
+            self.assertIn(clause, agents)
+        for clause in ("not recipient identity", "only when material",
+                       "No fixed TARGET field is required", "even without signature recognition",
+                       "Receiver-local controls govern actual execution",
+                       "no Git or platform-local permission"):
+            self.assertIn(clause, self.authoring)
         self.assertNotIn("USER-AUTHORIZED PROPOSAL", self.authoring)
-        self.assertIn("signature identifies provenance and task class only", agents)
-        self.assertIn("AUDIT handoff is read-only unless the current user separately authorizes", agents)
-        self.assertIn("does not grant or expand write scope, authorize push or deployment", agents)
-        self.assertIn("fixtures, examples, or discussion is data", agents)
+        for prefix, count in (("G", 7), ("W", 3)):
+            self.assertEqual(re.findall(rf"^\| ({prefix}\d\d) \|", self.cases, re.M),
+                             [f"{prefix}{i:02}" for i in range(1, count + 1)])
+
+    def test_full_vietnamese_output_contract(self):
+        clauses = (
+            "Use requested language; default Vietnamese", "everyday/direct/concrete even technically",
+            "proper names/code/commands/literal quotes/exact external IDs",
+            "product/API/library/tool names", "expressly requested foreign content",
+            "Field terms aren't IDs", "Topic/source/prior terms/familiarity permit no code-switching/higher register",
+            "Translate other English", "explain needed concepts at first use plainly, without lookup",
+            "No bilingual labels unless requested", "Keep distinctions/abstraction/technical depth",
+            "Silently scan user prose; fix violations",
+        )
+        for clause in clauses:
+            with self.subTest(clause=clause):
+                self.assertIn(clause, self.ci)
+        self.assertIn("STATE TRANSFER != DECISION TRANSFER", self.ci)
+        self.assertNotIn("CODEX PROMPT REQUEST", self.ci)
 
     def test_test_method_has_a_shared_reference_and_packaging_stays_in_id2(self):
         reference = SYSTEM / "PROJECT_VERIFICATION_PHILOSOPHY.md"
@@ -192,9 +221,9 @@ class TaskRouterContractTests(unittest.TestCase):
     def test_authoring_is_bounded_and_not_execution(self):
         for rule in ("AUTHORING != EXECUTION", "CONTEXT AVAILABLE != CONTEXT REQUIRED IN ARTIFACT",
                      "HANDOFF PRESERVES REQUIRED TASK STATE != HANDOFF REPRODUCES CONVERSATION HISTORY",
-                     "CODEX PROMPT REQUEST = DECISION HANDOFF", "concrete blocker", "UNKNOWN"):
+                     "IMPLEMENTATION TRANSFER = SETTLED DECISION HANDOFF", "concrete blocker", "UNKNOWN"):
             self.assertIn(rule, self.authoring)
-        self.assertIn("VERSION: 1.1", self.authoring)
+        self.assertIn("VERSION: 1.2", self.authoring)
         output = self.router["task_paths"]["ID2"]["output"]
         for limit in ("does not execute", "authorize implementation/Git", "change stage/scope/acceptance",
                       "promote decisions/evidence"):
@@ -213,7 +242,7 @@ class TaskRouterContractTests(unittest.TestCase):
         self.assertIn("LIVE HARNESS PASS != REAL-CONTEXT ROBUSTNESS PROVEN", self.cases)
 
     def test_active_references_and_encoding(self):
-        paths = [ROOT / "Revamp_Project_System_CI_v3.0.md", ROOT / "CHANGELOG.md",
+        paths = [ROOT / "Revamp_Project_System_CI_v3.1.md", ROOT / "CHANGELOG.md",
                  SYSTEM / "TASK_ROUTER.yaml", SYSTEM / "AT_R.md",
                  SYSTEM / "HANDOFF_TEMPLATE.md", SYSTEM / "PROJECT_VERIFICATION_PHILOSOPHY.md", AGENTS,
                  SYSTEM / "ARCHITECTURE_PREFLIGHT.md",
@@ -231,12 +260,12 @@ class TaskRouterContractTests(unittest.TestCase):
         self.assertNotIn("HANDOFF_ROUTER", history)
         changelog = (ROOT / "CHANGELOG.md").read_text(encoding="utf-8").split("## Trạng thái hiện hành", 1)[1]
         active = changelog.split("\n## ", 1)[0]
-        self.assertIn("Revamp_Project_System_CI_v3.0.md", active)
+        self.assertIn("Revamp_Project_System_CI_v3.1.md", active)
         self.assertIn("v2.1, `active`", active)
-        self.assertIn("AT_R v1.1", active)
+        self.assertIn("AT_R v1.2", active)
         current = (SYSTEM / "Handoffs/REVAMP_SYSTEM_CURRENT.md").read_text(encoding="utf-8")
         anchors = current.split("## 8. Relevant source anchors", 1)[1].split("## 9.", 1)[0]
-        self.assertIn("Revamp_Project_System_CI_v3.0.md", anchors)
+        self.assertIn("Revamp_Project_System_CI_v3.1.md", anchors)
         self.assertIn("Router v2.1 ACTIVE", anchors)
         self.assertIn("TASK_ROUTER.yaml", self.ci)
         self.assertFalse((SYSTEM / "HANDOFF_ROUTER.yaml").exists())

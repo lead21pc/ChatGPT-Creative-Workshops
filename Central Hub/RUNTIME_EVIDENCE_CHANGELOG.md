@@ -10,6 +10,10 @@ Bằng chứng đi theo hành vi và điều kiện đã thử. Giữ PASS còn 
 
 ## Current verified runtime status
 
+### 2026-11-24 — Cài đặt và hoạt động bộ hiện hành
+
+CI 2.1, Router 2.0, Architecture 2.0, Catalog 2.0 và các binding active của bộ này: INSTALLED: USER-REPORTED; LIVE ACTIVE: USER-REPORTED. Người dùng xác nhận bộ hiện hành đã cài và chạy. INDEPENDENT LIVE VERIFICATION: NOT RUN. Báo cáo không xác nhận exact Library identity/body hoặc mọi đường kiểm đã đạt. Các mục có ngày và probe phía dưới giữ phạm vi chứng cứ riêng.
+
 ### Hợp đồng đầu ra tiếng Việt sau Refactor 2
 
 - **USER_REPORTED — OBSERVED OUTPUT-LANGUAGE REGRESSION.** Người dùng ghi nhận văn xuôi tiếng Việt trộn nhiều thuật ngữ tiếng Anh nằm ngoài các ngoại lệ của hợp đồng. Phiên và điều kiện chạy cụ thể chưa được ghi nhận.

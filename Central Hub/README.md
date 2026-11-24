@@ -15,7 +15,7 @@ Root duy nhất là `Central Hub Config`. Sáu folder package trực tiếp là 
 
 Khi được phép cài, đồng bộ cả bộ Project Instructions, Project Sources và các binding Library đã đổi. Đối chiếu exact ID/role/status/version và toàn văn, kiểm không có match trùng, giữ đúng một binding đang dùng và kiểm từng đường bị tác động. Rollback theo Git và bộ binding tương thích đã ghi nhận. Các báo cáo cũ phía dưới phục vụ đối chiếu lịch sử.
 
-Người dùng đã xác nhận khả năng phân giải, đọc và dùng nội dung trong folder Library lồng nhau ở runtime đã thử. [Changelog](RUNTIME_EVIDENCE_CHANGELOG.md) ghi phạm vi. Bộ 2.0 hiện có trong repository. Trạng thái triển khai và kiểm thử live của bộ này là NOT RUN. [Cách dùng](<How to use.md>) giữ cú pháp và hành vi đang áp dụng.
+Người dùng đã xác nhận khả năng phân giải, đọc và dùng nội dung trong folder Library lồng nhau ở runtime đã thử. [Changelog](RUNTIME_EVIDENCE_CHANGELOG.md) ghi phạm vi. Bộ hiện hành là CI 2.1, Router 2.0, Architecture 2.0 và Catalog 2.0. Người dùng xác nhận ngày 2026-11-24 rằng bộ điều khiển hiện hành đã được cài và đang chạy. INSTALLED: USER-REPORTED. LIVE ACTIVE: USER-REPORTED. INDEPENDENT LIVE VERIFICATION: NOT RUN. Báo cáo này không xác nhận mọi probe hoặc hồi quy đã đạt. [Cách dùng](<How to use.md>) giữ cú pháp và hành vi đang áp dụng.
 
 ## Hồ sơ lịch sử
 
