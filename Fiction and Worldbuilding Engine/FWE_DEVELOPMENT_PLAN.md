@@ -50,6 +50,8 @@ Dùng cùng mô hình, môi trường, prompt, bối cảnh, quyền sáng tác,
 
 ### Brainstorm: nền so với nền + thành phần
 
+Cả hai cấu hình dùng cùng CI, Router và Hợp đồng nguồn, đều giữ Anti-Prior A trong CI. Trong cấu hình nền, Brainstorm nằm ngoài tập lựa chọn của Router. Trong cấu hình có ứng viên, Router có thể chọn Brainstorm cho phần được ủy quyền khi thao tác phù hợp. Việc cho phép chọn ứng viên là biến của phép đối chứng M7.
+
 | Ca | Kiểm |
 |---|---|
 | B1 — Phát triển vài hướng cho quán sách mở khuya | Nền làm trực tiếp; thành phần không làm nảy ý thường trở nên nặng. |
@@ -57,7 +59,7 @@ Dùng cùng mô hình, môi trường, prompt, bối cảnh, quyền sáng tác,
 | B3 — Thay một tiền đề, truy hệ quả bậc hai | Cho thấy hệ quả trực tiếp dẫn tới thay đổi tiếp theo; không chỉ liệt kê kết quả song song. |
 | B4 — Mở hai nhánh rồi viết đoạn cho nhánh 2 | Brainstorm mở nhánh, nền viết. Không chấp nhận nhánh hoặc giữ chế độ qua lượt. |
 
-Giữ thành phần nếu lợi ích chuyên biệt ở B2/B3 lặp lại, B1/B4 còn hữu dụng và không tăng cấu trúc thừa hay tự chốt nhánh. Nếu không, sửa có căn cứ hoặc đưa thao tác hữu ích về nền.
+Sau đối chứng ở M7, giữ thành phần nếu lợi ích chuyên biệt ở B2/B3 lặp lại, B1/B4 còn hữu dụng và không tăng cấu trúc thừa hay tự chốt nhánh. Nếu không đạt, sửa có căn cứ hoặc đưa thao tác hữu ích về nền.
 
 ### Anti-Prior: quy tắc CI A so với control theo phần việc B
 
