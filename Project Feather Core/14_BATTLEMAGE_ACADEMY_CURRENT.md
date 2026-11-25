@@ -25,6 +25,14 @@ Chi tiết Tiring Slope/Council/lab/Serpent Strike/cổng ở `10_AETHERFIRE_NAT
 
 ---
 
+### Giao diện MC2 trong Canon 2
+
+Sau Clash #1, Học viện tại Tiring Slope là tuyến phát triển chính của MC2 trong một giai đoạn nhiều năm trước Clash #2 (`03` Part II §§14–14.1). Khung đào tạo sáu năm ở §3 cho phép một giai đoạn như vậy. Tuổi và năm nhập học, năm đào tạo bắt đầu, việc công nhận năng lực trước đó, thời gian hiện diện, khả năng hoàn tất khóa và thời điểm Clash #2 so với tốt nghiệp vẫn `UNKNOWN`.
+
+Ai đề xuất hoặc cho phép nhập học, động cơ và sự đồng ý của MC2, điều kiện hoặc ngoại lệ nhập học, tư cách học viên hay một tư cách khác, thẩm quyền bảo vệ và giới hạn can thiệp của quý tộc đều còn mở. `12` giữ giao diện chính trị với Quân đội, True Crown và các cơ quan AetherFire.
+
+---
+
 ## 2. Mục tiêu nghề nghiệp và hai trường phái chiến pháp sư
 
 ### Battlemage doctrine

@@ -782,27 +782,23 @@ Hai lịch sử có thể chia sẻ root, actor, checkpoint hoặc causal residu
 
 ---
 
-### 14. Pathway MC2 trong Canon 2 — retcon 2026-10-05
+### 14. Tuyến chính của MC2 trong Canon 2 — Battlemage Academy
 
-Tuyến mất địa vị→Civil→Undie→mại dâm bất hợp pháp→kháng chiến giả→án phản quốc không còn là triển khai hiện hành. Không dùng nó để suy ngược giấy tờ, thời lượng, triệt sản/ngoại lệ, bắt buộc dịch vụ tình dục hoặc kết quả của tuyến nghề mới.
+Sau phân kỳ ở Clash #1, tuyến phát triển chính của MC2 đi qua Battlemage Academy tại Tiring Slope, ở Đông Bắc, trong một giai đoạn nhiều năm trước Clash #2. Học viện là môi trường thể chế riêng, nơi MC2 phát triển qua đào tạo, quan hệ và lựa chọn trong khi bớt thường xuyên ở trung tâm chính trị cung đình AetherFire. Cô vẫn là người có yêu sách hoàng vị, một điểm tựa chính danh của True Crown, bearer của Raging Fire/Raging Phoenix và một biến số chiến lược của các phe vương triều. Các tác nhân nước ngoài vẫn có lợi ích liên quan đến cô.
 
-Hướng đã chốt: MC2 cần tiếp cận mẹ/trục Raging Fire/chính trị AF; đường chính thức có thể quá lộ, nguy hiểm hoặc không khả dụng. Undie có thể cho môi trường nghề/xã hội/vùng xám mà không cần mất legal status. Nghề, tổ chức, vỏ bọc, patron, tiếp xúc kháng chiến/an ninh, đường tới mẹ và kết quả còn `UNKNOWN`, do `13` ghi phạm vi thiết kế.
+Trong cùng khoảng thời gian, Section 1 theo dõi lịch sử sống của AetherFire và các hệ thống khác với mức phụ thuộc trực tiếp vào MC2 giảm đi. Section 2 theo dõi MC2 tham gia và tạo hệ quả qua tuyến Học viện. Cả hai là góc nhìn của cùng Canon 2 (`01` §1.2). `14` giữ nội bộ Học viện và khung đào tạo sáu năm. Tuổi, năm vào, xếp lớp, thời lượng hiện diện thực tế và quan hệ giữa tốt nghiệp với Clash #2 vẫn `UNKNOWN`. `12` giữ giao diện thẩm quyền và chính trị.
 
-Giá trị huyết hệ và sự quan tâm của tác nhân nước ngoài giữ nguyên. Không còn triệt sản bắt buộc theo nghề; y tế/tránh thai trên tuyến mới cần chốt riêng.
-
-Quan hệ Canon 1/Canon 2, hai Clash, MC2 còn sống và checkpoint gọi MC1 không bị quyết định này thay bằng một cơ chế mới. Nhưng đường nhân quả nghề nghiệp dẫn tới checkpoint phải được xây lại; checkpoint không phục hồi các sự kiện hạ cấp/bẫy cũ.
-
-Nguồn strategic-node MC2 được chỉ định làm đầu vào thiết kế tiếp theo; không nhập các HYPOTHETICAL/PROPOSAL của nó thành lịch sử đã xảy ra.
+Quyết định 26/11/2026 thay hướng Undie + biến đổi diện mạo/căn tính trong vai trò tuyến chính của giai đoạn này. Nhu cầu tiếp cận mẹ, trục Raging Fire và chính trị AetherFire vẫn có căn cứ. Đường tiếp cận cụ thể, giao điểm Undie trong tương lai và đề xuất Operation Swap còn mở. Undie vẫn là hệ sinh thái nghề nghiệp. Tuyến mất địa vị → Civil → Undie → mại dâm bất hợp pháp → kháng chiến giả vẫn là triển khai đã bị thay thế. Undie không có quy định triệt sản bắt buộc theo nghề; tình tiết y tế và tránh thai riêng của MC2 vẫn cần chốt nếu liên quan. Đề xuất trong nguồn strategic-node vẫn là đầu vào thiết kế. Cái chết trong Canon 1 và điều kiện tử vong V0.5 còn treo trong Canon 2 vẫn chi phối điểm giao của hai canon.
 
 ---
 
-#### 14.1 Mốc phản quốc và áp lực kết thúc — chốt bổ sung 2026-10-05
+#### 14.1 Cuối giai đoạn Học viện và mốc trước Clash #2
 
-**CANON:** trước thời điểm kết thúc dẫn tới Clash #2, MC2 Canon 2 đã đạt tình trạng/xử lý phản quốc, đe dọa thực chất tự do/custody và tính mạng. Khi MC1 xuất hiện, MC2 đã ở nguy hiểm sống còn thực chất. **UNKNOWN:** hành vi/chứng cứ, cơ quan xét xử, tính hợp lệ/thao túng, đường tiếp xúc RF/kháng chiến, Swap và toàn đoạn nhân quả giữa.
+MC2 gặp nguy hiểm thực chất tới tính mạng trước Clash #2 và vẫn ở trong tình thế đó khi MC1 xuất hiện. Lore ngày 05/10/2026 đã gắn nguy cơ bị tước tự do hoặc bị giữ và hiểm nguy này với mốc phản quốc. Mốc phản quốc đang chờ đối chiếu với tuyến Học viện. Việc có cần sửa mốc này, sự kiện làm kết thúc hoặc suy yếu giai đoạn Học viện và chuỗi nhân quả đưa MC2 tới nguy hiểm tính mạng đều còn mở. Hành vi, chứng cứ, cơ quan có thẩm quyền và việc thao túng vụ việc vẫn `UNKNOWN` (`12`, `92`).
 
-Mốc phản quốc và nguy hiểm tính mạng thuộc lịch sử sống của Canon 2 trước Clash #2. Điểm giao với Canon 1 là cùng điều kiện tử vong từ V0.5, đã được thực hiện trong Canon 1 và còn treo trong Canon 2. Quan hệ cụ thể giữa thủ tục phản quốc và một kết cục tử vong khả dĩ, cơ chế kỹ thuật của Clash và kết quả sau khi MC1 tới vẫn `UNKNOWN`. Hai canon giữ lịch sử và trạng thái riêng.
+Điểm giao với Canon 1 vẫn là cùng điều kiện tử vong từ V0.5, đã được thực hiện trong Canon 1 và còn treo trong Canon 2. Cơ chế kỹ thuật của Clash và kết quả sau khi MC1 tới vẫn `UNKNOWN`. Hai canon giữ lịch sử và trạng thái riêng.
 
-Undie + biến đổi căn tính đã chốt ở cấp giao diện vỏ bọc/tiếp cận kín; Operation Swap vẫn đề xuất ưu tiên. Mẹ MC2 được TE bảo hộ và MC2.2 đã biết MC2 ở AF/tình hình khái quát là dữ kiện current do `12` kiểm soát, không đồng nghĩa mọi actor biết phả hệ hoặc bí mật.
+Mẹ MC2 được TE bảo hộ. MC2.2 đã biết MC2 ở AF và tình hình khái quát. `12` giữ phạm vi tri thức của các tác nhân liên quan.
 
 ### 15. Sự cố thứ hai — MC1 stress-test V1.0
 
@@ -1227,6 +1223,7 @@ MC3 bị kéo vào Fiction 1                         │
 V0.5 live divergence                             │
         │                                        │
 actor + institution + MC3                        │
+MC2: tuyến Học viện qua nhiều năm                │
         │                                        │
       ~5 năm                                     │
         │                                        │
@@ -1346,6 +1343,8 @@ CANON 2 KHÔNG PHẢI V1.0 “TỰ CHẠY”.
 
 CANON 1: MC2 CHẾT KHI LÀ NỮ HOÀNG, KÍCH HOẠT TRỤC HOÀNG GIA VÀ TẠO ĐIỀU KIỆN CHO MC2.2 CHÍNH DANH HÓA CUỘC XÂM LƯỢC.
 
+CANON 2: HỌC VIỆN LÀ TUYẾN CHÍNH CỦA MC2 QUA NHIỀU NĂM SAU CLASH #1. ĐƯỜNG TỪ HỌC VIỆN TỚI KHỦNG HOẢNG TRƯỚC CLASH #2 CÒN MỞ.
+
 CANON 2: MC2 CÒN SỐNG TẠI CLASH #2; ĐIỀU KIỆN TỬ VONG V0.5 VẪN CÒN TREO.
 
 HÔN PHU KHÔNG ĐƯỢC KÍCH HOẠT THEO CHAIN CŨ.
@@ -1377,7 +1376,7 @@ EXACT CANON-1 IMPLEMENTATION IS GUARANTEED.
 | **Vai trò MC3** | MC1 nghĩ MC3 đã bỏ đi | MC3 bị kéo vào và trở thành actor lịch sử |
 | **AetherFire** | đi tới collapse cuối Arc 1 | vẫn tồn tại tại lúc MC1 được gọi |
 | **Nhà nước sau Arc 1** | AetherFire bị thay bằng nhà nước khác | chưa đi tới endpoint đó |
-| **MC2** | hiện thực hóa quỹ đạo V0.5: nhượng bộ → Nữ hoàng → chết → martyr | còn sống khi gọi MC1; điều kiện tử vong V0.5 còn treo; tuyến tiếp cận mẹ/chính trị qua nghề/vùng xám còn mở, không mặc định hạ cấp |
+| **MC2** | hiện thực hóa quỹ đạo V0.5: nhượng bộ → Nữ hoàng → chết → martyr | còn sống khi gọi MC1; điều kiện tử vong V0.5 còn treo; tuyến chính qua Battlemage Academy trong giai đoạn nhiều năm |
 | **Hôn phu MC2** | cái chết MC2 kích hoạt trục Hoàng gia và tạo điều kiện cho MC2.2 chính danh hóa cuộc xâm lược | không mặc định đi đúng trajectory Canon 1 |
 | **Undie** | mô hình bắt cóc/bị bán/cưỡng chế của lịch sử Canon 1 | hệ sinh thái nghề nghiệp; không Slave/caste/punishment, nhiều nhánh chồng lấn |
 | **Cấu trúc nhà nước** | grimdark/thối nát theo bản gốc | nghị viện và nhiều subsystem đa cực phát triển sâu |
@@ -1396,7 +1395,6 @@ EXACT CANON-1 IMPLEMENTATION IS GUARANTEED.
 | AetherFire đã bị đánh sập | AetherFire vẫn vận hành | chính trị + lịch sử |
 | nhà nước thay thế đã tồn tại | nghị viện AetherFire vẫn nắm quyền | thể chế |
 | Undie là hệ bắt cóc/bị bán | Undie là hệ sinh thái nghề nghiệp, không địa vị Slave | ontology |
-| MC2 không bao giờ tự vào Undie | tuyến nghề/vùng xám mới chưa chốt; không suy từ mất địa vị | giới hạn tri thức / pathway mở |
 | MC3 không còn tham gia project | MC3 đã sống trong Fiction 1 khoảng 5 năm | lịch sử meta |
 | MC1 hiểu fiction mình viết | tri thức của MC1 là baseline lỗi thời | nhận thức |
 

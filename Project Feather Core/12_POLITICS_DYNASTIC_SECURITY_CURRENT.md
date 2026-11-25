@@ -167,15 +167,17 @@ SEES
 
 ## 21. MC2 — tính cách và fall from grace
 
-### 21.1 MC2 và tuyến tiếp cận mới — 2026-10-05
+### 21.1 MC2 và tuyến Học viện — 2026-11-26
 
-MC2 vẫn có nền tính cách công chúa fantasy: ngây thơ, khá kiêu ngạo, ý thức địa vị mạnh và self-concept gắn với vai trò công chúa. Những nét ấy không tự xác lập một đường mất địa vị/nghề mới. Sai mô hình cụ thể về đời sống Slave/consent trong tuyến cũ cần được xét lại, không dùng để quyết định hành vi trên tuyến nghề chưa chốt.
+MC2 vẫn có nền tính cách công chúa fantasy: ngây thơ, khá kiêu ngạo, ý thức địa vị mạnh và self-concept gắn với vai trò công chúa. Những nét ấy không tự xác lập một đường mất địa vị/nghề mới. Sai mô hình cụ thể về đời sống Slave/consent trong tuyến cũ cần được xét lại, không dùng để quyết định hành vi của cô trên tuyến Học viện.
 
-Tuyến “mất status→Civil→tự chọn Undie→mại dâm bất hợp pháp→kháng chiến giả→án phản quốc” không còn là triển khai hiện hành. Các mốc thời lượng khoảng hai năm, đánh tráo giấy tờ và cơ chế bào người phụ thuộc tuyến ấy cần xét lại, không chuyển nguyên sang tuyến nghề mới.
+Tuyến “mất status→Civil→tự chọn Undie→mại dâm bất hợp pháp→kháng chiến giả→án phản quốc” không còn là triển khai hiện hành. Các mốc thời lượng khoảng hai năm, đánh tráo giấy tờ và cơ chế bào người phụ thuộc tuyến ấy cần xét lại, không chuyển nguyên sang tuyến Học viện.
 
-Hướng mới: MC2 cần tiếp cận mẹ/trục Raging Fire/chính trị AF. Undie cùng biến đổi diện mạo/căn tính là giao diện vỏ bọc và tiếp cận kín đã chốt ở cấp hướng thiết kế, không phải trừng phạt hay sex work bắt buộc. Nghề, người vận hành, patron, giới hạn biến đổi, giấy tờ, liên hệ và chuỗi sự kiện vẫn `UNKNOWN`. Operation Swap/người thế thân chỉ là đề xuất ưu tiên, chưa phải lịch sử Canon 2.
+Battlemage Academy tại Tiring Slope là tuyến chính của MC2 qua nhiều năm sau Clash #1. Việc cô bớt hiện diện tại trung tâm cung đình vẫn để lại các lợi ích của những phe quan tâm tới yêu sách hoàng vị, chính danh True Crown, huyết hệ và tư cách bearer của cô. Quân đội ủng hộ True Crown. Thẩm quyền của Quân đội, Học viện, chi nhánh Hội đồng Pháp sư, Nghị viện, quý tộc và Bộ Nội vụ đối với việc tiếp nhận hoặc bảo vệ MC2 còn mở, cũng như căn cứ giới hạn can thiệp, độ bền và chủ đích của sự bảo vệ, và thông tin từng cơ quan có về huyết hệ hoặc True Crown.
 
-Trước Clash #2, MC2 đạt mốc phản quốc và nguy hiểm thực chất tới tự do/custody/tính mạng. Mốc này là canon; đoạn nhân quả mới dẫn tới nó còn mở. Nó không phục hồi bẫy kháng chiến giả hoặc cơ chế hạ cấp cũ; `03` kiểm soát chức năng kết thúc/overlap.
+Giao diện Undie + biến đổi diện mạo là hướng tuyến chính tiền nhiệm. Đường tiếp cận mẹ/chính trị và giao điểm tương lai với Undie còn mở. Operation Swap/người thế thân vẫn là đề xuất.
+
+Mốc phản quốc và nguy hiểm tính mạng trước Clash #2 đã được chốt ngày 05/10. Cần đối chiếu việc giữ hay sửa mốc phản quốc với tuyến Học viện. Sự kiện làm suy yếu hoặc kết thúc giai đoạn Học viện và đường dẫn tới khủng hoảng vẫn mở. `03` giữ điểm giao đã chốt của hai canon.
 
 Không xóa agency của MC2 hoặc coi mọi bước là một kế hoạch thống nhất của nhà nước. Không biến unknown thành một chuỗi sự kiện mới. Các quan hệ Fictionize/POC/Clash/gọi MC1 được xử lý ở `03`, không suy từ tuyến hạ cấp đã bỏ.
 
@@ -195,7 +197,7 @@ Nguồn actor đã biết:
 - thế lực nước ngoài;
 - mạng liên quan MC3.
 
-Bẫy kháng chiến giả trong triển khai cũ không còn là sự kiện hiện hành. Kháng chiến thật bị thâm nhập, chiếm kênh hoặc gài nhánh kiểm soát là đề xuất P11, chưa chọn làm nguyên nhân của mốc phản quốc. MC2 đạt mốc phản quốc/nguy hiểm tính mạng trước Clash #2 là canon; chứng cứ, cơ quan kết tội, hành vi và thành phần thật/giả của mạng vẫn `UNKNOWN`.
+Bẫy kháng chiến giả trong triển khai cũ không còn là sự kiện hiện hành. Kháng chiến thật bị thâm nhập, chiếm kênh hoặc gài nhánh kiểm soát là đề xuất P11, chưa chọn làm nguyên nhân của mốc phản quốc. Mốc phản quốc đã chốt ngày 05/10 đang chờ đối chiếu với tuyến Học viện. Chứng cứ, cơ quan kết tội, hành vi và thành phần thật/giả của mạng vẫn `UNKNOWN`.
 
 Phản gián AF có nhiều phương án dự phòng phụ thuộc thông tin, quy trách nhiệm, custody, thời điểm, phong ấn, hoạt động nước ngoài, can thiệp nội bộ và thẩm quyền chính trị. Đây là nguyên tắc thiết kế đã chốt; cây WATCH/STING/CAPTURE/... và nhánh thực hiện vẫn là đề xuất. Tác nhân phản gián không tự có quyền quyết định số phận cuối cùng của MC2.
 

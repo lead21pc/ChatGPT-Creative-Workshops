@@ -236,13 +236,19 @@ Retcon đã được người dùng chấp nhận; không phải một đề xu�
 | AF-UR-OPEN-004 | UNKNOWN / OPEN | Nhu cầu chợ xám/đen, hàng hóa/dịch vụ, ẩn danh/access, tổ chức/intermediary/House và quan hệ hợp đồng/bảo trợ cụ thể. | `13` §§7/9. Các ví dụ chưa phải catalogue hoặc tổ chức đã thành lập. |
 | AF-UR-OPEN-005 | UNKNOWN / OPEN | Undi thực tế, vật liệu/rập/độ che phủ/tùy biến, vai trò dữ liệu/hardware nghề, body link/consent/deactivation, quyền lệnh và tích hợp terminal. | `13` §§8/10; `02` giữ năng lực công nghệ/Guest Pass và unknown chuyển đổi. |
 | AF-UR-OPEN-006 | UNKNOWN / OPEN | Luật tử vong/điều tra/bồi thường, cơ quan và trigger an ninh, các tác nhân phản đối/cải cách, đường tiếp cận kháng chiến/scandal có căn cứ. | `13` §§11–14. Không tạo Anti-Undie Institution hoặc friendly-fire event mặc định. |
-| AF-UR-OPEN-007 | UNKNOWN / OPEN — partially specified | Nghề MC2, triển khai cover/biến đổi, tổ chức/operator/patron, first contact, gray activity, nhân quả phản quốc, chronology, đường tới mẹ và outcome. | `01`/`13` §16.1/`03` §14.1; chức năng cover đã chốt, checkpoint phản quốc/nguy hiểm tính mạng là canon. Swap và lịch giải cứu chưa thành sự kiện; xem MC2 pathway ledger dưới đây. |
+| AF-UR-OPEN-007 | TUYẾN CHÍNH ĐÃ THAY THẾ / GIAO ĐIỂM CÒN MỞ | Khả năng MC2 tiếp xúc Undie về sau, nghề, vỏ bọc/biến đổi, tác nhân vận hành, liên hệ đầu, hoạt động vùng xám, đường tới mẹ và kết quả. | `13` §16 giữ hướng tiền nhiệm; `03` §14 giữ tuyến Học viện. Swap và lịch giải cứu vẫn là các hướng chưa thành sự kiện. |
 | AF-UR-OPEN-008 | DEFERRED | TE tourism/experience-economy revamp: institutions/economy/law/professions/Undie relation. | `13` §15; không tự thay `40`. |
 | AF-UR-OPEN-009 | UNKNOWN / REQUIRES RECONCILIATION | Chi tiết cũ không tự chuyển sang nghề mới: intake ages/counts/gender, workload/bonuses, branch-specific 1:1/prepaid workline, transport/services, inheritance/health/AI rules còn phụ thuộc kiến trúc cũ. | `91` AF-UR-LEGACY; không khẳng định chúng bị phủ định hoặc đã được khôi phục. |
 
+## Tuyến Học viện của MC2 — câu hỏi mở 2026-11-26
+
+- **Tiếp nhận và đào tạo.** Ai đề xuất hoặc cho phép, MC2 có đồng ý hay không và vì sao, điều kiện hoặc ngoại lệ nhập học, tuổi và năm vào, xếp lớp/năm đào tạo, thời lượng hiện diện, tư cách học viên hay tư cách khác, hoàn tất khóa và thời điểm Clash #2 so với tốt nghiệp.
+- **Thẩm quyền và bảo vệ.** Quan hệ pháp lý giữa Quân đội, Học viện, chi nhánh Hội đồng Pháp sư, site Tiring Slope, Nghị viện, quý tộc, Bộ Nội vụ và các tác nhân khác. Căn cứ có thể giới hạn can thiệp, sự bảo vệ chủ đích hay phát sinh, mức tranh chấp và thời hạn, cùng những gì mỗi cơ quan biết về huyết hệ và True Crown.
+- **Cầu nối tới Clash #2.** Sự kiện kết thúc hoặc làm suy yếu giai đoạn Học viện, diễn tiến tới nguy cơ bị giữ và nguy hiểm tính mạng, và việc có cần sửa mốc phản quốc đã chốt ngày 05/10. Điểm giao nhân quả của hai canon vẫn theo `03` §§14.1–18. Cơ chế kỹ thuật và kết cục sau khi MC1 tới vẫn mở ở AF-OPEN-015.
+
 ## MC2 pathway: câu hỏi triển khai — 2026-10-05
 
-Nguồn `AetherFire_MC2_Pathway_Canon_Status_2026-10-05.md`, phần III/IX. Trích nguyên văn để giữ đủ câu hỏi, không phải canon bổ sung. ID nhóm AF-MC2-OPEN-001–010 tương ứng III.1–10. `12` là owner chính trị/phong ấn-governance/RF/TE/MC2.2/an ninh; `01` giữ ontology/toàn cục, `13` giữ cover, `03` giữ checkpoint. Mốc checkpoint không giải quyết cơ chế phía dưới; các citation section chính trị cũ ở `01` nay được route sang `12`.
+Nguồn `AetherFire_MC2_Pathway_Canon_Status_2026-10-05.md`, phần III/IX. Trích nguyên văn để giữ đủ câu hỏi, không phải canon bổ sung. ID nhóm AF-MC2-OPEN-001–010 tương ứng III.1–10. `12` là owner chính trị/phong ấn-governance/RF/TE/MC2.2/an ninh; `01` giữ ontology/toàn cục, `13` ghi hướng cover tiền nhiệm, `03` giữ trạng thái checkpoint. Các câu hỏi về tuyến Học viện được ghi ở trên; các citation section chính trị cũ ở `01` nay được route sang `12`.
 
 ### III. UNKNOWN / OPEN
 
@@ -381,7 +387,7 @@ Still OPEN:
 
 #### 8. Treason implementation
 
-The treason checkpoint is canon; the causal implementation remains OPEN:
+Mốc phản quốc đã chốt ngày 05/10 đang chờ đối chiếu với tuyến Học viện. Việc giữ hay sửa mốc và các câu hỏi triển khai dưới đây vẫn mở:
 
 - what exact act(s) form the evidentiary basis;
 - which agency investigates;

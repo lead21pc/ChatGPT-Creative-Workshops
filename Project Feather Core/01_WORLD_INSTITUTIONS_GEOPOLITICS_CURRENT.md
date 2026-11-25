@@ -361,7 +361,7 @@ Có thể dùng:
 
 ## MC2 — giao diện chính trị
 
-Chi tiết tính cách, tuyến tiếp cận kín, tranh chấp chính danh và phản quốc do `12` kiểm soát; giao diện nghề/biến đổi do `13`, checkpoint/metafiction do `03`. Không phục hồi Civil→Undie→illegal prostitution. Phả hệ Raging Fire/Prince 9 và ontology huyết hệ bên dưới giữ nguyên.
+Trong giai đoạn Học viện của MC2, Section 1 có thể theo dõi lịch sử của nhà nước, kinh tế và các thể chế tiếp tục vận động. Section 2 có thể theo dõi quá trình phát triển và lựa chọn của MC2 trong cùng lịch sử Canon 2. `03` giữ timeline, `14` giữ nội bộ Học viện, `12` giữ tính cách, chính danh và ranh giới quyền bảo vệ MC2. `13` ghi hướng tiếp cận kín tiền nhiệm và phạm vi thay thế. Phả hệ Raging Fire/Prince 9 vẫn là căn cứ của giá trị chính trị của MC2.
 
 ---
 

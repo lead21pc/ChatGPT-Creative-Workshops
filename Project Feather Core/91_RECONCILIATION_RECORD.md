@@ -2,6 +2,14 @@
 
 > Audit/control layer only. Part I summarizes the completed reconciliation. Part II preserves assertion-level conflicts, provenance, priority and resolutions.
 
+## MC2 tại Battlemage Academy — nhập canon 2026-11-26
+
+Tác giả duyệt đề xuất nhập sau khi đối chiếu lore. Nguồn: `Source_Archive/FTH_MC2_Academy_Path_Canon_Delta_2026-11-26.md` (8.250 byte, SHA-256 `C0A66CA0613E50367F7B32C42825D0256BE63258E8B631E9250CFF7803E588A9`).
+
+- Delta §§1–5 và §9 thay vai trò tuyến chính của Undie + biến đổi diện mạo trong giai đoạn nhiều năm trước Clash #2. `03` Part II §14 là mốc hiện hành của tuyến nhân vật. `14` giữ giao diện Học viện, `12` giữ quyền và lợi ích chính trị, `01` và `04` đồng bộ mô tả, `13` ghi hướng tiền nhiệm cùng các giao điểm còn mở.
+- Delta §§6–8 giữ quỹ đạo Canon 1, điều kiện tử vong V0.5 còn treo trong Canon 2 và điểm giao Clash #2 theo mốc 25/11. Khung đào tạo sáu năm là khung của Học viện. Thời gian hiện diện của MC2 vẫn mở.
+- Delta §10 để mở việc tiếp nhận, bảo vệ, thời lượng, sự kiện kết thúc giai đoạn Học viện, cầu nối tới khủng hoảng và việc có cần sửa mốc phản quốc 05/10. `92` ghi các mục này, `03` §14.1 giữ trạng thái đối chiếu và AF-OPEN-015 tiếp tục theo dõi cơ chế Clash #2 cùng kết cục MC2.
+
 ## Metafiction MC2 V0.5 — nhập canon 2026-11-25
 
 Tác giả duyệt đề xuất nhập delta sau khi đối chiếu với lore hiện hành. Nguồn gốc: `Source_Archive/FTH_Metafiction_MC2_V05_Causal_Retcon_2026-11-25.md` (11.153 byte, SHA-256 `FF55FE2BC6720BAA917A1A09BF7656A08EDF7F3F3F95CB77C46143646FFC1ABE`).

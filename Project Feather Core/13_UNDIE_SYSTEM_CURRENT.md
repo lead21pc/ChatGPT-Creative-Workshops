@@ -172,7 +172,9 @@ TE dự kiến được thiết kế lại thành nhà nước thương mại l�
 
 Đường ép foreign spy/infiltrator vào Undie và đường Academy failure→Undie vẫn bị loại bỏ. Không tạo đường thay thế.
 
-## 16. MC2: hướng tiếp cận mới, không tự viết đường đi
+## 16. MC2: giao diện Undie và phạm vi quyết định 26/11/2026
+
+Battlemage Academy thay Undie trong vai trò tuyến chính của MC2 qua nhiều năm trước Clash #2 (`03` Part II §14). Undie tiếp tục là hệ sinh thái nghề nghiệp. Khả năng MC2 tiếp xúc Undie sau này còn mở. Sơ đồ và chốt 05/10 dưới đây ghi lại hướng thiết kế tiền nhiệm trong đúng phạm vi đã được thay thế.
 
 MC2 không đi qua Undie như trừng phạt, hạ cấp địa vị hoặc bắt buộc sex work. Không cần mất địa vị pháp lý để gia nhập/tiếp cận hệ sinh thái này.
 
@@ -187,11 +189,11 @@ Tuyến Civil→Undie→mại dâm bất hợp pháp và các bước bẫy/án 
 
 Nguồn `AetherFire_MC2_RF_AF_Resistance_Strategic_Node_Analysis.md` được chỉ định làm đầu vào thiết kế tiếp theo cho đúng trục MC2/mẹ/Raging Fire/chính trị/kháng chiến/an ninh/đối ngoại. Nó không được nhập toàn bộ: CANON chỉ trong phạm vi đã chốt; HYPOTHETICAL/PROPOSAL là ứng viên; UNKNOWN vẫn mở. Lượt này không nhập hoặc thực hiện các đề xuất tuyến mới từ nguồn ấy.
 
-### 16.1 Chốt pathway bổ sung — 2026-10-05
+### 16.1 Hướng thiết kế tiền nhiệm — 2026-10-05
 
-Undie + biến đổi diện mạo/căn tính là giao diện vỏ bọc và tiếp cận kín cho MC2 dưới căn tính bề ngoài khác. Đây là hướng thiết kế đã chốt; không khẳng định nghề đã chọn, quy trình đã thực hiện hoặc mọi Undie đều có khả năng biến đổi. Công dụng chính trị của MC2 không biến Undie thành thiết chế tình báo phổ quát.
+Undie + biến đổi diện mạo/căn tính là giao diện vỏ bọc và tiếp cận kín cho MC2 dưới căn tính bề ngoài khác. Hướng này từng được chốt ở cấp thiết kế. Nghề, quy trình và việc MC2 dùng giao diện này trong tương lai còn mở; khả năng biến đổi phụ thuộc nguồn cụ thể. Công dụng chính trị của MC2 không biến Undie thành thiết chế tình báo phổ quát.
 
-Operation Swap (rút MC2 thật, duy trì người thế thân công khai) chỉ là **PROPOSAL ưu tiên**, chưa là sự kiện. `12` kiểm soát chi tiết chính trị và TE bảo hộ Nữ hoàng; thiết kế lại TE vẫn DEFERRED. Mốc phản quốc và nguy hiểm tính mạng trước Clash #2 được khôi phục ở `03`, nhưng đoạn nhân quả mới và kết quả sau MC1 vẫn mở. Nghề, tổ chức/operator, patron, giấy tờ, hình thức/giới hạn biến đổi, thời gian, first contact, kháng chiến và an ninh vẫn UNKNOWN.
+Operation Swap (rút MC2 thật, duy trì người thế thân công khai) chỉ là **PROPOSAL ưu tiên**, chưa là sự kiện. `12` kiểm soát chi tiết chính trị và TE bảo hộ Nữ hoàng; thiết kế lại TE vẫn DEFERRED. Mốc phản quốc đã chốt trước đây đang chờ đối chiếu với tuyến Học viện ở `03` §14.1. Đoạn nhân quả dẫn tới khủng hoảng và kết quả sau MC1 vẫn mở. Nghề, tổ chức/operator, patron, giấy tờ, hình thức/giới hạn biến đổi, thời gian, first contact, kháng chiến và an ninh vẫn UNKNOWN.
 
 Nguồn pathway 2026-10-05 cụ thể hóa hướng trong §16, không wholesale nhập nguồn strategic-node hoặc RP cũ. `90` giữ đề xuất/giả thuyết; `92` giữ câu hỏi triển khai.
 
@@ -205,7 +207,7 @@ Nguồn pathway 2026-10-05 cụ thể hóa hướng trong §16, không wholesale
 - Tổ chức nghề, tên House, quy mô, quan hệ trung gian/bảo trợ; chưa tạo một tổ chức từ ví dụ.
 - Undi thực tế; phần cứng nghề, liên kết cơ thể, đồng thuận, quyền lệnh, dữ liệu và ranh giới với terminal khách.
 - Tử vong/điều tra/bồi thường, các nhóm phản đối/cải cách và giao diện an ninh có căn cứ.
-- Tuyến MC2: nghề, triển khai vỏ bọc/biến đổi đã có hướng thiết kế, tổ chức, đơn vị vận hành, patron, liên hệ đầu, hoạt động vùng xám, kháng chiến, sự cố an ninh, nhân quả tới mốc phản quốc/Clash #2, đường tới mẹ và kết quả.
+- Nếu MC2 về sau tiếp xúc Undie, nghề, vỏ bọc, tác nhân trung gian, tiếp xúc vùng xám và kết quả vẫn cần căn cứ riêng. `03` §14 và `92` giữ các câu hỏi về tuyến Học viện và cầu nối tới Clash #2.
 - TE redesign: đã hoãn; không dùng hướng thiết kế để khẳng định triển khai hiện tại.
 - Các chi tiết cũ chưa được retcon quyết định riêng được phân loại trong hồ sơ đối chiếu; không dùng để lấp chỗ trống.
 

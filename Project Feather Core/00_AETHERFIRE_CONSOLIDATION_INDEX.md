@@ -1,10 +1,14 @@
 # Project Feather Core — Consolidation Index
-> **Generated consolidation baseline:** 2026-09-08; latest integration: 2026-11-25
+> **Generated consolidation baseline:** 2026-09-08; latest integration: 2026-11-26
 > **Location:** self-contained `Project Feather Core/` package. `FTH` is the short/internal project namespace. Current root files are maintained current sources; `Source_Archive/` preserves historical/provenance material only.
 >
 > **Namespace invariant:** `PROJECT FEATHER CORE / FTH != AETHERFIRE THE COUNTRY`. `AetherFire` remains the official country name and the stable `AFM-*` / `AF-*` identifiers are not renamed.
 > **Truth rule:** `ABSENCE OF CANON ≠ CANONICAL NEGATION`; `NOT ESTABLISHED ≠ FALSE`; unresolved relations remain `UNKNOWN / UNRESOLVED`.
 
+
+## MC2 tại Battlemage Academy — nhập canon 2026-11-26
+
+`03` §14 giữ tuyến chính của MC2 qua nhiều năm trước Clash #2. `14` giữ khung đào tạo và giao diện Học viện, `12` giữ ranh giới thẩm quyền và chính trị, `13` ghi phạm vi thay thế hướng Undie. `92` giữ câu hỏi nhập học, bảo vệ, thời lượng và cầu nối tới khủng hoảng, gồm việc có cần sửa mốc phản quốc đã chốt trước đây. `91` ghi nguồn và phạm vi quyết định.
 
 ## Metafiction MC2 V0.5 — nhập canon 2026-11-25
 
@@ -175,7 +179,7 @@ Các quyết định cũ dưới đây là hồ sơ theo thời điểm. Những
 
 ## MC2 pathway — nhập chọn lọc 2026-10-05
 
-Nguồn `AetherFire_MC2_Pathway_Canon_Status_2026-10-05.md` được nhập theo nhãn từng assertion. Theo yêu cầu tách chính trị, `12` / `AFM-011` kiểm soát thể chế, kế vị, MC2–AF–RF, TE bảo hộ, hỗ trợ phong ấn và phản gián; `01` giữ toàn cục/ontology và routing. `13` giữ giao diện nghề/biến đổi; `03` giữ checkpoint/metafiction. Không đổi sự thật chỉ vì chuyển owner.
+Nguồn `AetherFire_MC2_Pathway_Canon_Status_2026-10-05.md` được nhập theo nhãn từng assertion. Theo yêu cầu tách chính trị, `12` / `AFM-011` kiểm soát thể chế, kế vị, MC2–AF–RF, TE bảo hộ, hỗ trợ phong ấn và phản gián; `01` giữ toàn cục/ontology và routing. `13` ghi giao diện nghề/biến đổi trong quyết định ngày 05/10, đã được thay thế ở vai trò tuyến chính theo mốc 26/11. `03` giữ timeline và checkpoint.
 
 Operation Swap, người thế thân, lịch giải cứu và cây phản gián cụ thể chưa thành sự kiện. `90` giữ đủ P1–P11/H1–H6/D1–D4 và ma trận ứng viên; `92` giữ đủ 10 nhóm UNKNOWN và 10 lựa chọn cần chốt; `91` ghi supersession/nguồn/phạm vi. Không phục hồi tuyến Civil→Undie→mại dâm bất hợp pháp hoặc các sự kiện RP cũ, không đổi controls và không hoàn thiện TE.
 

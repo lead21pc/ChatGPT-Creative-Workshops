@@ -348,7 +348,7 @@ Trong Canon 2:
 ```text
 Elena không đi đúng trajectory Canon 1
 → còn sống
-→ tuyến tiếp cận mẹ/chính trị hiện đang thiết kế
+→ tuyến chính qua Battlemage Academy trong một giai đoạn nhiều năm
 → checkpoint gọi MC1 vẫn thuộc miền metafiction
 
 Không suy Civil/Undie hạ cấp hoặc bẫy kháng chiến giả từ checkpoint này.
