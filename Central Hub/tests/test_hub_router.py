@@ -366,22 +366,27 @@ class RouterCompositionTests(unittest.TestCase):
         self.assertEqual(simulate(fixture, {'X'})['blocked']['ROOT'], 'CATALOG_NOT_ACTIVE')
 
     def test_L_pipeline_entrypoint_is_opaque_and_independently_selected(self):
-        fixture = current_metadata_fixture()
-        result = simulate(fixture, {'HUB-PKG-TECHNICAL', 'HUB-PKG-IMAGET'}, pipeline_needs={'HUB-PKG-IMAGET'})
-        self.assertEqual(result['pipeline_entrypoints'], [('HUB-PKG-IMAGET', 'HUB-IMAGET-ENTRY')])
-        self.assertEqual(set(result['spec_reads']), {'HUB-TECH-ENTRY', 'HUB-IMAGET-ENTRY'})
-        denied = simulate(fixture, {'HUB-PKG-TECHNICAL', 'HUB-PKG-IMAGET'})
+        domain = synthetic_module('SYNTHETIC_DOMAIN_ENTRY', 'SYNTHETIC_DOMAIN', {'SYNTHETIC_DOMAIN'})
+        pipeline = synthetic_module('SYNTHETIC_PIPELINE_ENTRY', 'SYNTHETIC_PIPELINE', {'SYNTHETIC_PIPELINE'},
+                                    role='TOOL_PIPELINE')
+        fixture = synthetic_fixture(domain, pipeline)
+        result = simulate(fixture, {'SYNTHETIC_DOMAIN', 'SYNTHETIC_PIPELINE'}, pipeline_needs={'SYNTHETIC_PIPELINE'})
+        self.assertEqual(result['pipeline_entrypoints'], [('SYNTHETIC_PIPELINE', 'SYNTHETIC_PIPELINE_ENTRY')])
+        self.assertEqual(set(result['spec_reads']), {'SYNTHETIC_DOMAIN_ENTRY', 'SYNTHETIC_PIPELINE_ENTRY'})
+        denied = simulate(fixture, {'SYNTHETIC_DOMAIN', 'SYNTHETIC_PIPELINE'})
         self.assertEqual(denied['pipeline_entrypoints'], [])
-        technical = next(p['entrypoint'] for p in fixture['packages'] if p['package_id'] == 'HUB-PKG-TECHNICAL')
-        edge = dict(module_id='HUB-IMAGET-ENTRY', package_id='HUB-PKG-IMAGET', admitted=True)
-        technical['requires'] = [edge]
-        fixture['artifacts'][technical['module_id']][0]['requires'] = [edge]
-        denied = simulate(fixture, {'HUB-PKG-TECHNICAL'})
+        edge = dict(module_id=pipeline['module_id'], package_id=pipeline['package_id'], admitted=True)
+        domain['requires'] = [edge]
+        fixture = synthetic_fixture(domain, pipeline)
+        denied = simulate(fixture, {'SYNTHETIC_DOMAIN'})
         self.assertTrue(any('PIPELINE_NEED_NOT_AUTHORIZATION' in reason for reason in denied['blocked'].values()))
 
     def test_M_scope_change_does_not_keep_activation(self):
-        fixture = current_metadata_fixture()
-        old = simulate(fixture, {'HUB-PKG-TECHNICAL', 'HUB-PKG-IMAGET'}, pipeline_needs={'HUB-PKG-IMAGET'})
+        domain = synthetic_module('SYNTHETIC_DOMAIN_ENTRY', 'SYNTHETIC_DOMAIN', {'SYNTHETIC_DOMAIN'})
+        pipeline = synthetic_module('SYNTHETIC_PIPELINE_ENTRY', 'SYNTHETIC_PIPELINE', {'SYNTHETIC_PIPELINE'},
+                                    role='TOOL_PIPELINE')
+        fixture = synthetic_fixture(domain, pipeline)
+        old = simulate(fixture, {'SYNTHETIC_DOMAIN', 'SYNTHETIC_PIPELINE'}, pipeline_needs={'SYNTHETIC_PIPELINE'})
         new = simulate(fixture, set())
         self.assertEqual(len(old['spec_verified']), 2)
         self.assertEqual(new['spec_verified'], [])
@@ -471,7 +476,7 @@ class LibraryReadTests(unittest.TestCase):
                 integration_read_spec(entry, [dict(observed, **{key: value})], scoped_search_sufficient=True)
 
     def test_library_root_scoped_identity_without_internal_ids_is_generic(self):
-        for package in ['HUB-PKG-TECHNICAL', 'HUB-PKG-AUTHORING', 'HUB-PKG-IMAGET']:
+        for package in ['HUB-PKG-TECHNICAL', 'HUB-PKG-AUTHORING', 'HUB-PKG-SHOPPING']:
             with self.subTest(package=package):
                 entry, observed = self.library_identity_fixture(package)
                 before = copy.deepcopy(entry)
@@ -517,35 +522,6 @@ class LibraryReadTests(unittest.TestCase):
 
 
 class ActiveRouterTests(unittest.TestCase):
-    def test_imaget_admits_explicit_preview_only_for_execution_artifact(self):
-        package_id = 'HUB-PKG-IMAGET'
-        row = next(row for row in load(ROOT_CATALOG)['packages'] if row['package_id'] == package_id)
-        admission = row['applicability']
-        self.assertIn('Actual image analysis, creation, editing, variation or correction', admission)
-        self.assertIn('explicit preparation or preview of an ImageT execution artifact', admission)
-        self.assertIn('Image discussion or descriptive prose alone do not qualify', admission)
-
-        # Applicability is supplied by the fixture. The router fixture does not interpret natural language.
-        fixture = current_metadata_fixture()
-        preview = simulate(fixture, {package_id}, pipeline_needs={package_id})
-        descriptive_prose = simulate(fixture, set())
-        self.assertEqual(preview['pipeline_entrypoints'], [(package_id, 'HUB-IMAGET-ENTRY')])
-        self.assertEqual(descriptive_prose['pipeline_entrypoints'], [])
-
-    def test_imaget_admits_actual_generation_before_closed_scope_decision(self):
-        package_id = 'HUB-PKG-IMAGET'
-        row = next(row for row in load(ROOT_CATALOG)['packages'] if row['package_id'] == package_id)
-        self.assertIn('Actual image analysis, creation, editing, variation or correction', row['applicability'])
-        self.assertIn('ImageT decides closed-scope eligibility for that image work', row['applicability'])
-        self.assertIn('A blocked ImageT operation has no generic image-generation fallback', row['applicability'])
-        rule = load(HUB_ROUTER)['stages']['ROOT_PACKAGE_SELECTION']
-        self.assertIn('before its specialized work, including direct tool use', rule)
-
-        # Even an out-of-scope generation request matches at root. The fixture verifies the
-        # handoff only. It has no natural-language classifier or image tool dispatch.
-        result = simulate(current_metadata_fixture(), {package_id}, pipeline_needs={package_id})
-        self.assertEqual(result['pipeline_entrypoints'], [(package_id, 'HUB-IMAGET-ENTRY')])
-
     def test_prior_none_and_activation_do_not_route_the_current_turn(self):
         router = load(HUB_ROUTER)
         self.assertEqual(router['default'], 'NONE')

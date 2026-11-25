@@ -11,6 +11,6 @@ CI điều khiển thao tác và xác lập nguồn cần dùng. Router phân gi
 
 [Old_Source_Archive](Old_Source_Archive/) giữ lịch sử của CI và module từ kho Central Hub. Chỉ dùng để đối chiếu lịch sử. Kho lưu trữ nằm ngoài Project Sources và ngoài đường phân giải của Router. [Biên nhận di chuyển ban đầu](<../Central Hub/Source_archive/ARCHIVE_RECEIPT.json>) ghi đường dẫn và SHA-256.
 
-ImageT của Central Hub tiếp tục hoạt động như một hệ thống riêng trong giai đoạn chuyển đổi. Việc cho hệ thống đó ngừng hoạt động thuộc tác vụ riêng. Global Native 9.1.1 là nguồn gốc thiết kế của CI. Các tệp trong bảng là toàn bộ cấu hình cần cài cho bản độc lập.
+Global Native 9.1.1 là nguồn gốc thiết kế của CI. Các tệp trong bảng là toàn bộ cấu hình cần cài cho bản độc lập.
 
 [Đặc tả hồi quy](tests/TEST_CASES.md) ghi kỳ vọng và cách quan sát khi chạy trên Project. Baseline hiện tại đã được dựng ở repository.

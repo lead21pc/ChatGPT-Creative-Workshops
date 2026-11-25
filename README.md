@@ -63,20 +63,19 @@ Each project's documentation determines how to read its sources. Folder names, v
 
 ## Central Hub
 
-Central Hub composes scoped work across six packages. Hub CI owns operation, stage, evidence status and action authority. Router selects owners, checks reads and dependencies, and hands off scoped inputs. Packages can contribute independently within a turn.
+Central Hub composes scoped work across five packages. Hub CI owns operation, stage, evidence status and action authority. Router selects owners, checks reads and dependencies, and hands off scoped inputs. Packages can contribute independently within a turn.
 
 | Package | Active entrypoint | Contribution |
 | --- | --- | --- |
 | Technical | HUB-TECH-ENTRY 1.2 | Mechanism reasoning, diagnosis and bounded technical changes |
 | Authoring | HUB-AUTH-ENTRY 1.1 | Prompt construction with /AT, /AT P1 or /AT P2 |
-| ImageT | HUB-IMAGET-ENTRY 1.7 | Image analysis and bounded image operations |
 | Shopping | HUB-SHOP-ENTRY 1.2 | Product identity, purchase constraints and Offer comparison |
 | Food | HUB-FOOD-ENTRY 0.3 | Culinary analysis, planning and recommendations |
 | Media | HUB-MEDIA-ENTRY 1.0 | Film and music analysis, comparison, recommendations and discovery |
 
 AIS 2.0 is a core Project Source bound as HUB-CORE-AIS. Router dispatches scoped evidence work on demand, including an eligible /SEARCH span when no domain package is selected. User Profile Contract 2.0 applies consumer, object, purpose and material-need checks to four user-managed Shared objects. Context Snapshot carries scoped data with provenance. Explicit debug requests and material diagnostic blockers can produce a copyable receipt.
 
-The repository uses CI 2.1, with Router, Architecture and root Catalog at 2.0. The user confirmed nested Library folder retrieval and use in the earlier runtime they tested. Refactor 2 deployment and live checks are pending. [Central Hub setup](Central%20Hub/README.md) · [Architecture](Central%20Hub/HUB_ARCHITECTURE_v2.0.md) · [Root Catalog](Central%20Hub/HUB_PACKAGE_CATALOG_v2.0.yaml)
+The repository uses CI 2.1, with Router 2.0 and Architecture and root Catalog 2.1. The user confirmed nested Library folder retrieval and use in the earlier runtime they tested. Deployment and live checks for Architecture and root Catalog 2.1 are pending. [Central Hub setup](Central%20Hub/README.md) · [Architecture](Central%20Hub/HUB_ARCHITECTURE_v2.1.md) · [Root Catalog](Central%20Hub/HUB_PACKAGE_CATALOG_v2.1.yaml)
 
 ## Choose your path
 
@@ -250,7 +249,7 @@ Evaluate the repository according to its stated purpose and observed failure mod
 
 The repository name reflects its instruction-versioning history, but its current scope includes the creative systems, Central Hub, and the supporting control infrastructure. Global instructions may support general interaction as well as project work, while project-specific controls remain local to their respective projects.
 
-A working session may continue fiction or simulation inside one project; take a local question into Central Hub for research, Authoring, ImageT, or other shared work; return that material to the fiction project for local review; externalize an accepted development into project sources; or diagnose a control failure exposed during real creative work. These are different uses of one personal workshop, not stages of one mandatory automated pipeline.
+A working session may continue fiction or simulation inside one project; take a local question into Central Hub for research, Authoring, or other shared work; return that material to the fiction project for local review; externalize an accepted development into project sources; or diagnose a control failure exposed during real creative work. These are different uses of one personal workshop, not stages of one mandatory automated pipeline.
 
 Different parts of this workflow have different roles:
 

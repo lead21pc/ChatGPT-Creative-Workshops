@@ -8,11 +8,10 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 LIBRARY = ROOT / 'library_modules'
-ROOT_CATALOG = ROOT / 'HUB_PACKAGE_CATALOG_v2.0.yaml'
+ROOT_CATALOG = ROOT / 'HUB_PACKAGE_CATALOG_v2.1.yaml'
 HUB_ROUTER = ROOT / 'HUB_ROUTER_v2.0.yaml'
-ARCHITECTURE = ROOT / 'HUB_ARCHITECTURE_v2.0.md'
+ARCHITECTURE = ROOT / 'HUB_ARCHITECTURE_v2.1.md'
 CI = ROOT / 'HUB_CI_v2.1.md'
-IMAGE_INSTALL = ROOT / 'tool_pipelines/ImageT/IMAGET_INSTALL_INTEGRITY.yaml'
 
 
 class Closed(ValueError):
@@ -155,7 +154,7 @@ class HubContracts(unittest.TestCase):
         packages = load(ROOT_CATALOG)['packages']
         self.assertEqual(len({row['package_id'] for row in packages}), len(packages))
         self.assertEqual({row['package_id'].removeprefix('HUB-PKG-') for row in packages},
-                         {'TECHNICAL', 'FOOD', 'MEDIA', 'AUTHORING', 'IMAGET', 'SHOPPING'})
+                         {'TECHNICAL', 'FOOD', 'MEDIA', 'AUTHORING', 'SHOPPING'})
         bound = set()
         identities = set()
 
@@ -183,8 +182,6 @@ class HubContracts(unittest.TestCase):
                     self.assertEqual(leaf['package_id'], row['package_id'])
                     self.assertEqual(leaf['location']['root'], 'Central Hub Config')
                     admit(leaf)
-        for row in load(IMAGE_INSTALL)['core']:
-            admit(row, path=LIBRARY / row['file'])
         shop = package('SHOPPING')
         self.assertIsNone(shop['local_catalog'])
         match = re.search(r'Select (HUB-SHOP-SEARCH) / (HUB-PKG-SHOPPING) / (DOMAIN_PROCEDURE) / (ACTIVE) / ([\d.]+)', entry_path(shop).read_text(encoding='utf-8'))
