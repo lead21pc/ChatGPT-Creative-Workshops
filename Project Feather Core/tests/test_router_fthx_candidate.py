@@ -7,7 +7,7 @@ import unittest
 
 from tools.router_candidate import (
     CandidateError, FTHX_CANDIDATE, FTHX_PATCH_POLICIES, ROUTER,
-    check, check_fthx_candidate, load, resolve_control, validate_fthx_candidate,
+    check, check_fthx_candidate, load, resolve_control, validate_fthx_candidate, ROUTER6,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -38,7 +38,7 @@ class FthxCandidateTests(unittest.TestCase):
         self.assertEqual(Path(FTHX_CANDIDATE).parent.name, 'candidates')
         selected = resolve_control(ROOT / 'Anti-Drift Source', 'FTH_Anti_Drift_Source_Router',
                                    self.active['control_selection']['excluded_statuses'])
-        self.assertEqual(selected, ROOT / ROUTER)
+        self.assertEqual(selected, ROOT / ROUTER6)
 
     def test_schema_and_non_fthx_behavior_are_preserved(self):
         self.assertEqual(set(self.candidate), set(self.active))

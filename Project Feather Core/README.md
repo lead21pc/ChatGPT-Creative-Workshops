@@ -38,13 +38,28 @@ Các nguồn đánh số tại root được duy trì trực tiếp. Công cụ 
 
 ## Bộ điều khiển hiện hành
 
-Bộ hiện hành là FTH CI 3.4, Router 5.0 và Authoring Pipeline 1.1. Người dùng xác nhận ngày 2026-11-24 rằng bộ điều khiển hiện hành đã được cài và đang chạy. INSTALLED: USER-REPORTED. LIVE ACTIVE: USER-REPORTED. INDEPENDENT LIVE VERIFICATION: NOT RUN. Báo cáo này không xác nhận mọi probe hoặc hồi quy đã đạt.
+Bộ điều khiển trên `main` gồm CI 3.5, Router 6.0 và Authoring Pipeline 1.1. Báo cáo ngày 2026-11-24 của người dùng xác nhận bộ CI 3.4, Router 5.0 và Pipeline 1.1 đã được cài và đang chạy tại thời điểm đó. INSTALLED: USER-REPORTED. LIVE ACTIVE: USER-REPORTED. INDEPENDENT LIVE VERIFICATION: NOT RUN. Báo cáo này không xác nhận mọi probe hoặc hồi quy đã đạt.
 
 | Thành phần | Bản local | Trách nhiệm |
 | --- | --- | --- |
-| CI | [FTH CI 3.4](Project%20Feather%20Core%20CI/FTH_CI_version_v3.4.md), khai báo nền ChatGPT 8.9 | Hành vi, thao tác/giai đoạn được yêu cầu, quyền tác giả và điều kiện vào Router/Pipeline. CI tự chứa quy tắc cần dùng; khai báo nền không tạo thêm phụ thuộc đọc lúc chạy. |
-| Source Router | [FTH Router 5.0](Anti-Drift%20Source/FTH_Anti_Drift_Source_Router_v5.0.yaml) | Định tuyến nguồn/thẩm quyền, điều kiện nạp, phụ thuộc, hòa giải và lựa chọn quy tắc chống sai lệch. |
+| CI | [FTH CI 3.5](Project%20Feather%20Core%20CI/FTH_CI_version_v3.5.md), khai báo nền ChatGPT 8.9 | Hành vi, thao tác/giai đoạn được yêu cầu, quyền tác giả và điều kiện vào Router/Pipeline. CI tự chứa quy tắc cần dùng; khai báo nền không tạo thêm phụ thuộc đọc lúc chạy. |
+| Source Router | [FTH Router 6.0](Anti-Drift%20Source/FTH_Anti_Drift_Source_Router_v6.0.yaml) | Định tuyến nguồn/thẩm quyền, điều kiện nạp, phụ thuộc, hòa giải và lựa chọn quy tắc chống sai lệch. |
 | Authoring Pipeline | [Pipeline 1.1](Anti-Drift%20Source/FTH_Authoring_Pipeline_v1.1.md) | Biến đổi đầu vào theo thao tác được yêu cầu: rút hạt nhân ý tưởng, phân rã thành phần, so sánh, bản địa hóa hoặc đề xuất triển khai; giữ đúng điểm dừng. |
+
+CI 3.4 và Router 5.0 vẫn có sẵn để quay lại bộ 5.0 cùng Pipeline 1.1.
+
+Router 6.0 dùng `LOCAL_CURRENT_SOURCE` cho bootstrap `00/92`, reconciliation `91`
+khi cần và admitted AFM lore. Deployment chọn exact root/package current; Router
+không chứa đường dẫn máy hoặc tài khoản triển khai. Controls/Pipeline/RP giữ binding
+của chúng; FTHX không bật. `Source_Archive` ở mọi độ sâu, không phân biệt hoa thường,
+nằm ngoài runtime source space: không đọc/tìm/liệt kê/theo tham chiếu/chọn version hoặc
+cứu source gap từ đó. Partial read không thành FULL_FILE; không tự fallback sang
+Library, Project Sources, GitHub, Memory hay root khác.
+
+Tác giả báo local-binding trial đã được kiểm chứng live và phê duyệt promotion trong
+lượt 2026-11-02; đây là bằng chứng do tác giả cung cấp. Các tests local không tái lập
+cloud runtime. Trial và FTHX 5.1 vẫn là candidate riêng, không đổi trạng thái probe.
+Không cài đặt Project trong promotion repository này.
 
 Theo hợp đồng CI, tác vụ phụ thuộc trạng thái FTH hiện hành phải đọc đầy đủ Router và qua các bước nạp nguồn/kiểm tra liên quan trước khi thực hiện. Router yêu cầu đọc đầy đủ `00` và `92` khi khởi đầu; đọc `91` khi xung đột, thay thế, ưu tiên, nguồn gốc hoặc phụ thuộc có thể quyết định tác vụ. Sau đó chọn nguồn theo miền cần xử lý và hợp đồng nạp của Router.
 

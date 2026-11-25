@@ -3,6 +3,7 @@ from pathlib import Path
 import re
 
 ROUTER = 'Anti-Drift Source/FTH_Anti_Drift_Source_Router_v5.0.yaml'
+ROUTER6 = 'Anti-Drift Source/FTH_Anti_Drift_Source_Router_v6.0.yaml'
 STAGES = ['PROMPT_ROUTE_ONLY', 'BOOTSTRAP_GATE', 'MODULE_GATE', 'SOURCE_LOAD',
           'RECONCILIATION', 'ANTI_DRIFT_OVERLAY_GATE', 'PROMPT_EXECUTION', 'PRE_RESPONSE_CHECK']
 FAILURES = {
@@ -230,16 +231,29 @@ def validate(data, root):
     fields(data['policies'], POLICIES, 'policies')
     require(all(isinstance(v, str) and v.strip() for v in data['policies'].values()), 'Empty semantic policy')
     # Maintenance selection only; none of these checks are Router runtime stages.
-    for directory, stem, expected in [('Project Feather Core CI', 'FTH_CI_version', refs['ci']),
-                                       ('Anti-Drift Source', 'FTH_Anti_Drift_Source_Router', root / ROUTER),
-                                       ('Anti-Drift Source', 'FTH_Authoring_Pipeline', refs['pipeline'])]:
+    # Explicit Stack 5 validation remains valid alongside the active Stack 6.
+    for directory, stem, expected in [('Anti-Drift Source', 'FTH_Authoring_Pipeline', refs['pipeline'])]:
         require(resolve_control(root / directory, stem, selection['excluded_statuses']).resolve() == expected.resolve(),
                 f'Active selection mismatch: {stem}')
     return resolved
 
 
-def check(root):
+def check_baseline5(root):
     return validate(load(root / ROUTER), root)
+
+
+def check(root):
+    """Select and check the active stack; only the two concrete stacks are supported."""
+    baseline = load(root / ROUTER)
+    selected = resolve_control(root / 'Anti-Drift Source', 'FTH_Anti_Drift_Source_Router',
+                               baseline['control_selection']['excluded_statuses'])
+    require(selected in (root / ROUTER, root / ROUTER6), 'Unsupported active Router')
+    data = load(selected)
+    resolved = validate_router6(data, root) if selected == root / ROUTER6 else check_baseline5(root)
+    ci = resolve_control(root / 'Project Feather Core CI', 'FTH_CI_version',
+                         baseline['control_selection']['excluded_statuses'])
+    require(ci.resolve() == (root / data['deployment']['ci']).resolve(), 'Active CI/Router pair mismatch')
+    return resolved
 
 
 FTHX_CANDIDATE = 'Anti-Drift Source/candidates/FTH_Anti_Drift_Source_Router_v5.1.yaml'
@@ -248,7 +262,7 @@ FTHX_PATCH_POLICIES = {'routing', 'discovery', 'module_gate', 'loading', 'covera
 
 def validate_fthx_candidate(data, root):
     """Check the opt-in 5.1 delta against active 5.0; never select it as active."""
-    resolved = check(root)
+    resolved = check_baseline5(root)
     baseline = load(root / ROUTER)
     fields(data, baseline.keys(), 'FTHX candidate')
     expected_deployment = dict(baseline['deployment'], status='CANDIDATE',
@@ -278,7 +292,7 @@ LOCAL_BINDING_POLICIES = {'access', 'discovery'}
 
 def validate_local_binding_trial(data, root):
     """Validate only the opt-in storage trial; no retrieval or semantic execution."""
-    resolved = check(root)
+    resolved = check_baseline5(root)
     baseline = load(root / ROUTER)
     fields(data, baseline.keys(), 'Local binding trial')
     expected = dict(baseline['deployment'], status='CANDIDATE',
@@ -322,3 +336,45 @@ def validate_local_binding_trial(data, root):
 
 def check_local_binding_trial(root):
     return validate_local_binding_trial(load(root / LOCAL_BINDING_TRIAL), root)
+
+
+ARCHIVE_RUNTIME_EXCLUSION = (
+    'Source_Archive (case-insensitive path component, at any depth) is outside runtime source space. '
+    'Do not read, search, enumerate, follow references into it, select versions there, or use it '
+    'to establish current CI/Router/lore/generation or fill any current-source gap. '
+    'A mention or path in a current file grants no access. This runtime exclusion overrides '
+    'historical-comparison permissions during current-FTH runtime work; separately authorized '
+    'repository maintenance is not runtime. Missing current evidence obeys existing failure states. '
+    'No Library, Project Sources, GitHub, Memory, prior-response, near-match, other-root or archive '
+    'fallback may rescue a failed local binding; partial reads never count as FULL_FILE.'
+)
+
+
+def router6_access(trial_access):
+    """The accepted trial access delta plus the explicit runtime archive boundary."""
+    return (trial_access.replace('Explicit opt-in only:', 'For this active stack:')
+            .replace('sole trial binding', 'sole runtime binding')
+            .replace('this trial does not activate', 'this stack does not activate')
+            + ' ' + ARCHIVE_RUNTIME_EXCLUSION)
+
+
+def validate_router6(data, root):
+    """Check the concrete 6.0 / CI 3.5 stack without changing the Stack 5 baseline."""
+    resolved = check_local_binding_trial(root)
+    baseline = load(root / ROUTER)
+    trial = load(root / LOCAL_BINDING_TRIAL)
+    fields(data, baseline.keys(), 'Router 6')
+    expected = dict(baseline['deployment'], router_version='6.0', ci_version='3.5',
+                    ci='Project Feather Core CI/FTH_CI_version_v3.5.md',
+                    baseline_ci=baseline['deployment']['ci'], baseline_router=ROUTER)
+    require(data['deployment'] == expected, 'Router 6 deployment mismatch')
+    for key in baseline.keys() - {'deployment', 'policies'}:
+        require(data[key] == baseline[key], f'Router 6 changed protected section: {key}')
+    expected_policies = dict(baseline['policies'], discovery=trial['policies']['discovery'],
+                             access=router6_access(trial['policies']['access']))
+    require(data['policies'] == expected_policies, 'Router 6 policy delta mismatch')
+    ci5 = local_file(root, baseline['deployment']['ci']).read_text(encoding='utf-8-sig')
+    ci6 = local_file(root, expected['ci']).read_text(encoding='utf-8-sig')
+    expected_ci = ci5.replace('# Project Feather Core CI v3.4 (FTH)', '# Project Feather Core CI v3.5 (FTH)', 1).replace(ROUTER, ROUTER6)
+    require(ci6 == expected_ci and len(ci6) <= 8000, 'Router 6 CI successor mismatch')
+    return resolved

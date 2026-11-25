@@ -251,8 +251,8 @@ class RouterCandidateTests(unittest.TestCase):
     def test_active_stack_numeric_yaml_resolution_and_duplicate_rejection(self):
         import shutil
         excluded = self.data['control_selection']['excluded_statuses']
-        for directory, stem, expected in [('Project Feather Core CI', 'FTH_CI_version', 'FTH_CI_version_v3.4.md'),
-                                         ('Anti-Drift Source', 'FTH_Anti_Drift_Source_Router', 'FTH_Anti_Drift_Source_Router_v5.0.yaml'),
+        for directory, stem, expected in [('Project Feather Core CI', 'FTH_CI_version', 'FTH_CI_version_v3.5.md'),
+                                         ('Anti-Drift Source', 'FTH_Anti_Drift_Source_Router', 'FTH_Anti_Drift_Source_Router_v6.0.yaml'),
                                          ('Anti-Drift Source', 'FTH_Authoring_Pipeline', 'FTH_Authoring_Pipeline_v1.1.md')]:
             self.assertEqual(resolve_control(ROOT / directory, stem, excluded).name, expected)
         with tempfile.TemporaryDirectory() as directory:
@@ -294,7 +294,7 @@ class RouterCandidateTests(unittest.TestCase):
                              ROOT.parent / 'llm-controls/global-instructions' / upstream)))
         self.assertEqual(resolve_control(ROOT / 'Project Feather Core CI', 'FTH_CI_version',
                                          self.data['control_selection']['excluded_statuses']).name,
-                         'FTH_CI_version_v3.4.md')
+                         'FTH_CI_version_v3.5.md')
 
         changes = [line for line in difflib.ndiff(predecessor.splitlines(), active.splitlines())
                    if line.startswith(('- ', '+ ')) and line[2:]]

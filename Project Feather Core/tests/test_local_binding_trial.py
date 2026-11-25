@@ -15,7 +15,7 @@ import build_consolidation as package
 from tools.router_candidate import (
     CandidateError, LOCAL_BINDING_POLICIES, LOCAL_BINDING_TRIAL, ROUTER,
     check, check_fthx_candidate, check_local_binding_trial, expand, load,
-    resolve_control, validate_local_binding_trial,
+    resolve_control, validate_local_binding_trial, ROUTER6,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -131,7 +131,7 @@ class LocalBindingStructureTests(unittest.TestCase):
         self.assertEqual(changed, LOCAL_BINDING_POLICIES)
         self.assertEqual(Path(LOCAL_BINDING_TRIAL).parent.name, 'candidates')
         self.assertEqual(resolve_control(ROOT / 'Anti-Drift Source', 'FTH_Anti_Drift_Source_Router',
-                         self.active['control_selection']['excluded_statuses']), ROOT / ROUTER)
+                         self.active['control_selection']['excluded_statuses']), ROOT / ROUTER6)
         self.assertEqual(self.trial['deployment']['baseline_router'], ROUTER)
         text = (ROOT / LOCAL_BINDING_TRIAL).read_text(encoding='utf-8')
         for marker in ('CANDIDATE / TRIAL', 'NOT ACTIVE', 'NOT LIVE DEPLOYMENT', 'independent from FTHX 5.1'):

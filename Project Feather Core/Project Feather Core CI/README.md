@@ -2,6 +2,17 @@
 
 ## Bản hiện hành
 
+Trên `main`, [CI 3.5](FTH_CI_version_v3.5.md)
+đi cùng Router 6.0 / Pipeline 1.1, giữ nền ChatGPT 8.9. Successor chỉ đổi tiêu đề
+phiên bản và exact Router reference từ CI 3.4; không đổi hành vi CI khác.
+
+[CI 3.4](FTH_CI_version_v3.4.md) vẫn nguyên byte, dùng với Router 5.0 / Pipeline 1.1
+khi cần quay lại bộ 5.0. Không archive CI 3.4 hoặc Router 5.0.
+Bản CI 3.5 trong `candidates/` là đề xuất Global Native độc lập, không phải CI 3.5
+active 8.9 ở đây và không được promote trong tác vụ này.
+
+### Mốc CI 3.4
+
 Cập nhật 2026-10-16: [FTH CI 3.4](FTH_CI_version_v3.4.md) là control local hiện hành, dựa trên ChatGPT 8.9. Các bản CI 3.1, 3.2 và 3.3 đã được chuyển nguyên byte vào [source_archive](source_archive/).
 
 So với CI 3.3, CI 3.4 đổi khai báo nền, hợp đồng giữ nguyên tên/mã/lệnh/trích dẫn phù hợp, xử lý rephrase không đổi nghĩa, và cấm phát hiện tự mở rộng phạm vi hay cấp quyền cho bước tiếp theo. Router 5.0, Pipeline 1.1, source authority và canon contract giữ nguyên.

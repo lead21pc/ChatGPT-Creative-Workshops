@@ -4,6 +4,20 @@
 
 Runner chỉ chạy READ_ONLY: đọc tệp, kiểm tra cấu trúc, tính hash, xem Git, chọn case và in JSON ra stdout. Không tự chạy mô hình, Codex CLI, OpenAI API, ChatGPT Project, build hoặc verifier tạo tệp; không tạo báo cáo trên đĩa. CONTROL_SEMANTIC là nhãn loại case để nhập kết quả về sau, không phải khẳng định đã chạy semantic test. Kết quả Codex/control-semantic không tương đương kết quả live-runtime của ChatGPT Project. Các case dùng tác nhân tổng hợp; câu trả lời mô hình lịch sử chưa được xác minh. Bản ghi hoà giải riêng cũng không phải bằng chứng lỗi runtime.
 
+## Bộ điều khiển Router 6.0 trên `main`
+
+Trên `main`, kiểm active chọn CI 3.5 / Router 6.0 / Pipeline 1.1.
+`python -B build_consolidation.py --check-router` kiểm cặp active;
+`check_baseline5(root)` trong `tools/router_candidate.py` kiểm explicit stack 5.0.
+Các mục Router 5/FTHX dưới đây ghi lại mốc thử nghiệm và nguồn đối chiếu.
+Tests kiểm bộ 5.0 riêng và kiểm bộ 6.0/3.5 qua bộ chọn phiên bản hiện hành.
+
+`tests/test_router6.py` chạy lại các ca retrieval/failure/spec local-binding với
+boundary archive của 6.0, thêm kiểm exclusion và missing-source/no-archive-rescue.
+Chúng không thực thi mô hình. Các probe vẫn DRAFT/NOT_RUN; xác nhận live của tác giả
+là bằng chứng riêng cho quyết định promotion, không được ghi thành unit-test result.
+Để quay lại bộ 5.0, chọn đồng thời CI 3.4, Router 5.0 và Pipeline 1.1.
+
 ## Hợp đồng đang có hiệu lực và nguồn gốc phát triển
 
 Thư mục `llm-controls/global-instructions/ChatGPT Plus+ Era` lưu một dòng CI dùng chung có phiên bản v7.x, v8.x, các bản v8.5.1/v8.6 mang tên temp và các thử nghiệm v9.0 temp. Những tệp cùng tồn tại trong kho không đồng thời hoạt động. FTH CI v3.4 hiện khai báo nền ChatGPT 8.9 và tự chứa quy tắc cần dùng; runner đọc khai báo để ghi nhận xuất xứ, không biến nền ngoài thành phụ thuộc đọc lúc chạy của CI. Source Router riêng nắm việc định tuyến nguồn và chọn overlay dưới hợp đồng CI; chỉ overlay liên quan nhiệm vụ mới tham gia. Bản v8.4, v9.0 temp hoặc tệp mới hơn không tự trở thành nền AetherFire. Quan hệ kế thừa/phát triển giữa các phiên bản không phải quan hệ cùng chạy.
@@ -172,9 +186,9 @@ PASS ở từng kiểm tra chỉ xác nhận cấu trúc tương ứng. FAIL là
 
 Runner không sao chép logic hash của MANIFEST.md hoặc logic build. package_integrity chỉ báo LIMITED_CHECK: chưa chạy verifier hiện có, chưa xác nhận hash manifest và không gọi build. Nếu cần thẩm tra gói đầy đủ, phải theo quy trình kiểm chứng riêng có thẩm quyền và kiểm tra tác dụng phụ trước khi thực hiện. Thành công cấu trúc không chứng minh phạm vi canon sẵn sàng hoặc mô hình tuân thủ. Vòng đời là trạng thái case; PASS/POTENTIAL_VIOLATION/AMBIGUOUS/BLOCKED là nhãn kết quả ngữ nghĩa chỉ dành cho thử nghiệm được chấp thuận. Không có semantic FAIL tự động và không dùng test để đóng băng việc xây dựng lore.
 
-## Router 5 / CI 3.4 active local stack
+## Baseline Router 5 / CI 3.4
 
-CI 3.4, Router 5.0 YAML và Pipeline 1.1 là stack local hiện hành. Runner chọn phiên bản số cao nhất của từng family, gồm Router YAML và Authoring Pipeline. CI 3.1/3.2/3.3 và Router 4.4 được giữ nguyên trong archive; Pipeline 1.0 vẫn là rollback direct-child.
+CI 3.4, Router 5.0 YAML và Pipeline 1.1 là bộ dùng để đối chiếu và quay lại 5.0. Runner chọn phiên bản số cao nhất của từng family, gồm Router YAML và Authoring Pipeline. CI 3.1/3.2/3.3 và Router 4.4 được giữ nguyên trong archive; Pipeline 1.0 vẫn là rollback direct-child.
 
 Chạy `python -B build_consolidation.py --check-router` và `python -B -m unittest discover -s tests` từ thư mục project. Tùy chọn cũ `--check-router-candidate` vẫn là alias tương thích của kiểm tra active stack. Kiểm tra cấu trúc không xác nhận retrieval, hành vi model hoặc live deployment.
 
@@ -186,8 +200,8 @@ Chạy `python -B build_consolidation.py --check-router` và `python -B -m unitt
 ## Router 5.1 FTHX candidate — kiểm riêng
 
 `Anti-Drift Source/candidates/FTH_Anti_Drift_Source_Router_v5.1.yaml` là
-**CANDIDATE / NOT ACTIVE / NOT LIVE DEPLOYMENT**. Stack active vẫn là CI 3.4 +
-Router 5.0 + Pipeline 1.1; CI tiếp tục trỏ chính xác Router 5.0. Candidate nằm
+**CANDIDATE / NOT ACTIVE / NOT LIVE DEPLOYMENT**. Baseline thử nghiệm là CI 3.4 +
+Router 5.0 + Pipeline 1.1. CI 3.4 trỏ chính xác Router 5.0. Candidate nằm
 ngoài direct-child resolution và chỉ được kiểm bằng đường dẫn tường minh.
 
 Chạy kiểm cấu trúc riêng, không thực thi mô hình:
@@ -206,4 +220,4 @@ các invariant CI và phần còn lại của stack; không dùng chỉ dẫn đ
 khẳng định đã thử 5.1. Việc override chỉ thuộc phiên thử, không sửa CI active
 hoặc chứng minh deployment. Ghi actual reads, identity, gates, reroute và
 premise/conclusion bị ảnh hưởng. Tuân thủ tự khai không phải read proof.
-Dừng phiên thử candidate để trở lại active 5.0; không đổi canon, RP hoặc sources.
+Dừng phiên thử candidate để trở lại baseline 5.0; không đổi canon, RP hoặc sources.
