@@ -443,9 +443,7 @@ MC2 treason / custody / life threat
 → regime-level resolution pressure
 ```
 
-This is a candidate description of the overlap's event-function/state-space class.
-
-Exact overlap mechanics remain sealed/unknown.
+Giả thuyết này ghi lại cách hiểu trước delta 25/11/2026. `03` Part II §§14.1–18 chốt điểm giao là điều kiện tử vong của MC2 từ V0.5, đã thực hiện ở Canon 1 và còn treo ở Canon 2. Các mắt xích chính trị được giả thuyết ở trên và cơ chế kỹ thuật của điểm giao vẫn chưa chốt.
 
 ---
 
@@ -1415,8 +1413,8 @@ Clash #2 xảy ra về sau khi:
 MC1 đang stress-test V1.0 / Canon 1
 +
 Canon 2 đã tích lũy ~5 năm history
-→ hai pathway đi vào vùng overlap
-→ Fictionize × POC clash #2
+→ gặp cùng điều kiện tử vong V0.5: đã thực hiện ở Canon 1, còn treo ở Canon 2
+→ sự bất tương thích nhân quả tạo Clash #2
 → MC2 gọi MC1 bằng Raging Phoenix
 → MC1 bị kéo ngang vào current Fiction 1
 ```
@@ -3763,7 +3761,7 @@ HOPE pathway → MC2.1 mất agency / buộc phải cứu MC2
 
 MC2.1 vẫn là actor có agency riêng; pathway tạo khả năng/giao điểm, không tự chọn mọi hành động hay outcome.
 
-### 25.10 CURRENT CANON — ý nghĩa của Clash #1; Clash #2 giữ UNKNOWN khác loại
+### 25.10 CURRENT CANON — ý nghĩa của Clash #1 và điểm giao của Clash #2
 
 Clash #1 **không phải ngẫu nhiên**.
 
@@ -3786,7 +3784,7 @@ MC3 / POC injects HOPE
 ≠ moral faction
 ```
 
-Clash #2 đã được user xác nhận là **một kiểu khác Clash #1**. Exact thematic/mechanical nature của Clash #2 hiện `UNKNOWN` và sẽ được xác nhận sau; không tự dựng symmetry kiểu HOPE/anti-HOPE hay mirror inversion.
+Clash #2 khác loại Clash #1. Delta 25/11/2026 chốt nguyên nhân ở cùng điều kiện tử vong của MC2 từ V0.5, đã thực hiện ở Canon 1 và còn treo ở Canon 2. Cơ chế kỹ thuật và diễn giải chủ đề ngoài phần đã chốt vẫn `UNKNOWN`. Xem `03` Part II §§14.1–18.
 
 ---
 

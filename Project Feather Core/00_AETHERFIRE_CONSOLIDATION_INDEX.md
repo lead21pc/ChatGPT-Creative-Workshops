@@ -1,10 +1,14 @@
 # Project Feather Core — Consolidation Index
-> **Generated consolidation baseline:** 2026-09-08; latest integration: 2026-10-10
+> **Generated consolidation baseline:** 2026-09-08; latest integration: 2026-11-25
 > **Location:** self-contained `Project Feather Core/` package. `FTH` is the short/internal project namespace. Current root files are maintained current sources; `Source_Archive/` preserves historical/provenance material only.
 >
 > **Namespace invariant:** `PROJECT FEATHER CORE / FTH != AETHERFIRE THE COUNTRY`. `AetherFire` remains the official country name and the stable `AFM-*` / `AF-*` identifiers are not renamed.
 > **Truth rule:** `ABSENCE OF CANON ≠ CANONICAL NEGATION`; `NOT ESTABLISHED ≠ FALSE`; unresolved relations remain `UNKNOWN / UNRESOLVED`.
 
+
+## Metafiction MC2 V0.5 — nhập canon 2026-11-25
+
+`03` / `AFM-004` giữ điều kiện tử vong của MC2 đã viết trong V0.5, vai trò của Clash #1 trong việc trì hoãn điều kiện đó và điểm giao đã thực hiện ở Canon 1, còn treo ở Canon 2 tại Clash #2. `12` giữ hệ quả chính trị của cái chết trong Canon 1. `91` ghi nguồn và phạm vi thay thế. `92` AF-OPEN-015 giữ các câu hỏi chưa chốt về cơ chế và kết cục.
 
 ## Hoa Nguyệt — bảy nguyên tắc nền, nhập 2026-10-10
 

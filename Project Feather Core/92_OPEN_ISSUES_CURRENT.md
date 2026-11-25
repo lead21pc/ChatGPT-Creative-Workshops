@@ -96,7 +96,7 @@ Only explicit current user confirmation can restore an old claim. Restoring one 
 | AF-OPEN-011 | UNKNOWN / OPEN — service scope revised | Reimbursement/housing/family/reassignment duration/geographic limits của Civil service. | `11` Part II §§8/11/12/14 và Part IV; không Slave conversion. Assignment phù hợp là nghĩa vụ; appeal/exit có baseline nhưng implementation còn mở. |
 | AF-OPEN-012 | UNKNOWN | Full Criminal rights, mobility and labor matrix. | `11`; `91` AF-CX-004/017. Do not revive Brown-to-Black mobility. |
 | AF-OPEN-013 | SUPERSEDED IN UNDIE SCOPE | Full color graph, Credit Score thresholds và Contribution Points formulas không còn là câu hỏi triển khai Undie hiện hành. Career Rank ngoài Undie vẫn mở. | `11`/`13`; `91` AF-UR-002/007. Không xóa biến/quy tắc ngoài phạm vi. |
-| AF-OPEN-015 | UNKNOWN — partially specified | Exact Clash #2 mechanics/thematic nature ngoài narrator split, ability boundary và overlap mang áp lực kết thúc đã chốt. | `03` §14.1/`04`; không suy ability transfer/loss, state merge, MC2 phải chết hoặc Canon 1 replay. |
+| AF-OPEN-015 | PARTIALLY RESOLVED / IMPLEMENTATION OPEN | Điểm giao Clash #2 đã chốt: cùng điều kiện tử vong V0.5 đã thực hiện ở Canon 1 và còn treo ở Canon 2. Cơ chế kỹ thuật, bản chất của áp lực nhân quả và diễn giải chủ đề ngoài phần đã chốt vẫn mở. | `03` Part II §§14.1–18, 29; `04` giữ narrator split và ranh giới năng lực. Hai canon giữ lịch sử riêng; triển khai pháp lý, cái chết khả dĩ và số phận cuối của MC2 trong Canon 2 còn mở. |
 
 ## 5. RF, Academy, MC4 and cross-world open issues — updated 2026-09-16
 

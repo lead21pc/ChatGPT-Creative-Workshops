@@ -2,6 +2,19 @@
 
 > Audit/control layer only. Part I summarizes the completed reconciliation. Part II preserves assertion-level conflicts, provenance, priority and resolutions.
 
+## Metafiction MC2 V0.5 — nhập canon 2026-11-25
+
+Tác giả duyệt đề xuất nhập delta sau khi đối chiếu với lore hiện hành. Nguồn gốc: `Source_Archive/FTH_Metafiction_MC2_V05_Causal_Retcon_2026-11-25.md` (11.153 byte, SHA-256 `FF55FE2BC6720BAA917A1A09BF7656A08EDF7F3F3F95CB77C46143646FFC1ABE`).
+
+| Phạm vi | Đối chiếu và mốc hiện hành |
+| --- | --- |
+| V0.5, V1.0 và Clash #1 | Delta §§1–2, 9–11 cụ thể hóa số phận MC2 đã ghi ở V0.5. `03` Part II §§3–6 giữ cái chết đã viết, lý do MC3 bí mật dùng POC và việc Clash #1 mở quỹ đạo trì hoãn điều kiện ấy. V1.0 viết tiếp lịch sử sau mốc tử vong. |
+| Chức năng của cái chết trong hai canon | Delta §§3–6. `03` Part II §§7–12 giữ sự phân biệt giữa cái chết đã hiện thực hóa khi MC2 là Nữ hoàng và điều kiện còn treo trong Canon 2. `12` §24A giữ chuỗi áp lực/mưu đồ Hoàng gia và điều kiện thuận lợi để MC2.2 chính danh hóa cuộc xâm lược ở Canon 1. |
+| Clash #2 và MC1 | Delta §§7–11 thay mô tả điểm giao chung chung trong mốc 10/09/2026 bên dưới. `03` Part II §§14.1–18 giữ cùng điều kiện V0.5 đã thực hiện ở Canon 1 và còn treo ở Canon 2, tạo Clash #2 khi MC1 stress-test V1.0. MC2 dùng lượt Raging Phoenix và MC1 sang Canon 2 qua điểm giao này. |
+| Các giới hạn | Delta §12. `03` Part II §§12, 14.1, 29 và `92` AF-OPEN-015 giữ mở cơ chế kỹ thuật, bản chất áp lực nhân quả, triển khai phản quốc, cách MC2 có thể chết và kết cục sau MC1. Hai canon giữ lịch sử riêng. `04` giữ phần narrator split. |
+
+Mốc ưu tiên mới có phạm vi giới hạn như trên. Mốc story-line trước vẫn áp dụng cho các mệnh đề tương thích, gồm hai cách hiện thực hóa, lịch sử sống khoảng năm năm và cơ chế gọi Raging Phoenix đã được chốt trước đó.
+
 ## Đối chiếu local và main khi xuất bản — 2026-10-10
 
 Quyền tác giả: đối chiếu repo/local, giữ thay đổi riêng và cho phép đổi cấu trúc repo khi local mới hơn. Mốc remote `30c39d3`, local `88a144c`. Các current canon và builder trên remote khớp mốc local trước đổi namespace; local bổ sung namespace FTH, bảy nguyên tắc và họ Hoa Nguyệt 20–23. Không phát hiện thay đổi canon riêng trên remote trong phép đối chiếu này; không dùng ngày sửa làm quyền canon.

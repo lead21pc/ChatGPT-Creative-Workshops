@@ -77,7 +77,7 @@ HOPE
 
 MC2.1 phò tá MC2 là một **HOPE pathway** do MC3 gài từ Fiction 0, nhưng MC2.1 vẫn có agency riêng; pathway không tự điều khiển actor hoặc bảo đảm cứu thành công.
 
-Clash #2 đã được xác nhận là **khác loại** Clash #1. Exact thematic/mechanical nature của Clash #2 hiện `UNKNOWN`; không tự dựng mirror symmetry.
+Clash #2 khác loại Clash #1. Điểm giao là điều kiện tử vong của MC2 đã viết trong V0.5, đã được thực hiện ở Canon 1 và vẫn bị trì hoãn ở Canon 2. `03` Part II §§14.1–18 giữ trục nhân quả này. Cơ chế kỹ thuật và diễn giải chủ đề ngoài phần đã chốt vẫn `UNKNOWN`.
 
 ### C. Long mạch / True Crown / Raging Phoenix là trục chiến lược toàn cục
 
@@ -170,7 +170,7 @@ Thủy tổ của ba tộc phía Bắc và một Giant sinh ra ba chủng tộc 
 
 ### H. Canon 1 — giao diện nhân quả chính trị
 
-`12_POLITICS_DYNASTIC_SECURITY_CURRENT.md` §24A giữ đầy đủ chain dynastic competition → foreign balancing → cái chết MC2 → martyrdom → tuyến hôn phu → collapse Canon 1. Tuyến hôn phu là hệ quả, không nguyên nhân gốc duy nhất; `03_METAFICTION_CANON_TIMELINE_CURRENT.md` quản lý realization/overlap, không khóa Canon 2 về Canon 1.
+`12_POLITICS_DYNASTIC_SECURITY_CURRENT.md` §24A giữ đầy đủ chain dynastic competition → foreign balancing → cái chết MC2 → martyrdom → tuyến hôn phu → collapse Canon 1. Cái chết của Nữ hoàng MC2 kích hoạt trục áp lực và mưu đồ Hoàng gia, tạo điều kiện để MC2.2 chính danh hóa cuộc xâm lược trong Canon 1. `03_METAFICTION_CANON_TIMELINE_CURRENT.md` quản lý điều kiện tử vong từ V0.5 và điểm giao của hai canon. Triển khai chính trị và kết cục tương ứng ở Canon 2 vẫn mở.
 
 ### I. AF — quốc gia phong ấn và quan hệ phụ thuộc
 

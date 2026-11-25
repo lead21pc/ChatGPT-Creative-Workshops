@@ -8,7 +8,8 @@
 > Load mode: `FULL_FILE`
 
 > **Domain:** Fiction 0/Fiction 1, Fictionize, Proof of Concept, V0.5, Canon 1/Canon 2, Clash #1/Clash #2, realization mode, causal overlap and knowledge asymmetry.  
-> **Priority:** `aetherfire_canon_story_line_v0_5_v1_0_overlap.md` controls the causal timeline. The fiction model controls layer/ability definitions where compatible; the Canon 1/Canon 2 source supplies comparison and mismatch matrices.  
+> **Priority:** `aetherfire_canon_story_line_v0_5_v1_0_overlap.md` controls the causal timeline where compatible with the 2026-11-25 MC2 V0.5 causal retcon. That delta controls the placement and function of the written death condition across V0.5, V1.0 and both clashes (see `91_RECONCILIATION_RECORD.md`). The fiction model controls layer/ability definitions where compatible; the Canon 1/Canon 2 source supplies comparison and mismatch matrices.
+>
 > Older simplified descriptions of two independent parallel branches or MC1 being pulled directly from an external operator position are not imported. `UNKNOWN` mechanics remain unresolved.
 
 ## Part I — Fiction layers, actors and ability boundaries
@@ -281,9 +282,9 @@ Chưa được chốt:
 > 1. Canon 1 và Canon 2 đều đã xảy ra theo nghĩa nhân quả phù hợp với cơ chế Fictionize/trajectory; Canon 1 không phải “draft giả” chưa từng được thực thi.
 > 2. Canon 2 không phải một timeline hoàn toàn độc lập sinh ra bên cạnh Canon 1.
 > 3. V0.5 là điểm bản thảo **chưa có state hoàn chỉnh sau nó**; MC1 và MC3 tạo hai kiểu continuation khác nhau từ cùng source.
-> 4. Canon 2 giữ lịch sử sống 5 năm nhưng vẫn chịu lực trajectory từ fiction đã được viết hướng tới một ending/resolution.
-> 5. “Có một cái kết” không đồng nghĩa exact implementation của Canon 1 bắt buộc lặp lại.
-> 6. Khi MC1 được gọi vào Fiction 1, vấn đề không chỉ là “tri thức lỗi thời”: hai pathway của Canon 1 và Canon 2 đang **overlap** ở một giao điểm nhân quả.
+> 4. V0.5 đã viết cái chết của MC2 trong quỹ đạo gốc. V1.0 phát triển lịch sử sau cái chết đó.
+> 5. Canon 2 tích lũy khoảng năm năm lịch sử sống trong khi điều kiện tử vong từ V0.5 vẫn bị trì hoãn. Cách điều kiện ấy có thể được giải quyết và kết cục của MC2 vẫn mở.
+> 6. Clash #2 xảy ra khi MC1 tới vùng nhân quả của cùng điều kiện V0.5 trong stress test: Canon 1 đã thực hiện điều kiện ấy, còn Canon 2 vẫn trì hoãn.
 > 7. Không tự suy exact endpoint sau khi MC1 xuất hiện nếu chưa được chốt.
 
 ---
@@ -372,7 +373,7 @@ Nó là một bản thảo mới hoàn thiện khoảng một nửa.
 - core concept;
 - nhiều invariant;
 - một số đầu/đuôi lớn;
-- số phận lớn của MC2 ở trajectory gốc;
+- cái chết của MC2 trong trajectory gốc; đây là mốc đã được viết ngay ở V0.5;
 - các actor và institution ở mức đã được viết.
 
 Nhưng:
@@ -412,11 +413,9 @@ Site có từ bản thể gốc Fiction 1; niên đại từng event và trạng
 
 ### 4. Sự cố thứ nhất — MC3 đưa HOPE vào V0.5
 
-MC3 cho rằng trajectory grimdark của MC1 quá hà khắc.
+MC1 và MC3 tranh cãi vì hướng đã viết trong V0.5 quá đen tối. Quỹ đạo gốc ở đó đã chứa cái chết của MC2. Vùng liên quan đến Hoàng hậu vẫn còn viết dở.
 
-Tại V0.5, Hoàng hậu còn có một vùng chưa được viết đầy đủ/placeholder.
-
-MC3 dùng POC và đưa vào:
+MC3 bí mật dùng POC để can thiệp vào quỹ đạo ấy và đưa vào:
 
 > **HOPE**
 
@@ -435,13 +434,13 @@ HOPE
 ≠ moral faction
 ```
 
-Clash #1 vì vậy **không phải ngẫu nhiên**; nó là xung đột giữa trajectory/architecture đang có và ý chí POC muốn mở possibility khác.
+Clash #1 bắt nguồn từ việc POC mở một quỹ đạo khác với kết quả tử vong đã được viết trong V0.5. Quỹ đạo phân kỳ trì hoãn điều kiện đó.
 
 Chuỗi:
 
 ```text
-Project Feather Core V0.5
-→ MC3 dùng POC lên vùng chưa cố định
+Project Feather Core V0.5 đã chứa quỹ đạo tử vong gốc
+→ MC3 bí mật can thiệp bằng POC qua vùng còn viết dở quanh Hoàng hậu
 → HOPE
 → Fictionize × POC clash #1
 → Raging Phoenix bị alternate
@@ -464,7 +463,7 @@ MC1 nghĩ MC3 đã bỏ đi
 
 FICTION 1:
 MC3 trở thành actor lịch sử
-V0.5 không còn chạy theo continuation mà MC1 về sau viết
+Lịch sử phân kỳ từ V0.5; cái chết theo quỹ đạo gốc bị trì hoãn
 ```
 
 Raging Phoenix nhận rule mới đã chốt:
@@ -502,7 +501,7 @@ Có **cùng một source V0.5**, nhưng sau sự cố có hai operation khác nh
 
 ```text
 V0.5
-→ MC1 tiếp tục viết nửa còn lại
+→ MC1 viết tiếp lịch sử sau cái chết đã được xác lập của MC2
 → V1.0
 ```
 
@@ -543,7 +542,7 @@ LIVE(V0.5)
 
 ### 7. Canon 1 — trajectory V1.0 của MC1
 
-Canon 1 là trajectory mà MC1 hoàn thiện từ V0.5.
+Canon 1 hiện thực hóa quỹ đạo gốc của V0.5. MC2 chết khi đang là Nữ hoàng. V1.0 phát triển lịch sử sau mốc tử vong đó.
 
 Chuỗi cốt lõi đã chốt:
 
@@ -566,8 +565,7 @@ MC2 nhượng bộ
 
 Điểm quan trọng:
 
-- MC2 chết là causal trigger lớn.
-- Hôn phu đi vào role chính trị sau cái chết đó.
+- Cái chết của Nữ hoàng MC2 kích hoạt trục áp lực và mưu đồ Hoàng gia, tạo điều kiện thuận lợi để MC2.2 chính danh hóa cuộc xâm lược. Chi tiết triển khai chính trị thuộc `12` §24A.
 - Canon 1 tiến về một ending rõ.
 
 ---
@@ -582,7 +580,7 @@ Do đó:
 V1.0 authored
 → Fictionize
 → MC1 đi vào scenario
-→ Canon 1 được thực thi / stress-tested
+→ Canon 1 được thực thi / stress-tested với điều kiện tử vong từ V0.5 đã được thực hiện
 ```
 
 Vì vậy Canon 1 có ba nghĩa phải tách:
@@ -623,7 +621,7 @@ V0.5
 Trong 5 năm đó:
 
 - Project Feather Core không đi đúng implementation của Canon 1;
-- MC2 không chết ở điểm Canon 1;
+- MC2 còn sống qua mốc tử vong theo quỹ đạo Canon 1. POC làm lệch quỹ đạo và điều kiện tử vong từ V0.5 vẫn bị trì hoãn;
 - hôn phu không được kích hoạt theo causal chain cũ;
 - Undie, Civil, Nghị viện, chợ đen và các subsystem phát triển khác xa V1.0;
 - history mới tích lũy thật.
@@ -684,16 +682,13 @@ MC2 không chết
 → hôn phu không đi đúng role cũ
 ```
 
-Fiction 1 vẫn là continuation của **cùng một fiction V0.5** có đầu/đuôi/trajectory pressure đã tồn tại.
-
-Do đó:
+Canon 2 tiếp nối cùng V0.5. Can thiệp của POC thay đổi quỹ đạo và trì hoãn điều kiện tử vong đã được viết. Đến Clash #2, điều kiện ấy vẫn chưa được giải quyết. V0.5 là nguồn của áp lực này.
 
 ```text
-ORIGINAL CAUSAL MIDDLE
-→ bị thay
-
-ENDING / RESOLUTION PRESSURE
-→ vẫn tồn tại
+V0.5: quỹ đạo gốc đã chứa cái chết của MC2
+→ POC mở quỹ đạo phân kỳ
+→ khoảng năm năm lịch sử sống trong Canon 2
+→ điều kiện tử vong vẫn còn treo
 ```
 
 Không được hiểu thành:
@@ -734,13 +729,13 @@ hoặc:
 nhà nước thay thế phải giống Canon 1
 ```
 
-Các implementation Canon 1 có thể đã bị divergence phá.
+Canon 2 có thể tiến đến một mốc nguy hiểm tính mạng qua đường nhân quả khác. Nếu MC2 chết ở Canon 2, tác nhân, thủ tục, ý nghĩa chính trị, cách công chúng hiểu sự kiện và hệ quả tiếp theo đều còn mở. Chuỗi Nữ hoàng–martyr–xâm lược thuộc triển khai cụ thể của Canon 1.
 
 Điều còn tồn tại là:
 
 ```text
-trajectory pressure
-+ ending/resolution boundary
+điều kiện tử vong từ V0.5 còn treo
++ áp lực hướng tới một kết cục
 ```
 
 Current world-state phải tự tạo causal pathway của nó qua:
@@ -805,7 +800,7 @@ Nguồn strategic-node MC2 được chỉ định làm đầu vào thiết kế 
 
 **CANON:** trước thời điểm kết thúc dẫn tới Clash #2, MC2 Canon 2 đã đạt tình trạng/xử lý phản quốc, đe dọa thực chất tự do/custody và tính mạng. Khi MC1 xuất hiện, MC2 đã ở nguy hiểm sống còn thực chất. **UNKNOWN:** hành vi/chứng cứ, cơ quan xét xử, tính hợp lệ/thao túng, đường tiếp xúc RF/kháng chiến, Swap và toàn đoạn nhân quả giữa.
 
-Clash #2 là overlap mang áp lực kết thúc, không phải điểm triệu hồi tùy tiện. HOPE cho phép nhiều đoạn giữa hợp nhân quả; Canon 2 vào vùng overlap với Canon 1 đã realized cùng áp lực giải quyết. Không khóa việc MC2 phải chết, MC2.2 phải lặp Canon 1 hoặc hợp nhất state/history. Exact mechanics/thematic nature ngoài phần đã chốt và kết quả sau MC1 vẫn UNKNOWN.
+Mốc phản quốc và nguy hiểm tính mạng thuộc lịch sử sống của Canon 2 trước Clash #2. Điểm giao với Canon 1 là cùng điều kiện tử vong từ V0.5, đã được thực hiện trong Canon 1 và còn treo trong Canon 2. Quan hệ cụ thể giữa thủ tục phản quốc và một kết cục tử vong khả dĩ, cơ chế kỹ thuật của Clash và kết quả sau khi MC1 tới vẫn `UNKNOWN`. Hai canon giữ lịch sử và trạng thái riêng.
 
 Undie + biến đổi căn tính đã chốt ở cấp giao diện vỏ bọc/tiếp cận kín; Operation Swap vẫn đề xuất ưu tiên. Mẹ MC2 được TE bảo hộ và MC2.2 đã biết MC2 ở AF/tình hình khái quát là dữ kiện current do `12` kiểm soát, không đồng nghĩa mọi actor biết phả hệ hoặc bí mật.
 
@@ -817,58 +812,34 @@ Trong Fiction 0, sau khi hoàn thiện V1.0:
 MC1
 → Fictionize V1.0
 → đi vào stress test
-→ tiến dọc Canon 1 pathway
+→ tiến dọc Canon 1 đã hiện thực hóa cái chết của MC2
+→ tới vùng nhân quả của điều kiện tử vong đã viết trong V0.5
 ```
 
-Trong cùng lúc, Fiction 1 đã có:
+Phía Canon 2 đã có:
 
 ```text
 V0.5
 → 5 năm live history
 → MC2 còn sống
-→ Canon 2 current state
+→ điều kiện tử vong từ V0.5 vẫn bị trì hoãn
 ```
 
-Hai continuation của cùng V0.5 bắt đầu đi vào **vùng trajectory overlap**.
+Hai continuation gặp nhau tại **điều kiện tử vong của MC2 đã viết trong V0.5**.
 
 ---
 
 ### 16. Pathway overlap — điểm giao Canon 1 / Canon 2
 
-Đây không phải state merge.
-
-Không phải:
+Điểm giao của Clash #2 nằm ở cùng một điều kiện nhân quả đã được viết trong V0.5:
 
 ```text
-Canon 1 world
-+
-Canon 2 world
-→ hợp thành một world
+Canon 1 đã hiện thực hóa điều kiện: MC2 đã chết
+×
+Canon 2 vẫn trì hoãn điều kiện: MC2 còn sống
 ```
 
-Mà là:
-
-```text
-Canon 1 stress-test pathway
-         \
-          \
-           X  ← causal/trajectory overlap
-          /
-         /
-Canon 2 live pathway
-```
-
-Hai bên có thể overlap ở:
-
-- actor;
-- causal pressure;
-- checkpoint;
-- ending direction;
-- event function;
-- state-space;
-- narrative resolution pressure.
-
-Nhưng:
+Sự bất tương thích nằm ở cách hai lịch sử xử lý cùng điều kiện. Hai lịch sử tiếp tục giữ trạng thái riêng:
 
 ```text
 STATE C1 ≠ STATE C2
@@ -883,10 +854,10 @@ IMPLEMENTATION C1 ≠ IMPLEMENTATION C2
 Khi MC1 stress-test V1.0 tới vùng giao đó:
 
 ```text
-Canon 1 realized pathway
+Canon 1: điều kiện tử vong V0.5 đã được thực hiện
 ×
-Canon 2 POC-altered live pathway
-→ Fictionize × POC clash #2
+Canon 2: cùng điều kiện vẫn bị trì hoãn sau phân kỳ do POC
+→ sự bất tương thích nhân quả tạo Clash #2
 ```
 
 Đúng thời điểm này:
@@ -902,50 +873,44 @@ Kết quả:
 
 ```text
 MC1 đang ở trong stress test Canon 1
-→ bị kéo ngang
-→ rơi vào current Fiction 1 / Canon 2
+→ bị kéo qua điểm giao của Clash #2
+→ vào current Fiction 1 / Canon 2
 ```
 
 Đây là **clash lần thứ hai**.
 
 ---
 
-### 18. Hai clash tạo hai chức năng đối xứng
+### 18. Chức năng nhân quả của hai Clash
 
 #### Clash #1
 
 ```text
-V0.5
-→ POC intervention
-→ HOPE
-→ MC3 bị kéo vào
-→ divergence bắt đầu
+V0.5 đã viết quỹ đạo tử vong của MC2
+→ MC3 bí mật can thiệp bằng POC, đưa HOPE vào
+→ Clash #1
+→ MC3 bị kéo vào và quỹ đạo phân kỳ
 ```
 
 Chức năng:
 
-> **tạo separation / divergence**
+> **Mở quỹ đạo phân kỳ, trì hoãn cái chết đã viết cho MC2.**
 
 #### Clash #2
 
 ```text
 V1.0 stress test
-→ Canon 1 pathway gặp Canon 2 pathway
+→ gặp điều kiện tử vong V0.5 đã thực hiện ở Canon 1, còn treo ở Canon 2
+→ Clash #2
 → MC2 gọi MC1
 → MC1 bị kéo vào
 ```
 
 Chức năng:
 
-> **tạo intersection / reconnect**
+> **Điểm giao phát sinh từ cùng điều kiện V0.5 đã được thực hiện ở Canon 1 và vẫn bị trì hoãn ở Canon 2.**
 
-Không được hiểu hai clash là cùng một event.
-
-Latest canon bổ sung:
-
-> **Clash #2 là một kiểu khác Clash #1.**
-
-“intersection / reconnect” ở trên chỉ mô tả **structural effect đã biết**, không cho phép suy thematic/mechanical nature của Clash #2 là mirror của HOPE. Exact nature của Clash #2 giữ `UNKNOWN` cho tới khi user xác nhận.
+Clash #2 khác loại với Clash #1. Quan hệ nhân quả của điểm giao đã chốt. Cơ chế kỹ thuật và diễn giải chủ đề ngoài phần đã chốt vẫn giữ `UNKNOWN`.
 
 ---
 
@@ -1127,7 +1092,7 @@ Canon 2
 Canon 1 pathway
 INTERSECTS_WITH / OVERLAPS
 Canon 2 pathway
-at MC1 summon point
+tại vùng nhân quả của điều kiện tử vong V0.5, nơi MC2 gọi MC1
 ```
 
 ---
@@ -1176,8 +1141,8 @@ Nhưng reference này đặc biệt vì nó:
 - đã được viết;
 - đã được stress-test;
 - chia sẻ V0.5 root;
-- có pathway overlap;
-- chứa ending pressure liên quan current fiction.
+- đã thực hiện điều kiện tử vong từ V0.5 còn treo ở Canon 2;
+- có điểm giao nhân quả với Canon 2 tại điều kiện đó.
 
 Nó không phải tài liệu lịch sử vô can.
 
@@ -1214,7 +1179,7 @@ Canon 1
 Current fiction có:
 
 ```text
-story-level resolution pressure / ending
+áp lực hướng tới kết cục, bao gồm điều kiện tử vong từ V0.5 còn treo
 ```
 
 Nhưng không tự khóa:
@@ -1244,11 +1209,11 @@ FICTION 0
 MC1 + MC3 cùng làm Project Feather Core
         │
         ▼
-      V0.5
+      V0.5 — quỹ đạo tử vong của MC2 đã được viết
         │
         ├────────────────────────────────────────┐
         │                                        │
-        │ MC3 dùng POC                           │ MC1 tiếp tục viết
+        │ MC3 bí mật dùng POC                     │ MC1 viết lịch sử sau cái chết
         ▼                                        ▼
       HOPE                                     V1.0
         │                                        │
@@ -1270,14 +1235,13 @@ CANON 2 CURRENT                          MC1 Fictionize V1.0
         │                                  để stress test
         │                                        │
 MC2 còn sống                                     ▼
-tuyến MC2 đang thiết kế                  CANON 1 REALIZED
-giao diện nghề/vùng xám còn mở                   │
-không phục hồi tuyến hạ cấp cũ                   │
+điều kiện tử vong còn treo               CANON 1 REALIZED
+        │                                 điều kiện tử vong đã thực hiện
         │                                        │
-        └──────────── trajectory overlap ────────┘
+        └──────── điều kiện tử vong V0.5 ────────┘
                               │
                               ▼
-                    Fictionize × POC clash #2
+                            Clash #2
                               │
                      MC2 dùng Raging Phoenix
                               │
@@ -1302,8 +1266,8 @@ không phục hồi tuyến hạ cấp cũ                   │
 ```text
 MC1 đã hoàn thiện V1.0
 → đang Fictionize/stress-test V1.0
-→ tới vùng pathway overlap
-→ mới bị MC2 gọi sang Canon 2
+→ tới vùng nhân quả của điều kiện tử vong V0.5
+→ Clash #2, rồi được MC2 gọi sang Canon 2
 ```
 
 #### 28.2 “Canon 1 chỉ là bản MC1 viết”
@@ -1328,13 +1292,13 @@ V1.0 là authored completion; Canon 2 là historical accumulation.
 
 **THIẾU NẶNG.**
 
-MC1 gặp causal overlap giữa một trajectory mình vừa stress-test và một lịch sử đã thay thế phần giữa nhưng còn lực hướng tới resolution.
+MC1 gặp sự bất tương thích giữa điều kiện tử vong đã thực hiện trong Canon 1 và cùng điều kiện vẫn còn treo trong lịch sử sống Canon 2.
 
-#### 28.6 “Canon 2 không còn liên hệ ending của V1.0”
+#### 28.6 “Clash #1 xóa điều kiện tử vong đã viết”
 
 **SAI.**
 
-Nó vẫn nằm trong fiction có trajectory/ending pressure, nhưng không bắt buộc tái tạo implementation Canon 1.
+Canon 2 trì hoãn điều kiện tử vong từ V0.5. Cách giải quyết điều kiện đó và kết cục vẫn mở.
 
 ---
 
@@ -1343,7 +1307,9 @@ Nó vẫn nằm trong fiction có trajectory/ending pressure, nhưng không bắ
 Chưa tự định nghĩa:
 
 - exact physics/metaphysics khiến hai pathway overlap;
-- exact trigger technical của clash #2 ngoài việc Fictionize và POC gặp nhau ở giao điểm;
+- cơ chế kỹ thuật của Clash #1 và Clash #2 ngoài quan hệ nhân quả đã chốt;
+- áp lực nhân quả là lực đo được trong thế giới hay là mô tả ở tầng siêu hư cấu, và cơ chế chính xác của nó;
+- cách một cái chết khả dĩ của MC2 có thể xảy ra ở Canon 2, cũng như MC2 có chết sau khi MC1 tới hay không;
 - exact state-space definition của overlap;
 - exact phần nào Canon 1 còn causal-active sau MC1 entry;
 - exact endpoint Canon 2;
@@ -1360,15 +1326,15 @@ Chưa tự định nghĩa:
 ### 30. Anti-drift nén
 
 ```text
-V0.5 = SAME SOURCE.
+V0.5 LÀ NGUỒN CHUNG, ĐÃ CHỨA QUỸ ĐẠO TỬ VONG GỐC CỦA MC2.
 
 SAU V0.5 CHƯA CÓ STATE HOÀN CHỈNH.
 
 MC3:
-V0.5 → HOPE → POC → CLASH #1 → FICTION 1 → 5 NĂM LIVE HISTORY.
+V0.5 → MC3 BÍ MẬT DÙNG POC ĐƯA HOPE VÀO → CLASH #1 → PHÂN KỲ → KHOẢNG 5 NĂM LỊCH SỬ SỐNG.
 
 MC1:
-V0.5 → VIẾT TIẾP → V1.0 → FICTIONIZE → STRESS TEST CANON 1.
+V0.5 → VIẾT TIẾP LỊCH SỬ SAU CÁI CHẾT CỦA MC2 → V1.0 → FICTIONIZE → STRESS TEST CANON 1.
 
 CANON 1 ĐÃ ĐƯỢC REALIZE QUA FICTIONIZE.
 
@@ -1378,17 +1344,15 @@ REALIZED ≠ SAME HISTORY.
 
 CANON 2 KHÔNG PHẢI V1.0 “TỰ CHẠY”.
 
-CANON 2 THAY PHẦN GIỮA NHƯNG VẪN CÓ ENDING/RESOLUTION PRESSURE.
+CANON 1: MC2 CHẾT KHI LÀ NỮ HOÀNG, KÍCH HOẠT TRỤC HOÀNG GIA VÀ TẠO ĐIỀU KIỆN CHO MC2.2 CHÍNH DANH HÓA CUỘC XÂM LƯỢC.
 
-MC2 KHÔNG CHẾT NHƯ CANON 1.
+CANON 2: MC2 CÒN SỐNG TẠI CLASH #2; ĐIỀU KIỆN TỬ VONG V0.5 VẪN CÒN TREO.
 
 HÔN PHU KHÔNG ĐƯỢC KÍCH HOẠT THEO CHAIN CŨ.
 
-CANON 1 PATHWAY VÀ CANON 2 PATHWAY OVERLAP TẠI ĐIỂM MC1 BỊ GỌI.
+CLASH #1 MỞ QUỸ ĐẠO TRÌ HOÃN CÁI CHẾT ĐÃ VIẾT.
 
-CLASH #1 TẠO DIVERGENCE.
-
-CLASH #2 TẠO INTERSECTION.
+CLASH #2: CÙNG ĐIỀU KIỆN V0.5 ĐÃ THỰC HIỆN Ở CANON 1, CÒN TREO Ở CANON 2. MC2 GỌI MC1 QUA ĐIỂM GIAO NÀY.
 
 CURRENT MAIN STORY SAU MC1 ENTRY = CANON 2.
 
@@ -1413,8 +1377,8 @@ EXACT CANON-1 IMPLEMENTATION IS GUARANTEED.
 | **Vai trò MC3** | MC1 nghĩ MC3 đã bỏ đi | MC3 bị kéo vào và trở thành actor lịch sử |
 | **AetherFire** | đi tới collapse cuối Arc 1 | vẫn tồn tại tại lúc MC1 được gọi |
 | **Nhà nước sau Arc 1** | AetherFire bị thay bằng nhà nước khác | chưa đi tới endpoint đó |
-| **MC2** | nhượng bộ → Nữ hoàng → chết → martyr | còn sống; gọi MC1; tuyến tiếp cận mẹ/chính trị qua nghề/vùng xám còn mở, không mặc định hạ cấp |
-| **Hôn phu MC2** | cái chết MC2 kích hoạt tuyến lật AetherFire | không mặc định đi đúng trajectory Canon 1 |
+| **MC2** | hiện thực hóa quỹ đạo V0.5: nhượng bộ → Nữ hoàng → chết → martyr | còn sống khi gọi MC1; điều kiện tử vong V0.5 còn treo; tuyến tiếp cận mẹ/chính trị qua nghề/vùng xám còn mở, không mặc định hạ cấp |
+| **Hôn phu MC2** | cái chết MC2 kích hoạt trục Hoàng gia và tạo điều kiện cho MC2.2 chính danh hóa cuộc xâm lược | không mặc định đi đúng trajectory Canon 1 |
 | **Undie** | mô hình bắt cóc/bị bán/cưỡng chế của lịch sử Canon 1 | hệ sinh thái nghề nghiệp; không Slave/caste/punishment, nhiều nhánh chồng lấn |
 | **Cấu trúc nhà nước** | grimdark/thối nát theo bản gốc | nghị viện và nhiều subsystem đa cực phát triển sâu |
 | **Tri thức MC1** | rất cao | lỗi thời nghiêm trọng |
@@ -1428,7 +1392,7 @@ EXACT CANON-1 IMPLEMENTATION IS GUARANTEED.
 
 | MC1 kỳ vọng từ Canon 1 | MC1 quan sát trong Canon 2/current state | Loại mismatch |
 |---|---|---|
-| MC2 đã chết | MC2 còn sống và gọi mình | trajectory + nhân vật |
+| Điều kiện tử vong V0.5 đã được thực hiện, MC2 đã chết | Điều kiện vẫn bị trì hoãn, MC2 còn sống và gọi mình | cùng điều kiện V0.5, khác trạng thái thực hiện |
 | AetherFire đã bị đánh sập | AetherFire vẫn vận hành | chính trị + lịch sử |
 | nhà nước thay thế đã tồn tại | nghị viện AetherFire vẫn nắm quyền | thể chế |
 | Undie là hệ bắt cóc/bị bán | Undie là hệ sinh thái nghề nghiệp, không địa vị Slave | ontology |

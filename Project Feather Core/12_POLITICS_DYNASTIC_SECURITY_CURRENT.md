@@ -240,9 +240,10 @@ MC2 nhượng bộ
 → hậu duệ được dùng qua hôn nhân như bàn đẩy chính trị
 → tạo các nhánh huyết thống tiếp tục hợp pháp
 → các quốc gia con người lo ảnh hưởng quý tộc AetherFire quá lớn
-→ thủ tiêu MC2
-→ martyrdom
-→ tuyến hôn phu bùng lên như downstream consequence
+→ MC2 bị thủ tiêu khi đang là Nữ hoàng
+→ cái chết kích hoạt trục áp lực và mưu đồ Hoàng gia
+→ MC2 trở thành martyr
+→ tuyến hôn phu bùng lên như hệ quả, với điều kiện thuận lợi để MC2.2 chính danh hóa cuộc xâm lược
 → collapse theo Canon 1
 ```
 
@@ -270,7 +271,7 @@ Không đưa các implementation do trợ lý từng đề xuất cho sáu đi�
 
 ### 25.1 Quan hệ với tension siêu hư cấu
 
-V0.5 là một beta không có kết thúc hoàn chỉnh và có thể tạo ra vô số possibilities, nhưng một số **đầu/đuôi lớn của story đã được viết trước**, đặc biệt số phận của MC2.
+V0.5 là một bản thảo chưa có kết thúc hoàn chỉnh. Cái chết của MC2 trong quỹ đạo gốc đã được viết tại V0.5. `03` Part II §§3–12 giữ mốc này và cách hai canon tiếp nối nó.
 
 MC1 dùng cách sáng tác gần với:
 
@@ -279,7 +280,7 @@ viết đầu và đuôi trước
 → các thành phần ở giữa được hoàn thiện dần sau
 ```
 
-MC3 đi vào Fiction 1 ở V0.5 và sống khoảng 5 năm trong một thế giới vẫn đang mang lực kéo hướng tới phần kết đã được định trước ở mức khái niệm.
+MC3 đi vào Fiction 1 sau khi can thiệp ở V0.5. Canon 2 tích lũy khoảng năm năm lịch sử sống trước Clash #2 trong khi điều kiện tử vong của MC2 từ V0.5 vẫn bị trì hoãn. Tiến trình sụp đổi nhà nước 5–8 năm ở §25 là ràng buộc chính trị riêng.
 
 Vì vậy trajectory sụp đổi 5–8 năm phải được thiết kế **hợp logic chính trị hiện tại**, nhưng đồng thời nó là một quả bom chậm cấp story: nếu không tồn tại tension hướng tới một trạng thái giải quyết, Fiction 1 có nguy cơ rơi vào vòng lặp nội dung không hồi kết.
 
