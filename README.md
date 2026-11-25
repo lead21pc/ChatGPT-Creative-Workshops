@@ -69,13 +69,13 @@ Central Hub composes scoped work across five packages. Hub CI owns operation, st
 | --- | --- | --- |
 | Technical | HUB-TECH-ENTRY 1.2 | Mechanism reasoning, diagnosis and bounded technical changes |
 | Authoring | HUB-AUTH-ENTRY 1.1 | Prompt construction with /AT, /AT P1 or /AT P2 |
-| Shopping | HUB-SHOP-ENTRY 1.2 | Product identity, purchase constraints and Offer comparison |
-| Food | HUB-FOOD-ENTRY 0.3 | Culinary analysis, planning and recommendations |
-| Media | HUB-MEDIA-ENTRY 1.0 | Film and music analysis, comparison, recommendations and discovery |
+| Shopping | HUB-SHOP-ENTRY 1.3 | Product identity, purchase constraints and Offer comparison |
+| Food | HUB-FOOD-ENTRY 0.4 | Culinary analysis, planning and recommendations |
+| Media | HUB-MEDIA-ENTRY 1.2 | Film and music analysis, comparison, recommendations and discovery |
 
-AIS 2.0 is a core Project Source bound as HUB-CORE-AIS. Router dispatches scoped evidence work on demand, including an eligible /SEARCH span when no domain package is selected. User Profile Contract 2.0 applies consumer, object, purpose and material-need checks to four user-managed Shared objects. Context Snapshot carries scoped data with provenance. Explicit debug requests and material diagnostic blockers can produce a copyable receipt.
+AIS 2.0 is an exact bound core source with identity HUB-CORE-AIS. Router dispatches scoped evidence work on demand, including an eligible /SEARCH span when no domain package is selected. The Router passes supplied context within its provenance and assigned scope. Explicit debug requests and material diagnostic blockers can produce a copyable receipt.
 
-The repository uses CI 2.1, with Router 2.0 and Architecture and root Catalog 2.1. The user confirmed nested Library folder retrieval and use in the earlier runtime they tested. Deployment and live checks for Architecture and root Catalog 2.1 are pending. [Central Hub setup](Central%20Hub/README.md) · [Architecture](Central%20Hub/HUB_ARCHITECTURE_v2.1.md) · [Root Catalog](Central%20Hub/HUB_PACKAGE_CATALOG_v2.1.yaml)
+The repository uses CI and Router 2.1 with Architecture and root Catalog 2.2. Package entrypoints and their selected leaves use exact pinned sources. Deployment and live checks for this configuration are pending. [Central Hub setup](Central%20Hub/README.md) · [Architecture](Central%20Hub/HUB_ARCHITECTURE_v2.2.md) · [Root Catalog](Central%20Hub/HUB_PACKAGE_CATALOG_v2.2.yaml)
 
 ## Choose your path
 

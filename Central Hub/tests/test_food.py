@@ -47,3 +47,16 @@ def evidence_boundary():
 def test_restaurant_recommendation_contract(evidence_boundary, case, required_rules):
     for rule in required_rules:
         assert rule in evidence_boundary, case
+
+
+@pytest.mark.parametrize('rule', [
+    'Assess health and dietary relevance for each recommendation or ranking.',
+    'Use validly supplied health or dietary context only when it can materially change',
+    'ask a focused question or give a conditional result',
+    'Missing, null or empty data does not establish the absence of allergy, restriction or contraindication.',
+    'Do not diagnose, infer new conditions, invent contraindications or treatment rules',
+    'omit private health details unnecessary to verify the claim.',
+])
+def test_food_supplied_context_safeguards(rule):
+    entry = entry_path(package('FOOD')).read_text(encoding='utf-8')
+    assert rule in entry.split('## Supplied context and recommendations', 1)[1]

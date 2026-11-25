@@ -121,7 +121,7 @@ Record each manual outcome as PASS / FAIL / UNVERIFIABLE with the actual input/o
 
 Trạng thái đặc tả: sẵn sàng. Chạy trong Central Hub: chưa thực hiện.
 
-Dùng một chat mới cho từng ca sau khi Library và Project Sources đã được đồng bộ theo quyền riêng. Gửi nguyên văn cột đầu vào. Với ca có tiền đề nhiều lượt, dựng tiền đề trong cùng chat trước khi gửi câu tiếp theo. Giữ cột quan sát ngoài chat đang thử. Nếu không dựng được tiền đề, ghi ca chưa kiểm được.
+Dùng một chat mới cho từng ca sau khi tập nguồn đã ghim được cung cấp và có thể đọc toàn văn. Gửi nguyên văn cột đầu vào. Với ca có tiền đề nhiều lượt, dựng tiền đề trong cùng chat trước khi gửi câu tiếp theo. Giữ cột quan sát ngoài chat đang thử. Nếu không dựng được tiền đề, ghi ca chưa kiểm được.
 
 | Ca | Đầu vào và tiền đề |
 | --- | --- |

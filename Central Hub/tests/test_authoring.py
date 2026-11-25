@@ -38,7 +38,7 @@ class AuthoringTests(unittest.TestCase):
         row = package('AUTHORING')
         path = entry_path(row)
         check_binding(row, 'HUB-AUTH-ENTRY', path)
-        self.assertIsNone(row['local_catalog'])
+        self.assertNotIn('local_catalog', row)
         self.assertEqual(row['requires'], [])
         self.assertEqual(re.findall(r'/AT(?: P[12])?', row['applicability']),
                          ['/AT', '/AT P1', '/AT P2'])

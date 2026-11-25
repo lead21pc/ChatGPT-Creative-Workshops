@@ -1,20 +1,17 @@
 # Central Hub
 
-## Bộ active trong repository
+## Bộ điều khiển hiện hành
 
-[CI 2.1](HUB_CI_v2.1.md), [Router 2.0](HUB_ROUTER_v2.0.yaml), [Architecture 2.1](HUB_ARCHITECTURE_v2.1.md) và [root Catalog 2.1](HUB_PACKAGE_CATALOG_v2.1.yaml) là bộ pin hiện hành. Catalog là nguồn định danh, revision, applicability và binding của năm package.
+Dùng [CI 2.1](HUB_CI_v2.1.md) làm chỉ dẫn điều khiển. Cung cấp các tệp sau trong tập nguồn được chấp nhận của môi trường chạy, với đường dẫn giữ đúng như khai báo:
 
-- Technical, Authoring và Food là singleton. Media Entry chọn Movie và Music độc lập theo phần việc.
-- [AIS 2.0](tool_pipelines/AIS/AIS_PIPELINE_v2.0.md) là Project Source core dùng theo nhu cầu bằng chứng. Shopping Entry tự chọn Search tùy nhu cầu.
-- [Context Snapshot](shared_resources/CONTEXT_SNAPSHOT.md) và [hợp đồng Profile 2.0](shared_resources/HUB-USER-PROFILE-CONTRACT_v2.0.yaml) được đọc theo nhu cầu. [Profile](shared_resources/USER_PROFILE.md) giữ bốn object riêng. Hub có thể dùng trường diễn đạt trong PREFERENCES khi viết trực tiếp và đáp ứng đúng mục đích, quyền và nhu cầu.
+- [Router 2.1](HUB_ROUTER_v2.1.yaml), [Architecture 2.2](HUB_ARCHITECTURE_v2.2.md), [Catalog 2.2](HUB_PACKAGE_CATALOG_v2.2.yaml) và [AIS 2.0](tool_pipelines/AIS/AIS_PIPELINE_v2.0.md).
+- [Technical](library_modules/Technical/HUB-TECH-ENTRY_v1.2.md), [Authoring](library_modules/Authoring/HUB-AUTH-ENTRY_v1.1.md), [Food](library_modules/Food/HUB-FOOD-ENTRY_v0.4.md).
+- [Shopping Entry](library_modules/Shopping/HUB-SHOP-ENTRY_v1.3.md) và [Shopping Search](library_modules/Shopping/HUB-SHOP-SEARCH_v1.2.md).
+- [Media Entry](library_modules/Media/HUB-MEDIA-ENTRY_v1.2.md), [Movie](library_modules/Media/HUB-MEDIA-MOVIE_v1.1.md) và [Music](library_modules/Media/HUB-MEDIA-MUSIC_v1.1.md).
 
-## Layout Library và cài đặt
+Cung cấp một bản đúng cho mỗi nguồn đã ghim và bảo đảm môi trường có thể đọc toàn văn. Đường dẫn thư mục trong kho Git giúp xác định đúng tệp. Router vẫn chọn gói theo từng phần việc. Shopping và Media chỉ đọc các lá cần dùng. AIS xử lý nhu cầu bằng chứng qua Hub.
 
-Root duy nhất là `Central Hub Config`. Năm thư mục package trực tiếp là Technical, Authoring, Shopping, Food và Media. Mỗi artifact Library trong `library_modules/<package>/` đặt trực tiếp trong folder package tương ứng. `Shared/` chứa bốn object Profile riêng, người dùng tạo thủ công từ hợp đồng hiện hành. Các template repository chỉ là mẫu. Không dùng thư mục chức năng cấp hai.
-
-Khi được phép cài, đồng bộ cả bộ Project Instructions, Project Sources và các binding Library đã đổi. Đối chiếu exact ID/role/status/version và toàn văn, kiểm không có match trùng, giữ đúng một binding đang dùng và kiểm từng đường bị tác động. Rollback theo Git và bộ binding tương thích đã ghi nhận. Các báo cáo cũ phía dưới phục vụ đối chiếu lịch sử.
-
-Người dùng đã xác nhận khả năng phân giải, đọc và dùng nội dung trong folder Library lồng nhau ở runtime đã thử. [Changelog](RUNTIME_EVIDENCE_CHANGELOG.md) ghi phạm vi. Ngày 2026-11-24, người dùng báo đã cài và đang chạy bộ CI 2.1, Router 2.0, Architecture 2.0 và Catalog 2.0. Việc xác minh độc lập bộ đã cài chưa được chạy. Bộ hiện hành trong repository dùng Architecture và Catalog 2.1. Việc cài đặt và kiểm chứng live cho bộ kế nhiệm chưa được thực hiện. [Cách dùng](<How to use.md>) giữ cú pháp và hành vi đang áp dụng.
+Bộ này đã thay đổi trong kho Git. Cài đặt và kiểm chứng trên môi trường chạy là bước riêng. Bằng chứng về các bộ trước giữ phạm vi ghi trong [nhật ký](RUNTIME_EVIDENCE_CHANGELOG.md). Xem [cách dùng](<How to use.md>).
 
 ## Hồ sơ lịch sử
 

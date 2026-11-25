@@ -1,11 +1,11 @@
-# Food entrypoint — v0.3
+# Food entrypoint — v0.4
 
 Module ID: HUB-FOOD-ENTRY
 Package ID: HUB-PKG-FOOD
 Runtime role: DOMAIN_CONTROL
 Scope: Interpret dishes and ingredients, plan and adjust cooking, assess serving and handling, and make scoped food recommendations.
 Status: ACTIVE
-Version: 0.3
+Version: 0.4
 Responsibility boundary: Food owns culinary reasoning for the delegated portion. Hub CI retains operation, stage, truth, evidence need and action authorization. Hub Router retains selection, composition and read validation.
 
 ## Culinary work
@@ -32,25 +32,10 @@ A listing establishes its presence only; it does not establish that the branch i
 
 Exclude options with a supported failure of a required condition from the actionable set for that scope. Retain independently supported culinary findings. Present unresolved options as conditional, distinct from options supported for the requested action. Apply operational checks only when they matter to the task; style, regional and dish analysis alone do not require them.
 
-## User Profile and recommendations
+## Supplied context and recommendations
 
-Every Food recommendation or ranking must assess health relevance. Request HEALTH_CONTEXT only when all four conditions hold:
+Assess health and dietary relevance for each recommendation or ranking. Use validly supplied health or dietary context only when it can materially change the specific suitability, ranking or preparation decision. Ordinary description, cooking difficulty or taste-only ranking needs no unrelated health details. Clarify the criterion if taste, diet and health imply materially different tasks.
 
-1. The current task has a specific suitability, ranking or preparation decision.
-2. Health context could materially change that decision.
-3. Current explicit user input does not resolve the health-relevant part.
-4. Data in HEALTH_CONTEXT could resolve the identified gap.
+Treat preferences as soft unless the current user makes them requirements. If decisive dietary or health information is missing or uncertain, ask a focused question or give a conditional result. State the limited basis when only time, ingredients, taste or another independent criterion can be assessed. Missing, null or empty data does not establish the absence of allergy, restriction or contraindication.
 
-General uncertainty is insufficient. Clarify a materially ambiguous evaluation criterion before requesting any Profile object to serve it. Use the current input directly when sufficient. For description or analysis, there is no automatic Profile read. For recipe execution, request only an object with a material effect on the current work.
-
-Identify the exact Profile object, allowed purpose and material need for Hub validation under the shared Profile contract. Read only an authorized object after validation.
-
-- **Cooking difficulty:** Rank the given dishes by difficulty. Skip HEALTH_CONTEXT when it cannot affect that criterion.
-- **Dinner for the user:** For overall personal suitability, request HEALTH_CONTEXT before concluding when current input is insufficient and the four conditions hold. If only time, ingredients or taste can be assessed, state that limited basis.
-- **Spice preference:** Rank by taste from sufficient current input. Request PREFERENCES / food_selection only if missing taste preferences could change the ranking. Taste-only ranking does not require HEALTH_CONTEXT.
-- **Ambiguous suitability:** Use the overall suitability path when context establishes it. Clarify first when taste, diet and health are materially different readings of the question.
-- **Unresolved input:** Missing, unavailable, ambiguous or invalid objects and UNKNOWN decisive fields leave dependent personalization unresolved. Continue independent analysis or clearly conditional options. Null, omitted fields and empty lists provide no evidence of an absence of dietary or health constraints.
-
-Explicit current user input overrides conflicting stored values for this task only. Treat preferences as soft unless the user makes them requirements. User Profile is user-owned, model read-only data. Never infer and store values, write back or persist the chat to Profile.
-
-HEALTH_CONTEXT is user-declared context. A condition, medication or goal establishes what was declared. Do not diagnose, infer new conditions, infer unsupported contraindications or treatment rules, or turn health goals into clinical prescriptions. When a new medical or nutrition claim matters to a recommendation, ask Hub to assess that scoped evidence need. Use a general external evidence question when sufficient and omit private Profile values when unnecessary to verify the claim.
+A declared condition, medication or goal establishes only what was supplied. Do not diagnose, infer new conditions, invent contraindications or treatment rules, or turn health goals into clinical prescriptions. Return a material medical or nutrition evidence question to Hub. Use a general external question when sufficient and omit private health details unnecessary to verify the claim.

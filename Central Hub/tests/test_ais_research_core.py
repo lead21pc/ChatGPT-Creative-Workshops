@@ -278,9 +278,9 @@ def search_spec(parts, *, authoring=False):
 
 
 def ais_binding():
-    """Project Source pin declared once by Architecture."""
+    """Exact source pin declared once by Architecture."""
     match = re.search(
-        r'AIS binding: exact Project Source (\S+) \(repository: (\S+)\), '
+        r'AIS binding: exact source (\S+), '
         r'Module ID (\S+), role (\S+), (\w+), version ([\d.]+)\.',
         ARCHITECTURE.read_text(encoding='utf-8'),
     )
@@ -292,19 +292,19 @@ class SearchDirectiveTests(unittest.TestCase):
         return search_spec([(role, text)], **options)
 
     def test_exact_core_binding_rejects_old_identity_and_partial_read(self):
-        source, relative, identity, role, status, version = ais_binding()
-        body = (ROOT / relative).read_text(encoding='utf-8')
+        source, identity, role, status, version = ais_binding()
+        body = (ROOT / source).read_text(encoding='utf-8')
         expected = dict(source=source, identity=identity, role=role, status=status, version=version)
-        self.assertEqual(expected, dict(source=PIPELINE.name, identity=AIS_ID,
+        self.assertEqual(expected, dict(source=PIPELINE.relative_to(ROOT).as_posix(), identity=AIS_ID,
                                         role='TOOL_PIPELINE', status='ACTIVE', version='2.0'))
-        self.assertEqual(ROOT / relative, PIPELINE)
+        self.assertEqual(ROOT / source, PIPELINE)
         self.assertEqual(list(PIPELINE.parent.glob('AIS_PIPELINE_v*.md')), [PIPELINE])
         for header, value in [('Module ID', identity), ('Runtime role', role),
                               ('Status', status), ('Version', version)]:
             self.assertIn(f'{header}: {value}\n', body)
         self.assertNotIn('HUB-PKG-AIS', str(load(ROOT_CATALOG)))
         dispatch = load(HUB_ROUTER)['stages']['CORE_DISPATCH']
-        self.assertIn('Check whole-source read, identity, role, status and version', dispatch)
+        self.assertIn('Apply SOURCE_RESOLUTION', dispatch)
         self.assertIn('No fallback', dispatch)
         def admitted(observed):
             return observed.get('read_kind') == 'FULL_FILE' and all(

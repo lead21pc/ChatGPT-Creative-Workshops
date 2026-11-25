@@ -4,54 +4,34 @@ import re
 import unittest
 
 from test_ais_research_core import execution_oracle, search_spec
-from test_hub_contracts import Closed, HUB_ROUTER, ROOT_CATALOG, entry_path, load, package
+from test_hub_contracts import Closed, HUB_ROUTER, ROOT_CATALOG, entry_path, load, media_leaf_bindings, package
 
 
-def integration_read_spec(entry, observations, *, direct_identity_usable=True, scoped_search_sufficient=False):
-    """SPEC only: supplied observations, no retrieval or natural-language routing."""
+def integration_read_spec(binding, observations):
+    """Validate declared test observations without performing a lookup or execution."""
+    if not observations:
+        raise Closed('ARTIFACT_MISSING')
     if len(observations) != 1:
-        raise Closed('missing or ambiguous exact source')
+        raise Closed('AMBIGUOUS_MODULE')
     observed = observations[0]
+    if observed.get('source') != binding['source'] or not observed.get('accepted_source'):
+        raise Closed('SOURCE_MISMATCH')
     if observed.get('read_kind') != 'FULL_FILE' or observed.get('has_more') is not False:
-        raise Closed('incomplete read')
-    location = entry['location']
-    if entry['binding_mode'] == 'LIBRARY_MODULE':
-        expected = dict(module_id=entry['entrypoint_module_id'],
-                        package_id=entry['package_id'], runtime_role=entry['runtime_role'],
-                        status=entry['status'], version=entry['version'],
-                        root=location['root'])
-        if location['root'] != 'Central Hub Config' or observed.get('location') != 'LIBRARY':
-            raise Closed('wrong root or non-Library substitute')
-        if entry['status'] != 'ACTIVE' or observed.get('body_matches') is not True:
-            raise Closed('inactive or material body mismatch')
-        if direct_identity_usable:
-            if not location.get('library_file_id'):
-                raise Closed('missing verified direct identity')
-            expected['library_file_id'] = location['library_file_id']
-            if location.get('library_version_id') is not None:
-                expected['library_version_id'] = location['library_version_id']
-        else:
-            # Declared fixture evidence only, not a Library search or completeness detector.
-            if not scoped_search_sufficient or not observed.get('opened_object'):
-                raise Closed('unresolved scoped coverage or object identity')
-            if observed.get('library_file_id') is not None or observed.get('library_version_id') is not None:
-                raise Closed('unverified internal identity')
-        if any(observed.get(k) != v for k, v in expected.items()):
-            raise Closed('Library binding mismatch; no fallback')
-    else:
-        raise Closed('unsupported binding')
-    return dict(evidence='SPEC_SIMULATION_ONLY', runtime_ready=False,
-                live_integration='NOT_RUN', module_id=entry['entrypoint_module_id'],
-                library_file_id=observed.get('library_file_id'),
-                library_version_id=observed.get('library_version_id'))
+        raise Closed('FULL_FILE_REQUIRED')
+    for field in ('module_id', 'package_id', 'runtime_role', 'version'):
+        if observed.get(field) != binding[field]:
+            raise Closed('HEADER_MISMATCH:' + field)
+    if binding['status'] != 'ACTIVE' or observed.get('status') != 'ACTIVE':
+        raise Closed('INACTIVE_MODULE')
+    if observed.get('body_matches') is not True:
+        raise Closed('MATERIAL_BODY_MISMATCH')
 
 
 def synthetic_module(module_id, package_id, scopes, role='DOMAIN_CONTROL', **changes):
     module = dict(module_id=module_id, package_id=package_id, runtime_role=role,
                   status='ACTIVE', version='1.0', scopes=set(scopes),
                   refines=[], complements=[], requires=[], decisions={},
-                  location=dict(root='Central Hub Config', locator=None,
-                                verification='UNRESOLVED', **{'class': 'LIBRARY'}))
+                  source=f'fixtures/{module_id}.md')
     module.update(changes)
     return module
 
@@ -65,7 +45,7 @@ def synthetic_fixture(*modules):
     """One entrypoint per package; all data stays inside this test module."""
     return dict(status='ACTIVE', packages=[synthetic_package(m) for m in modules],
                 local_catalogs={}, artifacts={m['module_id']: [dict(copy.deepcopy(m),
-                read_kind='FULL_FILE')] for m in modules}, evidence='SPEC_FIXTURE_ONLY')
+                read_kind='FULL_FILE', has_more=False, accepted_source=True, body_matches=True)] for m in modules}, evidence='SPEC_FIXTURE_ONLY')
 
 
 def synthetic_growing_fixture(count=24):
@@ -74,7 +54,7 @@ def synthetic_growing_fixture(count=24):
     catalog = synthetic_module('SYNTHETIC_LOCAL_CATALOG', entry['package_id'], set(),
                                role='PACKAGE_CATALOG')
     fixture['packages'][0]['local_catalog'] = catalog
-    fixture['artifacts'][catalog['module_id']] = [dict(catalog, read_kind='FULL_FILE')]
+    fixture['artifacts'][catalog['module_id']] = [dict(catalog, read_kind='FULL_FILE', has_more=False, accepted_source=True, body_matches=True)]
     leaves = [synthetic_module(f'SYNTHETIC_LEAF_{i}', entry['package_id'], {f'UNRELATED_{i}'})
               for i in range(count)]
     leaves[0]['scopes'] = {'X'}
@@ -82,7 +62,7 @@ def synthetic_growing_fixture(count=24):
     leaves[1]['requires'] = [dict(module_id=leaves[2]['module_id'])]
     fixture['local_catalogs'][entry['package_id']] = leaves
     for leaf in leaves:
-        fixture['artifacts'][leaf['module_id']] = [dict(copy.deepcopy(leaf), read_kind='FULL_FILE')]
+        fixture['artifacts'][leaf['module_id']] = [dict(copy.deepcopy(leaf), read_kind='FULL_FILE', has_more=False, accepted_source=True, body_matches=True)]
     return fixture
 
 
@@ -93,7 +73,7 @@ def current_metadata_fixture():
     for row in catalog['packages']:
         module = synthetic_module(row['entrypoint_module_id'], row['package_id'],
                                   {row['package_id']}, row['runtime_role'],
-                                  version=row['version'], location=copy.deepcopy(row['location']))
+                                  version=row['version'], source=row['source'])
         module['identity_evidence'] = 'CURRENT_ENTRYPOINT_METADATA_ONLY'
         modules.append(module)
     fixture = synthetic_fixture(*modules)
@@ -101,7 +81,7 @@ def current_metadata_fixture():
     return fixture
 
 
-def simulate(fixture, scopes, *, pipeline_needs=(), requested_packages=(), library_available=False):
+def simulate(fixture, scopes, *, pipeline_needs=(), requested_packages=()):
     """Finite acceptance oracle. Plans/fixture reads only; never executes instruction YAML.
 
     The fixture models an accepted deployment, with fake full-read records. Current
@@ -111,7 +91,7 @@ def simulate(fixture, scopes, *, pipeline_needs=(), requested_packages=(), libra
     result = dict(planned=[], spec_verified=[], blocked={}, module_scopes={},
                   direct_dependencies=[], relations_used=[], artifact_requests=[],
                   spec_reads=[], local_catalogs_consulted=[], pipeline_entrypoints=[],
-                  runtime_blockers=[], runtime_ready=False, live_library_retrieval='NOT_RUN')
+                  runtime_ready=False, live_source_retrieval='NOT_RUN')
     if fixture is None or fixture.get('unreadable'):
         result['blocked']['ROOT'] = 'ROOT_MISSING_OR_UNREADABLE'
         return result
@@ -137,32 +117,12 @@ def simulate(fixture, scopes, *, pipeline_needs=(), requested_packages=(), libra
         identity = binding['module_id']
         if identity not in result['artifact_requests']:
             result['artifact_requests'].append(identity)
-        location = binding['location']
-        if location['class'] == 'LIBRARY':
-            if location.get('root') != 'Central Hub Config':
-                raise Closed('LIBRARY_ROOT_ESCAPE')
-            if not library_available:
-                result['runtime_blockers'].append('LIBRARY_UNAVAILABLE:' + identity)
-            if location.get('locator') is None or location.get('verification') != 'VERIFIED':
-                result['runtime_blockers'].append('LOCATOR_UNRESOLVED:' + identity)
-        elif location['class'] == 'PROJECT_SOURCES':
-            if location.get('verification') != 'VERIFIED':
-                result['runtime_blockers'].append('PROJECT_SOURCE_NOT_VERIFIED:' + identity)
-        else:
-            raise Closed('UNSUPPORTED_LOCATION')
         records = fixture['artifacts'].get(identity, [])
-        if not records:
-            raise Closed('ARTIFACT_MISSING:' + identity)
-        if len(records) != 1:
-            raise Closed('AMBIGUOUS_MODULE:' + identity)
+        try:
+            integration_read_spec(binding, records)
+        except Closed as error:
+            raise Closed(f'{error}:{identity}') from error
         record = records[0]
-        if record.get('read_kind') != 'FULL_FILE':
-            raise Closed('FULL_FILE_REQUIRED:' + identity)
-        for field in ['module_id', 'package_id', 'runtime_role', 'version']:
-            if record[field] != binding[field]:
-                raise Closed('HEADER_MISMATCH:' + field)
-        if binding['status'] != 'ACTIVE' or record['status'] != 'ACTIVE':
-            raise Closed('INACTIVE_MODULE:' + identity)
         for relation in ['requires', 'refines', 'complements', 'decisions']:
             if record[relation] != binding[relation]:
                 raise Closed('MATERIAL_CONTRACT_MISMATCH:' + relation)
@@ -247,8 +207,7 @@ def simulate(fixture, scopes, *, pipeline_needs=(), requested_packages=(), libra
             continue
         try:
             interface(package_id)
-            candidates = (fixture['local_catalogs'][package_id] if package['local_catalog'] is not None
-                          else [package['entrypoint']])
+            candidates = fixture['local_catalogs'].get(package_id, [package['entrypoint']])
         except Closed as error:
             result['blocked'][package_id] = str(error)
             continue
@@ -286,7 +245,6 @@ def simulate(fixture, scopes, *, pipeline_needs=(), requested_packages=(), libra
             if module['runtime_role'] == 'TOOL_PIPELINE' and key not in result['pipeline_entrypoints']:
                 result['pipeline_entrypoints'].append(key)
     result['direct_dependencies'] = list(dict.fromkeys(result['direct_dependencies']))
-    result['runtime_blockers'] = list(dict.fromkeys(result['runtime_blockers']))
     return result
 
 
@@ -405,25 +363,16 @@ class RouterCompositionTests(unittest.TestCase):
         del fixture['local_catalogs']['SYNTHETIC_PACKAGE']
         self.assertTrue(any('LOCAL_CATALOG_MISSING' in reason for reason in simulate(fixture, {'X'})['blocked'].values()))
 
-    def test_header_partial_read_ambiguity_and_root_rejection(self):
-        module = synthetic_module('SYNTHETIC_A', 'SYNTHETIC_PKG_A', {'X'})
-        for field, value in [('module_id', 'SYNTHETIC_LOOKALIKE'), ('package_id', 'SYNTHETIC_WRONG_OWNER'),
-                             ('runtime_role', 'PREFERENCE'), ('version', '999'), ('status', 'CANDIDATE'),
-                             ('read_kind', 'HEADER_ONLY'), ('read_kind', 'SNIPPET')]:
-            fixture = synthetic_fixture(module)
-            fixture['artifacts'][module['module_id']][0][field] = value
-            result = simulate(fixture, {'X'})
-            self.assertTrue(result['blocked'], field)
-            self.assertEqual(result['spec_verified'], [])
-        fixture = synthetic_fixture(module)
-        fixture['artifacts'][module['module_id']] *= 2
-        self.assertTrue(any('AMBIGUOUS_MODULE' in reason for reason in simulate(fixture, {'X'})['blocked'].values()))
-        fixture = synthetic_fixture(module)
-        fixture['packages'][0]['entrypoint']['location']['root'] = 'Other Library'
-        self.assertTrue(any('LIBRARY_ROOT_ESCAPE' in reason for reason in simulate(fixture, {'X'})['blocked'].values()))
-        result = simulate(synthetic_fixture(module), {'X'}, library_available=False)
-        self.assertIn('LIBRARY_UNAVAILABLE:SYNTHETIC_A', result['runtime_blockers'])
-        self.assertIn('LOCATOR_UNRESOLVED:SYNTHETIC_A', result['runtime_blockers'])
+    def test_read_failures_block_only_the_dependent_branch(self):
+        needed = synthetic_module('SYNTHETIC_A', 'SYNTHETIC_PKG_A', {'X'})
+        other = synthetic_module('SYNTHETIC_B', 'SYNTHETIC_PKG_B', {'Y'})
+        for change in ({'read_kind': 'HEADER_ONLY'}, {'source': 'archive/SYNTHETIC_A.md'},
+                       {'accepted_source': False}):
+            fixture = synthetic_fixture(needed, other)
+            fixture['artifacts'][needed['module_id']][0].update(change)
+            result = simulate(fixture, {'X', 'Y'})
+            self.assertIn(needed['package_id'], result['blocked'])
+            self.assertEqual(result['spec_reads'], [other['module_id']])
 
     def test_conflict_and_unsupported_cross_package_relation(self):
         a = synthetic_module('SYNTHETIC_A', 'SYNTHETIC_PKG_A', {'X'}, decisions={'method': 'A'})
@@ -451,74 +400,37 @@ class RouterCompositionTests(unittest.TestCase):
         self.assertEqual(len(result['spec_verified']), 2)
 
 
-class LibraryReadTests(unittest.TestCase):
-    def library_identity_fixture(self, package='HUB-PKG-TECHNICAL'):
-        """Declared Library observations; never accesses the platform or infers evidence."""
-        catalog = load(ROOT_CATALOG)
-        entry = next(p for p in catalog['packages'] if p['package_id'] == package)
-        observed = dict(module_id=entry['entrypoint_module_id'], package_id=package,
-                        runtime_role=entry['runtime_role'], status='ACTIVE', version=entry['version'],
-                        root='Central Hub Config', location='LIBRARY', read_kind='FULL_FILE', has_more=False,
-                        body_matches=True, opened_object='SYNTHETIC_CURRENT_SURFACE_OBJECT')
-        return entry, observed
+class PinnedSourceReadTests(unittest.TestCase):
+    def test_exact_source_requires_full_matching_material_read(self):
+        row = package('AUTHORING')
+        binding = dict(row, module_id=row['entrypoint_module_id'])
+        observed = dict(binding, read_kind='FULL_FILE', has_more=False,
+                        accepted_source=True, body_matches=True)
+        integration_read_spec(binding, [observed])
+        for field, value in (
+            ('module_id', 'LOOKALIKE'), ('package_id', 'OTHER'), ('runtime_role', 'DOMAIN_CONTROL'),
+            ('status', 'INACTIVE'), ('version', '9.0'), ('read_kind', 'SNIPPET'),
+            ('read_kind', 'HEADER_ONLY'), ('read_kind', 'SEARCH_HIT'), ('has_more', True),
+            ('body_matches', False), ('body_matches', None), ('accepted_source', False),
+            ('source', 'Source_archive/' + row['source']),
+            ('source', row['source'].replace('v1.1', 'v1.2')),
+            ('source', 'lookalike/' + entry_path(row).name),
+        ):
+            with self.subTest(field=field, value=value), self.assertRaises(Closed):
+                integration_read_spec(binding, [dict(observed, **{field: value})])
+        for records in ([], [observed, dict(observed)]):
+            with self.subTest(records=len(records)), self.assertRaises(Closed):
+                integration_read_spec(binding, records)
 
-    def test_library_direct_identity_full_read_body_and_bound_revision(self):
-        entry, observed = self.library_identity_fixture()
-        entry['location'].update(library_file_id='FIXTURE_FILE', library_version_id='FIXTURE_REVISION')
-        observed.update(library_file_id='FIXTURE_FILE', library_version_id='FIXTURE_REVISION')
-        result = integration_read_spec(entry, [observed])
-        self.assertEqual(result['library_file_id'], entry['location']['library_file_id'])
-        self.assertEqual(result['library_version_id'], entry['location']['library_version_id'])
-        self.assertFalse(result['runtime_ready'])
-        for key, value in [('body_matches', False), ('library_file_id', 'wrong-object'),
-                           ('library_version_id', 'wrong-revision')]:
-            with self.subTest(key=key), self.assertRaises(Closed):
-                integration_read_spec(entry, [dict(observed, **{key: value})], scoped_search_sufficient=True)
-
-    def test_library_root_scoped_identity_without_internal_ids_is_generic(self):
-        for package in ['HUB-PKG-TECHNICAL', 'HUB-PKG-AUTHORING', 'HUB-PKG-SHOPPING']:
-            with self.subTest(package=package):
-                entry, observed = self.library_identity_fixture(package)
-                before = copy.deepcopy(entry)
-                result = integration_read_spec(entry, [observed], direct_identity_usable=False,
-                                               scoped_search_sufficient=True)
-                self.assertEqual(result['module_id'], entry['entrypoint_module_id'])
-                self.assertIsNone(result['library_file_id'])
-                self.assertIsNone(result['library_version_id'])
-                self.assertEqual(result['live_integration'], 'NOT_RUN')
-                self.assertFalse(result['runtime_ready'])
-                self.assertEqual(entry, before)  # Do not erase existing verified IDs or invent missing ones.
-
-    def test_library_scoped_wrong_headers_partial_body_root_and_substitutes_rejected(self):
-        entry, observed = self.library_identity_fixture('HUB-PKG-AUTHORING')
-        observed['filename'] = 'HUB-AUTH-ENTRY_v1.1.md'  # A perfect name cannot fix bad identity.
-        mutations = [('module_id', 'OTHER'), ('package_id', 'OTHER'), ('runtime_role', 'DOMAIN_CONTROL'),
-                     ('status', 'CANDIDATE'), ('status', 'INACTIVE'), ('version', 'wrong'),
-                     ('read_kind', 'SNIPPET'), ('read_kind', 'HEADER_ONLY'), ('has_more', True),
-                     ('body_matches', False), ('body_matches', None), ('root', 'Other root'),
-                     ('opened_object', None)]
-        mutations += [('location', source) for source in
-                      ['repository', 'local_filesystem', 'PROJECT_SOURCES', 'memory', 'prior_chat', 'archive']]
-        for key, value in mutations:
-            with self.subTest(key=key, value=value), self.assertRaises(Closed):
-                integration_read_spec(entry, [dict(observed, **{key: value})],
-                                      direct_identity_usable=False, scoped_search_sufficient=True)
-
-    def test_library_scoped_duplicates_unknown_coverage_and_revision_guessing_block(self):
-        entry, observed = self.library_identity_fixture('HUB-PKG-AUTHORING')
-        for observations in [[], [observed, dict(observed, opened_object='SYNTHETIC_SECOND_OBJECT')]]:
-            with self.subTest(observations=observations), self.assertRaises(Closed):
-                integration_read_spec(entry, observations, direct_identity_usable=False,
-                                      scoped_search_sufficient=True)
-        with self.assertRaises(Closed):  # One visible match without sufficient coverage is still unresolved.
-            integration_read_spec(entry, [observed], direct_identity_usable=False)
-        current_label = dict(observed, displayed_revision='Current version')
-        result = integration_read_spec(entry, [current_label], direct_identity_usable=False,
-                                       scoped_search_sufficient=True)
-        self.assertIsNone(result['library_version_id'])
-        with self.assertRaises(Closed):
-            integration_read_spec(entry, [dict(current_label, library_version_id='1')],
-                                  direct_identity_usable=False, scoped_search_sufficient=True)
+    def test_source_resolution_contract_preserves_read_and_authority_boundaries(self):
+        router = load(HUB_ROUTER)
+        self.assertNotIn('library', router)
+        rule = router['stages']['SOURCE_RESOLUTION']
+        for phrase in ('exactly one pinned source', 'FULL_FILE', 'Package ID where applicable',
+                       'material body and declared relations', 'headers, hits, summaries and partial reads',
+                       'archive copies, guessed versions', 'authorization and execution'):
+            self.assertIn(phrase, rule)
+        self.assertIn('dependent work', router['failure'])
 
 
 class ActiveRouterTests(unittest.TestCase):
@@ -558,7 +470,7 @@ def receipt_fixture(*, debug=False, blocker=None, read=None, traces=()):
     return '\n'.join((
         'TASK | operation=compare; stage=analysis; scope=film and recording; return=Hub',
         'DECISION | selected=Media/Movie and Music; basis=declared comparison; tool authority=none',
-        f'SOURCE / DEPENDENCY | Entry 1.1 → Movie 1.1; read={read or "UNKNOWN"}',
+        f'SOURCE / DEPENDENCY | Entry 1.2 → Movie 1.1; read={read or "UNKNOWN"}',
         f'RESULT / BLOCKER | last=selection; attempt={execution_oracle(traces)}; basis={evidence}',
         f'first unresolved={blocker or "none"}; independent=Music',
     ))
@@ -599,7 +511,7 @@ class RefactorTwoRoutingTests(unittest.TestCase):
         rule = load(HUB_ROUTER)['diagnostic_receipt']
         for phrase in ('explicit routing or execution debug/audit request', 'material blocker',
                        'actual read evidence', 'SCOPED_HANDOFF', 'UNKNOWN', 'CONFLICTED',
-                       'private Profile values', 'ordinary-turn receipt'):
+                       'private preference values', 'ordinary-turn receipt'):
             self.assertIn(phrase, rule)
         self.assertIsNone(receipt_fixture(read='FULL_FILE'))
         self.assertIn('read=UNKNOWN', receipt_fixture(debug=True))
@@ -610,19 +522,36 @@ class RefactorTwoRoutingTests(unittest.TestCase):
         ]))
 
     def test_material_blocker_emits_and_isolates_the_dependent_branch(self):
-        owner = 'HUB-PKG-MEDIA'
-        movie = synthetic_module('HUB-MEDIA-MOVIE', owner, {'movie'})
-        music = synthetic_module('HUB-MEDIA-MUSIC', owner, {'music'})
-        fixture = synthetic_growing_fixture()
-        entry = fixture['packages'][0]['entrypoint']
-        # The shared closure fixture supplies a neutral two-branch interface.
-        for module in (movie, music):
-            module['package_id'] = entry['package_id']
-        fixture['packages'][0]['applicability'] = {'movie', 'music'}
-        fixture['local_catalogs'][entry['package_id']] = [movie, music]
-        fixture['artifacts'][music['module_id']] = [dict(music, read_kind='FULL_FILE')]
-        result = simulate(fixture, {'movie', 'music'})
-        self.assertNotIn('HUB-MEDIA-MOVIE', result['spec_reads'])
-        self.assertIn('HUB-MEDIA-MUSIC', result['spec_reads'])
+        row = package('MEDIA')
+        owner = row['package_id']
+        entry = synthetic_module(row['entrypoint_module_id'], owner, {'movie', 'music'},
+                                 row['runtime_role'], version=row['version'], source=row['source'])
+        leaves = [
+            synthetic_module(identity, owner, {identity.rsplit('-', 1)[-1].lower()},
+                             role, status=status, version=version, source=source)
+            for identity, role, status, version, source in media_leaf_bindings()
+        ]
+        for read_kind in (None, 'HEADER_ONLY'):
+            fixture = synthetic_fixture(entry, *leaves)
+            fixture['packages'] = fixture['packages'][:1]
+            fixture['local_catalogs'][owner] = leaves
+            if read_kind is None:
+                del fixture['artifacts']['HUB-MEDIA-MOVIE']
+            else:
+                fixture['artifacts']['HUB-MEDIA-MOVIE'][0]['read_kind'] = read_kind
+            result = simulate(fixture, {'movie', 'music'})
+            self.assertIn((owner, 'HUB-MEDIA-MOVIE'), result['blocked'])
+            self.assertEqual(result['spec_reads'], [entry['module_id'], 'HUB-MEDIA-MUSIC'])
+            self.assertEqual(result['spec_verified'], [(owner, 'HUB-MEDIA-MUSIC')])
+            self.assertFalse(result['runtime_ready'])
         receipt = receipt_fixture(blocker='Movie source unresolved')
         self.assertIn('first unresolved=Movie source unresolved; independent=Music', receipt)
+
+
+def test_supplied_context_retains_role_provenance_and_current_user_priority():
+    rule = load(HUB_ROUTER)['stages']['SCOPED_HANDOFF']
+    for clause in ('Validly supplied user or platform context is scoped input data',
+                   'Preserve its provenance and scope', 'grants no control authority',
+                   'Current explicit user input governs conflicting context for this task only',
+                   'do not infer, persist or mutate stored preferences'):
+        assert clause in rule

@@ -7,10 +7,10 @@ import unittest
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
-LIBRARY = ROOT / 'library_modules'
-ROOT_CATALOG = ROOT / 'HUB_PACKAGE_CATALOG_v2.1.yaml'
-HUB_ROUTER = ROOT / 'HUB_ROUTER_v2.0.yaml'
-ARCHITECTURE = ROOT / 'HUB_ARCHITECTURE_v2.1.md'
+PACKAGE_SOURCES = ROOT / 'library_modules'
+ROOT_CATALOG = ROOT / 'HUB_PACKAGE_CATALOG_v2.2.yaml'
+HUB_ROUTER = ROOT / 'HUB_ROUTER_v2.1.yaml'
+ARCHITECTURE = ROOT / 'HUB_ARCHITECTURE_v2.2.md'
 CI = ROOT / 'HUB_CI_v2.1.md'
 
 
@@ -73,7 +73,13 @@ def package(name):
 
 
 def entry_path(row):
-    return LIBRARY / row['location']['artifact']
+    return ROOT / row['source']
+
+
+def media_leaf_bindings():
+    body = entry_path(package('MEDIA')).read_text(encoding='utf-8')
+    return re.findall(r'^\| (HUB-MEDIA-(?:MOVIE|MUSIC)) \| (\w+) \| (\w+) \| ([\d.]+) \| (\S+) \|$',
+                      body, re.M)
 
 
 def check_binding(row, identity, path):
@@ -81,9 +87,9 @@ def check_binding(row, identity, path):
     expected = {key: row[key] for key in ('package_id', 'runtime_role', 'status', 'version')}
     expected['module_id'] = identity
     if any(header[key] != value for key, value in expected.items()):
-        raise Closed('Library binding/header mismatch')
+        raise Closed('Source binding/header mismatch')
     if path.name != f"{identity}_v{row['version']}{path.suffix}":
-        raise Closed('incorrect install filename')
+        raise Closed('incorrect artifact filename')
     return header
 
 
@@ -150,54 +156,43 @@ class HubContracts(unittest.TestCase):
                 self.assertIn(rule, output)
         self.assertNotIn('without lookup', output)
 
-    def test_current_inventory_and_shallow_layout(self):
-        packages = load(ROOT_CATALOG)['packages']
-        self.assertEqual(len({row['package_id'] for row in packages}), len(packages))
+    def test_exact_current_source_inventory(self):
+        catalog = load(ROOT_CATALOG)
+        packages = catalog['packages']
+        self.assertNotIn('library_discovery_root', catalog)
+        self.assertEqual(len(packages), 5)
         self.assertEqual({row['package_id'].removeprefix('HUB-PKG-') for row in packages},
                          {'TECHNICAL', 'FOOD', 'MEDIA', 'AUTHORING', 'SHOPPING'})
         bound = set()
         identities = set()
 
-        def admit(row, key='module_id', path=None):
-            identity = row[key]
-            path = path or entry_path(row)
+        def admit(row, identity):
+            path = entry_path(row)
+            self.assertTrue(path.resolve().is_relative_to(PACKAGE_SOURCES))
             self.assertNotIn(identity, identities)
-            self.assertEqual(len(path.relative_to(LIBRARY).parts), 2)
+            self.assertNotIn(path, bound)
             check_binding(row, identity, path)
-            bound.add(path)
             identities.add(identity)
-            return path
+            bound.add(path)
 
         for row in packages:
-            self.assertEqual(row['binding_mode'], 'LIBRARY_MODULE')
-            self.assertEqual(row['location']['root'], 'Central Hub Config')
-            admit(row, 'entrypoint_module_id')
-            if row['local_catalog']:
-                catalog = admit(row['local_catalog'])
-                entries = load(catalog)['entries']
-                local = {entry['module_id']: entry for entry in entries}
-                self.assertEqual(len(entries), len(local))
-                closure(local, local)
-                for leaf in entries:
-                    self.assertEqual(leaf['package_id'], row['package_id'])
-                    self.assertEqual(leaf['location']['root'], 'Central Hub Config')
-                    admit(leaf)
-        shop = package('SHOPPING')
-        self.assertIsNone(shop['local_catalog'])
-        match = re.search(r'Select (HUB-SHOP-SEARCH) / (HUB-PKG-SHOPPING) / (DOMAIN_PROCEDURE) / (ACTIVE) / ([\d.]+)', entry_path(shop).read_text(encoding='utf-8'))
+            self.assertEqual(set(row), {'package_id', 'entrypoint_module_id', 'runtime_role',
+                                        'status', 'version', 'applicability', 'source', 'requires'})
+            admit(row, row['entrypoint_module_id'])
+        match = re.search(
+            r'Select (HUB-SHOP-SEARCH) / (HUB-PKG-SHOPPING) / (DOMAIN_PROCEDURE) / (ACTIVE) / ([\d.]+)'
+            r'[^.]*\. Its exact source is (\S+\.md)\.',
+            entry_path(package('SHOPPING')).read_text(encoding='utf-8'),
+        )
         self.assertIsNotNone(match)
-        identity, owner, role, status, version = match.groups()
-        admit(dict(module_id=identity, package_id=owner, runtime_role=role, status=status, version=version),
-              path=LIBRARY / 'Shopping' / f'{identity}_v{version}.md')
+        identity, owner, role, status, version, source = match.groups()
+        admit(dict(package_id=owner, runtime_role=role, status=status,
+                   version=version, source=source), identity)
         media = package('MEDIA')
-        self.assertIsNone(media['local_catalog'])
-        media_body = entry_path(media).read_text(encoding='utf-8')
-        for identity, role, status, version in re.findall(
-                r'^\| (HUB-MEDIA-(?:MOVIE|MUSIC)) \| (\w+) \| (\w+) \| ([\d.]+) \|$', media_body, re.M):
-            admit(dict(module_id=identity, package_id=media['package_id'],
-                       runtime_role=role, status=status, version=version),
-                  path=LIBRARY / 'Media' / f'{identity}_v{version}.md')
-        self.assertEqual(bound, {p for p in LIBRARY.rglob('*') if p.is_file()})
+        for identity, role, status, version, source in media_leaf_bindings():
+            admit(dict(package_id=media['package_id'], runtime_role=role, status=status,
+                       version=version, source=source), identity)
+        self.assertEqual(bound, {p for p in PACKAGE_SOURCES.rglob('*') if p.is_file()})
 
     def test_binding_mismatches_and_hard_closure_fail(self):
         row = package('TECHNICAL')

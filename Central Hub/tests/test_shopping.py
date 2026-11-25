@@ -5,7 +5,7 @@ import re
 import unittest
 
 from test_ais_research_core import completion_oracle, execution_oracle
-from test_hub_contracts import CI, LIBRARY, entry_path, package
+from test_hub_contracts import CI, PACKAGE_SOURCES, entry_path, package
 
 CORE_ID = 'HUB-SHOP-ENTRY'
 SEARCH_ID = 'HUB-SHOP-SEARCH'
@@ -306,11 +306,11 @@ class ShoppingContractTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.core = entry_path(package('SHOPPING')).read_text(encoding='utf-8')
-        cls.search = (LIBRARY / 'Shopping/HUB-SHOP-SEARCH_v1.2.md').read_text(encoding='utf-8')
+        cls.search = (PACKAGE_SOURCES / 'Shopping/HUB-SHOP-SEARCH_v1.2.md').read_text(encoding='utf-8')
 
     def test_fixed_offer_and_search_are_pay_as_used(self):
         root = package('SHOPPING')
-        self.assertIsNone(root['local_catalog'])
+        self.assertNotIn('local_catalog', root)
         self.assertFalse(root['requires'])
         self.assertNotIn(SEARCH_ID, str(root))
         self.assertIn('use this Entry alone', self.core)
@@ -421,3 +421,15 @@ class ShoppingContractTests(unittest.TestCase):
         self.assertEqual(result['unresolved'], {'small independents', 'marketplaces'})
         self.assertIn('do not report the whole market searched', self.search)
         self.assertIn('not fixed tiers, named store rankings, a registry or a quota', self.search)
+
+
+def test_supplied_preferences_do_not_create_priority_or_satisfy_unknown_requirements():
+    core = entry_path(package('SHOPPING')).read_text(encoding='utf-8')
+    for rule in ('Treat preferences as SOFT unless the current user makes them requirements', 'Do not infer priorities from supplied preferences',
+                 'Preserve absent, null or unresolved material values as unknown',
+                 'Use relevant, validly supplied shopping preferences'):
+        assert rule in core
+    conditions = {'weight_g': (250, 'soft'), 'protection': (True, 'hard')}
+    result = product_candidate_spec(conditions, {}, linked=True)
+    assert result['purchase_suitable'] is None
+    assert not result['hard_failures']
