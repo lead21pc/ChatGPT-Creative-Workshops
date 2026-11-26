@@ -77,15 +77,21 @@ Pipeline chỉ áp dụng khi yêu cầu có thao tác biến đổi thuộc ph�
 
 CI tiền nhiệm và Router 4.4 đã được lưu trong archive điều khiển. Pipeline 1.0 còn ở thư mục trực tiếp để phục vụ quay lui; sự hiện diện của nó không làm thay đổi bản 1.1 được CI hiện hành chỉ định.
 
-## RP v0.1: bản nền thử nghiệm local
+## RP v0.2: một Runtime, hai binding cố định
 
-[RP Router 0.1](RP%20Module/FTH_RP_Router_v0.1.yaml) chọn, định vị và kiểm nguồn hướng dẫn thể hiện nhân vật; [RP Runtime 0.1](RP%20Module/FTH_RP_Runtime_v0.1.md) điều khiển phân vai, tri thức nhân vật, nhịp lượt và tính liên tục của cảnh trong chat hiện tại. Hai thành phần sử dụng các bước kiểm tra nguồn/điều khiển FTH có sẵn và không có quyền chốt canon hoặc giải quyết điều chưa rõ.
+[RP Router A](RP%20Module/FTH_RP_Router_v0.2.yaml) gắn cố định với Router 5.0 cho đường A; [RP Router B](RP%20Module/FTH_RP_Router_Path_B_v0.2.yaml) gắn cố định với Router 6.0 cho đường B. Hai file chỉ khác giá trị upstream, giữ cùng quy tắc chọn/định vị/kiểm nguồn portrayal và cùng trỏ tới [RP Runtime 0.2](RP%20Module/FTH_RP_Runtime_v0.2.md). Đường A giữ mục đích dùng nội bộ/đối chiếu; đường B phục vụ kiểm chứng chuyển nền tảng. Phiên bản mới hơn không tự thay đường còn lại.
 
-Chỉ bật khi người dùng yêu cầu rõ module RP và cả hai file điều khiển đã được đọc đầy đủ (`FULL_FILE`). Một yêu cầu RP thông thường không tự bật bản thử nghiệm này. Khi tắt, module không thêm yêu cầu nguồn hay điều khiển vào luồng FTH thông thường.
+Deployment/setup chọn đúng một RP Router tương ứng với CI/Source Router đã thiết lập trước khi chạy RP. RP không khám phá hay kiểm định cặp CI/Router lúc chạy, không chọn theo phiên bản, trộn đường hoặc chuyển đường khi lỗi. Đây là một baseline ngữ nghĩa RP dùng chung, không phải hai Runtime. Không có framework cấu hình hoặc bộ chọn đường mới.
 
-Danh mục trong RP Router hiện là `catalog: []`; chưa có vị trí Library của nguồn RP nào được xác nhận trong danh mục. Nguồn thể hiện nhân vật dùng lúc chạy phải có vị trí Library và phạm vi sử dụng đã được xác nhận, được đọc đầy đủ và kiểm header theo Router. Bản sao repository, fixture và Memory không thay thế được nguồn đó. Nhân vật không có nguồn RP áp dụng hoặc bắt buộc có thể dùng yêu cầu người dùng, ngữ cảnh chat và nguồn thế giới đã qua định tuyến; nguồn bắt buộc bị thiếu vẫn chặn phần thể hiện phụ thuộc.
+Chỉ bật khi người dùng yêu cầu rõ module RP và RP Router đã chọn cùng Runtime chung được đọc đầy đủ (`FULL_FILE`). Runtime giữ phân vai, tri thức, nhịp lượt và continuity trong chat; không chốt canon hoặc giải quyết điều chưa rõ. Một yêu cầu RP thông thường không tự bật module. Khi tắt, module không thêm yêu cầu nguồn hay điều khiển vào luồng FTH thông thường.
+
+Danh mục trong cả hai RP Router hiện là `catalog: []`; chưa có vị trí Library của nguồn RP nào được xác nhận trong danh mục. Nguồn thể hiện nhân vật dùng lúc chạy phải có vị trí Library và phạm vi sử dụng đã được xác nhận, được đọc đầy đủ và kiểm header theo Router. Bản sao repository, fixture và Memory không thay thế được nguồn đó. Nhân vật không có nguồn RP áp dụng hoặc bắt buộc có thể dùng yêu cầu người dùng, ngữ cảnh chat và nguồn thế giới đã qua định tuyến; nguồn bắt buộc bị thiếu vẫn chặn phần thể hiện phụ thuộc.
 
 Đầu ra cảnh giữ trạng thái phi canon cho tới khi tác giả chấp nhận rõ. Tính liên tục trong chat không tạo kho trạng thái xuyên chat; tài liệu local và phép kiểm cấu trúc chưa chứng minh truy xuất Library hay hành vi RP thực tế.
+
+Trong RP đã bật, có thể tạo NPC phụ, đồ vật, quầy hàng hoặc hội thoại tạm phù hợp nguồn đã route, chỉ cho scene/chat hiện tại. Không re-route chỉ để chứng minh đúng chi tiết phụ ấy có trong canon. Quyền này không giải quyết UNKNOWN/DEFERRED/CONFLICTED, lập luật/thẩm quyền/cơ chế/quan hệ bền vững hoặc chứng minh địa lý, ownership, mức phổ cập. Premise cấu trúc material vẫn phải qua upstream; nguồn portrayal bắt buộc bị lỗi vẫn chặn phần phụ thuộc. Chi tiết cảnh không thành bằng chứng canon.
+
+[Bộ probe RP v0.2](RP%20Module/tests/RP_v0.2_LIVE_PROBES.md) giữ tám ca live, gồm stress test chat dài, hiện đều `NOT RUN`. V0.1 được giữ nguyên byte trong `RP Module/source_archive/` cho lịch sử, không phải fallback; fixture và kết quả ngày 15/10/2026 giữ nguyên trạng thái lịch sử. Thay đổi repository này không cài Project, triển khai nền tảng hoặc sửa Library.
 
 ## Bảo trì và kiểm chứng
 
