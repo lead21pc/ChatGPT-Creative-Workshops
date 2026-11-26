@@ -587,11 +587,20 @@ ML ↔ northeastern matriarchal tribes
 ├─ supplies → ML
 └─ protection → tribes
 
-PRIMARY INTERNAL FAILURE
-Trúc Nha
-→ rejects ML brutality
-→ post-Creed institutional conflict → branches depend on actual actor/state
-→ exact loyalty/conflict implementation and outcome UNKNOWN
+DIỄN BIẾN CANON 2 ĐÃ CHỐT (§28)
+Trúc Nha phản đối đường lối tàn bạo
+→ khởi xướng ly khai
+→ ML tách thành hai nửa lớn
+   ├─ phía Tây → phân mảnh thành nhiều vùng tự trị do các phe kiểm soát
+   └─ phía Đông → Trúc Nha lãnh đạo → liên minh TE
+→ phe hữu ML coi liên minh phía Đông–TE là phản bội
+→ tuyên chiến với AF và chặn ba cửa ngõ tới TE
+
+UNKNOWN
+→ phản ứng cụ thể và sự quy tụ của từng thiết chế/phe
+→ biên giới, số vùng, tên phe, quản trị và tình trạng công nhận
+→ custody tài sản/thánh vật và phân bố thánh vật sau phân mảnh
+→ cách phong tỏa cửa ngõ, cơ chế split-self và hệ quả sâu hơn
 ```
 
 ---
@@ -646,8 +655,11 @@ AF DEPENDS ON RF AND ML THROUGH DIFFERENT STRATEGIC AXES.
 
 AF↔ML HOSTILITY CAN RUN WITH MANDATORY TRADE.
 
-TRÚC NHA'S DOCTRINE AND SPLIT-SELF REMAIN.
-EXACT IMPLEMENTATION / SPLIT-SELF INTERACTION / BETRAYAL OUTCOME UNKNOWN.
+CANON 2 (§28): TRÚC NHA KHỞI XƯỚNG LY KHAI.
+ML TÁCH ĐÔI; PHÍA TÂY PHÂN MẢNH; PHÍA ĐÔNG DO TRÚC NHA LÃNH ĐẠO LIÊN MINH TE.
+PHE HỮU ML TUYÊN CHIẾN AF VÀ CHẶN BA CỬA NGÕ TỚI TE.
+PHẢN ỨNG/QUY TỤ CỤ THỂ CỦA TỪNG PHE, CUSTODY TÀI SẢN/THÁNH VẬT,
+TƯƠNG TÁC SPLIT-SELF VÀ HỆ QUẢ SÂU HƠN VẪN UNKNOWN.
 
 UNKNOWN ≠ PERMISSION TO INVENT.
 ```

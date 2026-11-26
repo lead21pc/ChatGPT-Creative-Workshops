@@ -2,6 +2,10 @@
 
 > Audit/control layer only. Part I summarizes the completed reconciliation. Part II preserves assertion-level conflicts, provenance, priority and resolutions.
 
+## Đồng bộ tóm tắt ML sau nhập delta — 2026-11-27
+
+Tác giả chỉ ra §21 của `40` còn để toàn bộ kết quả xung đột là UNKNOWN dù §28 đã chốt ly khai/phân mảnh. Đối chiếu cùng file phát hiện §24 còn mô tả tương tự. Sửa hai bản tóm tắt theo đúng §28, gồm ly khai, Tây phân mảnh, Đông liên minh TE, phe hữu tuyên chiến AF và chặn ba cửa ngõ. UNKNOWN thu hẹp về phản ứng/quy tụ từng phe, địa lý/quản trị, custody tài sản/thánh vật, cơ chế split-self, phong tỏa và hệ quả sâu hơn.
+
 ## Rumor, ML và phản quốc tới Clash #2 — nhập 2026-11-27
 
 Tác giả duyệt đề xuất ACCEPT WITH LOCAL CORRECTION. Nguồn delta ngày 26/11 lưu tại `Source_Archive/FTH_Canon2_Rumor_Academy_ML_Treason_Clash2_Delta_2026-11-26.md`, SHA-256 `6596ECC9370C6F34F571B4583F9570A48BB1CCDEB28D0B6CE0ECC81B372A8F6A`.
