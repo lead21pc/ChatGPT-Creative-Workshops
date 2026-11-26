@@ -8,16 +8,15 @@
 > Load mode: `FULL_FILE`
 
 > **Domain:** status ontology, social hierarchy, Citizen/Civil/Yellow/POW/Criminal, Civil entry/allocation/lifecycle, cross-status transitions and shared economic/access namespaces.  
-> Cơ sở Civil 2026-10-05 trong Part II kiểm soát xét tuyển, phân công, quyền lợi, hoàn thành và rời hệ. Bản đồ định nghĩa giữ các trục độc lập; phần chưa chốt vẫn `UNKNOWN / UNRESOLVED`.
-> **Retcon — 2026-10-05:** Civil là chế độ phục vụ tự nguyện ở đầu vào, không Slave/punishment/caste; citizenship là trục riêng. Undie là nghề do `13` kiểm soát. POW/Criminal/Yellow, Career Rank ngoài phạm vi và namespace kinh tế độc lập không tự bị xóa.
+> Part II kiểm soát xét tuyển, phân công, quyền lợi, hoàn thành và rời hệ. Civil là chế độ phục vụ tự nguyện ở đầu vào. Citizenship, nghề Undie, POW, Criminal, Yellow và các biến kinh tế là những trục riêng.
 
 ## Part I — Resolved status and ontology map
 
-### Guest-service interface — accepted 2026-10-03
+### Giao diện dịch vụ khách
 
 `02_TECHNOLOGY_AND_PUBLIC_SERVICE_INFRASTRUCTURE_CURRENT.md` controls the removable terminal and Guest Pass functional model. Guest Pass is a temporary credential/access/service profile, not a legal status, class, Citizen/Civil conversion, or immigration/residency entitlement. Device Deposit, Guest Wallet and Access Profile remain separate objects; a terminal is not an account or access authority.
 
-Guest Wallet có biến tài chính riêng. Kiến trúc Credit Score/Line và bare `credit` phụ thuộc cơ chế Undie cũ đã bị supersede theo retcon 2026-10-05; AF-OPEN-008 và các unknown triển khai ví vẫn mở. Không dùng ví khách để phục hồi các biến cũ. Guest access, legal recognition and recovery/exit after device loss/return are not inferred from existing Civil or Undie rules; AF-TECH-001 records these unknowns.
+Guest Wallet có biến tài chính riêng. Quy chế khách, công nhận pháp lý, cách khôi phục quyền và rời đi sau mất hoặc trả thiết bị còn mở. `02` giữ các quy trình đã chốt và `92` giữ câu hỏi triển khai.
 
 ### AetherFire — Current Status & Ontology Map
 
@@ -56,7 +55,7 @@ repeat Yellow-rule offense → outcome UNKNOWN [Yellow→Red/Undie đã nghỉ h
 death-sentence exposure → plea → Criminal Slave
 ```
 
-**UNKNOWN:** tái phạm Yellow; eligibility, thời hạn/công thức Civil, thủ tục exit, giới hạn quyền lực và exact immigration pathway. Quyền rời sớm Civil và hôn nhân/tài sản/liên lạc được chốt ở Part II, không còn wholly UNKNOWN. Gia nhập Undie không tạo conversion hoặc White→Citizen.
+**UNKNOWN:** tái phạm Yellow; eligibility, thời hạn/công thức Civil, thủ tục exit, giới hạn quyền lực và exact immigration pathway. Quyền rời sớm Civil và hôn nhân/tài sản/liên lạc được chốt ở Part II, không còn wholly UNKNOWN. Gia nhập Undie không đổi địa vị pháp lý.
 
 #### 1A. SOCIAL HIERARCHY / CIVIC STANDING
 
@@ -78,11 +77,11 @@ Civil không phải bậc thấp/caste và không được công quyền đối 
 
 ##### Color / visual-functional labels
 
-- `Brown` — dấu status bắt buộc/jumpsuit đồng nhất cho Civil đã bị supersede. Trang phục nghề/an toàn Civil cụ thể chưa chốt; không cấm màu Brown nói chung hoặc chốt penal Brown.
+- Civil không có dấu nhận diện địa vị bắt buộc. Trang phục nghề/an toàn chưa chốt. Điều này không đặt quy tắc chung về màu Brown hay trang phục của người chịu chế tài.
 - `Black` — màu nhận dạng của Criminal; `Criminal` mới là class.
 - `Red`, `Scarlet`, `Pink`, `Gray`, `Purple`, `Hazel`, `White` — mã kiến trúc Undie cũ đã nghỉ hưu; chỉ tái dùng qua quyết định canon riêng.
 
-**Relations:** Citizen có thể đồng thời hành nghề Undie. Yellow là trạng thái kỷ luật độc lập; Undi là họ đồng phục nghề theo ngữ cảnh, không xác lập Yellow/Slave hoặc White→Citizen.
+**Relations:** Citizen có thể đồng thời hành nghề Undie. Yellow là trạng thái kỷ luật độc lập; Undi là họ đồng phục nghề theo ngữ cảnh, không xác lập Yellow, Slave hay quyền tự động trở thành Citizen.
 
 **UNKNOWN:** sự tồn tại của một penal class Brown ngoài nguồn hiện hành; ma trận quyền/mobility Criminal. Không tiếp tục hỏi full color/rank graph như thể nó còn là kiến trúc Undie hiện tại.
 
@@ -94,7 +93,7 @@ Civil không phải bậc thấp/caste và không được công quyền đối 
 - Được nhận rồi phải làm assignment và tới địa điểm hợp lệ theo năng lực/thể lực/điều kiện; preference không phải veto.
 - Assignment sai, tình trạng đổi hoặc trái chuẩn/không an toàn → có căn cứ khiếu nại, đánh giá lại/phân công lại.
 - Upkeep tách tiền công; không giữ người bằng nợ upkeep hoặc tự chuyển failure thành Criminal.
-- Rời sớm hợp pháp có thể mất quyền lợi chưa kiếm được; completion dựa thời gian tối thiểu + service đủ chuẩn, không mốc 5–10 năm.
+- Rời sớm hợp pháp có thể mất quyền lợi chưa kiếm được; completion dựa thời gian tối thiểu + service đủ chuẩn. Thời hạn cụ thể chưa xác lập.
 - Quyền hôn nhân, tài sản, tiền, nghỉ/liên lạc/điều trị/khiếu nại/riêng tư phù hợp assignment đã chốt; implementation và compatibility Undie còn mở.
 
 ---
@@ -114,7 +113,7 @@ Civil không phải bậc thấp/caste và không được công quyền đối 
 - Current confirmed regime: cực thấp/bẩn/nguy hiểm/không đáng dùng robot; ví dụ waste, hospital cleaning, sewer cleaning.
 - `UNKNOWN / NEEDS USER RESOLUTION:` metallurgy/construction/factory list trong merged source có còn current hay không.
 
-#### 3A. CIVIL AUDIT MATRIX — baseline 2026-10-05
+#### 3A. Điều kiện và giới hạn của Civil
 
 | Trục | Chốt hiện hành | Còn mở |
 | --- | --- | --- |
@@ -190,10 +189,6 @@ Nợ tài chính, nghĩa vụ hợp đồng, ân tình xã hội và ân tình c
 - Financial/eligibility profile của Citizen; bad debt có thể làm giảm cơ hội việc làm.
 - Không đồng nhất với tiền Credits hoặc các biến Undie đã nghỉ hưu; không tự xóa hồ sơ tín dụng Citizen vì retcon giới hạn ở Undie.
 
-##### Legacy black credit
-
-- Design history; không phải current canon.
-
 #### 9. ACCESS PROFILE
 
 **Definition:** quyền truy cập/di chuyển/dịch vụ được xác nhận qua collar/backend và rules; không phải class hay Career Rank.
@@ -216,16 +211,16 @@ Nợ tài chính, nghĩa vụ hợp đồng, ân tình xã hội và ân tình c
 
 - Nguồn gốc/đầu vào Civil không tạo caste hay đối xử kém; assignment dùng hồ sơ phù hợp hiện tại. Nhu cầu/tình trạng đầu vào có thể ảnh hưởng gói hậu Civil, không phân biệt tiền công cùng công việc chỉ vì giàu/nghèo.
 - Không tạo Refugee/Nomad/Unemployed/Deserter Civil caste chỉ từ provenance.
-- Lịch sử nghề nghiệp không phải địa vị pháp lý. Quy trình ẩn/truy xuất hồ sơ gắn với White→Citizen cũ không còn là mốc hiện hành; luật hồ sơ nghề mới chưa chốt.
+- Lịch sử nghề nghiệp không phải địa vị pháp lý. Luật về lưu, ẩn hoặc truy xuất hồ sơ nghề chưa chốt.
 - Genealogy của Yellow từ fake-Undie/impersonation không biến genealogy thành current class ontology.
 
 **UNKNOWN:** luật truy cập provenance/hồ sơ nghề và trường hợp đặc biệt chưa chốt. Civil có đầu vào tự nguyện; không dựng nhánh non-voluntary từ lịch sử.
 
 ---
 
-## Part II — Civil cơ sở canon sau tái thiết kế 2026-10-05
+## Part II — Cơ sở Civil
 
-Nguồn controlling: `AetherFire_Civil_Co_So_Canon_2026-10-05.md`, đọc đủ 24 mục. Đây là mốc mới được nhập theo yêu cầu tác giả, không luật Civil/nhập cư/hình sự đầy đủ. Nội dung dưới đây giữ nguyên câu chữ của nguồn trong đúng scope; §22 giữ đủ UNKNOWN.
+Phần này quản lý cơ sở phục vụ và vòng đời Civil. Luật Civil, nhập cư và hình sự chi tiết vẫn có phần chưa xác lập.
 
 ### 1. Nguyên tắc trung tâm
 
@@ -256,30 +251,9 @@ Civil không tồn tại để hạ địa vị xã hội của người tham gi
 
 ---
 
-### 2. Loại bỏ hoàn toàn kiến trúc Slave cũ
+### 2. Địa vị và giới hạn của Civil
 
-Trong phạm vi Civil hiện hành:
-
-```text
-CIVIL != SLAVE
-CIVIL != PUNISHMENT STATUS
-CIVIL != UNDIE ROUTE
-CIVIL != SOCIAL CASTE THẤP
-```
-
-Toàn bộ cách đọc Civil dựa trên `Slave`, `Civil Slave`, tầng nô lệ, hạ cấp địa vị, dấu nhận dạng của Slave hoặc quan hệ cũ với Undie đều bị loại khỏi baseline.
-
-Không được dùng lịch sử cũ để suy rằng:
-
-- Civil là một loại Slave;
-- vào Civil là “tụt xuống” một tầng người;
-- Civil phải bị đánh dấu để công chúng nhận ra;
-- Civil phải chịu nhục mạ hoặc kỳ thị do nhà nước tạo;
-- Civil là bước trung gian tới Undie;
-- thất bại trong Civil tự động dẫn tới một tầng người thấp hơn;
-- Civil phải mang cơ chế sở hữu người, thế chấp người hoặc nợ giữ người.
-
-Lịch sử cũ chỉ còn giá trị truy nguyên thiết kế nếu cần đối chiếu, không phải nền hiện hành.
+Civil là chế độ phục vụ, độc lập với Slave, trạng thái trừng phạt, caste và nghề Undie. Việc vào Civil không hạ địa vị hay bắt buộc mang dấu nhận diện. Thất bại trong Civil không tự đổi class hoặc dẫn tới Criminal. Công quyền giữ nghĩa vụ trung lập và chi phí upkeep không trở thành nợ giữ người.
 
 ---
 
@@ -864,72 +838,9 @@ Exact compatibility còn `UNKNOWN`.
 
 ---
 
-### 21. Những phần Civil cũ bị supersede
+### 21–22. Phạm vi triển khai
 
-Không dùng làm baseline hiện hành:
-
-- `Civil Slave`;
-- Civil thuộc `Slave` umbrella;
-- Civil là tầng thấp hơn Citizen;
-- Brown như dấu status bắt buộc của Civil;
-- vào Civil là “xuống” một tầng xã hội;
-- stigma nhà nước đối với Civil;
-- luật bảo vệ danh dự đặc biệt để bù cho stigma do hệ thống tạo;
-- `Citizen → Civil → Citizen` như ontology duy nhất;
-- Citizen là nguồn vào duy nhất;
-- billet phải được subject chọn và chấp nhận theo sở thích trước admission;
-- quyền từ chối assignment chỉ vì không thích;
-- `5 năm review / 10 năm tự động Citizen` như universal lifecycle;
-- ưu đãi phí Undie;
-- former-Civil tax privilege vĩnh viễn;
-- Civil và Undie như hai fallback cùng ontology;
-- homelessness → Civil như một hình phạt hoặc hạ status;
-- kỷ luật Civil bằng hạ class;
-- upkeep biến thành nợ giữ người;
-- failure trong Civil tự động dẫn tới Criminal;
-- mọi cơ chế khác chỉ có lý do tồn tại vì kiến trúc Slave–Undie cũ.
-
----
-
-### 22. Những điểm còn UNKNOWN
-
-Chưa tự điền các mục sau:
-
-- tên pháp lý/chính thức cuối cùng của Civil nếu sau này cần đổi;
-- cơ quan xét tuyển;
-- exact eligibility;
-- tiêu chuẩn sức khỏe/thể lực/kỹ năng;
-- mức screening an ninh;
-- matching algorithm;
-- quy tắc ưu tiên khi nhiều assignment cùng phù hợp;
-- exact manpower envelope;
-- exact thời hạn tối thiểu;
-- cách tính tiến độ hoàn thành;
-- trọng số giữa assignment thông thường / khó tuyển / cực khó hoặc chiến lược;
-- lương cụ thể;
-- mức upkeep;
-- chuẩn nhà ở;
-- full labor code;
-- ngày nghỉ và thời giờ làm;
-- exact medical coverage;
-- full appeal procedure;
-- full discipline ladder;
-- giới hạn kéo dài service;
-- early-exit notice;
-- family accompaniment;
-- dependent support;
-- school cho con;
-- spouse employment;
-- exact immigration / residency / citizenship pathway;
-- exact completion bonus;
-- exact reintegration package;
-- former-Civil tax support nếu có;
-- Civil re-entry;
-- compatibility với Undie profession;
-- các trường hợp đặc biệt khác chưa được tác giả chốt.
-
-`UNKNOWN` không cho phép phục hồi hệ Civil cũ.
-
+`92` giữ danh mục câu hỏi Civil và các mục phải đối chiếu. Thời hạn, cách tính completion, công thức quyền lợi, thủ tục và cơ quan triển khai còn mở theo điều kiện của từng phần.
 ---
 
 ### 23. Hạt nhân chống drift
@@ -978,24 +889,9 @@ THIẾU CHI TIẾT MỚI != QUYỀN PHỤC HỒI HỆ CŨ.
 
 ---
 
-### 24. Trạng thái thiết kế sau baseline này
+### 24. Thiết kế tiếp theo
 
-Baseline hiện đã đủ để tiếp tục thiết kế mà không cần dựa vào ontology Slave–Undie cũ.
-
-Các trục nên được xử lý tiếp từ baseline này, không từ lịch sử cũ:
-
-1. vòng xét tuyển và điều kiện đủ;
-2. cơ quan Civil và ranh giới thẩm quyền;
-3. phân công và matching;
-4. lương, upkeep và nhà ở;
-5. thời hạn phục vụ và completion;
-6. kỷ luật, appeal và early exit;
-7. gói hậu Civil;
-8. immigration / residency / citizenship;
-9. family/dependent rules;
-10. re-entry và chống lợi dụng hệ thống.
-
-Không trục nào ở trên được tự điền bằng cơ chế Civil cũ nếu chưa có quyết định canon mới.
+Xem các nhóm chưa chốt của Civil trong `92`.
 
 ---
 
@@ -1106,7 +1002,7 @@ Criminal làm các việc cực thấp mà robot còn “chê”, ví dụ:
 - vệ sinh cống rãnh;
 - các việc tương tự bẩn/nguy hiểm/không đáng dùng robot.
 
-Criminal vẫn có quyền cơ bản. So sánh điều kiện sống với một lớp Undie thấp hơn Civil đã bị supersede; không tự tạo chuẩn sống mới cho người hành nghề.
+Criminal vẫn có quyền cơ bản. Điều này không quy định mức sống của người hành nghề Undie.
 
 Không tha bổng.
 
@@ -1118,9 +1014,9 @@ Không tự suy `không tha bổng = không kháng cáo / không tái thẩm`.
 
 ### 28. Bailout — correction
 
-**CANON / SUPERSEDE**
+**CANON**
 
-Ngoại lệ loại trừ Undie theo class cũ đã bị supersede. Quy tắc Citizen bên dưới giữ nguyên; không tự chốt ma trận áp dụng mới theo nghề hoặc mọi nhánh dịch vụ.
+Quy tắc dưới đây áp dụng theo địa vị Citizen trong phạm vi đã chốt. Ma trận áp dụng theo nghề hoặc dịch vụ chưa chốt.
 
 **Giao diện chưa đối chiếu xong:** chuẩn công quyền trung lập theo Part II §18 không tự giải quyết quan hệ tiền/financial liability với phân loại dân sự/Criminal ở đoạn dưới. AF-CR-OPEN-006 trong `92` giữ câu hỏi; không dùng đó để chứng minh poor people được inferior protection hợp lệ hoặc tự xóa bailout law.
 
@@ -1194,7 +1090,7 @@ Citizen có:
 - promotion riêng;
 - career progression riêng.
 
-Citizen có thể đồng thời là người hành nghề Undie. White→Citizen đã nghỉ hưu; không có career class mới được tạo từ việc rời nghề.
+Citizen có thể đồng thời là người hành nghề Undie. Rời nghề không tự tạo class mới hay đổi địa vị Citizen.
 
 ---
 
@@ -1333,7 +1229,7 @@ Chế tài tái phạm Yellow và điều kiện nghề cho Civil/Criminal còn 
 
 Civil là service tự nguyện ở đầu vào, không Slave/caste/punishment. Được nhận rồi có assignment phù hợp bắt buộc, upkeep + pay, appeal/early exit/completion, public neutrality và quyền cá nhân; exact thời hạn/benefits/immigration còn mở. Citizenship không tự đổi. POW frontend ngang sĩ quan/backend Slave security; Criminal giữ pipeline/quyền độc lập.
 
-Undie = nghề/hệ sinh thái, không phải Slave/caste/punishment. Citizen + Undie có thể đồng thời; entry/exit không đổi địa vị. Không còn đồ thị màu, White→Citizen, Yellow→Red/Undie, triệt sản bắt buộc hoặc web tín dụng thế chấp người.
+Undie = nghề/hệ sinh thái, không phải Slave/caste/punishment. Citizen + Undie có thể đồng thời; entry/exit không đổi địa vị. Nghề không quyết định fertility, tạo nghĩa vụ triệt sản, dùng thế chấp người hoặc tự chuyển địa vị.
 
 Cash + Credits được nhà nước bảo chứng; nợ ≠ sở hữu người ≠ tự động dịch vụ tình dục. Hồ sơ tín dụng Citizen ngoài phạm vi không bị xóa; cơ chế Civil nay theo Part II, không dùng nợ để giữ người hoặc trả upkeep.
 
@@ -1345,7 +1241,7 @@ Undi là họ đồng phục nghề theo ngữ cảnh; Hoa Nguyệt appropriatio
 
 ## Part IV — Giao diện phân công còn hiệu lực và ranh giới nguồn
 
-Các cơ chế vận hành tiền nhiệm **không phụ thuộc Civil Slave hoặc mốc 5–10 năm** được giữ trong phạm vi tương thích, không dựng lại admission gate cũ:
+Các cơ chế phân công dưới đây thuộc phạm vi vận hành Civil:
 
 - Nguồn việc/phân công là pool toàn AetherFire, gồm thủ đô, đô thị vệ tinh, thuộc địa và điểm triển khai khác; không suy chỉ local market.
 - Phân công cụ thể có công việc, địa điểm, đơn vị tiếp nhận, thời điểm bắt đầu và điều kiện triển khai cần thiết. Không dùng danh mục này để buộc applicant phải chọn/chấp nhận một billet theo sở thích trước admission; exact admission/matching còn mở.
@@ -1354,6 +1250,4 @@ Các cơ chế vận hành tiền nhiệm **không phụ thuộc Civil Slave ho�
 - Relocation cần cho assignment hợp lệ thuộc trách nhiệm bảo đảm triển khai của Civil; exact reimbursement/housing/family chưa chốt.
 - Có thể vận hành giới hạn nhân lực được phê chuẩn; exact manpower envelope, công thức, thẩm quyền và chu kỳ đều UNKNOWN. Không suy vô hạn capacity hoặc mặc định mọi applicant được nhận.
 
-Ranh giới mới ở Part II kiểm soát quyền khiếu nại, rời sớm, pay/upkeep và hậu service. Những assertion cũ billet phải do applicant chọn/chấp nhận trước admission, Slave conversion, hết service tự Citizen, guaranteed tax/fee ưu đãi và humiliation identification không còn hiệu lực.
-
-Nguồn cũ và các nhãn CURRENT ở hồ sơ lịch sử chỉ mang giá trị thời điểm. `91` ghi AF-CR-001–012, `92` giữ AF-CR-OPEN-001–007 và các mục được cụ thể hóa một phần. Không đọc Source_Archive để tái dựng baseline.
+Part II kiểm soát quyền khiếu nại, rời sớm, pay/upkeep và hậu service. Danh mục phân công ở đây chưa xác lập điều kiện khiến người nộp phải chọn trước một billet.

@@ -7,13 +7,9 @@
 > Cross-domain owner boundary: AF national profile by `AFM-013`; RF internal structure, genealogy and non-cultivation decision by `AFM-014`; Global geography and Raging Fire ontology by `AFM-001`; legal status/Civil by `AFM-002`; Undie professions, cover transformation interface and Undi by `AFM-003`; metafiction, realization and Clash checkpoints by `AFM-004`; narrator/POV by `AFM-005`; internal ML by `AFM-007`; aviation/airspace by `AFM-008`; Academy by `AFM-009`; shared service technology by `AFM-010`.
 > Load mode: `FULL_FILE`
 
-## 1. Phạm vi, mốc nguồn và trạng thái
+## 1. Phạm vi chính trị và trạng thái
 
-Tách theo yêu cầu tác giả ngày 2026-10-05 từ các section chính trị trong `01`, giữ nguyên dữ kiện còn hiệu lực. Nguồn pathway 2026-10-05 phần II cụ thể hóa baseline; `91` ghi conflict/supersession. Tiêu đề/số mục kế thừa bên dưới là định danh section cũ, không canon mới.
-
-- CANON: sự thật đã chốt hoặc hướng thiết kế/capability theo đúng cấp được ghi; hướng thiết kế không đồng nghĩa event đã diễn ra.
-- UNKNOWN: chưa quyết, không phủ định hoặc cho phép tự viết.
-- PROPOSAL / HYPOTHESIS / DEFERRED: nằm trong `90`, không là sự kiện hiện hành. Operation Swap chỉ là đề xuất ưu tiên.
+Sự kiện đã chốt, hướng thiết kế và năng lực có hiệu lực trong phạm vi được nêu. `92` giữ các phương án và câu hỏi triển khai.
 - Một actor biết không đồng nghĩa toàn AF/RF biết. Capability ≠ authorization ≠ action ≠ outcome.
 - Giá trị ≠ tự do; bảo hộ ≠ quyền tự chủ; giải cứu ≠ giải phóng. Không quyết định phần giữa từ kết quả mong muốn.
 
@@ -48,7 +44,7 @@ Trong khoảng nhiều năm, hệ quả gồm:
 
 Nhà vua sau đó bỏ trốn và liên kết với các quốc gia khác để tìm cách phục hồi quyền lực.
 
-Quan hệ giam giữ cũ phụ thuộc Quad Night đã bị orphan. Theo chốt 2026-10-05, Hoàng hậu/mẹ MC2 hiện được TE bảo hộ, chỉ một số tác nhân biết. Cơ chế bảo hộ, cơ quan, địa điểm, quyền tự do và tư cách pháp lý vẫn `UNKNOWN`; không suy bà thuộc ML hoặc toàn TE đều biết.
+Hoàng hậu/mẹ MC2 hiện được TE bảo hộ, chỉ một số tác nhân biết. Cơ chế bảo hộ, cơ quan, địa điểm, quyền tự do và tư cách pháp lý vẫn `UNKNOWN`; không suy bà thuộc ML hoặc toàn TE đều biết.
 
 ### 4.3 Mục tiêu hiện tại của nghị viện đối với MC2
 
@@ -102,7 +98,7 @@ Quyền lực và thẩm quyền không tập trung tuyệt đối ở một nod
 
 Các subsystem có thể có lợi ích tổ chức riêng và không được mặc định cùng một mục tiêu chỉ vì cùng thuộc nhà nước.
 
-### 5.1 Khung đọc thể chế — chốt có giới hạn 2026-10-03
+### 5.1 Khung đọc thể chế
 
 **CANON / DESIGN-INTERPRETATION ĐÃ ĐƯỢC USER XÁC NHẬN**
 
@@ -167,17 +163,15 @@ SEES
 
 ## 21. MC2 — tính cách và fall from grace
 
-### 21.1 MC2 và tuyến Học viện — 2026-11-26
+### 21.1 MC2 và tuyến Học viện
 
-MC2 vẫn có nền tính cách công chúa fantasy: ngây thơ, khá kiêu ngạo, ý thức địa vị mạnh và self-concept gắn với vai trò công chúa. Những nét ấy không tự xác lập một đường mất địa vị/nghề mới. Sai mô hình cụ thể về đời sống Slave/consent trong tuyến cũ cần được xét lại, không dùng để quyết định hành vi của cô trên tuyến Học viện.
-
-Tuyến “mất status→Civil→tự chọn Undie→mại dâm bất hợp pháp→kháng chiến giả→án phản quốc” không còn là triển khai hiện hành. Các mốc thời lượng khoảng hai năm, đánh tráo giấy tờ và cơ chế bào người phụ thuộc tuyến ấy cần xét lại, không chuyển nguyên sang tuyến Học viện.
+MC2 vẫn có nền tính cách công chúa fantasy: ngây thơ, khá kiêu ngạo, ý thức địa vị mạnh và self-concept gắn với vai trò công chúa. Tính cách đó không ấn định hành vi hay đường đổi địa vị.
 
 Battlemage Academy tại Tiring Slope là tuyến chính của MC2 qua nhiều năm sau Clash #1. Việc cô bớt hiện diện tại trung tâm cung đình vẫn để lại các lợi ích của những phe quan tâm tới yêu sách hoàng vị, chính danh True Crown, huyết hệ và tư cách bearer của cô. Quân đội ủng hộ True Crown. Thẩm quyền của Quân đội, Học viện, chi nhánh Hội đồng Pháp sư, Nghị viện, quý tộc và Bộ Nội vụ đối với việc tiếp nhận hoặc bảo vệ MC2 còn mở, cũng như căn cứ giới hạn can thiệp, độ bền và chủ đích của sự bảo vệ, và thông tin từng cơ quan có về huyết hệ hoặc True Crown.
 
-Giao diện Undie + biến đổi diện mạo là hướng tuyến chính tiền nhiệm. Đường tiếp cận mẹ/chính trị và giao điểm tương lai với Undie còn mở. Operation Swap/người thế thân vẫn là đề xuất.
+Đường tiếp cận mẹ/chính trị và giao điểm tương lai với Undie còn mở. `92` giữ các lựa chọn triển khai liên quan.
 
-Mốc phản quốc và nguy hiểm tính mạng trước Clash #2 đã được chốt ngày 05/10. Cần đối chiếu việc giữ hay sửa mốc phản quốc với tuyến Học viện. Sự kiện làm suy yếu hoặc kết thúc giai đoạn Học viện và đường dẫn tới khủng hoảng vẫn mở. `03` giữ điểm giao đã chốt của hai canon.
+Mốc phản quốc và nguy hiểm tính mạng trước Clash #2 đã được chốt. Cần đối chiếu việc giữ hay sửa mốc phản quốc với tuyến Học viện. Sự kiện làm suy yếu hoặc kết thúc giai đoạn Học viện và đường dẫn tới khủng hoảng vẫn mở. `03` giữ điểm giao đã chốt của hai canon.
 
 Không xóa agency của MC2 hoặc coi mọi bước là một kế hoạch thống nhất của nhà nước. Không biến unknown thành một chuỗi sự kiện mới. Các quan hệ Fictionize/POC/Clash/gọi MC1 được xử lý ở `03`, không suy từ tuyến hạ cấp đã bỏ.
 
@@ -197,15 +191,15 @@ Nguồn actor đã biết:
 - thế lực nước ngoài;
 - mạng liên quan MC3.
 
-Bẫy kháng chiến giả trong triển khai cũ không còn là sự kiện hiện hành. Kháng chiến thật bị thâm nhập, chiếm kênh hoặc gài nhánh kiểm soát là đề xuất P11, chưa chọn làm nguyên nhân của mốc phản quốc. Mốc phản quốc đã chốt ngày 05/10 đang chờ đối chiếu với tuyến Học viện. Chứng cứ, cơ quan kết tội, hành vi và thành phần thật/giả của mạng vẫn `UNKNOWN`.
+Mốc phản quốc đang chờ đối chiếu với tuyến Học viện. Chứng cứ, cơ quan kết tội, hành vi và thành phần thật/giả của mạng vẫn `UNKNOWN`. Các phương án về kênh kháng chiến ở `92` chưa xác lập nguyên nhân của mốc đó.
 
-Phản gián AF có nhiều phương án dự phòng phụ thuộc thông tin, quy trách nhiệm, custody, thời điểm, phong ấn, hoạt động nước ngoài, can thiệp nội bộ và thẩm quyền chính trị. Đây là nguyên tắc thiết kế đã chốt; cây WATCH/STING/CAPTURE/... và nhánh thực hiện vẫn là đề xuất. Tác nhân phản gián không tự có quyền quyết định số phận cuối cùng của MC2.
+Phản gián AF có nhiều phương án dự phòng phụ thuộc thông tin, quy trách nhiệm, custody, thời điểm, phong ấn, hoạt động nước ngoài, can thiệp nội bộ và thẩm quyền chính trị. Việc chọn nhánh trong từng tình huống vẫn cần căn cứ. Tác nhân phản gián không tự có quyền quyết định số phận cuối cùng của MC2.
 
 ---
 
 ## 24. Công quyền và chính danh thủ tục
 
-Chuẩn công quyền được cụ thể hóa bởi Civil baseline 2026-10-05 §18:
+Chuẩn công quyền theo `11` Part II §18:
 
 Cơ quan công quyền **phải trung lập tuyệt đối trong đối xử** với class, nghề, tình trạng kinh tế và nguồn gốc xã hội; không hạ chất lượng thủ tục, bảo vệ hoặc nhân phẩm vì các trục ấy. Civil được đối xử như Citizen trong thủ tục, pháp luật, hành chính và dịch vụ áp dụng; không đồng nghĩa mọi quyền chính trị/nhập cư/nghĩa vụ giống nhau. `11` kiểm soát quyền/service Civil.
 
@@ -290,7 +284,7 @@ Vì vậy trajectory sụp đổi 5–8 năm phải được thiết kế **hợ
 
 ---
 
-## AF–RF strategic bargaining and AF dependency — current canon 2026-09-15
+## AF–RF strategic bargaining and AF dependency
 
 `30_RF_NATIONAL_CANON_CURRENT.md` quản lý liên hiệp/thành viên/bốn khối, động cơ ly khai, Prince 9/mẹ MC2 và giới hạn tri thức. Phần dưới chỉ quản lý giao diện AF–RF cùng agenda của phe AF, không nội bộ RF.
 
@@ -316,7 +310,7 @@ After the AF king flees and the previous balance weakens, a noble faction pressu
 2. research/extract enough capability to create an AF-controlled suppression array;
 3. increase total military force-generation capacity.
 
-Đây là agenda của một phe, không chứng minh chính sách nhà nước thống nhất hoặc chương trình nghiên cứu thành công. Tuyến Princess→Civil→Undie cũ đã bị supersede; agency và đường tiếp cận mới của MC2 phải được thiết kế riêng, không gán thành một master plan.
+Đây là agenda của một phe, không chứng minh chính sách nhà nước thống nhất hoặc chương trình nghiên cứu thành công. Agency và đường tiếp cận của MC2 vẫn cần căn cứ riêng.
 
 ### Dependency boundary
 
@@ -324,9 +318,7 @@ AF's firewall and founding-seal history still depend on Raging Fire lineage/RF a
 
 ---
 
-## MC2 pathway — chốt có phạm vi 2026-10-05
-
-Nguồn: `AetherFire_MC2_Pathway_Canon_Status_2026-10-05.md`, phần II; phần IV–VII không nhập thành sự kiện.
+## Giao diện phong ấn, RF và MC2
 
 ### Phong ấn, vận hành AF và hỗ trợ RF
 
@@ -344,26 +336,13 @@ Phía RF có năng lực và động cơ giải cứu/đưa MC2 ra. Một tác n
 
 ## Các mục triển khai còn mở
 
-Các chốt ở trên chỉ cụ thể hóa một phần AF-OPEN-015/017 và AF-UR-OPEN-007; không đóng câu hỏi. `92` giữ đầy đủ III.1–10 của source, nhóm AF-MC2-OPEN-001–010 và mười quyết định IX:
+`92` giữ AF-OPEN-015/017, AF-UR-OPEN-007 và các nhóm AF-MC2-OPEN-001–010. Năng lực giải cứu, khả năng bearer, giành quyền tiếp cận và ý định phe phái chưa xác lập một sự kiện hoặc kết quả của Canon 2.
 
-1. Cơ chế phong ấn/hiến tế, routine vs bearer, chu kỳ, consent, thẩm quyền, sống/chết, liên hệ tái sinh và operational signature.
-2. Hợp đồng/settlement AF–RF, chủ thể cung cấp/duy trì/từ chối/thay thế và quyền dùng bearer.
-3. Cơ chế TE bảo hộ Nữ hoàng, địa điểm, actor biết, liên lạc/quyền từ chối yêu cầu; TE redesign DEFERRED.
-4. MC2.2 biết thêm gì, escalation threshold, nguồn lực và thẩm quyền.
-5. Swap có xảy ra không; sponsor, consent, thời điểm, chức năng double, bí mật/cover và lộ diện.
-6. Nghề/đơn vị/operator, giới hạn biến đổi, dấu hiệu magic/biometric, giấy tờ và đường tiếp xúc MC2.
-7. Actor/mục tiêu giải cứu RF, số lần/trình tự, real vs double, nguồn tin/custody/consent/kết quả.
-8. Hành vi/chứng cứ/cơ quan phản quốc, hợp lệ/thao túng, thành phần kháng chiến và mức công khai.
-9. Cơ quan/chỉ huy/quyền phản gián, evidence/attribution/custody/disclosure và thẩm quyền đối ngoại.
-10. Khả năng/thẩm quyền/motive của khối RF khác, lineage compatibility và chi phí thay dependency.
+## RF và địa chính trị khu vực
 
-Các P1–P11/H1–H6/D1–D4/ma trận ứng viên ở `90` không lấp các mục này. Hai lần giải cứu RP cũ, hiến tế MC2, cold war, cloning/sinh sản/hôn nhân cưỡng chế, other-bloc acceptance và Canon 1 replay đều chưa là Canon 2 event. Sau MC1: UNKNOWN.
+`30` giữ cơ cấu RF, `06` giữ hàng không/không phận và `01` giữ ontology huyết hệ. Mục tiêu công nghệ cụ thể và nền sức mạnh bản địa RF vẫn chưa chốt.
 
-## RF — giao diện quyết định thay thế 2026-10-06
-
-`30_RF_NATIONAL_CANON_CURRENT.md` / `AFM-014` giữ toàn bộ §§1–10 của quyết định RF bỏ tu tiên, các dữ kiện độc lập và các UNKNOWN. RF vẫn là liên hiệp lục địa, không tự có hệ sức mạnh thay thế hoặc mục tiêu kỹ thuật mới. `06_STABLE_AVIATION_RF_AIRSPACE_CURRENT.md` giữ hàng không/không phận; `01` giữ ontology huyết hệ. Không phục hồi tiền đề hoặc so sánh quân sự cũ.
-
-## Nền chính trị AF–ML–RF và Hoa Nguyệt — chốt 2026-10-08
+## Nền chính trị AF–ML–RF và Hoa Nguyệt
 
 - ML và RF thời cổ hợp lực giết/phong ấn Giant tại long mạch; phong ấn tạo tường lửa. Thẩm quyền/contract/maintenance và việc phân bổ trách nhiệm cho union, member state, bloc hoặc lineage vẫn `UNKNOWN`.
 - Một mục tiêu lúc tạo AF là nhà nước bù nhìn/vùng đệm hấp thụ tổn thất từ phương Bắc. AF về sau phát triển thành nhà nước đa cực có agency; mục đích lịch sử không chứng minh quyền kiểm soát hiện hành của ML/RF.

@@ -23,9 +23,10 @@ Số đầu tên file là địa chỉ theo miền, không phải thứ bậc th
 | Các file `10–14` tại root | Hồ sơ AetherFire và các miền chuyên biệt: địa vị/lao động, chính trị/an ninh, Undie và Học viện. |
 | Các file `20–23` tại root | Hồ sơ Hoa Nguyệt, văn hóa/ngôn ngữ/trang phục, quốc hiệu/biểu tượng, địa lý/giao thương/đối ngoại. |
 | [30 — RF](30_RF_NATIONAL_CANON_CURRENT.md) và [40 — Matriarch's Lament](40_MATRIARCHS_LAMENT_CURRENT.md) | Hồ sơ riêng của từng miền và các giao diện đã được nguồn xác lập. |
-| [90 — Lịch sử thiết kế](90_DESIGN_HISTORY_AND_RECONSIDERATIONS.md) | Lịch sử, phương án và nội dung xem xét lại; đọc theo trạng thái được khai báo. |
+| [90 — Lịch sử thiết kế](90_DESIGN_HISTORY_AND_RECONSIDERATIONS.md) | Quá trình hình thành, lý do đổi thiết kế và chức năng được giữ lại. |
 | [91 — Bản ghi hòa giải](91_RECONCILIATION_RECORD.md) | Quyết định, phạm vi thay thế, nguồn gốc và xung đột liên quan. |
 | [92 — Vấn đề hiện hành](92_OPEN_ISSUES_CURRENT.md) | Câu hỏi mở và các trạng thái chưa được chốt. |
+| [93 — Chi tiết thiết kế đã rút](93_SUPERSEDED_IDEAS.md) | Nội dung tiền nhiệm có trạng thái đã xác định, dùng cho yêu cầu lịch sử cụ thể. |
 | [MANIFEST.md](MANIFEST.md) | Cấu trúc gói, vùng metadata được tạo bằng công cụ và hash của nguồn hiện hành. |
 | [Project Feather Core CI/](Project%20Feather%20Core%20CI/) | Chỉ dẫn hành vi của project và kho lưu các phiên bản tiền nhiệm. |
 | [Anti-Drift Source/](Anti-Drift%20Source/) | Source Router, Authoring Pipeline và các bộ quy tắc chống sai lệch theo tác vụ. |
@@ -46,7 +47,11 @@ Bộ điều khiển trên `main` gồm CI 3.5, Router 6.0 và Authoring Pipelin
 | Source Router | [FTH Router 6.0](Anti-Drift%20Source/FTH_Anti_Drift_Source_Router_v6.0.yaml) | Định tuyến nguồn/thẩm quyền, điều kiện nạp, phụ thuộc, hòa giải và lựa chọn quy tắc chống sai lệch. |
 | Authoring Pipeline | [Pipeline 1.1](Anti-Drift%20Source/FTH_Authoring_Pipeline_v1.1.md) | Biến đổi đầu vào theo thao tác được yêu cầu: rút hạt nhân ý tưởng, phân rã thành phần, so sánh, bản địa hóa hoặc đề xuất triển khai; giữ đúng điểm dừng. |
 
-CI 3.4 và Router 5.0 vẫn có sẵn để quay lại bộ 5.0 cùng Pipeline 1.1.
+Hai đường dùng chung bộ lore, `00/90/91/92/93`, Anti-Drift và Pipeline 1.1.
+Đường A dùng CI 3.4 và Router 5.0 để đối chiếu. Router 5.0 tìm nguồn canon
+trong Library Project Feather Core rồi Project Sources. Tài liệu lịch sử
+được cung cấp qua quyền đọc rõ theo tác vụ, giữ vai trò ngoài canon.
+Đường B dùng CI 3.5 và Router 6.0 để kiểm chứng trước khi xem xét chuyển nền tảng.
 
 Router 6.0 dùng `LOCAL_CURRENT_SOURCE` cho bootstrap `00/92`, reconciliation `91`
 khi cần và admitted AFM lore. Deployment chọn exact root/package current; Router
@@ -55,6 +60,11 @@ của chúng; FTHX không bật. `Source_Archive` ở mọi độ sâu, không p
 nằm ngoài runtime source space: không đọc/tìm/liệt kê/theo tham chiếu/chọn version hoặc
 cứu source gap từ đó. Partial read không thành FULL_FILE; không tự fallback sang
 Library, Project Sources, GitHub, Memory hay root khác.
+
+Khi có yêu cầu lịch sử rõ, đường B cho phép đọc riêng đúng file `90` hoặc
+`93` tại root đã cấu hình. Quyền đó nằm ngoài luồng nguồn hiện hành.
+Cả hai đường dùng `90` cho lý do thiết kế, `93` cho chi tiết đã rút và
+giữ nguyên điều kiện chặn khi thiếu nguồn hiện hành.
 
 Tác giả báo local-binding trial đã được kiểm chứng live và phê duyệt promotion trong
 lượt 2026-11-02; đây là bằng chứng do tác giả cung cấp. Các tests local không tái lập
@@ -90,3 +100,6 @@ Công cụ kiểm header, ánh xạ catalog, tham chiếu chéo và hash nguồn
 Đọc [hướng dẫn kiểm hồi quy điều khiển](tests/control-regressions/README.md) trước khi dùng runner. Phân biệt trạng thái case, neo nguồn, kiểm tra cấu trúc, thử ngữ nghĩa và bằng chứng chạy thực tế; kết quả cấu trúc không tự kích hoạt case hay chứng minh mô hình tuân thủ.
 
 Chỉnh file, commit Git, đồng bộ Library, cài chỉ dẫn vào ChatGPT Project và quan sát hành vi thực tế là các bước riêng. Chỉ báo đã kiểm chứng đúng lớp bằng chứng đã thực hiện; kết quả kiểm tra repository không xác nhận các bước còn lại.
+
+Xem [bộ ca đối chiếu hai đường](tests/control-regressions/fth-shared-corpus-ab.md)
+để chạy cùng câu hỏi và ghi kết quả riêng cho từng đường.

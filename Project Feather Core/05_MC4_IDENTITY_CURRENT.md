@@ -7,8 +7,6 @@
 > Cross-domain owner boundary: Academy institutional doctrine is controlled by `AFM-009`; northeastern-site profile by `AFM-013`; global interfaces by `AFM-001`; metafiction and cross-world status are controlled by `AFM-004`.
 > Load mode: `FULL_FILE`
 
-> **Domain:** MC4 identity, biological/cognitive configurations, Academy membership and legacy-import boundaries.  
-> **Genealogy:** derived from `The Tainted Cosmos - MERGED.md`; genealogy does not import its cosmology, power scale, artifacts or history.  
 > **Institution boundary:** Academy doctrine is controlled by `14_BATTLEMAGE_ACADEMY_CURRENT.md`.
 
 ## 1. Current identity
@@ -88,22 +86,15 @@ thì việc dự đoán đúng không tự động xóa lỗi quy trình hoặc 
 
 Ngược lại, hệ thống cũng phải có khả năng ghi nhận rằng phán đoán chiến thuật của MC4 là đúng ngay cả khi cách truyền đạt hoặc thực hiện là sai.
 
-## 5. Legacy quarantine
+## 5. Giới hạn chuyên môn và triển khai
 
-- Legacy professional mastery is not imported into teenage MC4.
-- Legacy specializations may inform provenance but do not establish current certification or specialization.
-- Fusion is not imported; its actual legacy effect is itself `UNKNOWN`.
-- The old Spear of Restraint and its absolute anti-death/soul mechanics are not current canon.
-- Physical sex/morphology across configurations is `UNKNOWN`.
-- Trigger, direction, speed and control of switching are `UNKNOWN`.
-- The official character name remains a placeholder.
-- MC4 được xác nhận có nguồn gốc từ một chiều không gian khác và là con của Cosmos. Authorial remake genealogy không nhập cosmology/power scale/history; bản chất Cosmos/quan hệ sinh thành DEFERRED cho lần bàn sau; cơ chế/thời điểm xuất hiện, body/soul/memory transfer và liên hệ với các tầng fiction vẫn `UNKNOWN`.
+Thiếu căn cứ về chứng nhận, chuyên môn hiện hành và tác động cơ chế ngoài đặc tính đã mô tả. Hình thái, trigger, hướng, tốc độ và khả năng kiểm soát chuyển cấu hình vẫn `UNKNOWN`. Tên chính thức còn là placeholder.
 
 ## 6. Visual boundary
 
-MC4 follows the current functional Academy uniform standard in `14_BATTLEMAGE_ACADEMY_CURRENT.md`. Legacy colors or visual tendencies may inform later personal accents only if they do not override protection, movement, spellcasting, equipment carriage or Academy standards.
+MC4 follows the functional Academy uniform standard in `14_BATTLEMAGE_ACADEMY_CURRENT.md`. Personal visual accents remain bounded by protection, movement, spellcasting, equipment carriage and Academy standards.
 
-## 7. Cross-dimensional origin — chốt 2026-10-08
+## 7. Nguồn gốc xuyên chiều
 
 ```text
 MC4
@@ -111,4 +102,4 @@ MC4
 → child of Cosmos
 ```
 
-Hai mệnh đề trên không tự cấp năng lực, địa vị, thẩm quyền, miễn nhiễm, ký ức hoặc cơ chế xuyên không; không đồng nhất chiều không gian đó với Fiction 0/Fiction 1 hay nguồn của actor khác. Căn tính liên tục, hai configuration và Academy membership ở §§1–4 giữ nguyên.
+Hai mệnh đề trên không tự cấp năng lực, địa vị, thẩm quyền, miễn nhiễm, ký ức hoặc cơ chế xuyên không; không đồng nhất chiều không gian đó với Fiction 0/Fiction 1 hay nguồn của actor khác. Căn tính liên tục, hai configuration và Academy membership ở §§1–4 giữ nguyên. Bản chất Cosmos và quan hệ sinh thành được hoãn. Cơ chế/thời điểm xuất hiện, body/soul/memory transfer và liên hệ với các tầng fiction vẫn `UNKNOWN`.

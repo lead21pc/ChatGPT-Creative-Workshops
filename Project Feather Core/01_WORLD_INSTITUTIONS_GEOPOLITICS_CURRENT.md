@@ -7,38 +7,24 @@
 > Cross-domain owner boundary: AF national profile by `AFM-013`; RF internal canon by `AFM-014`; Hoa Nguyệt national canon is controlled by `AFM-012`; detailed Matriarch's Lament canon is controlled by `AFM-007`; detailed stable aviation and RF-airspace canon by `AFM-008`; metafiction detail by `AFM-004`; MC4 identity detail by `AFM-006`; internal Academy institutional and training canon by `AFM-009`; shared technology/service and Terminal/Guest Pass architecture by `AFM-010`; detailed dynastic politics, AF–RF strategic bargaining and counterintelligence by `AFM-011`.
 > Load mode: `FULL_FILE`
 
-> Consolidated current-domain view. Detailed Citizen/Civil/Undie material was moved to sibling files. Design genealogy remains in `90_DESIGN_HISTORY_AND_RECONSIDERATIONS.md`.  
-> **Genealogy lock — 2026-09-09:** MC2 remains tied to Raging Fire / Prince 9; the Undi–Hoa Nguyệt visual retcon does not create Hoa Nguyệt ancestry or origin for MC2.
+> MC2 thuộc huyết hệ Raging Fire / Prince 9. Thiết kế thị giác Undi không xác lập xuất thân Hoa Nguyệt của MC2.
 > Detailed Fiction 0/Fiction 1 and Canon 1/Canon 2 causality is routed to `03_METAFICTION_CANON_TIMELINE_CURRENT.md`; narrator/POV presentation is routed to `04_NARRATORS_POV_AND_HUMOR_CURRENT.md`.
 > Detailed stable-aviation and RF-airspace canon is routed to `06_STABLE_AVIATION_RF_AIRSPACE_CURRENT.md`.
 
-## Project Feather Core — Canon hợp nhất
+## Trọng tâm toàn cục
 
-> **Loại tài liệu:** world bible / ontology / genealogy / canon hợp nhất  
-> **Phạm vi:** hợp nhất các source canon hiện có của Project Feather Core, loại các file có chức năng anti-drift ra khỏi quá trình hợp nhất trực tiếp.
-> **Nguyên tắc:** chỉ giữ nội dung đã được người dùng xác nhận; không đưa proposal của trợ lý vào canon. Nội dung cũ bị canon mới thay thế không được phục hồi chỉ vì còn tồn tại trong source cũ.  
-> **Tài liệu siêu hư cấu tách riêng:** `aetherfire_fiction0_fiction1_model.md` và `aetherfire_canon1_canon2.md`.
->
-> **RE-MERGE NOTE — 2026-09-08:** các section Citizen/Civil/Yellow/Criminal/Undie/Undie rank/Career Rank/credit đã được đối chiếu lại. Provenance và conflict còn mở nằm trong `aetherfire_conflict_register.md`.
-
----
-
-## ĐỌC TRƯỚC — TRỌNG TÂM TOÀN CỤC / LATEST PRIORITY
-
-> Phần này được đặt **trước** các section chi tiết để các chat khác đọc source không nhầm foreground cũ với ontology hiện tại. Nếu một cách diễn giải cũ xung đột với các chốt dưới đây, dùng chốt mới hơn ở đây và section chuyên biệt tương ứng.
-
-
-### A0. Undie không phải trung tâm của Project Feather Core — cập nhật 2026-10-05
+Các mô-đun chuyên biệt quản lý chi tiết trong miền của mình.
+### A0. Vai trò của Undie trong FTH
 
 Cách lưu thế giới vẫn ưu tiên ban ngành/tác nhân/quy trình/địa điểm. Độ sâu của một module, độ nổi trong truyện hoặc vai trò của MC2 không chứng minh tính trung tâm chiến lược hay ontology.
 
 Undie nay là hệ sinh thái nghề nghiệp đa nhánh, không phải terminal status/sink cho output thất bại của ban ngành. Sex work chỉ là một nhánh có thể có; humiliation regime không còn là lý do tồn tại. Nghề có thể tạo giao diện thị trường, di chuyển, tiếp cận và quan hệ chính trị khi có đường nhân quả.
 
-Nhà nước, quân đội, Hội đồng Pháp sư, True Crown/Raging Fire, long mạch, ML, Hoa Nguyệt, các cường quốc phía Bắc, cult, kế vị và cạnh tranh cường quốc vẫn là các trục độc lập. Không dựng lại funnel toàn hệ quanh Undie; `13` kiểm soát retcon nghề.
+Nhà nước, quân đội, Hội đồng Pháp sư, True Crown/Raging Fire, long mạch, ML, Hoa Nguyệt, các cường quốc phía Bắc, cult, kế vị và cạnh tranh cường quốc vẫn là các trục độc lập. Không dựng lại funnel toàn hệ quanh Undie. `13` quản lý nghề.
 
 ### A. Project Feather Core hiện tại là political grimdark đa trục
 
-Project Feather Core có genealogy từ một RP/adult-heavy seed, nhưng current global focus là:
+Project Feather Core có trọng tâm:
 
 ```text
 political metafiction
@@ -128,13 +114,13 @@ Prince 9 của hoàng gia một quốc gia thành viên rank thấp hơn trong R
 → MC2
 ```
 
-Vì vậy vị vua AetherFire đã bỏ trốn **không phải cha ruột MC2**. Mẹ MC2 đã mang thai trước khi vào hoàng gia AetherFire và bị gả đi để che giấu pregnancy này. Quan hệ giam giữ cũ phụ thuộc Quad Night đã bị orphan. Theo chốt 2026-10-05, Hoàng hậu/mẹ MC2 hiện được TE bảo hộ, chỉ một số tác nhân biết. Cơ chế bảo hộ, cơ quan, địa điểm, quyền tự do và tư cách pháp lý vẫn `UNKNOWN`; không suy bà thuộc ML hoặc toàn TE đều biết.
+Vì vậy vị vua AetherFire đã bỏ trốn **không phải cha ruột MC2**. Mẹ MC2 đã mang thai trước khi vào hoàng gia AetherFire và bị gả đi để che giấu pregnancy này. Hoàng hậu/mẹ MC2 hiện được TE bảo hộ, chỉ một số tác nhân biết. Cơ chế bảo hộ, cơ quan, địa điểm, quyền tự do và tư cách pháp lý vẫn `UNKNOWN`; không suy bà thuộc ML hoặc toàn TE đều biết.
 
 AetherFire biết lineage này có **một tính chất khác ngoài phần seal/barrier mà họ đã nhận biết**, nhưng không nắm toàn bộ ontology thật. Chi phí nghiên cứu quá cao là một lý do khiến nhà nước chọn MC2 làm trường hợp đặc biệt để tìm hiểu/khai thác lineage.
 
-### D. Sinh sản và giá trị huyết hệ — retcon 2026-10-05
+### D. Sinh sản và giá trị huyết hệ
 
-Triệt sản bắt buộc do là Undie đã nghỉ hưu. Không còn mô hình “mọi Undie vô sinh, MC2 ngoại lệ”. Tư cách nghề không xác định fertility.
+Tư cách nghề Undie không xác định fertility hay nghĩa vụ triệt sản.
 
 MC2 vẫn có giá trị huyết hệ Raging Fire/Raging Phoenix/True Crown. Giao diện y tế/tránh thai trên tuyến mới phải được chốt riêng; giá trị ấy không tự cho phép một cơ chế cưỡng chế sinh sản.
 
@@ -178,24 +164,6 @@ Thủy tổ của ba tộc phía Bắc và một Giant sinh ra ba chủng tộc 
 
 ---
 
-## 0. Nguồn được hợp nhất
-
-Các source không phải anti-drift được dùng để tạo bản hợp nhất này:
-
-- `he_thong_de_quoc_world_bible_snapshot_vi.md`
-- `aetherfire_ontology_genealogy_design_philosophy.md`
-- `aetherfire_chat_synthesis_mc2_mc1_mc3.md` — chỉ lấy phần đã được xác nhận, bỏ proposal/inference/hypothetical chưa được chốt
-- `aetherfire_chot_canons_mc2_fall_from_grace.md` — chỉ lấy phần canon đã chốt; các mục từng ghi “canon tiềm năng” chỉ được dùng nếu đã được canon mới xác nhận
-- `aetherfire_delta_since_last_export.md`
-- `aetherfire_delta_since_last_anti_drift_export.md`
-- `aetherfire_undie_civil_citizen_revamp_canon_1_42.md` — nguồn tiền nhiệm; giữ quyền ngoài phạm vi bị retcon. Undie hiện hành theo `13` và hai nguồn 2026-10-05 trong `91`.
-- `aetherfire_civil_entry_allocation_law_canon.md` — nguồn tiền nhiệm; không còn controlling admission/status/lifecycle. `AetherFire_Civil_Co_So_Canon_2026-10-05.md` được nhập vào `11` làm cơ sở hiện hành.
-- canon mới được người dùng xác nhận trong các lượt trao đổi sau lần xuất file gần nhất
-- loạt chốt UNKNOWN về Fictionize / Proof of Concept / V0.5 / Raging Phoenix / ontology Undie / facility / POW / Criminal trong các lượt trao đổi mới nhất
-
-Các file anti-drift không được nhập nguyên khối. Assertion user-confirmed chưa bị supersede có thể được giữ theo đúng scope sau khi đối chiếu provenance; anti-drift wording tự thân không có priority cao hơn dedicated canon.
-
----
 
 ## 1. Định danh tổng thể của Project Feather Core
 
@@ -435,46 +403,15 @@ Các powerset khác của Raging Phoenix hiện được **SEALED / để dành 
 
 ---
 
-## 26. Các UNKNOWN / SEALED / deferred cần giữ
+## 26. Phạm vi chưa xác lập
 
-### 26.1 UNKNOWN chủ ý
-
-- cơ chế MC1 trở về Fiction 0;
-- cơ chế MC3 trở về Fiction 0;
-- endpoint cụ thể sau khi MC1 xuất hiện không bị khóa sẵn.
-
-### 26.2 SEALED / lore sau
-
-- powerset khác của The Raging Phoenix ngoài phần đã chốt;
-- phạm vi hiểu biết sâu hơn của gia tộc mẫu hệ về tồn tại bên ngoài thế giới;
-- cosmology và tri thức sâu hơn của cult tận thế.
-
-### 26.3 Deferred sang subsystem/chat khác
-
-- luật nghề, hợp đồng, tín dụng và quyền tiếp cận Undie mới; không phục hồi threshold Credit Score cũ;
-- full collar protocol;
-- fail-safe chi tiết;
-- black market mechanics đầy đủ;
-- status law đầy đủ;
-- constitutional precedence;
-- implementation chi tiết chống phản bội kép của POW quý tộc;
-- chi tiết sâu hơn của Criminal line-job matrix nếu mở rộng;
-- exact uniform color implementation ở tầng thẩm mỹ;
-- exact military embezzlement/bookkeeping mechanism;
-- policy cụ thể của Bộ Nội vụ;
-- chi tiết chương trình xuất khẩu Undie của Bộ Ngoại giao;
-- full magic system;
-- hình thái cụ thể của sự sụp đổi 5–8 năm.
-
-Không tự lấp các mục `UNKNOWN`, `SEALED` hoặc `deferred` bằng suy luận.
-
----
+`92` giữ các câu hỏi mở. Cơ chế năng lực, thẩm quyền và quan hệ chưa xác lập vẫn được giới hạn ở ngay phần mô tả liên quan.
 
 ---
 
 ## RF — giao diện quốc gia với `30_RF_NATIONAL_CANON_CURRENT.md`
 
-RF là liên hiệp lục địa nhiều quốc gia thành viên, không một vương quốc; từ quyết định 2026-10-06 không còn là khối tu tiên. `30_RF_NATIONAL_CANON_CURRENT.md` giữ cấu trúc RF, bốn khối foreground, Prince 9/phả hệ, giới hạn tri thức và toàn bộ quyết định thay thế; nền sức mạnh mới chưa chốt. Huyết hệ, liên hiệp, khối mạnh nhất và chính thể Prince 9 vẫn là các node khác nhau. `12_POLITICS_DYNASTIC_SECURITY_CURRENT.md` giữ bargaining AF–RF/MC2 và agenda phe AF; `06` giữ hàng không; `01` giữ ontology huyết hệ và địa chính trị.
+RF là liên hiệp lục địa nhiều quốc gia thành viên, không một vương quốc; RF không còn được xác lập là khối tu tiên. `30_RF_NATIONAL_CANON_CURRENT.md` giữ cấu trúc RF, bốn khối foreground, Prince 9/phả hệ, giới hạn tri thức và ranh giới hiện hành; nền sức mạnh mới chưa chốt. Huyết hệ, liên hiệp, khối mạnh nhất và chính thể Prince 9 vẫn là các node khác nhau. `12_POLITICS_DYNASTIC_SECURITY_CURRENT.md` giữ bargaining AF–RF/MC2 và agenda phe AF; `06` giữ hàng không; `01` giữ ontology huyết hệ và địa chính trị.
 
 ---
 
@@ -509,18 +446,14 @@ Serpent Strike is not part of the Academy. It exploits the apparent-POW-to-Mage-
 
 > **Authority boundary:** internal Matriarch's Lament governance, Temple/Under Tides, Matriarch origin and Saint's Fresh, Holy Guard, Trinity/relic economy, Trần Trúc Nha doctrine, ML–TE operations and northeastern-tribe relations are controlled by `40_MATRIARCHS_LAMENT_CURRENT.md`. This section keeps only the interfaces needed by the wider Project Feather Core world model.
 
-### Regional supersession and chronology
-
-- `Quad Night` and its four-member-state ontology are retired.
-- `Holy State` → `Matriarch's Lament (ML)`.
-- `T.Gear` → `Transfusion EasterFire (TE)`.
+### Tổ chức vùng và niên đại
 - `Trinity Hexagon` is a district inside ML, not an independent state.
 - ML is approximately 500 years old; AetherFire is approximately 200 years old.
 - ML participated in the sealing event before AetherFire's foundation. An RF/Raging Fire actor also participated, but the exact lineage/union/member-state level remains `UNKNOWN`.
 
 Matriarch là người/esper chữa lành từ Fiction 0, đến Fiction 1 khoảng 500 năm trước theo thứ tự phía Fiction 0 sau Clash #1. Bà có thánh lực, thần tính thật, đã bị ám sát; thi hài bí mật dưới Thần điện trung tâm vẫn là nguồn lực. Saintess và một số tác nhân tôn giáo cấp trong biết; không suy toàn ML/AF/Under Tides biết. `40` giữ nguồn gốc/tôn giáo, `03` giữ timeline interface.
 
-Creed cũ và oath cưỡng chế/quorum/cơ chế phụ thuộc vẫn đã rút. Khung hậu-Creed chốt 2026-10-07 ở `40` §26 tách xác minh lời thề, quyền tiếp cận ân điển và trừng phạt thể chế; không có oath/mass-rebellion kill-switch tự động. Tên hệ/thủ tục/capability cụ thể còn UNKNOWN; ba lớp nhà nước–Thần điện–Under Tides và các actor độc lập không bị nhập làm một. Hệ mới không thay access gate Saint's Fresh hoặc hoàn thiện luật ML.
+Khung hiện hành ở `40` §26 tách xác minh lời thề, quyền tiếp cận ân điển và trừng phạt thể chế; không có oath/mass-rebellion kill-switch tự động. Tên hệ/thủ tục/capability cụ thể còn UNKNOWN; ba lớp nhà nước–Thần điện–Under Tides và các actor độc lập không bị nhập làm một. Hệ mới không thay access gate Saint's Fresh hoặc hoàn thiện luật ML.
 
 ### AetherFire dependencies and treaty edge
 
@@ -534,23 +467,23 @@ ML controls access to **Saint's Fresh**, a pentagonal self-regenerative seal-rei
 
 The AF↔TE treaty is direct and was negotiated inside AetherFire. It does not transit through ML.
 
-### Orphaned geography and custody
+### Địa lý và bảo hộ
 
-Hành lang AF↔Quad Night 100 km, vị trí sườn Học viện và quan hệ custody cũ đã orphan. Địa lý mới vẫn `UNKNOWN`. Chốt 2026-10-05 xác lập mẹ MC2 được TE bảo hộ, chỉ một số tác nhân biết; không remap địa lý hoặc suy cơ chế custody/asylum từ dữ kiện ấy.
+Địa lý chi tiết còn `UNKNOWN`. TE bảo hộ mẹ MC2, chỉ một số tác nhân biết. Điều này để ngỏ custody, asylum và quyền quản lý thực tế.
 
 ### Trần Trúc Nha and Undie boundaries
 
 Trần Trúc Nha's membership and regional role in ML are current canon. Cô là người Việt Nam đến từ Fiction 0, cùng thế giới với MC1/MC3; cơ chế, thời điểm và đường về vẫn `UNKNOWN`, do `03_METAFICTION_CANON_TIMELINE_CURRENT.md` quản lý.
 
-The former `foreign spy / infiltrator → punitive Undie` route is `RESOLVED / REMOVED` because it no longer fits the political-centric setting. No replacement legal/status route is inferred; Undie-related interfaces are controlled by `13_UNDIE_SYSTEM_CURRENT.md`.
+Nghề Undie không phải hình phạt mặc định đối với người xâm nhập. Cách xử lý pháp lý cụ thể chưa xác lập.
 
 ---
 
-## MC2 pathway — giao diện đã chốt 2026-10-05
+## Giao diện chính trị và phong ấn quanh MC2
 
 `12` kiểm soát TE bảo hộ Nữ hoàng, MC2.2 biết tình hình khái quát, RF hỗ trợ phong ấn định kỳ và cơ chế bearer-gia cố, tín hiệu báo động cùng nguyên tắc phản gián. AF relevant actors biết đủ vận hành phong ấn, không biết toàn ontology Raging Fire; RF không thường trực nắm lõi. Mẹ MC2 được TE bảo hộ chỉ với phạm vi biết hạn chế, không tự giải quyết luật custody/địa lý.
 
-Đường bearer/hiến tế-gia cố là cơ chế thực nhưng death/survival/consent/thẩm quyền chưa chốt. Tín hiệu không còn cần hỗ trợ RF định kỳ chỉ là trigger có điều kiện, không sự kiện đã xảy ra. Operation Swap và lịch giải cứu là phần chưa chốt. `13` giữ interface Undie; `03` giữ phản quốc/nguy hiểm tính mạng và overlap mang áp lực kết thúc.
+Đường bearer/hiến tế-gia cố là cơ chế thực nhưng death/survival/consent/thẩm quyền chưa chốt. Tín hiệu không còn cần hỗ trợ RF định kỳ chỉ là trigger có điều kiện, không sự kiện đã xảy ra. `92` giữ phương án triển khai chưa chốt. `13` giữ interface Undie; `03` giữ phản quốc/nguy hiểm tính mạng và overlap mang áp lực kết thúc.
 
 ---
 
@@ -560,7 +493,7 @@ The former `foreign spy / infiltrator → punitive Undie` route is `RESOLVED / R
 - `03_METAFICTION_CANON_TIMELINE_CURRENT.md` controls the fiction layers, continuation modes, causal overlap and clash timeline.
 - `04_NARRATORS_POV_AND_HUMOR_CURRENT.md` controls narrator personification, POV grammar and humor design.
 
-## World / Giant / trade interface — chốt 2026-10-08
+## Giao diện thế giới, Giant và thương mại
 
 - Fiction 1/Project Feather Core là tác phẩm hư cấu thương mại do MC1 viết, với vai trò hỗ trợ/đồng sáng tác của MC3; Fictionize biến fiction thành thế giới có thể đi vào trải nghiệm. Điều này không trao quyền admin lên Canon 2 hoặc giải quyết vật lý siêu hình chính xác.
 - Hoa Nguyệt–ML có mạng thương mại đang hoạt động mạnh; nền phép thuật Hoa Nguyệt tương thích với hình ảnh/thông điệp ML muốn trình diện. Hoa Nguyệt–RF cũng có thương mại đang hoạt động và mạnh hơn AF–RF; quan hệ phía sau này gây sức ép vào sườn AF. Không suy liên minh, chuỗi chỉ huy, tuyến/hàng hóa/đối tác cụ thể hoặc một chiến dịch phá hoại đã xảy ra.

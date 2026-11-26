@@ -127,7 +127,7 @@ class MaintenanceTests(unittest.TestCase):
                          for key in ('AFM-012', 'AFM-015', 'AFM-016', 'AFM-017'))
         for marker in ('鏡華水月', '華月', 'Lục Kì Nhân', 'Hanfu', 'UNKNOWN',
                        'Con đường Tơ lụa', 'không phải cửa ngõ đối ngoại duy nhất',
-                       'Không phục hồi hoặc ánh xạ lại', 'chung chỉ huy'):
+                       'Khả thi địa lý chưa xác lập tuyến đang hoạt động', 'chung chỉ huy'):
             with self.subTest(marker=marker):
                 self.assertIn(marker, text)
         world = (self.root / tool.ACCEPTED['AFM-001']).read_text(encoding='utf-8')
@@ -199,12 +199,18 @@ class MaintenanceTests(unittest.TestCase):
         for marker in ('Chữ Quốc ngữ', 'chữ Hán, chữ Nôm', 'áo dài',
                        'không tự đặt ra nghĩa vụ thông thạo', 'phẩm cấp', 'AF-HN-OPEN-006'):
             self.assertIn(marker, sources['AFM-015'])
-        for marker in ('### 12. Phạm vi supersession cuối', '鏡華水月', 'bảng màu quốc kỳ'):
+        for marker in ('鏡華水月', '華月', 'Hình học chi tiết, bảng màu', 'AF-HN-OPEN-001'):
             self.assertIn(marker, sources['AFM-016'])
         for marker in ('không phải cửa ngõ đối ngoại duy nhất', 'chung chỉ huy',
-                       '### Hoa Nguyệt–Matriarch', 'mạnh hơn AF–RF', 'Không phục hồi hoặc ánh xạ lại'):
+                       '### Hoa Nguyệt–Matriarch', 'mạnh hơn AF–RF', 'AF-HN-OPEN-003'):
             self.assertIn(marker, sources['AFM-017'])
-        self.assertNotIn('### 12. Phạm vi supersession cuối', sources['AFM-012'])
+        record = (self.root / '91_RECONCILIATION_RECORD.md').read_text(encoding='utf-8')
+        self.assertIn('AF-HN-002', record)
+        self.assertIn('AF-HN-008', record)
+        ledger = (self.root / '92_OPEN_ISSUES_CURRENT.md').read_text(encoding='utf-8')
+        self.assertIn('bảng màu quốc kỳ', ledger)
+        for source in sources.values():
+            self.assertNotIn('### 12. Phạm vi supersession cuối', source)
         self.assertNotIn('### 5.2. Nguồn gốc hợp nhất', sources['AFM-015'])
 
     def test_exact_predecessor_paths_migrate_only_with_write(self):
@@ -275,7 +281,7 @@ class MaintenanceTests(unittest.TestCase):
                        'anh em cùng cha khác mẹ', 'CHƯA CHỐT', 'not one kingdom'):
             self.assertIn(marker, rf)
         academy = (self.root / tool.ACCEPTED['AFM-009']).read_text(encoding='utf-8')
-        self.assertIn('Academy failure → Undie = REMOVED', academy)
+        self.assertIn('Academic failure does not create an automatic Undie transition.', academy)
         ledger = (self.root / '92_OPEN_ISSUES_CURRENT.md').read_text(encoding='utf-8')
         for marker in ('AF-ORG-002 | UNKNOWN / OPEN', 'AF-ORG-003 | UNKNOWN / OPEN',
                        'AF-OPEN-031 | CONFLICT / OPEN', 'Lab-subject personhood',
@@ -294,16 +300,20 @@ class MaintenanceTests(unittest.TestCase):
 
     def test_guest_admission_preserves_explicit_open_boundaries(self):
         text = (self.root / tool.ACCEPTED['AFM-010']).read_text(encoding='utf-8')
-        for marker in ('AF-TECH-001', 'AF-TECH-002', 'AF-OPEN-006',
-                       'Guest Wallet denomination', 'Offline behavior',
+        for marker in ('AF-TECH-001', 'AF-TECH-002',
                        'candidate accounting', '500', 'UNKNOWN'):
             with self.subTest(marker=marker):
                 self.assertIn(marker, text)
         ledger = (self.root / '92_OPEN_ISSUES_CURRENT.md').read_text(encoding='utf-8')
         for marker in ('AF-TECH-001', 'AF-TECH-002', 'AF-STATE-001',
-                       'AF-OPEN-006', 'AF-OPEN-008', 'AF-OPEN-014', 'AF-ML-007'):
+                       'AF-OPEN-006', 'AF-OPEN-008', 'AF-ML-007',
+                       'Guest Wallet denomination', 'Offline behavior'):
             with self.subTest(marker=marker):
                 self.assertIn(marker, ledger)
+        record = (self.root / '91_RECONCILIATION_RECORD.md').read_text(encoding='utf-8')
+        self.assertIn('AF-OPEN-006 | SUPERSEDED', record)
+        self.assertIn('AF-OPEN-014 | SUPERSEDED', record)
+        self.assertNotIn('| AF-OPEN-014 |', ledger)
 
     def test_generated_regions_only_and_archive_inventory_preserved(self):
         before = self.snapshot()
@@ -498,12 +508,14 @@ class MaintenanceTests(unittest.TestCase):
     def test_post_creed_unknowns_and_partial_resolution(self):
         lore = (self.root / '40_MATRIARCHS_LAMENT_CURRENT.md').read_text(encoding='utf-8')
         delta = lore.split('## 26. Thần quyền hậu-Creed', 1)[1]
-        questions = delta.split('### 12. Những phần chưa chốt', 1)[1].split('### 13.', 1)[0]
+        local_boundary = delta.split('### 12. Triển khai còn mở', 1)[1].split('### 13.', 1)[0]
+        self.assertIn('`92` giữ 30 câu hỏi', local_boundary)
         expected = ["1. tên chính thức của hệ hậu-Creed;","2. thánh vật / giao diện nào ghi nhận oath;","3. oath nào bắt buộc đối với chức vụ nào;","4. exact phạm vi câu oath;","5. cách phát hiện / xác minh vi phạm;","6. error rate, false positive, false negative;","7. khả năng cưỡng ép actor tuyên oath;","8. actor có quyền yêu cầu kiểm tra;","9. actor diễn giải kết quả;","10. chuẩn chứng cứ;","11. thủ tục xét xử / kỷ luật;","12. review / appeal;","13. exact danh mục divine healing;","14. ai có quyền phân phối;","15. điều kiện khẩn cấp;","16. quyền của người không theo tôn giáo;","17. phạm vi sacred access;","18. exact relic access law;","19. sacred office catalogue;","20. clergy capability catalogue;","21. Holy Guard blessing / equipment / capability;","22. relation giữa Holy Guard và Saintess ngoài allegiance hiện hành;","23. phạm vi family suspicion;","24. quy tắc chống lạm dụng access denial;","25. quan hệ giữa hệ này với Cult;","26. liệu Cult có thể giả mạo, thao túng hoặc chiếm quyền xác minh / access hay không;","27. quan hệ giữa Matriarch's divinity và từng loại capability;","28. Matriarch có ý chí hiện hành hay không;","29. Matriarch có thể từ chối Temple use hay không;","30. mức nào của hệ này là tôn giáo, luật, hành chính hay hỗn hợp."]
-        self.assertEqual([line for line in questions.splitlines() if line[:1].isdigit()], expected)
         ledger = (self.root / '92_OPEN_ISSUES_CURRENT.md').read_text(encoding='utf-8')
+        questions = ledger.split('### 30 câu hỏi nguồn giữ nguyên', 1)[1].split('\n## ', 1)[0]
+        self.assertEqual([line for line in questions.splitlines() if line[:1].isdigit()], expected)
         for question in expected:
-            self.assertIn(question, ledger)
+            self.assertNotIn(question, local_boundary)
         self.assertIn('AF-ML-PC-OPEN-010', ledger)
         self.assertIn('PARTIALLY RESOLVED / IMPLEMENTATION OPEN', ledger)
 
@@ -511,7 +523,6 @@ class MaintenanceTests(unittest.TestCase):
         lore = (self.root / '40_MATRIARCHS_LAMENT_CURRENT.md').read_text(encoding='utf-8')
         delta = lore.split('## 26. Thần quyền hậu-Creed', 1)[1]
         for boundary in (
-            'CREED OLD MECHANICS REMAIN RETIRED.',
             'DIVINE SIGNAL\n!= FINAL LEGAL / POLITICAL DECISION',
             'OATH DOES NOT AUTOMATICALLY ENFORCE OBEDIENCE.',
             'ONLY THROUGH A VALID ACTOR / AUTHORITY / PROCEDURE PATH.',

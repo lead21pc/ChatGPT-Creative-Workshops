@@ -3,13 +3,10 @@
 > Module ID: `AFM-003`
 > Runtime role: `CURRENT_SOURCE`
 > Domain / Scope: Undie professional ecosystem, entry/exit, mobility, economic and political interfaces, Undi, and the unresolved MC2 access pathway.
-> Authority boundary: Controls the 2026-10-05 Undie revamp; does not establish a final branch taxonomy, licensing code, MC2 route, or TE redesign.
+> Authority boundary: Controls the Undie professional ecosystem; does not establish a final branch taxonomy, licensing code, MC2 route, or TE redesign.
 > Cross-domain owner boundary: AF national context by `AFM-013`; Legal/civic status and Civil, Criminal, POW, Yellow boundaries belong to `AFM-002`; shared terminal/guest architecture to `AFM-010`; global interfaces to `AFM-001`; detailed politics and MC2 security pathway to `AFM-011`; MC2 metafiction to `AFM-004`; regional ML interfaces to `AFM-007`.
 > Load mode: `FULL_FILE`
 
-> **Mốc canon:** 2026-10-05, theo hai nguồn Undie Revamp Baseline v0.1 và Decisions 1–16 v0.1 đã được người dùng cho phép nhập.
-> **Ưu tiên theo phạm vi:** Decisions 1–16 hoàn thiện những mục Baseline còn để mở; không nhập đề xuất chưa được chấp nhận. Hồ sơ đối chiếu, nguồn và các nhóm cơ chế cần xét lại nằm trong `91_RECONCILIATION_RECORD.md`.
-> **Ranh giới:** đây là nguồn lore, không phải CI/Router. `UNKNOWN ≠ FALSE`; thiếu chi tiết mới không cho phép quay về cơ chế Slave cũ.
 
 ## 1. Định nghĩa và vị trí trong thế giới
 
@@ -17,7 +14,7 @@ Undie là **hệ sinh thái nghề nghiệp / căn tính nghề nghiệp**, có 
 
 Undie không phải trạng thái pháp lý, lớp Slave, đẳng cấp xã hội hay trạng thái trừng phạt. Một người có thể đồng thời là Citizen và người hành nghề Undie. Gia nhập không tự đổi quốc tịch, quyền công dân hoặc địa vị pháp lý.
 
-Phần lớn sự tàn bạo dựa trên kiến trúc Slave/nhục mạ cũ được loại bỏ. Điều này không phủ định mọi nguy hiểm, bóc lột, bạo lực, cưỡng ép, tham nhũng hoặc thất bại thể chế; từng hiện tượng còn lại phải có quan hệ và cơ chế riêng, không kế thừa mặc định cũ.
+Bóc lột, cưỡng ép, tham nhũng và thất bại thể chế có thể xảy ra khi có quan hệ và cơ chế riêng. Nghề Undie tự nó không thiết lập các hệ quả đó.
 
 Nền thiết kế:
 
@@ -43,9 +40,7 @@ cùng hệ sinh thái ≠ cùng nghề ≠ cùng dịch vụ
 ≠ cùng rủi ro pháp lý ≠ cùng phe chính trị
 ```
 
-Đồ thị màu/rank Red/Scarlet/Pink/Gray/Purple/Hazel/White cũ đã nghỉ hưu như kiến trúc nghề nghiệp toàn hệ. Không có tiến trình bắt buộc kết thúc ở White, không có White→Citizen. Màu cũ chỉ được trở lại qua quyết định canon riêng, chẳng hạn mã tổ chức địa phương, thương hiệu hoặc chứng nhận; không khôi phục thang pháp lý, xã hội, nghề nghiệp hay đường thoát cũ.
-
-Career Rank thuộc miền `11`; việc còn tồn tại trục ấy ngoài Undie không phục hồi đồ thị màu hoặc quan hệ ánh xạ cũ.
+Undie không có một thang màu hay Career Rank phổ quát. Nghề không có tiến trình bắt buộc tới một hạng cuối và không tự chuyển người tham gia thành Citizen. Mã tổ chức địa phương, thương hiệu hoặc chứng nhận cần căn cứ riêng. `11` giữ Career Rank ngoài phạm vi nghề này.
 
 ## 3. Gia nhập, rời nghề và luật nghề
 
@@ -59,7 +54,7 @@ Nhà nước có thể quản lý hoạt động, hợp đồng, địa điểm,
 
 ## 4. Civil, Criminal, Yellow và quyền cá nhân
 
-`11` kiểm soát Civil, Criminal, POW và Yellow. Theo retcon Civil 2026-10-05, Civil là chế độ phục vụ tự nguyện ở đầu vào, không Slave/punishment/caste; không tự xóa Criminal/POW/Yellow. Citizenship và nghề Undie là trục độc lập.
+`11` kiểm soát Civil, Criminal, POW và Yellow. Civil là chế độ phục vụ tự nguyện ở đầu vào, không Slave/punishment/caste. Citizenship và nghề Undie là trục độc lập.
 
 Quy tắc cấm Criminal chuyển địa vị sang Undie đã nghỉ hưu vì không còn đồ thị chuyển ấy. Câu hỏi mới là người có hồ sơ hình sự được làm hoạt động nào, dùng giấy phép, địa điểm, hợp đồng hay mức truy cập nào. Loại kết án, rủi ro và luật ngành có thể liên quan khi được chốt; chưa xác lập mọi người có hồ sơ hình sự đều đủ điều kiện. Cũng không tự đồng nhất hồ sơ hình sự với người đang chịu chế độ Criminal Slave.
 
@@ -81,7 +76,7 @@ Giá trị huyết hệ Raging Fire/Raging Phoenix/True Crown của MC2 không t
 
 Nền tiền tệ: cash là tiền cơ bản; Credits là tiền điện tử được nhà nước bảo chứng. Credits không phải điểm thành tích, điểm cấp nghề hay biến tiến trình tự động.
 
-Credit Score, Contribution Points và Credit Line thế chấp địa vị trong kiến trúc Undie cũ đã nghỉ hưu. Không có thế chấp con người/địa vị trong mốc Undie hiện hành. Việc xét các biến hoặc nghiệp vụ khác ngoài Undie thuộc `11`, không tự xóa toàn bộ nền kinh tế.
+Nghề Undie không dùng thế chấp người hoặc địa vị. Các biến và nghiệp vụ khác ngoài phạm vi nghề thuộc `11`.
 
 ```text
 nợ tài chính ≠ nghĩa vụ hợp đồng ≠ ân tình xã hội ≠ ân tình chính trị
@@ -172,47 +167,10 @@ TE dự kiến được thiết kế lại thành nhà nước thương mại l�
 
 Đường ép foreign spy/infiltrator vào Undie và đường Academy failure→Undie vẫn bị loại bỏ. Không tạo đường thay thế.
 
-## 16. MC2: giao diện Undie và phạm vi quyết định 26/11/2026
+## 16. Giao diện với tuyến MC2
 
-Battlemage Academy thay Undie trong vai trò tuyến chính của MC2 qua nhiều năm trước Clash #2 (`03` Part II §14). Undie tiếp tục là hệ sinh thái nghề nghiệp. Khả năng MC2 tiếp xúc Undie sau này còn mở. Sơ đồ và chốt 05/10 dưới đây ghi lại hướng thiết kế tiền nhiệm trong đúng phạm vi đã được thay thế.
+Battlemage Academy tại Tiring Slope là tuyến chính của MC2 qua nhiều năm trước Clash #2 (`03` Part II §14). Khả năng tiếp xúc Undie về sau, nghề, vỏ bọc, cách biến đổi và đường tiếp cận mẹ hoặc chính trị vẫn mở. Undie có thể cung cấp giao diện nghề, xã hội hoặc vùng xám khi có đường tiếp cận cụ thể. MC2 không cần mất địa vị pháp lý để tiếp cận nghề, và nghề không mặc định là trừng phạt hoặc yêu cầu sex work. Công dụng chính trị của một giao diện không biến toàn nghề thành thiết chế tình báo. `12` giữ chính trị và bảo hộ, `92` giữ lựa chọn và phần triển khai chưa chốt.
 
-MC2 không đi qua Undie như trừng phạt, hạ cấp địa vị hoặc bắt buộc sex work. Không cần mất địa vị pháp lý để gia nhập/tiếp cận hệ sinh thái này.
+## 17. Phần triển khai còn mở
 
-```text
-MC2 cần tiếp cận trục mẹ / Raging Fire / chính trị AF
-→ đường chính thức có thể không khả dụng, quá lộ hoặc nguy hiểm
-→ mạng nghề/xã hội/vùng xám Undie có thể cho giao diện tiếp cận
-→ đường chính trị phát triển qua giao diện có căn cứ
-```
-
-Tuyến Civil→Undie→mại dâm bất hợp pháp và các bước bẫy/án phụ thuộc vào nó không còn là triển khai mặc định. Không tự thay bằng một nghề, người môi giới, patron, chiến dịch hoặc kết quả mới. Phả hệ Raging Fire/Prince 9 và chức năng True Crown giữ nguyên; cấu trúc Fictionize/POC/Clash do `03` kiểm soát.
-
-Nguồn `AetherFire_MC2_RF_AF_Resistance_Strategic_Node_Analysis.md` được chỉ định làm đầu vào thiết kế tiếp theo cho đúng trục MC2/mẹ/Raging Fire/chính trị/kháng chiến/an ninh/đối ngoại. Nó không được nhập toàn bộ: CANON chỉ trong phạm vi đã chốt; HYPOTHETICAL/PROPOSAL là ứng viên; UNKNOWN vẫn mở. Lượt này không nhập hoặc thực hiện các đề xuất tuyến mới từ nguồn ấy.
-
-### 16.1 Hướng thiết kế tiền nhiệm — 2026-10-05
-
-Undie + biến đổi diện mạo/căn tính là giao diện vỏ bọc và tiếp cận kín cho MC2 dưới căn tính bề ngoài khác. Hướng này từng được chốt ở cấp thiết kế. Nghề, quy trình và việc MC2 dùng giao diện này trong tương lai còn mở; khả năng biến đổi phụ thuộc nguồn cụ thể. Công dụng chính trị của MC2 không biến Undie thành thiết chế tình báo phổ quát.
-
-Operation Swap (rút MC2 thật, duy trì người thế thân công khai) chỉ là **PROPOSAL ưu tiên**, chưa là sự kiện. `12` kiểm soát chi tiết chính trị và TE bảo hộ Nữ hoàng; thiết kế lại TE vẫn DEFERRED. Mốc phản quốc đã chốt trước đây đang chờ đối chiếu với tuyến Học viện ở `03` §14.1. Đoạn nhân quả dẫn tới khủng hoảng và kết quả sau MC1 vẫn mở. Nghề, tổ chức/operator, patron, giấy tờ, hình thức/giới hạn biến đổi, thời gian, first contact, kháng chiến và an ninh vẫn UNKNOWN.
-
-Nguồn pathway 2026-10-05 cụ thể hóa hướng trong §16, không wholesale nhập nguồn strategic-node hoặc RP cũ. `90` giữ đề xuất/giả thuyết; `92` giữ câu hỏi triển khai.
-
-## 17. Những phần chưa chốt
-
-- Danh mục nhánh, giao thoa nghề, đào tạo/chứng nhận, luật giấy phép, cơ quan và thẩm quyền.
-- Điều kiện hoạt động cho Civil, người có hồ sơ hình sự và người đang chịu Criminal Slave; không tạo suy luận cho phép/cấm chung.
-- Quy trình gia nhập/rời nghề, hợp đồng, nghĩa vụ, ứng trước, hạn chế pháp lý độc lập, giải quyết tranh chấp.
-- Cho vay, bảo đảm hợp lệ không phải con người/địa vị, cưỡng hành, ân tình/nhượng bộ có thể truy nguyên.
-- Nhu cầu chợ xám/đen cụ thể, dịch vụ, địa điểm, vận hành và tiêu chí hợp pháp.
-- Tổ chức nghề, tên House, quy mô, quan hệ trung gian/bảo trợ; chưa tạo một tổ chức từ ví dụ.
-- Undi thực tế; phần cứng nghề, liên kết cơ thể, đồng thuận, quyền lệnh, dữ liệu và ranh giới với terminal khách.
-- Tử vong/điều tra/bồi thường, các nhóm phản đối/cải cách và giao diện an ninh có căn cứ.
-- Nếu MC2 về sau tiếp xúc Undie, nghề, vỏ bọc, tác nhân trung gian, tiếp xúc vùng xám và kết quả vẫn cần căn cứ riêng. `03` §14 và `92` giữ các câu hỏi về tuyến Học viện và cầu nối tới Clash #2.
-- TE redesign: đã hoãn; không dùng hướng thiết kế để khẳng định triển khai hiện tại.
-- Các chi tiết cũ chưa được retcon quyết định riêng được phân loại trong hồ sơ đối chiếu; không dùng để lấp chỗ trống.
-
-## 18. Ranh giới loại trừ
-
-`AetherFire_Undie_Revamp_Proposal_Total_War_Transition_v0.1.md` bị loại khỏi mốc này: không dùng làm triết lý, mốc dự phòng, cầu nối hoặc neo tái dựng.
-
-Không viết hoặc sửa Anti-Drift/Router trong lượt nhập lore này. Nguồn lưu trữ chỉ là chứng cứ nguồn gốc; không phải đầu vào tái dựng canon.
+Điều kiện từng nhánh nghề, luật, dữ liệu, phần cứng, quyền tiếp cận và các giao điểm chính trị cần căn cứ theo từng trường hợp. `92` giữ AF-UR-OPEN-001–009.

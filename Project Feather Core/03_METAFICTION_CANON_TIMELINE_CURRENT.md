@@ -7,10 +7,6 @@
 > Cross-domain owner boundary: Narrator, POV, and humor presentation is controlled by `AFM-005`; detailed dynastic politics and MC2 security pathway by `AFM-011`; actor/domain-specific current canon remains controlled by its relevant module.
 > Load mode: `FULL_FILE`
 
-> **Domain:** Fiction 0/Fiction 1, Fictionize, Proof of Concept, V0.5, Canon 1/Canon 2, Clash #1/Clash #2, realization mode, causal overlap and knowledge asymmetry.  
-> **Priority:** `aetherfire_canon_story_line_v0_5_v1_0_overlap.md` controls the causal timeline where compatible with the 2026-11-25 MC2 V0.5 causal retcon. That delta controls the placement and function of the written death condition across V0.5, V1.0 and both clashes (see `91_RECONCILIATION_RECORD.md`). The fiction model controls layer/ability definitions where compatible; the Canon 1/Canon 2 source supplies comparison and mismatch matrices.
->
-> Older simplified descriptions of two independent parallel branches or MC1 being pulled directly from an external operator position are not imported. `UNKNOWN` mechanics remain unresolved.
 
 ## Part I — Fiction layers, actors and ability boundaries
 
@@ -248,23 +244,9 @@ OPERATE_AS_ONE_UNIT_IN_FICTION_1
 
 ---
 
-### 15. UNKNOWN
+### 15. Phạm vi chưa xác lập
 
-Chưa được chốt:
-
-- Fiction 1 được tạo ra, hiện thực hóa hay truy cập theo cơ chế nào;
-- full mechanics của Fictionize;
-- full giới hạn Fictionize khi MC1 ở bên trong Fiction 1, ngoài khả năng đã chốt tại Part V;
-- full mechanics của Proof of Concept;
-- vì sao “hope” dẫn tới MC3 bị kéo vào;
-- ai/điều gì là chủ thể trực tiếp thực hiện thao tác kéo MC3 ở tầng cơ chế;
-- full relation giữa Raging Phoenix và giao diện Fiction 0/Fiction 1;
-- MC1 có thể rời Fiction 1 bằng cách nào;
-- MC3 có thể rời Fiction 1 bằng cách nào;
-- competency ngoài năng lực esper của MC1;
-- competency ngoài phần đã biết của MC3;
-- thời điểm và độ sâu từng lớp tri thức meta của MC2 ngoài phạm vi đã chốt tại Part V;
-- extent tri thức meta của các actor khác.
+`92` giữ câu hỏi về cơ chế xuyên tầng, năng lực và phạm vi tri thức. Các điều kiện cần đọc cùng từng năng lực nằm ở phần tương ứng.
 
 ---
 
@@ -272,10 +254,7 @@ Chưa được chốt:
 
 ### Project Feather Core — Canon Story Line / Timeline Siêu Hư Cấu Chính
 
-> **Trạng thái:** CANON STORY-LINE — latest user-confirmed  
-> **Mục đích:** khóa lại trục truyện siêu hư cấu chính của Project Feather Core để tránh nhầm lẫn giữa V0.5, V1.0, Canon 1, Canon 2, Fictionize, Proof of Concept, 5 năm lịch sử sống và thời điểm MC1 bị MC2 gọi vào Fiction 1.
->
-> File này ưu tiên **story-line / causal timeline**. Nó không thay world bible về nhà nước, Undie, Civil, POW, kinh tế, phép thuật hoặc các subsystem khác.
+> Phần này giữ dòng thời gian và quan hệ nhân quả giữa các lớp canon. Canon chuyên biệt về thể chế, nghề và địa vị thuộc các mô-đun tương ứng.
 >
 > **Quy tắc chống drift**
 >
@@ -356,7 +335,7 @@ Prince 9 của hoàng gia một quốc gia thành viên rank thấp hơn trong R
 MC2 + MC2.2 = anh em cùng cha khác mẹ
 ```
 
-Relation này bị che giấu có chủ ý bên trong RF; exact responsible actor và knowledge distribution giữ `UNKNOWN`. Vị vua AetherFire đã bỏ trốn không phải cha ruột MC2; mẹ MC2 đã mang thai trước khi vào hoàng gia AetherFire và bị gả đi để che giấu pregnancy. Quan hệ custody cũ dưới Quad Night đã bị orphan; chốt 2026-10-05 xác lập Hoàng hậu được TE bảo hộ, chỉ một số tác nhân biết. Cơ chế, địa điểm và tư cách pháp lý vẫn `UNKNOWN`, do `12` kiểm soát; `30` giữ phả hệ RF. Không gán fact current này ngược cho mọi thời điểm Canon 1.
+Relation này bị che giấu có chủ ý bên trong RF; exact responsible actor và knowledge distribution giữ `UNKNOWN`. Vị vua AetherFire đã bỏ trốn không phải cha ruột MC2; mẹ MC2 đã mang thai trước khi vào hoàng gia AetherFire và bị gả đi để che giấu pregnancy. Hoàng hậu được TE bảo hộ, chỉ một số tác nhân biết. Cơ chế, địa điểm và tư cách pháp lý vẫn `UNKNOWN`, do `12` kiểm soát; `30` giữ phả hệ RF. Không gán fact current này ngược cho mọi thời điểm Canon 1.
 
 Các primitive này có thể sinh consequences khác nhau sau divergence; `shared genealogy ≠ same later outcome`.
 
@@ -788,13 +767,13 @@ Sau phân kỳ ở Clash #1, tuyến phát triển chính của MC2 đi qua Batt
 
 Trong cùng khoảng thời gian, Section 1 theo dõi lịch sử sống của AetherFire và các hệ thống khác với mức phụ thuộc trực tiếp vào MC2 giảm đi. Section 2 theo dõi MC2 tham gia và tạo hệ quả qua tuyến Học viện. Cả hai là góc nhìn của cùng Canon 2 (`01` §1.2). `14` giữ nội bộ Học viện và khung đào tạo sáu năm. Tuổi, năm vào, xếp lớp, thời lượng hiện diện thực tế và quan hệ giữa tốt nghiệp với Clash #2 vẫn `UNKNOWN`. `12` giữ giao diện thẩm quyền và chính trị.
 
-Quyết định 26/11/2026 thay hướng Undie + biến đổi diện mạo/căn tính trong vai trò tuyến chính của giai đoạn này. Nhu cầu tiếp cận mẹ, trục Raging Fire và chính trị AetherFire vẫn có căn cứ. Đường tiếp cận cụ thể, giao điểm Undie trong tương lai và đề xuất Operation Swap còn mở. Undie vẫn là hệ sinh thái nghề nghiệp. Tuyến mất địa vị → Civil → Undie → mại dâm bất hợp pháp → kháng chiến giả vẫn là triển khai đã bị thay thế. Undie không có quy định triệt sản bắt buộc theo nghề; tình tiết y tế và tránh thai riêng của MC2 vẫn cần chốt nếu liên quan. Đề xuất trong nguồn strategic-node vẫn là đầu vào thiết kế. Cái chết trong Canon 1 và điều kiện tử vong V0.5 còn treo trong Canon 2 vẫn chi phối điểm giao của hai canon.
+Nhu cầu của MC2 về tiếp cận mẹ, trục Raging Fire và chính trị AetherFire vẫn có căn cứ. Đường tiếp cận, giao điểm Undie về sau và biến chuyển y tế hoặc tránh thai riêng của MC2 chưa chốt. Tư cách nghề không xác định fertility hay nghĩa vụ triệt sản. `92` giữ các phương án chưa chốt. Cái chết trong Canon 1 và điều kiện tử vong V0.5 còn treo trong Canon 2 vẫn chi phối điểm giao hai canon.
 
 ---
 
 #### 14.1 Cuối giai đoạn Học viện và mốc trước Clash #2
 
-MC2 gặp nguy hiểm thực chất tới tính mạng trước Clash #2 và vẫn ở trong tình thế đó khi MC1 xuất hiện. Lore ngày 05/10/2026 đã gắn nguy cơ bị tước tự do hoặc bị giữ và hiểm nguy này với mốc phản quốc. Mốc phản quốc đang chờ đối chiếu với tuyến Học viện. Việc có cần sửa mốc này, sự kiện làm kết thúc hoặc suy yếu giai đoạn Học viện và chuỗi nhân quả đưa MC2 tới nguy hiểm tính mạng đều còn mở. Hành vi, chứng cứ, cơ quan có thẩm quyền và việc thao túng vụ việc vẫn `UNKNOWN` (`12`, `92`).
+MC2 gặp nguy hiểm thực chất tới tính mạng trước Clash #2 và vẫn ở trong tình thế đó khi MC1 xuất hiện. Một mốc phản quốc đã chốt gắn nguy cơ bị tước tự do hoặc bị giữ và hiểm nguy này với giai đoạn này. Mốc phản quốc đang chờ đối chiếu với tuyến Học viện. Việc có cần sửa mốc này, sự kiện làm kết thúc hoặc suy yếu giai đoạn Học viện và chuỗi nhân quả đưa MC2 tới nguy hiểm tính mạng đều còn mở. Hành vi, chứng cứ, cơ quan có thẩm quyền và việc thao túng vụ việc vẫn `UNKNOWN` (`12`, `92`).
 
 Điểm giao với Canon 1 vẫn là cùng điều kiện tử vong từ V0.5, đã được thực hiện trong Canon 1 và còn treo trong Canon 2. Cơ chế kỹ thuật của Clash và kết quả sau khi MC1 tới vẫn `UNKNOWN`. Hai canon giữ lịch sử và trạng thái riêng.
 
@@ -1002,7 +981,7 @@ MC1 không có ground truth tự động.
 
 ### 21. Tri thức MC1 / MC3 / MC2
 
-Chốt 2026-10-08: MC2 đủ hiểu POC/Fictionize, bản thân và thực chất thế giới nhờ hai personification đã ở cùng cô; không toàn tri. Phạm vi và mốc tri thức theo Part V, không mặc định actor bản địa hoàn toàn không biết fiction.
+MC2 đủ hiểu POC/Fictionize, bản thân và thực chất thế giới nhờ hai personification đã ở cùng cô; không toàn tri. Phạm vi và mốc tri thức theo Part V, không mặc định actor bản địa hoàn toàn không biết fiction.
 
 #### MC1
 
@@ -1252,71 +1231,9 @@ MC2 còn sống                                     ▼
 
 ---
 
-### 28. Các điểm supersede cách đọc cũ
+### 28–29. Giới hạn của trục nhân quả
 
-#### 28.1 “MC1 đang ở Fiction 0 rồi bị kéo thẳng vào Canon 2”
-
-**THIẾU.**
-
-Đúng hơn:
-
-```text
-MC1 đã hoàn thiện V1.0
-→ đang Fictionize/stress-test V1.0
-→ tới vùng nhân quả của điều kiện tử vong V0.5
-→ Clash #2, rồi được MC2 gọi sang Canon 2
-```
-
-#### 28.2 “Canon 1 chỉ là bản MC1 viết”
-
-**THIẾU.**
-
-Canon 1 còn là scenario đã được Fictionize/stress-tested.
-
-#### 28.3 “Canon 1 và Canon 2 chỉ là hai nhánh chạy song song”
-
-**SAI / QUÁ ĐƠN GIẢN.**
-
-Chúng có cùng V0.5 source, mode continuation khác nhau và pathway về sau overlap.
-
-#### 28.4 “V0.5 + 5 năm = V1.0 Canon 2”
-
-**SAI.**
-
-V1.0 là authored completion; Canon 2 là historical accumulation.
-
-#### 28.5 “MC1 chỉ bị confusion vì world-state lỗi thời”
-
-**THIẾU NẶNG.**
-
-MC1 gặp sự bất tương thích giữa điều kiện tử vong đã thực hiện trong Canon 1 và cùng điều kiện vẫn còn treo trong lịch sử sống Canon 2.
-
-#### 28.6 “Clash #1 xóa điều kiện tử vong đã viết”
-
-**SAI.**
-
-Canon 2 trì hoãn điều kiện tử vong từ V0.5. Cách giải quyết điều kiện đó và kết cục vẫn mở.
-
----
-
-### 29. UNKNOWN / SEALED phải giữ
-
-Chưa tự định nghĩa:
-
-- exact physics/metaphysics khiến hai pathway overlap;
-- cơ chế kỹ thuật của Clash #1 và Clash #2 ngoài quan hệ nhân quả đã chốt;
-- áp lực nhân quả là lực đo được trong thế giới hay là mô tả ở tầng siêu hư cấu, và cơ chế chính xác của nó;
-- cách một cái chết khả dĩ của MC2 có thể xảy ra ở Canon 2, cũng như MC2 có chết sau khi MC1 tới hay không;
-- exact state-space definition của overlap;
-- exact phần nào Canon 1 còn causal-active sau MC1 entry;
-- exact endpoint Canon 2;
-- exact role cuối của hôn phu trong Canon 2;
-- exact hình thức sụp đổi AetherFire;
-- full Raging Phoenix mechanics ngoài rule đã chốt;
-- full Fictionize mechanics;
-- full POC mechanics;
-- MC1/MC3 trở về Fiction 0 thế nào;
-- cosmology sâu hơn của Fiction 0/Fiction 1.
+Cơ chế kỹ thuật của hai Clash, bản chất của áp lực nhân quả, phạm vi hiệu lực còn lại của Canon 1 và kết cục Canon 2 sau khi MC1 tới vẫn mở. `92` giữ danh mục câu hỏi chi tiết.
 
 ---
 
@@ -1477,17 +1394,9 @@ Vì vậy sự tồn tại của cả hai không tự động xóa bất đối 
 
 ---
 
-### 12. Các điểm chưa chốt
+### 12. Ranh giới chưa xác lập
 
-- full mechanism khiến “hope” của MC3 phản tác dụng;
-- exact causal link giữa Hoàng hậu, Proof of Concept và việc MC3 bị gọi;
-- mức MC3 biết về V1.0 sau khi rời Fiction 0;
-- mức MC2 biết Canon 1/Canon 2;
-- mức các actor bản địa hiểu tầng Fiction 0;
-- full mechanism The Raging Phoenix xuyên hai fiction;
-- full powerset của Fictionize bên trong Fiction 1;
-- MC1/MC3 có thể trở về Fiction 0 hay không và bằng cách nào;
-- exact endpoint của Canon 2/current world-state sau khi MC1 xuất hiện.
+Các hệ quả của HOPE, tri thức theo tác nhân, năng lực xuyên tầng, đường trở về và kết cục hiện hành chỉ trong phạm vi đã chốt ở các phần tương ứng. Xem `92` cho các câu hỏi còn lại.
 
 ---
 
@@ -1495,27 +1404,27 @@ Vì vậy sự tồn tại của cả hai không tự động xóa bất đối 
 
 ### Confirmed
 
-MC1 and MC3 are confirmed Fiction 0 → Fiction 1 cases. Matriarch is a separately confirmed Fiction 0 human/healing esper forced into Fiction 1 under the 2026-10-06 delta; this does not confirm the other candidates or establish a shared transfer mechanism. Raging Fire rebirth potential is a different mechanism: bearing the trait does not establish that MC2 or her mother has died and been reborn.
+MC1 and MC3 are confirmed Fiction 0 → Fiction 1 cases. Matriarch is a separately confirmed Fiction 0 human/healing esper forced into Fiction 1. This does not confirm the other candidates or establish a shared transfer mechanism. Raging Fire rebirth potential is a different mechanism: bearing the trait does not establish that MC2 or her mother has died and been reborn.
 
 Trần Trúc Nha currently belongs to Matriarch's Lament and holds the role established in `40_MATRIARCHS_LAMENT_CURRENT.md`.
 
-### Matriarch — thứ tự nhân quả và tọa độ thời gian đã chốt 2026-10-06
+### Matriarch — thứ tự nhân quả và tọa độ thời gian
 
-`40` §25 giữ đủ nguồn gốc và delta thánh vật. Theo thứ tự nhân quả Fiction 0: Clash #1 → sau đó Matriarch bị cưỡng ép triệu hồi/đưa sang Fiction 1. Điểm xuất hiện phía Fiction 1 ≈ 500 năm trước hiện tại. Không đồng nhất thứ tự ở Fiction 0 với đồng thời lịch Fiction 1; không dời Clash #1 về 500 năm trước trên cả hai tầng.
+`40` §25 giữ nguồn gốc Matriarch và thánh vật. Theo thứ tự nhân quả Fiction 0: Clash #1 → sau đó Matriarch bị cưỡng ép triệu hồi/đưa sang Fiction 1. Điểm xuất hiện phía Fiction 1 ≈ 500 năm trước hiện tại. Không đồng nhất thứ tự ở Fiction 0 với đồng thời lịch Fiction 1; không dời Clash #1 về 500 năm trước trên cả hai tầng.
 
 Cơ chế xuyên fiction/thời gian, tác nhân cưỡng ép, body/soul/memory transfer, đường về và quan hệ với Fictionize/POC vẫn chưa chốt. Matriarch là người thật từ Fiction 0 trong canon này; không suy nàng do MC1 tạo hoặc có admin powers. Matriarch có thần tính rồi bị ám sát, không suy immortality, ý thức/linh thể hiện còn hay thờ phụng là luật tạo thần phổ quát.
 
 Matriarch đến khoảng 500 năm trước và ML tuổi khoảng 500 năm là các mốc xấp xỉ, không chứng minh quá trình chữa lành → holy power → thờ phụng → ám sát → cộng đồng/nhà nước mất zero thời gian. Thời điểm tương tác với “hệ phép thuật AetherFire” và ý nghĩa tên ấy trước quốc gia AF khoảng 200 năm tuổi còn cần làm rõ, không tự dựng AF có từ 500 năm trước hoặc đổi tuổi quốc gia (`92` AF-ML-ORIGIN-006).
 
-### Trần Trúc Nha — confirmed 2026-10-08
+### Trần Trúc Nha
 
 Trần Trúc Nha là người Việt Nam đến từ Fiction 0, cùng thế giới xuất thân với MC1 và MC3. Fiction 0 là thế giới thuần esper lấy thế giới thật làm cơ sở tham chiếu; esper ở từng quốc gia có những kiểu khác nhau. Cơ chế, tác nhân, thời điểm chuyển sang Fiction 1, body/soul/memory transfer và đường về vẫn `UNKNOWN`. Nguồn gốc này không thay membership/vai trò hiện hành của cô trong ML.
 
-### Other unconfirmed cross-world/cross-time candidates
+### MC4 và các trường hợp chưa xác lập
 
-MC4 được xác nhận đến từ một chiều không gian khác và là con của Cosmos. Bản chất Cosmos/quan hệ sinh thành là DEFERRED cho lần bàn sau;  cơ chế/thời điểm xuất hiện, body/soul/memory transfer và quan hệ với các tầng fiction vẫn `UNKNOWN`. The undead west of Hoa Nguyệt, the sheep-man in the northern Beastman power, the painter, bard, time-traveling businessperson and political prisoner remain `UNDER CONSTRUCTION / NOT CURRENT CANON`. Không ứng viên nào mặc định chia sẻ cơ chế, cosmology, faction hoặc mutual knowledge.
+MC4 đến từ một chiều không gian khác và là con của Cosmos. Bản chất Cosmos và quan hệ sinh thành được hoãn. Cơ chế/thời điểm xuất hiện, body/soul/memory transfer và quan hệ với các tầng fiction vẫn `UNKNOWN`. `05` giữ căn tính MC4, `92` ghi các ứng viên chưa thành canon.
 
-## Part V — World/meta delta chốt 2026-10-08
+## Part V — Năng lực và tri thức trong Fiction 1
 
 ### Fiction 1 và Fictionize của MC1
 

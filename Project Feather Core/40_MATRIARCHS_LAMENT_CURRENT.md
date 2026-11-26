@@ -7,49 +7,17 @@
 > Cross-domain owner boundary: Global and geopolitical interfaces are controlled by `AFM-001`; detailed politics and Queen protection interface by `AFM-011`; Undie professional and unresolved legal interfaces by `AFM-003`; metafiction and cross-world status by `AFM-004`.
 > Load mode: `FULL_FILE`
 
-> **Trạng thái:** CURRENT CANON / CONTROLLING MATRIARCH'S LAMENT DOMAIN — integrated 2026-09-11; architecture split recorded 2026-09-16; Matriarch/Saint's Fresh delta 2026-10-06; post-Creed governance delta 2026-10-07
 > **Authority boundary:** this file controls internal Matriarch's Lament governance, Temple/Under Tides, Matriarch origin and Saint's Fresh, Holy Guard, Trinity/relic economy, Trần Trúc Nha's regional role and doctrine, ML–TE routes/covert operations, and the northeastern tribes. Cross-domain interfaces are summarized in `01`; Undie professional and unresolved legal interfaces are controlled by `13`; cross-world status is controlled by `03`.
 > **Trúc Nha boundary:** membership and regional role in ML are current canon. Trúc Nha là người Việt Nam đến từ Fiction 0; transfer mechanism/timing/return remains `UNKNOWN`.  
-> **Phạm vi:** retcon Holy State, quan hệ với AetherFire, Transfusion EasterFire, Trinity Hexagon, Matriarch/Saint's Fresh, Thần điện, Thánh Nữ Trần Trúc Nha và các dependency lịch sử liên quan.
 > **Không phải:** full world bible, full constitution, full economy, full military doctrine hoặc full magic system.  
-> **Quy tắc:** nội dung dưới đây chỉ ghi các điểm đã được người dùng xác nhận trong chuỗi retcon hiện tại. UNKNOWN được giữ nguyên; không tự lấp.
 
 ---
 
-## 1. Supersession / retcon cấp vùng
+## 1. Các chủ thể trong vùng
 
-### CANON
+Matriarch's Lament, Transfusion EasterFire, AetherFire và các bộ tộc mẫu hệ Đông Bắc có phạm vi riêng. Trinity Hexagon là một quận thuộc Matriarch's Lament. Các khu vực và quốc gia khác theo nguồn của từng miền.
 
-`Quad Night` và toàn bộ mô hình bốn nước thành viên cũ bị **retire hoàn toàn** trong retcon hiện tại.
-
-Bản đồ khu vực mới chỉ giữ các thực thể chính sau:
-
-```text
-Matriarch's Lament
-Transfusion EasterFire
-AetherFire
-các bộ tộc mẫu hệ phía đông bắc
-các khu vực / quốc gia khác theo canon riêng
-```
-
-`Holy State` được đổi tên thành:
-
-> **Matriarch's Lament (ML)**
-
-`T.Gear` được đổi tên thành:
-
-> **Transfusion EasterFire (TE)**
-
-Tên `Transfusion EasterFire` là một cách chơi tên với `AetherFire`, hàm ý sự chuyển giao bằng một sắc thái rực rỡ / nhiều màu sắc hơn.
-
-AetherFire **không bình luận** về cái tên này.
-
-`Trinity Hexagon` không còn là một quốc gia độc lập. Nó trở thành:
-
-```text
-Trinity Hexagon
-→ một quận bên trong Matriarch's Lament
-```
+Tên **Transfusion EasterFire (TE)** chơi chữ với AetherFire và gợi sắc thái chuyển giao rực rỡ, nhiều màu sắc hơn. AetherFire không bình luận về tên này.
 
 ---
 
@@ -92,7 +60,7 @@ Do đó:
 ML tồn tại trước AF khoảng 300 năm
 ```
 
-Tuổi ML khoảng 500 năm và AF khoảng 200 năm vẫn giữ. Matriarch đến Fiction 1 khoảng 500 năm trước rồi trải qua biến đổi, thờ phụng, ám sát và cộng đồng hình thành polity (§25). Xác nhận 2026-10-08 rằng bất bình của một số bộ phận AF với vai trò vùng đệm góp phần vào vụ ám sát không thể xếp vào chuỗi này mà không thêm tiền đề. Giữ `CONFLICTED / CHRONOLOGY OPEN`; không tự tạo AF tiền thân, đổi tuổi, thêm Matriarch/vụ ám sát hoặc tráo chủ thể.
+Tuổi ML khoảng 500 năm và AF khoảng 200 năm vẫn giữ. Matriarch đến Fiction 1 khoảng 500 năm trước rồi trải qua biến đổi, thờ phụng, ám sát và cộng đồng hình thành polity (§25). Mệnh đề đã xác nhận về việc bất bình của một số bộ phận AF góp phần vào vụ ám sát chưa thể xếp vào chuỗi này mà không thêm tiền đề. Giữ `CONFLICTED / CHRONOLOGY OPEN`; không tự tạo AF tiền thân, đổi tuổi, thêm Matriarch/vụ ám sát hoặc tráo chủ thể.
 
 ---
 
@@ -204,17 +172,9 @@ Failure doctrine vẫn là hướng thiết kế có chủ đích, không một 
 
 Split-self và doctrine phản đối triết lý tàn bạo của Trúc Nha vẫn giữ theo §4–5. Khung thần quyền hậu-Creed đã chốt ở §26, không tự xác lập loyalty/obedience hoặc sự kiện phản bội mới. Split-self không mặc nhiên qua mặt xác minh oath hay quyền tiếp cận của hệ mới.
 
-## 6. Creed cũ đã rút; khung thần quyền hậu-Creed
+## 6–7. Xác minh lời thề và thẩm quyền
 
-Quyết định 2026-10-06 rút toàn bộ Creed, loyalty/life/family-bound oath, hậu quả tim mạch và dependency thể chế. Không dùng làm fallback. Thần điện, Thánh Nữ, Holy Guard, nhà nước công khai và Cult vẫn có căn cứ riêng.
-
-Dữ kiện độc lập về giáo dân bị ép gia nhập tôn giáo giữ; không còn lấy family-set hay lời thề Creed làm cơ chế ràng buộc. Thần tính Matriarch có thật không định nghĩa một luật thần phổ quát (§25).
-
-Chốt 2026-10-07 tại §26 tách xác minh lời thề, cấp/rút quyền tiếp cận và trừng phạt thể chế. Oath chức vụ có thể tạo bằng chứng siêu hình nhưng vi phạm oath không tự gây thương tích/tử vong, hại gia đình, tước chức hoặc cưỡng ép obedience. Rút access cần actor/thẩm quyền/thủ tục hợp lệ. Khung chức năng đã chốt; tên hệ, cơ chế triển khai và danh mục capability còn UNKNOWN. Đây không phải phục hồi Creed hoặc đổi tên cơ chế cũ.
-
-## 7. Quorum Creed — đã rút
-
-Quorum ba clergy và Creed attack surface không còn current; không suy Cult đã kiểm soát một quorum. Ba linh mục làm chứng hoạt động cho mượn thánh vật ở §9 là vai trò độc lập, không cơ chế kích hoạt Creed.
+§26 quản lý khung tách xác minh lời thề, tiếp cận ân điển và trừng phạt thể chế. Lời thề chức vụ có thể tạo bằng chứng siêu hình. Vi phạm lời thề không tự gây thương tích, tử vong, hại gia đình, tước chức hay cưỡng ép phục tùng. Dữ kiện độc lập về giáo dân bị ép gia nhập tôn giáo vẫn giữ. Ba linh mục làm chứng việc cho mượn thánh vật ở §9 không có quyền kích hoạt cơ chế cưỡng chế hoặc tự mở Saint's Fresh.
 
 ---
 
@@ -423,10 +383,6 @@ Chỉ xác nhận AF **cố ý để mở một khe**.
 
 ### CANON
 
-`T.Gear` được retcon thành:
-
-> **Transfusion EasterFire (TE)**
-
 TE là một thực thể rất mở, nhiễu và nhiều cơ hội.
 
 ML không dựa vào TE cho nền kinh tế chính.
@@ -470,7 +426,7 @@ Không cần định lượng traffic, chiều dài hoặc chi phí ở giai đo
 
 ## 16. AF ↔ TE treaty
 
-### Ranh giới Undie sau retcon 2026-10-05
+### Ranh giới nghề nghiệp trong hiệp ước
 
 Undie trong giao diện AF–TE/ML nay là căn tính nghề, không một lớp Slave. Sự kiện treaty/quan sát/chuyển một số người giữ ở mức quan hệ đã chốt; không xác lập quyền sở hữu hoặc mua bán người. Cơ chế chuyển, đồng thuận, tiêu chí, địa vị pháp lý và quyền quay về/rời đi vẫn `UNKNOWN` (AF-ML-007).
 
@@ -498,7 +454,7 @@ AF
 → nhằm thắt chặt quan hệ / tình hữu nghị
 ```
 
-Không cần đi qua ML như mô hình Quad Night cũ.
+Hiệp ước không đi qua ML.
 
 ---
 
@@ -571,9 +527,9 @@ Không cần mở full macroeconomy ở giai đoạn hiện tại.
 
 ---
 
-## 20. Failure mode — ranh giới sau khi rút Creed
+## 20. Giới hạn của xung đột nội bộ
 
-Trúc Nha có split-self, doctrine riêng và về sau phản đối triết lý tàn bạo ML; ý định không viết như phản bội ngẫu nhiên giữ. Cơ chế success-induced vulnerability từng dựa trên Creed/oath/quorum đã bị rút, kể cả luận điểm 500 năm kiểm chứng loyalty hoặc split-self phá binding. Khung hậu-Creed §26 xác lập phản ứng qua actor/thiết chế khi compliance, access, legitimacy hoặc enforcement biến đổi; không chốt nhánh phản ứng, cơ chế split-self bypass mới hoặc một cuộc phản bội cụ thể đã xảy ra.
+Trúc Nha có split-self, doctrine riêng và về sau phản đối triết lý tàn bạo ML. Hướng thể hiện giữ động cơ có căn cứ. Xung đột vận hành qua tác nhân và thiết chế theo §26 khi compliance, access, legitimacy hoặc enforcement thay đổi. Cơ chế split-self và kết quả của tình huống cụ thể còn mở.
 
 ---
 
@@ -602,7 +558,6 @@ POWER
    ├─ relic representation role
    └─ Holy Guard allegiance
 
-OLD CREED → REMOVED / NO FALLBACK
 POST-CREED GOVERNANCE (§26)
 ├─ verify office/duty oath → evidence, not automatic sanction
 ├─ grant / suspend / revoke sacred access → valid actor/authority/procedure
@@ -613,8 +568,10 @@ STRATEGIC RESOURCE
 └─ Trinity Hexagon district
    → sacred relics
    → timed lending; specific loan enforcement UNKNOWN under post-Creed framework
-   → Saint's Fresh: regenerative relic + authentic Matriarch fresh
+└─ SAINT'S FRESH (§25)
+   → regenerative relic + authentic Matriarch fresh
    → AF periodic licensed-use dependency
+   → exact relationship to Trinity unresolved
 
 AF FOREIGN DEPENDENCY
 ├─ RF axis
@@ -639,52 +596,15 @@ Trúc Nha
 
 ---
 
-## 22. UNKNOWN / deferred
+## 22–23. Phạm vi chưa xác lập và giao diện bảo hộ
 
-Các điểm sau **chưa cần mở** để core ML chạy:
-
-- tên chính thức của người đứng đầu nhà nước;
-- full constitution;
-- full administrative map;
-- full economy;
-- full taxation;
-- full military structure;
-- triển khai khung hậu-Creed §26: tên hệ, oath/access/thẩm quyền/thủ tục/danh mục capability; khung chức năng không còn deferred, các chi tiết vẫn UNKNOWN; không phục hồi magic/bypass/family-bound target cũ;
-- full artifact ownership law;
-- full cult command structure;
-- full Saintess selection system;
-- full succession mechanics;
-- full map mới giữa ML, TE và AF;
-- cơ chế bảo hộ/custody, địa điểm, tư cách pháp lý và phạm vi biết: mẹ MC2 được TE bảo hộ theo chốt 2026-10-05 ở `01`, không còn unknown về host theo nghĩa bảo hộ.
-
----
-
-## 23. Orphaned / needs later retcon
-
-Do Quad Night bị retire, các canon cũ phụ thuộc trực tiếp vào Quad Night trở thành **orphaned** cho đến khi được đặt lại.
-
-Ví dụ quan trọng:
-
-```text
-mẹ MC2
-→ trước đây bị Quad Night strategic custody
-```
-
-Chốt thay thế 2026-10-05:
-
-```text
-mẹ MC2 → được TE bảo hộ
-phạm vi biết → chỉ một số tác nhân
-```
-
-`12` kiểm soát chi tiết chính trị của dữ kiện này; `01` giữ giao diện toàn cục. Không suy ML custody, quyền sở hữu/giam giữ, tị nạn, cơ quan TE, địa điểm hoặc toàn TE biết. Các cơ chế pháp lý và thiết kế lại TE vẫn UNKNOWN / DEFERRED.
+`92` giữ câu hỏi về nhà nước, Thần điện, khung xác minh và quyền tiếp cận, địa lý và thẩm quyền. Mẹ MC2 được TE bảo hộ với phạm vi biết giới hạn. Cơ chế custody, asylum, địa điểm và cơ quan có thẩm quyền còn mở. `12` quản lý chi tiết chính trị, `01` giữ giao diện rộng.
 
 ---
 
 ## 24. Anti-drift nén
 
 ```text
-QUAD NIGHT RETIRED.
 
 HOLY STATE → MATRIARCH'S LAMENT.
 
@@ -708,7 +628,6 @@ HOLY GUARD ≠ NATIONAL GUARD.
 
 HOLY GUARD LOYALTY → SAINTESS.
 
-OLD CREED / COERCIVE OATH / THREE-CLERGY QUORUM REMAIN RETIRED.
 POST-CREED: VERIFICATION ≠ ACCESS DECISION ≠ INSTITUTIONAL PUNISHMENT.
 NEW OFFICE OATH EVIDENCE ≠ AUTOMATIC OBEDIENCE / INJURY / DEATH.
 ACCESS WITHDRAWAL REQUIRES VALID ACTOR / AUTHORITY / PROCEDURE.
@@ -728,15 +647,14 @@ AF DEPENDS ON RF AND ML THROUGH DIFFERENT STRATEGIC AXES.
 AF↔ML HOSTILITY CAN RUN WITH MANDATORY TRADE.
 
 TRÚC NHA'S DOCTRINE AND SPLIT-SELF REMAIN.
-CREED-BASED FAILURE CHAIN IS RETIRED; POST-CREED FRAMEWORK §26 IS CURRENT.
 EXACT IMPLEMENTATION / SPLIT-SELF INTERACTION / BETRAYAL OUTCOME UNKNOWN.
 
 UNKNOWN ≠ PERMISSION TO INVENT.
 ```
 
-## 25. Matriarch, nguồn thánh lực và Saint's Fresh — chốt 2026-10-06
+## 25. Matriarch, nguồn thánh lực và Saint's Fresh
 
-Nguồn tác giả `AetherFire_Matriarchs_Lament_Matriarch_Origin_Saints_Fresh_Canon_2026-10-06.md`; yêu cầu audit và nhập canon. Giữ đầy đủ §§1–15 dưới đây; chỉ đổi cấp heading để chứa trong module. `03` giữ thứ tự nhân quả Fiction 0/điểm đến Fiction 1, không định nghĩa cơ chế transfer chung. Trúc Nha và Matriarch không bị nhập làm một; nguồn gốc Fiction 0 của Trúc Nha đã chốt 2026-10-08, còn cơ chế transfer vẫn mở.
+`03` giữ thứ tự nhân quả Fiction 0 và tọa độ ở Fiction 1. Matriarch và Trúc Nha là hai trường hợp độc lập, chưa có cơ chế chuyển tầng chung.
 
 ### 1. Matriarch — nguồn gốc
 
@@ -922,34 +840,9 @@ UNKNOWN
 
 ---
 
-### 7. Creed — rút khỏi canon hiện hành
+### 7. Giới hạn của nguồn thánh lực
 
-#### CANON SUPERSESSION
-
-Toàn bộ cơ chế **Creed** của Matriarch's Lament bị rút khỏi canon hiện hành trong phạm vi revamp này.
-
-Bao gồm các cơ chế từng gắn với Creed như:
-
-- loyalty oath;
-- life-bound oath;
-- family-bound oath;
-- hậu quả tim mạch do phá oath;
-- clergy quorum ba người;
-- Creed attack surface;
-- các dependency thể chế được xây dựa trên việc Creed có hiệu lực.
-
-Trạng thái mới:
-
-```text
-CREED
-→ REMOVED FROM CURRENT CANON
-→ OLD MECHANICS REMAIN RETIRED
-→ POST-CREED FUNCTIONAL FRAMEWORK NOW CONTROLLED BY §26
-```
-
-Không được dùng cơ chế Creed cũ làm fallback, baseline, analogy anchor hoặc lời giải cho các khoảng trống mới.
-
-Việc Creed bị rút không tự xóa các actor / institution khác như Thần điện, Thánh Nữ, Holy Guard, nhà nước công khai hoặc Cult nếu chúng có căn cứ canon độc lập.
+Nguồn thánh lực và các thiết chế hiện hữu không tự thiết lập cơ chế cưỡng chế qua lời thề. §26 quy định khung chức năng hiện hành.
 
 ---
 
@@ -1152,35 +1045,9 @@ Những quan hệ này giữ `UNKNOWN` nếu chưa được quyết định riê
 
 ---
 
-### 14. Các điểm vẫn mở sau delta này
+### 14. Phạm vi chưa xác lập
 
-#### UNKNOWN / OPEN
-
-Chưa chốt:
-
-1. định nghĩa cuối cùng của “thần”;
-2. exact ontology của thần tính;
-3. Matriarch hiện có linh thể / ý thức hay không;
-4. Matriarch có thể giao tiếp với người sống hay không;
-5. exact cơ chế holy power còn tồn tại trong thi hài;
-6. cơ chế self-regeneration của phần relic trong Saint's Fresh;
-7. tốc độ / giới hạn / chi phí tái tạo;
-8. lượng fresh cần cho mỗi chu kỳ;
-9. fresh bị tiêu hao, biến đổi hay chỉ làm nguồn thần tính;
-10. exact seal target;
-11. exact renewal interval;
-12. exact ritual / technical procedure khi AF dùng Saint's Fresh;
-13. actor nào của ML có quyền cho phép AF sử dụng ngoài access gate của Saintess;
-14. actor nào của AF tiếp nhận / vận hành / chứng kiến;
-15. AF biết đến mức nào về cấu tạo thật của Saint's Fresh;
-16. Cult biết đến mức nào về Matriarch và Saint's Fresh;
-17. ai ám sát Matriarch;
-18. Cult có liên quan vụ ám sát hay không;
-19. động cơ đầy đủ ngoài bất bình chính trị của một số bộ phận AF đã chốt; niên đại nguyên nhân này CONFLICTED / CHRONOLOGY OPEN;
-20. exact quá trình cộng đồng Matriarch trở thành nhà nước ML;
-21. full Saintess selection / succession;
-22. quan hệ giữa Saintess, Matriarch và thần tính ngoài những điểm đã chốt;
-23. Khung hậu-Creed đã chốt ở §26; triển khai oath/access/punishment còn UNKNOWN, không khôi phục Creed.
+`92` giữ câu hỏi về thần tính, vật liệu, cơ chế tái tạo, thẩm quyền sử dụng, tri thức tác nhân, vụ ám sát và sự hình thành ML.
 
 ---
 
@@ -1215,7 +1082,7 @@ SAINTESS KNOWS THE BODY TRUTH.
 LIMITED INNER RELIGIOUS ACTORS ALSO KNOW.
 AF KNOWLEDGE = UNKNOWN.
 
-OLD CREED REMAINS REMOVED; POST-CREED FUNCTIONAL FRAMEWORK IS CURRENT IN §26.
+POST-CREED FUNCTIONAL FRAMEWORK IS CURRENT IN §26.
 
 SAINT'S FRESH = PENTAGONAL SEAL-REINFORCEMENT RELIC.
 
@@ -1245,9 +1112,9 @@ NOT EVERY ML RELIC IS DERIVED FROM MATRIARCH.
 UNKNOWN REMAINS UNKNOWN.
 ```
 
-## 26. Thần quyền hậu-Creed — chốt 2026-10-07
+## 26. Thần quyền hậu-Creed
 
-Nguồn tác giả `AetherFire_Matriarchs_Lament_Post_Creed_Divine_Governance_Canon_2026-10-07.md`; yêu cầu audit và nhập canon. Giữ đầy đủ §§1–13 dưới đây, chỉ hạ cấp heading. Đây là khung chức năng có phạm vi, không full luật/hệ chữa lành/catalogue/thiết chế xét xử hoặc canon hóa một sự kiện mới. Tên hệ vẫn UNKNOWN. §25 giữ nguồn Matriarch/Saint's Fresh; access gate chính tay Saintess, ba linh mục làm chứng và authority ngoại giao không bị đồng nhất hoặc thay thế.
+Khung chức năng này chưa xác lập bộ luật, hệ chữa lành đầy đủ, danh mục năng lực hoặc một sự kiện mới. §25 giữ nguồn Matriarch/Saint's Fresh và giới hạn tiếp cận.
 
 ### 1. Quyết định nền
 
@@ -1700,49 +1567,15 @@ Có thể tồn tại nhiều nghi lễ / quyền / procedure khác nhau dưới
 
 ---
 
-### 12. Những phần chưa chốt
+### 12. Triển khai còn mở
 
-#### UNKNOWN / OPEN
-
-Chưa chốt:
-
-1. tên chính thức của hệ hậu-Creed;
-2. thánh vật / giao diện nào ghi nhận oath;
-3. oath nào bắt buộc đối với chức vụ nào;
-4. exact phạm vi câu oath;
-5. cách phát hiện / xác minh vi phạm;
-6. error rate, false positive, false negative;
-7. khả năng cưỡng ép actor tuyên oath;
-8. actor có quyền yêu cầu kiểm tra;
-9. actor diễn giải kết quả;
-10. chuẩn chứng cứ;
-11. thủ tục xét xử / kỷ luật;
-12. review / appeal;
-13. exact danh mục divine healing;
-14. ai có quyền phân phối;
-15. điều kiện khẩn cấp;
-16. quyền của người không theo tôn giáo;
-17. phạm vi sacred access;
-18. exact relic access law;
-19. sacred office catalogue;
-20. clergy capability catalogue;
-21. Holy Guard blessing / equipment / capability;
-22. relation giữa Holy Guard và Saintess ngoài allegiance hiện hành;
-23. phạm vi family suspicion;
-24. quy tắc chống lạm dụng access denial;
-25. quan hệ giữa hệ này với Cult;
-26. liệu Cult có thể giả mạo, thao túng hoặc chiếm quyền xác minh / access hay không;
-27. quan hệ giữa Matriarch's divinity và từng loại capability;
-28. Matriarch có ý chí hiện hành hay không;
-29. Matriarch có thể từ chối Temple use hay không;
-30. mức nào của hệ này là tôn giáo, luật, hành chính hay hỗn hợp.
+`92` giữ 30 câu hỏi về xác minh, tiếp cận, chữa lành, thẩm quyền thể chế, năng lực và thần tính.
 
 ---
 
 ### 13. Anti-drift nén
 
 ```text
-CREED OLD MECHANICS REMAIN RETIRED.
 
 BROKEN OATH
 != AUTOMATIC INJURY
@@ -1794,7 +1627,7 @@ SYSTEM NAME = UNKNOWN.
 UNKNOWN REMAINS UNKNOWN.
 ```
 
-## 27. Giant, Hoa Nguyệt và conflict Matriarch–ML–AF — chốt 2026-10-08
+## 27. Giant, Hoa Nguyệt và xung đột niên đại Matriarch–ML–AF
 
 ### Ancient Giant / firewall
 

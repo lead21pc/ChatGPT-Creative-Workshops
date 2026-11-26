@@ -8,8 +8,7 @@
 > Load mode: `FULL_FILE`
 
 > **Domain:** narrator personification, Elena POV grammar, Fictionize/POC narrative functions, deadpan humor, tragedy and the narrator split at Clash #2.  
-> **Causal dependency:** `03_METAFICTION_CANON_TIMELINE_CURRENT.md` controls the clash and Canon 1/Canon 2 timeline. Narrator personification does not establish transfer or loss of the underlying esper ability.\
-> **Clothing exclusion:** source section `# 11. Dark humor của trang phục` is deliberately not imported. This file does not restate or revive its older visual reading. All Undi professional-uniform canon remains controlled exclusively by `13_UNDIE_SYSTEM_CURRENT.md`; compulsory rank-color/two-stage humiliation is retired by the 2026-10-05 revamp.
+> **Causal scope:** `03_METAFICTION_CANON_TIMELINE_CURRENT.md` controls the clash and Canon 1/Canon 2 timeline. Narrator personification does not establish transfer or loss of esper ability. `13_UNDIE_SYSTEM_CURRENT.md` controls Undi visual and professional-uniform canon.
 > Source labels such as `CANON`, `DESIGN INTENT` and `PROPOSAL / KHÔNG PHẢI CANON` retain their original truth status.
 
 ## Part I — Narrator ontology, POV and comic grammar
@@ -318,15 +317,9 @@ Sự im lặng chính là phần hoàn tất joke.
 
 ## Part II — Fall, clashes and narrator separation
 
-### 9. Hài đen của ý định, cơ chế và hệ quả — ranh giới retcon
+### 9–10. Hài đen nhân quả và thể chế
 
-Nguyên tắc trình bày vẫn là ý định, cơ chế và kết quả lệch nhau nhưng hợp nhân quả. Không còn dùng chuỗi Civil→Undie→kháng chiến giả→án phản quốc để chứng minh nguyên tắc ấy trong current canon.
-
-Undie không tự sinh bất mãn/kháng chiến hoặc là một bộ máy an ninh thống nhất. Mạng nghề có thể cho tiếp cận vùng xám, nhưng tuyến MC2, bẫy, agency biết gì và hậu quả phải được chốt riêng. Không tạo một joke mới rồi dùng nó làm lore.
-
-### 10. Hài đen thể chế — không phục hồi hồ sơ hạ cấp
-
-Sự lệch giữa bề ngoài thủ tục và tác động thực có thể là nguyên tắc hài đen thể chế. Chuỗi đánh tráo giấy tờ→mất status→Civil→Undie rank/credit cũ đã bị supersede, không còn là sự kiện hiện hành để dùng mặc định. Nguyên tắc kể chuyện không cấp quyền viết thủ tục hoặc tội ác thay thế.
+Ý định, cơ chế và kết quả có thể lệch nhau mà vẫn hợp nhân quả. Bề ngoài thủ tục và tác động thực cũng có thể tạo độ lệch ấy. Nghề Undie không tự sinh kháng chiến hoặc tạo một bộ máy an ninh thống nhất. Giao diện vùng xám, tri thức tác nhân và hệ quả cần căn cứ riêng. Nguyên tắc trình bày không xác lập một sự kiện hay thủ tục.
 
 ---
 
@@ -615,58 +608,9 @@ POC = “tôi”
 
 ## Part III — Language, silence, anti-drift and unresolved mechanics
 
-### 19. Hướng chuyển joke sang tiếng Anh
+### 19. Phương án chuyển ngữ
 
-#### PROPOSAL / KHÔNG PHẢI CANON
-
-Không nên dịch máy:
-
-```text
-“chúng”
-→
-“chúng tôi”
-```
-
-vì tiếng Anh không có đúng ambiguity đó.
-
-Hướng phù hợp hơn:
-
-```text
-we
-→ me
-```
-
-và dùng ý:
-
-```text
-switch roles
-```
-
-Một số logic joke có thể khai thác:
-
-```text
-“There used to be a we.”
-“Now there’s a me.”
-```
-
-hoặc:
-
-```text
-“I lost us.”
-```
-
-Câu “I lost us” có hai lớp:
-
-```text
-nghe như bi kịch quan hệ
-
-nhưng
-
-POC chỉ đang giải thích
-mình đã mất trạng thái “we”
-```
-
-Đây là deadpan meta-humor đúng với ontology.
+Cấu trúc tiếng Anh còn mở theo `92`. Ngữ pháp POV và logic của trò đùa trong bản hiện hành giữ ở Parts I–II.
 
 ---
 
@@ -945,9 +889,6 @@ fiction structure.
 Tách narrator
 ≠ tự động tách esper ability.
 
-Joke POC gặp MC1:
-we → me
-là hướng chuyển ngữ tiếng Anh phù hợp hơn dịch máy.
 
 “CHÚNG TÔI”
 ≠ consensus.
@@ -964,26 +905,11 @@ NARRATOR GAG
 
 ---
 
-### 24. Các điểm chưa tự suy thêm
+### 24. Giới hạn về người kể chuyện
 
-Giữ `UNKNOWN` nếu chưa có chốt mới:
+Mức tự ý thức, việc chia sẻ bộ nhớ, quyền tác động và cơ chế phân tách còn mở. `92` giữ các câu hỏi chi tiết.
 
-- mức tự ý thức chính xác của Fictionize-personification;
-- mức tự ý thức chính xác của POC-personification;
-- hai narrator có chia sẻ toàn bộ thông tin hay không;
-- khi còn là “chúng tôi”, có tồn tại một memory chung hay chỉ hai memory song song;
-- sau clash #2, memory nào đi theo ai;
-- narrator-personification có thể tác động trực tiếp lên actor hay chỉ bình luận;
-- MC3 có tiếp tục nhận biết POC-personification sau khi nó đi với MC1 hay không;
-- MC1 có tiếp tục nhận biết Fictionize-personification khi nó ở với Elena hay không;
-- exact mechanics tạo ra sự phân tách tại clash #2;
-- exact condition khiến narrator im lặng hoặc bất đồng;
-- exact ngữ pháp khi hai narrator nói riêng so với nói bằng “chúng tôi”;
-- cách joke “we / me / switch roles” cuối cùng sẽ được chốt ở bản tiếng Anh.
-
-Không tự lấp các điểm trên chỉ vì chúng hợp trope hoặc hợp một cách đọc meta cụ thể.
-
-## 25. Tri thức MC2 và ranh giới narrator/năng lực — chốt 2026-10-08
+## 25. Tri thức MC2 và ranh giới narrator/năng lực
 
 POC-personification và Fictionize-personification đã ở cùng MC2 trong khoảng thời gian trước đó. Vì vậy MC2 đủ hiểu POC/Fictionize là gì, bản thân cô là gì và thực chất thế giới cô đang sống là gì. Không suy cô biết toàn bộ Canon 1/V1.0, lịch sử Fiction 0, kỹ thuật năng lực hoặc sự kiện chưa tiếp cận; thời điểm đạt từng mức tri thức còn `UNKNOWN`.
 

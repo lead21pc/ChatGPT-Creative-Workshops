@@ -7,9 +7,6 @@
 > Cross-domain owner boundary: AF national, Mage Council and northeastern-site profile by `AFM-013`; global geopolitics and cross-domain interfaces by `AFM-001`; MC4 identity and biological/cognitive configurations by `AFM-006`; Undie and Undi by `AFM-003`; metafiction and cross-world status by `AFM-004`.
 > Load mode: `FULL_FILE`
 
-> **Integration:** 2026-10-02; user-approved Academy domain split and military-training delta integration.
-> **Sources:** Academy canon previously maintained in `01_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md`, plus `Source_Archive/aetherfire_battlemage_academy_military_training_canon_delta_2026-09-25.md`.
-> **Truth boundary:** unanswered implementation details remain `UNKNOWN`; this consolidation does not adopt MC2 sacrifice proposals or historical RP events.
 
 ## 1. Định danh, phạm vi và giao diện
 
@@ -613,44 +610,15 @@ Year 6 includes supervised exposure to a professional unit environment before fi
 
 ## 11. Giới hạn, UNKNOWN và khóa chống trôi
 
-### Lab boundary and removed route
+### Phòng nghiên cứu và việc chưa đạt chuẩn
 
-Lab subjects may be used as live targets. Personhood, awareness, pain, consent/coercion, regeneration, death permanence, legal status, oversight and exact student protocol remain `UNKNOWN`; moral grayness is a design requirement, not permission to invent those facts.
+Lab subjects may be used as live targets. Personhood, awareness, pain, consent/coercion, regeneration, death permanence, legal status, oversight and exact student protocol remain `UNKNOWN`. Moral grayness is a design requirement.
 
-```text
-Academy failure → Undie = REMOVED FROM CURRENT SETTING
-```
+Academic failure does not create an automatic Undie transition.
 
-Academic failure does not create an automatic Undie transition. The former route is excluded from current canon and reconsideration layers.
+### Triển khai còn mở
 
-### UNKNOWN / cần thiết kế tiếp
-
-Các điểm sau chưa được tài liệu này giải quyết:
-
-1. tên chính thức của Học viện;
-2. quan hệ chỉ huy Học viện ↔ khu Đông Bắc ↔ Hội đồng Pháp sư;
-3. quân hàm và chức danh;
-4. quy mô đơn vị hành chính;
-5. quy mô khóa học;
-6. tỷ lệ DI/học viên;
-7. quyền pháp lý chi tiết của DI;
-8. mức hình phạt DI có thể áp dụng trực tiếp;
-9. cơ chế kháng nghị;
-10. cơ quan chuẩn nhận cuối;
-11. cơ chế đánh giá và tái chuẩn nhận;
-12. cơ chế bảo mật giữa cố vấn, y tế và chỉ huy;
-13. phân vai chuyên môn trong tổ 5 người;
-14. ngưỡng kích hoạt tổ 5 người;
-15. quyền triển khai thực địa;
-16. loại nhiệm vụ năm 6;
-17. quan hệ giữa Học viện và các đơn vị quân đội chuyên nghiệp;
-18. quy tắc chuyển giao học viên thành quân nhân/nhân sự chuyên nghiệp;
-19. cơ chế xử lý học viên không đạt chuẩn;
-20. quyền hạn của Học viện đối với phòng nghiên cứu, cổng dịch chuyển và các cơ sở lân cận.
-
-Không được tự động lấp các mục trên bằng cấu trúc quân đội ngoài đời hoặc mô hình Marine Corps nếu chưa được người dùng chốt.
-
-Additional preserved unknowns from the prior Academy baseline: entry age; exact site map; specialist/dangerous-practice group sizes; per-term competency gates; scholarship weights, thresholds, funding percentage, approving authority and external-work liability; definition of `quality`; and lab-subject/live-target details stated above. `10` §5 retains the site-level profile, `01` the global interface and `92` the open-issue routing.
+`92` giữ các câu hỏi về tên chính thức, triển khai chương trình, tổ chức, DI, cấp chuẩn, nhiệm vụ, học bổng và thẩm quyền với cơ sở lân cận. Các giới hạn cần để hiểu từng cơ chế giữ ở mục tương ứng. `10` §5 giữ hồ sơ địa điểm và `01` giữ giao diện thế giới.
 
 ### Khóa chống trôi
 

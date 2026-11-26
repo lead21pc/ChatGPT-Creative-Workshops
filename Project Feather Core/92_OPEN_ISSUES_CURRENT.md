@@ -47,20 +47,17 @@
 
 
 
-## Địa chỉ miền hiện hành — 2026-10-07
+## Đọc hồ sơ theo miền
 
-Số file đã chuyển theo họ; `01` thế giới, `02` công nghệ chung, `10` hồ sơ AF, `11–14` miền AF, `20` Hoa Nguyệt, `30` RF, `40` ML. `03–06` là các miền độc lập/xuyên quốc gia. `91` ghi bản đồ tiền nhiệm và nơi chuyển từng section; ID issue và trạng thái chưa giải quyết giữ nguyên.
+`00` chỉ nguồn quản lý. Quyết định tách miền và hồ sơ đã đóng ở `91`.
 
-| ID | Loại / trạng thái | Điều cần giữ / nơi quản lý |
+| ID | Trạng thái | Phần còn mở |
 | --- | --- | --- |
-| AF-ORG-001 | LOGIC / RESOLVED — cấu trúc tài liệu | `01` project/thế giới khác `10` quốc gia AF; không chuyển genre/HOPE thành nhà nước. |
-| AF-ORG-002 | UNKNOWN / OPEN — phạm vi đã làm rõ | `02` nền chung không xác lập universal deployment/standards/backend; mô hình Guest Pass AF ở §§4–8 chưa chính sách toàn cầu. |
-| AF-ORG-003 | UNKNOWN / OPEN | `10` §5/§8 và `14` §11: Hội đồng–chi nhánh–Học viện, địa hạt/ownership/lab/cổng còn mở. Cùng họ tài liệu không xác lập chỉ huy. |
-| AF-ORG-004 | LOGIC / RESOLVED — phân miền | `30` sở hữu nội bộ RF/retcon; `12` sở hữu chính trị AF và giao diện AF–RF, không sở hữu RF. |
-
+| AF-ORG-002 | UNKNOWN / OPEN | Mức triển khai, chuẩn dùng chung và backend của nền công nghệ. Guest Pass ở `02` §§4–8 giữ phạm vi AF. |
+| AF-ORG-003 | UNKNOWN / OPEN | Quan hệ Hội đồng–chi nhánh–Học viện, địa hạt, quyền với phòng nghiên cứu và cổng. Xem `10` §§5/8 và `14` §11. |
 ## 1. Processing rule
 
-This register is read first to expose unstable premises. Read order is not authority order. For every touched item, open the named current-domain file; before reading a new source, open the cited section of `91_RECONCILIATION_RECORD.md` when provenance or conflict reasoning matters.
+Đọc đầy đủ sổ này cùng `00` theo hợp đồng Router. Khi vấn đề chạm mệnh đề hiện hành, đọc nguồn quản lý tương ứng. Router quy định trường hợp cần đọc đầy đủ `91`.
 
 A newly supplied source remains `UNCONFIRMED` until explicit user acceptance. Compare it with both the current baseline and every affected entry here. Do not silently close, overwrite or fill an open item.
 
@@ -142,25 +139,12 @@ Only explicit current user confirmation can restore an old claim. Restoring one 
 | AF-AV-007 | UNKNOWN / OPEN — nền cũ SUPERSEDED | Cấu hình không phận hỗn hợp và exact identification/crossing/separation/restricted-zone/rescue/accident-investigation/military-control. | `06` §§5–6; sơ đồ ba lớp với magical flight không còn current theo quyết định 2026-10-06. Giữ các câu hỏi độc lập; không gán một hệ thay thế. |
 | AF-AV-008 | UNKNOWN / OPEN — danh mục tu tiên SUPERSEDED | Năng lực bay/chiến đấu/cơ động bản địa RF phải xác lập lại. | `06`; không mặc định cultivation tradition/pháp khí/trận pháp/sinh vật bay, không suy RF yếu hoặc AF air supremacy. |
 
-## 8. Closed/superseded items from these integrations
-
-| ID | State | Resolution |
-| --- | --- | --- |
-| AF-OPEN-005 | SUPERSEDED — not an active mapping problem | Đồ thị màu/rank Undie đã nghỉ hưu; không tiếp tục tìm crosswalk như thể nó còn hiệu lực. | `13` §2; `91` AF-UR-002. Career Rank ngoài Undie và khả năng dùng trong nghề mới chưa chốt. |
-| AF-OPEN-006 | SUPERSEDED | Bare credit/cost/bonus/unlock trong web Undie cũ không còn là biến mặc định cần ánh xạ. | `11`/`13`; `91` AF-UR-007. Cash + state-backed Credits là mốc tiền; denomination ví khách vẫn UNKNOWN độc lập. |
-| AF-OPEN-014 | SUPERSEDED — replacement design remains OPEN | Credit Line thế chấp địa vị/người và thủ tục exit cũ đã nghỉ hưu; lending/advances/remedies mới chưa chốt. | `13` §6; `91` AF-UR-007; AF-UR-OPEN-003. Không tạo thế chấp người hoặc nợ→dịch vụ tình dục. |
-| AF-AV-001 | RESOLVED | AF is the only currently confirmed actor with stable, scalable aviation infrastructure; this is not a universal/permanent monopoly claim and does not negate other actors' flight capability. |
-| AF-AV-004 | RESOLVED | No numeric flight volume is canonized. Exact capacity/throughput remains `UNKNOWN`; current wording is mass, scheduled and scalable operation. |
-| AF-OPEN-030 | RESOLVED / REMOVED | `Academy failure → Undie` is not a current or reconsideration route. Archived occurrence is provenance only. |
-| AF-ML-002 | RESOLVED | Trúc Nha thuộc ML, vai trò giữ nguyên; người Việt Nam từ Fiction 0 đã chốt 2026-10-08. Cơ chế chuyển giới UNKNOWN. |
-| AF-OPEN-032 / AF-ML-009 | RESOLVED / REMOVED | `foreign spy / infiltrator → punitive Undie` is removed from current canon and reconsideration because it no longer fits the political-centric setting. Archived occurrence is provenance only; replacement legal/status handling remains `UNKNOWN`. |
-
 ## 9. Institution/technology/guest-service implementation — 2026-10-03
 
 | ID | Type / state | Open issue | Required baseline and dependency |
 | --- | --- | --- | --- |
-| AF-TECH-001 | UNKNOWN / OPEN | Terminal appearance/material, wearer authentication, retina/body-link/consent/deactivation, private audio, energy, foreign-currency settlement, wallet denomination, unused balance, lost/damaged deposit and wallet recovery, guest access/legal recognition/exit after revoke, responsible agencies, privacy/retention, offline continuity, deposit values and future Undie hardware relation. | `02` section 9 retains all fifteen source groups and AF-NEW-002/007; `11` controls status. AF-OPEN-008 và triển khai thiết bị vẫn mở; AF-OPEN-006/014 đã supersede trong phạm vi Undie cũ. Locking a device does not erase money/status or resolve exit rights. |
-| AF-TECH-002 | UNKNOWN / OPEN | Industrial energy, possible future nano mechanism, standards authority, ID/payment ownership, data architecture, backend concentration, privacy/data rights, cybersecurity, robot/android production, automation share, rare materials, device/aircraft costs, procurement, banking/currency/public finance and inter-sector technology gaps. | `02` section 9 retains fifteen source groups; `06` controls aviation. Historical nano is not accepted canon and industry-scale inference does not close these items. |
+| AF-TECH-001 | UNKNOWN / OPEN | Terminal appearance/material, wearer authentication, retina/body-link/consent/deactivation, private audio, energy, foreign-currency settlement, wallet denomination, unused balance, lost/damaged deposit and wallet recovery, guest access/legal recognition/exit after revoke, responsible agencies, privacy/retention, offline continuity, deposit values and future Undie hardware relation. | `02` holds the functional model, with all fifteen source groups below; `11` controls status. AF-OPEN-008 và triển khai thiết bị vẫn mở; AF-OPEN-006/014 đã supersede trong phạm vi Undie cũ. Locking a device does not erase money/status or resolve exit rights. |
+| AF-TECH-002 | UNKNOWN / OPEN | Industrial energy, possible future nano mechanism, standards authority, ID/payment ownership, data architecture, backend concentration, privacy/data rights, cybersecurity, robot/android production, automation share, rare materials, device/aircraft costs, procurement, banking/currency/public finance and inter-sector technology gaps. | The detailed list is below in this register; `06` controls aviation. Historical nano is not accepted canon and industry-scale inference does not close these items. |
 | AF-STATE-001 | UNKNOWN / OPEN | Domain-specific lawmaking/interpretation/enforcement/veto; Parliament budget/appointment/investigation powers; Crown rights; security data-sharing; recognition of civil/professional groups; lawful opposition boundary; infrastructure ownership; standards/operations authority across ID/payment/aviation/security; infrastructure funding; material/manpower/energy/political bottlenecks. | `12` section 5.1; ten State Notes questions preserved. Multipolar power does not establish constitutional precedence, agency mandates or universal high state capacity. |
 
 ## Civil baseline: câu hỏi triển khai — 2026-10-05
@@ -236,7 +220,7 @@ Retcon đã được người dùng chấp nhận; không phải một đề xu�
 | AF-UR-OPEN-004 | UNKNOWN / OPEN | Nhu cầu chợ xám/đen, hàng hóa/dịch vụ, ẩn danh/access, tổ chức/intermediary/House và quan hệ hợp đồng/bảo trợ cụ thể. | `13` §§7/9. Các ví dụ chưa phải catalogue hoặc tổ chức đã thành lập. |
 | AF-UR-OPEN-005 | UNKNOWN / OPEN | Undi thực tế, vật liệu/rập/độ che phủ/tùy biến, vai trò dữ liệu/hardware nghề, body link/consent/deactivation, quyền lệnh và tích hợp terminal. | `13` §§8/10; `02` giữ năng lực công nghệ/Guest Pass và unknown chuyển đổi. |
 | AF-UR-OPEN-006 | UNKNOWN / OPEN | Luật tử vong/điều tra/bồi thường, cơ quan và trigger an ninh, các tác nhân phản đối/cải cách, đường tiếp cận kháng chiến/scandal có căn cứ. | `13` §§11–14. Không tạo Anti-Undie Institution hoặc friendly-fire event mặc định. |
-| AF-UR-OPEN-007 | TUYẾN CHÍNH ĐÃ THAY THẾ / GIAO ĐIỂM CÒN MỞ | Khả năng MC2 tiếp xúc Undie về sau, nghề, vỏ bọc/biến đổi, tác nhân vận hành, liên hệ đầu, hoạt động vùng xám, đường tới mẹ và kết quả. | `13` §16 giữ hướng tiền nhiệm; `03` §14 giữ tuyến Học viện. Swap và lịch giải cứu vẫn là các hướng chưa thành sự kiện. |
+| AF-UR-OPEN-007 | TUYẾN CHÍNH ĐÃ THAY THẾ / GIAO ĐIỂM CÒN MỞ | Khả năng MC2 tiếp xúc Undie về sau, nghề, vỏ bọc/biến đổi, tác nhân vận hành, liên hệ đầu, hoạt động vùng xám, đường tới mẹ và kết quả. | `13` §16 giữ giao điểm nghề; `03` §14 giữ tuyến Học viện. Swap và lịch giải cứu vẫn là các hướng chưa thành sự kiện. |
 | AF-UR-OPEN-008 | DEFERRED | TE tourism/experience-economy revamp: institutions/economy/law/professions/Undie relation. | `13` §15; không tự thay `40`. |
 | AF-UR-OPEN-009 | UNKNOWN / REQUIRES RECONCILIATION | Chi tiết cũ không tự chuyển sang nghề mới: intake ages/counts/gender, workload/bonuses, branch-specific 1:1/prepaid workline, transport/services, inheritance/health/AI rules còn phụ thuộc kiến trúc cũ. | `91` AF-UR-LEGACY; không khẳng định chúng bị phủ định hoặc đã được khôi phục. |
 
@@ -574,8 +558,7 @@ File này không tự chốt:
 
 ### Đủ phạm vi chưa chốt từ nguồn địa lý §3
 
-- Tuyến Hoa Nguyệt–Matriarch's Lament đang vận hành hay không.
-- Tuyến Hoa Nguyệt–Raging Fire đang vận hành hay không.
+- Đường đi và cách vận hành của thương mại Hoa Nguyệt–ML/RF đã xác nhận. Quan hệ giữa đối tác RF cụ thể và Raging Fire lineage chưa chốt.
 - Cường quốc phía Bắc nào, nếu có, giao thương trực tiếp với Hoa Nguyệt.
 - Đường bộ, tuyến biển/hàng không/sông, đèo, cửa khẩu, cảng, trạm caravan hoặc polity trung gian cụ thể.
 - Phương thức vận tải trên từng tuyến.
@@ -639,3 +622,164 @@ Khung chức năng đã được tác giả chốt; không đồng nghĩa chốt
 28. Matriarch có ý chí hiện hành hay không;
 29. Matriarch có thể từ chối Temple use hay không;
 30. mức nào của hệ này là tôn giáo, luật, hành chính hay hỗn hợp.
+
+## Danh mục câu hỏi theo miền
+
+### Terminal và nền công nghiệp · AF-TECH-001/002
+
+1. Hình thức/vật liệu thiết bị.
+2. Xác thực người đeo.
+3. Retina implementation; liên kết cơ thể, đồng thuận và vô hiệu hóa khi tháo/trả/mất.
+4. Private audio implementation và chuyển đổi từ bone-integrated audio.
+5. Nguồn năng lượng terminal.
+6. Quyết toán foreign currency/AetherFire Credits.
+7. Guest Wallet denomination.
+8. Xử lý unused balance lúc exit.
+9. Lost/damaged-device accounting, deposit cũ/mới và wallet recovery.
+10. Full access matrix, admission/legal recognition và xác thực/exit sau mất/trả/revoke.
+11. Agencies chịu trách nhiệm identity/payment/access/device lifecycle.
+12. Privacy/data-retention law.
+13. Offline behavior và service continuity.
+14. Mức deposit theo quốc gia/đồng tiền.
+15. Quan hệ với future revised Undie hardware.
+
+industrial energy; cơ chế nanotechnology nếu sau này phục hồi; device standards authority; ownership ID/payment network; national data architecture; backend concentration/distribution; privacy/data-rights; cybersecurity; robot/android production scale; automation share; rare-material supply; collar/Undi/aircraft cost; procurement; banking/currency/public finance; civilian/commercial/military/intelligence technology gaps. Việc ghi câu hỏi không chấp nhận nanofabric hay một ngành công nghiệp cụ thể thành canon.
+
+### Metafiction và người kể chuyện
+
+- Fiction 1 được tạo ra, hiện thực hóa hay truy cập theo cơ chế nào;
+- full mechanics của Fictionize;
+- full giới hạn Fictionize khi MC1 ở bên trong Fiction 1, ngoài khả năng đã chốt tại Part V;
+- full mechanics của Proof of Concept;
+- vì sao “hope” dẫn tới MC3 bị kéo vào;
+- ai/điều gì là chủ thể trực tiếp thực hiện thao tác kéo MC3 ở tầng cơ chế;
+- full relation giữa Raging Phoenix và giao diện Fiction 0/Fiction 1;
+- MC1 có thể rời Fiction 1 bằng cách nào;
+- MC3 có thể rời Fiction 1 bằng cách nào;
+- competency ngoài năng lực esper của MC1;
+- competency ngoài phần đã biết của MC3;
+- thời điểm và độ sâu từng lớp tri thức meta của MC2 ngoài phạm vi đã chốt tại Part V;
+- extent tri thức meta của các actor khác.
+
+- exact physics/metaphysics khiến hai pathway overlap;
+- cơ chế kỹ thuật của Clash #1 và Clash #2 ngoài quan hệ nhân quả đã chốt;
+- áp lực nhân quả là lực đo được trong thế giới hay là mô tả ở tầng siêu hư cấu, và cơ chế chính xác của nó;
+- cách một cái chết khả dĩ của MC2 có thể xảy ra ở Canon 2, cũng như MC2 có chết sau khi MC1 tới hay không;
+- exact state-space definition của overlap;
+- exact phần nào Canon 1 còn causal-active sau MC1 entry;
+- exact endpoint Canon 2;
+- exact role cuối của hôn phu trong Canon 2;
+- exact hình thức sụp đổi AetherFire;
+- full Raging Phoenix mechanics ngoài rule đã chốt;
+- full Fictionize mechanics;
+- full POC mechanics;
+- MC1/MC3 trở về Fiction 0 thế nào;
+- cosmology sâu hơn của Fiction 0/Fiction 1.
+
+- full mechanism khiến “hope” của MC3 phản tác dụng;
+- exact causal link giữa Hoàng hậu, Proof of Concept và việc MC3 bị gọi;
+- mức MC3 biết về V1.0 sau khi rời Fiction 0;
+- mức MC2 biết Canon 1/Canon 2;
+- mức các actor bản địa hiểu tầng Fiction 0;
+- full mechanism The Raging Phoenix xuyên hai fiction;
+- full powerset của Fictionize bên trong Fiction 1;
+- MC1/MC3 có thể trở về Fiction 0 hay không và bằng cách nào;
+- exact endpoint của Canon 2/current world-state sau khi MC1 xuất hiện.
+
+- mức tự ý thức chính xác của Fictionize-personification;
+- mức tự ý thức chính xác của POC-personification;
+- hai narrator có chia sẻ toàn bộ thông tin hay không;
+- khi còn là “chúng tôi”, có tồn tại một memory chung hay chỉ hai memory song song;
+- sau clash #2, memory nào đi theo ai;
+- narrator-personification có thể tác động trực tiếp lên actor hay chỉ bình luận;
+- MC3 có tiếp tục nhận biết POC-personification sau khi nó đi với MC1 hay không;
+- MC1 có tiếp tục nhận biết Fictionize-personification khi nó ở với Elena hay không;
+- exact mechanics tạo ra sự phân tách tại clash #2;
+- exact condition khiến narrator im lặng hoặc bất đồng;
+- exact ngữ pháp khi hai narrator nói riêng so với nói bằng “chúng tôi”;
+- cách joke “we / me / switch roles” cuối cùng sẽ được chốt ở bản tiếng Anh.
+
+Phương án chuyển ngữ chưa chốt dùng `we → me` và `switch roles`. “There used to be a we. Now there’s a me.” và “I lost us.” là ví dụ. Các ứng viên xuyên tầng chưa thành canon gồm undead ở tây Hoa Nguyệt, sheep-man ở cường quốc Thú Nhân phương Bắc, họa sĩ, bard, doanh nhân du hành thời gian và tù nhân chính trị. Chưa xác lập cơ chế, cosmology, phe hay tri thức chung giữa họ.
+
+### Hàng không, hồ sơ AF và Học viện
+
+- exact constitutional form của RF;
+- exact RF actor có sovereignty/ATC authority;
+- exact number và topology của RF member states;
+- exact airspace altitude bands của AF hoặc RF;
+- exact aircraft technology và nguồn lực;
+- exact capacity/throughput;
+- exact route network;
+- exact airport ownership;
+- exact cabotage law;
+- exact customs/tax allocation;
+- exact military flight-control doctrine;
+- nền sức mạnh, năng lực bay/chiến đấu/cơ động bản địa RF và cấu hình không phận cần xác lập lại; không dùng cultivation traditions làm danh mục mặc định;
+- exact mức độ domestic aviation mà RF đã đạt ở hiện tại.
+
+- Exact ritual/ancestral mechanics của phong ấn Giant/lập quốc, maintenance và quan hệ Raging Fire/Raging Phoenix–long mạch–firewall ngoài chuỗi nguồn gốc đã chốt.
+- Nhà cung cấp, bên hợp đồng, bảo trì, authorization và cơ chế bearer/hiến tế; consent/sống-chết và liên hệ trait tái sinh.
+- Hiến định, quyền làm luật/diễn giải/thi hành/veto, ngân sách/bổ nhiệm/điều tra, ownership hạ tầng và chia sẻ thông tin.
+- Mage Council–chi nhánh–Học viện: pháp lý/chỉ huy, địa hạt/lãnh thổ, lab/cổng, gate access và trạng thái sau divergence.
+- AF-OPEN-031 về tên lab; không suy personhood hoặc đổi species từ nhãn.
+- Luật nghề, hợp đồng/giấy phép, cơ chế xuất khẩu Undie và phản ứng văn hóa/ngoại giao.
+- Rollout/standards/currency/backend/data và dịch vụ khách sau revoke/trả/mất.
+- Địa lý mới AF–ML–TE; không remap hành lang Quad Night 100 km, custody hoặc sườn Học viện cũ.
+
+Các câu hỏi Civil tại AF-CR-OPEN-001–007 còn gồm re-entry và chống lợi dụng hệ thống.
+
+1. tên chính thức của Học viện;
+2. quan hệ chỉ huy Học viện ↔ khu Đông Bắc ↔ Hội đồng Pháp sư;
+3. quân hàm và chức danh;
+4. quy mô đơn vị hành chính;
+5. quy mô khóa học;
+6. tỷ lệ DI/học viên;
+7. quyền pháp lý chi tiết của DI;
+8. mức hình phạt DI có thể áp dụng trực tiếp;
+9. cơ chế kháng nghị;
+10. cơ quan chuẩn nhận cuối;
+11. cơ chế đánh giá và tái chuẩn nhận;
+12. cơ chế bảo mật giữa cố vấn, y tế và chỉ huy;
+13. phân vai chuyên môn trong tổ 5 người;
+14. ngưỡng kích hoạt tổ 5 người;
+15. quyền triển khai thực địa;
+16. loại nhiệm vụ năm 6;
+17. quan hệ giữa Học viện và các đơn vị quân đội chuyên nghiệp;
+18. quy tắc chuyển giao học viên thành quân nhân/nhân sự chuyên nghiệp;
+19. cơ chế xử lý học viên không đạt chuẩn;
+20. quyền hạn của Học viện đối với phòng nghiên cứu, cổng dịch chuyển và các cơ sở lân cận.
+
+Additional preserved unknowns from the prior Academy baseline: entry age; exact site map; specialist/dangerous-practice group sizes; per-term competency gates; scholarship weights, thresholds, funding percentage, approving authority and external-work liability; definition of `quality`; and lab-subject/live-target details stated above.
+
+### Matriarch's Lament
+
+- tên chính thức của người đứng đầu nhà nước;
+- full constitution;
+- full administrative map;
+- full economy;
+- full taxation;
+- full military structure;
+- triển khai khung hậu-Creed §26: tên hệ, oath/access/thẩm quyền/thủ tục/danh mục capability; khung chức năng không còn deferred, các chi tiết vẫn UNKNOWN; không phục hồi magic/bypass/family-bound target cũ;
+- full artifact ownership law;
+- full cult command structure;
+- full Saintess selection system;
+- full succession mechanics;
+- full map mới giữa ML, TE và AF;
+- cơ chế bảo hộ/custody, địa điểm, tư cách pháp lý và phạm vi biết: mẹ MC2 được TE bảo hộ theo chốt 2026-10-05 ở `01`, không còn unknown về host theo nghĩa bảo hộ.
+
+### Phương án và giả thuyết MC2 cần đối chiếu với tuyến Học viện
+
+- **P1–P3:** Operation Swap, thế thân công khai và nhánh giải cứu tùy tri thức tác nhân. Chưa chốt sự kiện, người bảo trợ, đồng ý, độ bền vỏ bọc hay ai biết người thật.
+- **P4–P8, P11, ma trận VII:** nhánh phản gián, giữ MC2 hoặc khai thác bằng chứng khi cô thoát, phân hóa các khối RF, leo thang theo mốc phong ấn và kênh kháng chiến bị gài/chiếm. Cây hành động vẫn là ứng viên. Nguyên tắc nhiều phương án thuộc phần đã chốt ở `12`.
+- **P9–P10:** động cơ có thể dẫn tới bảo toàn MC2 và đề xuất duy trì người thế thân nếu xảy ra cái chết hoặc hiến tế. Các sự kiện trong tiền đề đó chưa chốt.
+- **H1–H5:** giá vương triều của ly khai, động cơ bản địa hóa huyết hệ, điều kiện thay đổi sức hút của phương án hiến tế, cách đọc tín hiệu ngừng hỗ trợ RF và vai trò MC2 trong tính toán địa chính trị. H4 giữ phần tín hiệu đã chốt tách khỏi suy đoán về cơ chế thay thế và người mang.
+- **H6:** điểm giao Clash #2 theo `03`. Các mắt xích khủng hoảng chính trị từng nêu vẫn cần căn cứ.
+- **D1–D4:** TE, danh mục nghề Undie, sơ đồ an ninh AF và hiến định RF tiếp tục ở trạng thái hoãn hoặc mở trong đúng phạm vi.
+
+Các mục patrol, barrier, dịch vụ đặt riêng, thiết kế an ninh và một số chức năng Hội đồng Pháp sư từng ghi là đang cân nhắc. Cần xác định tình trạng hiện thời của từng phần trước khi dùng. Địa chỉ nguyên văn ở `91`.
+
+### Các câu hỏi xuyên miền từ hồ sơ thế giới
+
+- Cách MC1 và MC3 có thể trở về Fiction 0, điểm kết sau khi MC1 xuất hiện, powerset Raging Phoenix ngoài phần đã chốt, và chiều sâu tri thức sự tồn tại ngoài thế giới của gia tộc mẫu hệ và Cult vẫn mở hoặc `SEALED` theo trường hợp.
+- Quy trình an toàn phần cứng nghề, luật nghề và tiếp cận, cơ chế thị trường ngoài sổ sách, giới hạn vai trò POW quý tộc, ma trận công việc Criminal và triển khai đồng phục còn mở trong đúng phạm vi hiện hành. Chi tiết phụ thuộc kiến trúc cũ áp dụng AF-UR-OPEN-009.
+- Quyền hiến định, cơ chế sổ sách/biển thủ quân sự, chính sách Nội vụ, chương trình xuất khẩu nghề của Bộ Ngoại giao, giới hạn hệ phép và hình thái cụ thể của thay đổi thể chế trong 5–8 năm vẫn chưa được xác lập.

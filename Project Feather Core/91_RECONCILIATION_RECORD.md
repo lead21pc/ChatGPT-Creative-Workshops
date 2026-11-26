@@ -1113,3 +1113,26 @@ Result: **5/5 UNKNOWN / NOT ESTABLISHED**; no test answer used “Không” as s
 | Facility “credits nội bộ” | Funds/threshold for facility proposals and upgrades | UNKNOWN | Manager approval required; accounting relation to personal Credits unknown | merged canon | CURRENT WITH UNKNOWN MAPPING |
 | Bare `credit` in terminal/contact/bonus/uniform unlock | Exact variable not named | UNKNOWN | UNKNOWN | anchor; uniform source | UNKNOWN |
 | Black credit | Legacy lending concept | N/A | N/A | design history | NOT CURRENT |
+
+## Phân lại trách nhiệm tài liệu cho hai đường điều khiển
+
+Đợt bảo trì này giữ nguyên quyết định và phạm vi canon. Văn bản trước khi chuyển có tại Git `8293b2e` để truy nguyên trong công việc repository được phép. Danh mục nguồn hợp nhất và ghi chú đối chiếu 08/09 ở `01` §0 và lời đầu tại mốc đó. Phần nguồn narrator về hài của trang phục không nhập vào `04`. Phả hệ thiết kế MC4 đi từ `The Tainted Cosmos - MERGED.md`. Câu về không phận The Kingdom trong đầu vào hàng không đã được loại khỏi gói FTH.
+
+Các nhãn `CURRENT` trong quyết định theo thời điểm giữ nghĩa tại thời điểm ghi. Ví dụ, AF-RF-RET-008 ghi địa chỉ `12` trước khi tách miền. `30` quản lý RF hiện hành, `06` quản lý hàng không. Việc tách Hoa Nguyệt, Academy và các họ quốc gia vẫn theo bản đồ tiền nhiệm ở các quyết định tương ứng phía trên.
+
+P1–P11, H1–H6, D1–D4 và ma trận VII nguyên văn ở `90` tại mốc Git trên, dòng 35–576. Các phương án đang mở giữ nhãn ở `92`. Danh mục cân nhắc cũ có ở các mục tương ứng và §28 tại mốc đó. Địa chỉ `13` §16.1 trong AF-MC2-006 là vị trí cũ. Phần tuyến tiền nhiệm đã chuyển sang `93` và các giao điểm còn mở vẫn thuộc `13` §16 và AF-UR-OPEN-007.
+
+### Hồ sơ đã đóng chuyển khỏi sổ vấn đề
+
+AF-ORG-001 và AF-ORG-004 đã đóng trong phạm vi tổ chức tài liệu. `00` giữ địa chỉ hiện hành.
+
+| ID | State | Resolution |
+| --- | --- | --- |
+| AF-OPEN-005 | SUPERSEDED — not an active mapping problem | Đồ thị màu/rank Undie đã nghỉ hưu; không tiếp tục tìm crosswalk như thể nó còn hiệu lực. | `13` §2; `91` AF-UR-002. Career Rank ngoài Undie và khả năng dùng trong nghề mới chưa chốt. |
+| AF-OPEN-006 | SUPERSEDED | Bare credit/cost/bonus/unlock trong web Undie cũ không còn là biến mặc định cần ánh xạ. | `11`/`13`; `91` AF-UR-007. Cash + state-backed Credits là mốc tiền; denomination ví khách vẫn UNKNOWN độc lập. |
+| AF-OPEN-014 | SUPERSEDED — replacement design remains OPEN | Credit Line thế chấp địa vị/người và thủ tục exit cũ đã nghỉ hưu; lending/advances/remedies mới chưa chốt. | `13` §6; `91` AF-UR-007; AF-UR-OPEN-003. Không tạo thế chấp người hoặc nợ→dịch vụ tình dục. |
+| AF-AV-001 | RESOLVED | AF is the only currently confirmed actor with stable, scalable aviation infrastructure; this is not a universal/permanent monopoly claim and does not negate other actors' flight capability. |
+| AF-AV-004 | RESOLVED | No numeric flight volume is canonized. Exact capacity/throughput remains `UNKNOWN`; current wording is mass, scheduled and scalable operation. |
+| AF-OPEN-030 | RESOLVED / REMOVED | `Academy failure → Undie` is not a current or reconsideration route. Archived occurrence is provenance only. |
+| AF-ML-002 | RESOLVED | Trúc Nha thuộc ML, vai trò giữ nguyên; người Việt Nam từ Fiction 0 đã chốt 2026-10-08. Cơ chế chuyển giới UNKNOWN. |
+| AF-OPEN-032 / AF-ML-009 | RESOLVED / REMOVED | `foreign spy / infiltrator → punitive Undie` is removed from current canon and reconsideration because it no longer fits the political-centric setting. Archived occurrence is provenance only; replacement legal/status handling remains `UNKNOWN`. |

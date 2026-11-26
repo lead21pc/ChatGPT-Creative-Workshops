@@ -7,23 +7,21 @@
 > Cross-domain owner boundary: AF national engineering/deployment context by `AFM-013`; RF internal canon by `AFM-014`; Global institutions and geopolitics are controlled by `AFM-001`; legal/civic status and shared economic namespaces by `AFM-002`; Undie professions, occupational hardware and Undi by `AFM-003`; detailed aviation and RF airspace by `AFM-008`.
 > Load mode: `FULL_FILE`
 
-> **Integration:** 2026-10-03; user-approved selective admission after audit AF-NEW-001–008.
-> **Sources:** the four 2026-10-02/03 inputs recorded in `91_RECONCILIATION_RECORD.md`; original proposal/history wording is provenance, not authority over this accepted view.
 > **Truth boundary:** the functional architecture below is accepted canon/design direction. Implementation, scale and present rollout remain `UNKNOWN` where unspecified; genealogy does not establish present capabilities.
 
 ## 1. Nền công nghệ và ranh giới miền
 
-Theo phê duyệt 2026-10-07, file này quản lý nền công nghệ/kiến trúc dịch vụ chung của **Project Feather Core**, không thuộc riêng một quốc gia. Việc một kiến trúc được mô tả ở đây không chứng minh mọi nước đã sở hữu, triển khai hoặc dùng chung tiêu chuẩn. Cách AF cưỡng ép compatibility, vai trò Hội đồng Pháp sư và năng lực tổ chức AF thuộc `10_AETHERFIRE_NATIONAL_CANON_CURRENT.md` §4; chi tiết hàng không ở `06_STABLE_AVIATION_RF_AIRSPACE_CURRENT.md`.
+File này quản lý nền công nghệ/kiến trúc dịch vụ chung của **Project Feather Core**, không thuộc riêng một quốc gia. Việc một kiến trúc được mô tả ở đây không chứng minh mọi nước đã sở hữu, triển khai hoặc dùng chung tiêu chuẩn. Cách AF cưỡng ép compatibility, vai trò Hội đồng Pháp sư và năng lực tổ chức AF thuộc `10_AETHERFIRE_NATIONAL_CANON_CURRENT.md` §4; chi tiết hàng không ở `06_STABLE_AVIATION_RF_AIRSPACE_CURRENT.md`.
 
-Các §§2–3 mô tả nguồn gốc và kiến trúc chức năng; §§4–8 giữ mô hình ứng dụng khách AF đã được chấp nhận, trong đó primitives kỹ thuật có thể được tham chiếu độc lập nhưng chính sách không tự áp cho quốc gia khác. Mọi cơ chế quốc gia/chuyển giao/triển khai mới cần canon riêng. Nền chung không phải một hệ magic hoàn chỉnh hoặc một hệ thống kỹ thuật phổ cập.
+Các §§2–3 mô tả kiến trúc chức năng; §§4–8 giữ mô hình ứng dụng khách AF đã được chấp nhận, trong đó primitives kỹ thuật có thể được tham chiếu độc lập nhưng chính sách không tự áp cho quốc gia khác. Mọi cơ chế quốc gia/chuyển giao/triển khai mới cần canon riêng. Nền chung không phải một hệ magic hoàn chỉnh hoặc một hệ thống kỹ thuật phổ cập.
 
 Các capability định danh, xác thực, thanh toán, dữ liệu, bảo trì và dịch vụ có thể được sử dụng qua giao diện chung. Giao diện tương tác không chứng minh một database, một chủ sở hữu, một cơ quan quản trị hay mức phổ cập toàn quốc. Không dùng độ trưởng thành của một hệ chuyên dụng để áp thứ bậc bắt buộc giữa công nghệ nghề nghiệp, dân dụng và chiến lược. Nguồn năng lượng, sản xuất, chi phí và chuỗi cung ứng chưa được xác lập.
 
 ## 2. Chuyển giao công nghệ, không chuyển giao địa vị hoặc cưỡng chế
 
-Undie là nguồn gốc thiết kế công nghệ giao diện, không phải mẫu ontology/policy cho khách. Năng lực terminal, mail/user information, retina có thành phần tích hợp cơ thể, audio tích hợp xương tai, commission forum và gọi an ninh khẩn cấp có điều kiện vẫn là năng lực đã chốt. Retcon 2026-10-05 ở `13` bỏ collar/dấu cơ thể bắt buộc và quyền liên lạc theo Pink/rank; không suy mọi người hành nghề mới phải cấy ghép hoặc chịu quyền lệnh cũ.
+Terminal, thư và thông tin người dùng, giao diện retina có phần tích hợp cơ thể, audio tích hợp xương tai, commission forum và kênh gọi an ninh khẩn cấp có điều kiện là các năng lực đã chốt. Sự tồn tại của chúng không đặt ra nghĩa vụ cấy ghép, nhận dạng hay chịu quyền lệnh cho người hành nghề Undie.
 
-Chuyển giao công nghệ không nhập đồ thị rank, Credit Score/Line đã nghỉ hưu, workline, quyền lệnh, hạn chế di chuyển hay cưỡng chế vào terminal khách hoặc vào mặc định nghề Undie mới. Payment/retail, blacklist và AI safety của collar lịch sử chưa được phục hồi thành chức năng collar hiện hành. Nanofabric/self-repair/first-aid của Undi cũng chỉ là genealogy.
+Giao diện dịch vụ khách không xác lập địa vị, nghĩa vụ lao động, hạn chế di chuyển hay điều kiện tín dụng theo nghề. Chuyển giao một chức năng kỹ thuật chỉ có hiệu lực trong phạm vi đã chốt.
 
 ## 3. Personal Terminal — kiến trúc chức năng
 
@@ -75,7 +73,7 @@ Terminal có guest mode với credential/validity/access profile, ví trả trư
 | Guest Wallet | Giá trị trả trước cho giao dịch tương thích | Đặt cọc, Credit Score, Credit Line hoặc legal status |
 | Access Profile | Quyền truy cập nơi/dịch vụ trong phạm vi được cấp | Tiền, class hoặc social hierarchy |
 
-Guest Wallet dùng tên biến tài chính riêng. AF-OPEN-006 được supersede bởi retcon Undie 2026-10-05, không phải được giải quyết bằng mô hình ví khách. Không phục hồi bare `credit`/cost/bonus theo web cũ; denomination và triển khai ví vẫn mở.
+Guest Wallet dùng biến tài chính riêng. Đơn vị tiền và cách triển khai ví vẫn mở.
 
 ## 6. Đặt cọc và ví
 
@@ -111,30 +109,8 @@ Thứ tự chi tiết giữa trả thiết bị, revoke Guest Pass và hoàn t�
 
 Báo mất dẫn đến revoke credential thiết bị cũ; thiết bị cũ không còn dùng để thanh toán/access. Có thể cấp thiết bị thay thế và bind lại Guest Profile. Thu deposit mới và giữ deposit cũ theo điều kiện trả thiết bị là **candidate accounting**, không phải chính sách đã chốt. Hạch toán mất/hỏng, số dư ví và phục hồi quyền truy cập còn mở.
 
-## 9. Các mục chưa chốt và thẩm quyền đối chiếu
+## 9. Ranh giới triển khai
 
-### AF-TECH-001 — Terminal/Guest Pass implementation: UNKNOWN / OPEN
-
-Giữ đủ 15 nhóm câu hỏi của nguồn Terminal:
-
-1. Hình thức/vật liệu thiết bị.
-2. Xác thực người đeo.
-3. Retina implementation; liên kết cơ thể, đồng thuận và vô hiệu hóa khi tháo/trả/mất.
-4. Private audio implementation và chuyển đổi từ bone-integrated audio.
-5. Nguồn năng lượng terminal.
-6. Quyết toán foreign currency/AetherFire Credits.
-7. Guest Wallet denomination.
-8. Xử lý unused balance lúc exit.
-9. Lost/damaged-device accounting, deposit cũ/mới và wallet recovery.
-10. Full access matrix, admission/legal recognition và xác thực/exit sau mất/trả/revoke.
-11. Agencies chịu trách nhiệm identity/payment/access/device lifecycle.
-12. Privacy/data-retention law.
-13. Offline behavior và service continuity.
-14. Mức deposit theo quốc gia/đồng tiền.
-15. Quan hệ với future revised Undie hardware.
-
-### AF-TECH-002 — Nền công nghiệp/hạ tầng: UNKNOWN / OPEN
-
-Giữ 15 nhóm của Technology Notes: industrial energy; cơ chế nanotechnology nếu sau này phục hồi; device standards authority; ownership ID/payment network; national data architecture; backend concentration/distribution; privacy/data-rights; cybersecurity; robot/android production scale; automation share; rare-material supply; collar/Undi/aircraft cost; procurement; banking/currency/public finance; civilian/commercial/military/intelligence technology gaps. Việc ghi câu hỏi không chấp nhận nanofabric hay một ngành công nghiệp cụ thể thành canon.
+Thiết kế chức năng chưa xác lập việc triển khai từng thiết bị, chuẩn, backend, thẩm quyền, chi phí hay mức phổ cập. `92` giữ danh mục AF-TECH-001 và AF-TECH-002.
 
 `01` kiểm soát giao diện thế giới; `10` giữ hồ sơ quốc gia AF, `12` giữ chính trị/thể chế; `11` kiểm soát status và economic namespaces; `13` kiểm soát nghề Undie, phần cứng nghề còn mở và Undi; `06` kiểm soát aviation. Các unknown hiện có trong những miền này vẫn có hiệu lực; module này không thay quyền sở hữu nội bộ của chúng.

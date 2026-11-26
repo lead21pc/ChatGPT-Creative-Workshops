@@ -7,11 +7,9 @@
 > Cross-domain owner boundary: Hồ sơ quốc gia/dark foundation ở `AFM-012`; văn hóa/ngôn ngữ/trang phục ở `AFM-015`; địa lý/giao thương ở `AFM-017`; Undie/Undi ở `AFM-003`; giao diện thế giới ở `AFM-001`.
 > Load mode: `FULL_FILE`
 
-> **Mốc tách miền:** 2026-10-10, từ `20_HOA_NGUYET_NATIONAL_CANON_CURRENT.md`. Chuyển nguồn quản lý không đổi canon hoặc trạng thái UNKNOWN; số mục nội dung được giữ để truy bản đồ tiền nhiệm trong `91`.
-
 ## 2. Quốc hiệu, biểu tượng và sử dụng xuyên biên giới
 
-Nguồn tác giả `AetherFire_Hoa_Nguyet_National_Name_Cross_Border_Usage_Canon_2026-10-07.md`; người dùng yêu cầu audit và nhập canon. Giữ đủ §§1–12, chỉ đổi cấp heading để chứa trong module. Đây là tên/biểu tượng và giao diện đối ngoại của cùng quốc gia, không thay canon Undi hoặc lập thêm thiết chế chính trị. `13` giữ trang phục nghề; `92` giữ các mục chưa chốt.
+Hai hệ tên và biểu tượng thuộc cùng một quốc gia. `13` giữ trang phục nghề Undi.
 
 ### 1. Quyết định canon
 
@@ -54,37 +52,9 @@ và
 → cùng một quốc gia
 ```
 
-#### 1.3. Supersession có giới hạn
+#### 1.3. Phạm vi của hệ quốc hiệu
 
-Canon cũ từng ghi **Hoa Nguyệt** là tên chính thức và để exact Hán tự của “Hoa” chưa chốt.
-
-Quyết định mới cụ thể hóa lại:
-
-```text
-tên chính thức chung “Hoa Nguyệt”
-→ được tách rõ theo ngữ cảnh
-
-TRONG NƯỚC:
-鏡華水月
-
-ĐỐI NGOẠI:
-華月
-```
-
-Sự thay đổi này chỉ sửa và làm rõ **hệ quốc hiệu và cách dùng**.
-
-Nó không tự thay đổi các canon hiện hành khác về:
-
-- vị trí Hoa Nguyệt ở phía tây AetherFire;
-- căn tính ba vùng văn hóa lấy cảm hứng Trung Hoa, Nhật Bản và Việt Nam, theo cập nhật 2026-10-10 ở `21` §5;
-- các hệ trang phục truyền thống theo vùng và qua nhiều thời kỳ, theo `21` §5;
-- truyền thống đại hiệp / nam hiệp / nữ hiệp;
-- triết lý phép thuật dựa trên căn tính, tố chất, hòa hợp, võ thuật và huyền học phương Đông;
-- current orientation tôn trọng quyền con người;
-- dark foundation của quốc gia;
-- quan hệ đối địch và giao thương với AetherFire;
-- Con đường Tơ lụa song phương;
-- nguồn gốc lịch sử của “Hoa” gắn với thí nghiệm tạo hình Hoa và Lục Kì Nhân.
+Hệ quốc hiệu và cách dùng không thay đổi căn tính Hoa Nguyệt, hồ sơ văn hóa, dark foundation hoặc quan hệ đối ngoại. Các miền đó thuộc `20`, `21` và `23`.
 
 ---
 
@@ -405,7 +375,7 @@ Những điều đó cần canon riêng nếu tồn tại.
 
 ### 8. Quan hệ với dark foundation của “Hoa”
 
-Việc canon hóa `華` không retcon nguồn gốc “Hoa”.
+Cách viết `華` và nguồn gốc của “Hoa” cùng có hiệu lực trong phạm vi mô tả ở đây.
 
 Dark foundation vẫn tồn tại:
 
@@ -454,28 +424,9 @@ Mức phản ứng chính thức của Hoa Nguyệt đối với từng trườn
 
 ---
 
-### 10. Các điểm vẫn UNKNOWN
+### 10. Giới hạn hiện hành
 
-File này không tự chốt:
-
-- màu quốc gia chính thức;
-- bảng màu quốc kỳ đối ngoại;
-- kích thước chính xác của lục giác;
-- tỷ lệ hình học chính xác của biểu tượng tròn;
-- loài hoặc hình học cuối cùng của Hoa;
-- số cánh chính thức;
-- exact quan hệ biểu tượng giữa Lục Kì Nhân và số sáu trong quốc huy;
-- exact cách cách điệu chữ `月`;
-- việc nguyệt khuyết có tạo toàn bộ hay phần lớn chu vi của biểu tượng đối ngoại;
-- thời điểm lịch sử hệ tên kép được hình thành;
-- cơ quan nào chuẩn hóa quốc hiệu và quốc kỳ;
-- luật bắt buộc sử dụng tên nào trong từng loại văn bản;
-- nghi thức ngoại giao chi tiết;
-- mức người dân và người nước ngoài biết ý nghĩa sâu của quốc hiệu;
-- tên gọi thông tục trong đời sống nội địa;
-- exact lịch sử chữ `華` thay thế hoặc kế thừa cách viết trước đó nếu có.
-
-`UNKNOWN` ở các điểm trên không làm suy yếu quyết định canon về `鏡華水月 / 華月`.
+Hình học chi tiết, bảng màu, lịch sử chuẩn hóa, nghi lễ và tri thức từng tác nhân vẫn `UNKNOWN`. `92` giữ AF-HN-OPEN-001–002.
 
 ---
 
@@ -519,23 +470,3 @@ CURRENT HUMAN-RIGHTS ORIENTATION
 ```
 
 ---
-
-### 12. Phạm vi supersession cuối
-
-File này thay thế mọi assertion hiện hành trong cùng scope nói rằng:
-
-> “exact Hán tự của Hoa chưa chốt”
-
-bằng:
-
-> **`華` là Hán tự canon của Hoa trong quốc hiệu.**
-
-File này đồng thời làm rõ mọi wording cũ nói:
-
-> “Hoa Nguyệt là tên chính thức”
-
-thành:
-
-> **Hoa Nguyệt / 華月 là tên chính thức dùng đối ngoại; Kính Hoa Thuỷ Nguyệt / 鏡華水月 là quốc hiệu đầy đủ dùng trong nước.**
-
-Ngoài hai điểm này và các nguyên tắc sử dụng được ghi rõ trong file, các canon hiện hành khác của Hoa Nguyệt giữ nguyên trừ khi một quyết định sau này thay đổi chúng.

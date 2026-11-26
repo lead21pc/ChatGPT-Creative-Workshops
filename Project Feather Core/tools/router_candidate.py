@@ -350,12 +350,24 @@ ARCHIVE_RUNTIME_EXCLUSION = (
 )
 
 
+EXPLICIT_HISTORY_ACCESS = (
+    'For an explicit design-history need, read only 90_DESIGN_HISTORY_AND_RECONSIDERATIONS.md; '
+    'for an explicit superseded-design detail or comparison need, read only 93_SUPERSEDED_IDEAS.md '
+    'for that part. Resolve the exact file under the configured package root, reject escape '
+    'and archive targets, and require FULL_FILE. Treat it as non-current historical evidence '
+    'outside the current-source binding, bootstrap, module catalog and dependencies. Do not '
+    'discover alternative copies or substitute either file for any current source. A missing '
+    'historical file blocks only the historical part that needs it. In a mixed task, current '
+    'claims still pass the independent current-source gates.'
+)
+
+
 def router6_access(trial_access):
-    """The accepted trial access delta plus the explicit runtime archive boundary."""
+    """Apply the reviewed access deltas while guarding the current binding."""
     return (trial_access.replace('Explicit opt-in only:', 'For this active stack:')
             .replace('sole trial binding', 'sole runtime binding')
             .replace('this trial does not activate', 'this stack does not activate')
-            + ' ' + ARCHIVE_RUNTIME_EXCLUSION)
+            + ' ' + ARCHIVE_RUNTIME_EXCLUSION + ' ' + EXPLICIT_HISTORY_ACCESS)
 
 
 def validate_router6(data, root):

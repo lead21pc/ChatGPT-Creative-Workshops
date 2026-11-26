@@ -7,33 +7,22 @@
 > Cross-domain owner boundary: Global and geopolitical interfaces are controlled by `AFM-001`; AF national profile by `AFM-013`; RF internal canon and unresolved constitutional authority by `AFM-014` and open-state sources; AF political bargaining by `AFM-011`.
 > Load mode: `FULL_FILE`
 
-> **Trạng thái:** CURRENT CANON / CONTROLLING STABLE AVIATION & RF AIRSPACE DOMAIN — integrated 2026-09-17; RF retcon 2026-10-06.
 > **Authority boundary:** this file controls AF stable/scalable aviation, the AF–RF aviation dependency, airspace/ATC/economy separation, mixed airspace and air-route leverage. `01` retains only the world/geopolitics interface.
 > **Interpretation boundary:** AF is the only currently confirmed actor with stable, scalable aviation infrastructure; this is not proof that no other actor can ever possess it. Statements about RF response describe incentives and strategic direction for relevant RF/member-state authorities, not proof of a unitary RF policy or completed implementation.
-> **Cross-project exclusion:** the source sentence about The Kingdom airspace is not imported as AetherFire lore or as a claim about The Kingdom canon.  
 > **Phạm vi:** chỉ chốt logic hàng không ổn định của AetherFire, tác động lên RF, kinh tế phụ thuộc đường hàng không và kiểm soát không lưu.  
 > **Không chốt trong file này:** độ cao cụ thể của từng tầng không lưu AF, cấu trúc sân bay, loại phương tiện, thông số kỹ thuật, full constitution RF, hay cơ quan nào trong RF có thẩm quyền cuối cùng.
 
 ---
 
-## 1. Baseline current canon được giữ nguyên
-
-Các điểm sau đã có trong current canon và là nền của phần chốt này:
+## 1. Quan hệ nền
 
 - **AetherFire (AF)** là một quốc gia Neo Fantasy dùng engineering để cưỡng ép compatibility giữa phép thuật và công nghệ ở cấp hạ tầng.
-- **RF** là một **liên hiệp lục địa gồm nhiều quốc gia thành viên**, không phải một vương quốc đơn nhất hoặc khối tu tiên. Huyết hệ Raging Fire là node riêng; `30` giữ toàn bộ quyết định 2026-10-06.
+- **RF** là một **liên hiệp lục địa gồm nhiều quốc gia thành viên**, không phải một vương quốc đơn nhất hoặc khối tu tiên. Huyết hệ Raging Fire là node riêng; `30` quản lý cấu trúc và năng lực RF.
 - Exact constitutional form của RF vẫn **UNKNOWN**; không tự chọn federation, confederation, tributary hierarchy hay empire-of-states.
 - AF và RF bị ngăn bởi đại dương.
 - Giao lưu AF↔RF **phụ thuộc mạnh vào đường hàng không** vì vùng biển có **Seaborne**, khiến hải vận cực kỳ nguy hiểm.
 - Khối mạnh nhất đang foreground trong RF muốn giảm dependency vào RF, muốn AF bảo trợ và vẫn tìm công nghệ AF; mục tiêu kỹ thuật cụ thể CHƯA CHỐT, không còn scale cultivation.
 - AF đồng thời có dependency chiến lược riêng đối với Raging Fire/RF arrangement ở trục firewall/founding seal.
-
-Nguồn baseline:
-
-- `00_AETHERFIRE_CONSOLIDATION_INDEX.md`
-- `01_WORLD_INSTITUTIONS_GEOPOLITICS_CURRENT.md`
-- `91_RECONCILIATION_RECORD.md`
-- `92_OPEN_ISSUES_CURRENT.md`
 
 ---
 
@@ -45,7 +34,7 @@ AetherFire là actor duy nhất hiện được chốt có khả năng biến **
 
 Điều này **không** có nghĩa các quốc gia khác không thể bay.
 
-Năng lực bay, sức mạnh cá nhân, quân sự và cơ động bản địa RF cần nguồn mới. Không giữ tu sĩ tự bay, pháp khí/phi chu/trận pháp/linh thú hoặc cá nhân vượt aircraft làm khả năng mặc định. Bỏ tiền đề không chứng minh các năng lực này không tồn tại, cũng không chốt một hệ thay thế.
+Năng lực bay, sức mạnh cá nhân, quân sự và cơ động bản địa RF chưa xác lập. Điều này để ngỏ cả khả năng bay lẫn cấu hình bay và chiến đấu thực tế.
 
 Khả năng bay đơn lẻ, nếu được xác lập, vẫn khác hàng không ổn định cấp quốc gia; hiện không gán loại khả năng ấy cho RF.
 
@@ -207,7 +196,7 @@ Không yêu cầu RF phải vượt AF ngay. Mục tiêu tối thiểu là trán
 
 ## 5. Không phận RF — cấu hình bay bản địa chưa chốt lại
 
-Tiền đề RF có sẵn hệ sinh thái bay tu tiên và yêu cầu dành lớp riêng cho cultivator/pháp khí/sinh vật bay đã bị thay thế. Không giữ sơ đồ ba lớp cũ hoặc “tông môn” làm hạ tầng mặc định RF.
+Cấu hình hiện hành của các tác nhân bay bản địa RF chưa được xác lập.
 
 Không phận, ATC và kinh tế hàng không vẫn là các miền riêng như §4. Tuy nhiên cấu hình không phận hỗn hợp, các loại tác nhân bay bản địa, hành lang/nhận diện/crossing/separation và phần dành cho mỗi loại phải được xác lập lại từ nền mới; không tự thay lớp magical-flight bằng một hệ khác.
 
@@ -217,7 +206,7 @@ Không phận, ATC và kinh tế hàng không vẫn là các miền riêng như 
 
 AF vẫn có năng lực vận tải ổn định/theo lịch/mở rộng đã chốt; đặc tính vận hành gồm throughput, predictability, logistics, replacement, scheduling và mass transport. Đây không phải đánh giá ưu thế tương đối về quân sự.
 
-Không giữ lập luận “RF mạnh cá nhân/tu tiên, AF mạnh hệ thống”, danh sách ưu thế chiến thuật hoặc lớp resilience tu tiên RF. Khả năng bay, tốc độ, độ cao, cơ động, chiến đấu, răn đe, viễn chinh, phòng thủ và chi phí chiến tranh cần xác lập lại.
+Khả năng bay, tốc độ, độ cao, cơ động, chiến đấu, răn đe, viễn chinh, phòng thủ và chi phí chiến tranh còn mở.
 
 Bỏ tu tiên ≠ RF yếu hoặc không có air power. AF có aircraft ≠ AF có air supremacy. Dependency phong ấn/hàng không không tự biến thành ưu thế quân sự.
 
@@ -270,8 +259,7 @@ Do exact constitutional form của RF vẫn UNKNOWN, file này **không chốt**
 4. **Nội địa hóa maintenance và manpower càng sớm càng tốt.**
 5. **Dự trữ phụ tùng / năng lực dự phòng để giảm khả năng bị bóp cổ.**
 6. **Duy trì nhiều gateway/hub thay vì một single point of failure.**
-7. **Safeguard dựa trên flight-capability tu tiên bản địa đã bị thay thế; năng lực dự phòng thay thế chưa chốt.**
-8. **Safeguard đồng bộ cultivation traditions đã bị thay thế; cấu hình interoperability bản địa cần nguồn mới.**
+7–8. Năng lực dự phòng và cấu hình tương tác bản địa RF chưa xác lập.
 9. **Coi air-route approval là công cụ kinh tế và địa chính trị, không chỉ logistics.**
 10. **Phát triển domestic aviation capacity từng bước thay vì cố từ chối hệ thống AF vì tự ái.**
 
@@ -306,29 +294,9 @@ Kết quả hợp lý là **bargaining và mutual dependency**, không phải m�
 
 ---
 
-## 10. Các điểm vẫn UNKNOWN / chưa chốt
+## 10. Phạm vi chưa xác lập
 
-File này cố ý không quyết định các mục sau:
-
-- exact constitutional form của RF;
-- exact RF actor có sovereignty/ATC authority;
-- exact number và topology của RF member states;
-- exact airspace altitude bands của AF hoặc RF;
-- exact aircraft technology và nguồn lực;
-- exact capacity/throughput;
-- exact route network;
-- exact airport ownership;
-- exact cabotage law;
-- exact customs/tax allocation;
-- exact military flight-control doctrine;
-- nền sức mạnh, năng lực bay/chiến đấu/cơ động bản địa RF và cấu hình không phận cần xác lập lại; không dùng cultivation traditions làm danh mục mặc định;
-- exact mức độ domestic aviation mà RF đã đạt ở hiện tại.
-
-```text
-UNKNOWN
-≠ RF không có capability
-≠ AF tự động nắm quyền
-≠ permission để tự điền
+`92` giữ các nhóm về quyền không phận, năng lực và tiến độ nội địa hóa, độ cao, quy mô, tuyến, sân bay, thuế và cơ chế vận hành. Khoảng thiếu ấy không xác lập quyền của AF hay phủ định năng lực bản địa RF.
 ```
 
 ---

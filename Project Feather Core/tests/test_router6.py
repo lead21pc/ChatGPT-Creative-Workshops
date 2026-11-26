@@ -53,6 +53,22 @@ class Router6RetrievalTests(local_tests.LocalBindingRetrievalTests):
             binding.module('AFM-001')
         binding.reader.assert_not_called()
 
+    def test_available_history_never_enters_a_current_module_route(self):
+        binding = self.binding()
+        names = ('90_DESIGN_HISTORY_AND_RECONSIDERATIONS.md', '93_SUPERSEDED_IDEAS.md')
+        (self.root / names[1]).write_bytes((ROOT / names[1]).read_bytes())
+        for name in names:
+            self.assertTrue((self.root / name).is_file())
+            self.assertNotIn(name, binding.catalog.values())
+        binding.module('AFM-002')
+        self.assertTrue({read[0] for read in binding.reads}.isdisjoint(names))
+
+        (self.root / binding.catalog['AFM-002']).unlink()
+        binding.reader = Mock(wraps=read_page)
+        with self.assertRaisesRegex(CandidateError, 'SOURCE_LOAD_BLOCKED: missing/outside'):
+            binding.module('AFM-002')
+        binding.reader.assert_not_called()
+
     def test_long_lore_and_control_transport_have_complete_range_coverage(self):
         binding = self.binding()
         names = ['11_STATUS_CIVIL_LABOR_CURRENT.md',
@@ -117,6 +133,19 @@ class Router6StructureTests(unittest.TestCase):
                      'Library, Project Sources, GitHub, Memory, prior-response, near-match, other-root or archive',
                      'partial reads never count as FULL_FILE'):
             self.assertIn(term, access)
+
+    def test_history_is_outside_both_current_bootstraps(self):
+        names = ('90_DESIGN_HISTORY_AND_RECONSIDERATIONS.md', '93_SUPERSEDED_IDEAS.md')
+        for router in (self.base, self.data):
+            self.assertEqual(router['bootstrap']['full_file'],
+                             ['00_AETHERFIRE_CONSOLIDATION_INDEX.md', '92_OPEN_ISSUES_CURRENT.md'])
+            self.assertEqual(router['bootstrap']['reconciliation_record'], '91_RECONCILIATION_RECORD.md')
+        for name in names:
+            self.assertTrue((ROOT / name).is_file())
+            self.assertNotIn(name, self.base['policies']['access'])
+            self.assertIn(name, self.data['policies']['access'])
+        self.assertIn('never fallback', self.base['policies']['authority'])
+        self.assertNotIn('> Runtime role:', (ROOT / names[1]).read_text(encoding='utf-8'))
 
     def test_rejects_protected_changes_fthx_archive_or_fallback_weakening(self):
         mutations = [

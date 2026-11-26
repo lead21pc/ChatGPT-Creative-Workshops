@@ -7,7 +7,7 @@
 > Cross-domain owner boundary: Thế giới/ontology ở `AFM-001`; luật–Civil ở `AFM-002`; Undie/Undi ở `AFM-003`; metafiction ở `AFM-004`; MC4 ở `AFM-006`; ML ở `AFM-007`; hàng không/không phận xuyên quốc gia ở `AFM-008`; nội bộ Học viện ở `AFM-009`; nền công nghệ chung ở `AFM-010`; chính trị/an ninh AF ở `AFM-011`; Hoa Nguyệt ở `AFM-012`; nội bộ RF ở `AFM-014`.
 > Load mode: `FULL_FILE`
 
-> **Mốc:** 2026-10-07, theo phê duyệt audit các file cũ 10/15/25/30/65 và yêu cầu đánh số theo họ quốc gia. Đây là hồ sơ quốc gia, không phải toàn thế giới hoặc một bản canon thay thế các miền chuyên biệt.
+> Hồ sơ quốc gia AetherFire. Các mô-đun chuyên biệt quản lý chi tiết của miền tương ứng.
 
 ## 1. Căn tính, mục tiêu và cách đọc quốc gia
 
@@ -67,7 +67,7 @@ Hàng không ổn định, theo lịch và có thể mở rộng là bằng ch�
 
 ## 5. Cơ sở liên quan AF: Hội đồng Pháp sư và Tiring Slope
 
-Nội dung chi tiết chuyển nguyên mốc từ file thế giới cũ được đặt dưới đây. Cơ sở liên quan AF không tự chứng minh lãnh thổ trực thuộc hoặc chuỗi quản trị. Học viện nằm tại Tiring Slope; Serpent Strike **không thuộc Học viện**; vị trí lab/cổng không tự trao quyền sở hữu hoặc chỉ huy cho Học viện. `Tiring Slope != Mage Council branch != Academy != lab != teleport gate`; địa điểm không tự sở hữu các tổ chức/cơ sở nằm tại đó. Nhãn “khu nghiên cứu cơ thể người” vẫn giữ để đối chiếu AF-OPEN-031, chưa tự đổi tên.
+Cơ sở liên quan AF không tự chứng minh lãnh thổ trực thuộc hoặc chuỗi quản trị. Học viện nằm tại Tiring Slope; Serpent Strike **không thuộc Học viện**; vị trí lab/cổng không tự trao quyền sở hữu hoặc chỉ huy cho Học viện. `Tiring Slope != Mage Council branch != Academy != lab != teleport gate`; địa điểm không tự sở hữu các tổ chức/cơ sở nằm tại đó. Nhãn “khu nghiên cứu cơ thể người” vẫn giữ để đối chiếu AF-OPEN-031, chưa tự đổi tên.
 
 ### 20A.1 Hai chi nhánh và Tiring Slope
 
@@ -118,7 +118,7 @@ Serpent Strike đã trà trộn vào POW-specialist pipeline **từ trước khi
 
 **CANON HISTORY / SITE PROPERTY CONFIRMED; exact current placement/operational state sau divergence còn `UNKNOWN` nơi chưa chốt.**
 
-Placement cũ của site Đông Bắc theo sườn Quad Night/T.Gear chỉ còn là design genealogy. Current relation giữa Học viện, ML, TE và các bộ tộc mẫu hệ phía đông bắc tuân theo regional retcon; exact full map giữ `UNKNOWN`.
+Vị trí tương đối giữa Học viện, ML, TE và các bộ tộc mẫu hệ Đông Bắc còn `UNKNOWN` ở độ phân giải bản đồ chi tiết.
 
 Học viện không chỉ nghiên cứu cư dân tam cường. Trong legacy canon, học viên tạo **experimental subjects/products** từ cư dân Elf/Thú Nhân/Long tộc rồi thả ngược vào lãnh thổ của họ để phá hoại. Các sản phẩm được cài một **signature** có chủ ý, làm attribution rõ ràng như một lời thách thức/đánh dấu nguồn. Vì vậy grievance phía Bắc gồm:
 
@@ -190,20 +190,11 @@ Những yếu tố đó không cho phép:
 
 Đây không phải bằng chứng mọi cơ quan AF hiện đã triển khai toàn bộ quy tắc Học viện. `14` giữ các quy tắc nội bộ cụ thể; quyền chồng lấn và thủ tục xét lại vẫn mở.
 
-## 8. UNKNOWN và ranh giới không tự lấp
+## 8. Phạm vi chưa xác lập
 
-- Exact ritual/ancestral mechanics của phong ấn Giant/lập quốc, maintenance và quan hệ Raging Fire/Raging Phoenix–long mạch–firewall ngoài chuỗi nguồn gốc đã chốt.
-- Nhà cung cấp, bên hợp đồng, bảo trì, authorization và cơ chế bearer/hiến tế; consent/sống-chết và liên hệ trait tái sinh.
-- Hiến định, quyền làm luật/diễn giải/thi hành/veto, ngân sách/bổ nhiệm/điều tra, ownership hạ tầng và chia sẻ thông tin.
-- Mage Council–chi nhánh–Học viện: pháp lý/chỉ huy, địa hạt/lãnh thổ, lab/cổng, gate access và trạng thái sau divergence.
-- AF-OPEN-031 về tên lab; không suy personhood hoặc đổi species từ nhãn.
-- Luật nghề, hợp đồng/giấy phép, cơ chế xuất khẩu Undie và phản ứng văn hóa/ngoại giao.
-- Rollout/standards/currency/backend/data và dịch vụ khách sau revoke/trả/mất.
-- Địa lý mới AF–ML–TE; không remap hành lang Quad Night 100 km, custody hoặc sườn Học viện cũ.
+`92` giữ danh mục câu hỏi về lập quốc/phong ấn, hiến định, địa hạt và site, luật nghề, công nghệ và địa lý vùng. Tên phòng nghiên cứu và quan hệ với các đối tượng nghiên cứu vẫn cần đối chiếu tại AF-OPEN-031. Không suy species hoặc tư cách con người từ tên gọi.
 
-`92_OPEN_ISSUES_CURRENT.md` giữ các ID và câu hỏi đầy đủ; `91_RECONCILIATION_RECORD.md` ghi bản đồ chuyển nội dung. Mốc này không giải quyết UNKNOWN, phục hồi tuyến Academy failure/spy → Undie, xác lập Operation Swap, hoàn thiện TE hoặc bổ sung lore.
-
-## 9. Mục đích lập quốc và thế đối kháng–phụ thuộc — chốt 2026-10-08
+## 9. Mục đích lập quốc và thế đối kháng–phụ thuộc
 
 Một mục tiêu lịch sử của phía RF và ML khi tạo AetherFire là dùng AF như nhà nước bù nhìn và vùng đệm hấp thụ tổn thất khi các chủng tộc phía Bắc đánh xuống, giúp họ có thời gian ứng phó. Đây là ý đồ lúc lập quốc, không phải quy tắc AF phải thua hoặc bằng chứng ML/RF kiểm soát AF ở mọi thời kỳ.
 

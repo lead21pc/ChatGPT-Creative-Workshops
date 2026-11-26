@@ -7,11 +7,9 @@
 > Cross-domain owner boundary: Hồ sơ quốc gia/nguồn gốc ở `AFM-012`; quốc hiệu/biểu tượng ở `AFM-016`; địa lý/giao thương ở `AFM-017`; Undie/Undi ở `AFM-003`; giao diện thế giới ở `AFM-001`.
 > Load mode: `FULL_FILE`
 
-> **Mốc tách miền:** 2026-10-10, từ `20_HOA_NGUYET_NATIONAL_CANON_CURRENT.md`. Chuyển nguồn quản lý không đổi canon hoặc trạng thái UNKNOWN; số mục nội dung được giữ để truy bản đồ tiền nhiệm trong `91`.
+## 5. Văn hóa, ngôn ngữ và trang phục
 
-## 5. Bảy nguyên tắc văn hóa, nguồn gốc và ngôn ngữ — chốt 2026-10-10
-
-Nguồn: `Source_Archive/HOA_NGUYET_7_NGUYEN_TAC_DE_XUAT.md`. Tác giả đã yêu cầu audit và nhập đủ bảy nguyên tắc vào canon trong phạm vi nguồn; nguyên tắc nguồn gốc hợp nhất được quản lý ở `20` §5.2, sáu nguyên tắc còn lại ở file này. Nhãn đề xuất trong bản nguồn lưu trữ phản ánh trạng thái trước khi nhập, không thay quyết định hiện hành. Bảy nguyên tắc mở rộng mô tả Trung Hoa–Nhật Bản trước đây thành ba vùng, không thay quốc hiệu, dark foundation, triết lý phép thuật hoặc quan hệ đối ngoại đã chốt.
+Nguồn gốc ba quốc gia tiền thân thuộc `20` §5.2.
 
 ### 5.1. Cấu trúc văn hóa
 
@@ -57,4 +55,4 @@ Quy tắc này **không có nghĩa mọi giấy tờ địa phương đều ph�
 
 ### 5.8. Các ranh giới còn mở
 
-Tên riêng ba vùng, cơ cấu hành chính, cơ chế sáp nhập, giáo dục ngôn ngữ, quy tắc chi tiết đối với văn kiện địa phương và danh mục trang phục chính thức vẫn `UNKNOWN`; `92` giữ AF-HN-OPEN-006–009. Quốc hiệu 鏡華水月 / 華月 giữ nguyên. Hướng học tập/bảo tồn cổ văn và văn học truyền thống tự nguyện trong ghi chú nguồn chưa được nhập thành nguyên tắc thứ tám hoặc chính sách hiện hành.
+Tên vùng, cơ cấu hành chính, giáo dục ngôn ngữ và quy tắc triển khai còn mở theo `92` AF-HN-OPEN-006–009.
