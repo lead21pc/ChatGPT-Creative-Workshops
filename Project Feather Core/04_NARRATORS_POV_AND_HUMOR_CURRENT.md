@@ -911,7 +911,7 @@ Mức tự ý thức, việc chia sẻ bộ nhớ, quyền tác động và cơ 
 
 ## 25. Tri thức MC2 và ranh giới narrator/năng lực
 
-POC-personification và Fictionize-personification đã ở cùng MC2 trong khoảng thời gian trước đó. Vì vậy MC2 đủ hiểu POC/Fictionize là gì, bản thân cô là gì và thực chất thế giới cô đang sống là gì. Không suy cô biết toàn bộ Canon 1/V1.0, lịch sử Fiction 0, kỹ thuật năng lực hoặc sự kiện chưa tiếp cận; thời điểm đạt từng mức tri thức còn `UNKNOWN`.
+Trong thời gian Học viện, Maylander lần đầu giải thích trực tiếp cho Elena rằng cô là nhân vật và bị đẩy tới cái chết đã viết. Elena từng nghi ngờ, khó kiểm chứng lời giải thích và tiếp tục hoài nghi trong một thời gian đáng kể. Hai personification đã ở cùng cô; phần hiểu POC/Fictionize được giữ trong phạm vi đã chốt, còn thời điểm và độ sâu từng lớp tri thức vẫn mở. Elena chưa được xác lập biết toàn Canon 1/V1.0, lịch sử Fiction 0, kỹ thuật năng lực hoặc sự kiện chưa tiếp cận.
 
 Giữ tách:
 
@@ -920,4 +920,4 @@ POC-personification ≠ esper ability của MC3
 Fictionize-personification ≠ esper ability của MC1
 ```
 
-Trong Fiction 1, năng lực POC của MC3 giảm cấp thành ảnh hưởng có giới hạn lên cách người đối diện nhìn nhận cô khi giao tiếp; không tự tạo lòng tin hoặc obedience. MC1 vẫn có thể dùng Fictionize để truy cập fiction trong tác phẩm sẵn có ở Fiction 1. Các dữ kiện năng lực này do `03` quản lý; file narrator chỉ giữ ontology/personification, POV và biểu hiện.
+Trong Fiction 1, năng lực POC của MC3 giảm cấp thành ảnh hưởng có giới hạn lên cách người đối diện nhìn nhận cô khi giao tiếp; không tự tạo lòng tin hoặc obedience. MC1 vẫn có thể dùng Fictionize để truy cập fiction trong tác phẩm sẵn có ở Fiction 1. `03` còn ghi hành động Seong-ho dùng POC còn sót tác động lên nhân quả trước Clash #2, với hiệu ứng chưa chốt. Các dữ kiện năng lực do `03` quản lý; file narrator giữ ontology/personification, POV và biểu hiện.

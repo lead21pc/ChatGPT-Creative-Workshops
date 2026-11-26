@@ -103,3 +103,7 @@ MC4
 ```
 
 Hai mệnh đề trên không tự cấp năng lực, địa vị, thẩm quyền, miễn nhiễm, ký ức hoặc cơ chế xuyên không; không đồng nhất chiều không gian đó với Fiction 0/Fiction 1 hay nguồn của actor khác. Căn tính liên tục, hai configuration và Academy membership ở §§1–4 giữ nguyên. Bản chất Cosmos và quan hệ sinh thành được hoãn. Cơ chế/thời điểm xuất hiện, body/soul/memory transfer và liên hệ với các tầng fiction vẫn `UNKNOWN`.
+
+## Maylander và tri thức về Elena
+
+MC4 tên Maylander, đến từ chiều không gian khác theo nguồn gốc đã chốt. Trong giai đoạn Học viện của Elena, Maylander nói cô là nhân vật và một lực nhân quả đang đẩy cô tới cái chết đã viết. Maylander biết đủ để đưa lời giải thích đó; nguồn tri thức và phạm vi hiểu Fiction 0, Canon 1/V1.0, Fictionize, POC và áp lực nhân quả vẫn `UNKNOWN`. Elena khó kiểm chứng và còn nghi ngờ trong thời gian đáng kể. `03` §14.1 giữ thứ tự sự kiện.

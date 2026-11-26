@@ -771,13 +771,26 @@ Nhu cầu của MC2 về tiếp cận mẹ, trục Raging Fire và chính trị 
 
 ---
 
-#### 14.1 Cuối giai đoạn Học viện và mốc trước Clash #2
+#### 14.1 Từ Học viện tới phản quốc và Clash #2
 
-MC2 gặp nguy hiểm thực chất tới tính mạng trước Clash #2 và vẫn ở trong tình thế đó khi MC1 xuất hiện. Một mốc phản quốc đã chốt gắn nguy cơ bị tước tự do hoặc bị giữ và hiểm nguy này với giai đoạn này. Mốc phản quốc đang chờ đối chiếu với tuyến Học viện. Việc có cần sửa mốc này, sự kiện làm kết thúc hoặc suy yếu giai đoạn Học viện và chuỗi nhân quả đưa MC2 tới nguy hiểm tính mạng đều còn mở. Hành vi, chứng cứ, cơ quan có thẩm quyền và việc thao túng vụ việc vẫn `UNKNOWN` (`12`, `92`).
+Trong khoảng năm năm lịch sử sống Canon 2 sau Clash #1, Elena Vonmort (MC2) phát triển qua Học viện. Tại đó, sau những nghi ngờ kéo dài, cô gặp Maylander (MC4). Maylander lần đầu giải thích trực tiếp rằng cô là nhân vật và một lực nhân quả đang đẩy cô tới cái chết đã viết. Elena khó kiểm chứng và tiếp tục sống với nghi ngờ trong một thời gian đáng kể. `05` giữ căn tính Maylander; nguồn và giới hạn tri thức meta của Maylander còn mở.
 
-Điểm giao với Canon 1 vẫn là cùng điều kiện tử vong từ V0.5, đã được thực hiện trong Canon 1 và còn treo trong Canon 2. Cơ chế kỹ thuật của Clash và kết quả sau khi MC1 tới vẫn `UNKNOWN`. Hai canon giữ lịch sử và trạng thái riêng.
+Song song, Trúc Nha ly khai, ML phân mảnh, phía Đông liên minh TE, phe hữu ML tuyên chiến AF và phong tỏa ba cửa ngõ tới TE (`40`). AF điều chỉnh luồng hàng không (`06`). Khủng hoảng vận tải/ngoại giao làm tăng áp lực nhà ngoại lên phe quân sự để gọi Elena về, kéo cô trở lại xung đột chính trị trực tiếp. Lệnh chính thức, thẩm quyền, thời điểm gọi về và việc cô đã tốt nghiệp hay chưa vẫn mở (`12`, `14`).
 
-Mẹ MC2 được TE bảo hộ. MC2.2 đã biết MC2 ở AF và tình hình khái quát. `12` giữ phạm vi tri thức của các tác nhân liên quan.
+Tin đồn Elestine Reinhart cần gặp Elena khẩn cấp vì thông tin liên quan sinh mạng tới tai Elena. Cô chủ ý thử vượt biên trái luật trong tình thế căng thẳng. Cô đồng thời bị gài/thao túng và thực sự biết mình vi phạm khi thực hiện hành vi đó. Mốc phản quốc được giữ. Elena mất tự do và trở thành tù nhân chính trị bị đưa về/giam trong phòng cũ. Giá trị khai thác, thương lượng và vương triều khiến các tác nhân giữ cô sống ở mốc này. Thủ tục, chứng cứ, cơ quan và trạng thái phán quyết vẫn mở (`12`).
+
+Áp lực tử vong từ V0.5 lúc này hội tụ nguy hiểm tới một kết cục gần như khó tránh. Seong-ho (MC3) nhận ra điều đó, bí mật đưa một lượng nhỏ POC còn sót trong bản thân vào cấu trúc nhân quả đang dẫn tới kết cục. Hành động đã chốt; hiệu ứng chính xác vẫn `UNKNOWN`.
+
+```text
+Seong-ho can thiệp bằng POC còn sót
+→ [hiệu ứng vi mô chưa chốt]
+→ điều kiện tử vong V0.5 đã thực hiện ở Canon 1, còn treo ở Canon 2
+→ Clash #2
+→ Elena dùng lượt gọi Raging Phoenix
+→ MC1 được kéo từ stress test Canon 1 sang Canon 2
+```
+
+Nguy hiểm tính mạng trước Clash #2 được xác định qua hội tụ nhân quả này. Ở bề mặt chính trị, Elena đang được giữ sống vì giá trị của cô. Bản chất lực nhân quả, tác dụng POC, tương tác với Fictionize/Raging Phoenix và kết cục sau MC1 vẫn mở. Mẹ Elena được TE bảo hộ. MC2.2 đã biết Elena ở AF và tình hình khái quát; `12` giữ phạm vi tri thức của anh.
 
 ### 15. Sự cố thứ hai — MC1 stress-test V1.0
 
@@ -981,7 +994,7 @@ MC1 không có ground truth tự động.
 
 ### 21. Tri thức MC1 / MC3 / MC2
 
-MC2 đủ hiểu POC/Fictionize, bản thân và thực chất thế giới nhờ hai personification đã ở cùng cô; không toàn tri. Phạm vi và mốc tri thức theo Part V, không mặc định actor bản địa hoàn toàn không biết fiction.
+Maylander trực tiếp giải thích thân phận nhân vật và áp lực tử vong cho Elena tại Học viện. Quá trình nghi ngờ, kiểm chứng và phạm vi hiểu năng lực theo Part V.
 
 #### MC1
 
@@ -1260,7 +1273,7 @@ CANON 2 KHÔNG PHẢI V1.0 “TỰ CHẠY”.
 
 CANON 1: MC2 CHẾT KHI LÀ NỮ HOÀNG, KÍCH HOẠT TRỤC HOÀNG GIA VÀ TẠO ĐIỀU KIỆN CHO MC2.2 CHÍNH DANH HÓA CUỘC XÂM LƯỢC.
 
-CANON 2: HỌC VIỆN LÀ TUYẾN CHÍNH CỦA MC2 QUA NHIỀU NĂM SAU CLASH #1. ĐƯỜNG TỪ HỌC VIỆN TỚI KHỦNG HOẢNG TRƯỚC CLASH #2 CÒN MỞ.
+CANON 2: HỌC VIỆN LÀ TUYẾN CHÍNH CỦA MC2 QUA NHIỀU NĂM SAU CLASH #1. KHỦNG HOẢNG ML–TE DẪN TỚI ÁP LỰC GỌI ELENA VỀ, TIN ĐỒN VỀ MẸ, VƯỢT BIÊN, PHẢN QUỐC VÀ GIAM GIỮ CHÍNH TRỊ.
 
 CANON 2: MC2 CÒN SỐNG TẠI CLASH #2; ĐIỀU KIỆN TỬ VONG V0.5 VẪN CÒN TREO.
 
@@ -1440,6 +1453,10 @@ Năng lực esper của MC3 và POC-personification là hai lớp khác nhau; na
 
 ### Tri thức MC2 và Tiring Slope
 
-MC2 đủ hiểu POC và Fictionize là gì, bản thân cô là gì và thực chất thế giới cô đang sống là gì, vì hai personification đã ở cùng cô trước đó. Điều này không đồng nghĩa MC2 biết toàn Canon 1/V1.0, lịch sử Fiction 0, kỹ thuật năng lực hoặc sự kiện chưa tiếp cận; thời điểm đạt từng mức tri thức còn mở.
+Trong thời gian Học viện, Maylander lần đầu giải thích trực tiếp cho Elena rằng cô là nhân vật và bị đẩy tới cái chết đã viết. Elena từng nghi ngờ, khó kiểm chứng lời giải thích và tiếp tục hoài nghi trong một thời gian đáng kể. Hai personification đã ở cùng cô; phần hiểu POC/Fictionize được giữ trong phạm vi đã chốt, còn thời điểm và độ sâu từng lớp tri thức vẫn mở. Elena chưa được xác lập biết toàn Canon 1/V1.0, lịch sử Fiction 0, kỹ thuật năng lực hoặc sự kiện chưa tiếp cận.
 
 Tiring Slope là địa điểm thuộc bản thể gốc Fiction 1 và tồn tại trước phân kỳ V0.5/Clash #1. Niên đại từng hoạt động, thay đổi quản lý, phá hoại và trạng thái vận hành sau phân kỳ vẫn `UNKNOWN`. Địa điểm này không đồng nhất với chi nhánh Hội đồng Pháp sư, Học viện, lab hoặc cổng dịch chuyển; vị trí không tự xác lập quyền sở hữu hay chỉ huy.
+
+## Danh tính và can thiệp POC bổ sung
+
+MC3 tên Seong-ho, là Korean Editor của Aetherfire Theme Park ở Fiction 0. Anh là người bí mật dùng POC ở Clash #1. Ngoài biểu hiện POC ảnh hưởng nhận thức trong giao tiếp đã chốt ở Part V, anh còn giữ lượng POC nhỏ và thực hiện can thiệp nhân quả trước Clash #2 theo §14.1. Lượng, trạng thái, giới hạn và hiệu ứng cụ thể còn mở. Can thiệp này chưa xác lập khả năng xóa điều kiện tử vong, tự gây Clash #2, kích hoạt Raging Phoenix, viết lại Canon 1 hoặc hợp nhất trạng thái hai canon.

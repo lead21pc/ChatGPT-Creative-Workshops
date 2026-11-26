@@ -655,3 +655,7 @@ PHÁN ĐOÁN ĐÚNG
 THAM NHŨNG / TÀN NHẪN
 ≠ TỔ CHỨC NGU XUẨN
 ```
+
+## Giai đoạn Elena rời Học viện về khủng hoảng chính trị
+
+Tại Học viện, Elena gặp Maylander và lần đầu được giải thích trực tiếp thân phận nhân vật cùng điều kiện tử vong (`03`, `05`). Khủng hoảng ly khai ML, liên minh phía Đông với TE, chiến tranh và phong tỏa cửa ngõ TE tạo sức ép vận tải/ngoại giao lên AF, làm nhà ngoại tăng áp lực lên phe quân sự để gọi Elena về. Đây là mốc làm suy yếu/kết thúc giai đoạn Học viện và nối cô lại với chính trị trung tâm. Người ra lệnh, thẩm quyền, ngày/năm đào tạo và việc cô đã tốt nghiệp hay chưa vẫn mở. `12` giữ áp lực chính trị và `03` giữ trình tự tới Clash #2.

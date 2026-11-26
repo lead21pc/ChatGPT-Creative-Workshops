@@ -529,7 +529,7 @@ Không cần mở full macroeconomy ở giai đoạn hiện tại.
 
 ## 20. Giới hạn của xung đột nội bộ
 
-Trúc Nha có split-self, doctrine riêng và về sau phản đối triết lý tàn bạo ML. Hướng thể hiện giữ động cơ có căn cứ. Xung đột vận hành qua tác nhân và thiết chế theo §26 khi compliance, access, legitimacy hoặc enforcement thay đổi. Cơ chế split-self và kết quả của tình huống cụ thể còn mở.
+Trúc Nha có split-self và doctrine phản đối triết lý tàn bạo ML. §28 chốt việc cô khởi xướng ly khai trong Canon 2. Xung đột qua tác nhân và thiết chế vẫn theo §26. Cơ chế split-self và hệ quả cụ thể ngoài diễn biến §28 còn mở.
 
 ---
 
@@ -1653,3 +1653,13 @@ AF age ≈ 200 years
 ```
 
 không tự tương thích với việc bộ phận AF quốc gia đã bất bình trước vụ ám sát. Trạng thái bắt buộc là `CONFLICTED / CHRONOLOGY OPEN`. Không sửa bằng AF tiền thân, dời tuổi, nhiều Matriarch/nhiều vụ ám sát hoặc premise chưa được tác giả chốt.
+
+## 28. Ly khai và phân mảnh ML trong Canon 2
+
+Trần Trúc Nha, Saintess của ML, công khai chống đường lối tàn bạo của chế độ và khởi xướng ly khai. Sự đổ vỡ diễn ra trong lịch sử Canon 2 dẫn tới Clash #2.
+
+ML tách thành hai nửa lớn. Phía Tây tiếp tục phân mảnh thành nhiều vùng tự trị do các phe khác nhau kiểm soát. Phía Đông do Trúc Nha lãnh đạo liên minh với Transfusion EasterFire (TE). Biên giới, số vùng, tên phe, hình thức quản trị và tình trạng công nhận còn mở.
+
+Trước đó AF đã hỗ trợ kinh tế TE theo cách có thể chia rẽ hoặc làm suy yếu gắn kết nội bộ ML. Sau liên minh phía Đông–TE, phe hữu ML coi đó là phản bội, tuyên chiến với AetherFire và chặn ba cửa ngõ tới TE. Địa lý, hình thức vật lý, tình trạng pháp lý và phương thức quân sự của phong tỏa vẫn `UNKNOWN`.
+
+`06` giữ cú sốc và điều chỉnh luồng hàng không. `12` giữ hệ quả nhà ngoại gây sức ép gọi Elena về; `03` giữ tuyến tới Clash #2. Sự kiện ly khai chưa xác lập thay đổi custody Saint's Fresh, quyền truy cập ân điển, cơ chế oath, số phận thiết chế hoặc phân bố thánh vật sau phân mảnh.

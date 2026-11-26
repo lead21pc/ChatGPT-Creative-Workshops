@@ -26,8 +26,8 @@
 | Trúc Nha | Người Việt Nam từ Fiction 0; thế giới thuần esper lấy thế giới thật làm cơ sở tham chiếu | Cơ chế xuyên giới, lịch riêng, cách esper khác nhau giữa các quốc gia |
 | MC4 | Từ chiều không gian khác; con của Cosmos | Bản chất Cosmos, quan hệ với các tầng fiction, cơ chế và thời điểm xuất hiện |
 | Tiring Slope | Tồn tại trước phân kỳ; là địa điểm, không đồng nhất với chi nhánh Hội đồng/Học viện/lab/cổng | Niên đại từng sự kiện, trạng thái/chuỗi quản lý sau phân kỳ; ownership/command chưa chốt |
-| MC2 | Có hiểu biết thực chất về Fictionize, POC, bản thân và thế giới | Mốc đạt từng tri thức, toàn bộ nội dung Canon 1 hoặc cơ chế kỹ thuật sâu |
-| POC của MC3 ở Fiction 1 | Giảm cấp thành tác động đến cách người đối diện nhìn nhận trong giao tiếp | Điều kiện, giới hạn, kháng cự và duy trì tác dụng |
+| MC2 | Maylander trực tiếp giải thích thân phận nhân vật và điều kiện tử vong tại Học viện; Elena còn hoài nghi. Có hiểu biết Fictionize/POC theo phạm vi nguồn | Mốc tin/kiểm chứng và độ sâu từng tri thức, toàn Canon 1 và kỹ thuật sâu |
+| POC của MC3 ở Fiction 1 | Ảnh hưởng nhận thức khi giao tiếp; dùng lượng POC còn sót tác động lên nhân quả trước Clash #2 | Điều kiện, lượng còn sót, giới hạn, kháng cự, duy trì và hiệu ứng can thiệp nhân quả |
 | Fictionize của MC1 ở Fiction 1 | Dùng fiction trong các sách/tác phẩm có thể tiếp cận để đi vào trải nghiệm và tập luyện | Toàn bộ giới hạn vận hành và hệ quả xuyên tầng |
 | Tường lửa | Phát sinh từ phong ấn Giant; tác động mạnh lên sinh vật không phải humanoid khi vượt qua | Phân loại hình thái cụ thể, chi phí bảo trì, ritual/authority, điều kiện vô hiệu hóa |
 | Fiction 1 | Fiction 1 / Project Feather Core là sản phẩm MC1 viết và thương mại hóa bằng Fictionize | Vật lý siêu hình chính xác của sự hiện thực hóa và vận hành độc lập |
@@ -101,7 +101,7 @@ Only explicit current user confirmation can restore an old claim. Restoring one 
 | --- | --- | --- | --- |
 | AF-OPEN-016 | UNKNOWN / OPEN | Exact RF constitutional form and whether the four foregrounded blocs are member states, coalitions of member states or another internal layer. | `30`; `91` RF/Academy/MC4 addendum. Do not collapse bloc, state, union and lineage. |
 | AF-OPEN-017 | UNKNOWN / OPEN — partially specified | Exact RF actor/contract party/authorization của firewall và phong ấn; phạm vi chức năng còn cần làm rõ. | `10` §2/§8, `12` pathway và `30`: RF chuyên gia đến định kỳ, không thường trực nắm lõi; AF biết vận hành, đường bearer/gia cố là cơ chế thực. Không gán chủ thể hợp đồng cho union/Bloc 1 hoặc chốt nghi lễ. |
-| AF-OPEN-018 | UNKNOWN / OPEN | Official names/ranks of the mother-MC2 and Prince-9 polities, plus exact RF authority over succession and royal marriage. | `30` and `03`; old `vua RF` wording is superseded. |
+| AF-OPEN-018 | UNKNOWN / OPEN | Quốc gia phía mẹ MC2 đã có tên Reinhart, thuộc Khối liên hiệp 3 nước Tây Ragin Fire. Rank, ánh xạ RF, tên/rank chính thể Prince 9 và thẩm quyền kế vị/hôn nhân vẫn mở. | `30` and `03`; old `vua RF` wording is superseded. |
 | AF-OPEN-019 | UNKNOWN / OPEN | Trưởng công chúa knowledge, public murder narrative and exact chronology of Prince 9's death, pregnancy transfer, alliance and secession escalation. | `30`; knowledge must remain actor-specific. |
 | AF-OPEN-020 | UNKNOWN / OPEN | Academy official name, command chain, exact map, student/staff scale, administrative/specialist/dangerous-practice group sizes, five-person-team role allocation and activation threshold, entry age, per-term curriculum gates and field-deployment authorization. | `14` and `10` §5; official name remains `[ACADEMY NAME — PLACEHOLDER]`; internal military-training doctrine is accepted in `14`, but named implementation details remain open. |
 | AF-OPEN-021 | UNKNOWN / OPEN | Scholarship weights, thresholds, funding percentage, approving authority and external-work liability. | `14`; the seven-factor profile is canon, exact numeric formula is not supplied. |
@@ -228,7 +228,7 @@ Retcon đã được người dùng chấp nhận; không phải một đề xu�
 
 - **Tiếp nhận và đào tạo.** Ai đề xuất hoặc cho phép, MC2 có đồng ý hay không và vì sao, điều kiện hoặc ngoại lệ nhập học, tuổi và năm vào, xếp lớp/năm đào tạo, thời lượng hiện diện, tư cách học viên hay tư cách khác, hoàn tất khóa và thời điểm Clash #2 so với tốt nghiệp.
 - **Thẩm quyền và bảo vệ.** Quan hệ pháp lý giữa Quân đội, Học viện, chi nhánh Hội đồng Pháp sư, site Tiring Slope, Nghị viện, quý tộc, Bộ Nội vụ và các tác nhân khác. Căn cứ có thể giới hạn can thiệp, sự bảo vệ chủ đích hay phát sinh, mức tranh chấp và thời hạn, cùng những gì mỗi cơ quan biết về huyết hệ và True Crown.
-- **Cầu nối tới Clash #2.** Sự kiện kết thúc hoặc làm suy yếu giai đoạn Học viện, diễn tiến tới nguy cơ bị giữ và nguy hiểm tính mạng, và việc có cần sửa mốc phản quốc đã chốt ngày 05/10. Điểm giao nhân quả của hai canon vẫn theo `03` §§14.1–18. Cơ chế kỹ thuật và kết cục sau khi MC1 tới vẫn mở ở AF-OPEN-015.
+- **Cầu nối tới Clash #2 — đã cụ thể hóa.** Khủng hoảng ML–TE dẫn tới áp lực gọi Elena về, Rumor B, vượt biên chủ ý, bị gài và tù nhân chính trị. Lệnh gọi về, lịch đào tạo và thủ tục phản quốc còn mở. `03` §§14.1–18 giữ can thiệp POC và điểm giao hai canon; cơ chế kỹ thuật và kết cục vẫn mở ở AF-OPEN-015.
 
 ## MC2 pathway: câu hỏi triển khai — 2026-10-05
 
@@ -371,16 +371,16 @@ Still OPEN:
 
 #### 8. Treason implementation
 
-Mốc phản quốc đã chốt ngày 05/10 đang chờ đối chiếu với tuyến Học viện. Việc giữ hay sửa mốc và các câu hỏi triển khai dưới đây vẫn mở:
+Mốc phản quốc được giữ. Elena biết mình vi phạm khi chủ ý thử vượt biên và đồng thời bị gài/thao túng. Cô mất tự do, là tù nhân chính trị trong phòng cũ. Các câu hỏi triển khai dưới đây chỉ còn mở ngoài những mệnh đề đã chốt đó:
 
-- what exact act(s) form the evidentiary basis;
+- căn cứ chứng cứ cụ thể cho hành vi thử vượt biên trái luật đã chốt;
 - which agency investigates;
 - which authority charges/judges;
-- whether the case is legally valid, politically manipulated, or both;
+- tính hợp lệ của thủ tục cụ thể và cách gài/thao túng đã chốt được thực hiện;
 - whether resistance contact is genuine, infiltrated, fake, hijacked or mixed;
 - whether RF contact is part of the evidentiary package;
 - whether Operation Swap itself is exposed;
-- whether MC2 knowingly violates a law;
+- hành vi vi phạm đã chốt là chủ ý thử vượt biên trái luật; các điều khoản và căn cứ chứng cứ cụ thể còn mở;
 - whether sponsor faction abandons/denies her;
 - whether the public knows any of this before Clash #2.
 
@@ -783,3 +783,28 @@ Các mục patrol, barrier, dịch vụ đặt riêng, thiết kế an ninh và 
 - Cách MC1 và MC3 có thể trở về Fiction 0, điểm kết sau khi MC1 xuất hiện, powerset Raging Phoenix ngoài phần đã chốt, và chiều sâu tri thức sự tồn tại ngoài thế giới của gia tộc mẫu hệ và Cult vẫn mở hoặc `SEALED` theo trường hợp.
 - Quy trình an toàn phần cứng nghề, luật nghề và tiếp cận, cơ chế thị trường ngoài sổ sách, giới hạn vai trò POW quý tộc, ma trận công việc Criminal và triển khai đồng phục còn mở trong đúng phạm vi hiện hành. Chi tiết phụ thuộc kiến trúc cũ áp dụng AF-UR-OPEN-009.
 - Quyền hiến định, cơ chế sổ sách/biển thủ quân sự, chính sách Nội vụ, chương trình xuất khẩu nghề của Bộ Ngoại giao, giới hạn hệ phép và hình thái cụ thể của thay đổi thể chế trong 5–8 năm vẫn chưa được xác lập.
+
+## Phạm vi đã chốt và câu hỏi còn mở — delta Rumor/ML/Clash #2
+
+Đã chốt chuỗi ML ly khai → áp lực gọi Elena về → tin đồn → vượt biên → phản quốc/giam giữ → hội tụ tử vong và can thiệp POC. Mốc giải thích trực tiếp thân phận nhân vật là cuộc gặp Maylander tại Học viện. Các mục cũ về hành vi phản quốc, nguồn giải thích thân phận và cầu nối Học viện được cụ thể hóa trong đúng phạm vi này. POC ảnh hưởng giao tiếp và hành động đưa phần POC còn sót vào nhân quả là hai biểu hiện đã được ghi nhận.
+
+Các câu hỏi còn mở theo nguồn delta §13:
+
+1. Quan hệ hiến định của Quốc gia Reinhart/Khối liên hiệp 3 nước Tây Ragin Fire với RF rộng hơn và các khối hiện có.
+2. Chân trị từng diễn giải và động cơ quý tộc, quân sự, nhà ngoại trong Rumor A.
+3. Nguồn và đường truyền của hai tin đồn.
+4. Người và thẩm quyền bố trí Elena vào Học viện.
+5. Sự đồng ý và tư cách khi nhập học của Elena.
+6. Ngày/năm đào tạo khi gọi về và quan hệ với tốt nghiệp.
+7. Địa lý và quản trị các vùng Tây ML sau phân mảnh.
+8. Phương thức quân sự/pháp lý phong tỏa ba cửa ngõ TE.
+9. Tuyến hàng không, lưu lượng, quyền không phận và hạ tầng sau khủng hoảng.
+10. Người gài Elena và chứng cứ bị đặt/sửa/giấu cụ thể.
+11. Cơ quan xét xử, giai đoạn bản án, lượng hình, kháng cáo/xem xét cùng thủ tục phản quốc; điều kiện phòng giam, gác, giám sát, thăm/liên lạc và thời hạn.
+12. Nguồn tri thức meta của Maylander.
+13. Phạm vi tri thức Maylander ngoài thân phận và điều kiện tử vong của Elena.
+14. Bản chất vật lý/siêu hình của lực nhân quả.
+15. Lượng, trạng thái và giới hạn POC còn trong Seong-ho.
+16. Hiệu ứng chính xác của can thiệp POC trước Clash #2.
+17. Tương tác kỹ thuật giữa phần POC đó, Fictionize, điều kiện V0.5, Raging Phoenix và việc MC1 sang.
+18. Số phận Elena sau Clash #2.

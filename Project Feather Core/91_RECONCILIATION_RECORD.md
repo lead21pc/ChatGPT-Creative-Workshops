@@ -2,6 +2,19 @@
 
 > Audit/control layer only. Part I summarizes the completed reconciliation. Part II preserves assertion-level conflicts, provenance, priority and resolutions.
 
+## Rumor, ML và phản quốc tới Clash #2 — nhập 2026-11-27
+
+Tác giả duyệt đề xuất ACCEPT WITH LOCAL CORRECTION. Nguồn delta ngày 26/11 lưu tại `Source_Archive/FTH_Canon2_Rumor_Academy_ML_Treason_Clash2_Delta_2026-11-26.md`, SHA-256 `6596ECC9370C6F34F571B4583F9570A48BB1CCDEB28D0B6CE0ECC81B372A8F6A`.
+
+| Mệnh đề nguồn | Nơi thể hiện và phạm vi thay thế |
+| --- | --- |
+| §§0–3, 11.3 | `01` định nghĩa Rumor, `12` giữ hai đối tượng tin đồn và các tên Elena Vonmort, Elestine Reinhart, Duke Damsire. Chân trị động cơ/phối hợp trong Rumor A giữ mở; sức ép gọi về trong khủng hoảng §4 là hành động đã chốt. |
+| §4 | `40` §28 giữ ly khai, phân mảnh, liên minh, chiến tranh và ba cửa ngõ bị chặn. `06` giữ điều chỉnh hàng không, `12/14` giữ áp lực gọi Elena về. Các cơ chế chính thức vẫn mở. |
+| §§5–6 | `12` giữ chủ ý thử vượt biên trái luật, bị gài, mốc phản quốc và giam giữ chính trị trong phòng cũ. Thay trạng thái chờ đối chiếu mốc phản quốc ở `03/12/92`; giai đoạn thủ tục chưa chốt. |
+| §7 | `05` giữ tên Maylander và giới hạn tri thức, `03/04` sửa mốc giải thích thân phận cho Elena từ hai narrator sang Maylander tại Học viện. Phân biệt nghe, hoài nghi và hiểu năng lực về sau. |
+| §§8–9 | `03` giữ tên Seong-ho, Korean Editor của Aetherfire Theme Park ở Fiction 0 và hành động POC còn sót tác động lên nhân quả. Biểu hiện giao tiếp đã chốt vẫn có hiệu lực. Hiệu ứng mới, cơ chế Clash và số phận cuối vẫn mở. |
+| §§2, 10–15 | `30` giữ Quốc gia Reinhart và Khối liên hiệp 3 nước Tây Ragin Fire; giữ nguyên cách viết và để mở ánh xạ RF. `03` giữ khoảng năm năm tổng lịch sử sống, các sự kiện Học viện nằm trong khoảng đó. `92` giữ đủ 18 nhóm UNKNOWN và các chi tiết bổ sung. |
+
 ## MC2 tại Battlemage Academy — nhập canon 2026-11-26
 
 Tác giả duyệt đề xuất nhập sau khi đối chiếu lore. Nguồn: `Source_Archive/FTH_MC2_Academy_Path_Canon_Delta_2026-11-26.md` (8.250 byte, SHA-256 `C0A66CA0613E50367F7B32C42825D0256BE63258E8B631E9250CFF7803E588A9`).

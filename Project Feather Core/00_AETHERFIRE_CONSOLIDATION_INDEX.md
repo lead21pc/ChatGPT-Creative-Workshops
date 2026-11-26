@@ -53,3 +53,7 @@ AetherFire là một quốc gia trong FTH (`PROJECT FEATHER CORE / FTH != AETHER
 | `AFM-017` | `23_HOA_NGUYET_GEOGRAPHY_TRADE_RELATIONS_CURRENT.md` |
 
 <!-- END GENERATED MODULE CATALOG -->
+
+## Delta Canon 2 Rumor/ML/phản quốc — nhập 27/11/2026
+
+`01` giữ lớp Rumor và giao diện khủng hoảng. `40` §28 giữ ML ly khai/phân mảnh, chiến tranh và phong tỏa TE. `06` giữ điều chỉnh hàng không, `12` giữ hai tin đồn, áp lực gọi Elena về và phản quốc/giam giữ. `03` §14.1 giữ tri thức tại Học viện, hội tụ tử vong và can thiệp POC; `05` giữ Maylander, `14` giữ giao diện Học viện, `30` giữ tên node nhà ngoại. `91` ghi đối chiếu; `92` giữ các câu hỏi còn mở.

@@ -499,3 +499,15 @@ Nghề Undie không phải hình phạt mặc định đối với người xâm
 - Hoa Nguyệt–ML có mạng thương mại đang hoạt động mạnh; nền phép thuật Hoa Nguyệt tương thích với hình ảnh/thông điệp ML muốn trình diện. Hoa Nguyệt–RF cũng có thương mại đang hoạt động và mạnh hơn AF–RF; quan hệ phía sau này gây sức ép vào sườn AF. Không suy liên minh, chuỗi chỉ huy, tuyến/hàng hóa/đối tác cụ thể hoặc một chiến dịch phá hoại đã xảy ra.
 - ML và RF thời cổ hợp lực giết/phong ấn Giant tại long mạch; phong ấn sinh ra tường lửa phía Bắc. Một mục tiêu lịch sử của phía RF và ML khi tạo AF là nhà nước bù nhìn/vùng đệm hấp thụ thiệt hại khi các chủng tộc phía Bắc đánh xuống. Mục đích lập quốc không chứng minh ML/RF kiểm soát toàn bộ AF ở mọi thời kỳ.
 - AF hiện đồng thời đối kháng và phụ thuộc vào cả ML lẫn RF. Một số bộ phận AF bất bình với vai trò vùng đệm; sự bất bình này là nguyên nhân chính trị có liên quan vụ ám sát Matriarch, nhưng actor và chuỗi hành động chưa chốt. Chronology Matriarch–ML–AF còn `CONFLICTED / CHRONOLOGY OPEN` theo `40` và `92`.
+
+## Rumor — lớp thông tin lưu hành trong Fiction 1
+
+Rumor ghi thông tin thật sự tồn tại và lưu hành trong thế giới. Nguồn, độ tin cậy, mức đầy đủ và chân trị nội dung có thể còn mở. Việc nghe, tin và hành động theo tin đồn là các mốc cần căn cứ riêng. Hành động dựa trên thông tin sai vẫn có thể tạo lịch sử và hệ quả thật.
+
+Section 1 giữ trạng thái thế giới, Section 2 giữ tác nhân tham gia, Section 3 giữ trải nghiệm/kể từ vị trí cụ thể. Một sự kiện có thể được xét qua cả ba góc nhìn và lớp Rumor, với cùng nguồn quản lý dữ kiện. `12` giữ hai tin đồn quanh Elena Vonmort và Elestine Reinhart.
+
+## Khủng hoảng ML–TE trong Canon 2
+
+Trần Trúc Nha ly khai khỏi ML vì đường lối tàn bạo. ML tách thành hai nửa, phía Tây tiếp tục phân mảnh, phía Đông do Trúc Nha lãnh đạo liên minh với TE. Phe hữu ML tuyên chiến với AF và chặn ba cửa ngõ tới TE. `40` giữ diễn biến và giới hạn địa lý/thể chế.
+
+AF đã hỗ trợ kinh tế TE trước biến cố theo cách có thể làm suy yếu gắn kết nội bộ ML. Khủng hoảng gây sức ép vận tải/ngoại giao, làm tăng sự khẩn cấp ở phía nhà ngoại Elena và áp lực lên phe quân sự để gọi cô về. `06` giữ điều chỉnh luồng hàng không, `12` giữ áp lực chính trị, `03` giữ cầu nối tới Clash #2.

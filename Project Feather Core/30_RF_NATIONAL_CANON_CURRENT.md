@@ -174,3 +174,9 @@ Các thế lực ML và RF thời cổ đã hợp lực giết và phong ấn Gi
 Hoa Nguyệt–RF có thương mại đang hoạt động, mạnh hơn AF–RF. Hoa Nguyệt gần như không có cạnh tranh chính trị trực tiếp với RF như AF; quan hệ phía sau này tạo sức ép chiến lược lên AF. Cơ quan/đối tác RF, member state tham gia, hiệp định, luồng hàng, vận tải và kênh bí mật còn `UNKNOWN`.
 
 AF hiện vừa đối kháng vừa phụ thuộc vào RF. Quan hệ này không kết luận tương quan quân sự, union-wide policy, tuyên chiến, cắt thương mại hoặc mất tự trị.
+
+## Nhà ngoại Elena — tên và giao diện đã chốt
+
+Elestine Reinhart là mẹ Elena Vonmort (MC2), Nữ hoàng AetherFire. Quốc gia phía nhà ngoại tên Quốc gia Reinhart, nằm trong Khối liên hiệp 3 nước Tây Ragin Fire. Giữ đúng cách viết Ragin Fire trong tên khối. Quan hệ hiến định và ánh xạ rộng hơn giữa node nhà ngoại này, các khối đã mô tả và toàn liên hiệp RF vẫn mở.
+
+`12` giữ Rumor A gán các động cơ và quan hệ phối hợp nhà ngoại–quân sự trong việc tách Elena khỏi kiểm soát quý tộc. Trong khủng hoảng ML–TE, phía nhà ngoại thực sự tăng sức ép để gọi Elena về. Động cơ được đồn và hành động trong giai đoạn khủng hoảng có trạng thái bằng chứng riêng.

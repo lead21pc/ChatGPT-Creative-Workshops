@@ -171,7 +171,7 @@ Battlemage Academy tại Tiring Slope là tuyến chính của MC2 qua nhiều n
 
 Đường tiếp cận mẹ/chính trị và giao điểm tương lai với Undie còn mở. `92` giữ các lựa chọn triển khai liên quan.
 
-Mốc phản quốc và nguy hiểm tính mạng trước Clash #2 đã được chốt. Cần đối chiếu việc giữ hay sửa mốc phản quốc với tuyến Học viện. Sự kiện làm suy yếu hoặc kết thúc giai đoạn Học viện và đường dẫn tới khủng hoảng vẫn mở. `03` giữ điểm giao đã chốt của hai canon.
+Mốc phản quốc được giữ theo diễn tiến vượt biên, bị gài và giam giữ chính trị trong phần bổ sung Canon 2 dưới đây. Khủng hoảng ML–TE tạo cầu nối từ Học viện về xung đột chính trị. `03` §14.1 giữ hội tụ tử vong và can thiệp POC trước Clash #2.
 
 Không xóa agency của MC2 hoặc coi mọi bước là một kế hoạch thống nhất của nhà nước. Không biến unknown thành một chuỗi sự kiện mới. Các quan hệ Fictionize/POC/Clash/gọi MC1 được xử lý ở `03`, không suy từ tuyến hạ cấp đã bỏ.
 
@@ -191,7 +191,7 @@ Nguồn actor đã biết:
 - thế lực nước ngoài;
 - mạng liên quan MC3.
 
-Mốc phản quốc đang chờ đối chiếu với tuyến Học viện. Chứng cứ, cơ quan kết tội, hành vi và thành phần thật/giả của mạng vẫn `UNKNOWN`. Các phương án về kênh kháng chiến ở `92` chưa xác lập nguyên nhân của mốc đó.
+Hành vi chủ ý thử vượt biên trái luật và việc bị gài đã chốt. Chứng cứ, cơ quan xử lý, giai đoạn thủ tục và quan hệ với các kênh kháng chiến vẫn mở. Phần bổ sung Canon 2 dưới đây giữ chuỗi sự kiện.
 
 Phản gián AF có nhiều phương án dự phòng phụ thuộc thông tin, quy trách nhiệm, custody, thời điểm, phong ấn, hoạt động nước ngoài, can thiệp nội bộ và thẩm quyền chính trị. Việc chọn nhánh trong từng tình huống vẫn cần căn cứ. Tác nhân phản gián không tự có quyền quyết định số phận cuối cùng của MC2.
 
@@ -350,3 +350,29 @@ Phía RF có năng lực và động cơ giải cứu/đưa MC2 ra. Một tác n
 - Hoa Nguyệt đi đường quan hệ phía sau với RF để gây sức ép vào sườn AF; AF có động cơ chiến lược phá hoại Hoa Nguyệt. Không canon hóa một chiến dịch, cơ quan, authorization, phương thức hay kết quả phá hoại.
 
 Các mệnh đề trên không biến RF thành actor đơn nhất, không chứng minh toàn AF cùng ý chí và không thay các actor/thẩm quyền hiện hành chưa chốt.
+
+## Canon 2 — Elena, hai tin đồn và khủng hoảng phản quốc
+
+MC2 tên Elena Vonmort. Mẹ cô, Nữ hoàng AetherFire, tên Elestine Reinhart. Duke Damsire là người đứng đầu phe quân sự liên quan đến việc bảo vệ/tách Elena khỏi sự kiểm soát trực tiếp của quý tộc.
+
+### Rumor A — vị thế chính trị và hướng vào Học viện
+
+Một tin đồn lưu hành nối việc vua AF bỏ trốn và Elestine biến mất khoảng năm năm trước với bất ổn địa vị Elena. Tin đồn diễn giải rằng các phe quý tộc muốn Elena ủng hộ phe mình và đưa cô lên ngai làm Nữ hoàng bù nhìn, còn Duke Damsire muốn đưa cô ra khỏi kiểm soát trực tiếp của họ.
+
+Tin đồn còn gán việc phối hợp/gây sức ép lên phe quân sự cho Quốc gia Reinhart trong Khối liên hiệp 3 nước Tây Ragin Fire. Hai động cơ bị gán là sử dụng Elena làm chỗ đứng chính trị lâu dài từ khi Elestine mang thai cô vào cuộc dàn xếp vương triều AF, và giữ một đường ảnh hưởng bên ngoài để hạn chế việc AF kiểm soát cô hoàn toàn. Sự lưu hành của tin đồn là canon; chân trị từng diễn giải, động cơ và quan hệ phối hợp còn mở. Tình trạng Elestine được TE bảo hộ vẫn là dữ kiện có phân bố tri thức riêng.
+
+Tin đồn tạo cách giải thích trong thế giới cho việc đưa/giữ Elena ở Học viện. Người đề xuất, người có quyền cho phép, sự đồng ý và tư cách của cô cùng ranh giới thẩm quyền vẫn mở.
+
+### Khủng hoảng và áp lực gọi về
+
+AF đã hỗ trợ kinh tế TE trước đổ vỡ ML theo cách có thể chia rẽ hoặc làm suy yếu gắn kết ML. Trúc Nha ly khai, phía Đông liên minh TE, phe hữu ML coi đó là phản bội, tuyên chiến AF và chặn ba cửa ngõ TE. Sức ép vận tải và ngoại giao làm lợi ích nhà ngoại trở nên khẩn cấp. Quốc gia Reinhart/phía nhà ngoại tăng áp lực lên phe quân sự để gọi Elena về. Elena bị kéo trở lại xung đột chính trị trực tiếp. Lệnh chính thức, thẩm quyền, thời điểm và việc hoàn tất đào tạo vẫn mở.
+
+### Rumor B — lời hẹn của Elestine
+
+Elena nghe tin đồn Elestine cần gặp cô khẩn cấp vì thông tin liên quan tới sinh mạng của cô. Nguồn, độ tin cậy và đường truyền tin còn mở. Tin này dẫn tới lựa chọn của Elena, chưa xác lập Elestine thực sự gửi lời hẹn.
+
+### Vượt biên, phản quốc và giam giữ
+
+Elena chủ ý thử vượt biên trong tình thế căng thẳng, biết hành vi ấy trái luật. Cô đồng thời bị gài/thao túng. Mốc phản quốc được giữ; cô bị đối xử/phán xử là phản quốc và mất tự do. Việc đã có bản án chung thẩm hay chưa, phiên sau là lượng hình/kháng cáo/xem xét hay thủ tục khác, cơ quan có thẩm quyền và từng phần chứng cứ thật/giả/bị giấu vẫn `UNKNOWN`.
+
+Elena trở thành tù nhân chính trị và bị đưa về/giam trong phòng cũ. Các tác nhân giữ cô sống vì giá trị khai thác, thương lượng và vương triều. Phân loại pháp lý của phòng, lính gác, giám sát, quyền thăm/liên lạc và thời hạn giam giữ còn mở. Nguy hiểm tính mạng trước Clash #2 là hội tụ nhân quả tử vong do `03` quản lý; mốc này chưa xác lập lệnh hành quyết tức thời.

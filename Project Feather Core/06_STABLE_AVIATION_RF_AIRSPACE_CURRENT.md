@@ -332,3 +332,7 @@ DIRECT AIR ROUTES CAN ALTER INTERNAL RF DEPENDENCY AND SECESSION LEVERAGE.
 RF CONSTITUTIONAL AUTHORITY OVER AIRSPACE REMAINS UNKNOWN.
 UNKNOWN ≠ PERMISSION TO INVENT.
 ```
+
+## Cú sốc vận tải ML–TE trong Canon 2
+
+Sau ly khai và phân mảnh ML, phe hữu ML tuyên chiến AF và chặn ba cửa ngõ tới TE (`40`). Khủng hoảng buộc AF giảm một phần luồng hàng không hướng RF và tăng áp lực định tuyến/đi vòng qua TE. Lưu lượng, bản đồ tuyến, sân bay, quyền không phận, thông lượng và tương quan quân sự vẫn chưa chốt. `12` giữ hệ quả đối với áp lực nhà ngoại gọi Elena về.
