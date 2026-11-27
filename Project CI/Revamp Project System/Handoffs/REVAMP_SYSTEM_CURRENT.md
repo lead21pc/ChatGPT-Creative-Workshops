@@ -3,10 +3,15 @@
 HANDOFF_ID: REVAMP_SYSTEM
 FILENAME: REVAMP_SYSTEM_CURRENT.md
 STATUS: ACTIVE
-SCOPE: Revamp-system CI, two task paths and bounded authoring/continuity contracts only.
+SCOPE: Revamp-system Project baseline, bounded authoring/continuity contracts and parallel canonical portable skill; no client installation or live replacement.
 UPDATED: 2026-11-27
 
 ## 1. Established current state
+
+- DECIDED / IMPLEMENTED (2026-11-27, portable package): canonical source tại `skills/revamp-system/`, gồm SKILL.md tự đủ, ba references có điều kiện và một handoff template asset. Lần triển khai được người dùng duyệt ưu tiên semantic completeness; không là prototype cần thiết kế lại. Package tồn tại song song, không thay hoặc deactivate CI v3.1 / Router v2.1 / AT_R v1.2. Lõi áp dụng sau khi skill được nạp; existence/installation không là activation hay live pass.
+- STATICALLY VERIFIED (portable package): 34/34 test đạt, gồm 18 portable contract checks và 16 baseline. Validator skill-creator đạt; kiểm bản sao detached xác nhận tài nguyên nội bộ không cần CI/Router/AT_R hoặc cấu hình repository. Review trách nhiệm nằm tại `Project CI/Revamp Project System/tests/PORTABLE_SKILL_SEMANTIC_COVERAGE.md`: mọi material responsibility có owner; những thay đổi nghĩa được ghi riêng. Baseline controls/references/template và maintenance skill khớp byte với HEAD trước triển khai. Các kiểm tra là cấu trúc/văn bản, không chứng minh model tuân thủ.
+- Portable boundaries: không CORE.md, provider-specific frontmatter, client adapter, installer/symlink, registry hoặc runtime framework. Không actual CURRENT trong package. CURRENT vẫn ở ngoài reusable source; gói dùng nguồn user/target cung cấp hoặc convention local đã thiết lập, không registry Router/latest scan/installed state. SKILL đo 5.217 token bằng o200k_base, không cắt ngữ nghĩa vì khuyến nghị 5.000 token.
+- INSTALLED: NOT PERFORMED; DEPLOYED: NOT PERFORMED; CROSS-CLIENT RUNTIME VERIFICATION: NOT RUN cho portable package. Không có quyền push, cài hoặc activation trong tác vụ này; commit local phải kiểm Git thực tế, không suy từ hồ sơ. Quyền của baseline/đợt cũ không mở rộng lần triển khai.
 
 - DECIDED / IMPLEMENTED (2026-11-24): CI v3.1, Router v2.1 và AT_R v1.2 active trong repository. Revamp mặc định xử lý công việc kỹ thuật về hệ thống. Các project miền giữ nhiệm vụ sáng tác và prompt chung.
 - DECIDED / IMPLEMENTED: Router xét phạm vi rồi chức năng rồi dạng đầu ra. ID1 thiết kế phép thử. ID2 đóng gói phép thử đã chốt và chuyển giao công việc kỹ thuật. Giữ hai ID. Từ 2026-11-27, kiểm đích và bằng chứng vận hành hiện tại trước, chỉ đọc History nếu có ảnh hưởng thực sự. CURRENT vẫn theo nhu cầu và không phụ thuộc lượt đọc History. Thay đổi chưa thử trên môi trường chạy thực.
@@ -74,6 +79,8 @@ Next: chỉ khi cần và có quyền, ghi thêm runtime/probe evidence hoặc t
 
 ## 3. Outstanding / blocked
 
+- Portable package chưa cài/chạy trên client; chưa làm adaptation cho discovery/invocation/context lifecycle. Đây là giới hạn kiểm chứng và bước riêng, không là blocker của semantic migration đã được duyệt. Không có quyền tự làm bước đó. Khi bảo trì canonical package sau này, cần bổ sung target-selection phù hợp cho maintenance workflow nếu dùng nó; maintenance skill hiện giữ nguyên để phục vụ baseline, không là dependency runtime của package.
+
 - CI v3.1 / AT_R v1.2: LIVE VERIFIED: NOT RUN. Bộ CI v3.0 / Router v2.1 / AT_R v1.1 đã cài và đang chạy theo người dùng ngày 2026-11-24; chưa kiểm chứng độc lập. Các ca L01–L14, G01–G07, W01–W03 là đặc tả, không phải kết quả chạy. Báo cáo live v2.6 và v2.5/receipt giữ phạm vi cũ.
 
 - LIVE VERIFIED: ACTIVE theo báo cáo người dùng ngày 2026-11-05 cho v2.5/receipt. Codex chưa tái hiện độc lập; chi tiết cài đặt runtime, probe và độ bền qua nhiều context còn UNKNOWN. Promotion/push repository không tự chứng minh deployment.
@@ -111,6 +118,9 @@ Mốc lịch sử Router v1.1 từng đồng bộ thứ tự trong History mục
 
 Đường dẫn tính từ repository root:
 
+- `skills/revamp-system/SKILL.md`: canonical portable core và operation/delivery/context/transfer/continuity/capability procedure; IMPLEMENTED song song, chưa cài hoặc activate. `references/` và `assets/` dưới cùng root là tài nguyên đi kèm; không cần Router để tìm chúng.
+- `Project CI/Revamp Project System/tests/PORTABLE_SKILL_SEMANTIC_COVERAGE.md`: review trách nhiệm, thay đổi có chủ đích và ca kiểm chuyển từ baseline.
+- `Project CI/Revamp Project System/tests/test_portable_skill.py`: 18 portable static checks; không chạy model hoặc client.
 - `SYSTEM_CONTEXT.md`: mục 11–12, phân biệt repository/live runtime và lớp chứng cứ; đã đọc đầy đủ.
 - `AGENTS.md`: repository context gate; đã đọc đầy đủ. Chỉ dẫn AGENTS do người dùng cung cấp trong chat thêm ranh giới shared local working state và proposal review.
 - `Project CI/Source_Archive/Revamp_Project_System_CI_v2.2.md`: predecessor byte-exact để provenance/rollback khi được yêu cầu; không phải nguồn hiện hành hay fallback mặc định. v2.1, v2.0 và các bản cũ hơn ở cùng archive.
@@ -130,12 +140,15 @@ Mốc lịch sử Router v1.1 từng đồng bộ thứ tự trong History mục
 
 ## 9. Next-entry guidance
 
+Phân biệt target bảo trì: baseline Project vẫn dùng CI/Router/AT_R hiện hành ở dưới; canonical portable source là package riêng chưa cài. Nếu tác vụ về portable package, kiểm SKILL cùng tài nguyên liên quan và bảng semantic coverage; không áp topology ID/Router/AT_R cũ như dependency của package mới. Chỉ cài/adapter/activation hoặc thay baseline khi có yêu cầu và scope riêng. Tài liệu CURRENT này là state repository-local, không được đóng vào reusable package.
+
 Xét phạm vi kỹ thuật, chức năng rồi dạng đầu ra theo TASK_ROUTER. Việc kỹ thuật độc lập đi thẳng. ID1 thiết kế phép thử. ID2 đọc AT_R để đóng gói hoặc chuyển giao, không chạy downstream. Với tác vụ phụ thuộc repository/system, đọc Router trước. Kiểm nguồn đích, triển khai và bằng chứng vận hành hiện tại trước. Chỉ đọc History nếu tiền lệ, cơ chế lỗi, nguồn gốc hoặc quyết định cũ có ảnh hưởng. Chỉ dùng bài học khi cơ chế và điều kiện áp dụng có căn cứ. Đọc FULL_FILE CURRENT nếu còn thiếu thông tin tiếp nối có ảnh hưởng, kể cả khi không cần History. Đối chiếu CURRENT đã nạp với repo/runtime; pin shared-stack cũ không thay current version hoặc vô hiệu toàn handoff. Không coi giải pháp đã chấp thuận là đề xuất mới; chỉ mở lại khi có chứng cứ trái mới, triển khai lệch hoặc người dùng yêu cầu. History không thay CURRENT hoặc tạo match. Xác nhận quyền, dùng local working tree hiện hành; giữ các workstream riêng. Nếu continuity còn thiếu và không có nguồn hợp lệ, báo UNKNOWN/gap; không bịa state. Central Hub không kế thừa repository/history preflight hoặc cơ chế Revamp.
 
 Chỉ khi state đổi đáng kể và cross-chat continuity materially useful, cập nhật đúng CURRENT trong phạm vi quyền ghi; nếu chưa có quyền, báo delta đề xuất. CI ACTIVE là quyết định người dùng, không phải kết quả suy từ kiểm tra tĩnh. Không báo LIVE VERIFIED chỉ từ kết quả tĩnh hoặc publication Git. CURRENT FILE = ACTIVE HANDOFF; Git giữ lịch sử.
 
 ## 10. Explicit exclusions
 
+- Portable package không được tự promote/deploy/cài hoặc thêm vào AGENTS/client config từ việc hoàn tất semantic migration. Không push, branch, tag hoặc migration baseline trong tác vụ này.
 - Central Hub không kế thừa Router, quy tắc CI handoff, CURRENT hoặc hành vi nạp của Revamp. Revamp có thể biết công việc Central Hub khi có nguồn phù hợp; cơ chế vẫn chỉ ở Revamp.
 - Không phải global memory, transcript archive, trạng thái toàn repository hoặc snapshot từng chat. WORKSTREAM != CHAT; HANDOFF != CHAT SUMMARY.
 - Không manifest/registry/schema/state engine, bộ chọn latest-version, router chọn router, lớp quản lý cập nhật, multi-ID execution graph hoặc composition runtime. Giữ cấu trúc CURRENT 10 mục trong v3.0.
@@ -143,7 +156,7 @@ Chỉ khi state đổi đáng kể và cross-chat continuity materially useful, 
 
 ## Handoff Receipt
 
-- Đã chuyển: phạm vi kỹ thuật v3.0, phân luồng v2.1, hợp đồng AT_R v1.1, hai dấu Codex và trạng thái kiểm chứng.
+- Đã chuyển: baseline repository CI v3.1 / Router v2.1 / AT_R v1.2 và portable package song song; quyết định chuyển nghĩa, owner mới và kiểm chứng tĩnh có phạm vi. Các báo cáo runtime lịch sử giữ đúng phiên bản và attribution.
 - Đã giữ: DECIDED khác IMPLEMENTED khác STATICALLY VERIFIED/LIVE VERIFIED; context omission khác quên state; receipt khác body/proof/authority; user-reported live ACTIVE khác kiểm chứng độc lập, chi tiết coverage trong mục 3 còn mở.
 - Cố ý lược: toàn văn bản tiền nhiệm, trạng thái chi tiết của dự án khác và bản chép hội thoại.
-- Còn thiếu: kết quả live cho phân luồng, giao file/delta, phục hồi trạng thái và phân biệt quyền khi đọc dấu. Bằng chứng v2.5 và v2.6 vẫn giữ phạm vi đã ghi.
+- Còn thiếu: cài đặt/adapter và kết quả runtime của portable package; kết quả live cho phân luồng, giao file/delta, phục hồi trạng thái và phân biệt quyền của baseline vẫn có giới hạn đã ghi. Bằng chứng v2.5 và v2.6 không tự chuyển sang bản portable.
