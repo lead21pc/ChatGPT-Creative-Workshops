@@ -2,13 +2,13 @@
 
 ## Start here: creative purpose and pipeline interpretation
 
-This is an author's working environment for three independent creative projects/systems: **Project Feather Core (FTH)** and **The Kingdom** are worldbuilding/paracosm projects; **Fanfiction Engine** is the whole fanfiction/daydream simulation system. **The Academy** remains the platform inside Fanfiction Engine. ChatGPT and Codex assist the author. AetherFire is a country inside Project Feather Core, not the project namespace.
+This is an author's working environment for five independent **Main Projects**: **Project Feather Core (FTH)**, **Project Cosmic Core (C2)**, **Fanfiction Engine**, **LitRPG Engine**, and **Fiction and Worldbuilding Engine (FWE)**. **Revamp Project System** and **Central Hub** are **General Tools**, not creative projects or semantic parents of the Main Projects. ChatGPT and Codex assist the author. AetherFire is a country inside FTH; The Academy is the platform inside Fanfiction Engine.
 
 These projects/systems are the creative work. Instructions, source routers, audits, consolidation scripts, regression checks, and Git procedures support that work by preserving consistency, provenance, scope, and reviewable decisions.
 
 For human readers, LLMs, and repository agents, the essential interpretation is:
 
-- The three projects/systems have independent canon, ontology, source authority, and local controls.
+- The five Main Projects retain independent source authority, authorial decisions, control/runtime assumptions, and ontology or domain models where their sources establish them.
 - Repository text is a partial externalization of the author's world models, not their complete contents.
 - The author decides canon; a model response or successful tool run does not make a creative decision.
 - A workflow may combine author actions, model instructions, and executable tools. A diagram does not imply that every step runs automatically.
@@ -21,7 +21,7 @@ Related projects may combine several of these functions. Use the following disti
 | Related repository function | Scope of this repository |
 | --- | --- |
 | Sharing prompts or reusable instructions | Instruction files are accompanied by design history, failure analysis, and evidence limits from ongoing use. Reuse requires checking scope and applicability. |
-| Offering a common worldbuilding template | The three worlds remain independent. Shared methods or candidate ideas must be evaluated within each world's local rules. |
+| Offering a common worldbuilding template | The five Main Projects remain independent and are not all classified as worlds. Shared methods or candidate ideas must be evaluated within each project's local rules. |
 | Publishing a lore archive | Repository-visible lore is a partial record. Project-declared authority and author decisions determine its meaning; absence is not proof of nonexistence. |
 | Generating stories or fictional content | Model output supports the author's work. Generation does not authorize canon changes or fill unresolved source gaps. |
 | Providing tests and automation | Executable checks cover their stated properties. Author review and live model observations remain distinct parts of the workflow. |
@@ -30,9 +30,17 @@ When inspecting a pipeline, identify what each step acts on, who performs it, wh
 
 ### Repository organization
 
-The repository keeps Project Feather Core/ at the root and the other independent project/system packages under worlds/. Supporting areas remain authoring/ for cross-paracosm creative methods; llm-controls/ for general instructions and reusable control designs; codex-workflows/ for repository copies of procedural skills; and docs/ for instruction history and analysis.
+The repository keeps `Project Feather Core/`, `Project Cosmic Core/`, and `Fiction and Worldbuilding Engine/` at the root. `worlds/` contains Fanfiction Engine and LitRPG Engine; LitRPG Engine retains the repository path `worlds/The Kingdom/`. General Tools are located at `Central Hub/` and `Project CI/` for Revamp Project System. Supporting areas remain `authoring/` for cross-paracosm creative methods; `llm-controls/` for general instructions and reusable control designs; `codex-workflows/` for repository copies of procedural skills; and `docs/` for instruction history and analysis.
 
-Each project/system keeps its own internal source organization and local controls. Folder grouping establishes navigation, not shared canon or a universal source hierarchy. The relocation changes repository paths only; it does not install skills, update live ChatGPT Project or Library contents, or change the authority and source-loading rules declared by project controls.
+Each Main Project keeps its own internal source organization and local controls. Folder grouping establishes navigation, not shared canon or a universal source hierarchy. LitRPG Engine is a repository display/concept rename only: internal `The Kingdom` / `TK-*` source identities, paths, control filenames, manifest entries, and runtime bindings remain unchanged. Taxonomy changes do not install skills, update live ChatGPT Project or Library contents, or change the authority and source-loading rules declared by project controls.
+
+```text
+PROJECT CLASSIFICATION
+!= DIRECTORY LOCATION
+!= SOURCE IDENTITY
+!= RUNTIME BINDING
+!= CANON AUTHORITY
+```
 
 The detailed sections below explain the authoring model and its interpretation boundaries.
 
@@ -57,19 +65,21 @@ Complexity should therefore be evaluated against the actual worldbuilding and LL
 
 ---
 
-## 2. Three independent creative projects/systems
+## 2. Five independent Main Projects and two General Tools
 
 The author develops these independent projects in parallel:
 
 - **Project Feather Core (FTH)** — worldbuilding/paracosm project;
-- **The Kingdom** — worldbuilding/paracosm project;
-- **Fanfiction Engine** — fanfiction/daydream simulation engine, with The Academy as its internal platform.
+- **Project Cosmic Core (C2)** — fiction about a train crossing worlds, with lore managed within each source's scope;
+- **Fanfiction Engine** — fanfiction/daydream simulation engine, with The Academy as its internal platform;
+- **LitRPG Engine** — worldbuilding centered on a moving world and accumulated consequences, with characters as viewpoints and no central protagonist; package path remains `worlds/The Kingdom/`;
+- **Fiction and Worldbuilding Engine (FWE)** — independent fiction, worldbuilding, lore and concept development, idea exploration, and reasoning about fictional systems.
 
 Fanfiction Engine is not the same object as The Academy platform. Its two operational halves, Institutional Causality (legacy V1.5) and Narrative Engine Causality (legacy V2), are independently usable and composable. Neither is a mandatory prerequisite or successor of the other; Academy Revise (legacy V2.5) remains a working branch. Local project sources define their details.
 
-They are not three deployments of one shared fictional architecture.
+The five Main Projects are not deployments of one shared fictional architecture. FWE's classification does not make it architecturally equivalent to the other projects, a shared worldbuilding authority, a Central Hub replacement, or a semantic parent of the repository. It does not manage canon for FTH, C2, Fanfiction Engine, or LitRPG Engine.
 
-They have different:
+Each project's own sources determine its:
 
 - origins and genealogies;
 - ontologies;
@@ -84,7 +94,24 @@ They have different:
 
 Shared methods or tooling do **not** imply shared canon, shared ontology, shared implementation, or cross-project authority.
 
+```text
+SHARED METHOD != SHARED CANON
+SHARED TOOL != SHARED ARCHITECTURE
+```
+
 A concept appearing in multiple projects must not be treated as the same object merely because its external description is similar.
+
+The two **General Tools** support scoped work:
+
+- **Revamp Project System** diagnoses technical/control failures, inspects systems, audits and designs bounded changes, minimizes unnecessary architectural expansion, and prepares controlled implementation work. It does not own the projects it audits or inherit their canon/domain authority.
+- **Central Hub** is a shared, general-purpose orchestration and capability system. Its outputs remain working material subject to the receiving project's sources, controls, and authorial acceptance.
+
+```text
+HUB OUTPUT != PROJECT ACCEPTANCE
+CENTRAL HUB != SEMANTIC PARENT OF MAIN PROJECTS
+```
+
+Neither General Tool is a Main Project or a source of shared canon. Shared tooling does not make project-specific controls, ontology, implementation, or runtime assumptions transferable by default.
 
 ---
 
