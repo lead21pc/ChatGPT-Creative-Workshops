@@ -77,6 +77,29 @@ def local_file(root, relative):
     return path
 
 
+def check_local_adapter(root):
+    """Check only the four fixed Path B bindings; never interpret host instructions."""
+    try:
+        text = local_file(root, 'AGENTS.md').read_text(encoding='utf-8-sig')
+    except (OSError, UnicodeError) as error:
+        raise CandidateError(f'Local adapter read failed: {error}') from error
+    expected = {
+        'CI': 'Project Feather Core CI/FTH_CI_version_v3.5.md',
+        'Router': ROUTER6,
+        'Pipeline': 'Anti-Drift Source/FTH_Authoring_Pipeline_v1.1.md',
+        'Anti-Drift': 'Anti-Drift Source/',
+    }
+    entries = re.findall(r'^\| (CI|Router|Pipeline|Anti-Drift) \| ([^|\r\n]*) \|$', text, re.M)
+    require(len(entries) == len(expected)
+            and dict(entries) == {name: f'`{relative}`' for name, relative in expected.items()},
+            'Local adapter pinned references mismatch')
+    for name in ('CI', 'Router', 'Pipeline'):
+        local_file(root, expected[name])
+    directory = (root / expected['Anti-Drift']).resolve()
+    require(directory.is_relative_to(root.resolve()) and directory.is_dir(),
+            'Missing/outside local Anti-Drift directory')
+
+
 def graph(controls):
     require(isinstance(controls, list) and controls, 'controls: expected nonempty list')
     result = {}
@@ -253,6 +276,8 @@ def check(root):
     ci = resolve_control(root / 'Project Feather Core CI', 'FTH_CI_version',
                          baseline['control_selection']['excluded_statuses'])
     require(ci.resolve() == (root / data['deployment']['ci']).resolve(), 'Active CI/Router pair mismatch')
+    if selected == root / ROUTER6:
+        check_local_adapter(root)
     return resolved
 
 

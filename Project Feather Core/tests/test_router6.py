@@ -1,6 +1,7 @@
 """Stack 6 structure/retrieval regression; no claimed live execution."""
 from copy import deepcopy
 from pathlib import Path
+import tempfile
 import unittest
 from unittest.mock import Mock, patch
 
@@ -8,7 +9,8 @@ import test_local_binding_trial as local_tests
 from test_local_binding_trial import LocalTrialHarness, ROOT, read_page
 from tools.router_candidate import (
     CandidateError, ROUTER, ROUTER6, LOCAL_BINDING_TRIAL,
-    check, check_baseline5, load, local_file, resolve_control, router6_access,
+    check, check_baseline5, check_fthx_candidate, check_local_adapter,
+    check_local_binding_trial, load, local_file, resolve_control, router6_access,
     validate, validate_router6,
 )
 
@@ -163,6 +165,120 @@ class Router6StructureTests(unittest.TestCase):
             mutate(data)
             with self.subTest(mutation=mutate), self.assertRaises(CandidateError):
                 validate_router6(data, ROOT)
+
+
+class LocalAdapterStructureTests(unittest.TestCase):
+    """Static entry/reference checks only; no client discovery or compliance claims."""
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory(prefix='fth-local-adapter-')
+        self.addCleanup(self.temporary.cleanup)
+        self.root = Path(self.temporary.name) / 'selected package'
+        self.root.mkdir()
+        self.references = {
+            'CI': 'Project Feather Core CI/FTH_CI_version_v3.5.md',
+            'Router': ROUTER6,
+            'Pipeline': 'Anti-Drift Source/FTH_Authoring_Pipeline_v1.1.md',
+            'Anti-Drift': 'Anti-Drift Source/',
+        }
+        self.text = '\n'.join(f'| {name} | `{relative}` |'
+                              for name, relative in self.references.items()) + '\n'
+        self.adapter = self.root / 'AGENTS.md'
+        self.adapter.write_text(self.text, encoding='utf-8')
+        for name in ('CI', 'Router', 'Pipeline'):
+            target = self.root / self.references[name]
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text('Static path-existence fixture only.\n', encoding='utf-8')
+
+    def test_fixed_bindings_and_repository_adapter_validate(self):
+        self.assertIsNone(check_local_adapter(self.root))
+        self.assertIsNone(check_local_adapter(ROOT))
+
+    def test_missing_adapter_and_unreadable_adapter_rejected(self):
+        self.adapter.unlink()
+        with self.assertRaisesRegex(CandidateError, 'AGENTS.md'):
+            check_local_adapter(self.root)
+        self.adapter.write_text(self.text, encoding='utf-8')
+        with patch.object(Path, 'read_text', side_effect=PermissionError('fixture denied')):
+            with self.assertRaisesRegex(CandidateError, 'Local adapter read failed'):
+                check_local_adapter(self.root)
+
+    def test_each_referenced_control_must_exist(self):
+        for name in ('CI', 'Router', 'Pipeline'):
+            path = self.root / self.references[name]
+            data = path.read_bytes()
+            path.unlink()
+            with self.subTest(control=name), self.assertRaisesRegex(CandidateError, 'Missing/outside'):
+                check_local_adapter(self.root)
+            path.write_bytes(data)
+
+    def test_wrong_pair_or_pipeline_and_duplicate_binding_rejected(self):
+        mutations = [
+            self.text.replace('FTH_CI_version_v3.5.md', 'FTH_CI_version_v3.4.md'),
+            self.text.replace('FTH_Anti_Drift_Source_Router_v6.0.yaml',
+                              'FTH_Anti_Drift_Source_Router_v5.0.yaml'),
+            self.text.replace('FTH_Authoring_Pipeline_v1.1.md', 'FTH_Authoring_Pipeline_v1.0.md'),
+            self.text + '| CI | `Project Feather Core CI/FTH_CI_version_v3.4.md` |\n',
+            self.text + '| CI | Project Feather Core CI/FTH_CI_version_v3.4.md |\n',
+            self.text + self.text.splitlines()[0] + '\n',
+        ]
+        for text in mutations:
+            self.adapter.write_text(text, encoding='utf-8')
+            with self.subTest(adapter=text), self.assertRaisesRegex(CandidateError, 'pinned references'):
+                check_local_adapter(self.root)
+
+    def test_path_a_prose_does_not_change_fixed_local_bindings(self):
+        self.adapter.write_text(self.text + '\nPath A: CI 3.4 + Router 5.0 remains a reference.\n',
+                                encoding='utf-8')
+        self.assertIsNone(check_local_adapter(self.root))
+
+    def test_relative_escape_and_absolute_reference_rejected(self):
+        outside = self.root.parent / 'outside.md'
+        outside.write_text('Outside fixture.\n', encoding='utf-8')
+        for relative in ('../outside.md', str(outside)):
+            self.adapter.write_text(self.text.replace(self.references['CI'], relative), encoding='utf-8')
+            with self.subTest(reference=relative), self.assertRaises(CandidateError):
+                check_local_adapter(self.root)
+
+    def test_simulated_resolved_escape_rejected_for_adapter_and_each_binding(self):
+        # Simulate symlink resolution without requiring Windows symlink privileges.
+        outside = self.root.parent / 'outside.md'
+        outside.write_text('Outside fixture.\n', encoding='utf-8')
+        outside_directory = self.root.parent / 'outside directory'
+        outside_directory.mkdir()
+        original_resolve = Path.resolve
+        for relative in ('AGENTS.md', *self.references.values()):
+            target = self.root / relative
+            destination = outside_directory if relative.endswith('/') else outside
+            def resolved(path, *args, **kwargs):
+                return destination if path == target else original_resolve(path, *args, **kwargs)
+            with self.subTest(reference=relative), patch.object(Path, 'resolve', resolved):
+                with self.assertRaisesRegex(CandidateError, 'Missing/outside'):
+                    check_local_adapter(self.root)
+
+    def test_selected_six_requires_adapter_but_lineage_checks_do_not(self):
+        expected = check_baseline5(ROOT)
+        with patch('tools.router_candidate.check_local_adapter',
+                   side_effect=CandidateError('fixture adapter unavailable')):
+            with self.assertRaisesRegex(CandidateError, 'fixture adapter unavailable'):
+                check(ROOT)
+            self.assertEqual(check_baseline5(ROOT), expected)
+            self.assertEqual(validate_router6(load(ROOT / ROUTER6), ROOT), expected)
+            self.assertEqual(check_local_binding_trial(ROOT), expected)
+            self.assertEqual(check_fthx_candidate(ROOT), expected)
+
+    def test_selected_five_does_not_require_adapter(self):
+        expected = check_baseline5(ROOT)
+        original_resolve = resolve_control
+        def selected_five(directory, stem, excluded):
+            if directory == ROOT / 'Anti-Drift Source' and stem == 'FTH_Anti_Drift_Source_Router':
+                return ROOT / ROUTER
+            if directory == ROOT / 'Project Feather Core CI' and stem == 'FTH_CI_version':
+                return ROOT / 'Project Feather Core CI/FTH_CI_version_v3.4.md'
+            return original_resolve(directory, stem, excluded)
+        with patch('tools.router_candidate.resolve_control', side_effect=selected_five), \
+             patch('tools.router_candidate.check_local_adapter',
+                   side_effect=AssertionError('Path A must not check the Path B adapter')):
+            self.assertEqual(check(ROOT), expected)
 
 
 if __name__ == '__main__':

@@ -444,6 +444,89 @@ class MaintenanceTests(unittest.TestCase):
         self.assertEqual(current, path.read_bytes())
         self.assertEqual(self.run_cli('--check').returncode, 0)
 
+    def old_manifest_without_history_hash(self):
+        self.sync()
+        path = self.root / tool.MANIFEST
+        data = path.read_bytes()
+        _, _, _, block = tool.region(data, tool.HASHES)
+        prefix = b'| `93_SUPERSEDED_IDEAS.md` |'
+        block = b'\n'.join(line for line in block.split(b'\n')
+                            if not line.startswith(prefix))
+        path.write_bytes(tool.replace_region(data, tool.HASHES, block.decode()))
+        return path
+
+    def test_history_file_is_required_even_before_hash_migration(self):
+        self.old_manifest_without_history_hash()
+        (self.root / '93_SUPERSEDED_IDEAS.md').unlink()
+        self.rejected_without_writes()
+
+    def test_history_hash_mismatch_blocks_check_without_canon_admission(self):
+        self.sync()
+        name = '93_SUPERSEDED_IDEAS.md'
+        path = self.root / name
+        path.write_bytes(path.read_bytes() + b'\nDisposable historical edit\n')
+        before = self.snapshot()
+        self.assertEqual(self.run_cli('--check').returncode, 2)
+        self.assertEqual(before, self.snapshot())
+        self.assertNotIn(name, tool.MODULE_FILES)
+        index = before[tool.INDEX]
+        _, _, _, catalog = tool.region(index, tool.CATALOG)
+        self.assertNotIn(name.encode(), catalog)
+        self.assertNotIn(b'> Runtime role:', path.read_bytes())
+
+    def test_history_hash_migration_is_bounded_and_idempotent(self):
+        self.old_manifest_without_history_hash()
+        before = self.snapshot()
+        self.assertEqual(self.run_cli('--check').returncode, 2)
+        self.assertEqual(before, self.snapshot())
+        self.sync()
+        after = self.snapshot()
+        self.assertEqual({name for name in before if before[name] != after[name]},
+                         {tool.MANIFEST})
+        self.assertEqual(tool.replace_region(before[tool.MANIFEST], tool.HASHES, ''),
+                         tool.replace_region(after[tool.MANIFEST], tool.HASHES, ''))
+        _, _, _, block = tool.region(after[tool.MANIFEST], tool.HASHES)
+        hashes = tool.rows(block, '| File | SHA-256 |', tool.CURRENT_FILES)
+        name = '93_SUPERSEDED_IDEAS.md'
+        self.assertEqual(hashes[name], hashlib.sha256(after[name]).hexdigest().upper())
+        self.assertEqual(self.run_cli('--check').returncode, 0)
+        self.sync()
+        self.assertEqual(self.run_cli('--check').returncode, 0)
+        self.assertEqual(after, self.snapshot())
+
+    def test_history_migration_rejects_unrelated_missing_or_invalid_rows(self):
+        path = self.old_manifest_without_history_hash()
+        original = path.read_bytes()
+        _, _, _, block = tool.region(original, tool.HASHES)
+        first = next(line for line in block.splitlines() if line.startswith(b'| `'))
+        mutations = {}
+        for name in (tool.INDEX, tool.MODULE_FILES[0], tool.ACCEPTED['AFM-011']):
+            mutations['missing ' + name] = b'\n'.join(
+                line for line in block.split(b'\n')
+                if not line.startswith(f'| `{name}` |'.encode()))
+        mutations['duplicate'] = block + first + b'\n'
+        mutations['unknown'] = block + b'| `unexpected.md` | `' + b'0' * 64 + b'` |\n'
+        mutations['malformed'] = block.replace(first, b'| broken | row |', 1)
+        mutations['invalid hash'] = block.replace(first, first.rsplit(b'`', 2)[0] + b'`BAD` |', 1)
+        for label, changed in mutations.items():
+            with self.subTest(label=label):
+                path.write_bytes(tool.replace_region(original, tool.HASHES, changed.decode()))
+                self.rejected_without_writes()
+
+    def test_history_migration_rejects_unexpected_existing_package_changes(self):
+        self.old_manifest_without_history_hash()
+        sources = {name: (self.root / name).read_bytes()
+                   for name in (tool.MODULE_FILES[0], tool.INDEX, tool.MANIFEST)}
+        for name, data in sources.items():
+            with self.subTest(name=name):
+                path = self.root / name
+                changed = (data.replace(b'## Current package maintenance',
+                                        b'## Stale maintenance metadata', 1)
+                           if name == tool.MANIFEST else data + b'\nUnapproved concurrent edit\n')
+                path.write_bytes(changed)
+                self.rejected_without_writes()
+                path.write_bytes(data)
+
     def test_crlf_and_lf_generated_regions(self):
         for name in (tool.INDEX, tool.MANIFEST):
             path = self.root / name

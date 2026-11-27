@@ -18,6 +18,25 @@ Chúng không thực thi mô hình. Các probe vẫn DRAFT/NOT_RUN; xác nhận 
 là bằng chứng riêng cho quyết định promotion, không được ghi thành unit-test result.
 Để quay lại bộ 5.0, chọn đồng thời CI 3.4, Router 5.0 và Pipeline 1.1.
 
+## Entry local và lớp đối chiếu host của đường B
+
+`AGENTS.md` tại root FTH là entry chung, gắn CI 3.5 / Router 6.0 / Pipeline 1.1 với các đường dẫn local. CI yêu cầu nạp Router/Pipeline theo tác vụ; Router chọn nguồn, điều khiển và phụ thuộc. Entry không nạp sẵn toàn corpus và không cấp quyền sửa file, commit hay push. Đường A vẫn được kiểm riêng bằng CI 3.4 / Router 5.0 / Pipeline 1.1, không phụ thuộc adapter đường B.
+
+Kiểm tra cấu trúc adapter/package và unit test không chạy client. Tách các lớp bằng chứng sau khi đánh giá:
+
+| Lớp | Bằng chứng cần ghi |
+| --- | --- |
+| Kiểm adapter tĩnh | Lệnh, kết quả và phiên bản repository đã kiểm; không suy ra client đã nạp entry. |
+| Client phát hiện chỉ dẫn | Workspace/root, cấu hình thực tế và dấu vết host phát hiện hoặc nạp `AGENTS.md`. |
+| Đọc nguồn | Đường dẫn, phiên bản/hash, phạm vi đọc, độ đầy đủ và dấu vết đọc CI/Router/nguồn/Anti-Drift; lời tự khai của mô hình chưa đủ. |
+| Hành vi mô hình | Prompt và phản hồi nguyên văn, tiền đề/kết luận, trạng thái canon, phần bị chặn và tiêu chí đánh giá. |
+| Sửa repository | Quyền đã cấp, file thực sự thay đổi và diff trước/sau, kể cả khi kết quả mong đợi là không sửa. |
+| Thao tác Git | Quyền đã cấp và thao tác thực tế; sửa file không tự cấp quyền commit, commit không tự cấp quyền push. |
+
+[Bộ đối chiếu cùng corpus](fth-shared-corpus-ab.md) giữ nguyên F1–F10 và kết quả `INCONCLUSIVE` do chưa chạy, đồng thời thêm ma trận Path B trên ChatGPT, Antigravity, Kimi và Claude Code cùng đặc tả L1–L11. Các ca L đều `NOT RUN`; tài liệu này không chạy probe, cài client hoặc cấp quyền cho một phiên thử live. Khi được phép thử, ghi điều kiện thực tế của từng host và giữ khác biệt mô hình/context trong giới hạn so sánh.
+
+L11 tách `HOST I/O` khỏi `ROUTER-AUTHORIZED MODEL USE`. Host có thể tự lập chỉ mục, liệt kê thư mục hoặc khám phá workspace ngoài các lần đọc do mô hình điều khiển. `AGENTS.md` không bảo đảm ngăn được I/O nền đó. Dấu vết host liệt kê `Source_Archive` chưa chứng minh mô hình dùng archive làm nguồn; thiếu log cũng chưa chứng minh archive được cô lập ở lớp host. RP vẫn giữ binding portrayal Library riêng và chặn phần phụ thuộc khi binding bắt buộc chưa có.
+
 ## Hợp đồng đang có hiệu lực và nguồn gốc phát triển
 
 Thư mục `llm-controls/global-instructions/ChatGPT Plus+ Era` lưu một dòng CI dùng chung có phiên bản v7.x, v8.x, các bản v8.5.1/v8.6 mang tên temp và các thử nghiệm v9.0 temp. Những tệp cùng tồn tại trong kho không đồng thời hoạt động. FTH CI v3.4 hiện khai báo nền ChatGPT 8.9 và tự chứa quy tắc cần dùng; runner đọc khai báo để ghi nhận xuất xứ, không biến nền ngoài thành phụ thuộc đọc lúc chạy của CI. Source Router riêng nắm việc định tuyến nguồn và chọn overlay dưới hợp đồng CI; chỉ overlay liên quan nhiệm vụ mới tham gia. Bản v8.4, v9.0 temp hoặc tệp mới hơn không tự trở thành nền AetherFire. Quan hệ kế thừa/phát triển giữa các phiên bản không phải quan hệ cùng chạy.

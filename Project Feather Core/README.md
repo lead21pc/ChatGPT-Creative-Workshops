@@ -4,7 +4,7 @@ Project Feather Core (`FTH`) là project worldbuilding/paracosm cá nhân, phi t
 
 **AetherFire là một quốc gia trong FTH, không phải tên thay thế cho toàn project.** FTH có canon, cấu trúc thế giới và thẩm quyền nguồn riêng; phương pháp dùng chung với The Kingdom hoặc Fanfiction Engine không chuyển canon hay kiến trúc giữa các project.
 
-Đọc [SYSTEM_CONTEXT.md](../SYSTEM_CONTEXT.md) trước, rồi dùng [chỉ mục nguồn](00_AETHERFIRE_CONSOLIDATION_INDEX.md) và [sổ vấn đề hiện hành](92_OPEN_ISSUES_CURRENT.md) để chọn tài liệu theo tác vụ. README này chỉ hướng dẫn đọc và bảo trì; thẩm quyền cụ thể nằm trong nguồn và bộ điều khiển liên quan.
+Đọc [SYSTEM_CONTEXT.md](../SYSTEM_CONTEXT.md) trước để hiểu bối cảnh repository. Khi làm việc qua client local, dùng điểm vào [AGENTS.md](AGENTS.md) được mô tả bên dưới; CI và Router quyết định nguồn cần đọc theo tác vụ. README này chỉ hướng dẫn đọc và bảo trì; thẩm quyền cụ thể nằm trong nguồn và bộ điều khiển liên quan.
 
 ## Cách hiểu nguồn và quyết định
 
@@ -27,7 +27,8 @@ Số đầu tên file là địa chỉ theo miền, không phải thứ bậc th
 | [91 — Bản ghi hòa giải](91_RECONCILIATION_RECORD.md) | Quyết định, phạm vi thay thế, nguồn gốc và xung đột liên quan. |
 | [92 — Vấn đề hiện hành](92_OPEN_ISSUES_CURRENT.md) | Câu hỏi mở và các trạng thái chưa được chốt. |
 | [93 — Chi tiết thiết kế đã rút](93_SUPERSEDED_IDEAS.md) | Nội dung tiền nhiệm có trạng thái đã xác định, dùng cho yêu cầu lịch sử cụ thể. |
-| [MANIFEST.md](MANIFEST.md) | Cấu trúc gói, vùng metadata được tạo bằng công cụ và hash của nguồn hiện hành. |
+| [MANIFEST.md](MANIFEST.md) | Cấu trúc gói, vùng metadata được tạo bằng công cụ và hash của các thành viên thuộc phạm vi kiểm. |
+| [AGENTS.md](AGENTS.md) | Điểm vào chung cho host local, gắn đường B với root và các điều khiển đã chỉ định. |
 | [Project Feather Core CI/](Project%20Feather%20Core%20CI/) | Chỉ dẫn hành vi của project và kho lưu các phiên bản tiền nhiệm. |
 | [Anti-Drift Source/](Anti-Drift%20Source/) | Source Router, Authoring Pipeline và các bộ quy tắc chống sai lệch theo tác vụ. |
 | [RP Module/](RP%20Module/) | Bộ điều khiển RP v0.1 phục vụ thử nghiệm local; có điều kiện bật riêng. |
@@ -51,7 +52,7 @@ Hai đường dùng chung bộ lore, `00/90/91/92/93`, Anti-Drift và Pipeline 1
 Đường A dùng CI 3.4 và Router 5.0 để đối chiếu. Router 5.0 tìm nguồn canon
 trong Library Project Feather Core rồi Project Sources. Tài liệu lịch sử
 được cung cấp qua quyền đọc rõ theo tác vụ, giữ vai trò ngoài canon.
-Đường B dùng CI 3.5 và Router 6.0 để kiểm chứng trước khi xem xét chuyển nền tảng.
+Đường B dùng CI 3.5 và Router 6.0 làm đích vận hành local qua filesystem; hành vi trên từng client vẫn cần kiểm chứng riêng.
 
 Router 6.0 dùng `LOCAL_CURRENT_SOURCE` cho bootstrap `00/92`, reconciliation `91`
 khi cần và admitted AFM lore. Deployment chọn exact root/package current; Router
@@ -77,6 +78,18 @@ Pipeline chỉ áp dụng khi yêu cầu có thao tác biến đổi thuộc ph�
 
 CI tiền nhiệm và Router 4.4 đã được lưu trong archive điều khiển. Pipeline 1.0 còn ở thư mục trực tiếp để phục vụ quay lui; sự hiện diện của nó không làm thay đổi bản 1.1 được CI hiện hành chỉ định.
 
+## Điểm vào local của đường B
+
+Mở `Project Feather Core/` làm workspace và root gói FTH được chọn. [AGENTS.md](AGENTS.md) là adapter đầu vào chung cho host local: chỉ định đọc đầy đủ CI 3.5 trước công việc phụ thuộc FTH và cung cấp các đường dẫn tương đối của Router 6.0, Pipeline 1.1 cùng thư mục Anti-Drift. CI giữ quyền xác định khi nào cần Router hoặc Pipeline; Router giữ việc chọn nguồn, overlay và mở rộng phụ thuộc. Adapter không phân giải phiên bản mới nhất, sở hữu canon hay thay thế các điều khiển đó.
+
+Luồng thông thường là host đọc entry rồi CI 3.5. Khi cần trạng thái FTH hiện hành, CI dẫn vào Router 6.0; Router dùng chính root gói này làm `LOCAL_CURRENT_SOURCE`, đọc `00/92`, thêm `91` khi thực sự liên quan rồi nạp các nguồn và Anti-Drift cần thiết. Pipeline theo điều kiện bật hiện có. Entry không yêu cầu nạp sẵn 17 mô-đun, toàn bộ Anti-Drift, `90/91/92/93` hoặc archive lúc khởi động. [FTH_SYSTEM_CONTEXT.md](FTH_SYSTEM_CONTEXT.md) chỉ giúp định hướng, không cung cấp phần CI hay Router còn thiếu.
+
+File tồn tại hoặc client tìm được file chỉ chứng minh khả năng truy cập. Điều đó không cấp thẩm quyền nguồn hay cho phép dùng tìm kiếm repository làm fallback. Khi thiếu nguồn hiện hành quyết định, giữ điều kiện chặn của Router; lịch sử `90/93`, `Source_Archive`, Git/history, GitHub, Memory, phản hồi cũ, bản gần đúng và root khác không cứu khoảng thiếu đó. `90/93` giữ quyền đọc lịch sử riêng theo tác vụ. Đường A vẫn là kiến trúc đối chiếu CI 3.4 / Router 5.0 / Pipeline 1.1 với binding Library/Project Sources hiện có.
+
+Khả năng dùng công cụ không cấp quyền sửa repository. Phát triển ý tưởng hoặc chấp nhận canon cần được phân biệt với yêu cầu cập nhật file; sửa file, commit và push có quyền riêng. Áp dụng quyền đã được cấp rõ cho tác vụ, không suy thêm quyền hoặc yêu cầu duyệt lại phần đã được cho phép. Entry local cũng không đổi binding portrayal Library của RP; thiếu binding bắt buộc vẫn chặn phần RP phụ thuộc.
+
+Baseline này dùng một entry chung, chưa thêm `CLAUDE.md`, cấu hình riêng cho Kimi/Antigravity, native permission profile hoặc launcher. Phép kiểm adapter chỉ xác nhận cấu trúc trong repo, chưa chứng minh host tự phát hiện entry, mô hình đọc/tuân thủ nó hay chi phí context lúc chạy. [Bộ ca đối chiếu](tests/control-regressions/fth-shared-corpus-ab.md) giữ riêng F1–F10 và kế hoạch L1–L11 cho ChatGPT Path B, Antigravity, Kimi và Claude Code; các probe local hiện đều `NOT RUN`. Khả năng bảo trì của một bản sao riêng thư mục FTH nằm ngoài baseline này; một số phép kiểm vẫn cần tài liệu ở repository cha.
+
 ## RP v0.2: một Runtime, hai binding cố định
 
 [RP Router A](RP%20Module/FTH_RP_Router_v0.2.yaml) gắn cố định với Router 5.0 cho đường A; [RP Router B](RP%20Module/FTH_RP_Router_Path_B_v0.2.yaml) gắn cố định với Router 6.0 cho đường B. Hai file chỉ khác giá trị upstream, giữ cùng quy tắc chọn/định vị/kiểm nguồn portrayal và cùng trỏ tới [RP Runtime 0.2](RP%20Module/FTH_RP_Runtime_v0.2.md). Đường A giữ mục đích dùng nội bộ/đối chiếu; đường B phục vụ kiểm chứng chuyển nền tảng. Phiên bản mới hơn không tự thay đường còn lại.
@@ -101,7 +114,7 @@ Từ thư mục `Project Feather Core`, chạy kiểm tra chỉ đọc:
 python -B build_consolidation.py --check
 ```
 
-Công cụ kiểm header, ánh xạ catalog, tham chiếu chéo và hash nguồn hiện hành. `--write` chỉ cập nhật vùng catalog được tạo bằng công cụ trong `00` và vùng metadata/hash tương ứng trong manifest; chỉ dùng khi thay đổi được phép cần đồng bộ các vùng này, rồi chạy lại `--check`. Công cụ không tái dựng lore từ archive hoặc tự phê duyệt canon. File PowerShell đồng hành vẫn được giữ tại root.
+Công cụ kiểm header, ánh xạ catalog, tham chiếu chéo và hash các thành viên thuộc phạm vi kiểm. `93_SUPERSEDED_IDEAS.md` là thành viên gói bắt buộc có hash, vẫn chỉ là nguồn lịch sử: không phải current source, mô-đun AFM, bootstrap hoặc phụ thuộc mô-đun. `--write` chỉ cập nhật vùng catalog được tạo bằng công cụ trong `00` và vùng metadata/hash tương ứng trong manifest; chỉ dùng khi thay đổi được phép cần đồng bộ các vùng này, rồi chạy lại `--check`. Công cụ không tái dựng lore từ archive hoặc tự phê duyệt canon. File PowerShell đồng hành vẫn được giữ tại root.
 
 Đọc [hướng dẫn kiểm hồi quy điều khiển](tests/control-regressions/README.md) trước khi dùng runner. Phân biệt trạng thái case, neo nguồn, kiểm tra cấu trúc, thử ngữ nghĩa và bằng chứng chạy thực tế; kết quả cấu trúc không tự kích hoạt case hay chứng minh mô hình tuân thủ.
 

@@ -35,6 +35,7 @@ CURRENT_FILES = (INDEX,) + MODULE_FILES + (
     '90_DESIGN_HISTORY_AND_RECONSIDERATIONS.md',
     '91_RECONCILIATION_RECORD.md',
     '92_OPEN_ISSUES_CURRENT.md',
+    '93_SUPERSEDED_IDEAS.md',
 )
 ACCEPTED = {f'AFM-{number:03d}': name
             for number, name in enumerate(MODULE_FILES, 1)}
@@ -223,7 +224,11 @@ def plan(root, write=False):
     region(manifest, METADATA)
     _, _, _, block = region(manifest, HASHES)
     hash_expected = CURRENT_FILES
-    if write:
+    # Only this approved transition may add the historical package member.
+    migrate_history = write and b'| `93_SUPERSEDED_IDEAS.md` |' not in block
+    if migrate_history:
+        hash_expected = CURRENT_FILES[:-1]
+    elif write:
         for key in ADMISSION_IDS:
             admitted_source = ACCEPTED[key]
             previous_source = next((old for old, new in LEGACY_PATHS.items()
@@ -241,6 +246,13 @@ def plan(root, write=False):
     previous_hashes = rows(block, '| File | SHA-256 |', hash_expected)
     if any(not re.fullmatch(r'[0-9A-F]{64}', value) for value in previous_hashes.values()):
         raise ValidationError('Invalid current hash syntax')
+    if migrate_history:
+        # An old valid table missing only 93 is eligible; unrelated repairs are not.
+        if (new_index != inputs[INDEX]
+                or replace_region(manifest, METADATA, METADATA_TEXT + '\n') != manifest
+                or any(hashlib.sha256(inputs[name]).hexdigest().upper() != value
+                       for name, value in previous_hashes.items())):
+            raise ValidationError('93 migration requires an otherwise consistent current package')
     current = dict(inputs)
     current[INDEX] = new_index
     hash_text = '## Current file hashes\n\n| File | SHA-256 |\n| --- | --- |\n'
