@@ -4,12 +4,12 @@ HANDOFF_ID: REVAMP_SYSTEM
 FILENAME: REVAMP_SYSTEM_CURRENT.md
 STATUS: ACTIVE
 SCOPE: Revamp-system CI, two task paths and bounded authoring/continuity contracts only.
-UPDATED: 2026-11-24
+UPDATED: 2026-11-27
 
 ## 1. Established current state
 
 - DECIDED / IMPLEMENTED (2026-11-24): CI v3.1, Router v2.1 và AT_R v1.2 active trong repository. Revamp mặc định xử lý công việc kỹ thuật về hệ thống. Các project miền giữ nhiệm vụ sáng tác và prompt chung.
-- DECIDED / IMPLEMENTED: Router xét phạm vi rồi chức năng rồi dạng đầu ra. ID1 thiết kế phép thử. ID2 đóng gói phép thử đã chốt và chuyển giao công việc kỹ thuật. Giữ hai ID, History-first có điều kiện và CURRENT theo nhu cầu.
+- DECIDED / IMPLEMENTED: Router xét phạm vi rồi chức năng rồi dạng đầu ra. ID1 thiết kế phép thử. ID2 đóng gói phép thử đã chốt và chuyển giao công việc kỹ thuật. Giữ hai ID. Từ 2026-11-27, kiểm đích và bằng chứng vận hành hiện tại trước, chỉ đọc History nếu có ảnh hưởng thực sự. CURRENT vẫn theo nhu cầu và không phụ thuộc lượt đọc History. Thay đổi chưa thử trên môi trường chạy thực.
 - DECIDED / IMPLEMENTED: AT_R phục hồi trạng thái từng chủ đề trước khi phân loại, nén và trình bày. Full CURRENT giữ 10 mục. File tải xuống, delta dạng văn bản và ghi repo có đích và quyền riêng. AT_R v1.2 chỉ phát dấu REVAMP TRANSFER cho AUDIT/IMPLEMENTATION; AGENTS gốc nhận cả dấu mới và dấu Revamp → Codex cũ. Dấu chỉ ghi nguồn gốc/loại việc, không cấp quyền; thân tự đủ với nơi nhận khác.
 - IMPLEMENTED: CI v3.1 phục hồi hợp đồng tiếng Việt đầy đủ và chuyển giao không gắn riêng Codex; Router v2.1 giữ nguyên byte. Kiểm chứng tĩnh và archive ghi ở CHANGELOG. CI v3.1 / AT_R v1.2: LIVE VERIFIED: NOT RUN; chưa cài/deploy trong tác vụ này.
 - USER-REPORTED (2026-11-24): bộ tiền nhiệm CI v3.0 / Router v2.1 / AT_R v1.1 đã cài và đang chạy. INSTALLED: USER-REPORTED. LIVE ACTIVE: USER-REPORTED. INDEPENDENT LIVE VERIFICATION: NOT RUN. Không suy mọi probe đạt hoặc bản kế nhiệm đã chạy.
@@ -103,7 +103,7 @@ Wording v2.5/global rationale từng gọi Global 9.0 là governing runtime base
 
 Không có xung đột được thiết lập khi khởi tạo. Khi file/runtime đã kiểm tra mâu thuẫn với handoff, báo rõ và đánh dấu phần ảnh hưởng STALE / CONFLICTED; file/runtime quyết định trạng thái triển khai quan sát được. Ngày UPDATED không tự chứng minh độ mới của từng mục.
 
-Thứ tự trong history mục 10–11 đã đồng bộ với Router v1.1: vào Router, kiểm tra repo hiện hành trước history, rồi CURRENT. Đây là sửa tính tương thích chỉ dẫn, không phải kiểm chứng lại các sự kiện lịch sử được kể trong file.
+Mốc lịch sử Router v1.1 từng đồng bộ thứ tự trong History mục 10–11: vào Router, kiểm tra repo hiện hành trước history, rồi CURRENT. Đây là sửa tính tương thích chỉ dẫn, không phải kiểm chứng lại các sự kiện lịch sử được kể trong file.
 
 ## 8. Relevant source anchors
 
@@ -122,7 +122,7 @@ Thứ tự trong history mục 10–11 đã đồng bộ với Router v1.1: vào
 - `Project CI/Source_Archive/Revamp_Project_System_CI_v2.4.md` và `Project CI/Source_Archive/HANDOFF_ROUTER_v1.1.yaml`: predecessor không hoạt động, byte-exact; không dùng làm nguồn mặc định.
 - `Project CI/Revamp Project System/AT_R.md`: v1.2 ACTIVE, soạn đầu ra kỹ thuật ID2. Phục hồi trạng thái, giao file/delta và phát dấu REVAMP TRANSFER.
 - `Project CI/Revamp Project System/TASK_ROUTER.yaml`: Router v2.1 ACTIVE; ID1/ID2, nạp nguồn theo điều kiện và một CURRENT entry `revamp_system`.
-- `Project CI/Revamp Project System/HISTORY_AND_WHAT_NOT_TO_DO.md`: bối cảnh lỗi lịch sử/phòng ngừa; đọc FULL_FILE sau Router, trước CURRENT. HISTORY != CURRENT STATE; PAST FAILURE != PRESENT FAILURE; WARNING != AUTHORIZATION; GENEALOGY != REQUIRED ARCHITECTURE; HISTORICAL PAIN != PERMANENT MAXIMUM CONTROL.
+- `Project CI/Revamp Project System/HISTORY_AND_WHAT_NOT_TO_DO.md`: nguồn tham chiếu lỗi cũ; chỉ đọc sau khi kiểm đích và xác định có nhu cầu lịch sử thực sự. HISTORY != CURRENT STATE; PAST FAILURE != PRESENT FAILURE; WARNING != AUTHORIZATION; GENEALOGY != REQUIRED ARCHITECTURE; HISTORICAL PAIN != PERMANENT MAXIMUM CONTROL.
 - `Project CI/Revamp Project System/HANDOFF_TEMPLATE.md`: tạo mới hoặc thay thế toàn bộ CURRENT từ trạng thái có chứng cứ trong chat.
 - `Project CI/Revamp Project System/ARCHITECTURE_PREFLIGHT.md`: conditional reference cho aggregate structural self-check; Router chọn nạp, CI giữ authority, AT_R giữ ID2 authoring.
 - `Project CI/Revamp Project System/tests/HANDOFF_ROUTE_TEST_CASES.md`: đặc tả contract và probe v3.1; không phải log thử nghiệm live.
@@ -130,7 +130,7 @@ Thứ tự trong history mục 10–11 đã đồng bộ với Router v1.1: vào
 
 ## 9. Next-entry guidance
 
-Xét phạm vi kỹ thuật, chức năng rồi dạng đầu ra theo TASK_ROUTER. Việc kỹ thuật độc lập đi thẳng. ID1 thiết kế phép thử. ID2 đọc AT_R để đóng gói hoặc chuyển giao, không chạy downstream. Với tác vụ phụ thuộc repository/system, đọc Router trước. Với đề xuất cấu trúc hoặc điều khiển đáng kể, đọc đầy đủ History trước nguồn đích. Với công việc hệ thống còn lại, đọc nguồn hiện hành trước History. Từ baseline đó, chỉ chọn/đọc FULL_FILE CURRENT nếu còn cần prior continuity mà nguồn hiện tại chưa đủ cung cấp; repo đủ thì không nạp, preflight vẫn hoàn tất. Đối chiếu CURRENT đã nạp với repo/runtime; pin shared-stack cũ không thay current version hoặc vô hiệu toàn handoff. Không coi giải pháp đã chấp thuận là đề xuất mới; chỉ mở lại khi có chứng cứ trái mới, triển khai lệch hoặc người dùng yêu cầu. History không thay CURRENT hoặc tạo match. Xác nhận quyền, dùng local working tree hiện hành; giữ các workstream riêng. Nếu continuity còn thiếu và không có nguồn hợp lệ, báo UNKNOWN/gap; không bịa state. Central Hub không kế thừa repository/history preflight hoặc cơ chế Revamp.
+Xét phạm vi kỹ thuật, chức năng rồi dạng đầu ra theo TASK_ROUTER. Việc kỹ thuật độc lập đi thẳng. ID1 thiết kế phép thử. ID2 đọc AT_R để đóng gói hoặc chuyển giao, không chạy downstream. Với tác vụ phụ thuộc repository/system, đọc Router trước. Kiểm nguồn đích, triển khai và bằng chứng vận hành hiện tại trước. Chỉ đọc History nếu tiền lệ, cơ chế lỗi, nguồn gốc hoặc quyết định cũ có ảnh hưởng. Chỉ dùng bài học khi cơ chế và điều kiện áp dụng có căn cứ. Đọc FULL_FILE CURRENT nếu còn thiếu thông tin tiếp nối có ảnh hưởng, kể cả khi không cần History. Đối chiếu CURRENT đã nạp với repo/runtime; pin shared-stack cũ không thay current version hoặc vô hiệu toàn handoff. Không coi giải pháp đã chấp thuận là đề xuất mới; chỉ mở lại khi có chứng cứ trái mới, triển khai lệch hoặc người dùng yêu cầu. History không thay CURRENT hoặc tạo match. Xác nhận quyền, dùng local working tree hiện hành; giữ các workstream riêng. Nếu continuity còn thiếu và không có nguồn hợp lệ, báo UNKNOWN/gap; không bịa state. Central Hub không kế thừa repository/history preflight hoặc cơ chế Revamp.
 
 Chỉ khi state đổi đáng kể và cross-chat continuity materially useful, cập nhật đúng CURRENT trong phạm vi quyền ghi; nếu chưa có quyền, báo delta đề xuất. CI ACTIVE là quyết định người dùng, không phải kết quả suy từ kiểm tra tĩnh. Không báo LIVE VERIFIED chỉ từ kết quả tĩnh hoặc publication Git. CURRENT FILE = ACTIVE HANDOFF; Git giữ lịch sử.
 

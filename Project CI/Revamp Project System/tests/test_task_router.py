@@ -60,10 +60,10 @@ class TaskRouterContractTests(unittest.TestCase):
         self.assertEqual(repo["url"], "https://github.com/lead21pc/ChatGPT-Creative-Workshops")
         self.assertIn("current local working tree", repo["local_state"])
         self.assertIn("already satisfied, genuine gap or conflict", repo["proposal_check"])
-        history = self.router["historical_preflight"]
+        history = self.router["historical_reference"]
         self.assertEqual(history["read_mode"], "FULL_FILE")
         self.assertTrue((SYSTEM / history["file"]).is_file())
-        self.assertIn("before selecting or recovering any CURRENT", history["timing"])
+        self.assertIn("History is not a prerequisite for CURRENT", self.router["context_loading"]["order"])
         selection = "\n".join(self.router["selection"])
         for rule in ("WORKSTREAM RELEVANCE != HANDOFF NECESSITY",
                      "HANDOFF PRESENCE != HANDOFF NECESSITY", "no persistent activation",
@@ -81,25 +81,26 @@ class TaskRouterContractTests(unittest.TestCase):
 
     def test_preflight_order_for_proposals_and_other_system_work(self):
         context = self.router["context_loading"]["order"]
-        for rule in ("in either ID", "forms, evaluates, or plans",
-                     "before target inspection", "for any project",
-                     "inspect current sources before history",
-                     "only needed FULL_FILE CURRENT",
-                     "descriptive inspection", "settled-decision handoff"):
+        self.assertLess(context.index("inspect current target/runtime evidence first"),
+                        context.index("Read History only if materially needed"))
+        for rule in ("in either ID", "only needed FULL_FILE CURRENT",
+                     "History is not a prerequisite for CURRENT"):
             self.assertIn(rule, context)
-        history = self.router["historical_preflight"]
-        self.assertIn("before target inspection", history["timing"])
-        self.assertIn("after repository_preflight otherwise", history["timing"])
+        self.assertNotIn("historical_preflight", self.router)
+        history = self.router["historical_reference"]
+        self.assertIn("After current target/runtime inspection", history["timing"])
+        self.assertIn("Skip when no material historical dependency exists", history["applies_to"])
+        self.assertIn("Compare mechanisms and operating conditions", history["role"])
+        self.assertIn("cross-runtime applicability as unestablished", history["role"])
         self.assertIn("repository authority", history["excludes"])
-        self.assertIn("Defer the dependent proposal", history["failure_behavior"])
+        self.assertIn("defer only conclusions that depend on it", history["failure_behavior"])
         repo = self.router["repository_preflight"]["timing"]
-        self.assertIn("after FULL_FILE history and before forming or evaluating a solution", repo)
-        self.assertIn("Otherwise before history", repo)
-        self.assertIn("Always before CURRENT recovery", repo)
+        self.assertIn("before History, CURRENT recovery or dependent conclusions", repo)
+        self.assertIn("before forming or evaluating a solution", repo)
         routing = self.ci.split("4A. ROUTING", 1)[1].split("5. MINIMUM", 1)[0]
-        self.assertIn("FULL_FILE History before target for material structure/control proposals", routing)
-        self.assertIn("sources first otherwise", routing)
-        self.assertIn("CURRENT: needed FULL_FILE continuity", routing)
+        self.assertIn("Current target/runtime first", routing)
+        self.assertIn("History only if material; check mechanism and runtime fit", routing)
+        self.assertIn("CURRENT: needed FULL_FILE continuity without History gate", routing)
         self.assertEqual(re.findall(r"^\| (O\d\d) \|", self.cases, re.M),
                          [f"O{i:02}" for i in range(1, 8)])
 

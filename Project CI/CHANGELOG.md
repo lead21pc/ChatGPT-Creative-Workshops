@@ -1,6 +1,6 @@
 # Changelog — Revamp Project System CI
 
-Cập nhật ngày 2026-11-24. Phạm vi: dòng Revamp CI và các thay đổi trực tiếp của cơ chế handoff đi kèm.
+Cập nhật ngày 2026-11-27. Phạm vi: dòng Revamp CI và các thay đổi trực tiếp của cơ chế handoff đi kèm.
 
 Ngày commit được quy về UTC+07:00. Ngày nhập hoặc khôi phục file vào Git không chứng minh ngày tạo, ngày chấp thuận hay ngày cài vào ChatGPT Project. Các bản trong `Source_Archive` chỉ được đọc để đối chiếu lịch sử theo yêu cầu làm changelog; chúng không trở thành nguồn điều khiển hiện hành.
 
@@ -10,6 +10,11 @@ Ngày commit được quy về UTC+07:00. Ngày nhập hoặc khôi phục file 
 - Task Router: [TASK_ROUTER.yaml](<Revamp Project System/TASK_ROUTER.yaml>), v2.1, `active`; ID1 `REVAMP_CORE`, ID2 `AUTHORING` qua [AT_R v1.2](<Revamp Project System/AT_R.md>).
 - Trạng thái tiếp nối và bằng chứng kiểm chứng được ghi tại [REVAMP_SYSTEM_CURRENT.md](<Revamp Project System/Handoffs/REVAMP_SYSTEM_CURRENT.md>).
 - CI v3.1 / AT_R v1.2: `LIVE VERIFIED: NOT RUN`. Bộ tiền nhiệm CI v3.0 / Router v2.1 / AT_R v1.1: INSTALLED và LIVE ACTIVE theo báo cáo người dùng ngày 2026-11-24; INDEPENDENT LIVE VERIFICATION: NOT RUN. Các mốc lịch sử bên dưới giữ phạm vi riêng.
+
+## 2026-11-27 — Kiểm đích trước, tham chiếu History theo nhu cầu
+
+- CI v3.1 §4A và Router v2.1 kiểm đích, triển khai và bằng chứng vận hành hiện tại trước ở cả hai ID. Chỉ đọc History khi có ảnh hưởng cụ thể. So sánh cơ chế và điều kiện trước khi áp bài học giữa hai môi trường chạy.
+- CURRENT giữ điều kiện tiếp nối riêng, không cần đọc History trước. Architecture Preflight giữ các kiểm tra tổng thể và điều kiện kích hoạt riêng. Các phiên bản và đường dẫn hiện hành giữ nguyên. Thay đổi này chưa được kiểm chứng trên môi trường chạy thực.
 
 ## 2026-11-24 — Revamp v3.1: tiếng Việt và giao thức chuyển giao chung
 

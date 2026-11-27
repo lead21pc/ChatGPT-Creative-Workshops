@@ -2,7 +2,7 @@
 
 STATUS: REFERENCE / PREFLIGHT
 SCOPE: Work performed in Revamp, including proposals concerning another project.
-ROLE: Historical failure context and preventive guidance. For structural or control change proposals, read this file in full before target inspection as specified in section 10.
+ROLE: Conditional reference for historical evidence, failure provenance, prior mechanisms and regression risk. See section 10.
 NOT: Governing CI, Router, target-project authority, current workstream state, canon, or implementation authorization.
 
 ---
@@ -551,14 +551,14 @@ Do not infer that every base must be embedded. A project may intentionally use r
 
 ---
 
-## 10. Required preflight posture
+## 10. Use after current target inspection
 
-Independent tasks need no repository, history, or CURRENT preflight. For substantial repository- or system-dependent work, use the following order under the selected Task ID.
+Independent tasks need no repository, History, or CURRENT preflight. For repository- or system-dependent work:
 
 1. Use the governing CI and `TASK_ROUTER.yaml` to select the task and scope.
-2. **Structural or control change proposal.** When Revamp forms, evaluates, or plans a material change to architecture, structure, controls, routing, governance, dependencies, migration, or system organization, FULL_FILE-read this History before inspecting the target. This applies under either Task ID and to any target project. Then inspect the current target sources and real system. Establish target intent, owners, and the concrete failure or authorized requirement before forming or evaluating a solution. Apply Architecture Preflight when its own conditions are met.
-3. **Other system-dependent work.** Inspect current relevant sources first, then FULL_FILE-read this History. Factual explanation, descriptive inspection, and bounded handoff of a settled decision do not by themselves trigger History-first.
-4. After both History and current-source inspection, load CURRENT only if a material continuity need remains. If required History or target evidence is unavailable, identify the missing source and defer dependent conclusions.
+2. Inspect current target sources, implementation and relevant runtime evidence first. Establish behavior, any failure mechanism, constraints, owners and the proposal or authorized requirement. Apply Architecture Preflight only under its own conditions.
+3. Consult this reference only when a prior failure, precedent, provenance or decision materially affects the task. Compare the old mechanism and conditions with present evidence before using a lesson. A failure observed in ChatGPT/Project does not establish applicability in Codex or any other runtime. Missing historical evidence limits only conclusions that depend on it.
+4. Read needed CURRENT only when material continuity remains. Reading this reference is not a prerequisite for CURRENT.
 5. Classify findings as observed failure, reproduced failure, supported risk, or hypothetical future risk.
 6. Identify the smallest level of change that can solve the established problem.
 7. Preserve working behavior and known-safe fallback.
@@ -567,7 +567,7 @@ Independent tasks need no repository, history, or CURRENT preflight. For substan
 
 Reading this file does not activate every warning as a mandatory control.
 
-It supplies a historical prior:
+The cases provide a record of why earlier controls were introduced:
 
 > The repository already contains complexity created by real failures. Add more only when a present failure still requires it.
 
@@ -575,9 +575,9 @@ It supplies a historical prior:
 
 ## 11. Relationship to handoffs
 
-Follow the applicable order in section 10. In either path, establish current target evidence and read the required History before any CURRENT recovery.
+Establish current target evidence before recovering CURRENT. Consult History only for a material historical dependency.
 
-The Router selects the task, context, and sources. Target sources establish implementation and ownership. CURRENT supplies bounded continuation state when materially needed. History supplies failure context and preventive guidance. Authority to change the target remains with the user. Reading History first confers no authority to replace the target's architecture or rules.
+The Router selects the task, context, and sources. Target sources establish implementation and ownership. CURRENT supplies bounded continuation state when materially needed. History supplies failure context and preventive guidance. Authority to change the target remains with the user. Reading History confers no authority to replace the target's architecture or rules.
 
 ---
 

@@ -22,7 +22,7 @@ Before redesign inspect actual sources/workflow/runtime: behavior/mechanism/fail
 OBSERVED FAILURE: occurrence evidence; REPRODUCED FAILURE: stated reproduction; SUPPORTED RISK: supported mechanism, unproven failure; HYPOTHETICAL FUTURE RISK: no present mechanism/failure.
 4A. ROUTING
 "Revamp Project System/TASK_ROUTER.yaml": ID1 REVAMP_CORE; ID2 AUTHORING via AT_R.md. CI owns both IDs' evidence/acceptance/authorization/stage/decisions/scope. Router selects tasks/context/sources, never CI/base. Base: design lineage, no runtime dependency. TASK ROUTING != AUTHORITY TRANSFER; TASK ID != PERMISSION. AUTHORING != EXECUTION.
-Independent: no repo/handoff. FULL_FILE History before target for material structure/control proposals; sources first otherwise. CURRENT: needed FULL_FILE continuity, no evidence/acceptance/permission. Scope state/static/live. Repo/runtime wins implementation; mark only affected claims STALE/CONFLICTED.
+Independent: direct. Current target/runtime first. History only if material; check mechanism and runtime fit. CURRENT: needed FULL_FILE continuity without History gate; no evidence/acceptance/permission. Scope state/static/live. Repo/runtime wins implementation; mark only affected claims STALE/CONFLICTED.
 Write CURRENT via HANDOFF_TEMPLATE.md for material change + useful continuity + authorized scope; else note delta. No Revamp CI/Router/CURRENT/loading in Central Hub.
 5. MINIMUM SUFFICIENT CHANGE
 Ground operation/stage first; even small design exceeds audit. Choose nearest sufficient: clarify → local repair → component extension → small abstraction → multi-component redesign → new architecture. Justify skips. WHAT CONCRETE FAILURE REQUIRES THIS? None: omit primitive.
